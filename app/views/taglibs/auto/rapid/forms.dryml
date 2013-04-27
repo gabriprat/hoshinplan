@@ -1,10 +1,137 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="Area">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, hoshin, indicators, tasks" param/>
+    <div param="actions">
+      <submit label="#{ht 'area.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Hoshin">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name" param/>
+    <div param="actions">
+      <submit label="#{ht 'hoshin.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="IndicatorHistory">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="value, indicator" param/>
+    <div param="actions">
+      <submit label="#{ht 'indicator_history.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Indicator">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, value, description, responsible, higher, frequency, next_update, goal, max_value, objective" param/>
+    <div param="actions">
+      <submit label="#{ht 'indicator.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Objective">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, responsible, area" param/>
+    <div param="actions">
+      <submit label="#{ht 'objective.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Task">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, responsible, deadline, original_deadline, status, objective" param/>
+    <div param="actions">
+      <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="activate-form" polymorphic/>
+<def tag="activate-form" for="Task">
+  <form lifecycle="activate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="complete-form" polymorphic/>
+<def tag="complete-form" for="Task">
+  <form lifecycle="complete" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.complete', :default=>['Complete']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="discard-form" polymorphic/>
+<def tag="discard-form" for="Task">
+  <form lifecycle="discard" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.discard', :default=>['Discard']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reactivate-form" polymorphic/>
+<def tag="reactivate-form" for="Task">
+  <form lifecycle="reactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.reactivate', :default=>['Reactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reactivate-form" polymorphic/>
+<def tag="reactivate-form" for="Task">
+  <form lifecycle="reactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.reactivate', :default=>['Reactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="name, email_address, administrator, state" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

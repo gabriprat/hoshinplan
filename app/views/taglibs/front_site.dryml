@@ -15,3 +15,169 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <include src="application"/>
+
+<extend tag="card" for="Hoshin">
+  <old-card merge>
+    <append-body:>
+    <div class="areas">
+		<collection:areas/>
+    </div>
+    </append-body:>
+  </old-card>
+</extend>
+
+<extend tag="card" for="Area">
+  <old-card merge>
+    <append-body:>
+	<h5>Objectives</h5>
+    <div class="objectives">
+		<table width="100%">
+			<thead>
+				<tr><th>#</th><th>Objective</th><th>Resp.</th><th></th></tr>
+			</thead>
+			<tbody>
+				<collection:objectives/>
+			</tbody>
+		</table>
+    </div>
+	<h5>KPIs</h5>
+	
+    <div class="indicators" part="indicators">
+		<table width="100%">
+			<thead>
+				<tr><th>#</th><th>KPI</th><th>Resp.</th><th>Value</th><th>Goal</th><th>%</th><th/></tr>
+			</thead>
+			<tbody>
+				<collection:indicators/>
+			</tbody>
+		</table>
+    </div>
+	<h5>Tasks</h5>
+    <div class="tasks" part="tasks">
+		<table width="100%">
+			<thead>
+				<tr><th>#</th><th>Task</th><th>Resp.</th><th>Deadline</th><th>Dev</th><th>Status</th></tr>
+			</thead>
+			<tbody>
+				<collection:tasks/>
+			</tbody>
+		</table>
+		
+    </div>
+    </append-body:>
+  </old-card>
+</extend>
+
+
+<extend tag="card" for="Objective">
+	<tr>
+		<td>
+			#{this.id}
+		</td>
+		<td>
+			<a><name/></a>
+		</td>
+		<td><view:responsible/></td>
+		<td>
+			<ul class="icons">
+				<li class="kpi">
+					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-kpi.png" /></a>
+					<modal id="add-kpi-modal-#{this.id}">
+						<modal:>
+						<set obid="#{this.id}"/>
+						<form with="&Indicator.new" update="indicators" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+							<div class="modal-body">
+								<field-list: fields="name, description, responsible, goal, max_value, higher" />
+								<hidden-field:objective_id value="#{obid}"/>
+							</div>
+							<modal-form-footer/>
+						</form>
+						</modal:>
+					</modal>
+				</li>
+				<li class="task">
+					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-task.gif" /></a>
+					<modal id="add-task-modal-#{this.id}">
+						<modal:>
+						<set obid="#{this.id}"/>
+						<form with="&Task.new" update="tasks" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+							<div class="modal-body">
+								<field-list: fields="name, description, responsible, deadline" />
+								<hidden-field:objective_id value="#{obid}"/>
+							</div>
+							<modal-form-footer/>
+						</form>
+						</modal:>
+					</modal>
+				</li>
+			</ul>
+		</td>
+	</tr>
+</extend>
+
+<extend tag="card" for="Indicator">
+<tr part="tpc">
+  <td>
+	 #{this.objective.id}
+  </td>
+  <td><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></td>
+  <td><view:responsible/></td>
+  <td>
+	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
+		<field-list: fields="value"/>
+  	 </form>
+  </td>
+  <td><view:goal/></td> 
+  <td><view:tpc format="%1.1f"/>%
+  
+	  <modal id="update-kpi-modal-#{this.id}">
+		  <modal:>
+	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+			   <div class="modal-body">
+	            <field-list: fields="name, description, responsible, goal, max_value, higher, objective" />
+				</div>
+				 <modal-form-footer/>
+	         </form> 
+		 </modal:>
+	    </modal>
+  </td>
+ 
+  <td> <delete-button update="indicators" image="/assets/icons/delete.gif" /></td>
+</tr>
+</extend>
+
+
+<extend tag="card" for="Task">
+<tr part="task">
+  <td>
+	 #{this.objective.id}
+  </td>
+  <td><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></td>
+  <td><view:responsible/></td>
+  <td>
+    	<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
+    		<field-list: fields="deadline"/>
+     	</form>
+  </td>
+  <td>0</td>
+  <td>
+	  <if test="#{this.status=='active'?'true':''}">
+		  <form ajax lifecycle="complete" class="inline-form">
+			  <input type="image" src="/assets/icons/delete.gif"/>
+		  </form>
+		  <form ajax lifecycle="discard" class="inline-form">
+			  <input type="image" src="/assets/icons/complete-task.gif"/>
+		  </form>
+  	  </if>
+	  <else>
+		  <form ajax lifecycle="reactivate" class="inline-form">
+			  <input type="image" src="/assets/icons/add-task.gif"/>
+		  </form>
+	  </else>
+  </td>
+</tr>
+</extend>
+
+
+
+

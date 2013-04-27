@@ -10,7 +10,79 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421200651) do
+ActiveRecord::Schema.define(:version => 20130427220627) do
+
+  create_table "areas", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "hoshin_id"
+  end
+
+  add_index "areas", ["hoshin_id"], :name => "index_areas_on_hoshin_id"
+
+  create_table "hoshins", :force => true do |t|
+    t.string   "name"
+    t.integer  "areas_count", :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "indicator_histories", :force => true do |t|
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "indicator_id"
+  end
+
+  add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
+
+  create_table "indicators", :force => true do |t|
+    t.string   "name"
+    t.decimal  "value"
+    t.text     "description"
+    t.string   "responsible"
+    t.boolean  "higher"
+    t.string   "frequency"
+    t.integer  "objective_id"
+    t.date     "next_update"
+    t.decimal  "goal"
+    t.decimal  "max_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "indicators", ["objective_id"], :name => "index_indicators_on_objective_id"
+
+  create_table "objectives", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "responsible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "area_id"
+    t.integer  "indicators_count", :default => 0, :null => false
+    t.integer  "tasks_count",      :default => 0, :null => false
+  end
+
+  add_index "objectives", ["area_id"], :name => "index_objectives_on_area_id"
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "responsible"
+    t.date     "deadline"
+    t.date     "original_deadline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "objective_id"
+    t.string   "status",            :default => "active"
+    t.datetime "key_timestamp"
+  end
+
+  add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"
+  add_index "tasks", ["status"], :name => "index_tasks_on_status"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

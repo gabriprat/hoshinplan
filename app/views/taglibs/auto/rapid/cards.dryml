@@ -1,6 +1,69 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="card" for="Area">
+  <card class="area" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="objective.collection.count" count="&this.objectives.size">
+         <count:objectives param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Hoshin">
+  <card class="hoshin" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="area.collection.count" count="&this.areas.size">
+         <count:areas param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Indicator">
+  <card class="indicator" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="IndicatorHistory">
+  <card class="indicator-history" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Objective">
+  <card class="objective" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="indicator.collection.count" count="&this.indicators.size">
+         <count:indicators param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Task">
+  <card class="task" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>

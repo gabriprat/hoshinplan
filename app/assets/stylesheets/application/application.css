@@ -1,0 +1,90 @@
+body.hoshin .collection.areas {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+body.hoshin .collection.areas > .item {
+	display: table-cell;
+	width: 370px;
+}
+
+body.hoshin .collection.indicators .part-wrapper {
+	display: inline-block;
+}
+
+body.hoshin div.indicators td,
+body.hoshin div.indicators tbody,
+body.hoshin div.indicators thead,
+body.hoshin div.indicators tr,
+body.hoshin div.indicators th {
+	margin: 0;
+	padding: 5px;
+}
+
+body.hoshin form.inline-form {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: bottom;
+}
+
+body.hoshin form.inline-form input[type=image] {
+	width:18px;
+	height:18px;
+}
+
+body.hoshin img {
+	width:18px;
+	height:18px;
+	max-width: 18px;
+}
+
+body.hoshin form.inline-form input {
+	border: 0;
+	background: rgba(255,255,255,0.8);
+	width: 3em;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+body.hoshin form.inline-form input {
+	border: 0;
+	background: rgba(255,255,255,0.8);
+	width: 3em;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+body.hoshin form.inline-form.wider input {
+	width: 7em;
+}
+
+body.hoshin form.inline-form .actions {
+	display: none;
+}
+
+body.hoshin form.inline-form div {
+	display: inline;
+	width: 3em;
+	margin: 0;
+	padding: 0;
+	vertical-align: bottom;
+}
+
+body.hoshin form.inline-form label {
+	display: none;
+}
+
+body.hoshin form.modal div.span12 {
+	width: 90%;
+}
+
+
+
+
