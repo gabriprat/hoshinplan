@@ -96,7 +96,7 @@
 					</modal>
 				</li>
 				<li class="task">
-					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-task.gif" /></a>
+					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-task.png" /></a>
 					<modal id="add-task-modal-#{this.id}">
 						<modal:>
 						<set obid="#{this.id}"/>
@@ -142,7 +142,7 @@
 	    </modal>
   </td>
  
-  <td> <delete-button update="indicators" image="/assets/icons/delete.gif" /></td>
+  <td> <delete-button update="indicators" image="/assets/icons/delete.png" /></td>
 </tr>
 </extend>
 
@@ -163,15 +163,15 @@
   <td>
 	  <if test="#{this.status=='active'?'true':''}">
 		  <form ajax lifecycle="complete" class="inline-form">
-			  <input type="image" src="/assets/icons/delete.gif"/>
+			  <input type="image" src="/assets/icons/delete.png"/>
 		  </form>
 		  <form ajax lifecycle="discard" class="inline-form">
-			  <input type="image" src="/assets/icons/complete-task.gif"/>
+			  <input type="image" src="/assets/icons/complete-task.png"/>
 		  </form>
   	  </if>
 	  <else>
 		  <form ajax lifecycle="reactivate" class="inline-form">
-			  <input type="image" src="/assets/icons/add-task.gif"/>
+			  <input type="image" src="/assets/icons/add-task.png"/>
 		  </form>
 	  </else>
   </td>

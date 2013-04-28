@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427220627) do
+ActiveRecord::Schema.define(:version => 20130428191952) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130427220627) do
   end
 
   create_table "indicator_histories", :force => true do |t|
-    t.decimal  "value"
+    t.decimal  "value",        :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "indicator_id"
@@ -40,17 +40,17 @@ ActiveRecord::Schema.define(:version => 20130427220627) do
 
   create_table "indicators", :force => true do |t|
     t.string   "name"
-    t.decimal  "value"
+    t.decimal  "value",        :precision => 10, :scale => 0
     t.text     "description"
     t.string   "responsible"
     t.boolean  "higher"
     t.string   "frequency"
-    t.integer  "objective_id"
     t.date     "next_update"
-    t.decimal  "goal"
-    t.decimal  "max_value"
+    t.decimal  "goal",         :precision => 10, :scale => 0
+    t.decimal  "max_value",    :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "objective_id"
   end
 
   add_index "indicators", ["objective_id"], :name => "index_indicators_on_objective_id"
@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(:version => 20130427220627) do
     t.string   "name"
     t.text     "description"
     t.string   "responsible"
+    t.integer  "indicators_count", :default => 0, :null => false
+    t.integer  "tasks_count",      :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "area_id"
-    t.integer  "indicators_count", :default => 0, :null => false
-    t.integer  "tasks_count",      :default => 0, :null => false
   end
 
   add_index "objectives", ["area_id"], :name => "index_objectives_on_area_id"
