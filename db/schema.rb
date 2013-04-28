@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428191952) do
+ActiveRecord::Schema.define(:version => 20130428205800) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130428191952) do
   end
 
   create_table "indicator_histories", :force => true do |t|
-    t.decimal  "value",        :precision => 10, :scale => 0
+    t.decimal  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "indicator_id"
@@ -40,14 +40,14 @@ ActiveRecord::Schema.define(:version => 20130428191952) do
 
   create_table "indicators", :force => true do |t|
     t.string   "name"
-    t.decimal  "value",        :precision => 10, :scale => 0
+    t.decimal  "value"
     t.text     "description"
     t.string   "responsible"
     t.boolean  "higher"
     t.string   "frequency"
     t.date     "next_update"
-    t.decimal  "goal",         :precision => 10, :scale => 0
-    t.decimal  "max_value",    :precision => 10, :scale => 0
+    t.decimal  "goal"
+    t.decimal  "max_value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"

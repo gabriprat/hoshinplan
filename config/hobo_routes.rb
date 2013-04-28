@@ -5,10 +5,6 @@
 Hoshinplan::Application.routes.draw do
 
 
-  # Resource routes for controller hoshins
-  resources :hoshins
-
-
   # Resource routes for controller objectives
   resources :objectives, :only => [:new, :edit, :show, :create, :update, :destroy]
 
@@ -21,6 +17,18 @@ Hoshinplan::Application.routes.draw do
       end
     end
   end
+
+
+  # Resource routes for controller hoshins
+  resources :hoshins
+
+
+  # Resource routes for controller indicators
+  resources :indicators
+
+
+  # Resource routes for controller indicator_histories
+  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
 
 
   # Resource routes for controller tasks
@@ -48,10 +56,6 @@ Hoshinplan::Application.routes.draw do
       end
     end
   end
-
-
-  # Resource routes for controller indicator_histories
-  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
 
 
   # Resource routes for controller areas
@@ -87,9 +91,5 @@ Hoshinplan::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
-
-
-  # Resource routes for controller indicators
-  resources :indicators
 
 end
