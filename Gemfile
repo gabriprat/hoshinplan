@@ -47,3 +47,4 @@ gem "hobo_bootstrap", "2.0.0.pre9"
 gem "hobo_jquery_ui", "2.0.0.pre9"
 gem "hobo_bootstrap_ui", "2.0.0.pre9"
 gem "jquery-ui-themes", "~> 0.0.4"
+gem 'rake', '~> 0.8.7'
