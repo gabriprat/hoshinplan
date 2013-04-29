@@ -5,18 +5,30 @@
 Hoshinplan::Application.routes.draw do
 
 
-  # Resource routes for controller areas
-  resources :areas, :only => [:new, :edit, :show, :create, :update, :destroy]
+  # Resource routes for controller indicators
+  resources :indicators
 
-  # Owner routes for controller areas
-  resources :hoshins, :as => :hoshin, :only => [] do
-    resources :areas, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_hoshin'
+
+  # Resource routes for controller objectives
+  resources :objectives, :only => [:new, :edit, :show, :create, :update, :destroy]
+
+  # Owner routes for controller objectives
+  resources :areas, :as => :area, :only => [] do
+    resources :objectives, :only => [] do
+      get 'new', :on => :new, :action => 'new_for_area'
       collection do
-        post 'create', :action => 'create_for_hoshin'
+        post 'create', :action => 'create_for_area'
       end
     end
   end
+
+
+  # Resource routes for controller indicator_histories
+  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
+
+
+  # Resource routes for controller hoshins
+  resources :hoshins
 
 
   # Resource routes for controller users
@@ -38,6 +50,20 @@ Hoshinplan::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+
+
+  # Resource routes for controller areas
+  resources :areas, :only => [:new, :edit, :show, :create, :update, :destroy]
+
+  # Owner routes for controller areas
+  resources :hoshins, :as => :hoshin, :only => [] do
+    resources :areas, :only => [] do
+      get 'new', :on => :new, :action => 'new_for_hoshin'
+      collection do
+        post 'create', :action => 'create_for_hoshin'
+      end
+    end
+  end
 
 
   # Resource routes for controller tasks
@@ -65,31 +91,5 @@ Hoshinplan::Application.routes.draw do
       end
     end
   end
-
-
-  # Resource routes for controller indicators
-  resources :indicators
-
-
-  # Resource routes for controller objectives
-  resources :objectives, :only => [:new, :edit, :show, :create, :update, :destroy]
-
-  # Owner routes for controller objectives
-  resources :areas, :as => :area, :only => [] do
-    resources :objectives, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_area'
-      collection do
-        post 'create', :action => 'create_for_area'
-      end
-    end
-  end
-
-
-  # Resource routes for controller indicator_histories
-  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
-
-
-  # Resource routes for controller hoshins
-  resources :hoshins
 
 end
