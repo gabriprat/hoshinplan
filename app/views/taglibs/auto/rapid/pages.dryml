@@ -475,6 +475,7 @@
     <body: class="show-page indicator" param/>
 
     <content-header: param>
+      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objective" name="&this">Back to <name/></ht></a:objective>
       <h2 param="heading">
         <ht key="indicator.show.heading" name="#{name(:no_wrapper => true)}">
           Indicator <name/>
@@ -492,7 +493,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, responsible, frequency, next_update, goal, max_value, objective" param/>
+      <field-list fields="value, responsible, frequency, next_update, goal, max_value" param/>
     </content-body:>
 
   </page>

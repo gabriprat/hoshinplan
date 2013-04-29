@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
   before_create do |user|
-    if !Rails.env.test? && user.class.count == 0
+    #if !Rails.env.test? && user.class.count == 0
+    if user.class.count == 0
       user.administrator = true
       user.state = "active"
     end
