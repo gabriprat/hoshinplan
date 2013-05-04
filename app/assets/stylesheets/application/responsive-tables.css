@@ -1,6 +1,7 @@
 /* seo friendly tables */
 .table{
 	display:table;	/* Defines a Table */
+	width: 100%;
 }
 .table-head{
 	 display: table-header-group; /* Defines a table header group */

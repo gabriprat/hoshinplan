@@ -11,7 +11,8 @@ class Hoshin < ActiveRecord::Base
   attr_accessible :areas
 
   has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
-
+  has_many :objectives, :through => :areas, :accessible => true
+  
   children :areas
 
   # --- Permissions --- #

@@ -16,11 +16,11 @@
 
 <include src="application"/>
 
-<def tag="table" attrs="columns, sortable">
+<def tag="rtable" attrs="columns, sortable">
 	<% columns ||= "" ; columns = comma_split(columns) -%>
 	<% sortable ||= false %>
 	<% tag = sortable ? "sortable-collection" : "collection" %>
-	<div class="table" merge-attrs merge-params>
+	<div class="table" merge-attrs merge-params unless='empty?'>
 		<ul class="table-head">
 			<li class="row">
 				<div class="column" repeat="&columns">#{this}</div>
@@ -39,18 +39,59 @@
     <do class="scard" param="default" merge/>
 </def>
 
+<extend tag="show-page" for="Hoshin">
+	<old-show-page merge>
+		<append-content-header:>
+			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); return false;">Add new area</a>
+			<modal id="add-area-modal">
+				<modal:>
+				<set hid="#{this.id}"/>
+				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+					<div class="modal-body">
+						<field-list: fields="name, description" />
+						<hidden-field:hoshin_id value="#{hid}"/>
+					</div>
+					<modal-form-footer/>
+				</form>
+				</modal:>
+			</modal>
+		</append-content-header:>
+	 </old-show-page>
+</extend>
+
 <extend tag="card" for="Area">
   <old-card merge>
-    <append-body:>
+  	<append-header: > 
+	<a title="Add new objective" onclick="$('#add-objective-modal-#{this.id}').modal('show'); return false;">Add new objective</a>
+	<modal id="add-objective-modal-#{this.id}">
+		<modal:>
+		<set hid="#{this.hoshin.id}"/>
+		<set aid="#{this.id}"/>
+		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+			<div class="modal-body">
+				<field-list: fields="name, description, responsible" />
+				<hidden-field:hoshin_id value="#{hid}"/>
+				<hidden-field:area_id value="#{aid}"/>
+			</div>
+			<modal-form-footer/>
+		</form>
+		</modal:>
+	</modal>
+	
+	</append-header: >
+    <append-body: >
+	<div part="area" id="area-#{this.id}">
 	<h5>Objectives</h5>
-	<table:objectives columns="#,Objective,Resp." class="objectives"/>
+	<form with="&Hoshin.new" method="GET" id="reorder-#{this.id}" update="area-#{this.id}">
+	</form>
+	<rtable:objectives columns="#,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit();"/>
 	
 	<h5>KPIs</h5>
-	<table:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" class="indicators"/>
+	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
 	
 	<h5>Tasks</h5>
-	<table:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" sortable/>
- 
+	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
+	</div>
     </append-body:>
   </old-card>
 </extend>
@@ -59,7 +100,7 @@
 <def tag="scard" for="Objective">
 <scard class="objective row" part-id="objective" param="default" merge>
 		<div class="column" data-label="Id">
-			#{this.id}
+			#{this.position}
 		</div>
 		<div class="column" data-label="Name">
 			<a><name/></a>
@@ -71,10 +112,12 @@
 					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-kpi.png" /></a>
 					<modal id="add-kpi-modal-#{this.id}">
 						<modal:>
+						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
-						<form with="&Indicator.new" update="indicators" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, responsible, goal, max_value, higher" />
+								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>
 							<modal-form-footer/>
@@ -86,10 +129,12 @@
 					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-task.png" /></a>
 					<modal id="add-task-modal-#{this.id}">
 						<modal:>
+						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
-						<form with="&Task.new" update="tasks" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, responsible, deadline" />
+								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>
 							<modal-form-footer/>
@@ -106,7 +151,7 @@
 <scard class="indicator row" part-id="indicator" param="default" merge>
 
   <div class="column" data-label="Id">
-	 #{this.objective.id}
+	 #{this.objective.position}
   </div>
   <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
@@ -130,8 +175,13 @@
 	    </modal>
   </div>
  
-  <div class="column" data-label="Actions"> <delete-button update="indicators-#{this.id}" image="/assets/icons/delete.png" /></div>
-
+  <div class="column" data-label="Actions"> 
+	  <ul class="icons">
+		  <li>
+	  		<delete-button update="indicators-#{this.objective.area.id}" image="/assets/icons/delete.png" />
+		</li>
+	</ul>
+  </div>
 </scard>
 </def>
 
@@ -139,7 +189,7 @@
 <def tag="scard" for="Task">
 <scard class="task row" part-id="task" param="default" merge>
   <div class="column" data-label="Id">
-	 #{this.objective.id}
+	 #{this.objective.position}
   </div>
   <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
@@ -150,19 +200,27 @@
   </div>
   <div class="column" data-label="Deviation">0</div>
   <div class="column" data-label="Actions">
+	<ul class="icons">
 	  <if test="#{this.status=='active'?'true':''}">
+		  <li class="complete">
 		  <form ajax lifecycle="complete" class="inline-form">
 			  <input type="image" src="/assets/icons/delete.png"/>
 		  </form>
+	  	  </li>
+		  <li class="discard">
 		  <form ajax lifecycle="discard" class="inline-form">
 			  <input type="image" src="/assets/icons/complete-task.png"/>
 		  </form>
+	  	  </li>
   	  </if>
 	  <else>
+		  <li class="reactivate">
 		  <form ajax lifecycle="reactivate" class="inline-form">
 			  <input type="image" src="/assets/icons/add-task.png"/>
 		  </form>
+	  	  </li>
 	  </else>
+  	</ul>
   </div>
   <script type="text/javascript">
   $('.bootstrap-datepicker').datepicker();

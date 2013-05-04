@@ -4,7 +4,7 @@
 <def tag="form" for="Area">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, hoshin, indicators, tasks" param/>
+    <field-list fields="name, description, position, hoshin, indicators, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'area.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -16,7 +16,7 @@
 <def tag="form" for="Hoshin">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name" param/>
+    <field-list fields="name, objectives" param/>
     <div param="actions">
       <submit label="#{ht 'hoshin.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -40,7 +40,7 @@
 <def tag="form" for="Indicator">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, value, description, responsible, higher, frequency, next_update, goal, max_value, objective" param/>
+    <field-list fields="name, value, description, responsible, higher, frequency, next_update, goal, max_value, area, objective" param/>
     <div param="actions">
       <submit label="#{ht 'indicator.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -52,7 +52,7 @@
 <def tag="form" for="Objective">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, responsible, area" param/>
+    <field-list fields="name, description, responsible, area, hoshin" param/>
     <div param="actions">
       <submit label="#{ht 'objective.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -64,7 +64,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, responsible, deadline, original_deadline, status, objective" param/>
+    <field-list fields="name, description, responsible, deadline, original_deadline, position, status, area, objective" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

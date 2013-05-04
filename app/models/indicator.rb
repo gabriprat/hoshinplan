@@ -15,12 +15,14 @@ class Indicator < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, 
-    :higher, :frequency, :next_update, :goal, :max_value
+    :higher, :frequency, :next_update, :goal, :max_value, :area, :area_id
 
   has_many :indicator_historys, :dependent => :destroy, :inverse_of => :indicator
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
-
+  belongs_to :area, :inverse_of => :tasks, :counter_cache => false
+  
+  acts_as_list :scope => :area
 
   def tpc 
     if value?

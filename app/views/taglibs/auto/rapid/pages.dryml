@@ -6,6 +6,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Area"><ht key="area.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Hoshin"><ht key="hoshin.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Indicator"><ht key="indicator.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Objective"><ht key="objective.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -98,6 +99,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="position" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="objective.collection.heading" count="&this.objectives.count" >
@@ -105,7 +107,7 @@
           </ht>
         </h3>
 
-        <collection:objectives param/>
+        <sortable-collection:objectives param="collection"/>
 
         <a:objectives action="new" if="&can_create?(@area.objectives)" param="new-link">
           <ht key="objective.actions.new" count="1">
@@ -137,36 +139,6 @@
       <form param/>
     </content-body:>
 
-  </page>
-</def>
-
-
-
-<def tag="new-for-hoshin-page" polymorphic/>
-<def tag="new-for-hoshin-page" for="Area">
-  <page merge title="#{ht 'area.new_for_owner.title', :default=>['New Area for']} #{name :with => @hoshin}">
-    <body: class="new-for-owner-page  area" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="area.new_for_owner.heading">
-          New Area
-        </ht>
-      </h2>
-      <h3 param="subheading">
-        <ht key="area.new_for_owner.subheading">
-          For:
-        </ht>
-        <a with="&@hoshin"/>
-      </h3>
-    </content-header:>
-
-    <content-body: param>
-      <form owner="hoshin" method="post" param>
-        <field-list: skip="hoshin"/>
-        <submit: label="#{ht 'area.actions.create', :default=>['Create Area']}"/>
-      </form>
-    </content-body:>
   </page>
 </def>
 
@@ -262,12 +234,6 @@
         </h3>
 
         <sortable-collection:areas param="collection"/>
-
-        <a:areas action="new" if="&can_create?(@hoshin.areas)" param="new-link">
-          <ht key="area.actions.new" count="1">
-            New Area
-          </ht>
-        </a:areas>
       </section>
     </content-body:>
 
@@ -437,11 +403,7 @@
         <ht key="indicator.actions.new">New Indicator</ht>
       </a>
 
-      <page-nav param="top-page-nav"/>
-
-      <collection param/>
-
-      <page-nav param="bottom-page-nav"/>
+      <sortable-collection param="collection"/>
 
 
     </content-body:>
@@ -494,7 +456,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, responsible, frequency, next_update, goal, max_value" param/>
+      <field-list fields="value, responsible, frequency, next_update, goal, max_value, area" param/>
     </content-body:>
 
   </page>
@@ -608,7 +570,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="responsible" param/>
+      <field-list fields="responsible, hoshin" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="indicator.collection.heading" count="&this.indicators.count" >
@@ -767,7 +729,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="responsible, deadline, original_deadline, status, objective" param/>
+      <field-list fields="responsible, deadline, original_deadline, position, status, area, objective" param/>
     </content-body:>
 
   </page>
