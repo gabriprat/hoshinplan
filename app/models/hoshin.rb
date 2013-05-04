@@ -7,10 +7,10 @@ class Hoshin < ActiveRecord::Base
     areas_count :integer, :default => 0, :null => false
     timestamps
   end
-  attr_accessible :name
+  attr_accessible :name, :id
   attr_accessible :areas
 
-  has_many :areas, :dependent => :destroy, :inverse_of => :hoshin
+  has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
 
   children :areas
 

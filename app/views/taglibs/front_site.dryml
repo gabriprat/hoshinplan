@@ -16,69 +16,56 @@
 
 <include src="application"/>
 
-<extend tag="card" for="Hoshin">
-  <old-card merge>
-    <append-body:>
-    <div class="areas">
-		<collection:areas/>
-    </div>
-    </append-body:>
-  </old-card>
-</extend>
+<def tag="table" attrs="columns, sortable">
+	<% columns ||= "" ; columns = comma_split(columns) -%>
+	<% sortable ||= false %>
+	<% tag = sortable ? "sortable-collection" : "collection" %>
+	<div class="table" merge-attrs merge-params>
+		<ul class="table-head">
+			<li class="row">
+				<div class="column" repeat="&columns">#{this}</div>
+			</li>
+		</ul>
+		<call-tag tag="#{tag}" merge-attrs merge-params class="table-body">
+			<item: class="row"/>
+			<default: replace>
+				<scard param/>
+			</default>
+		</call-tag>
+	</div>
+</def>
+
+<def tag="scard" polymorphic>
+    <do class="scard" param="default" merge/>
+</def>
 
 <extend tag="card" for="Area">
   <old-card merge>
     <append-body:>
 	<h5>Objectives</h5>
-    <div class="objectives">
-		<table width="100%">
-			<thead>
-				<tr><th>#</th><th>Objective</th><th>Resp.</th><th></th></tr>
-			</thead>
-			<tbody>
-				<collection:objectives/>
-			</tbody>
-		</table>
-    </div>
-	<h5>KPIs</h5>
+	<table:objectives columns="#,Objective,Resp." class="objectives"/>
 	
-    <div class="indicators" part="indicators">
-		<table width="100%">
-			<thead>
-				<tr><th>#</th><th>KPI</th><th>Resp.</th><th>Value</th><th>Goal</th><th>%</th><th/></tr>
-			</thead>
-			<tbody>
-				<collection:indicators/>
-			</tbody>
-		</table>
-    </div>
+	<h5>KPIs</h5>
+	<table:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" class="indicators"/>
+	
 	<h5>Tasks</h5>
-    <div class="tasks" part="tasks">
-		<table width="100%">
-			<thead>
-				<tr><th>#</th><th>Task</th><th>Resp.</th><th>Deadline</th><th>Dev</th><th>Status</th></tr>
-			</thead>
-			<tbody>
-				<collection:tasks/>
-			</tbody>
-		</table>
-		
-    </div>
+	<table:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" sortable/>
+ 
     </append-body:>
   </old-card>
 </extend>
 
 
-<extend tag="card" for="Objective">
-	<tr>
-		<td>
+<def tag="scard" for="Objective">
+<scard class="objective row" part-id="objective" param="default" merge>
+		<div class="column" data-label="Id">
 			#{this.id}
-		</td>
-		<td>
+		</div>
+		<div class="column" data-label="Name">
 			<a><name/></a>
-		</td>
-		<td><view:responsible/></td>
-		<td>
+		</div>
+		<div class="column" data-label="Responsible"><view:responsible/></div>
+		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
 					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-kpi.png" /></a>
@@ -111,24 +98,25 @@
 					</modal>
 				</li>
 			</ul>
-		</td>
-	</tr>
-</extend>
+		</div>
+</scard>
+</def>
 
-<extend tag="card" for="Indicator">
-<tr part="tpc">
-  <td>
+<def tag="scard" for="Indicator">
+<scard class="indicator row" part-id="indicator" param="default" merge>
+
+  <div class="column" data-label="Id">
 	 #{this.objective.id}
-  </td>
-  <td><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></td>
-  <td><view:responsible/></td>
-  <td>
+  </div>
+  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="Responsible"><view:responsible/></div>
+  <div class="column" data-label="Value">
 	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
 		<field-list: fields="value"/>
   	 </form>
-  </td>
-  <td><view:goal/></td> 
-  <td><view:tpc format="%1.1f"/>%
+  </div>
+  <div class="column" data-label="Goal"><view:goal/></div>
+  <div class="column" data-label="Tpc"><view:tpc format="%1.1f"/>%
   
 	  <modal id="update-kpi-modal-#{this.id}">
 		  <modal:>
@@ -140,27 +128,28 @@
 	         </form> 
 		 </modal:>
 	    </modal>
-  </td>
+  </div>
  
-  <td> <delete-button update="indicators" image="/assets/icons/delete.png" /></td>
-</tr>
-</extend>
+  <div class="column" data-label="Actions"> <delete-button update="indicators-#{this.id}" image="/assets/icons/delete.png" /></div>
+
+</scard>
+</def>
 
 
-<extend tag="card" for="Task">
-<tr part="task">
-  <td>
+<def tag="scard" for="Task">
+<scard class="task row" part-id="task" param="default" merge>
+  <div class="column" data-label="Id">
 	 #{this.objective.id}
-  </td>
-  <td><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></td>
-  <td><view:responsible/></td>
-  <td>
+  </div>
+  <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="Responsible"><view:responsible/></div>
+  <div class="column" data-label="Deadline">
     	<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
     		<field-list: fields="deadline"/>
      	</form>
-  </td>
-  <td>0</td>
-  <td>
+  </div>
+  <div class="column" data-label="Deviation">0</div>
+  <div class="column" data-label="Actions">
 	  <if test="#{this.status=='active'?'true':''}">
 		  <form ajax lifecycle="complete" class="inline-form">
 			  <input type="image" src="/assets/icons/delete.png"/>
@@ -174,9 +163,12 @@
 			  <input type="image" src="/assets/icons/add-task.png"/>
 		  </form>
 	  </else>
-  </td>
-</tr>
-</extend>
+  </div>
+  <script type="text/javascript">
+  $('.bootstrap-datepicker').datepicker();
+  </script>
+</scard>
+</def>
 
 
 

@@ -93,4 +93,7 @@ body.hoshin .image-button.delete-button {
 	margin: 0;
 }
 
+div.tasks {
+	display:table;
+}
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429192156) do
+ActiveRecord::Schema.define(:version => 20130504084343) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130429192156) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "hoshin_id"
+    t.integer  "position"
   end
 
   add_index "areas", ["hoshin_id"], :name => "index_areas_on_hoshin_id"
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20130429192156) do
     t.integer  "objective_id"
     t.string   "status",            :default => "active"
     t.datetime "key_timestamp"
+    t.integer  "position"
   end
 
   add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"

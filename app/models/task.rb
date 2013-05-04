@@ -13,6 +13,10 @@ class Task < ActiveRecord::Base
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :deadline, :original_deadline
 
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
+  
+  acts_as_list
+  
+  set_default_order :position
 
   lifecycle :state_field => :status do
     state :active, :default => true
