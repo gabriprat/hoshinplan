@@ -51,6 +51,7 @@ body.hoshin img {
 body.hoshin .form-horizontal {
 	margin: 0;
 }
+
 body.hoshin form.inline-form input {
 	border: 0;
 	background: rgba(255,255,255,0.8);
@@ -62,15 +63,8 @@ body.hoshin form.inline-form input {
 	vertical-align: baseline;
 }
 
-body.hoshin form.inline-form input {
-	border: 0;
-	background: rgba(255,255,255,0.8);
-	width: 3em;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	padding: 0;
-	vertical-align: baseline;
+body.hoshin form.inline-form input.date {
+	width: 6em;
 }
 
 body.hoshin form.inline-*.wider input {
@@ -127,6 +121,13 @@ body .span12 {
 body .row {
 	margin: 0;
 	padding: 0 20px 0 20px;
+}
+
+.well {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	
 }
 @media all and (max-width: 640px){
 	body.hoshin .collection.areas {
