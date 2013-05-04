@@ -38,7 +38,9 @@ body.hoshin img {
 	height:20px;
 	max-width: 20px;
 }
-
+body.hoshin .form-horizontal {
+	margin: 0;
+}
 body.hoshin form.inline-form input {
 	border: 0;
 	background: rgba(255,255,255,0.8);
@@ -61,7 +63,7 @@ body.hoshin form.inline-form input {
 	vertical-align: baseline;
 }
 
-body.hoshin form.inline-form.wider input {
+body.hoshin form.inline-*.wider input {
 	width: 7em;
 }
 
@@ -95,5 +97,9 @@ body.hoshin .image-button.delete-button {
 
 div.tasks {
 	display:table;
+}
+
+div.th {
+	display: table-row;
 }
 
