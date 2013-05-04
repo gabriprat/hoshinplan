@@ -9,10 +9,10 @@ class Area < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name, :description, :objectives
+  attr_accessible :name, :description, :objectives, :hoshin, :hoshin_id
 
-  has_many :objectives, :dependent => :destroy, :inverse_of => :area
-  has_many :indicators, :through => :objectives, :accessible => true
+  has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'position'
+  has_many :indicators, :through => :objectives, :accessible => true, :order => 'position'
   has_many :tasks, :through => :objectives, :accessible => true, :order => 'position'
 
   children :objectives

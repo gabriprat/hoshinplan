@@ -10,7 +10,7 @@ class Objective < ActiveRecord::Base
     tasks_count :integer, :default => 0, :null => false
     timestamps
   end
-  attr_accessible :name, :area, :area_id, :description, :responsible, :indicators, :tasks
+  attr_accessible :name, :area, :area_id, :description, :responsible, :indicators, :tasks, :hoshin, :hoshin_id
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
   has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'position'
@@ -18,7 +18,10 @@ class Objective < ActiveRecord::Base
   children :indicators, :tasks
 
   belongs_to :area, :inverse_of => :objectives, :counter_cache => false
-
+  belongs_to :hoshin, :inverse_of => :objectives
+  
+  acts_as_list :scope => :area
+  
   # --- Permissions --- #
 
   def create_permitted?

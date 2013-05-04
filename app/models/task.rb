@@ -10,11 +10,13 @@ class Task < ActiveRecord::Base
     original_deadline :date
     timestamps
   end
-  attr_accessible :name, :objective, :objective_id, :description, :responsible, :deadline, :original_deadline
+  attr_accessible :name, :objective, :objective_id, :description, :responsible, 
+    :deadline, :original_deadline, :area, :area_id
 
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
+  belongs_to :area, :inverse_of => :tasks, :counter_cache => false
   
-  acts_as_list
+  acts_as_list :scope => :area
   
   set_default_order :position
 
