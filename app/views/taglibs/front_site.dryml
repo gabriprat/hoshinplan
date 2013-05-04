@@ -22,12 +22,13 @@
 	<% tag = sortable ? "sortable-collection" : "collection" %>
 	<div class="table" merge-attrs merge-params unless='empty?'>
 		<ul class="table-head">
-			<li class="row">
+			<li class="table-row">
+				<div class="column" if="&sortable"></div>
 				<div class="column" repeat="&columns">#{this}</div>
 			</li>
 		</ul>
 		<call-tag tag="#{tag}" merge-attrs merge-params class="table-body">
-			<item: class="row"/>
+			<item: class="table-row"/>
 			<default: replace>
 				<scard param/>
 			</default>
@@ -98,7 +99,7 @@
 
 
 <def tag="scard" for="Objective">
-<scard class="objective row" part-id="objective" param="default" merge>
+<scard class="objective table-row" part-id="objective" param="default" merge>
 		<div class="column" data-label="Id">
 			#{this.position}
 		</div>
@@ -148,7 +149,7 @@
 </def>
 
 <def tag="scard" for="Indicator">
-<scard class="indicator row" part-id="indicator" param="default" merge>
+<scard class="indicator table-row" part-id="indicator" param="default" merge>
 
   <div class="column" data-label="Id">
 	 #{this.objective.position}
@@ -157,7 +158,7 @@
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column" data-label="Value">
 	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
-		<field-list: fields="value"/>
+		<field-list: fields="value" />
   	 </form>
   </div>
   <div class="column" data-label="Goal"><view:goal/></div>
@@ -187,7 +188,7 @@
 
 
 <def tag="scard" for="Task">
-<scard class="task row" part-id="task" param="default" merge>
+<scard class="task table-row" part-id="task" param="default" merge>
   <div class="column" data-label="Id">
 	 #{this.objective.position}
   </div>

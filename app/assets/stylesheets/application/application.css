@@ -1,11 +1,21 @@
+body {
+	font-weight: 200;
+}
+body h1, body h2, body h3 {
+	font-weight: 300;
+}
+body h4, body h5 {
+	font-weight: 500;
+}
+
 body.hoshin .collection.areas {
 	display: table;
-	table-layout: fixed;
+/*	table-layout: fixed;*/
 	width: 100%;
 }
 body.hoshin .collection.areas > .item {
 	display: table-cell;
-	width: 370px;
+	/*min-width: 300px;*/
 }
 
 body.hoshin .collection.indicators .part-wrapper {
@@ -103,3 +113,31 @@ div.th {
 	display: table-row;
 }
 
+body .container {
+	width: 100%;
+	margin: 0
+	padding: 0 10px 0 10px;
+}
+
+body .span12 {
+	width: 100%;
+	margin: 0;
+}
+ 
+body .row {
+	margin: 0;
+	padding: 0 20px 0 20px;
+}
+@media all and (max-width: 640px){
+	body.hoshin .collection.areas {
+		display: block;
+		width: 100%;
+	}
+	body.hoshin .collection.areas > .item {
+		display: block;
+		width: 100%;
+	}
+	.ordering-handle {
+		display: none;
+	}
+}
