@@ -42,6 +42,7 @@
 
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
+		<collection-heading: replace />
 		<append-content-header:>
 			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); return false;">Add new area</a>
 			<modal id="add-area-modal">
