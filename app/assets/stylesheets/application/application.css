@@ -1,11 +1,15 @@
 body {
 	font-weight: 200;
 }
-body h1, body h2, body h3 {
+body h1, body h2, body h3, body h4, body h5 {
 	font-weight: 300;
 }
-body h4, body h5 {
-	font-weight: 500;
+body h4 {
+	font-size: 34px;
+}
+
+body h5 {
+	font-size: 20px;
 }
 
 body.hoshin .collection.areas {
@@ -110,7 +114,6 @@ div.th {
 body .container {
 	width: 100%;
 	margin: 0;
-	padding: 0 10px 0 10px;
 }
 
 body .span12 {
