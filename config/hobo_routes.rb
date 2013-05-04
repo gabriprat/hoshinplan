@@ -5,30 +5,16 @@
 Hoshinplan::Application.routes.draw do
 
 
-  # Resource routes for controller objectives
-  resources :objectives do
+  # Resource routes for controller areas
+  resources :areas do
     collection do
       post 'reorder'
-    end
-  end
-
-  # Owner routes for controller objectives
-  resources :areas, :as => :area, :only => [] do
-    resources :objectives, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_area'
-      collection do
-        post 'create', :action => 'create_for_area'
-      end
     end
   end
 
 
   # Resource routes for controller hoshins
   resources :hoshins
-
-
-  # Resource routes for controller indicator_histories
-  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
 
 
   # Resource routes for controller tasks
@@ -61,18 +47,32 @@ Hoshinplan::Application.routes.draw do
   end
 
 
-  # Resource routes for controller areas
-  resources :areas do
+  # Resource routes for controller indicators
+  resources :indicators do
     collection do
       post 'reorder'
     end
   end
 
 
-  # Resource routes for controller indicators
-  resources :indicators do
+  # Resource routes for controller indicator_histories
+  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
+
+
+  # Resource routes for controller objectives
+  resources :objectives do
     collection do
       post 'reorder'
+    end
+  end
+
+  # Owner routes for controller objectives
+  resources :areas, :as => :area, :only => [] do
+    resources :objectives, :only => [] do
+      get 'new', :on => :new, :action => 'new_for_area'
+      collection do
+        post 'create', :action => 'create_for_area'
+      end
     end
   end
 
