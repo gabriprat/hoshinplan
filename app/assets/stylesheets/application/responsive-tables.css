@@ -5,12 +5,12 @@
 }
 .table-head{
 	 display: table-header-group; /* Defines a table header group */
-	 font-weight: bold;
+	 font-weight: 400;
 }
 .table-body {
 	display: table-row-group;  /* Defines a table body */
 }
-.row {
+.table-row {
 	display:table-row; /* Defines a table row */
 	line-height: 1.8em;
 }
@@ -25,13 +25,13 @@
 /* Responsive table */
 @media all and (max-width: 640px){
 	.table,
-	.row,
+	.table-row,
 	.column,
 	.column:before{
 		display:block;	/* Converts a table, table row, table column and table column:before into a block element */
 	}
 	.table,
-	.row .column:last-child{
+	.table-row .column:last-child{
 		border-bottom:none;
 	}
 	.table-head{
@@ -42,24 +42,24 @@
 	.table-body {
 		display: block;
 	}
-	.row{
+	.table-row{
 		border:1px solid #eeeeee;
 		border-top:2px solid #dddddd;
 		border-bottom:2px solid #dddddd;
 		margin:20px 0;
 	}
-	.row .column:nth-child(1){ /* first column of the row */
+	.table-row .column:nth-child(1){ /* first column of the row */
 		border-left:none;
 	}
-	.row .column:last-child{ /* last column of the row */
+	.table-row .column:last-child{ /* last column of the row */
 		border-right:none;
 	}
-	.row:last-child .column,
+	.table-row:last-child .column,
 	.column{ /* Column in the last row and column */
 		border-bottom:1px solid #eeeeee;
 	}
 	.column:before{ /* prints the value of data-label attribute before the column data */
-		font-weight:bold;
+		font-weight:400;
 		padding-right:20px;
 		font-size:12px;
 		content:" "attr(data-label)":";	/* call the attribute value of data-label and adds a string // */

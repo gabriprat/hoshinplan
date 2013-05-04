@@ -16,6 +16,20 @@ ul.icons li {
 	display: inline-block;
 }
 
+ul.icons input[type=image], ul.icons img {
+	filter: opacity(0.4);
+	-o-filter: opacity(0.4);
+	-moz-filter: opacity(0.4);
+	-webkit-filter: opacity(0.4);
+}
+
+ul.icons input[type=image]:hover, ul.icons img:hover {
+	filter: opacity(1);
+	-o-filter: opacity(1);
+	-moz-filter: opacity(1);
+	-webkit-filter: opacity(1);
+}
+
 ul.icons a {
     text-decoration: none;
 }
