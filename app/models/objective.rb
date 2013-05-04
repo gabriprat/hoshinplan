@@ -13,7 +13,7 @@ class Objective < ActiveRecord::Base
   attr_accessible :name, :area, :area_id, :description, :responsible, :indicators, :tasks
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
-  has_many :tasks, :dependent => :destroy, :inverse_of => :objective
+  has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'position'
 
   children :indicators, :tasks
 

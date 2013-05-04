@@ -8,16 +8,19 @@ class Area < ActiveRecord::Base
     #objectives_count :integer, :default => 0, :null => false
     timestamps
   end
+
   attr_accessible :name, :description, :objectives
 
   has_many :objectives, :dependent => :destroy, :inverse_of => :area
   has_many :indicators, :through => :objectives, :accessible => true
-  has_many :tasks, :through => :objectives, :accessible => true
+  has_many :tasks, :through => :objectives, :accessible => true, :order => 'position'
 
   children :objectives
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
-
+  
+  acts_as_list :scope => :hoshin
+  
   # --- Permissions --- #
 
   def create_permitted?

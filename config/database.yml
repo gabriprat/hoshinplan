@@ -24,6 +24,6 @@ production:
   adapter: postgresql
   database: d9d5u3u1i5n5g8
   username: jpcmivmtxqrzen
-  password: 
+  password: 2J-SaLz_je0_ieltIJPeRqhWHk
   host: ec2-54-247-98-97.eu-west-1.compute.amazonaws.com
 
