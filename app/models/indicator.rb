@@ -37,13 +37,13 @@ class Indicator < ActiveRecord::Base
   end
   
   def status 
-    if next_update?
+    if !next_update.nil?
       next_update < Date.today ? :overdue : :current
     end
   end
   
   def trend
-    if !last_value?
+    if last_value.nil?
       :equal
     else 
       last_value == value ? :equal : (last_value < value) ? :positive : :negative
@@ -53,7 +53,7 @@ class Indicator < ActiveRecord::Base
   
   def tpc 
     ret = 0
-    if value? && (max_value-min_value)!=0
+    if !max_value.nil? && !min_value.nil? && value? && (max_value-min_value)!=0
       if higher?
         ret = 100 * (value-min_value) / (goal-min_value)
       else
