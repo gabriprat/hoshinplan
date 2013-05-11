@@ -49,3 +49,9 @@ gem "hobo_bootstrap_ui", "2.0.0.pre9"
 gem "jquery-ui-themes", "~> 0.0.4"
 gem "rake", "~> 10.0.4"
 gem "acts_as_list"
+
+gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
+gem "omniauth-openid"
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
+gem "omniauth-google-oauth2"
+gem "ancestry"

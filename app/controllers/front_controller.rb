@@ -2,6 +2,10 @@ class FrontController < ApplicationController
 
   hobo_controller
 
+  # Require the user to be logged in for every other action on this controller
+  # except :index. 
+  skip_before_filter :my_login_required, :only => :index
+
   def index; end
 
   def summary
