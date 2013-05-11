@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
   hobo_user_model # Don't put anything above this
-
+  
+  include HoboOmniauth::MultiAuth
+  
   fields do
     name          :string, :required, :unique
     email_address :email_address, :login => true
@@ -9,7 +11,7 @@ class User < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :email_address, :password, :password_confirmation
-
+  
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
   before_create do |user|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504195904) do
+ActiveRecord::Schema.define(:version => 20130511084613) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -23,12 +23,45 @@ ActiveRecord::Schema.define(:version => 20130504195904) do
 
   add_index "areas", ["hoshin_id"], :name => "index_areas_on_hoshin_id"
 
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider",      :null => false
+    t.string   "uid",           :null => false
+    t.string   "email_address"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "location"
+    t.string   "image"
+    t.text     "description"
+    t.string   "phone"
+    t.text     "urls"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "authorizations", ["email_address"], :name => "index_authorizations_on_email_address"
+  add_index "authorizations", ["provider"], :name => "index_authorizations_on_provider"
+  add_index "authorizations", ["uid"], :name => "index_authorizations_on_uid"
+  add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.integer  "hoshins_count", :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hoshins", :force => true do |t|
     t.string   "name"
     t.integer  "areas_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
+    t.integer  "parent_id"
   end
+
+  add_index "hoshins", ["company_id"], :name => "index_hoshins_on_company_id"
+  add_index "hoshins", ["parent_id"], :name => "index_hoshins_on_parent_id"
 
   create_table "indicator_histories", :force => true do |t|
     t.decimal  "value"

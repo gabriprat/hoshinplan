@@ -6,11 +6,8 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Area"><ht key="area.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Company"><ht key="company.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Hoshin"><ht key="hoshin.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Indicator"><ht key="indicator.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Objective"><ht key="objective.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Task"><ht key="task.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -81,7 +78,6 @@
     <body: class="show-page area" param/>
 
     <content-header: param>
-      <a:hoshin param="parent-link">&laquo; <ht key="area.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
       <h2 param="heading">
         <ht key="area.show.heading" name="#{name(:no_wrapper => true)}">
           Area <name/>
@@ -99,7 +95,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position" param/>
+      <field-list fields="position, hoshin" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="objective.collection.heading" count="&this.objectives.count" >
@@ -133,6 +129,132 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'area.actions.delete', :default=>['Remove This Area']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Company Pages ====== -->
+
+<def tag="index-page" for="Company">
+  <page merge title="#{ht 'company.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="company.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="company.actions.new">New Company</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Company">
+  <page merge title="#{ht 'company.new.title', :default=>[' New Company'] }">
+    <body: class="new-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.new.heading">
+          New Company
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'company.actions.create', :default=>['Create Company']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Company">
+  <page merge title="#{ht 'company.show.title', :default=>['Company'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
+          Company <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="company.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Company
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="hoshin.collection.heading" count="&this.hoshins.count" >
+            <human-collection-name collection="hoshins" your/>
+          </ht>
+        </h3>
+
+        <collection:hoshins param/>
+
+        <a:hoshins action="new" if="&can_create?(@company.hoshins)" param="new-link">
+          <ht key="hoshin.actions.new" count="1">
+            New Hoshin
+          </ht>
+        </a:hoshins>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Company">
+  <page merge title="#{ht 'company.edit.title', :default=>['Edit Company'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Company
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'company.actions.delete', :default=>['Remove This Company']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -210,6 +332,7 @@
     <body: class="show-page hoshin" param/>
 
     <content-header: param>
+      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a:company>
       <h2 param="heading">
         <ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">
           Hoshin <name/>
@@ -226,6 +349,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="parent" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="area.collection.heading" count="&this.areas.count" >
@@ -259,6 +383,36 @@
       <form param/>
     </content-body:>
 
+  </page>
+</def>
+
+
+
+<def tag="new-for-company-page" polymorphic/>
+<def tag="new-for-company-page" for="Hoshin">
+  <page merge title="#{ht 'hoshin.new_for_owner.title', :default=>['New Hoshin for']} #{name :with => @company}">
+    <body: class="new-for-owner-page  hoshin" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="hoshin.new_for_owner.heading">
+          New Hoshin
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="hoshin.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@company"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="company" method="post" param>
+        <field-list: skip="company"/>
+        <submit: label="#{ht 'hoshin.actions.create', :default=>['Create Hoshin']}"/>
+      </form>
+    </content-body:>
   </page>
 </def>
 
@@ -403,7 +557,11 @@
         <ht key="indicator.actions.new">New Indicator</ht>
       </a>
 
-      <sortable-collection param="collection"/>
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
 
 
     </content-body:>
@@ -456,7 +614,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, responsible, frequency, next_update, goal, max_value, area" param/>
+      <field-list fields="value, responsible, frequency, next_update, goal, max_value, position, area" param/>
     </content-body:>
 
   </page>
@@ -570,7 +728,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="responsible, hoshin" param/>
+      <field-list fields="responsible, position, hoshin" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="indicator.collection.heading" count="&this.indicators.count" >
@@ -677,7 +835,11 @@
         <ht key="task.actions.new">New Task</ht>
       </a>
 
-      <sortable-collection param="collection"/>
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
 
 
     </content-body:>

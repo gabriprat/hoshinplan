@@ -10,6 +10,8 @@
 
 <include gem='hobo_bootstrap_ui'/>
 
+<include gem='hobo_omniauth'/>
+
 <include src="taglibs/auto/rapid/cards"/>
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
@@ -230,6 +232,10 @@
 </scard>
 </def>
 
-
+<extend tag="account-nav">
+  <old-account-nav merge without-sign-up without-account>
+    <log-in:><login provider="google_oauth2">Log in with Google</login></log-in:>
+  </old-account-nav>
+</extend>
 
 

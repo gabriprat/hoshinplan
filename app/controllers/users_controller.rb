@@ -1,9 +1,15 @@
 class UsersController < ApplicationController
 
   hobo_user_controller
+  
+  # Allow only the omniauth_callback action to skip the condition that
+  # we're logged in. my_login_required is defined in application_controller.rb.
+  skip_before_filter :my_login_required, :only => :omniauth_callback
+  
+  include HoboOmniauth::Controller
 
   auto_actions :all, :except => [ :index, :new, :create ]
-
+  
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on
   #  first run.  This method creates the initial user.

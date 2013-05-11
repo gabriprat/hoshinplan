@@ -7,9 +7,13 @@ class Hoshin < ActiveRecord::Base
     areas_count :integer, :default => 0, :null => false
     timestamps
   end
-  attr_accessible :name, :id
+  attr_accessible :name, :id, :parent, :parent_id, :company
   attr_accessible :areas
 
+  belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
+  belongs_to :parent, :class_name => "Hoshin"
+  has_many :children, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
+  
   has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
   has_many :objectives, :through => :areas, :accessible => true
   

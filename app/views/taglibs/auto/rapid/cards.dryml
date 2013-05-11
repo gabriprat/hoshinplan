@@ -14,6 +14,19 @@
   </card>
 </def>
 
+<def tag="card" for="Company">
+  <card class="company" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="hoshin.collection.count" count="&this.hoshins.size">
+         <count:hoshins param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Hoshin">
   <card class="hoshin" param="default" merge>
     <header: param>
