@@ -613,7 +613,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, responsible, frequency, next_update, goal, max_value, position, area, objective" param/>
+      <field-list fields="value, responsible, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, objective" param/>
     </content-body:>
 
   </page>
@@ -879,7 +879,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="show_on_parent" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="task.actions.edit" name="#{name(:no_wrapper => true)}">

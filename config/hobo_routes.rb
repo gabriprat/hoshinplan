@@ -5,14 +5,6 @@
 Hoshinplan::Application.routes.draw do
 
 
-  # Resource routes for controller indicators
-  resources :indicators, :only => [:new, :edit, :show, :create, :update, :destroy] do
-    collection do
-      post 'reorder'
-    end
-  end
-
-
   # Resource routes for controller objectives
   resources :objectives, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do
@@ -31,25 +23,8 @@ Hoshinplan::Application.routes.draw do
   end
 
 
-  # Resource routes for controller users
-  resources :users, :only => [:edit, :show, :create, :update, :destroy] do
-    collection do
-      post 'signup', :action => 'do_signup'
-      get 'signup'
-    end
-    member do
-      get 'account'
-      put 'activate', :action => 'do_activate'
-      get 'activate'
-      put 'reset_password', :action => 'do_reset_password'
-      get 'reset_password'
-    end
-  end
-
-  # User routes for controller users
-  match 'login(.:format)' => 'users#login', :as => 'user_login'
-  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
-  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+  # Resource routes for controller indicator_histories
+  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
 
 
   # Resource routes for controller companies
@@ -86,8 +61,33 @@ Hoshinplan::Application.routes.draw do
   end
 
 
-  # Resource routes for controller indicator_histories
-  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
+  # Resource routes for controller areas
+  resources :areas, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    collection do
+      post 'reorder'
+    end
+  end
+
+
+  # Resource routes for controller users
+  resources :users, :only => [:edit, :show, :create, :update, :destroy] do
+    collection do
+      post 'signup', :action => 'do_signup'
+      get 'signup'
+    end
+    member do
+      get 'account'
+      put 'activate', :action => 'do_activate'
+      get 'activate'
+      put 'reset_password', :action => 'do_reset_password'
+      get 'reset_password'
+    end
+  end
+
+  # User routes for controller users
+  match 'login(.:format)' => 'users#login', :as => 'user_login'
+  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
+  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
   # Resource routes for controller hoshins
@@ -104,8 +104,8 @@ Hoshinplan::Application.routes.draw do
   end
 
 
-  # Resource routes for controller areas
-  resources :areas, :only => [:new, :edit, :show, :create, :update, :destroy] do
+  # Resource routes for controller indicators
+  resources :indicators, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do
       post 'reorder'
     end
