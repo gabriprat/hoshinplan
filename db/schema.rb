@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511084613) do
+ActiveRecord::Schema.define(:version => 20130511164555) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -80,13 +80,16 @@ ActiveRecord::Schema.define(:version => 20130511084613) do
     t.boolean  "higher"
     t.string   "frequency"
     t.date     "next_update"
-    t.decimal  "goal"
-    t.decimal  "max_value"
+    t.decimal  "goal",         :default => 100.0
+    t.decimal  "max_value",    :default => 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
     t.integer  "area_id"
     t.integer  "position"
+    t.date     "last_update"
+    t.decimal  "min_value",    :default => 0.0
+    t.decimal  "last_value"
   end
 
   add_index "indicators", ["area_id"], :name => "index_indicators_on_area_id"
@@ -121,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20130511084613) do
     t.datetime "key_timestamp"
     t.integer  "position"
     t.integer  "area_id"
+    t.boolean  "show_on_parent"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
@@ -137,7 +141,7 @@ ActiveRecord::Schema.define(:version => 20130511084613) do
     t.boolean  "administrator",                           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                   :default => "inactive"
+    t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
   end
 

@@ -10,12 +10,15 @@ class Indicator < ActiveRecord::Base
     higher      :boolean
     frequency   :string
     next_update :date
-    goal        :decimal
-    max_value   :decimal
+    last_update :date
+    last_value  :decimal
+    goal        :decimal, :default => 100.0
+    min_value   :decimal, :default => 0.0
+    max_value   :decimal, :default => 100.0
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, 
-    :higher, :frequency, :next_update, :goal, :max_value, :area, :area_id
+    :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend
 
   has_many :indicator_historys, :dependent => :destroy, :inverse_of => :indicator
 
@@ -24,15 +27,38 @@ class Indicator < ActiveRecord::Base
   
   acts_as_list :scope => :area
 
+
+  # This gives admin rights and an :active state to the first sign-up.
+  # Just remove it if you don't want that
+  before_update do |indicator|
+    #if indicator.last_update < Date.today
+      indicator.last_value = indicator.value_was
+      #end
+  end
+  
+  def status 
+    if next_update?
+      next_update < Date.today ? :overdue : :current
+    end
+  end
+  
+  def trend
+    if !last_value?
+      :equal
+    else 
+      last_value == value ? :equal : (last_value < value) ? :positive : :negative
+    end
+  end
+    
+  
   def tpc 
-    if value?
+    ret = 0
+    if value? && (max_value-min_value)!=0
       if higher?
-        100 * value / goal
+        ret = 100 * (value-min_value) / (goal-min_value)
       else
-        100 * ((value-max_value) / (goal-max_value))
+        ret = 100 * ((max_value-value) / (max_value-goal))
       end 
-    else
-      0
     end 
   end
   # --- Permissions --- #

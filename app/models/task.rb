@@ -8,10 +8,11 @@ class Task < ActiveRecord::Base
     responsible       :string
     deadline          :date
     original_deadline :date
+    show_on_parent    :boolean
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :description, :responsible, 
-    :deadline, :original_deadline, :area, :area_id
+    :deadline, :original_deadline, :area, :area_id, :show_on_parent
 
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
@@ -33,6 +34,12 @@ class Task < ActiveRecord::Base
     transition :reactivate, {:completed => :active}, :available_to => "User" 
     transition :reactivate, {:discarded => :active}, :available_to => "User" 
       
+  end
+  
+  def status 
+    if deadline?
+      deadline < Date.today ? :overdue : :current
+    end
   end
   
   # --- Permissions --- #

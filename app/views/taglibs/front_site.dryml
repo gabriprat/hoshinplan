@@ -50,7 +50,7 @@
 			<modal id="add-area-modal">
 				<modal:>
 				<set hid="#{this.id}"/>
-				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 					<div class="modal-body">
 						<field-list: fields="name, description" />
 						<hidden-field:hoshin_id value="#{hid}"/>
@@ -71,7 +71,7 @@
 		<modal:>
 		<set hid="#{this.hoshin.id}"/>
 		<set aid="#{this.id}"/>
-		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible" />
 				<hidden-field:hoshin_id value="#{hid}"/>
@@ -102,12 +102,23 @@
 
 
 <def tag="scard" for="Objective">
-<scard class="objective table-row" part-id="objective" param="default" merge>
+<scard class="objective table-row" param="default" merge>
 		<div class="column" data-label="Id">
 			#{this.position}
 		</div>
 		<div class="column" data-label="Name">
-			<a><name/></a>
+			<a onclick="$('#update-objective-modal-#{this.id}').modal('show'); return false;"><name/></a>
+			<modal id="update-objective-modal-#{this.id}">
+				<modal:>
+				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+				   <div class="modal-body">
+				    <field-list: fields="name, description, responsible" />
+					</div>
+					 <modal-form-footer/>
+				 </form> 
+				</modal:>
+			</modal>
+			
 		</div>
 		<div class="column" data-label="Responsible"><view:responsible/></div>
 		<div class="column" data-label="Actions">
@@ -118,9 +129,9 @@
 						<modal:>
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
-						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, responsible, goal, max_value, higher" />
+								<field-list: fields="name, description, responsible, goal, min_value, max_value, higher" />
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>
@@ -135,9 +146,9 @@
 						<modal:>
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
-						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, responsible, deadline" />
+								<field-list: fields="name, description, responsible, deadline, show_on_parent" />
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>
@@ -152,26 +163,26 @@
 </def>
 
 <def tag="scard" for="Indicator">
-<scard class="indicator table-row" part-id="indicator" param="default" merge>
+<scard class="indicator table-row" param="default" merge>
 
   <div class="column" data-label="Id">
 	 #{this.objective.position}
   </div>
-  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column #{this.status}" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column" data-label="Value">
 	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
 		<field-list: fields="value" />
-  	 </form>
+  	 	<actions: replace />
+	 </form>
   </div>
-  <div class="column" data-label="Goal"><view:goal/></div>
-  <div class="column" data-label="Tpc"><view:tpc format="%1.1f"/>%
-  
+  <div class="column" data-label="Goal"><%= this.higher? ? "&ge; ".html_safe : "&le; ".html_safe %><view:goal/></div>
+  <div class="column" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
 	  <modal id="update-kpi-modal-#{this.id}">
 		  <modal:>
-	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal">
+	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			   <div class="modal-body">
-	            <field-list: fields="name, description, responsible, goal, max_value, higher, objective" />
+	            <field-list: fields="name, description, responsible, goal, min_value, max_value, higher, objective" />
 				</div>
 				 <modal-form-footer/>
 	         </form> 
@@ -195,11 +206,12 @@
   <div class="column" data-label="Id">
 	 #{this.objective.position}
   </div>
-  <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column #{this.status}" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column" data-label="Deadline">
     	<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
     		<field-list: fields="deadline"/>
+			<actions: replace/>
      	</form>
   </div>
   <div class="column" data-label="Deviation">0</div>
@@ -229,6 +241,16 @@
   <script type="text/javascript">
   $('.bootstrap-datepicker').datepicker();
   </script>
+	<modal id="update-task-modal-#{this.id}">
+		<modal:>
+		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+		   <div class="modal-body">
+		    <field-list: fields="name, description, responsible, deadline, show_on_parent" />
+			</div>
+			 <modal-form-footer/>
+		 </form> 
+		</modal:>
+	</modal>
 </scard>
 </def>
 

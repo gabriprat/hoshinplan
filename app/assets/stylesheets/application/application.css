@@ -120,7 +120,34 @@ body .span12 {
 	width: 100%;
 	margin: 0;
 }
+
+span.tpc {
+	padding: 2px;
+}
  
+span.arrow {
+	font-size: 1.4em;
+	font-weight: bolder;
+	line-height: 0.5em;
+} 
+
+span.arrow.positive:after {
+	content:"\002191";
+} 
+
+span.arrow.negative:after {
+	content:"\002193";
+} 
+
+span.arrow.equal:after {
+	content:"=";
+} 
+
+.overdue a {
+	color: red !important;
+	font-weight: 400;
+}
+
 body .row {
 	margin: 0;
 	padding: 0 20px 0 20px;
