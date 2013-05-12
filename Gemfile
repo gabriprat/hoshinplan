@@ -38,20 +38,18 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-gem "hobo", "= 2.0.0.pre9"
+gem "hobo"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
 # Hobo's version of will_paginate is required.
 gem "will_paginate", :git => "git://github.com/Hobo/will_paginate.git"
-gem "hobo_bootstrap", "2.0.0.pre9"
-gem "hobo_jquery_ui", "2.0.0.pre9"
-gem "hobo_bootstrap_ui", "2.0.0.pre9"
-gem "jquery-ui-themes", "~> 0.0.4"
-gem "rake", "~> 10.0.4"
+gem "hobo_bootstrap"
+gem "hobo_jquery_ui"
+gem "hobo_bootstrap_ui"
+gem "jquery-ui-themes"
 gem "acts_as_list"
-
 gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
 gem "omniauth-openid"
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem "omniauth-google-oauth2"
-gem "ancestry"
+#gem 'gem_bench', :group => :console
+

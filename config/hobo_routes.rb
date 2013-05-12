@@ -5,10 +5,6 @@
 Hoshinplan::Application.routes.draw do
 
 
-  # Resource routes for controller indicator_histories
-  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
-
-
   # Resource routes for controller users
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
@@ -30,6 +26,10 @@ Hoshinplan::Application.routes.draw do
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
+  # Resource routes for controller indicator_histories
+  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
+
+
   # Resource routes for controller hoshins
   resources :hoshins
 
@@ -40,14 +40,6 @@ Hoshinplan::Application.routes.draw do
       collection do
         post 'create', :action => 'create_for_company'
       end
-    end
-  end
-
-
-  # Resource routes for controller indicators
-  resources :indicators, :only => [:new, :edit, :show, :create, :update, :destroy] do
-    collection do
-      post 'reorder'
     end
   end
 
@@ -90,6 +82,14 @@ Hoshinplan::Application.routes.draw do
       collection do
         post 'create', :action => 'create_for_objective'
       end
+    end
+  end
+
+
+  # Resource routes for controller indicators
+  resources :indicators, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    collection do
+      post 'reorder'
     end
   end
 
