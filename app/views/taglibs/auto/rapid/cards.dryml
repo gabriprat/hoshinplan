@@ -6,11 +6,6 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <ht key="objective.collection.count" count="&this.objectives.size">
-         <count:objectives param/>
-      </ht>
-    </body:>
   </card>
 </def>
 
