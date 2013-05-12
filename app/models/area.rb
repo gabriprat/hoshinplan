@@ -22,7 +22,8 @@ class Area < ActiveRecord::Base
     child_hoshins = hoshin.children.*.id
     return nil unless child_hoshins
     child_objectives = Objective.where(:parent_id => objectives.*.id)
-    ChildTask.where(:objective_id => child_objectives, :show_on_parent => true)
+    tasks = Task.where(:objective_id => child_objectives, :show_on_parent => true)
+    tasks.collect{ |t| t.becomes(ChildTask) }
   end
   
   # --- Permissions --- #
