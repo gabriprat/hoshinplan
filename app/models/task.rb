@@ -5,17 +5,17 @@ class Task < ActiveRecord::Base
   fields do
     name              :string
     description       :text
-    responsible       :string
     deadline          :date
     original_deadline :date
     show_on_parent    :boolean
     timestamps
   end
-  attr_accessible :name, :objective, :objective_id, :description, :responsible, 
+  attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, 
     :deadline, :original_deadline, :area, :area_id, :show_on_parent
 
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
+  belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area
   

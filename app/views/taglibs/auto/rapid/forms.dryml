@@ -52,7 +52,7 @@
 <def tag="form" for="Indicator">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, value, description, responsible, higher, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, objective" param/>
+    <field-list fields="name, value, description, higher, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'indicator.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -64,7 +64,7 @@
 <def tag="form" for="Objective">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, responsible, position, area, hoshin, parent" param/>
+    <field-list fields="name, description, position, area, hoshin, parent, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'objective.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -76,7 +76,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, responsible, deadline, original_deadline, show_on_parent, position, status, area, objective" param/>
+    <field-list fields="name, description, deadline, original_deadline, show_on_parent, position, status, area, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   end
   attr_accessible :name, :email_address, :password, :password_confirmation
   
+  has_many :objectives, :dependent => :destroy, :inverse_of => :responsible
+  has_many :indicators, :dependent => :destroy, :inverse_of => :responsible
+  has_many :tasks, :dependent => :destroy, :inverse_of => :responsible
+  
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
   before_create do |user|

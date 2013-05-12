@@ -5,12 +5,11 @@ class Objective < ActiveRecord::Base
   fields do
     name        :string
     description :text
-    responsible :string
     indicators_count :integer, :default => 0, :null => false
     tasks_count :integer, :default => 0, :null => false
     timestamps
   end
-  attr_accessible :name, :area, :area_id, :description, :responsible, 
+  attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id, 
     :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
@@ -21,6 +20,7 @@ class Objective < ActiveRecord::Base
   belongs_to :parent, :class_name => "Objective"
   belongs_to :area, :inverse_of => :objectives, :counter_cache => false
   belongs_to :hoshin, :inverse_of => :objectives
+  belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
   
   acts_as_list :scope => :area
   
