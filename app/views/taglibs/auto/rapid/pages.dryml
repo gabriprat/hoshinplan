@@ -600,7 +600,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, responsible, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area" param/>
+      <field-list fields="value, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, responsible" param/>
     </content-body:>
 
   </page>
@@ -713,7 +713,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="responsible, position, area, hoshin, parent" param/>
+      <field-list fields="position, area, hoshin, parent, responsible" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="indicator.collection.heading" count="&this.indicators.count" >
@@ -876,7 +876,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="responsible, deadline, original_deadline, position, status, area, objective" param/>
+      <field-list fields="deadline, original_deadline, position, status, area, objective, responsible" param/>
     </content-body:>
 
   </page>

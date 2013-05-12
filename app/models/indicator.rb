@@ -6,7 +6,6 @@ class Indicator < ActiveRecord::Base
     name        :string
     value       :decimal
     description :text
-    responsible :string
     higher      :boolean
     frequency   :string
     next_update :date
@@ -17,13 +16,14 @@ class Indicator < ActiveRecord::Base
     max_value   :decimal, :default => 100.0
     timestamps
   end
-  attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, 
+  attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, 
     :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend
 
   has_many :indicator_historys, :dependent => :destroy, :inverse_of => :indicator
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
+  belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
   
   acts_as_list :scope => :area
  

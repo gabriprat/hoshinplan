@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512193002) do
+ActiveRecord::Schema.define(:version => 20130512202145) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -76,29 +76,29 @@ ActiveRecord::Schema.define(:version => 20130512193002) do
     t.string   "name"
     t.decimal  "value"
     t.text     "description"
-    t.string   "responsible"
     t.boolean  "higher"
     t.string   "frequency"
     t.date     "next_update"
-    t.decimal  "goal",         :default => 100.0
-    t.decimal  "max_value",    :default => 100.0
+    t.decimal  "goal",           :default => 100.0
+    t.decimal  "max_value",      :default => 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
     t.integer  "area_id"
     t.integer  "position"
     t.date     "last_update"
-    t.decimal  "min_value",    :default => 0.0
+    t.decimal  "min_value",      :default => 0.0
     t.decimal  "last_value"
+    t.integer  "responsible_id"
   end
 
   add_index "indicators", ["area_id"], :name => "index_indicators_on_area_id"
   add_index "indicators", ["objective_id"], :name => "index_indicators_on_objective_id"
+  add_index "indicators", ["responsible_id"], :name => "index_indicators_on_responsible_id"
 
   create_table "objectives", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "responsible"
     t.integer  "indicators_count", :default => 0, :null => false
     t.integer  "tasks_count",      :default => 0, :null => false
     t.datetime "created_at"
@@ -107,16 +107,17 @@ ActiveRecord::Schema.define(:version => 20130512193002) do
     t.integer  "hoshin_id"
     t.integer  "position"
     t.integer  "parent_id"
+    t.integer  "responsible_id"
   end
 
   add_index "objectives", ["area_id"], :name => "index_objectives_on_area_id"
   add_index "objectives", ["hoshin_id"], :name => "index_objectives_on_hoshin_id"
   add_index "objectives", ["parent_id"], :name => "index_objectives_on_parent_id"
+  add_index "objectives", ["responsible_id"], :name => "index_objectives_on_responsible_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "responsible"
     t.date     "deadline"
     t.date     "original_deadline"
     t.datetime "created_at"
@@ -128,10 +129,12 @@ ActiveRecord::Schema.define(:version => 20130512193002) do
     t.integer  "area_id"
     t.boolean  "show_on_parent"
     t.string   "type"
+    t.integer  "responsible_id"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
   add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"
+  add_index "tasks", ["responsible_id"], :name => "index_tasks_on_responsible_id"
   add_index "tasks", ["status"], :name => "index_tasks_on_status"
   add_index "tasks", ["type"], :name => "index_tasks_on_type"
 
