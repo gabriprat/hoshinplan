@@ -216,7 +216,7 @@
 			<actions: replace/>
      	</form>
   </div>
-  <div class="column" data-label="Deviation">0</div>
+  <div class="column" data-label="Deviation"><view:deviation /></div>
   <div class="column" data-label="Actions">
 	<ul class="icons">
 	  <if test="#{this.status=='active'?'true':''}">

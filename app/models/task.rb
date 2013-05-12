@@ -36,9 +36,23 @@ class Task < ActiveRecord::Base
       
   end
   
+  before_save do |task|
+    if task.original_deadline.nil? && !task.deadline.nil?
+      task.original_deadline = task.deadline
+    end
+  end
+  
   def status 
     if deadline?
       deadline < Date.today ? :overdue : :current
+    end
+  end
+  
+  def deviation
+    if !deadline.nil? && !original_deadline.nil?
+      (deadline - original_deadline).to_i
+    else
+      0
     end
   end
   

@@ -26,10 +26,7 @@ class Indicator < ActiveRecord::Base
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
   
   acts_as_list :scope => :area
-
-
-  # This gives admin rights and an :active state to the first sign-up.
-  # Just remove it if you don't want that
+ 
   before_update do |indicator|
     #if indicator.last_update < Date.today
       indicator.last_value = indicator.value_was
