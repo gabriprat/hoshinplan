@@ -168,9 +168,20 @@ span.arrow.equal:after {
 	content: "=";
 }
 
-.overdue a {
-	color: red !important;
-	font-weight: 400;
+.overdue, .overdue a {
+	color: red;
+	font-weight: 500;
+}
+
+.completed, .completed .overdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {
+	color: #999;
+	font-weight: 200;
+}
+
+.discarded, .discarded .overdue, .discarded a, .discarded a:active, .discarded a:hover, .discarded a:visited {
+	color: #999;
+	text-decoration: line-through;
+	font-weight: 200;
 }
 
 body .row {

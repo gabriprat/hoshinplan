@@ -50,7 +50,7 @@ class Indicator < ActiveRecord::Base
   
   def tpc 
     ret = 0
-    if !max_value.nil? && !min_value.nil? && value? && (max_value-min_value)!=0
+    if !max_value.nil? && !min_value.nil? && !value.nil? && (max_value-min_value)!=0
       if higher?
         ret = 100 * (value-min_value) / (goal-min_value)
       else

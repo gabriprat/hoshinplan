@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511164555) do
+ActiveRecord::Schema.define(:version => 20130512193002) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -106,10 +106,12 @@ ActiveRecord::Schema.define(:version => 20130511164555) do
     t.integer  "area_id"
     t.integer  "hoshin_id"
     t.integer  "position"
+    t.integer  "parent_id"
   end
 
   add_index "objectives", ["area_id"], :name => "index_objectives_on_area_id"
   add_index "objectives", ["hoshin_id"], :name => "index_objectives_on_hoshin_id"
+  add_index "objectives", ["parent_id"], :name => "index_objectives_on_parent_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
@@ -125,11 +127,13 @@ ActiveRecord::Schema.define(:version => 20130511164555) do
     t.integer  "position"
     t.integer  "area_id"
     t.boolean  "show_on_parent"
+    t.string   "type"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
   add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"
   add_index "tasks", ["status"], :name => "index_tasks_on_status"
+  add_index "tasks", ["type"], :name => "index_tasks_on_type"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

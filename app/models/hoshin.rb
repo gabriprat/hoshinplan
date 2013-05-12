@@ -8,7 +8,7 @@ class Hoshin < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :id, :parent, :parent_id, :company
-  attr_accessible :areas
+  attr_accessible :areas, :children, :children_ids
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
   belongs_to :parent, :class_name => "Hoshin"

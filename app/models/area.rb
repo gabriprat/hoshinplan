@@ -18,6 +18,13 @@ class Area < ActiveRecord::Base
   
   acts_as_list :scope => :hoshin
   
+  def child_tasks 
+    child_hoshins = hoshin.children.*.id
+    return nil unless child_hoshins
+    child_objectives = Objective.where(:parent_id => objectives.*.id)
+    ChildTask.where(:objective_id => child_objectives, :show_on_parent => true)
+  end
+  
   # --- Permissions --- #
 
   def create_permitted?
