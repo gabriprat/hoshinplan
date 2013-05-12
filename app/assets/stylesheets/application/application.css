@@ -28,6 +28,10 @@ body h2.heading {
 	margin: 0;
 }
 
+.nowrap {
+	white-space: nowrap;
+}
+
 .header.well {
 	border-top: 5px solid #25A9E0;
 }
