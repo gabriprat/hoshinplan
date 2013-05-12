@@ -98,7 +98,7 @@
 	<h5>Tasks</h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
 	<h5>Child Tasks</h5>
-	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin" part="childtasks" id="tasks-#{this.id}" class="ChildTask"/>
+	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
 	</div>
     </append-body:>
   </old-card>
@@ -267,11 +267,11 @@
 </def>
 
 <def tag="scard" for="ChildTask">
-<scard class="task table-row" part-id="task" param="default" merge>
+<scard class="task table-row" param="default" merge>
   <div class="column" data-label="Id">
 	 #{this.objective.parent.position}
   </div>
-  <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="Name"><name/></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column" data-label="Deadline">#{this.deadline}</div>
   <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
