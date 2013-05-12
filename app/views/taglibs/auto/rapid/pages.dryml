@@ -78,6 +78,7 @@
     <body: class="show-page area" param/>
 
     <content-header: param>
+      <a:hoshin param="parent-link">&laquo; <ht key="area.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
       <h2 param="heading">
         <ht key="area.show.heading" name="#{name(:no_wrapper => true)}">
           Area <name/>
@@ -95,22 +96,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position, hoshin" param/>
-      <section param="collection-section">
-        <h3 param="collection-heading">
-          <ht key="objective.collection.heading" count="&this.objectives.count" >
-            <human-collection-name collection="objectives" your/>
-          </ht>
-        </h3>
-
-        <sortable-collection:objectives param="collection"/>
-
-        <a:objectives action="new" if="&can_create?(@area.objectives)" param="new-link">
-          <ht key="objective.actions.new" count="1">
-            New Objective
-          </ht>
-        </a:objectives>
-      </section>
+      <field-list fields="position" param/>
     </content-body:>
 
   </page>
@@ -596,6 +582,7 @@
     <body: class="show-page indicator" param/>
 
     <content-header: param>
+      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objective" name="&this">Back to <name/></ht></a:objective>
       <h2 param="heading">
         <ht key="indicator.show.heading" name="#{name(:no_wrapper => true)}">
           Indicator <name/>
@@ -613,7 +600,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, responsible, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, objective" param/>
+      <field-list fields="value, responsible, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area" param/>
     </content-body:>
 
   </page>
@@ -709,7 +696,6 @@
     <body: class="show-page objective" param/>
 
     <content-header: param>
-      <a:area param="parent-link">&laquo; <ht key="objective.actions.back_to_parent" parent="Area" name="&this">Back to <name/></ht></a:area>
       <h2 param="heading">
         <ht key="objective.show.heading" name="#{name(:no_wrapper => true)}">
           Objective <name/>
@@ -727,7 +713,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="responsible, position, hoshin" param/>
+      <field-list fields="responsible, position, area, hoshin" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="indicator.collection.heading" count="&this.indicators.count" >

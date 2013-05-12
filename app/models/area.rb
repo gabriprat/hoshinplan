@@ -5,17 +5,14 @@ class Area < ActiveRecord::Base
   fields do
     name        :string
     description :text
-    #objectives_count :integer, :default => 0, :null => false
     timestamps
   end
 
-  attr_accessible :name, :description, :objectives, :hoshin, :hoshin_id
+  attr_accessible :name, :description, :hoshin, :hoshin_id
 
   has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'position'
   has_many :indicators, :through => :objectives, :accessible => true, :order => 'position'
   has_many :tasks, :through => :objectives, :accessible => true, :order => 'position'
-
-  children :objectives
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
   
