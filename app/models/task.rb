@@ -42,7 +42,7 @@ class Task < ActiveRecord::Base
     end
   end
   
-  def status 
+  def deadline_status 
     if deadline?
       deadline < Date.today ? :overdue : :current
     end
@@ -74,4 +74,7 @@ class Task < ActiveRecord::Base
     true
   end
 
+end
+
+class ChildTask < Task
 end

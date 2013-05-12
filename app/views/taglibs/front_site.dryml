@@ -30,7 +30,7 @@
 			</li>
 		</ul>
 		<call-tag tag="#{tag}" merge-attrs merge-params class="table-body">
-			<item: class="table-row"/>
+			<item: class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''}"/>
 			<default: replace>
 				<scard param/>
 			</default>
@@ -84,7 +84,7 @@
 		<set aid="#{this.id}"/>
 		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			<div class="modal-body">
-				<field-list: fields="name, description, responsible" />
+				<field-list: fields="name, description, responsible, parent" />
 				<hidden-field:hoshin_id value="#{hid}"/>
 				<hidden-field:area_id value="#{aid}"/>
 			</div>
@@ -97,6 +97,8 @@
 	
 	<h5>Tasks</h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
+	<h5>Child Tasks</h5>
+	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin" part="childtasks" id="tasks-#{this.id}" class="ChildTask"/>
 	</div>
     </append-body:>
   </old-card>
@@ -112,9 +114,12 @@
 			<a onclick="$('#update-objective-modal-#{this.id}').modal('show'); return false;"><name/></a>
 			<modal id="update-objective-modal-#{this.id}">
 				<modal:>
+				<set options="&this.parent_objectives"/>
 				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 				   <div class="modal-body">
-				    <field-list: fields="name, description, responsible" />
+				    <field-list: fields="name, description, responsible, parent">
+						<parent-tag: options="&options" />
+					</field-list:>
 					</div>
 					 <modal-form-footer/>
 				 </form> 
@@ -170,7 +175,7 @@
   <div class="column" data-label="Id">
 	 #{this.objective.position}
   </div>
-  <div class="column #{this.status}" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column" data-label="Value">
 	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
@@ -208,25 +213,30 @@
   <div class="column" data-label="Id">
 	 #{this.objective.position}
   </div>
-  <div class="column #{this.status}" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column" data-label="Deadline">
-    	<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
-    		<field-list: fields="deadline"/>
-			<actions: replace/>
-     	</form>
+	  	<if test="#{this.status=='active'?'true':''}">
+			<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
+				<field-list: fields="deadline" disable/>
+				<actions: replace/>
+		 	</form>
+		</if>
+		<else>
+			#{this.deadline}
+		</else>
   </div>
-  <div class="column" data-label="Deviation"><view:deviation /></div>
+  <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
   <div class="column" data-label="Actions">
 	<ul class="icons">
 	  <if test="#{this.status=='active'?'true':''}">
 		  <li class="complete">
-		  <form ajax lifecycle="complete" class="inline-form">
+		  <form ajax lifecycle="discard" class="inline-form">
 			  <input type="image" src="/assets/icons/delete.png"/>
 		  </form>
 	  	  </li>
 		  <li class="discard">
-		  <form ajax lifecycle="discard" class="inline-form">
+		  <form ajax lifecycle="complete" class="inline-form">
 			  <input type="image" src="/assets/icons/complete-task.png"/>
 		  </form>
 	  	  </li>
@@ -253,6 +263,19 @@
 		 </form> 
 		</modal:>
 	</modal>
+</scard>
+</def>
+
+<def tag="scard" for="ChildTask">
+<scard class="task table-row" part-id="task" param="default" merge>
+  <div class="column" data-label="Id">
+	 #{this.objective.parent.position}
+  </div>
+  <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="Responsible"><view:responsible/></div>
+  <div class="column" data-label="Deadline">#{this.deadline}</div>
+  <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
+  <div class="column" data-label="Hoshin"><view:objective.area.hoshin /></div>
 </scard>
 </def>
 

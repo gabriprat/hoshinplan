@@ -11,7 +11,7 @@ var preventDoubleSubmit = function(e) {
       return false;
   } else {
       this.beenSubmitted = true;
-	  $(".autosubmit").unbind("submit").submit(preventDoubleSubmit);
+	  $(this).unbind("submit").submit(preventDoubleSubmit);
   }
 };
 
