@@ -43,7 +43,11 @@ class Indicator < ActiveRecord::Base
     if last_value.nil?
       :equal
     else 
-      last_value == value ? :equal : (last_value < value) ? :positive : :negative
+      if last_value == value 
+        :equal 
+      else 
+        ((last_value < value && higher) || (value < last_value && !higher)) ? :positive : :negative
+      end
     end
   end
     
@@ -51,7 +55,7 @@ class Indicator < ActiveRecord::Base
   def tpc 
     ret = 0
     if !max_value.nil? && !min_value.nil? && !value.nil? && (max_value-min_value)!=0
-      if higher?
+      if higher
         ret = 100 * (value-min_value) / (goal-min_value)
       else
         ret = 100 * ((max_value-value) / (max_value-goal))
