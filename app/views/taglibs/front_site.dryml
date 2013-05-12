@@ -177,14 +177,14 @@
   </div>
   <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
-  <div class="column" data-label="Value">
+  <div class="column nowrap" data-label="Value">
 	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
 		<field-list: fields="value" />
   	 	<actions: replace />
 	 </form>
   </div>
-  <div class="column" data-label="Goal"><%= this.higher? ? "&ge; ".html_safe : "&le; ".html_safe %><view:goal/></div>
-  <div class="column" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
+  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge; ".html_safe : "&le; ".html_safe %><view:goal/></div>
+  <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
 	  <modal id="update-kpi-modal-#{this.id}">
 		  <modal:>
 	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
@@ -197,7 +197,7 @@
 	    </modal>
   </div>
  
-  <div class="column" data-label="Actions"> 
+  <div class="column nowrap" data-label="Actions"> 
 	  <ul class="icons">
 		  <li>
 	  		<delete-button update="indicators-#{this.objective.area.id}" image="/assets/icons/delete.png" />
@@ -215,7 +215,7 @@
   </div>
   <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
-  <div class="column" data-label="Deadline">
+  <div class="column nowrap" data-label="Deadline">
 	  	<if test="#{this.status=='active'?'true':''}">
 			<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
 				<field-list: fields="deadline" disable/>
@@ -226,8 +226,8 @@
 			#{this.deadline}
 		</else>
   </div>
-  <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
-  <div class="column" data-label="Actions">
+  <div class="column nowrap #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
+  <div class="column nowrap" data-label="Actions">
 	<ul class="icons">
 	  <if test="#{this.status=='active'?'true':''}">
 		  <li class="complete">
