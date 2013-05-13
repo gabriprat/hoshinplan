@@ -4,11 +4,12 @@ class IndicatorHistory < ActiveRecord::Base
 
   fields do
     value :decimal
+    day   :date
     timestamps
   end
-  attr_accessible :value, :indicator, :indicator_id
+  attr_accessible :value, :indicator, :indicator_id, :date
 
-  belongs_to :indicator, :inverse_of => :indicator_historys, :counter_cache => false
+  belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
 
   # --- Permissions --- #
 
