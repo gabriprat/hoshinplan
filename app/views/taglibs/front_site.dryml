@@ -199,8 +199,11 @@
  
   <div class="column nowrap" data-label="Actions"> 
 	  <ul class="icons">
-		  <li>
+		<li>
 	  		<delete-button update="indicators-#{this.objective.area.id}" image="/assets/icons/delete.png" />
+		</li>
+	  	<li>
+  			<a action="history"><image src="icons/chart.png"/></a>
 		</li>
 	</ul>
   </div>

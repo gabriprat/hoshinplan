@@ -6,4 +6,10 @@ class TasksController < ApplicationController
 
   auto_actions_for :objective, [:new, :create]
   
+  def update
+    hobo_update do
+      redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+    end
+  end
+  
 end

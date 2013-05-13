@@ -19,7 +19,7 @@ class Indicator < ActiveRecord::Base
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, 
     :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend
 
-  has_many :indicator_historys, :dependent => :destroy, :inverse_of => :indicator
+  has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
@@ -30,6 +30,9 @@ class Indicator < ActiveRecord::Base
   before_update do |indicator|
     #if indicator.last_update < Date.today
       indicator.last_value = indicator.value_was
+      ih = IndicatorHistory.find_or_create_by_indicator_id_and_day(indicator.id, Date.today)
+      ih.value = indicator.value
+      ih.save!
       #end
   end
   

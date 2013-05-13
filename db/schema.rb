@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512202145) do
+ActiveRecord::Schema.define(:version => 20130513154511) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130512202145) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "indicator_id"
+    t.date     "day"
   end
 
   add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
