@@ -11,6 +11,8 @@ class IndicatorHistory < ActiveRecord::Base
 
   belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
 
+  validates_uniqueness_of :day, :scope => [:indicator_id]
+
   # --- Permissions --- #
 
   def create_permitted?
