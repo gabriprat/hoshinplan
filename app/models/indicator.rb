@@ -6,7 +6,7 @@ class Indicator < ActiveRecord::Base
     name        :string
     value       :decimal
     description :text
-    higher      :boolean
+    higher      :boolean, :default => true
     frequency   :string
     next_update :date
     last_update :date
@@ -30,7 +30,12 @@ class Indicator < ActiveRecord::Base
   before_update do |indicator|
     #if indicator.last_update < Date.today
       indicator.last_value = indicator.value_was
-      ih = IndicatorHistory.find_or_create_by_indicator_id_and_day(indicator.id, Date.today)
+      ih = indicator.indicator_histories.where(:day => Date.today).first
+      if ih.nil?
+        ih = IndicatorHistory.create
+        ih.indicator_id = indicator.id
+        ih.day = Date.today
+      end
       ih.value = indicator.value
       ih.save!
       #end
