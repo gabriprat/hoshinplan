@@ -8,8 +8,12 @@ Hoshinplan::Application.routes.draw do
   match 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
 
   match 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
+  
+  match 'user_companies/:id/accept_from_email/:key' => 'user_companies#accept', :as => 'accept_from_email'
 
   match 'search' => 'front#search', :as => 'site_search'
+  
+  match 'first' => 'front#first', :as => 'front_first'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

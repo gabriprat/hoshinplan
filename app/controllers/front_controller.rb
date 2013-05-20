@@ -6,7 +6,15 @@ class FrontController < ApplicationController
   # except :index. 
   skip_before_filter :my_login_required, :only => :index
 
-  def index; end
+  def index
+    if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
+      redirect_to "/first"
+    end
+  end
+ 
+  def first
+    
+  end
 
   def summary
     if !current_user.administrator?

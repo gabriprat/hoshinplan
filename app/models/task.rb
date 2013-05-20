@@ -13,6 +13,8 @@ class Task < ActiveRecord::Base
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, 
     :deadline, :original_deadline, :area, :area_id, :show_on_parent
 
+  belongs_to :company, :inverse_of => :areas
+
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
@@ -20,6 +22,17 @@ class Task < ActiveRecord::Base
   acts_as_list :scope => :area
   
   set_default_order :position
+  
+  validate :validate_company
+  
+  default_scope lambda { 
+    where(:company_id => UserCompany.select(:company_id)
+      .where('user_id=?',  
+        User.current_id) ) }
+  
+  before_create do |task|
+    task.company = task.objective.company
+  end
 
   lifecycle :state_field => :status do
     state :active, :default => true
@@ -57,17 +70,25 @@ class Task < ActiveRecord::Base
   end
   
   # --- Permissions --- #
-
+  
+  def same_company
+    acting_user.user_companies.where(:company_id => self.company_id)
+  end
+  
+  def validate_company
+    errors.add(:company, "You don't have permissions on this company") unless same_company
+  end
+  
   def create_permitted?
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def view_permitted?(field)

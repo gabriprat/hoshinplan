@@ -4,8 +4,6 @@ class IndicatorsController < ApplicationController
 
   auto_actions :all, :except => :index
   
-  show_action :history
-
   def update
     hobo_update do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?

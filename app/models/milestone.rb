@@ -1,18 +1,13 @@
-class IndicatorHistory < ActiveRecord::Base
+class Milestone < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
     value :decimal
-    goal  :decimal
-    day   :date
+    date  :date
     timestamps
   end
-  attr_accessible :value, :goal, :indicator, :indicator_id, :date
-
-  belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
-
-  validates_uniqueness_of :day, :scope => [:indicator_id]
+  attr_accessible :value, :date
 
   # --- Permissions --- #
 

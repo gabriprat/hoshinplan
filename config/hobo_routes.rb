@@ -18,7 +18,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller hoshins
-  resources :hoshins
+  resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy]
 
   # Owner routes for controller hoshins
   resources :companies, :as => :company, :only => [] do
@@ -40,10 +40,11 @@ Hoshinplan::Application.routes.draw do
     collection do
       post 'reorder'
     end
-    member do
-      get 'history'
-    end
   end
+
+
+  # Resource routes for controller milestones
+  resources :milestones, :only => [:new, :edit, :show, :create, :update, :destroy]
 
 
   # Resource routes for controller objectives
@@ -94,14 +95,36 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller user_companies
+  resources :user_companies, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    collection do
+      post 'invite', :action => 'do_invite'
+      get 'invite'
+    end
+    member do
+      put 'accept', :action => 'do_accept'
+      get 'accept'
+      put 'reject', :action => 'do_reject'
+      get 'reject'
+      put 'admin', :action => 'do_admin'
+      get 'admin'
+      put 'cancel', :action => 'do_cancel'
+      get 'cancel'
+    end
+  end
+
+
   # Resource routes for controller users
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
+      get 'complete_name'
       post 'signup', :action => 'do_signup'
       get 'signup'
     end
     member do
       get 'account'
+      put 'activate', :action => 'do_activate'
+      get 'activate'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'reset_password', :action => 'do_reset_password'

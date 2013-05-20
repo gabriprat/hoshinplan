@@ -7,7 +7,7 @@ class Hoshin < ActiveRecord::Base
     areas_count :integer, :default => 0, :null => false
     timestamps
   end
-  attr_accessible :name, :id, :parent, :parent_id, :company
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id
   attr_accessible :areas, :children, :children_ids
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
@@ -18,8 +18,27 @@ class Hoshin < ActiveRecord::Base
   has_many :objectives, :through => :areas, :accessible => true
   
   children :areas
-
+  
+  validate :validate_company
+  
+  default_scope lambda { 
+    where(:company_id => Company.current_id) unless Company.current_id.nil? }
+  
   # --- Permissions --- #
+  
+  def same_company
+    user = User.find(User.current_id)
+    user.user_companies.where(:company_id => company_id)
+  end
+  
+  def parent_same_company
+    parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
+  end
+  
+  def validate_company
+    errors.add(:company, "You don't have permissions on this company") unless same_company
+    errors.add(:parent, "Parent hoshin must be from the same company") unless parent_same_company
+  end
 
   def create_permitted?
     acting_user.administrator?

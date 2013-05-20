@@ -20,13 +20,26 @@ class Indicator < ActiveRecord::Base
     :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
+  
+  belongs_to :company, :inverse_of => :areas
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
   
   acts_as_list :scope => :area
+  
+  validate :validate_company
+  
+  default_scope lambda { 
+    where(:company_id => UserCompany.select(:company_id)
+      .where('user_id=?',  
+        User.current_id) ) }
  
+  before_create do |indicator|
+    indicator.company = indicator.objective.company
+  end
+  
   before_update do |indicator|
     #if indicator.last_update < Date.today
       indicator.last_value = indicator.value_was
@@ -70,22 +83,31 @@ class Indicator < ActiveRecord::Base
       end 
     end 
   end
+  
   # --- Permissions --- #
-
+  
+  def same_company
+    acting_user.user_companies.where(:company_id => self.company_id)
+  end
+  
+  def validate_company
+    errors.add(:company, "You don't have permissions on this company") unless same_company
+  end
+  
   def create_permitted?
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def view_permitted?(field)
     true
   end
-
+  
 end
