@@ -14,4 +14,5 @@
 //= require hobo_jquery_ui
 //= require hobo_bootstrap_ui
 //= require hobo_omniauth
+//= require hobo_tokeninput
 //= require_tree ./front

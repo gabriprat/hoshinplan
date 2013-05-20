@@ -52,4 +52,9 @@ gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
 gem "omniauth-openid"
 gem "omniauth-google-oauth2"
 #gem 'gem_bench', :group => :console
+gem "clockwork"
+gem 'delayed_job_active_record'
+
+gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
+gem "nested_has_many_through"
 

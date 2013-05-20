@@ -12,11 +12,32 @@
 
 <include gem='hobo_omniauth'/>
 
+<include gem='hobo_tokeninput'/>
+
 <include src="taglibs/auto/rapid/cards"/>
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
 
 <include src="application"/>
+
+<extend tag='select-many'>
+	<if test="&(this.first.class==current_user.class)">
+		<name-many merge />
+	</if>
+	<else>
+		<old-select-many merge/>
+	</else>
+</extend>
+
+
+<extend tag='select-one'>
+	<if test="&(this_type==current_user.class)">
+		<name-one merge />
+	</if>
+	<else>
+		<old-select-one merge/>
+	</else>
+</extend>
 
 <def tag="rtable" attrs="columns, sortable">
 	<% columns ||= "" ; columns = comma_split(columns) -%>
@@ -41,6 +62,21 @@
 <def tag="scard" polymorphic>
     <do class="scard" param="default" merge/>
 </def>
+
+<extend tag="edit-page" for="Company">
+	<old-edit-page merge>
+	<prepend-content-body:>
+		<repeat:user_companies>
+			<view:user /> <a method="delete">remove</a>
+		</repeat>
+		Add colaborators: 
+		<form param>
+			<textarea name="collaborators"></textarea>
+			<submit />
+		</form>
+		</prepend-content-body:>
+	</old-edit-page>
+</extend>
 
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
@@ -80,11 +116,14 @@
 	<a title="Add new objective" onclick="$('#add-objective-modal-#{this.id}').modal('show'); return false;">Add new objective</a>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
+		<set options="&this.parent_objectives"/>
 		<set hid="#{this.hoshin.id}"/>
 		<set aid="#{this.id}"/>
 		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			<div class="modal-body">
-				<field-list: fields="name, description, responsible, parent" />
+				<field-list: fields="name, description, responsible, parent">
+					<parent-tag: options="&options" />
+				</field-list:>
 				<hidden-field:hoshin_id value="#{hid}"/>
 				<hidden-field:area_id value="#{aid}"/>
 			</div>

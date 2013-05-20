@@ -1,0 +1,18 @@
+<page title="Create your first company">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header hero-unit">
+      <h1><app-name/></h1>
+      <section>
+        Create your first company or request someone to invite you to join theirs.
+      </section>
+    </header>
+
+    <section class="content-body">
+    </section>
+  </content:>
+
+</page>
+

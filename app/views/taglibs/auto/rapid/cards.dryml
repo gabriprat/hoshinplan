@@ -59,6 +59,14 @@
   </card>
 </def>
 
+<def tag="card" for="Milestone">
+  <card class="milestone" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Objective">
   <card class="objective" param="default" merge>
     <header: param>
@@ -82,6 +90,14 @@
 
 <def tag="card" for="User">
   <card class="user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="UserCompany">
+  <card class="user-company" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>

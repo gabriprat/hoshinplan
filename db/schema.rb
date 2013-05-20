@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514002111) do
+ActiveRecord::Schema.define(:version => 20130520203224) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.datetime "updated_at"
     t.integer  "hoshin_id"
     t.integer  "position"
+    t.integer  "company_id"
   end
 
+  add_index "areas", ["company_id"], :name => "index_areas_on_company_id"
   add_index "areas", ["hoshin_id"], :name => "index_areas_on_hoshin_id"
 
   create_table "authorizations", :force => true do |t|
@@ -52,6 +54,22 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.datetime "updated_at"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "hoshins", :force => true do |t|
     t.string   "name"
     t.integer  "areas_count", :default => 0, :null => false
@@ -70,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.datetime "updated_at"
     t.integer  "indicator_id"
     t.date     "day"
+    t.decimal  "goal"
   end
 
   add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
@@ -92,11 +111,20 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.integer  "area_id"
     t.integer  "responsible_id"
     t.integer  "position"
+    t.integer  "company_id"
   end
 
   add_index "indicators", ["area_id"], :name => "index_indicators_on_area_id"
+  add_index "indicators", ["company_id"], :name => "index_indicators_on_company_id"
   add_index "indicators", ["objective_id"], :name => "index_indicators_on_objective_id"
   add_index "indicators", ["responsible_id"], :name => "index_indicators_on_responsible_id"
+
+  create_table "milestones", :force => true do |t|
+    t.decimal  "value"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "objectives", :force => true do |t|
     t.string   "name"
@@ -110,9 +138,11 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.integer  "hoshin_id"
     t.integer  "responsible_id"
     t.integer  "position"
+    t.integer  "company_id"
   end
 
   add_index "objectives", ["area_id"], :name => "index_objectives_on_area_id"
+  add_index "objectives", ["company_id"], :name => "index_objectives_on_company_id"
   add_index "objectives", ["hoshin_id"], :name => "index_objectives_on_hoshin_id"
   add_index "objectives", ["parent_id"], :name => "index_objectives_on_parent_id"
   add_index "objectives", ["responsible_id"], :name => "index_objectives_on_responsible_id"
@@ -132,13 +162,29 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.string   "status",            :default => "active"
     t.datetime "key_timestamp"
     t.string   "type"
+    t.integer  "company_id"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
+  add_index "tasks", ["company_id"], :name => "index_tasks_on_company_id"
   add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"
   add_index "tasks", ["responsible_id"], :name => "index_tasks_on_responsible_id"
   add_index "tasks", ["status"], :name => "index_tasks_on_status"
   add_index "tasks", ["type"], :name => "index_tasks_on_type"
+
+  create_table "user_companies", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.boolean  "administrator", :default => false
+    t.string   "state"
+    t.datetime "key_timestamp"
+  end
+
+  add_index "user_companies", ["company_id"], :name => "index_user_companies_on_company_id"
+  add_index "user_companies", ["state"], :name => "index_user_companies_on_state"
+  add_index "user_companies", ["user_id"], :name => "index_user_companies_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -150,7 +196,7 @@ ActiveRecord::Schema.define(:version => 20130514002111) do
     t.boolean  "administrator",                           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                   :default => "active"
+    t.string   "state",                                   :default => "inactive"
     t.datetime "key_timestamp"
   end
 

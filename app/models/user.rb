@@ -10,20 +10,19 @@ class User < ActiveRecord::Base
     administrator :boolean, :default => false
     timestamps
   end
-  attr_accessible :name, :email_address, :password, :password_confirmation
+  attr_accessible :name, :email_address, :password, :password_confirmation, :companies
   
   has_many :objectives, :dependent => :destroy, :inverse_of => :responsible
   has_many :indicators, :dependent => :destroy, :inverse_of => :responsible
   has_many :tasks, :dependent => :destroy, :inverse_of => :responsible
-  
+  has_many :companies, :through => :user_companies, :accessible => true
+  has_many :user_companies, :dependent => :destroy 
+    
   # This gives admin rights and an :active state to the first sign-up.
-  # Just remove it if you don't want that
   before_create do |user|
-    #if !Rails.env.test? && user.class.count == 0
-    #if user.class.count == 0
+    if user.class.count == 0
       user.administrator = true
-      user.state = "active"
-    #end
+    end
   end
 
 
@@ -31,9 +30,16 @@ class User < ActiveRecord::Base
 
   lifecycle do
 
-    state :inactive
-    state :active, :default => true
+    state :inactive, :default => true
+    state :invited
+    state :active
+    
+    create :from_omniauth, :params => [:name, :email_address], :become => :active
 
+    create :invite,
+      :params => [:name, :email_address, :password, :password_confirmation],
+      :become => :invited
+    
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation],
       :become => :inactive, :new_key => true  do
@@ -41,6 +47,8 @@ class User < ActiveRecord::Base
     end
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder
+
+    transition :activate, { :invited => :active }, :available_to => :self
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
       UserMailer.activation(self, lifecycle.key).deliver
@@ -56,9 +64,21 @@ class User < ActiveRecord::Base
   end
 
   def signed_up?
-    state=="active"
+    state=="active" || state=="invited"
+  end
+  
+  def account_active?
+    signed_up?
+  end
+  
+  def self.current_id=(id)
+    Thread.current[:client_id] = id
   end
 
+  def self.current_id
+    Thread.current[:client_id]
+  end  
+  
   # --- Permissions --- #
 
   def create_permitted?

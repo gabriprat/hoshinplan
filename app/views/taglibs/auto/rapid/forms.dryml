@@ -4,7 +4,7 @@
 <def tag="form" for="Area">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, position, hoshin, indicators, tasks" param/>
+    <field-list fields="name, description, position, company, hoshin, indicators, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'area.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -16,7 +16,7 @@
 <def tag="form" for="Company">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name" param/>
+    <field-list fields="name, users" param/>
     <div param="actions">
       <submit label="#{ht 'company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -40,7 +40,7 @@
 <def tag="form" for="IndicatorHistory">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="value, day, indicator" param/>
+    <field-list fields="value, goal, day, indicator" param/>
     <div param="actions">
       <submit label="#{ht 'indicator_history.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -52,9 +52,21 @@
 <def tag="form" for="Indicator">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, value, description, higher, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, objective, responsible" param/>
+    <field-list fields="name, value, description, higher, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, company, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'indicator.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Milestone">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="value, date" param/>
+    <div param="actions">
+      <submit label="#{ht 'milestone.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -64,7 +76,7 @@
 <def tag="form" for="Objective">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, position, area, hoshin, parent, responsible" param/>
+    <field-list fields="name, description, position, area, company, hoshin, parent, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'objective.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -76,7 +88,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, deadline, original_deadline, show_on_parent, position, status, area, objective, responsible" param/>
+    <field-list fields="name, description, deadline, original_deadline, show_on_parent, position, status, area, company, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -129,10 +141,76 @@
   </form>
 </def>
 
+<def tag="form" for="UserCompany">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="administrator, state, company, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'user_company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="invite-form" polymorphic/>
+<def tag="invite-form" for="UserCompany">
+  <form lifecycle="invite" merge param="default">
+    <error-messages param/>
+    <field-list fields="company, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'user_company.actions.invite', :default=>['Invite']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="accept-form" polymorphic/>
+<def tag="accept-form" for="UserCompany">
+  <form lifecycle="accept" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.accept', :default=>['Accept']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reject-form" polymorphic/>
+<def tag="reject-form" for="UserCompany">
+  <form lifecycle="reject" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.reject', :default=>['Reject']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="admin-form" polymorphic/>
+<def tag="admin-form" for="UserCompany">
+  <form lifecycle="admin" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.admin', :default=>['Admin']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="cancel-form" polymorphic/>
+<def tag="cancel-form" for="UserCompany">
+  <form lifecycle="cancel" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.cancel', :default=>['Cancel']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, state" param/>
+    <field-list fields="name, email_address, administrator, state, companies" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
