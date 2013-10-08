@@ -90,7 +90,7 @@
 			<modal id="add-area-modal">
 				<modal:>
 				<set hid="#{this.id}"/>
-				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" update="areas" class="modal">
 					<div class="modal-body">
 						<field-list: fields="name, description" />
 						<hidden-field:hoshin_id value="#{hid}"/>
@@ -100,6 +100,9 @@
 				</modal:>
 			</modal>
 		</prepend-content-header:>
+		<content-body: >
+			<sortable-collection:areas part="areas" id="areas"/>
+		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>
 </extend>
