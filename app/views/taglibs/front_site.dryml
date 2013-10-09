@@ -181,14 +181,14 @@
 		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
-					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-kpi.png" /></a>
+					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); $('#add-kpi-modal-#{this.id} form').trigger('reset');  return false;"><img src="/assets/icons/add-kpi.png" /></a>
 					<modal id="add-kpi-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
 						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, responsible, goal, min_value, max_value, higher" />
+								<field-list: fields="name, description, frequency, next_update, responsible, goal, max_value, max_value, higher" />
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>
@@ -198,7 +198,7 @@
 					</modal>
 				</li>
 				<li class="task">
-					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); return false;"><img src="/assets/icons/add-task.png" /></a>
+					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;"><img src="/assets/icons/add-task.png" /></a>
 					<modal id="add-task-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>
@@ -239,7 +239,7 @@
 		  <modal:>
 	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			   <div class="modal-body">
-	            <field-list: fields="name, description, responsible, goal, min_value, max_value, higher, objective" />
+	            <field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher, objective" />
 				</div>
 				 <modal-form-footer/>
 	         </form> 
@@ -310,7 +310,7 @@
 		<modal:>
 		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 		   <div class="modal-body">
-		    <field-list: fields="name, description, responsible, deadline, show_on_parent" />
+		    <field-list: fields="name, description, responsible, deadline, objective, show_on_parent" />
 			</div>
 			 <modal-form-footer/>
 		 </form> 
