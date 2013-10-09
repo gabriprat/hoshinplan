@@ -20,9 +20,9 @@ class Company < ActiveRecord::Base
   
   children :hoshins
   
-  before_create do |company|
+  after_create do |company|
     user = User.find(User.current_id)
-    company.user_companies = [UserCompany::Lifecycle.new_company(user, {:user => user})]
+    company.user_companies = [UserCompany::Lifecycle.new_company([company, user], {:user => user, :company => company})]
   end
 
   default_scope lambda { 

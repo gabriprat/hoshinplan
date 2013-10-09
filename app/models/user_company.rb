@@ -11,15 +11,15 @@ class UserCompany < ActiveRecord::Base
   belongs_to  :company, :accessible => true
   belongs_to  :user, :accessible => true
  
-  validate :company_admin_validator
+  #validate :company_admin_validator
   
   
   def company_admin_validator
     if acting_user.nil?
-      #errors.add(:company, "you have to be logged in" ) 
+      errors.add(:company, "you have to be logged in" ) 
     else
       errors.add(:company, "you must be an administrator of \"" + company.name + 
-        "\" to be able to associate users to it.") unless company_admin
+        "\" to be able to associate users to it.") unless company_admin || new_company_available
     end
   end
   

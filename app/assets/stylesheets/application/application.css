@@ -130,6 +130,15 @@ body.hoshin .image-button.delete-button {
 	margin: 0;
 }
 
+#areas .delete-button {
+	background-color: darkred;
+	background-image: none;
+	color: white;
+	text-shadow: none;
+	font-weight: 100;
+	float: left;
+}
+
 div.tasks {
 	display: table;
 }

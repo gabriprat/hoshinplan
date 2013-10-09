@@ -22,8 +22,10 @@ class Area < ActiveRecord::Base
   validate :validate_company
   
   default_scope lambda { 
-    where(:company_id => Company.current_id) unless Company.current_id.nil? }
-  
+    where(:company_id => UserCompany.select(:company_id)
+      .where('user_id=?',  
+        User.current_id) ) }
+        
   before_create do |area|
     area.company = area.hoshin.company
   end

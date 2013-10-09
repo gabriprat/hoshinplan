@@ -22,8 +22,10 @@ class Hoshin < ActiveRecord::Base
   validate :validate_company
   
   default_scope lambda { 
-    where(:company_id => Company.current_id) unless Company.current_id.nil? }
-  
+    where(:company_id => UserCompany.select(:company_id)
+      .where('user_id=?',  
+        User.current_id) ) }
+
   # --- Permissions --- #
   
   def same_company
@@ -53,7 +55,7 @@ class Hoshin < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    same_company
   end
 
 end

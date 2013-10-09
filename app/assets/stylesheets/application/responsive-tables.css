@@ -17,6 +17,7 @@ body .table {
 }
 .column{
 	display:table-cell; /* Defines a table cell */
+	padding-right: 2px;
 }
 .table .ordering-handle {
 	line-height: 14px;
