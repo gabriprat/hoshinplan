@@ -234,7 +234,8 @@
   <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible/></div>
   <div class="column nowrap" data-label="Value">
-	<form ajax class="autosubmit inline-form" complete="attatchAutosubmit()" >
+  	<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle();'/>
+	<form ajax class="autosubmit inline-form" style="display:none;" complete="attatchAutosubmit()" >
 		<field-list: fields="value" />
   	 	<actions: replace />
 	 </form>

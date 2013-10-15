@@ -25,6 +25,11 @@ en:
 #        email_address: We will never share your address with third parties
 
 en:
+  date:
+    formats:
+      default: ! '%Y/%m/%d'
+      long: ! '%B %d, %Y'
+      short: ! '%b %d'
   number:
     human:
       decimal_units:
