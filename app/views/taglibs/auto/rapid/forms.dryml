@@ -40,7 +40,7 @@
 <def tag="form" for="IndicatorHistory">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="value, goal, day, indicator" param/>
+    <field-list fields="value, day, indicator" param/>
     <div param="actions">
       <submit label="#{ht 'indicator_history.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -64,7 +64,7 @@
 <def tag="form" for="Milestone">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="value, date" param/>
+    <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'milestone.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -144,7 +144,7 @@
 <def tag="form" for="UserCompany">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="administrator, state, company, user" param/>
+    <field-list fields="company, user" param/>
     <div param="actions">
       <submit label="#{ht 'user_company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
