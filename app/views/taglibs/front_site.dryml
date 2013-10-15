@@ -20,6 +20,12 @@
 
 <include src="application"/>
 
+
+
+<extend tag='view' for="Numeric" attrs='format, human' >
+	<%= human ? number_to_human(this) : format ? format % this : number_with_delimiter(this) %>
+</extend>
+
 <extend tag='select-many'>
 	<if test="&(this.first.class==current_user.class)">
 		<name-many merge />
@@ -233,7 +239,7 @@
   	 	<actions: replace />
 	 </form>
   </div>
-  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge; ".html_safe : "&le; ".html_safe %><view:goal/></div>
+  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge; ".html_safe : "&le; ".html_safe %><view:goal human/></div>
   <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
 	  <modal id="update-kpi-modal-#{this.id}">
 		  <modal:>
