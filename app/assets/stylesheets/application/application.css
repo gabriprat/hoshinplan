@@ -130,7 +130,7 @@ body.hoshin .image-button.delete-button {
 	margin: 0;
 }
 
-#areas .delete-button {
+#areas input[type=submit].delete-button {
 	background-color: darkred;
 	background-image: none;
 	color: white;

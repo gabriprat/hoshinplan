@@ -23,3 +23,16 @@ en:
 #    attribute_help:
 #      user:
 #        email_address: We will never share your address with third parties
+
+en:
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: K
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

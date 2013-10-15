@@ -485,7 +485,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="value, day, indicator" param/>
+      <field-list fields="value, goal, day, indicator" param/>
     </content-body:>
 
   </page>
@@ -711,6 +711,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="value, date" param/>
     </content-body:>
 
   </page>
@@ -1202,7 +1203,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="administrator" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user_company.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -1212,7 +1213,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="company, user" param/>
+      <field-list fields="state, company, user" param/>
     </content-body:>
 
   </page>
