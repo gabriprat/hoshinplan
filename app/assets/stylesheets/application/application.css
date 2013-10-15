@@ -108,7 +108,7 @@ body.hoshin form.inline-form .actions {
 
 body.hoshin form.inline-form div {
 	display: inline;
-	width: 3em;
+	min-width: 3em;
 	margin: 0;
 	padding: 0;
 	vertical-align: bottom;
