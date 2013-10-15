@@ -87,7 +87,6 @@ body.hoshin .form-horizontal {
 body.hoshin form.inline-form input {
 	border: 0;
 	background: rgba(255,255,255,0.8);
-	width: 3em;
 	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
