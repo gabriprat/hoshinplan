@@ -125,6 +125,10 @@ body.hoshin form.modal div.span12 {
 	width: 90%;
 }
 
+.icons {
+	white-space: nowrap;
+}
+
 body.hoshin .image-button.delete-button {
 	border: 0;
 	background: transparent;
