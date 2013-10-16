@@ -32,6 +32,8 @@
 	</a>
 </def>
 
+<def tag="nil-view"><span>N/A</span></def>
+
 <extend tag='select-many'>
 	<if test="&(this.first.class==current_user.class)">
 		<name-many merge />
@@ -240,7 +242,12 @@
   <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
   <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
   <div class="column nowrap" data-label="Value">
-  	<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle();'/>
+  	<if test="&this.value.nil?">
+		<span onclick='$(this).toggle(); $(this).next(".autosubmit").toggle().focus();'><nil-view: /></span>
+  	</if>
+	<else>
+		<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'/>
+	</else>
 	<form ajax class="autosubmit inline-form" style="display:none;" complete="attatchAutosubmit()" >
 		<field-list: fields="value" />
   	 	<actions: replace />
