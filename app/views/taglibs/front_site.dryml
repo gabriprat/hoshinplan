@@ -150,7 +150,6 @@
 	</modal>
 	<h5>KPIs</h5>
 	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
-	
 	<h5>Tasks</h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
 	<h5>Child Tasks</h5>
@@ -252,7 +251,7 @@
   	 	<actions: replace />
 	 </form>
   </div>
-  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge; ".html_safe : "&le; ".html_safe %><view:goal human/></div>
+  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
   <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
 	  <modal id="update-kpi-modal-#{this.id}">
 		  <modal:>
@@ -268,9 +267,6 @@
  
   <div class="column nowrap" data-label="Actions"> 
 	  <ul class="icons">
-		<li>
-	  		<delete-button update="indicators-#{this.objective.area.id}" image="/assets/icons/delete.png" />
-		</li>
 	  	<li>
   			<a action="history"><image src="icons/chart.png"/></a>
 		</li>
