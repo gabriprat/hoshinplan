@@ -1,3 +1,6 @@
+html body {
+	font-size: 13px;
+}
 body.show-page {
 	font-weight: 200;
 	background: url(/assets/bg.png) repeat;
@@ -159,7 +162,7 @@ body .span12 {
 span.tpc {
 	display: inline-block;
 	padding: 2px;
-	width: 4.5em;
+	width: 3.5em;
 }
 
 span.arrow {

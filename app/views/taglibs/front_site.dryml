@@ -162,11 +162,10 @@
 
 <def tag="modal-form-footer-delete" >
     <div class='modal-footer' param='default'>
-       <submit label='&t(&apos;hobo.actions.submit&apos;, :default => &apos;Submit&apos;)' param/>
+       <submit label='&t(&apos;hobo.actions.submit&apos;, :default => &apos;Submit&apos;)' param onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
        <input class='btn' aria-hidden='true' param='cancel' type='button' value='&t(&apos;hobo.actions.cancel&apos;, :default => &apos;Cancel&apos;)' data-dismiss='modal'/>
- 	  <delete-button confirm="true" onclick="$('#upd-obj-#{this.id} .hidden-fields input[value=PUT]').attr('value','DELETE');"/>
- 	  <script type="text/javascript">$('#upd-obj-#{this.id} .hidden-fields input[value=DELETE]').attr('value','PUT');</script>
-     </div>
+ 	  <delete-button onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');"/>
+	</div>
 </def>
 
 <def tag="scard" for="Objective">
@@ -243,7 +242,7 @@
   <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
   <div class="column nowrap" data-label="Value">
   	<if test="&this.value.nil?">
-		<span onclick='$(this).toggle(); $(this).next(".autosubmit").toggle().focus();'><nil-view: /></span>
+		<span class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'><nil-view: /></span>
   	</if>
 	<else>
 		<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'/>
