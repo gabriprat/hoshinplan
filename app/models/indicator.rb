@@ -7,7 +7,7 @@ class Indicator < ActiveRecord::Base
     value       :decimal
     description :text
     higher      :boolean, :default => true
-    frequency   :string
+    frequency   HoboFields::Types::EnumString.for(:weekly, :monthly, :quarterly)
     next_update :date
     last_update :date
     last_value  :decimal
