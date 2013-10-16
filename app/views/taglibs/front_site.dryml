@@ -254,7 +254,7 @@
 			   <div class="modal-body">
 	            <field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher, objective" />
 				</div>
-				 <modal-form-footer/>
+				 <modal-form-footer-delete />
 	         </form> 
 		 </modal:>
 	    </modal>
@@ -310,7 +310,7 @@
 	  <else>
 		  <li class="reactivate">
 		  <form ajax lifecycle="reactivate" class="inline-form">
-			  <input type="image" src="/assets/icons/add-task.png"/>
+			  <input type="image" src="/assets/icons/reactivate.png"/>
 		  </form>
 	  	  </li>
 	  </else>
