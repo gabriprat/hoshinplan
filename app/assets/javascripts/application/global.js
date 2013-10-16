@@ -35,8 +35,3 @@ var colorize = function () {
 }
 
 $(document).ready(attatchAutosubmit);
-
-$(document).ready(function () {
-	alert($("div.table.indicators .table-head .table-row :nth-child(2)").prop("tagName"));
-	$("div.table.indicators .table-head .table-row :nth-child(3)").css("min-width", "220px");
-});

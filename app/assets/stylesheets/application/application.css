@@ -289,6 +289,10 @@ body div.ordering-handle {
 	background-color: rgba(0,0,0,0.2);
 }
 
+div.table.indicators .table-head .table-row div.column:nth-child(3) {
+	min-width: 220px;
+}
+
 @media all and (max-width: 640px) {body.hoshin .collection.areas {
 	display: block;
 	width: 100%;
