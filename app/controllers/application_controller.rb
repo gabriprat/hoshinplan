@@ -23,6 +23,14 @@ class ApplicationController < ActionController::Base
                  User.current_id = nil   
                  Company.current_id = nil    
              end
+             
+  before_filter :action_mailer_init
+  
+  def action_mailer_init
+    ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+    ActionMailer::Base.default_url_options[:only_path] = false
+  end
+
   
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
