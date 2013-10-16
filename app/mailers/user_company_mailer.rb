@@ -1,15 +1,16 @@
 class UserCompanyMailer < ActionMailer::Base
-  default :from => "no-reply@gabriel.prat.name"
+  default :from => "gabri@hoshinplan.com"
 
-  def invite(user_company, subject, message, key)
-    @key, @user, @user_company, @message = key, user_company.user, user_company, message
-    mail( :subject => "#{app_name} -- " + subject,
+  def invite(user_company, subject, lead, message, callout, key)
+    @key, @user, @user_company, @lead, @message, @callout = 
+      key, user_company.user, user_company, lead, message, callout
+    mail( :subject => subject,
           :to      => @user.email_address )
   end
  
   def transition(user, subject, message)
-    @user, @message = user, message
-    mail( :subject => "#{app_name} -- " + subject,
+    @user, @message = @user.email_address, message
+    mail( :subject => subject,
           :to      => @user.email_address )
   end
   

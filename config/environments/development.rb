@@ -25,6 +25,10 @@ config.action_mailer.delivery_method = :sendmail
 # }
 config.action_mailer.perform_deliveries = true
 config.action_mailer.raise_delivery_errors = true
+config.action_mailer.asset_host = 'http://localhost:5000'
+config.action_mailer.default_url_options = { host: 'http://localhost:5000', only_path: false }
+
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
