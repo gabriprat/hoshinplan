@@ -3,7 +3,7 @@ class UserCompanyMailer < ActionMailer::Base
 
   def invite(user_company, subject, lead, message, callout, key)
     @key, @user, @user_company, @lead, @message, @callout = 
-      key, user_company.user, user_company, lead, message, callout
+    key, user_company.user, user_company, lead, message, callout
     mail( :subject => subject,
           :to      => @user.email_address )
   end
