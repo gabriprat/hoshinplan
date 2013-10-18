@@ -3,11 +3,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :my_login_required,  :except => [:index, :login, :signup, :activate,
          :do_activate, :do_signup, :forgot_password, :reset_password,
-         :do_reset_password]
+         :do_reset_password, :mail_preview]
          
          around_filter :scope_current_user  
 
              def scope_current_user
+                 if defined?(logged_in)
                  User.current_id = logged_in? ? current_user.id : nil
                  if !params[:id].nil?
                    inst = find_instance unless params[:id].nil?
@@ -16,6 +17,7 @@ class ApplicationController < ActionController::Base
                    end
                  elsif !params[:company_id].nil?
                    Company.current_id = Company.find(params[:company_id]).id
+                 end
                  end
              yield
              ensure
@@ -35,6 +37,7 @@ class ApplicationController < ActionController::Base
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
   def my_login_required
+    return false if !defined?(logged_in)
     return true if logged_in?
     flash[:warning]='Please login to continue'
     session[:return_to] = request.url

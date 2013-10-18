@@ -9,9 +9,15 @@ class UserCompanyMailer < ActionMailer::Base
   end
  
   def transition(user, subject, message)
-    @user, @message = @user.email_address, message
+    @user, @message = user.email_address, message
     mail( :subject => subject,
-          :to      => @user.email_address )
+          :to      => @user )
+  end
+  
+  def welcome(user, subject)
+    @user, @message = user
+    mail( :subject => subject,
+          :to      => @user.email_address)
   end
   
 end
