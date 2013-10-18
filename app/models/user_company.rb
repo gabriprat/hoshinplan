@@ -47,7 +47,7 @@ class UserCompany < ActiveRecord::Base
        UserCompanyMailer.invite(self, "Invitation to the Hoshin Plan of #{company.name}", 
          "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
          "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
-         "Accept #{acting_user.name}'s the invitation!",
+         "Accept",
          lifecycle.key).deliver
      end
      
