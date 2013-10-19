@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>
+			
+		</title>
+		<style type="text/css">
+			<%= render :partial => "user_company_mailer/style" %>
+		</style>
+		<style data-premailer="ignore" type="text/css">
+/*<![CDATA[*/
+		@media only screen and (max-width: 640px)  {
+					body[yahoo] .deviceWidth {width:440px!important; padding:0;}    
+					body[yahoo] .center {text-align: center!important;}      
+			}
+			
+		@media only screen and (max-width: 479px) {
+					body[yahoo] .deviceWidth {width:280px!important; padding:0;}    
+					body[yahoo] .center {text-align: center!important;}      
+			}
+
+		/*]]>*/
+		</style>
+	</head>
+	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" yahoo="fix">
+		<!-- Wrapper -->
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td width="100%" valign="top" bgcolor="#FFFFFF" class="header">
+					<!-- Start Header-->
+					<table width="580" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth">
+						<tr>
+							<td width="100%" bgcolor="#FFFFFF">
+								<!-- Logo -->
+								<table border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+									<tr>
+										<td class="center logo">
+											<a href="#"><img src="<%= image_path('logo.png') %>" alt="Hoshinplan" border="0" /></a>
+										</td>
+									</tr>
+								</table><!-- End Logo -->
+								<!-- Nav -->
+								<table border="0" cellpadding="0" cellspacing="0" align="right" class="deviceWidth">
+									<tr>
+										<td class="center claim">
+											Make your business strategy work
+										</td>
+									</tr>
+								</table><!-- End Nav -->
+							</td>
+						</tr>
+					</table><!-- End Header -->
+					<!-- 2 Column Images - text left -->
+					<table width="580" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth" bgcolor="#EEEEED">
+						<tr>
+							<td valign="top" class="welcome" bgcolor="#FFFFFF">
+								<a href="<%= url_for("/") %>"><img class="deviceWidth" src="<%= image_path('emails/welcome.png') %>" alt="Welcome!" border="0"/></a>
+							</td>
+						</tr>
+						<tr>
+							<td class="spacer">
+								<table align="right" width="49%" cellpadding="0" cellspacing="0" border="0" class="deviceWidth">
+									<tr>
+										<td valign="top" align="center" class="center">
+											<p class="msotable">
+												<p class="title" href="#"><img width="267" src="<%= image_path("emails/factory.png") %>" alt="" border="0" class="deviceWidth big" /></p>
+											</p>
+										</td>
+									</tr>
+								</table>
+								<table align="left" width="49%" cellpadding="0" cellspacing="0" border="0" class="deviceWidth">
+									<tr>
+										<td class="section">
+											<table>
+												<tr>
+													<td valign="top" class="hspacer">
+														<img src="<%= image_path("num/1.png") %>" alt="6" border="0" align="left" />
+													</td>
+													<td valign="middle" class="hspacer">
+														<p class="title">Create your company</p>
+													</td>
+												</tr>
+											</table>
+											<p class="msotable">
+												Each hoshin plan has to be associated with a company. So the first thing you have to do is <%= link_to("create your company", controller: "companies", action: "new") %>.<br />
+												<br />
+											</p>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table><!-- End 2 Column Images  - text left -->
+					
+					<div class="spacer">
+						&nbsp;
+					</div><!-- spacer -->
+					
+					<!-- 2 Column Images & Text Side by SIde -->
+					<table width="580" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth" bgcolor="#202022">
+						<tr>
+							<td class="spacer">
+								<table align="left" width="49%" cellpadding="0" cellspacing="0" border="0" class="deviceWidth">
+									<tr>
+										<td valign="top" align="center" class="center">
+											<p class="title"><img width="267" src="<%= image_path("emails/hoshin.png") %>" alt="" border="0" class="deviceWidth big" /></p>
+										</td>
+									</tr>
+								</table>
+								<table align="right" width="49%" cellpadding="0" cellspacing="0" border="0" class="deviceWidth">
+									<tr>
+										<td class="section">
+											<table>
+												<tr>
+													<td valign="top">
+														<img src="<%= image_path("num/2i.png") %>" alt="2" border="0" align="left" />
+													</td>
+													<td valign="middle">
+														<p class="title inverse">Create the Hoshin plan</p>
+													</td>
+												</tr>
+											</table>
+											<p class="msotable">
+												After creating the company you should start creating your first Hoshin plan.<br />
+												<br />
+											</p>
+											<table width="100" align="right">
+												<tr>
+													<td bgcolor="#409EA8" class="button" align="center">
+														<a href="">Read More</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#B18A5B">
+								<div class="thickline">
+									&nbsp;
+								</div>
+							</td>
+						</tr>
+					</table><!-- End 2 Column Images & Text Side by SIde -->
+					<div class="spacer">
+						&nbsp;
+					</div><!-- spacer -->
+					<!-- Two Column (Images Stacked over Text) -->
+					<table width="580" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth" bgcolor="#EEEEED">
+						<tr>
+							<td class="center spacer">
+								<table width="49%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+									<tr>
+										<td align="center">
+											<!-- The paragraph tag is important here to ensure that this table floats properly in Outlook 2007, 2010, and 2013
+				    To learn more about this fix check out this link: http://www.emailonacid.com/blog/details/C13/removing_unwanted_spacing_or_gaps_between_tables_in_outlook_2007_2010
+				    This fix is used for all floating tables in this responsive template
+				    The margin set to 0 is for Gmail -->
+											<p class="msotable">
+												<a href="#"><img width="267" src="<%= image_path("emails/longterm.png") %>" alt="" border="0" class="deviceWidth big" /></a>
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td class="section dspacer">
+											<table class="underline">
+												<tr>
+													<td valign="top">
+														<img src="<%= image_path("num/3.png") %>" alt="3" border="0" align="left" />
+													</td>
+													<td valign="middle">
+														<p class="title">Define long term objectives</p>
+													</td>
+												</tr>
+											</table>
+											<p>
+												You should end up with 3 to 5 objectives that you want to achieve in the next 3 to 5 years.
+											</p>
+										</td>
+									</tr>
+								</table>
+								<table width="49%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+									<tr>
+										<td align="center">
+											<p class="msotable">
+												<a href="#"><img width="267" src="<%= image_path("emails/areas.png") %>" alt="" border="0" class="deviceWidth big" /></a>
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td class="section dspacer">
+											<table class="underline">
+												<tr>
+													<td valign="top">
+														<img src="<%= image_path("num/4.png") %>" alt="4" border="0" align="left" />
+													</td>
+													<td valign="middle">
+														<p class="title">Start creating areas</p>
+													</td>
+												</tr>
+											</table>
+											<p>
+												Create the strategic areas you want to divide your company in. They could be departments or any other way of dividing the company that is useful for you. You can also use the areas of the balanced score card.
+											</p>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table><!-- End Two Column (Images Stacked over Text) -->
+					<div class="spacer">
+						&nbsp;
+					</div><!-- spacer -->
+					<!-- Dark Background, Three Column Images -->
+					<!-- 3 Small Images -->
+					<table width="580" cellpadding="0" cellspacing="0" align="center" class="deviceWidth" bgcolor="#202022">
+						<tr>
+							<td class="section dspacer">
+								<table>
+									<tr>
+										<td valign="top">
+											<img src="<%= image_path("num/5i.png") %>" alt="5" border="0" align="left" />
+										</td>
+										<td valign="middle">
+											<p class="title inverse">And for each area define...</p>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<table width="32%" align="left" cellpadding="0" cellspacing="0" class="deviceWidth">
+									<tr>
+										<td valign="top" align="center" class="spacer">
+											<p class="msotable">
+												<a href="#"><img width="170" src="<%= image_path("emails/objectives.png") %>" alt="" border="0" class="deviceWidth small" /></a>
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td class="dspacer">
+											<a href="#" class="subtitle">Objectives</a>
+											<p class="small">
+												These objectives should be achievable in the next 12 months and should relate to the long term objectives above.
+											</p>
+											<table width="90" align="left">
+												<tr>
+													<td bgcolor="#C8C8CA" class="button grey" align="center">
+														<a href="">Read More</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table><!-- End Image 1 -->
+								<table width="32%" align="left" cellpadding="0" cellspacing="0" class="deviceWidth">
+									<tr>
+										<td valign="top" align="center" class="spacer">
+											<p class="msotable">
+												<a href="#"><img width="170" src="<%= image_path("emails/kpis.png") %>" alt="" border="0" class="deviceWidth small" /></a>
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td class="dspacer">
+											<a href="#" class="subtitle">KPIs</a>
+											<p class="small">
+												Each KPI has to be related with one of its area's objective, should be SMART and should predict whether its objective will be met.
+											</p>
+											<table width="90" align="left">
+												<tr>
+													<td bgcolor="#C8C8CA" class="button grey" align="center">
+														<a href="">Read More</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table><!-- End Image 2 -->
+								<table width="32%" align="left" cellpadding="0" cellspacing="0" class="deviceWidth">
+									<tr>
+										<td valign="top" align="center" class="spacer">
+											<p class="msotable">
+												<a href="#"><img width="170" src="<%= image_path("emails/tasks.png") %>" alt="" border="0"  class="deviceWidth small" /></a>
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td class="dspacer">
+											<a href="#" class="subtitle">Tasks</a>
+											<p class="small">
+												Each task has to be related with one of the objectives and should be something that affects the KPIs related to its objective.
+											</p>
+											<table width="90" align="left">
+												<tr>
+													<td bgcolor="#C8C8CA" class="button grey" align="center">
+														<a href="">Read More</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table><!-- End Image 3 -->
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#4E9770">
+								<div class="thickline">
+									&nbsp;
+								</div>
+							</td>
+						</tr>
+					</table><!-- End 3 Small Images -->
+					<!-- Dark Background, Three Column Images -->
+					<div class="spacer">
+						&nbsp;
+					</div><!-- spacer -->
+					<!-- One Column -->
+					<table width="580" class="deviceWidth" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#EEEEED">
+						
+						<tr>
+							<td class="section" bgcolor="#EEEEED">
+								<table>
+									<tr>
+										<td valign="top">
+											<img src="<%= image_path("num/6.png") %>" alt="1" border="0" align="left" />
+										</td>
+										<td valign="middle">
+											<p class="title">You are done!</p>
+										</td>
+									</tr>
+								</table>
+								<p>Your Hoshin plan is ready to use!</p>
+							</td>
+						</tr>
+					</table><!-- End One Column -->
+					<div class="spacer">
+						&nbsp;
+					</div><!-- spacer -->
+					<!-- 4 Columns -->
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+						<tr>
+							<td bgcolor="#363636" class="spacer">
+								<table width="580" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth">
+									<tr>
+										<td>
+											<table width="45%" cellpadding="0" cellspacing="0" border="0" align="left" class="deviceWidth">
+												<tr>
+													<td valign="top" class="center legal">
+														You are receiving this email because<br />
+														1.) You're an awesome user of Hoshinplan or<br />
+														2.) You subscribed via <a href="<%= url_for("/") %>">our website</a><br />
+														<br />
+														<br />
+														Want to be removed? No problem, <a href="<%= url_for("/unsubscribe") %>">click here</a> and we won't bug you again.
+													</td>
+												</tr>
+											</table>
+											<table width="40%" cellpadding="0" cellspacing="0" border="0" align="right" class="deviceWidth">
+												<tr>
+													<td valign="top" style="font-size: 11px; color: #f1f1f1; font-weight: normal; font-family: Georgia, Times, serif; line-height: 26px; vertical-align: top; text-align:right" class="center">
+														
+														<a href="#"><img src="<%= image_path("logo2.png") %>" alt="" border="0" style="padding-top: 5px;" /></a><br />
+														<a href="#" style="text-decoration: none; color: #848484; font-weight: normal;">555-555-5555</a><br />
+														<a href="#" style="text-decoration: none; color: #848484; font-weight: normal;">gabri@hoshinplan.com</a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table><!-- End 4 Columns -->
+				</td>
+			</tr>
+		</table><!-- End Wrapper -->
+	</body>
+</html>

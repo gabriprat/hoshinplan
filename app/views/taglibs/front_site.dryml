@@ -84,19 +84,46 @@
 
 <extend tag="edit-page" for="Company">
 	<old-edit-page merge>
-	<prepend-content-body:>
-		<repeat:user_companies>
-			<view:user /> <a method="delete">remove</a>
-		</repeat>
-		Add colaborators: 
-		<form param>
-			<textarea name="collaborators"></textarea>
+	<append-content-body:>
+		<h2>Manage collaborators</h2>
+		<rtable:user_companies columns="Name, Email, State, Actions" part="users" id="users" />
+		
+		<a href="#" onclick="$('#add-collaborators').toggle()">Add colaborators</a>
+		<!-- <form param>
+			<input type="text" name="collaborators" value="jo@gabriel.prat.name" />
 			<submit />
+		</form>-->
+		<form param id="add-collaborators">
+			<textarea name="collaborators"></textarea>
+			<p class="bubble">
+				Send collaboration invitations by pasting 
+				one email address per line the textbox.
+			</p>
+			<div class="actions form-actions">
+			<submit label="Add collaborators" /> or 
+			<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();">Cancel</a>
+			</div>
+			
 		</form>
-		</prepend-content-body:>
+	</append-content-body:>
 	</old-edit-page>
 </extend>
-
+<def tag="scard" for="UserCompany">
+	<scard class="objective table-row" param="default" merge>
+		<div class="column" data-label="Name">
+			#{this.user.name}
+		</div>
+		<div class="column" data-label="Email">
+			#{this.user.email_address}
+		</div>
+		<div class="column" data-label="Admin">
+			#{this.state}
+		</div>
+	        <div class="column nowrap" data-label="Actions"> 
+			<transition-buttons in-place="true" update="users"/>	
+	        </div>
+	</scard>
+</def>
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
 		<collection-heading: replace />

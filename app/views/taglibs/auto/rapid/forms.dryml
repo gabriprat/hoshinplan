@@ -162,6 +162,17 @@
   </form>
 </def>
 
+<def tag="resend-invite-form" polymorphic/>
+<def tag="resend-invite-form" for="UserCompany">
+  <form lifecycle="resend_invite" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.resend_invite', :default=>['Resend Invite']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="accept-form" polymorphic/>
 <def tag="accept-form" for="UserCompany">
   <form lifecycle="accept" merge param="default">
@@ -173,36 +184,47 @@
     </div>
   </form>
 </def>
-<def tag="reject-form" polymorphic/>
-<def tag="reject-form" for="UserCompany">
-  <form lifecycle="reject" merge param="default">
+<def tag="cancel-invitation-form" polymorphic/>
+<def tag="cancel-invitation-form" for="UserCompany">
+  <form lifecycle="cancel_invitation" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
     <field-list fields="" param/>
     <div param="actions">
-      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.reject', :default=>['Reject']}" param/><or-cancel param="cancel"/>
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.cancel_invitation', :default=>['Cancel Invitation']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
-<def tag="admin-form" polymorphic/>
-<def tag="admin-form" for="UserCompany">
-  <form lifecycle="admin" merge param="default">
+<def tag="make-admin-form" polymorphic/>
+<def tag="make-admin-form" for="UserCompany">
+  <form lifecycle="make_admin" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
     <field-list fields="" param/>
     <div param="actions">
-      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.admin', :default=>['Admin']}" param/><or-cancel param="cancel"/>
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>['Make Admin']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
-<def tag="cancel-form" polymorphic/>
-<def tag="cancel-form" for="UserCompany">
-  <form lifecycle="cancel" merge param="default">
+<def tag="revoke-admin-form" polymorphic/>
+<def tag="revoke-admin-form" for="UserCompany">
+  <form lifecycle="revoke_admin" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
     <field-list fields="" param/>
     <div param="actions">
-      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.cancel', :default=>['Cancel']}" param/><or-cancel param="cancel"/>
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.revoke_admin', :default=>['Revoke Admin']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="remove-form" polymorphic/>
+<def tag="remove-form" for="UserCompany">
+  <form lifecycle="remove" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.remove', :default=>['Remove']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

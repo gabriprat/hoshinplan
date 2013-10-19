@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user  
 
              def scope_current_user
-                 if defined?(logged_in)
+                 if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  if !params[:id].nil?
                    inst = find_instance unless params[:id].nil?

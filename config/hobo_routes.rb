@@ -102,14 +102,18 @@ Hoshinplan::Application.routes.draw do
       get 'invite'
     end
     member do
+      put 'resend_invite', :action => 'do_resend_invite'
+      get 'resend_invite'
       put 'accept', :action => 'do_accept'
       get 'accept'
-      put 'reject', :action => 'do_reject'
-      get 'reject'
-      put 'admin', :action => 'do_admin'
-      get 'admin'
-      put 'cancel', :action => 'do_cancel'
-      get 'cancel'
+      put 'cancel_invitation', :action => 'do_cancel_invitation'
+      get 'cancel_invitation'
+      put 'make_admin', :action => 'do_make_admin'
+      get 'make_admin'
+      put 'revoke_admin', :action => 'do_revoke_admin'
+      get 'revoke_admin'
+      put 'remove', :action => 'do_remove'
+      get 'remove'
     end
   end
 

@@ -6,7 +6,7 @@ class UserCompaniesController < ApplicationController
   
   def destroy
     hobo_destroy do
-      redirect_to this.company, :action => :edit
+      redirect_to this.company, :action => :edit if valid? && !request.xhr?
     end
   end
 
