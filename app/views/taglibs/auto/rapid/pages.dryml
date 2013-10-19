@@ -1264,6 +1264,27 @@
   </page>
 </def>
 
+<def tag="resend-invite-page" polymorphic/>
+<def tag="resend-invite-page" for="UserCompany">
+  <page title="#{ht 'user_company.resend_invite.title', :default=>['Resend Invite']}" merge>
+
+    <body: class="lifecycle-transition-page resend-invite-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user_company.resend_invite.heading">
+          Resend Invite
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <resend-invite-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="accept-page" polymorphic/>
 <def tag="accept-page" for="UserCompany">
   <page title="#{ht 'user_company.accept.title', :default=>['Accept']}" merge>
@@ -1285,64 +1306,85 @@
   </page>
 </def>
 
-<def tag="reject-page" polymorphic/>
-<def tag="reject-page" for="UserCompany">
-  <page title="#{ht 'user_company.reject.title', :default=>['Reject']}" merge>
+<def tag="cancel-invitation-page" polymorphic/>
+<def tag="cancel-invitation-page" for="UserCompany">
+  <page title="#{ht 'user_company.cancel_invitation.title', :default=>['Cancel Invitation']}" merge>
 
-    <body: class="lifecycle-transition-page reject-page" param/>
+    <body: class="lifecycle-transition-page cancel-invitation-page" param/>
 
     <content-header: param>
       <h2 param="heading">
-        <ht key="user_company.reject.heading">
-          Reject
+        <ht key="user_company.cancel_invitation.heading">
+          Cancel Invitation
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
-      <reject-form param="form"/>
+      <cancel-invitation-form param="form"/>
     </content-body:>
 
   </page>
 </def>
 
-<def tag="admin-page" polymorphic/>
-<def tag="admin-page" for="UserCompany">
-  <page title="#{ht 'user_company.admin.title', :default=>['Admin']}" merge>
+<def tag="make-admin-page" polymorphic/>
+<def tag="make-admin-page" for="UserCompany">
+  <page title="#{ht 'user_company.make_admin.title', :default=>['Make Admin']}" merge>
 
-    <body: class="lifecycle-transition-page admin-page" param/>
+    <body: class="lifecycle-transition-page make-admin-page" param/>
 
     <content-header: param>
       <h2 param="heading">
-        <ht key="user_company.admin.heading">
-          Admin
+        <ht key="user_company.make_admin.heading">
+          Make Admin
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
-      <admin-form param="form"/>
+      <make-admin-form param="form"/>
     </content-body:>
 
   </page>
 </def>
 
-<def tag="cancel-page" polymorphic/>
-<def tag="cancel-page" for="UserCompany">
-  <page title="#{ht 'user_company.cancel.title', :default=>['Cancel']}" merge>
+<def tag="revoke-admin-page" polymorphic/>
+<def tag="revoke-admin-page" for="UserCompany">
+  <page title="#{ht 'user_company.revoke_admin.title', :default=>['Revoke Admin']}" merge>
 
-    <body: class="lifecycle-transition-page cancel-page" param/>
+    <body: class="lifecycle-transition-page revoke-admin-page" param/>
 
     <content-header: param>
       <h2 param="heading">
-        <ht key="user_company.cancel.heading">
-          Cancel
+        <ht key="user_company.revoke_admin.heading">
+          Revoke Admin
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
-      <cancel-form param="form"/>
+      <revoke-admin-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="remove-page" polymorphic/>
+<def tag="remove-page" for="UserCompany">
+  <page title="#{ht 'user_company.remove.title', :default=>['Remove']}" merge>
+
+    <body: class="lifecycle-transition-page remove-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user_company.remove.heading">
+          Remove
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <remove-form param="form"/>
     </content-body:>
 
   </page>

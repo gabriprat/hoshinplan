@@ -24,7 +24,7 @@ class UserCompany < ActiveRecord::Base
   end
   
   def company_admin
-    self.company.nil? || !self.company_changed? ||
+    self.company.nil? || #!self.company_changed? ||
     acting_user.user_companies.company_is(self.company).state_is(:admin).exists?
   end
   
@@ -51,10 +51,18 @@ class UserCompany < ActiveRecord::Base
          lifecycle.key).deliver
      end
      
+     transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
+           UserCompanyMailer.invite(self, "Invitation to the Hoshin Plan of #{company.name}", 
+             "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
+             "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
+             "Accept",
+             lifecycle.key).deliver
+     end
+     
      create :new_company, :params => [ :company, :user ], :become => :admin
      
      transition :accept, { :invited => :active }, :available_to => :key_holder do
-       #acting_user.lifecycle.activate!(acting_user)
+       acting_user.lifecycle.activate!(acting_user)
        acting_user.save!(:validate => false)
        company.user_companies.administrator.each do |admin| 
          UserCompanyMailer.transition(admin.user, "Invitation accepted!", 
@@ -62,14 +70,23 @@ class UserCompany < ActiveRecord::Base
        end
      end
 
-     transition :reject, { :invited => :destroy }, :available_to => :company_admin_available 
+     transition :cancel_invitation, { :invited => :destroy }, :available_to => :company_admin_available 
 
-     transition :admin, { :active => :admin }, :available_to => :company_admin_available do
+     transition :make_admin, { :active => :admin }, :available_to => :company_admin_available do
+       self.administrator = true
+       self.save!
        UserCompanyMailer.transition(user, "Administrator", 
        "#{acting_user.name}, you are now administrating the Hoshinplan of #{company.name}").deliver
      end
+     
+     transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
+       self.administrator = false
+       self.save!
+       UserCompanyMailer.transition(user, "You are no longer administrator", 
+       "#{acting_user.name}, you are no longer administrating the Hoshinplan of #{company.name}").deliver
+     end
  
-     transition :cancel, { :active => :destroy }, :available_to => :company_admin_available do
+     transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do
        UserCompanyMailer.transition(user, "Colaboration canceled", 
        "#{acting_user.name} cancelled your collaboration to the Hoshinplan of #{company.name}").deliver
      end

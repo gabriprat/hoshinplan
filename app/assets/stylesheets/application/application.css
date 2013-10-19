@@ -271,15 +271,15 @@ body .navbar-inner {
 	display: none;
 }
 .value {
-    background-color: white;
-    border: none;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-    transition: border linear 0.2s, box-shadow linear 0.2s;
+	background-color: white;
+	border: none;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
 	padding: 0 0 0 1em;
 }
 body div.ordering-handle {
@@ -291,6 +291,74 @@ body div.ordering-handle {
 
 div.table.indicators .table-head .table-row div.column:nth-child(3) {
 	min-width: 220px;
+}
+
+.edit-page.company .table-head {
+	font-weight: bold;
+}
+
+.edit-page.company #users form {
+	display: inline;
+}
+
+body .btn {
+	padding: 0 5px;
+	border: 0;
+	border-top: 1px solid #c7c9d8;
+	background-image: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	height: 1.5em;
+	margin: 0 0.5em;
+}
+
+body .btn-primary {
+	padding: 0 5px;
+	background-color: #25A9E0;
+	border: 0;
+	border-top: 1px solid #c7c9d8;
+	background-image: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	height: 1.5em;
+}
+
+.bubble {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #e5f6fd;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px #25A9E0;
+	padding: 1em;
+	width: 200px;
+	left: 1em;
+}
+.bubble:after {
+	background-color: #e5f6fd;
+	box-shadow: -1px 1px 1px 0 rgba( 37, 169, 224, 0.4 );
+	content: "\00a0";
+	display: block;
+	height: 10px;
+	left: -5px;
+	position: absolute;
+	top: 50%;
+	transform: rotate( 45deg );
+	-webkit-transform: rotate( 45deg );
+	-moz-transform: rotate( 45deg );
+	width: 10px;
+}
+
+form#add-collaborators {
+	display: none;
+	margin-top: 1em;
+}
+
+form#add-collaborators textarea {
+	width: 30em;
+	height: 10em;
 }
 
 @media all and (max-width: 640px) {body.hoshin .collection.areas {
