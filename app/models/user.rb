@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder
 
-    transition :activate, { :invited => :active }, :available_to => :self
+    transition :activate, { :invited => :active } 
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
       UserMailer.activation(self, lifecycle.key).deliver
