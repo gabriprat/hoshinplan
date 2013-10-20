@@ -62,8 +62,9 @@ class UserCompany < ActiveRecord::Base
      create :new_company, :params => [ :company, :user ], :become => :admin
      
      transition :accept, { :invited => :active }, :available_to => :key_holder do
-       acting_user.lifecycle.activate!(acting_user)
-       acting_user.save!(:validate => false)
+       #user = self.user
+       #user.lifecycle.activate!(user)
+       #user.save!(:validate => false)
        company.user_companies.administrator.each do |admin| 
          UserCompanyMailer.transition(admin.user, "Invitation accepted!", 
          "#{user.name} is now collaborating to the Hoshinplan of #{company.name}").deliver
