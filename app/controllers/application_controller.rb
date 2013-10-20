@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
   def my_login_required
-    return false if !defined?(logged_in)
+    #return false if !defined?(logged_in)
     return true if logged_in?
     flash[:warning]='Please login to continue'
     session[:return_to] = request.url
