@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   # we're logged in. my_login_required is defined in application_controller.rb.
   skip_before_filter :my_login_required, :only => :omniauth_callback
   
+  after_filter :update_data, :only => :omniauth_callback
+  
   auto_actions :all, :except => [ :index, :new, :create ]
   
   include HoboOmniauth::Controller
@@ -25,5 +27,13 @@ class UsersController < ApplicationController
     end
   end
   
+  def update_data
+    auth = request.env["omniauth.auth"]
+    authorization = Authorization.find_by_provider_and_uid(auth['provider'], auth['uid'])
+    authorization ||= Authorization.find_by_email_address(auth['info']['email'])
+    atts = authorization.attributes.slice(*model.accessible_attributes.to_a)
+    current_user.attributes = atts
+    current_user.save!
+  end
   
 end
