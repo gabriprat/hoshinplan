@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   # --- Signup lifecycle --- #
 
   lifecycle do
@@ -38,7 +37,7 @@ class User < ActiveRecord::Base
 
     create :invite,
       :params => [:name, :email_address, :password, :password_confirmation],
-      :become => :invited
+      :become => :active
     
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation],

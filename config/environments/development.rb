@@ -24,15 +24,6 @@ config.action_mailer.delivery_method = :sendmail
 #   :arguments => '-i -t'
 # }
 config.action_mailer.raise_delivery_errors = true
-config.action_mailer.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-          :address        => 'smtp.sendgrid.net',
-          :port           => '587',
-          :authentication => :plain,
-          :user_name      => ENV['SENDGRID_USERNAME'],
-          :password       => ENV['SENDGRID_PASSWORD'],
-          :domain         => 'heroku.com'
-  }
 config.action_mailer.asset_host = 'http://localhost:5000'
 config.action_mailer.default_url_options = { host: 'http://localhost:5000', only_path: false }
 
