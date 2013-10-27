@@ -4,6 +4,10 @@ class CompaniesController < ApplicationController
 
   auto_actions :all
   
+  autocomplete :users do
+   render :json => find_instance.users.*.name
+  end
+  
   def first
     hobo_new
   end

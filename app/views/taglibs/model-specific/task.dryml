@@ -49,8 +49,11 @@
 		   <div class="modal-body">
 			    <field-list: fields="name, description, responsible, deadline, objective, show_on_parent">
 			    	<objective-view:>
-					<select-one options="&this.area_objectives" />
+					<select-one options="&this_parent.objective.area_objectives" />
 				</objective-view:>
+			    	<responsible-view:>
+					<name-one complete-target="&this_parent.company" completer="users"/>
+				</responsible-view:>
 			    </field-list:>
 		    </div>
 		    <modal-form-footer/>

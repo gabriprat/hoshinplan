@@ -14,7 +14,11 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller companies
-  resources :companies
+  resources :companies do
+    collection do
+      get 'complete_users'
+    end
+  end
 
 
   # Resource routes for controller hoshins

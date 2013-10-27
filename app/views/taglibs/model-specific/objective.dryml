@@ -12,6 +12,9 @@
 				   <div class="modal-body">
 				    <field-list: fields="name, description, responsible, parent">
 						<parent-tag: options="&options" />
+					    	<responsible-view:>
+							<name-one complete-target="&this_parent.company" completer="users"/>
+						</responsible-view:>
 					</field-list:>
 					</div>
 					 <modal-form-footer-delete />
