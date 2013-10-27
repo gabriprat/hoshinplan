@@ -381,8 +381,39 @@
 
 <extend tag="account-nav">
   <old-account-nav merge without-sign-up without-account>
+    <logged-in-as:  >
+    	<a to="&current_user"><t key="hobo.actions.logged_in_as" name="&name">Logged in as <name/></t><view:image/></a>
+    </logged-in-as:>
     <log-in:><login provider="google_oauth2">Log in with Google</login></log-in:>
   </old-account-nav>
 </extend>
+
+
+<extend tag="accept-page" for="UserCompany">
+  <old-accept-page title="Accept the invitation to collaborate" merge>
+
+    <content-header: param>
+      <h3 param="heading">
+        <ht key="user_company.accept.heading">
+          Accept the intivation
+        </ht>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <p>By clicking Accept button below you will be able to view and contribute to the Hoshinplans of the company #{this.company.name}.</p>
+      <accept-form param="form"/>
+    </content-body:>
+
+  </old-accept-page>
+</extend>
+
+
+<def tag='view' for="HoboFields::Types::ImageUrl">
+	#{this.to_html}
+</def>
+
+
+
 
 

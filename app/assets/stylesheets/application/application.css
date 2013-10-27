@@ -10,6 +10,10 @@ body a, body a:hover, body a:visited, body a:active {
 	color: #25A9E0;
 }
 
+body a.btn-primary, body a.btn-primary:hover, body a.btn-primary:visited, body a.btn-primary:active {
+	color: #fff;
+}
+
 body h1, body h2, body h3, body h4, body h5 {
 	font-weight: 300;
 }
@@ -78,7 +82,7 @@ body.hoshin form.inline-form input[type=image] {
 	height: 20px;
 }
 
-body.hoshin img {
+body.hoshin .content-body img {
 	width: 20px;
 	height: 20px;
 	max-width: 20px;
@@ -359,6 +363,34 @@ form#add-collaborators {
 form#add-collaborators textarea {
 	width: 30em;
 	height: 10em;
+}
+
+.show-page.user .content-body .user-image img {
+	height: 104px;
+	width: 104px;
+	border-top-left-radius: 52px;
+	border-top-right-radius: 52px;
+	border-bottom-right-radius: 52px;
+	border-bottom-left-radius: 52px;
+	box-shadow: 0px 2px 5px 0px;
+	border-top-color: rgb(255, 255, 255);
+	border-left-color: rgb(255, 255, 255);
+	border-right-color: rgb(255, 255, 255);
+	border-bottom-color: rgb(255, 255, 255);
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid
+}
+
+.header .logged-in-as img {
+	height: 2em;
+	width: 2em;
+	margin-left: 5px;
 }
 
 @media all and (max-width: 640px) {body.hoshin .collection.areas {
