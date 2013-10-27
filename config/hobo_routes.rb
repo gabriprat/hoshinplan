@@ -40,6 +40,9 @@ Hoshinplan::Application.routes.draw do
     collection do
       post 'reorder'
     end
+    member do
+      get 'history'
+    end
   end
 
 
