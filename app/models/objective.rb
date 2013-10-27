@@ -37,6 +37,10 @@ class Objective < ActiveRecord::Base
     objective.company = objective.area.company
   end
   
+  def area_objectives
+    area.objectives
+  end
+  
   def parent_hoshin
     ret = area.hoshin.parent_id
     ret.nil? ? 0 : ret
