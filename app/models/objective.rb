@@ -10,7 +10,7 @@ class Objective < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id, 
-    :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id
+    :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
   has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'position'

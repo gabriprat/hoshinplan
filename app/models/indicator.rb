@@ -17,7 +17,7 @@ class Indicator < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, 
-    :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend
+    :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend, :company, :company_id
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
   

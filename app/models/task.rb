@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, 
-    :deadline, :original_deadline, :area, :area_id, :show_on_parent
+    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id
 
   belongs_to :company, :inverse_of => :areas
 
