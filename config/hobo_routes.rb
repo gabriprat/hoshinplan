@@ -136,8 +136,6 @@ Hoshinplan::Application.routes.draw do
       get 'account'
       put 'activate', :action => 'do_activate'
       get 'activate'
-      put 'activate', :action => 'do_activate'
-      get 'activate'
       put 'reset_password', :action => 'do_reset_password'
       get 'reset_password'
     end

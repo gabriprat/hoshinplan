@@ -34,7 +34,11 @@
 						<set obid="#{this.id}"/>
 						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, frequency, next_update, responsible, goal, max_value, max_value, higher" />
+								<field-list: fields="name, description, frequency, next_update, responsible, goal, max_value, max_value, higher">
+							    	<responsible-view:>
+									<name-one complete-target="&Company.find(Company.current_id)" completer="users"/>
+								</responsible-view:>
+								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>
@@ -51,7 +55,11 @@
 						<set obid="#{this.id}"/>
 						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, responsible, deadline, show_on_parent" />
+								<field-list: fields="name, description, responsible, deadline, show_on_parent">
+							    	<responsible-view:>
+									<name-one complete-target="&Company.find(Company.current_id)" completer="users"/>
+								</responsible-view:>
+								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
 							</div>

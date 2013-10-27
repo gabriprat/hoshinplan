@@ -31,7 +31,6 @@
 			</objective-view:>
 		    	<responsible-view:>
 				<name-one complete-target="&this_parent.company" completer="users"/>
-				<select-one options="&this_parent.objective.company_users" />
 			</responsible-view:>
 		    </field-list:>
 				</div>

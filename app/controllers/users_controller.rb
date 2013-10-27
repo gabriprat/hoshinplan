@@ -36,6 +36,9 @@ class UsersController < ApplicationController
       atts.delete(k) if !current_user.attributes[k].nil? && !current_user.attributes[k].empty? || v.nil?
     }
     current_user.attributes = atts
+    if current_user.lifecycle.state.name == :invited
+      current_user.lifecycle.activate!(current_user)
+    end
     current_user.save!
   end
   
