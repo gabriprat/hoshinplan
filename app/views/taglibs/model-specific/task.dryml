@@ -47,10 +47,14 @@
 		<modal:>
 		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 		   <div class="modal-body">
-		    <field-list: fields="name, description, responsible, deadline, objective, show_on_parent" />
-			</div>
-			 <modal-form-footer/>
-		 </form> 
+			    <field-list: fields="name, description, responsible, deadline, objective, show_on_parent">
+			    	<objective-view:>
+					<select-one options="&this.area_objectives" />
+				</objective-view:>
+			    </field-list:>
+		    </div>
+		    <modal-form-footer/>
+		</form> 
 		</modal:>
 	</modal>
 </scard>
