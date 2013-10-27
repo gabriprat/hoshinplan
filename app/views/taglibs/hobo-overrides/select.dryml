@@ -1,5 +1,11 @@
+<!--
+
+Disable name-one and name-many for the moment, I have not found a way
+to scope the users in the same company. Will have to think more about that.
+
+
 <extend tag="select-one">
-	<if test="&this.class==User">
+	<if test="&this_type==User">
 		<name-one merge />
 	</if>
 	<else>
@@ -8,10 +14,12 @@
 </extend>
 
 <extend tag="select-many">
-	<if test="&this.class==User">
+	<if test="&this_type==User">
 		<name-many merge />
 	</if>
 	<else>
 		<old-select-many merge />
 	</else>
 </extend>
+
+-->

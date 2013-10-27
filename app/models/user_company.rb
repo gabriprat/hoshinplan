@@ -13,6 +13,8 @@ class UserCompany < ActiveRecord::Base
  
   #validate :company_admin_validator
   
+  default_scope lambda { 
+    where("company_id = ? or ? is null", Company.current_id, Company.current_id) }
   
   def company_admin_validator
     if acting_user.nil?
