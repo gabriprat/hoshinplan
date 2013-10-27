@@ -1,0 +1,19 @@
+<def tag="rtable" attrs="columns, sortable">
+	<% columns ||= "" ; columns = comma_split(columns) -%>
+	<% sortable ||= false %>
+	<% tag = sortable ? "sortable-collection" : "collection" %>
+	<div class="table" merge-attrs merge-params unless='empty?'>
+		<ul class="table-head">
+			<li class="table-row">
+				<div class="column" if="&sortable"></div>
+				<div class="column" repeat="&columns">#{this}</div>
+			</li>
+		</ul>
+		<call-tag tag="#{tag}" merge-attrs merge-params class="table-body">
+			<item: class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''}"/>
+			<default: replace>
+				<scard param/>
+			</default>
+		</call-tag>
+	</div>
+</def>

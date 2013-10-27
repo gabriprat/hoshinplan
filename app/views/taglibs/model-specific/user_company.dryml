@@ -1,0 +1,35 @@
+<def tag="scard" for="UserCompany">
+	<scard class="objective table-row" param="default" merge>
+		<div class="column" data-label="Name">
+			#{this.user.name}
+		</div>
+		<div class="column" data-label="Email">
+			#{this.user.email_address}
+		</div>
+		<div class="column" data-label="Admin">
+			#{this.state}
+		</div>
+	        <div class="column nowrap" data-label="Actions"> 
+			<transition-buttons in-place="true" update="users"/>	
+	        </div>
+	</scard>
+</def>
+
+<extend tag="accept-page" for="UserCompany">
+  <old-accept-page title="Accept the invitation to collaborate" merge>
+
+    <content-header: param>
+      <h3 param="heading">
+        <ht key="user_company.accept.heading">
+          Accept the intivation
+        </ht>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <p>By clicking Accept button below you will be able to view and contribute to the Hoshinplans of the company #{this.company.name}.</p>
+      <accept-form param="form"/>
+    </content-body:>
+
+  </old-accept-page>
+</extend>

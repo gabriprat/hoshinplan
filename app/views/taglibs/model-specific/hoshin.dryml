@@ -1,0 +1,28 @@
+<extend tag="show-page" for="Hoshin">
+	<old-show-page merge>
+		<collection-heading: replace />
+		<prepend-content-header:>
+			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); return false;" class="btn pull-right">
+	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
+	              Add new area
+	            </ht>
+			</a>
+			<modal id="add-area-modal">
+				<modal:>
+				<set hid="#{this.id}"/>
+				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" update="areas" class="modal">
+					<div class="modal-body">
+						<field-list: fields="name, description" />
+						<hidden-field:hoshin_id value="#{hid}"/>
+					</div>
+					<modal-form-footer/>
+				</form>
+				</modal:>
+			</modal>
+		</prepend-content-header:>
+		<content-body: >
+			<sortable-collection:areas part="areas" id="areas"/>
+		</content-body:>
+		<field-list: fields=""/>
+	 </old-show-page>
+</extend>

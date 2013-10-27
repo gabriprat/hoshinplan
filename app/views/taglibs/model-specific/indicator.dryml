@@ -1,0 +1,44 @@
+
+<def tag="scard" for="Indicator">
+<scard class="indicator table-row" param="default" merge>
+
+  <div class="column" data-label="Id">
+	 #{this.objective.position}
+  </div>
+  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+  <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
+  <div class="column nowrap" data-label="Value">
+  	<if test="&this.value.nil?">
+		<span class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'><nil-view: /></span>
+  	</if>
+	<else>
+		<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'/>
+	</else>
+	<form ajax class="autosubmit inline-form" style="display:none;" complete="attatchAutosubmit()" >
+		<field-list: fields="value" />
+  	 	<actions: replace />
+	 </form>
+  </div>
+  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
+  <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
+	  <modal id="update-kpi-modal-#{this.id}">
+		  <modal:>
+	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+			   <div class="modal-body">
+	            <field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher, objective" />
+				</div>
+				 <modal-form-footer-delete />
+	         </form> 
+		 </modal:>
+	    </modal>
+  </div>
+ 
+  <div class="column nowrap" data-label="Actions"> 
+	  <ul class="icons">
+	  	<li>
+  			<a action="history"><image src="icons/chart.png"/></a>
+		</li>
+	</ul>
+  </div>
+</scard>
+</def>

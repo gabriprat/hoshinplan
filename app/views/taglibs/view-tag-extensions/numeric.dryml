@@ -1,0 +1,3 @@
+<extend tag='view' for="Numeric" attrs='format, human' >
+	<%= human ? number_to_human(this) : format ? format % this : number_with_delimiter(this) %>
+</extend>
