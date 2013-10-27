@@ -15,7 +15,10 @@ Hoshinplan::Application.routes.draw do
   
   match 'first' => 'front#first', :as => 'front_first'
 
+  match 'mail_preview' => 'mail_preview#index'
+  
   match 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

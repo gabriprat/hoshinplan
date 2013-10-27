@@ -35,11 +35,15 @@ class User < ActiveRecord::Base
     state :invited
     state :active
     
-    create :from_omniauth, :params => [:name, :email_address], :become => :active
+    create :from_omniauth, :params => [:name, :email_address], :become => :active do
+      @subject = "#{self.name} welcome to Hoshinplan!"
+      UserCompanyMailer.welcome(self, 
+      @subject).deliver
+    end
 
     create :invite,
       :params => [:name, :email_address, :password, :password_confirmation],
-      :become => :active
+      :become => :invited
     
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation],
@@ -47,9 +51,17 @@ class User < ActiveRecord::Base
       UserMailer.activation(self, lifecycle.key).deliver
     end
 
-    transition :activate, { :inactive => :active }, :available_to => :key_holder
+    transition :activate, { :inactive => :active }, :available_to => :key_holder do
+      @subject = "#{self.name} welcome to Hoshinplan!"
+      UserCompanyMailer.welcome(self, 
+      @subject).deliver
+    end
 
-    transition :activate, { :invited => :active }, :available_to => "Guest"
+    transition :activate, { :invited => :active } do
+      @subject = "#{self.name} welcome to Hoshinplan!"
+      UserCompanyMailer.welcome(self, 
+      @subject).deliver
+    end
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
       UserMailer.activation(self, lifecycle.key).deliver
