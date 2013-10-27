@@ -19,13 +19,7 @@ class User < ActiveRecord::Base
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
   has_many :authorizations, :dependent => :destroy
-
-  default_scope lambda { 
-    joins(:user_companies)
-      .where("company_id = ? or ? is null", 
-        Company.current_id, Company.current_id)
-      .order(:name) }
-
+    
   # This gives admin rights and an :active state to the first sign-up.
   before_create do |user|
     if user.class.count == 0
