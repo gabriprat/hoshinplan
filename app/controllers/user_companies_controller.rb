@@ -10,4 +10,8 @@ class UserCompaniesController < ApplicationController
     end
   end
 
+  def do_accept
+    do_transition_action :accept, :redirect => find_instance.company
+    
+  end
 end

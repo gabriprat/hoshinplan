@@ -5,18 +5,21 @@ class User < ActiveRecord::Base
   include HoboOmniauth::MultiAuth
   
   fields do
-    name          :string, :required, :unique
+    name          :string, :required
     email_address :email_address, :login => true
+    image         HoboFields::Types::ImageUrl
     administrator :boolean, :default => false
     timestamps
   end
-  attr_accessible :name, :email_address, :password, :password_confirmation, :companies
+  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image
   
   has_many :objectives, :dependent => :destroy, :inverse_of => :responsible
   has_many :indicators, :dependent => :destroy, :inverse_of => :responsible
   has_many :tasks, :dependent => :destroy, :inverse_of => :responsible
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
+  has_many :authorizations, :dependent => :destroy
+
     
   # This gives admin rights and an :active state to the first sign-up.
   before_create do |user|
@@ -87,7 +90,7 @@ class User < ActiveRecord::Base
 
   def update_permitted?
     acting_user.administrator? ||
-      (acting_user == self && only_changed?(:email_address, :crypted_password,
+      (acting_user == self && only_changed?(:name, :email_address, :crypted_password,
                                             :current_password, :password, :password_confirmation))
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.

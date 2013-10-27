@@ -32,6 +32,9 @@ class UsersController < ApplicationController
     authorization = Authorization.find_by_provider_and_uid(auth['provider'], auth['uid'])
     authorization ||= Authorization.find_by_email_address(auth['info']['email'])
     atts = authorization.attributes.slice(*model.accessible_attributes.to_a)
+    atts.each { |k, v| 
+      atts.delete(k) if !current_user.attributes[k].nil? && !current_user.attributes[k].empty? || v.nil?
+    }
     current_user.attributes = atts
     current_user.save!
   end

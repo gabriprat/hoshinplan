@@ -1476,7 +1476,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_address, state" param/>
+      <field-list fields="email_address, image, state" param/>
     </content-body:>
 
   </page>
