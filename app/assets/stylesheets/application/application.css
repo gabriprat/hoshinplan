@@ -393,6 +393,10 @@ form#add-collaborators textarea {
 	margin-left: 5px;
 }
 
+.column[data-label=Value], .column[data-label=Goal], .column[data-label=Dev] {
+	text-align: right;
+}
+
 @media all and (max-width: 640px) {body.hoshin .collection.areas {
 	display: block;
 	width: 100%;
