@@ -1,0 +1,17 @@
+<extend tag="select-one">
+	<if test="&this.class==User">
+		<name-one merge />
+	</if>
+	<else>
+		<old-select-one merge />
+	</else>
+</extend>
+
+<extend tag="select-many">
+	<if test="&this.class==User">
+		<name-many merge />
+	</if>
+	<else>
+		<old-select-many merge />
+	</else>
+</extend>

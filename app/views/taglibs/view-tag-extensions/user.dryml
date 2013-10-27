@@ -1,0 +1,10 @@
+<def tag='view' for="User" attrs="abbrev" >
+	<if test="&this.name.nil?">
+	<a>#{this.email_address}</a>
+	</if>
+	<else>
+	<a title="#{this.name}">
+		<%= this.name.split.map{|x| x[0,1]}.join() %>
+	</a>
+	</else>
+</def>
