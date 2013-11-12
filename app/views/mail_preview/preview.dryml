@@ -1,0 +1,23 @@
+<page title="Mail preview">
+
+  <body: class="mail-preview"/>
+
+  <content:>
+  <script> 
+          $(document).ready(function() { 
+	      $('#sendForm')
+	          .ajaxForm({
+	              dataType : 'json',
+	              success : function (response) {
+	                  alert("Your message: \\""+ response.subject + "\\" has been sent to " + response.to);
+	              }
+	          })
+	      ;
+          }); 
+      </script>
+    <form id="sendForm" action="/mail_preview/send_#{@id}" method="POST"><submit value="Send!"/></form>
+    
+    <iframe src="/mail_preview/preview_#{@id}" width="100%" height="100%" frameborder="0"  style="overflow:hidden;height:500px;width:100%" />
+  </content:>
+
+</page>
