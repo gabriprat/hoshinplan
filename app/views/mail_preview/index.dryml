@@ -1,0 +1,13 @@
+<page title="Mail preview">
+
+  <body: class="mail-preview"/>
+
+  <content:>
+    <ul>
+	<repeat with="&@previews">
+		<li><a href="mail_preview/preview/#{this}">#{this}</a></li>
+	</repeat>
+    </ul>
+  </content:>
+
+</page>
