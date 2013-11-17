@@ -14,6 +14,9 @@ class UsersController < ApplicationController
   
   include HoboOmniauth::Controller
   
+  include RestController
+  
+  
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on
   #  first run.  This method creates the initial user.
@@ -40,6 +43,10 @@ class UsersController < ApplicationController
       current_user.lifecycle.activate!(current_user)
     end
     current_user.save!
+  end
+  
+  def sign_in(user) 
+    sign_user_in(user)
   end
   
 end

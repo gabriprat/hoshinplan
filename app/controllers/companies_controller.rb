@@ -8,6 +8,8 @@ class CompaniesController < ApplicationController
    render :json => find_instance.users.*.name
   end
   
+  include RestController
+    
   def first
     hobo_new
   end

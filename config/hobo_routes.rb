@@ -13,6 +13,14 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller client_applications
+  resources :client_applications do
+    member do
+      get 'sign'
+    end
+  end
+
+
   # Resource routes for controller companies
   resources :companies do
     collection do

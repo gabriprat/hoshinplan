@@ -7,7 +7,21 @@
       <h1><app-name/></h1>
       <section class="welcome-message">
         <h3>Make your business strategy work</h3>
-
+	<script type="text/javascript">
+		function getUser(baseHref) {
+			var user = prompt("Enter your InfoJobs username");
+			var url = baseHref + "?openid_url=https://oi.infojobs.net/openid/" + user;
+			if (url==null || 0 > url.length) {
+				alert("You must enter your username to log in.");
+			} else {
+				window.location.href = url;
+			}
+			return(false);
+		}
+	</script>
+	<a href="/auth/InfoJobs" onclick="return getUser(this.href);" class="btn btn-primary">Log in with InfoJobs</a>
+	<a href="/auth/google_oauth2" class="btn btn-primary">Log in with Google</a>
+	
       </section>
     </header>
 

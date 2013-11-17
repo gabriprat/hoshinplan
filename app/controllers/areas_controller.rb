@@ -4,4 +4,7 @@ class AreasController < ApplicationController
 
   auto_actions :all, :except => :index
   
+  include RestController
+  
+  
 end

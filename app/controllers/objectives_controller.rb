@@ -6,6 +6,9 @@ class ObjectivesController < ApplicationController
 
   auto_actions_for :area, [:new, :create]
   
+  include RestController
+  
+  
   def update
     hobo_update do
       redirect_to this.area.hoshin if valid? && !request.xhr?

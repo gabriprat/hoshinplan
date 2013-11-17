@@ -1,0 +1,18 @@
+<extend tag="show-page" for="ClientApplication">
+	<old-show-page merge>
+		<append-content-body:>
+		<h3>Sign a request to the API</h3>
+		<p>Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters. 
+		</p>
+		<p> For example, if you enter:
+			<ul><li>/companies/15-asdf?app_key=3623cff0f924c50fb582fead9aff8669</li></ul>
+		    You will get something like:
+		    	<ul><li>/companies?app_key=3623cff0f924c50fb582fead9aff8669&amp;timestamp=2013-11-17T09%3A15%3A28%2B01%3A00&amp;signature=tYTBSCyejDzLOxGMfa0jzwpfyNnw2PDGAvxnmKSSXgc=</li></ul>
+		</p>
+		<form method="GET" web-method="sign" ajax>
+			<input name="data" type="text" />
+			<input type="submit" value="sign" />
+		</form>
+		</append-content-body:>
+	</old-show-page>
+</extend>

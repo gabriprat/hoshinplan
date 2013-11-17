@@ -13,6 +13,18 @@
 
 
 
+<def tag="form" for="ClientApplication">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="user" param/>
+    <div param="actions">
+      <submit label="#{ht 'client_application.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Company">
   <form merge param="default">
     <error-messages param/>

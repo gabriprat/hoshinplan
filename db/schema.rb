@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026233825) do
+ActiveRecord::Schema.define(:version => 20131117092824) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(:version => 20131026233825) do
   add_index "authorizations", ["provider"], :name => "index_authorizations_on_provider"
   add_index "authorizations", ["uid"], :name => "index_authorizations_on_uid"
   add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
+
+  create_table "client_applications", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "key"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "client_applications", ["user_id"], :name => "index_client_applications_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
