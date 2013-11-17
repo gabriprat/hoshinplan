@@ -50,7 +50,13 @@ class Area < ActiveRecord::Base
   # --- Permissions --- #
   
   def same_company
-    acting_user.user_companies.where(:company_id => self.company_id)
+    user = User.find(User.current_id)
+    user.user_companies.where(:company_id => company_id)
+  end
+  
+  def same_company_admin
+    user = User.find(User.current_id)
+    user.user_companies.where(:company_id => company_id).administrator
   end
   
   def validate_company
@@ -58,7 +64,7 @@ class Area < ActiveRecord::Base
   end
   
   def create_permitted?
-    true
+    same_company
   end
 
   def update_permitted?
@@ -66,7 +72,7 @@ class Area < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    same_company
+    same_company_admin
   end
 
   def view_permitted?(field)

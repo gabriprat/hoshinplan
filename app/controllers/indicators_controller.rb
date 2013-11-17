@@ -6,6 +6,9 @@ class IndicatorsController < ApplicationController
   
   show_action :history
   
+  include RestController
+  
+  
   def update
     hobo_update do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?

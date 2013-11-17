@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
-
+  
   fields do
     name :string
     hoshins_count :integer, :default => 0, :null => false
@@ -50,15 +50,15 @@ class Company < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || user_companies.user_is(acting_user.id).administrator 
+    acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).administrator.empty?
   end
 
   def destroy_permitted?
-    acting_user.administrator? || user_companies.user_is(acting_user.id).administrator
+    acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).administrator.empty?
   end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).empty?
   end
 
 end

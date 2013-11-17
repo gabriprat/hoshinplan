@@ -41,3 +41,6 @@ en:
           billion: B
           trillion: T
           quadrillion: Q
+  user_company:
+    collection:
+      heading: Users

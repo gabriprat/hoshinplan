@@ -33,6 +33,11 @@ class Hoshin < ActiveRecord::Base
     user.user_companies.where(:company_id => company_id)
   end
   
+  def same_company_admin
+    user = User.find(User.current_id)
+    user.user_companies.where(:company_id => company_id).administrator
+  end
+  
   def parent_same_company
     parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
   end
@@ -43,15 +48,15 @@ class Hoshin < ActiveRecord::Base
   end
 
   def create_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def update_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    same_company_admin
   end
 
   def view_permitted?(field)
