@@ -1,6 +1,6 @@
 class ClientApplication < ActiveRecord::Base
   require 'openssl'
-  require 'Base64'
+  require 'base64'
 
   hobo_model # Don't put anything above this
 
