@@ -16,3 +16,17 @@
 		</append-content-body:>
 	</old-show-page>
 </extend>
+
+
+<extend tag="index-page" for="ClientApplication">
+	<old-index-page merge prepend>
+	        <append-content-body:>
+			<if />
+			<else>
+				<h2>Connect your applications to our API</h2>
+				<p>Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST API</a>. </p><p>To learn how to use it please visit our <a href="http://doc.hoshinplan.com/developer">developers site</a>.
+				</p>
+			</else>
+		</append-content-body:>
+	</old-index-page>
+</extend>

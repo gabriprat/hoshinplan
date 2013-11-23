@@ -21,6 +21,7 @@
 			</modal>
 		</prepend-content-header:>
 		<content-body: >
+			<view:header/>
 			<sortable-collection:areas part="areas" id="areas"/>
 		</content-body:>
 		<field-list: fields=""/>

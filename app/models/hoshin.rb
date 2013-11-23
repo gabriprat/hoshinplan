@@ -5,9 +5,10 @@ class Hoshin < ActiveRecord::Base
   fields do
     name :string
     areas_count :integer, :default => 0, :null => false
+    header HoboFields::Types::HtmlString
     timestamps
   end
-  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header
   attr_accessible :areas, :children, :children_ids
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
