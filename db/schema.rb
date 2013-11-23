@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117092824) do
+ActiveRecord::Schema.define(:version => 20131123212030) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20131117092824) do
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "parent_id"
+    t.text     "header"
   end
 
   add_index "hoshins", ["company_id"], :name => "index_hoshins_on_company_id"

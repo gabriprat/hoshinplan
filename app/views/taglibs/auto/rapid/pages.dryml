@@ -209,7 +209,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="user" param/>
+      <field-list fields="key, secret, user" param/>
     </content-body:>
 
   </page>
