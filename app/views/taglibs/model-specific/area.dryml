@@ -7,7 +7,7 @@
 	<form with="&Hoshin.new" method="GET" id="reorder-#{this.id}" update="area-#{this.id}">
 	</form>
 	<rtable:objectives columns="#,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit();"/>
-	<a title="Add new objective" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">Add new objective</a>
+	<a title="Add new objective" onclick="$('#objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">Add new objective</a>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives"/>
@@ -17,6 +17,9 @@
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />
+				    	<responsible-view:>
+						<name-one complete-target="&this_parent.company" completer="users"/>
+					</responsible-view:>
 				</field-list:>
 				<hidden-field:hoshin_id value="#{hid}"/>
 				<hidden-field:area_id value="#{aid}"/>
