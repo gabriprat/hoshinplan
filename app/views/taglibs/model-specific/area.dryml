@@ -13,12 +13,13 @@
 		<set options="&this.parent_objectives"/>
 		<set hid="#{this.hoshin.id}"/>
 		<set aid="#{this.id}"/>
+		<set comp="&this.company"/>
 		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />
 				    	<responsible-view:>
-						<name-one complete-target="&this_parent.company" completer="users"/>
+						<name-one complete-target="&comp" completer="users"/>
 					</responsible-view:>
 				</field-list:>
 				<hidden-field:hoshin_id value="#{hid}"/>
