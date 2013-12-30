@@ -69,7 +69,7 @@ class UserCompany < ActiveRecord::Base
        #user.save!(:validate => false)
        company.user_companies.administrator.each do |admin| 
          UserCompanyMailer.transition(admin.user, "Invitation accepted!", 
-         "#{user.name} is now collaborating to the Hoshinplan of #{company.name}").deliver
+         "#{user.email_address} is now collaborating to the Hoshinplan of #{company.name}").deliver
        end
      end
 
@@ -79,14 +79,14 @@ class UserCompany < ActiveRecord::Base
        self.administrator = true
        self.save!
        UserCompanyMailer.transition(user, "Administrator", 
-       "#{acting_user.name}, you are now administrating the Hoshinplan of #{company.name}").deliver
+       "#{user.name}, you are now administrating the Hoshinplan of #{company.name}").deliver
      end
      
      transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
        self.administrator = false
        self.save!
        UserCompanyMailer.transition(user, "You are no longer administrator", 
-       "#{acting_user.name}, you are no longer administrating the Hoshinplan of #{company.name}").deliver
+       "#{acting_user.name} has revoked your administration rights to the Hoshinplan of #{company.name}").deliver
      end
  
      transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do
