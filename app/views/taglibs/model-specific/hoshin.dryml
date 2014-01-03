@@ -2,7 +2,7 @@
 	<old-show-page merge>
 		<collection-heading: replace />
 		<prepend-content-header:>
-			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); return false;" class="btn pull-right">
+			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
 	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new area
 	            </ht>
