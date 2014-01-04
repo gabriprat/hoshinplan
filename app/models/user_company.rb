@@ -33,7 +33,11 @@ class UserCompany < ActiveRecord::Base
   def company_admin_available
     acting_user if company_admin
   end
- 
+  
+  def accept_available
+    return false unless self.lifecycle.valid_key?
+    return self.user
+  end
  
   new_company_available = Proc.new do |r|
     acting_user if r.company.user_companies.empty?
@@ -63,7 +67,7 @@ class UserCompany < ActiveRecord::Base
      
      create :new_company, :params => [ :company, :user ], :become => :admin
      
-     transition :accept, { :invited => :active }, :available_to => :key_holder do
+     transition :accept, { :invited => :active }, :available_to => :accept_available do
        #user = self.user
        #user.lifecycle.activate!(user)
        #user.save!(:validate => false)
