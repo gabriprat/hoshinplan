@@ -18,8 +18,8 @@ Hoshinplan::Application.configure do
             :password       => ENV['SENDGRID_PASSWORD'],
             :domain         => 'heroku.com'
     }
-  config.action_mailer.asset_host = 'http://www.hoshinplan.com'
-  config.action_mailer.default_url_options = { host: 'http://www.hoshinplan.com', only_path: false }
+  config.action_mailer.asset_host = 'www.hoshinplan.com'
+  config.action_mailer.default_url_options = { host: 'www.hoshinplan.com', only_path: false }
   
 
   # Disable Rails's static asset server (Apache or nginx will already do this)

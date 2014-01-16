@@ -8,9 +8,10 @@ class Task < ActiveRecord::Base
     deadline          :date
     original_deadline :date
     show_on_parent    :boolean
+    reminder          :boolean, :default => true
     timestamps
   end
-  attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, 
+  attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id
 
   belongs_to :company, :inverse_of => :areas

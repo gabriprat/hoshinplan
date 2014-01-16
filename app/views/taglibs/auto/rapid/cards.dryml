@@ -9,17 +9,6 @@
   </card>
 </def>
 
-<def tag="card" for="Authorization">
-  <card class="authorization" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-    <body: param>
-      <view:description param="description"/>
-    </body:>
-  </card>
-</def>
-
 <def tag="card" for="ChildTask">
   <card class="child-task" param="default" merge>
     <header: param>

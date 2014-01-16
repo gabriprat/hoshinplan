@@ -14,6 +14,12 @@ class UserCompanyMailer < ActionMailer::Base
           :to      => @user )
   end
   
+  def reminder(user, object, subject, message)
+    @user, @message, @object = user, message, object
+    mail( :subject => subject,
+          :to      => @user )
+  end
+  
   def welcome(user, subject)
     @user, @message = user
     mail( :subject => subject,
