@@ -702,7 +702,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="higher" param/>
+      <record-flags fields="higher, reminder" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="indicator.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -1090,7 +1090,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="show_on_parent" param/>
+      <record-flags fields="show_on_parent, reminder" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="task.actions.edit" name="#{name(:no_wrapper => true)}">

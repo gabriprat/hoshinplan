@@ -25,7 +25,7 @@
 		  <modal:>
 	        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 			   <div class="modal-body">
-	            <field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher, objective">
+	            <field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, min_value, higher, objective">
 		    	<objective-view:>
 				<select-one options="&this_parent.objective.area_objectives" />
 			</objective-view:>

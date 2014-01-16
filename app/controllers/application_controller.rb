@@ -1,11 +1,27 @@
 class ApplicationController < ActionController::Base
+
+  rescue_from RuntimeError do |exception|
+    error = {message:exception.message}
+    error[:type] = exception.class.name.split('::').last || ''
+    error[:code] = :internal_server_error
+    error[:code] = exception.code if exception.respond_to?(:code) 
+    error[:status] = :internal_server_error
+    error[:status] = exception.status if exception.respond_to?(:status) 
+    error[:stack_trace] = exception.backtrace if Rails.env.development? 
+    respond_to do |format|
+      format.html { raise exception }
+      format.json { render :json => error, status: error[:status] }
+      format.xml { render :xml => error, status: error[:status] }
+    end
+  end
+  
   require 'time'
   
   TIMESTAMP_MAX_AGE_SEC = 300.freeze
   
   protect_from_forgery
   
-  respond_to :html, :json, :xml
+  respond_to :html, :html, :xml
   
   before_filter :authenticate_client_app
 
@@ -40,7 +56,6 @@ class ApplicationController < ActionController::Base
     ActionMailer::Base.default_url_options = {:host => request.host_with_port}
     ActionMailer::Base.default_url_options[:only_path] = false
   end
-
   
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
@@ -59,17 +74,17 @@ class ApplicationController < ActionController::Base
     def authenticate_client_app
       return if (request.format.html? || request.xhr?)
       app_key = params[:app_key].presence
-      raise "Client application key parameter (app_key) not provided." unless app_key
+      raise Errors::SecurityError.new(1), "Client application key parameter (app_key) not provided." unless app_key
       t = Time.xmlschema(params[:timestamp].presence)
-      raise "Timestamp parameter (timestamp) not provided." unless t
+      raise Errors::SecurityError.new(2), "Timestamp parameter (timestamp) not provided." unless t
       n = Time.now
-      raise "Timestamp in the future" if t > n
-      raise "Timestamp too old." if (n - t) > TIMESTAMP_MAX_AGE_SEC
+      raise Errors::SecurityError.new(3), "Timestamp in the future" if t > n
+      raise Errors::SecurityError.new(4), "Timestamp too old." if (n - t) > TIMESTAMP_MAX_AGE_SEC
       path,notused,signature = request.fullpath.rpartition("&signature=")
       app = ClientApplication.unscoped.find_by_key(app_key)
-      raise "No client application found with the given key." unless app
+      raise Errors::SecurityError.new(5), "No client application found with the given key." unless app
       signature2 = app.sign(path)
-      raise "Invalid signature" unless signature == signature2
+      raise Errors::SecurityError.new(6), "Invalid signature" unless signature == signature2
       ClientApplication.current_app = app
       self.current_user = app.user
       User.current_id = app.user.id

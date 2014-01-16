@@ -14,9 +14,10 @@ class Indicator < ActiveRecord::Base
     goal        :decimal, :default => 100.0
     min_value   :decimal, :default => 0.0
     max_value   :decimal, :default => 100.0
+    reminder    :boolean, :default => true
     timestamps
   end
-  attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, 
+  attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
     :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend, :company, :company_id
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
@@ -41,7 +42,10 @@ class Indicator < ActiveRecord::Base
   end
   
   before_update do |indicator|
-    #if indicator.last_update < Date.today
+    if !indicator.next_update_changed?
+      indicator.next_update = compute_next_update(indicator)
+    end
+    #if indicator.value_changed?
       indicator.last_value = indicator.value_was
       ih = indicator.indicator_histories.where(:day => Date.today).first
       if ih.nil?
@@ -51,7 +55,7 @@ class Indicator < ActiveRecord::Base
       end
       ih.value = indicator.value
       ih.save!
-      #end
+    #end
   end
   
   def status 
@@ -82,6 +86,18 @@ class Indicator < ActiveRecord::Base
         ret = 100 * ((max_value-value) / (max_value-goal))
       end 
     end 
+  end
+  
+  def compute_next_update(indicator)
+    t = Time.now
+    case indicator.frequency
+    when "weekly"
+      t + 1.week
+    when "monthly"
+      t + 1.month
+    when "quarterly"
+      t + 3.month
+    end
   end
   
   # --- Permissions --- #
