@@ -1,0 +1,7 @@
+<extend tag="show-page" for="User">
+	<old-show-page merge>
+		<prepend-content-header:>
+			<a action="dashboard"  class="btn pull-right">My Dashboard</a>
+		</prepend-content-header:>
+	</old-show-page>
+</extend>

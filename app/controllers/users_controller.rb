@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-
+  
   hobo_user_controller
   
   autocomplete
+  
+  show_action :dashboard
   
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
@@ -47,6 +49,10 @@ class UsersController < ApplicationController
   
   def sign_in(user) 
     sign_user_in(user)
+  end
+  
+  def dashboard 
+    @this = find_instance
   end
   
 end

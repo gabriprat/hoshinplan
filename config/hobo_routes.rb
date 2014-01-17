@@ -141,6 +141,7 @@ Hoshinplan::Application.routes.draw do
       get 'signup'
     end
     member do
+      get 'dashboard'
       get 'account'
       put 'activate', :action => 'do_activate'
       get 'activate'

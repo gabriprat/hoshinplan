@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   hobo_user_model # Don't put anything above this
   
+  NEXT_FRIDAY = DateTime.now.next_week.next_day(4)
+  
   include HoboOmniauth::MultiAuth
   
   fields do
@@ -93,6 +95,14 @@ class User < ActiveRecord::Base
   def self.current_id
     Thread.current[:client_id]
   end  
+  
+  def dashboard
+    Company.current_id = nil
+    {
+        "indicators" => indicators.unscoped.where("next_update < ?", NEXT_FRIDAY).order("next_update ASC"),
+        "tasks" => tasks.unscoped.where("deadline < ?", NEXT_FRIDAY).order("deadline ASC")
+        }
+  end
   
   # --- Permissions --- #
 

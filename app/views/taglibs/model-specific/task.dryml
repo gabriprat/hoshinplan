@@ -1,64 +1,87 @@
-<def tag="scard" for="Task">
-<scard class="task table-row" part-id="task" param="default" merge>
-  <div class="column" data-label="Id">
-	 #{this.objective.position}
-  </div>
-  <div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
-  <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
-  <div class="column nowrap" data-label="Deadline">
-	  	<if test="#{this.status=='active'?'true':''}">
-			<form ajax class="autosubmit inline-form wider" complete="attatchAutosubmit()" >
-				<field-list: fields="deadline" disable/>
-				<actions: replace/>
-		 	</form>
-		</if>
-		<else>
-			#{this.deadline}
-		</else>
-  </div>
-  <div class="column nowrap #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
-  <div class="column nowrap" data-label="Actions">
-	<ul class="icons">
-	  <if test="#{this.status=='active'?'true':''}">
-		  <li class="complete">
-		  <form ajax lifecycle="discard" class="inline-form">
-			  <input type="image" src="/assets/icons/delete.png"/>
-		  </form>
-	  	  </li>
-		  <li class="discard">
-		  <form ajax lifecycle="complete" class="inline-form">
-			  <input type="image" src="/assets/icons/complete-task.png"/>
-		  </form>
-	  	  </li>
-  	  </if>
-	  <else>
-		  <li class="reactivate">
-		  <form ajax lifecycle="reactivate" class="inline-form">
-			  <input type="image" src="/assets/icons/reactivate.png"/>
-		  </form>
-	  	  </li>
-	  </else>
-  	</ul>
-  </div>
-  <script type="text/javascript">
-  $('.bootstrap-datepicker').datepicker();
-  </script>
-	<modal id="update-task-modal-#{this.id}">
-		<modal:>
-		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
-		   <div class="modal-body">
-			    <field-list: fields="name, description, responsible, deadline, objective, show_on_parent">
-			    	<objective-view:>
-					<select-one options="&this_parent.objective.area_objectives" />
-				</objective-view:>
-			    	<responsible-view:>
-					<name-one complete-target="&this_parent.company" completer="users"/>
-				</responsible-view:>
-			    </field-list:>
-		    </div>
-		    <modal-form-footer/>
-		</form> 
-		</modal:>
-	</modal>
+<def tag="scard" for="Task" attrs="columns">
+<scard class="task table-row" part-id="task" id="task-#{this.id}" param="default" merge>
+  <% columns.each do |column| %>
+  	<if test="&column == '#'">
+	        <div class="column" data-label="Id">
+	      	 #{this.objective.position}
+	        </div>
+  	</if>
+	<if test="&column == 'Company'">
+		<div class="column" data-label="Company"><view:company/></div>
+	</if>
+	<if test="&column == 'Hoshin'">
+		<div class="column" data-label="Hoshin"><view:area.hoshin/></div>
+	</if>
+	<if test="&column == 'Area'">
+		<div class="column" data-label="Hoshin"><view:area/></div>
+	</if>
+	<if test="&column == 'Task'">
+		<div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+	        <script type="text/javascript">
+	        $('.bootstrap-datepicker').datepicker();
+	        </script>
+	      	<modal id="update-task-modal-#{this.id}">
+	      		<modal:>
+	      		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+	      		   <div class="modal-body">
+	      			    <field-list: fields="name, description, responsible, deadline, objective, show_on_parent">
+	      			    	<objective-view:>
+	      					<select-one options="&this_parent.objective.area_objectives" />
+	      				</objective-view:>
+	      			    	<responsible-view:>
+	      					<name-one complete-target="&this_parent.company" completer="users"/>
+	      				</responsible-view:>
+	      			    </field-list:>
+	      		    </div>
+	      		    <modal-form-footer/>
+	      		</form> 
+	      		</modal:>
+	      	</modal>
+	</if>
+	<if test="&column == 'Resp.'">
+	        <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
+	</if>
+	<if test="&column == 'Deadline'">
+		  <div class="column nowrap" data-label="Deadline">
+			  	<if test="#{this.status=='active'?'true':''}">
+					<form ajax update="Task-#{this.id}" class="autosubmit inline-form wider" complete="attatchAutosubmit()">
+						<field-list: fields="deadline" disable/>
+						<actions: replace/>
+				 	</form>
+				</if>
+				<else>
+					#{this.deadline}
+				</else>
+		  </div>	
+	</if>
+	<if test="&column == 'Dev'">
+		 <div class="column nowrap #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
+	</if>
+	<if test="&column == 'Status'">
+	        <div class="column nowrap" data-label="Actions">
+	      	<ul class="icons">
+	      	  <if test="#{this.status=='active'?'true':''}">
+	      		  <li class="complete">
+	      		  <form ajax lifecycle="discard" class="inline-form">
+	      			  <input type="image" src="/assets/icons/delete.png"/>
+	      		  </form>
+	      	  	  </li>
+	      		  <li class="discard">
+	      		  <form ajax lifecycle="complete" class="inline-form">
+	      			  <input type="image" src="/assets/icons/complete-task.png"/>
+	      		  </form>
+	      	  	  </li>
+	        	  </if>
+	      	  <else>
+	      		  <li class="reactivate">
+	      		  <form ajax lifecycle="reactivate" class="inline-form">
+	      			  <input type="image" src="/assets/icons/reactivate.png"/>
+	      		  </form>
+	      	  	  </li>
+	      	  </else>
+	        	</ul>
+	        </div>
+	</if>
+  <% end %>
 </scard>
 </def>
