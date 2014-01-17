@@ -40,10 +40,11 @@ class ApplicationController < ActionController::Base
                      Company.current_id = inst.id
                    end
                  end
-                 Rails.logger.info "-------------" + Company.current_id.to_s + "+++++++++++++"
+                 Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
                  if defined?("logged_in?")
                    User.current_id = logged_in? ? current_user.id : nil
                  end
+                 Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
              yield
              ensure
                  #avoids issues when an exception is raised, to clear the current_id
