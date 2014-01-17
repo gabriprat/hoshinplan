@@ -1,0 +1,34 @@
+<page title="My dashboard">
+
+  <body: class="front-page hoshin"/>
+
+  <content:>
+    <header class="content-header">
+      <h1>My dashboard</h1>
+    </header>
+
+
+    <section class="content-body">
+    
+    <do:dashboard>
+    <h2>KPIs</h2>
+    <card>
+    <rtable:indicators columns="#,Company,Hoshin,Area,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators" class="indicators" sortable/>
+    <else>
+    You have no KPIs to update
+    </else>
+    </card>
+    <h2>Tasks</h2>
+    <card>
+    <rtable:tasks columns="#,Company,Hoshin,Area,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks" class="tasks" sortable/>
+    <else>
+    You have no tasks with a close deadline
+    </else>
+    </card>
+    </do>
+    
+    </section>
+  </content:>
+
+</page>
+

@@ -196,7 +196,7 @@ span.arrow.equal:after {
 	content: "=";
 }
 
-.overdue, .overdue a {
+.overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active {
 	color: red;
 	font-weight: 500;
 }
