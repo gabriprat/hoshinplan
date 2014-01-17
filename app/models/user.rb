@@ -99,8 +99,8 @@ class User < ActiveRecord::Base
   def dashboard
     Company.current_id = nil
     {
-        "indicators" => indicators.unscoped.where("next_update < ?", NEXT_FRIDAY).order("next_update ASC"),
-        "tasks" => tasks.unscoped.where("deadline < ?", NEXT_FRIDAY).order("deadline ASC")
+        "indicators" => self.indicators.unscoped.where("next_update < ?", NEXT_FRIDAY).order("next_update ASC"),
+        "tasks" => self.tasks.unscoped.where("deadline < ?", NEXT_FRIDAY).order("deadline ASC")
         }
   end
   
