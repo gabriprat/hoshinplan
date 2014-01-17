@@ -3,7 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require File.expand_path('../../config/jobs/reminders', __FILE__)
 include Clockwork
 
-every(1.day, 'reminders', :at => '00:20') { Delayed::Job.enqueue SendUpdateReminders.new }
+every(1.day, 'reminders', :at => '1:00') { Delayed::Job.enqueue SendUpdateReminders.new }
 
 
 #, :at => '08:00'
