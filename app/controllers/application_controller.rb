@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
                      Company.current_id = inst.id
                    end
                  end
+                 Rails.logger.info "-------------" + Company.current_id.to_s + "+++++++++++++"
                  if defined?("logged_in?")
                    User.current_id = logged_in? ? current_user.id : nil
                  end
