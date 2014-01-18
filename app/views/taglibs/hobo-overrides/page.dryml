@@ -1,0 +1,12 @@
+<extend tag="page">
+	<old-page merge>
+		<stylesheets:>
+			<if test="#{@pdf?'true':'true'}">
+				<stylesheet name='pdf' param='app-stylesheet'/>
+			</if>
+			<else>
+				<stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
+			</else>
+		</stylesheets:>
+	 </old-page>
+</extend>
