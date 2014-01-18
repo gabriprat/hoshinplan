@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   include HoboOmniauth::MultiAuth
   
   fields do
-    name          :string, :required, :unique
+    name          :string, :required
     email_address :email_address, :login => true
     image         HoboFields::Types::ImageUrl
     administrator :boolean, :default => false
@@ -30,6 +30,11 @@ class User < ActiveRecord::Base
       user.administrator = true
     end
   end
+  
+  default_scope lambda { 
+    where(:id => UserCompany.select(:user_id)
+      .where('company_id=?',  
+        Company.current_id) ) unless Company.current_id.nil? }
 
   # --- Signup lifecycle --- #
 
