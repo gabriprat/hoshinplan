@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   include HoboOmniauth::MultiAuth
   
   fields do
-    name          :string, :required
+    name          :string, :required, :unique
     email_address :email_address, :login => true
     image         HoboFields::Types::ImageUrl
     administrator :boolean, :default => false
