@@ -214,8 +214,11 @@ GEM
     uglifier (2.3.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    wicked_pdf (0.9.10)
+      rails
     will_paginate-bootstrap (0.2.5)
       will_paginate (>= 3.0.3)
+    wkhtmltopdf-binary (0.9.9.1)
 
 PLATFORMS
   ruby
@@ -243,4 +246,6 @@ DEPENDENCIES
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
+  wicked_pdf
   will_paginate!
+  wkhtmltopdf-binary
