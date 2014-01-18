@@ -24,7 +24,7 @@ body .table {
 	font-size: 9px;
 }
 /* Responsive table */
-@media all and (max-width: 640px){
+@media interactive and (max-width: 640px){
 	.table,
 	.table-row,
 	.column,

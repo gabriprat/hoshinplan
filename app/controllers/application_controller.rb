@@ -52,6 +52,11 @@ class ApplicationController < ActionController::Base
                  Company.current_id = nil    
              end
              
+  before_filter :is_pdf
+  def is_pdf
+    @pdf = request.original_url.split('?').first.ends_with?(".pdf")
+  end
+             
   before_filter :action_mailer_init
   
   def action_mailer_init

@@ -7,6 +7,5 @@ class HoshinsController < ApplicationController
   auto_actions_for :company, [:new, :create]
   
   include RestController
-  
 
 end

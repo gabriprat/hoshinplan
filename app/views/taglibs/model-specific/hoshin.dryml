@@ -1,5 +1,13 @@
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
+		<stylesheets:>
+			<if test="#{@pdf?'true':'true'}">
+				<stylesheet name='pdf' param='app-stylesheet'/>
+			</if>
+			<else>
+				<stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
+			</else>
+		</stylesheets:>
 		<collection-heading: replace />
 		<prepend-content-header:>
 			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
@@ -19,6 +27,7 @@
 				</form>
 				</modal:>
 			</modal>
+			<a title="Export as PDF" href="#{this.id}-#{this.name}.pdf" class="btn pull-right">Export as PDF</a>
 		</prepend-content-header:>
 		<content-body: >
 			<view:header/>

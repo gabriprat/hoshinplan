@@ -1,0 +1,12 @@
+@media print {
+	.navbar, div.ordering-handle, .btn, .parent-link, ul.icons {
+		display: none;
+	}
+	div.ordering-handle {
+		display: block;
+		visibility: hidden;
+	}
+	.card.area {
+		border: 1px solid black;
+	}
+}
