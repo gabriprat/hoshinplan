@@ -17,7 +17,7 @@
 		<div class="column" data-label="Hoshin"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); return false;"><name/></a></div>
+		  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); return false;"><name/></a></div>
   	</if>
 	<if test="&column == 'Resp.'">
   		<div class="column" data-label="Responsible"><view:responsible abbrev/></div>
