@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'wicked_pdf'
+
 
 require File.expand_path('../../config/jobs/reminders', __FILE__)
 
@@ -68,5 +70,7 @@ module Hoshinplan
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+    
+    config.middleware.use WickedPdf::Middleware
   end
 end
