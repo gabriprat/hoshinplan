@@ -36,8 +36,18 @@ var colorize = function () {
 
 $(document).ready(attatchAutosubmit);
 
+$( window ).resize(function() {
+  equalHeightSections();
+});
+
+var equalHeightSections = function() {
+	equalHeights($("div.objectives-wrapper"));
+	equalHeights($("div.indicators-wrapper"));
+	equalHeights($("div.tasks-wrapper"));
+}
 
 var equalHeights = function(elements) {
+	elements.height("auto");
 	var maxHeight = Math.max.apply(null, elements.map(function ()
 	{
 	    return $(this).height();

@@ -1,7 +1,7 @@
 <extend tag="page">
 	<old-page merge>
 		<stylesheets:>
-			<if test="#{@pdf?'true':'true'}">
+			<if test="#{@pdf?'true':''}">
 				<stylesheet name='pdf' param='app-stylesheet'/>
 			</if>
 			<else>

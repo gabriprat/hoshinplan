@@ -5,9 +5,36 @@
  * will be included.
  *
  *= require_self
- *= require application
+ *= require ./application/application.css
+ *= require ./application/print.css
  *= require_tree ./front
 */
+
+/* seo friendly tables */
+body .table {
+	display:table;	/* Defines a Table */
+	width: 100%;
+	margin-bottom: 0;
+}
+.table-head{
+	 display: table-header-group; /* Defines a table header group */
+	 font-weight: 400;
+}
+.table-body {
+	display: table-row-group;  /* Defines a table body */
+}
+.table-row {
+	display:table-row; /* Defines a table row */
+	line-height: 1.8em;
+}
+.column{
+	display:table-cell; /* Defines a table cell */
+	padding-right: 12px;
+}
+.table .ordering-handle {
+	line-height: 14px;
+	font-size: 9px;
+}
 
 /*!
  * Bootstrap v2.3.2
