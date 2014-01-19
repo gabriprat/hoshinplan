@@ -1,10 +1,8 @@
-@media all and (max-width: 640px) {body.hoshin .collection.areas {
+@media all and (max-width: 640px) {
+
+body.hoshin .collection.areas {
 	display: block;
 	width: 100%;
-}
-
-div.objectives-wrapper {
-	background-color: rgba(0,0,0,.1);
 }
 
 body.hoshin a:after
@@ -48,6 +46,12 @@ body h4 {
 body h5 {
 	font-size: 20px;
 	margin-top: 1.4em;
+}
+
+.area h5 {
+	background-color: rgba(37,169,224,.1);
+	padding: 5px 5px 6px 5px;
+	min-width: 210px;
 }
 
 body h2.heading {

@@ -1,6 +1,9 @@
 @media print {
 	* {
 		background-image: none !important;
+		-webkit-box-shadow: none !important;
+		-moz-box-shadow: none !important;
+		box-shadow: none !important;
 	}
 	.navbar, div.ordering-handle, .btn, .parent-link, ul.icons {
 		display: none;
@@ -18,14 +21,20 @@
 	body a, body a:visited {
 		color: #000;
 	}
+	.input {
+		border: 0 !important;
+	}
 	.overdue input {
 		color: red;
 	}
 	.tasks-wrapper, .indicators-wrapper{
-		border-top: 1px solid black;
 		margin-top: 5px;
 		
-	} 
+	}
+	.area h5 {
+		background-color: transparent;
+		border-bottom: 1px solid black;
+	}
 	.well .header {
 		border-bottom: 1px solid black;
 	}
