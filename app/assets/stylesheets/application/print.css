@@ -5,7 +5,7 @@
 		-moz-box-shadow: none !important;
 		box-shadow: none !important;
 	}
-	.navbar, div.ordering-handle, .btn, .parent-link, ul.icons {
+	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons {
 		display: none;
 	}
 	div.ordering-handle, .column.ordering {
@@ -37,6 +37,13 @@
 	}
 	.well .header {
 		border-bottom: 1px solid black;
+	}
+	body a,
+	body a:visited {
+		text-decoration: none;
+	}
+	body a[href]:after {
+		content: ""
 	}
 	@page {
 		size: A3 landscape;
