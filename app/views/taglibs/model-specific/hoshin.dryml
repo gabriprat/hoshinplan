@@ -24,6 +24,11 @@
 		<content-body: >
 			<view:header/>
 			<sortable-collection:areas part="areas" id="areas"/>
+			<script type="text/javascript">
+				equalHeights($("div.objectives-wrapper"));
+				equalHeights($("div.indicators-wrapper"));
+				equalHeights($("div.tasks-wrapper"));
+			</script>
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>

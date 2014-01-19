@@ -5,7 +5,7 @@
 	<div class="table" merge-attrs merge-params unless='empty?'>
 		<ul class="table-head">
 			<li class="table-row">
-				<div class="column" if="&sortable"></div>
+				<div class="column ordering" if="&sortable"></div>
 				<div class="column" repeat="&columns">#{this}</div>
 			</li>
 		</ul>

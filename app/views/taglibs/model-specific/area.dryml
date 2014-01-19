@@ -3,7 +3,10 @@
   	
     <append-body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
-	<h5>Objectives</h5>
+	<div class="objectives-wrapper">
+	<h5>Objectives
+	<a class="btn pull-right" title="New objective" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">New objective</a></h5>
+	
 	<form with="&Hoshin.new" method="GET" id="reorder-#{this.id}" update="area-#{this.id}">
 	</form>
 	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden">
@@ -11,7 +14,6 @@
 		<actions: replace />
 	</form>
 	<rtable:objectives columns="#,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit();"/>
-	<a title="Add new objective" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">Add new objective</a>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives"/>
@@ -33,12 +35,17 @@
 		</form>
 		</modal:>
 	</modal>
+	</div>
+	<div class="indicators-wrapper">
 	<h5>KPIs</h5>
 	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
+	</div>
+	<div class="tasks-wrapper">
 	<h5>Tasks</h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
-	<h5>Child Tasks</h5>
+	<h6>Child Tasks</h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
+	</div>
 	</div>
     </append-body:>
   </old-card>

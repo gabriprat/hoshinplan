@@ -35,3 +35,12 @@ var colorize = function () {
 }
 
 $(document).ready(attatchAutosubmit);
+
+
+var equalHeights = function(elements) {
+	var maxHeight = Math.max.apply(null, elements.map(function ()
+	{
+	    return $(this).height();
+	}).get());
+	elements.height(maxHeight);
+}
