@@ -46,7 +46,7 @@ class Objective < ActiveRecord::Base
   end
   
   def parent_hoshin
-    ret = area.hoshin.parent_id
+    ret = hoshin.parent_id unless hoshin.nil?
     ret.nil? ? 0 : ret
   end
 
