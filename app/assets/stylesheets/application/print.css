@@ -11,13 +11,23 @@
 	.card.area {
 		border: 1px solid black;
 	}
-	.well, .well .header, a {
+	.well, .well .header, .well .header a {
 		background: transparent !important;
 		color: #000 !important;
 	}
-	.objectives-wrapper, .indicators-wrapper, .well .header {
+	body a, body a:visited {
+		color: #000;
+	}
+	.overdue input {
+		color: red;
+	}
+	.tasks-wrapper, .indicators-wrapper{
+		border-top: 1px solid black;
+		margin-top: 5px;
+		
+	} 
+	.well .header {
 		border-bottom: 1px solid black;
-		padding-bottom: 5px;
 	}
 	@page {
 		size: A3 landscape;

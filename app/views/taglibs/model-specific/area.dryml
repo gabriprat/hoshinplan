@@ -39,11 +39,13 @@
 	<div class="indicators-wrapper">
 	<h5>KPIs</h5>
 	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
+	<else>No KPIs defined for this area</else>
 	</div>
 	<div class="tasks-wrapper">
 	<h5>Tasks</h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
-	<h6>Child Tasks</h6>
+	<else>No tasks defined for this area</else>
+	<h6 if="child_tasks">Tasks from children hoshin plans</h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
 	</div>
 	</div>

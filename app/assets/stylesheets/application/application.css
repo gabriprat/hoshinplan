@@ -3,6 +3,10 @@
 	width: 100%;
 }
 
+div.objectives-wrapper {
+	background-color: rgba(0,0,0,.1);
+}
+
 body.hoshin a:after
 {
 content: none;
