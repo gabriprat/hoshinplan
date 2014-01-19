@@ -41,6 +41,7 @@ $( window ).resize(function() {
 });
 
 var equalHeightSections = function() {
+	if (presenting) return;
 	equalHeights($("div.objectives-wrapper"));
 	equalHeights($("div.indicators-wrapper"));
 	equalHeights($("div.tasks-wrapper"));
