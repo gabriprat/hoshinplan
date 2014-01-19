@@ -1,12 +1,25 @@
 @media print {
+	* {
+		background-image: none !important;
+	}
 	.navbar, div.ordering-handle, .btn, .parent-link, ul.icons {
 		display: none;
 	}
-	div.ordering-handle {
-		display: block;
-		visibility: hidden;
+	div.ordering-handle, .column.ordering {
+		display: none;
 	}
 	.card.area {
 		border: 1px solid black;
+	}
+	.well, .well .header, a {
+		background: transparent !important;
+		color: #000 !important;
+	}
+	.objectives-wrapper, .indicators-wrapper, .well .header {
+		border-bottom: 1px solid black;
+		padding-bottom: 5px;
+	}
+	@page {
+		size: A3 landscape;
 	}
 }
