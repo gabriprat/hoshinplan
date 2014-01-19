@@ -154,9 +154,7 @@ function enterFullscreen() {
 var attatchKeyEvents = function() {
 	$('body').keydown(function(e){
 		if (!presenting) {
-			if (event.which == 80) {
-				startPresentation();
-			}
+			return;
 		}
 		switch( event.which ) {
 			// esc
