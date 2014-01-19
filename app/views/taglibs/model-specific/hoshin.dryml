@@ -20,6 +20,7 @@
 				</modal:>
 			</modal>
 			<a title="Export as PDF" href="#{this.id}-#{this.name}.pdf" class="btn pull-right">Export as PDF</a>
+			<a title="Presentation" onclick="startPresentation(); return false;" class="btn pull-right">Presentation</a>
 		</prepend-content-header:>
 		<content-body: >
 			<view:header/>
