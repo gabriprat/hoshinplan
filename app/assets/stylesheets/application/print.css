@@ -45,7 +45,11 @@
 	body a[href]:after {
 		content: ""
 	}
+	
+	body.hoshin .collection.areas {
+		table-layout:fixed;
+	}
 	@page {
-		size: A3 landscape;
+		size: A4 landscape;
 	}
 }
