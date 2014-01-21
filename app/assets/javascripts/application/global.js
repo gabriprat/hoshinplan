@@ -155,7 +155,7 @@ var attatchKeyEvents = function() {
 		if (!presenting) {
 			return;
 		}
-		switch( event.which ) {
+		switch( e.which ) {
 			// esc
 			case 27: endPresentation(); break;
 		        // left
