@@ -34,11 +34,10 @@ var colorize = function () {
 	);
 }
 
-$(document).ready(attatchAutosubmit);
-
 $( window ).resize(function() {
   equalHeightSections();
 });
+
 
 var equalHeightSections = function() {
 	if (presenting) return;
