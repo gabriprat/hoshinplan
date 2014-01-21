@@ -5,7 +5,7 @@ class Hoshin < ActiveRecord::Base
   fields do
     name :string
     areas_count :integer, :default => 0, :null => false
-    header HoboFields::Types::HtmlString
+    header HoboFields::Types::RawHtmlString
     timestamps
   end
   attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header
