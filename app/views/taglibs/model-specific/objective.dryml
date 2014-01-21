@@ -33,7 +33,7 @@
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
 						<set comp="&this.company"/>
-						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher">
 							    	<responsible-view:>
@@ -55,7 +55,7 @@
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
 						<set comp="&this.company"/>
-						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
+						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, responsible, deadline, show_on_parent">
 							    	<responsible-view:>
