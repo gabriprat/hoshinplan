@@ -33,9 +33,11 @@ class ApplicationController < ActionController::Base
 
              def scope_current_user
                Rails.logger.debug params.to_yaml
-                 if !params[:id].nil? || !params[:company_id].nil?
+                 if !params[:id].nil? || !params[:company_id].nil? || !params[:area][:hoshin_id].nil?
                    inst = model.unscoped.find(params[:id]) unless params[:id].nil?
-                   inst = Company.unscoped.find(params[:company_id]) unless inst
+                   inst = Company.unscoped.find(params[:company_id]) unless inst || params[:company_id].nil?
+                   inst = Hoshin.unscoped.find(params[:area][:hoshin_id]) unless inst
+                   Rails.logger.debug inst.to_yaml
                    if inst.respond_to?(:company_id)
                      Company.current_id = inst.company_id
                    elsif inst.is_a? Company

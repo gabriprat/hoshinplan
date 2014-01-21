@@ -23,7 +23,7 @@ class Hoshin < ActiveRecord::Base
   validate :validate_company
   
   default_scope lambda { 
-    where(:company_id => Company.current_id)  }
+    where(:company_id => Company.current_id) }
 
   # --- Permissions --- #
   
