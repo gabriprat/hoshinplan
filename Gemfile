@@ -64,4 +64,3 @@ gem 'unicorn'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
-

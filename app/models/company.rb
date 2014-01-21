@@ -58,7 +58,7 @@ class Company < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).empty?
+    new_record? || acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).empty?
   end
 
 end
