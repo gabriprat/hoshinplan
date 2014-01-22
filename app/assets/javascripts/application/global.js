@@ -52,6 +52,9 @@ var equalHeights = function(elements) {
 	{
 	    return $(this).height();
 	}).get());
+	if (window.location.pathname.indexOf("_pdf") != -1) {
+		maxHeight = maxHeight / 1.4;
+	}
 	elements.height(maxHeight);
 }
 
