@@ -127,8 +127,12 @@ class User < ActiveRecord::Base
   def destroy_permitted?
     acting_user.administrator?
   end
+  
+  def same_company 
+      self.companies.unscoped.find(acting_user.companies)
+  end
 
   def view_permitted?(field)
-    true
+    acting_user.administrator? || same_company
   end
 end

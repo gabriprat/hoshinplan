@@ -137,12 +137,14 @@ Hoshinplan::Application.routes.draw do
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
       get 'complete_name'
+      get 'suplist'
       post 'signup', :action => 'do_signup'
       get 'signup'
     end
     member do
       get 'dashboard'
       get 'account'
+      post 'supplant'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'reset_password', :action => 'do_reset_password'
