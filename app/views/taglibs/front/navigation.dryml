@@ -1,0 +1,7 @@
+<extend tag="main-nav">
+  <old-main-nav: merge>
+  	<append-default: >
+    		<nav-item href="#{base_url}/admin" if="&current_user.administrator?">Admin</nav-item>
+	</append-default:>
+  </old-main-nav:>
+</extend>

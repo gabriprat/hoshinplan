@@ -20,15 +20,9 @@
 
 <include src="application"/>
 
-<include src="taglibs/view-tag-extensions/*"/>
+<include src="taglibs/front/*"/>
 
-<include src="taglibs/model-specific/*"/>
-
-<include src="taglibs/new-tags/*"/>
-
-<include src="taglibs/hobo-overrides/*"/>
-
-
+<include src="taglibs/front/model-specific/*"/>
 
 
 

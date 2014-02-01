@@ -4,7 +4,12 @@
 	</if>
 	<else>
 	<a title="#{this.name}">
+		<if test="&abbrev">
 		<%= this.name.split.map{|x| x[0,1]}.join() %>
+		</if>
+		<else>
+		#{this.name}
+		</else>
 	</a>
 	</else>
 </def>
