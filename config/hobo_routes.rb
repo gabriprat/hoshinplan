@@ -137,14 +137,12 @@ Hoshinplan::Application.routes.draw do
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
       get 'complete_name'
-      get 'suplist'
       post 'signup', :action => 'do_signup'
       get 'signup'
     end
     member do
       get 'dashboard'
       get 'account'
-      post 'supplant'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'reset_password', :action => 'do_reset_password'
@@ -156,5 +154,20 @@ Hoshinplan::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+
+  namespace :admin do
+
+
+    # Resource routes for controller admin/users
+    resources :users, :only => [:index, :edit, :show, :update, :destroy] do
+      collection do
+        get 'suplist'
+      end
+      member do
+        post 'supplant'
+      end
+    end
+
+  end
 
 end

@@ -19,6 +19,7 @@ Hoshinplan::Application.routes.draw do
   
   match 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'
   
+  match  'admin' => 'admin/admin_site#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

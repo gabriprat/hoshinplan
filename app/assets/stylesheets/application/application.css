@@ -398,7 +398,7 @@ form#add-collaborators textarea {
 	height: 10em;
 }
 
-.show-page.user .content-body .user-image img {
+.user .content-body .user-image img {
 	height: 104px;
 	width: 104px;
 	border-top-left-radius: 52px;

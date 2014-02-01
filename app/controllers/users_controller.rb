@@ -6,10 +6,6 @@ class UsersController < ApplicationController
   
   show_action :dashboard
   
-  index_action :suplist
-  
-  web_method :supplant
-  
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
   skip_before_filter :my_login_required, :only => :omniauth_callback
@@ -17,28 +13,13 @@ class UsersController < ApplicationController
   after_filter :update_data, :only => :omniauth_callback
   
   auto_actions :all, :except => [ :index, :new, :create ]
-  
-  before_filter :admin_only, :only => [ :suplist, :supplant ]
-  
+    
   include HoboOmniauth::Controller
   
   include RestController
   
   def admin_only
       render :text => "Permission Denied", :status => 403 unless current_user.administrator?
-  end
-  
-  def suplist
-    users = model.all
-    @this = { "guest" => 0 }
-    users.each { |u| 
-      @this[u.login.to_s] = u.id 
-    }
-  end
-  
-  def supplant
-    self.current_user = find_instance
-    redirect_to home_page
   end
   
   # Normally, users should be created via the user lifecycle, except

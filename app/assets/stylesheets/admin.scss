@@ -1,0 +1,15 @@
+/*
+ * This is the stylesheet manifest file for the admin subsite.
+ * Files or plugins referenced from here or placed in the admin/
+ * directory will be included.
+ *
+ *= require_self
+ *= require application
+ *= require hobo_rapid
+ *= require hobo_jquery
+ *= require hobo_bootstrap
+ *= require hobo_jquery_ui
+ *= require hobo_bootstrap_ui
+ *= require jquery-ui/flick
+ *= require_tree ./admin
+*/

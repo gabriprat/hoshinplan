@@ -1,0 +1,4 @@
+<def tag="stylesheet" attrs="name, media">
+   <% attributes["media"] = "all" %>
+   <%= stylesheet_link_tag *(comma_split(name) + [deunderscore_attributes(attributes)]) %>
+</def>
