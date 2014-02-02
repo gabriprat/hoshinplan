@@ -80,6 +80,23 @@ body h2.heading {
 	font-size: 4em;
 }
 
+body.hoshin .header.goals.well {
+	padding: 0 1em;
+}
+
+body.hoshin ul.collection.goals > li {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+body.hoshin ul.collection.goals h4 {
+	font-size: 1em;
+}
+
+body.hoshin ul.collection.goals .goal {
+	border: 1px solid #25A9E0;
+}
+
 body.hoshin .collection.areas {
 	display: table; 
 	table-layout: auto; 

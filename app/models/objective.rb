@@ -17,7 +17,7 @@ class Objective < ActiveRecord::Base
 
   children :indicators, :tasks
 
-  belongs_to :company, :inverse_of => :areas
+  belongs_to :company
 
   belongs_to :parent, :class_name => "Objective"
   belongs_to :area, :inverse_of => :objectives, :counter_cache => false

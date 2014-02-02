@@ -22,7 +22,7 @@ class Indicator < ActiveRecord::Base
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
   
-  belongs_to :company, :inverse_of => :areas
+  belongs_to :company
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false

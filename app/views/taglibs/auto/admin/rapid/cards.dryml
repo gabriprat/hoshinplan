@@ -47,6 +47,14 @@
   </card>
 </def>
 
+<def tag="card" for="Goal">
+  <card class="goal" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Hoshin">
   <card class="hoshin" param="default" merge>
     <header: param>

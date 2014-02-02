@@ -367,6 +367,148 @@
 
 
 
+<!-- ====== Goal Pages ====== -->
+
+<def tag="index-page" for="Goal">
+  <page merge title="#{ht 'goal.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page goal" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="goal.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="goal.actions.new">New Goal</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Goal">
+  <page merge title="#{ht 'goal.new.title', :default=>[' New Goal'] }">
+    <body: class="new-page goal" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal.new.heading">
+          New Goal
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'goal.actions.create', :default=>['Create Goal']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Goal">
+  <page merge title="#{ht 'goal.show.title', :default=>['Goal'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page goal" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal.show.heading" name="#{name(:no_wrapper => true)}">
+          Goal <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="goal.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Goal
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="position, company, hoshin" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Goal">
+  <page merge title="#{ht 'goal.edit.title', :default=>['Edit Goal'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page goal" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Goal
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'goal.actions.delete', :default=>['Remove This Goal']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-hoshin-page" polymorphic/>
+<def tag="new-for-hoshin-page" for="Goal">
+  <page merge title="#{ht 'goal.new_for_owner.title', :default=>['New Goal for']} #{name :with => @hoshin}">
+    <body: class="new-for-owner-page  goal" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal.new_for_owner.heading">
+          New Goal
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="goal.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@hoshin"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="hoshin" method="post" param>
+        <field-list: skip="hoshin"/>
+        <submit: label="#{ht 'goal.actions.create', :default=>['Create Goal']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Hoshin Pages ====== -->
 
 <def tag="index-page" for="Hoshin">

@@ -56,7 +56,7 @@ class Area < ActiveRecord::Base
   
   def same_company_admin
     user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id).administrator
+    user.user_companies.where(:company_id => company_id, :state => :admin)
   end
   
   def validate_company
