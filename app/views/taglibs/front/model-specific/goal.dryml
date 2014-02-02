@@ -1,0 +1,18 @@
+
+<extend tag="card" for="Goal">
+	<old-card: replace>
+		<div>
+			<a onclick="$('#update-goal-modal-#{this.id}').modal('show'); $('#update-goal-modal-#{this.id} form').trigger('reset'); return false;"><name/></a>
+			<modal id="update-goal-modal-#{this.id}">
+				<modal:>
+				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-goal-#{this.id}" update="goals">
+				   <div class="modal-body">
+				    <field-list: fields="name"/>
+				   </div>
+				   <modal-form-footer-delete />
+				 </form> 
+				</modal:>
+			</modal>
+		</div>
+	</old-card>
+</extend>

@@ -17,13 +17,14 @@ class Hoshin < ActiveRecord::Base
   
   has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
   has_many :objectives, :through => :areas, :accessible => true
+  has_many :goals, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
   
   children :areas
   
   validate :validate_company
   
   default_scope lambda { 
-    where(:company_id => Company.current_id) }
+    where(:company_id => Company.current_id) if Company.current_id}
 
   # --- Permissions --- #
   
@@ -34,7 +35,7 @@ class Hoshin < ActiveRecord::Base
   
   def same_company_admin
     user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id).where(:state => :admin)
+    user.user_companies.where(:company_id => company_id, :state => :admin)
   end
   
   def parent_same_company

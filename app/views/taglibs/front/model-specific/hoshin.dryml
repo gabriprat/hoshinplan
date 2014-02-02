@@ -19,11 +19,33 @@
 				</form>
 				</modal:>
 			</modal>
+		    <a title="Add new goal" onclick="$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right">
+    	            <ht key="goal.actions.new" name="#{name(:no_wrapper => true)}">
+    	              Add new goal
+    	            </ht>
+    			</a>
+    			<modal id="add-goal-modal">
+    				<modal:>
+    				<set hid="#{this.id}"/>
+    				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" update="goals" class="modal">
+    					<div class="modal-body">
+    						<field-list: fields="name" />
+    						<hidden-field:hoshin_id value="#{hid}"/>
+    					</div>
+    					<modal-form-footer/>
+    				</form>
+    				</modal:>
+    			</modal>
+			
 			<a title="Export as PDF" href="#{this.id}-#{this.name}.pdf" class="btn pull-right">Export as PDF</a>
 			<a title="Presentation" onclick="startPresentation(); return false;" class="btn pull-right">Presentation</a>
 		</prepend-content-header:>
 		<content-body: >
 			<view:header/>
+			<div class="header well goals">
+				<h3>Long term goals</h3>
+				<sortable-collection:goals part="goals" id="goals"/>
+			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
 			<script type="text/javascript">
 				equalHeightSections();
