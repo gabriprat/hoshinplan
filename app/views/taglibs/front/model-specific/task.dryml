@@ -62,19 +62,24 @@
 	      	  <if test="#{this.status=='active'?'true':''}">
 	      		  <li class="complete">
 	      		  <form ajax lifecycle="discard" class="inline-form">
-	      			  <input type="image" src="/assets/icons/delete.png"/>
+	      			  <input type="image" src="/assets/icons/delete.png" title="Mark task as discarded"/>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="discard">
 	      		  <form ajax lifecycle="complete" class="inline-form">
-	      			  <input type="image" src="/assets/icons/complete-task.png"/>
+	      			  <input type="image" src="/assets/icons/complete-task.png"  title="Mark task as completed"/>
 	      		  </form>
 	      	  	  </li>
 	        	  </if>
 	      	  <else>
 	      		  <li class="reactivate">
 	      		  <form ajax lifecycle="reactivate" class="inline-form">
-	      			  <input type="image" src="/assets/icons/reactivate.png"/>
+	      			  <input type="image" src="/assets/icons/reactivate.png" title="Reactivate task"/>
+	      		  </form>
+	      	  	  </li>
+	      		  <li class="delete">
+	      		  <form ajax lifecycle="delete" class="inline-form">
+	      			  <input type="image" src="/assets/icons/trash.png" title="Permanently delete task"/>
 	      		  </form>
 	      	  	  </li>
 	      	  </else>

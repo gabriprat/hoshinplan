@@ -152,6 +152,17 @@
     </div>
   </form>
 </def>
+<def tag="delete-form" polymorphic/>
+<def tag="delete-form" for="Task">
+  <form lifecycle="delete" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.delete', :default=>['Delete']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="UserCompany">
   <form merge param="default">

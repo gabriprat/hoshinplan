@@ -29,7 +29,7 @@ class Task < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id) ) }
+        User.current_id)) }
   
   before_create do |task|
     task.company = task.objective.company
@@ -37,7 +37,7 @@ class Task < ActiveRecord::Base
 
   lifecycle :state_field => :status do
     state :active, :default => true
-    state :completed, :discarded
+    state :completed, :discarded, :deleted
     
     transition :activate, {nil => :active}, :available_to => "User" 
     
@@ -47,6 +47,9 @@ class Task < ActiveRecord::Base
     
     transition :reactivate, {:completed => :active}, :available_to => "User" 
     transition :reactivate, {:discarded => :active}, :available_to => "User" 
+    
+    transition :delete, {:completed => :deleted}, :available_to => "User" 
+    transition :delete, {:discarded => :deleted}, :available_to => "User" 
       
   end
   
