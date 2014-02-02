@@ -1245,6 +1245,27 @@
   </page>
 </def>
 
+<def tag="delete-page" polymorphic/>
+<def tag="delete-page" for="Task">
+  <page title="#{ht 'task.delete.title', :default=>['Delete']}" merge>
+
+    <body: class="lifecycle-transition-page delete-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task.delete.heading">
+          Delete
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <delete-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 <!-- ====== UserCompany Pages ====== -->

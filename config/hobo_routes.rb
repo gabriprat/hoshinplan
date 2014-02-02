@@ -96,6 +96,10 @@ Hoshinplan::Application.routes.draw do
       get 'reactivate'
       put 'reactivate', :action => 'do_reactivate'
       get 'reactivate'
+      put 'delete', :action => 'do_delete'
+      get 'delete'
+      put 'delete', :action => 'do_delete'
+      get 'delete'
     end
   end
 
