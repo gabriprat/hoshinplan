@@ -49,9 +49,6 @@
 				</div>
 			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
-			<script type="text/javascript">
-				equalHeightSections();
-			</script>
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>

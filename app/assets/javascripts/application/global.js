@@ -84,25 +84,34 @@ $( window ).resize(function() {
   equalHeightSections();
 });
 
+var eh = false;
 
 var equalHeightSections = function() {
 	if (presenting) return;
-	equalHeights($("div.objectives-wrapper"));
-	equalHeights($("div.indicators-wrapper"));
-	equalHeights($("div.tasks-wrapper"));
+	if (eh) return;
+	eh = true;
+	equalHeights("div.tasks-wrapper");
+	equalHeights("div.indicators-wrapper");
+	equalHeights("div.objectives-wrapper");
+	eh = false;
 }
-$(document).ready(equalHeightSections);
 
 var equalHeights = function(elements) {
-	elements.height("auto");
-	var maxHeight = Math.max.apply(null, elements.map(function ()
+	$(elements).height("auto");
+	var maxHeight = Math.max.apply(null, $(elements + "").map(function ()
 	{
 	    return $(this).height();
 	}).get());
 	if (window.location.pathname.indexOf("_pdf") != -1) {
-		maxHeight = maxHeight / 1.4;
+		maxHeight = maxHeight / 2.5 + 90;
+	} else {
+		
 	}
-	elements.height(maxHeight);
+	$(elements).height(maxHeight);
+	//$(elements).css({border: "1px solid red"});
+	//$(elements).height("auto");
+	//$("body").append("MH: " + maxHeight + "<br/>");
+	
 }
 
 var PRESENTATION_SELECTOR = 'div.navbar,div.content-header,div.hoshin-header,div.area,.ordering-handle';
