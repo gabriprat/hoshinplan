@@ -32,6 +32,10 @@ body a, body a:hover, body a:visited, body a:active {
 	color: #25A9E0;
 }
 
+body .btn, ul.input-many > li > div.buttons button {
+	color: #25A9E0;
+}
+
 body a.btn-primary, body a.btn-primary:hover, body a.btn-primary:visited, body a.btn-primary:active {
 	color: #fff;
 }
