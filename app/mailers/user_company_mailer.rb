@@ -1,5 +1,5 @@
 class UserCompanyMailer < ActionMailer::Base
-  default :from => "gabri@hoshinplan.com"
+  default :from => "hello@hoshinplan.com"
 
   def invite(user_company, subject, lead, message, callout, key, invitor)
     @key, @user, @user_company, @lead, @message, @callout = 
@@ -12,13 +12,14 @@ class UserCompanyMailer < ActionMailer::Base
   def transition(user, subject, message)
     @user, @message = user.email_address, message
     mail( :subject => subject,
-          :to      => @user )
+          :to      => @user)
   end
   
   def reminder(user, subject, message)
     @user, @message = user, message
     mail( :subject => subject,
-          :to      => @user.email_address )
+          :to      => @user.email_address,
+          :from    => "alerts@hoshinplan.com")
   end
   
   def welcome(user, subject)
