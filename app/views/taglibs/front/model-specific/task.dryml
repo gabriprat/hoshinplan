@@ -41,7 +41,7 @@
 	<if test="&column == 'Deadline'">
 		  <div class="column nowrap" data-label="Deadline">
 			  	<if test="#{this.status=='active'?'true':''}">
-					<form ajax update="Task-#{this.id}" class="autosubmit inline-form wider" complete="attatchAutosubmit()">
+					<form ajax update="Task-#{this.id}" class="autosubmit inline-form wider" complete="attatchAutosubmit()" before="validateDate(this);">
 						<field-list: fields="deadline" disable/>
 						<actions: replace/>
 				 	</form>
