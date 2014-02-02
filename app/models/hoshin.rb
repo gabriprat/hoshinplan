@@ -34,7 +34,7 @@ class Hoshin < ActiveRecord::Base
   
   def same_company_admin
     user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id).administrator
+    user.user_companies.where(:company_id => company_id).where(:state => :admin)
   end
   
   def parent_same_company
