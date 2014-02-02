@@ -22,7 +22,7 @@ class Task < ActiveRecord::Base
   
   acts_as_list :scope => :area
   
-  set_default_order :position
+  set_default_order [:status, :position]
   
   validate :validate_company
   
