@@ -27,7 +27,7 @@
 		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
-					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); $('#add-kpi-modal-#{this.id} form').trigger('reset');  return false;"><img src="/assets/icons/add-kpi.png" /></a>
+					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-kpi-modal-#{this.id} form').trigger('reset');  return false;"><img src="/assets/icons/add-kpi.png" /></a>
 					<modal id="add-kpi-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>
@@ -49,13 +49,13 @@
 					</modal>
 				</li>
 				<li class="task">
-					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;"><img src="/assets/icons/add-task.png" /></a>
+					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;"><img src="/assets/icons/add-task.png" /></a>
 					<modal id="add-task-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
 						<set comp="&this.company"/>
-						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
+						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections(); attachAutosubmit();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, responsible, deadline, show_on_parent">
 							    	<responsible-view:>

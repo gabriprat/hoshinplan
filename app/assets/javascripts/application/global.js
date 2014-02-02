@@ -16,12 +16,17 @@ var preventDoubleSubmit = function(e) {
 };
 
 var attatchAutosubmit = function() {
+	$('.bootstrap-datepicker').datepicker();
 	$(".autosubmit input[type=text]")
 		.unbind("change", submitClosestForm).change(submitClosestForm);
-	$('.bootstrap-datepicker').datepicker();
+	$(".autosubmit input.indicator-value")
+		.unbind("blur", submitClosestForm).blur(submitClosestForm);
 	$(".autosubmit").unbind("submit", preventDoubleSubmit).submit(preventDoubleSubmit);
 	colorize();
+	equalHeightSections();
 }
+
+$(document).ready(attatchAutosubmit);
 
 var colorize = function () {
 	$(".indicator-tpc").parent().heatcolor(
@@ -45,6 +50,7 @@ var equalHeightSections = function() {
 	equalHeights($("div.indicators-wrapper"));
 	equalHeights($("div.tasks-wrapper"));
 }
+$(document).ready(equalHeightSections);
 
 var equalHeights = function(elements) {
 	elements.height("auto");
