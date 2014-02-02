@@ -15,6 +15,47 @@ var preventDoubleSubmit = function(e) {
   }
 };
 
+var isValidDate = function (value, userFormat) {
+  var
+
+  userFormat = userFormat || 'mm/dd/yyyy', // default format
+
+  delimiter = /[^mdy]/.exec(userFormat)[0],
+  theFormat = userFormat.split(delimiter),
+  theDate = value.split(delimiter),
+
+  isDate = function (date, format) {
+    var m, d, y
+    for (var i = 0, len = format.length; i < len; i++) {
+      if (/m/.test(format[i])) m = date[i]
+      if (/d/.test(format[i])) d = date[i]
+      if (/y/.test(format[i])) y = date[i]
+    }
+    return (
+      m > 0 && m < 13 &&
+      y && y.length === 4 &&
+      d > 0 && d <= (new Date(y, m, 0)).getDate()
+    )
+  }
+
+  return isDate(theDate, theFormat)
+
+}
+
+var validateDate = function(formElem) {
+	var inputs = $(formElem).find(".bootstrap-datepicker");
+	for (var i=0; i<inputs.length; i++) {
+		var inp = $(inputs[i]);
+		var format = inp.attr("data-date-format");
+		var value = inp.val();
+		if (!isValidDate(value, format)) {
+			alert("Not a valid date");
+			return false;
+		}
+	}
+	return true;
+}
+
 var attatchAutosubmit = function() {
 	$('.bootstrap-datepicker').datepicker();
 	$(".autosubmit input[type=text]")
