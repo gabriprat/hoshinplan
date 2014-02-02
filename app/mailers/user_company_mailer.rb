@@ -28,4 +28,10 @@ class UserCompanyMailer < ActionMailer::Base
           :to      => @user.email_address)
   end
   
+  def invited_welcome(user, subject)
+    @user, @message = user
+    mail( :subject => subject,
+          :to      => @user.email_address)
+  end
+  
 end
