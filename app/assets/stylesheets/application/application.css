@@ -80,17 +80,31 @@ body h2.heading {
 	font-size: 4em;
 }
 
-body.hoshin .header.goals.well {
-	padding: 0 1em;
-}
 
 body.hoshin ul.collection.goals > li {
 	display: inline-block;
 	margin: 0 5px;
 }
 
-body.hoshin ul.collection.goals h4 {
+body.hoshin .goals h3 {
 	font-size: 1em;
+	transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	transform-origin: 19% 187% 0;
+	-moz-transform-origin: 19% 187% 0;
+	-ms-transform-origin: 19% 187% 0;
+	-webkit-transform-origin: 19% 187% 0;
+	width: 200px;
+	color: #fff;
+}
+
+body.hoshin div.goals {
+	background: #f8faff;
+	border-left: 2em solid #25A9E0;
+	margin-bottom: 10px;
+	
 }
 
 body.hoshin ul.collection.goals .goal {

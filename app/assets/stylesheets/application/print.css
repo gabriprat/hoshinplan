@@ -49,6 +49,34 @@
 	body.hoshin .collection.areas {
 		table-layout:fixed;
 	}
+	body.hoshin .goals h3 {
+		font-size: 3em;
+		transform: none;
+		-moz-transform: none;
+		-ms-transform: none;
+		-webkit-transform: none;
+		width: 100%;
+		color: #000;
+	}
+	body.hoshin ul.collection.goals > li {
+		list-style-type: decimal;
+		display: list-item;
+		list-style-position: inside;
+	}
+	body.hoshin ul.collection.goals .goal {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+	body.hoshin .goals .goal {
+		border: 0 0 0 1px;
+		border-color: #000;
+	}
+	body.hoshin div.goals {
+		background-color: transparent;
+		border: 1px solid black;
+	}
+	
 	@page {
 		size: A4 landscape;
 	}

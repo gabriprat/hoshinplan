@@ -42,9 +42,11 @@
 		</prepend-content-header:>
 		<content-body: >
 			<view:header/>
-			<div class="header well goals">
-				<h3>Long term goals</h3>
-				<sortable-collection:goals part="goals" id="goals"/>
+			<div id="goals" part="goals">
+				<div class="goals" if="&this.goals">
+					<h3>Long term goals</h3>
+					<sortable-collection:goals />
+				</div>
 			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
 			<script type="text/javascript">
