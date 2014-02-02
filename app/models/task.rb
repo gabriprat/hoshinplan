@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id
 
   belongs_to :company, :inverse_of => :areas
-
+  
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks

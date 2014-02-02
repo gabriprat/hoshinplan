@@ -11,7 +11,9 @@
 		<div class="column" data-label="Company"><view:company/></div>
 	</if>
 	<if test="&column == 'Hoshin'">
-		<div class="column" data-label="Hoshin"><view:area.hoshin/></div>
+		<div class="column" data-label="Hoshin">
+			<view:area.hoshin-id/>
+		</div>
 	</if>
 	<if test="&column == 'Area'">
 		<div class="column" data-label="Hoshin"><view:area/></div>

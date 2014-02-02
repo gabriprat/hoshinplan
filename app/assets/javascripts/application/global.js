@@ -49,7 +49,7 @@ var validateDate = function(formElem) {
 		var format = inp.attr("data-date-format");
 		var value = inp.val();
 		if (!isValidDate(value, format)) {
-			alert("Not a valid date");
+			alert("Not a valid date, the format should be: " + format);
 			return false;
 		}
 	}
