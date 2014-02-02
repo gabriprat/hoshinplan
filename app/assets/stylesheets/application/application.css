@@ -133,6 +133,10 @@ body.hoshin form.inline-form input {
 	vertical-align: baseline;
 }
 
+body.hoshin form.inline-form input[type=image] {
+	vertical-align: bottom;
+}
+
 body.hoshin form.inline-form input.date {
 	width: 6em;
 }
@@ -328,6 +332,10 @@ body div.ordering-handle {
 
 div.table.indicators .table-head .table-row div.column:nth-child(3) {
 	min-width: 220px;
+}
+
+.dashboard .table .odd {
+	background-color: rgba(0,50,150,0.1);
 }
 
 .edit-page.company .table-head {

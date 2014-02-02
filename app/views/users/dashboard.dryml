@@ -1,6 +1,6 @@
 <page title="My dashboard">
 
-  <body: class="front-page hoshin"/>
+  <body: class="front-page dashboard hoshin"/>
 
   <content:>
     <header class="content-header">
@@ -20,7 +20,7 @@
     </card>
     <h2>Tasks</h2>
     <card>
-    <rtable:tasks columns="#,Company,Hoshin,Area,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks" class="tasks" sortable/>
+    <rtable:tasks columns="#,Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" sortable/>
     <else>
     You have no tasks with a close deadline
     </else>
