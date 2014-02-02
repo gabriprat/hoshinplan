@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 
     transition :activate, { :invited => :active } do
       @subject = "#{self.name} welcome to Hoshinplan!"
-      UserCompanyMailer.welcome(self, 
+      UserCompanyMailer.invited_welcome(self, 
       @subject).deliver
     end
 
