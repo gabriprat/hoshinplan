@@ -54,6 +54,11 @@ es:
         current_password: Contraseña Actual
         password_confirmation: Confirmación Contraseña
         email_address: Correo Electrónico
+      objective:
+        name: Nombre
+        description: Descripción
+        responsible: Responsable
+        parent: Padre
   index:
     title: Haz que tu estrategia de negocio funcione
     enter_ij_user: Introduce tu nombre de usuario de InfoJobs
@@ -63,13 +68,7 @@ es:
   area:
     no_xx_defined: No hay ningun %{xx} en esta %{model}
     child_tasks: Tareas de hoshin plans hijos
-  objective:
-    field: 
-      name:
-        name: Nombre
-      responsible:
-        name: Responsable
-
+ 
   date:
     formats:
       default: ! '%Y/%m/%d'
