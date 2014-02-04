@@ -1,0 +1,102 @@
+# Hobo application translation file for Spanish.
+# Please, add the specific models and attributes for your application.
+
+# Translated by Domizio Demichelis (dd.nexus@gmail.com)
+# Corrections by Ricardo Pacheco
+
+# This file might be used for other Latin America Spanish Countries without any change
+# It might be ok also for Spain. If you find any error, or if you have any more specific translation,
+# please post it to http://hobousers.googlegroups.com. Thank you!
+
+es:
+  user_company:
+    collection:
+      heading: Usuarios
+  hoshin:
+    actions:
+      presentation: Presentación
+      export_as_pdf: Exportar cómo PDF
+      
+  attributes:
+    created_at: Creado el
+    updated_at: Actualizado el
+
+  activerecord:
+    models:
+      user:
+        one: Usuario
+        other: Usuarios
+      company:
+        one: Empresa
+        other: Empresas
+      area:
+        one: Area
+        other: Areas
+      objective:
+        one: Objetivo
+        other: Objetivos
+      indicator:
+        one: KPI
+        other: KPIs
+      task:
+        one: Tarea
+        other: Tareas
+      goal:
+        one: Objetivo a largo plazo
+        other: Objetivos a L.P.
+      client_application:
+        one: Aplicación cliente
+        other: Aplicaciones cliente
+    attributes:
+      user:
+        name: Nombre
+        password: Contraseña
+        current_password: Contraseña Actual
+        password_confirmation: Confirmación Contraseña
+        email_address: Correo Electrónico
+  index:
+    title: Haz que tu estrategia de negocio funcione
+    enter_ij_user: Introduce tu nombre de usuario de InfoJobs
+    you_must_introduce: Tienes que introducir tu nombre de usuario para acceder.
+  log_in_with: Accede con %{provider}
+  home: Inicio
+  area:
+    no_xx_defined: No hay ningun %{xx} en esta %{model}
+    child_tasks: Tareas de hoshin plans hijos
+  objective:
+    field: 
+      name:
+        name: Nombre
+      responsible:
+        name: Responsable
+
+  date:
+    formats:
+      default: ! '%Y/%m/%d'
+      short: ! '%b %d'
+  number:
+    format:
+      delimiter: .
+      precision: 2
+      separator: ! ','
+      significant: false
+      strip_insignificant_zeros: true
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: K
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q
+      format:
+        unit: ''
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+#    attribute_help:
+#      user:
+#        email_address:

@@ -2,7 +2,7 @@
 	<old-show-page merge>
 		<collection-heading: replace />
 		<prepend-content-header:>
-			<a title="Add new area" onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
+			<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
 	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new area
 	            </ht>
@@ -19,7 +19,7 @@
 				</form>
 				</modal:>
 			</modal>
-		    <a title="Add new goal" onclick="$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right">
+		    <a onclick="$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right">
     	            <ht key="goal.actions.new" name="#{name(:no_wrapper => true)}">
     	              Add new goal
     	            </ht>
@@ -37,14 +37,22 @@
     				</modal:>
     			</modal>
 			
-			<a title="Export as PDF" href="#{this.id}-#{this.name}.pdf" class="btn pull-right">Export as PDF</a>
-			<a title="Presentation" onclick="startPresentation(); return false;" class="btn pull-right">Presentation</a>
+			<a href="#{this.id}-#{this.name}.pdf" class="btn pull-right">
+	    	            <ht key="hoshin.actions.export_as_pdf" name="#{name(:no_wrapper => true)}">
+	    	              Export as PDF
+	    	            </ht>
+			</a>
+			<a onclick="startPresentation(); return false;" class="btn pull-right">
+	    	            <ht key="hoshin.actions.presentation" name="#{name(:no_wrapper => true)}">
+	    	              Presentation
+	    	            </ht>
+			</a>
 		</prepend-content-header:>
 		<content-body: >
 			<view:header/>
 			<div id="goals" part="goals">
 				<div class="goals" if="&this.goals">
-					<h3>Long term goals</h3>
+					<h3><model-name-human model="&Goal" count="100"/></h3>
 					<sortable-collection:goals />
 				</div>
 			</div>

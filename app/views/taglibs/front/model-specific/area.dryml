@@ -4,8 +4,12 @@
     <append-body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
 	<div class="objectives-wrapper">
-	<h5>Objectives
-	<a class="btn pull-right" title="New objective" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">New objective</a></h5>
+	<h5><model-name-human model="&Objective" count="100"/>
+	<a class="btn pull-right" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">
+            <ht key="objective.actions.new" name="#{name(:no_wrapper => true)}">
+              Add new objective
+            </ht>
+	</a></h5>
 	
 	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden" success="attatchAutosubmit();">
 		<field-list: fields="name" />
@@ -35,15 +39,15 @@
 	</modal>
 	</div>
 	<div class="indicators-wrapper">
-	<h5>KPIs</h5>
+	<h5><model-name-human model="&Indicator" count="100"/></h5>
 	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
-	<else>No KPIs defined for this area</else>
+	<else><ht key="area.no_xx_defined" xx="&Indicator.model_name.human" /></else>
 	</div>
 	<div class="tasks-wrapper">
-	<h5>Tasks</h5>
+	<h5><model-name-human model="&Task" count="100"/></h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
-	<else>No tasks defined for this area</else>
-	<h6 if="child_tasks">Tasks from children hoshin plans</h6>
+	<else><ht key="area.no_xx_defined" xx="&Task.model_name.human" /></else>
+	<h6 if="child_tasks"><t key="area.child_tasks" default="Tasks from children hoshin plans"/></h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
 	</div>
 	</div>
