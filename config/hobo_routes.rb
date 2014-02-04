@@ -29,6 +29,24 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller goals
+  resources :goals, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    collection do
+      post 'reorder'
+    end
+  end
+
+  # Owner routes for controller goals
+  resources :hoshins, :as => :hoshin, :only => [] do
+    resources :goals, :only => [] do
+      get 'new', :on => :new, :action => 'new_for_hoshin'
+      collection do
+        post 'create', :action => 'create_for_hoshin'
+      end
+    end
+  end
+
+
   # Resource routes for controller hoshins
   resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy]
 
@@ -158,24 +176,6 @@ Hoshinplan::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
-
-
-  # Resource routes for controller goals
-  resources :goals, :only => [:new, :edit, :show, :create, :update, :destroy] do
-    collection do
-      post 'reorder'
-    end
-  end
-
-  # Owner routes for controller goals
-  resources :hoshins, :as => :hoshin, :only => [] do
-    resources :goals, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_hoshin'
-      collection do
-        post 'create', :action => 'create_for_hoshin'
-      end
-    end
-  end
 
   namespace :admin do
 

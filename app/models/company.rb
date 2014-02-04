@@ -50,11 +50,11 @@ class Company < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).administrator.empty?
+     acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).where(:state => :admin).empty?
   end
 
   def destroy_permitted?
-    acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).administrator.empty?
+     acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).where(:state => :admin).empty?
   end
 
   def view_permitted?(field)

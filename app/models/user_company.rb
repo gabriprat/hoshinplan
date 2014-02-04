@@ -3,10 +3,9 @@ class UserCompany < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do 
-    administrator    :boolean, :default => false
     timestamps
   end
-  attr_accessible :administrator, :company, :company_id, :user, :user_id
+  attr_accessible :company, :company_id, :user, :user_id
   
   belongs_to  :company, :accessible => true
   belongs_to  :user, :accessible => true
@@ -71,7 +70,7 @@ class UserCompany < ActiveRecord::Base
        #user = self.user
        #user.lifecycle.activate!(user)
        #user.save!(:validate => false)
-       company.user_companies.administrator.each do |admin| 
+       company.user_companies.where(:state => :admin).each do |admin| 
          UserCompanyMailer.transition(admin.user, "Invitation accepted!", 
          "#{user.email_address} is now collaborating to the Hoshinplan of #{company.name}").deliver
        end
@@ -80,14 +79,12 @@ class UserCompany < ActiveRecord::Base
      transition :cancel_invitation, { :invited => :destroy }, :available_to => :company_admin_available 
 
      transition :make_admin, { :active => :admin }, :available_to => :company_admin_available do
-       self.administrator = true
        self.save!
        UserCompanyMailer.transition(user, "Administrator", 
        "#{user.name}, you are now administrating the Hoshinplan of #{company.name}").deliver
      end
      
      transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
-       self.administrator = false
        self.save!
        UserCompanyMailer.transition(user, "You are no longer administrator", 
        "#{acting_user.name} has revoked your administration rights to the Hoshinplan of #{company.name}").deliver
@@ -107,11 +104,11 @@ class UserCompany < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || acting_user.user_companies.company_is(company).administrator.exists?
+    acting_user.administrator? || acting_user.user_companies.company_is(company).where(:state => :admin).exists?
   end
 
   def destroy_permitted?
-    acting_user.administrator? || acting_user.user_companies.company_is(company).administrator.exists?
+    acting_user.administrator? || acting_user.user_companies.company_is(company).where(:state => :admin).exists?
   end
 
   def view_permitted?(field)
