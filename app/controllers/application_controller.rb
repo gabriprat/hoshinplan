@@ -68,6 +68,13 @@ class ApplicationController < ActionController::Base
     ActionMailer::Base.default_url_options[:only_path] = false
   end
   
+  before_filter :set_locale
+ 
+  def set_locale
+    I18n.locale = params[:locale] || :en
+  end
+  
+  
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
   def my_login_required
