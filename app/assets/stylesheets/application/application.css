@@ -22,7 +22,19 @@ body.hoshin .collection.areas > .item {
 
 html body {
 	font-size: 13px;
+	font-family: "Muli", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing: -0.4px;
 }
+
+body .navbar .brand {
+	font-family: "Yanone Kaffeesatz", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 30px;
+}
+
+body .navbar .nav {
+	margin: 7px 12px 0 0;
+}
+
 body.show-page {
 	font-weight: 200;
 	background: url(/assets/bg.png) repeat;
@@ -41,8 +53,18 @@ body a.btn-primary, body a.btn-primary:hover, body a.btn-primary:visited, body a
 }
 
 body h1, body h2, body h3, body h4, body h5 {
+	font-family: "Yanone Kaffeesatz", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 }
+
+body h1 {
+	font-size: 70px;
+}
+
+strong {
+	font-weight: 400;
+}
+
 body h4 {
 	font-size: 34px;
 }
@@ -313,12 +335,23 @@ body .navbar-inner {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-box-shadow: inset 0 1px #fff,0 1px 2px #c8cfe6;
-	-moz-box-shadow: inset 0 1px
-	#fff,0 1px 2px #c8cfe6;
-	box-shadow: inset 0 1px #fff,0 1px 2px #c8cfe6;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 	background-color: #f8faff;
 	background-image: none;
+	border: 0;
+}
+
+.front-page .row {
+	margin: 0;
+	padding: 0;
+}
+
+body .hero-unit {
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
 }
 
 .areas .card.area .header {

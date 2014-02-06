@@ -11,5 +11,6 @@
 		<append-body: >
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
 		</append-body:>
+	  	<app-name:><a class="brand" href="/"><strong>Hoshin</strong>plan</a></app-name:>
 	 </old-page>
 </extend>
