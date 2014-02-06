@@ -24,7 +24,13 @@ en:
 #      user:
 #        email_address: We will never share your address with third parties
 
-en:
+en:	
+  log_in_with: Log in with %{provider}
+  home: Home
+  area:
+    no_xx_defined: There are no %{xx} in this %{model}
+    child_tasks: Tasks from child hoshins
+    
   date:
     formats:
       default: ! '%Y/%m/%d'
