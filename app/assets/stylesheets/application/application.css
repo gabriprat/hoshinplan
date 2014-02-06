@@ -335,7 +335,10 @@ body .navbar-inner {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	box-shadow: none;
 	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
 	box-shadow: none;
 	background-color: #f8faff;
 	background-image: none;
@@ -352,6 +355,22 @@ body .hero-unit {
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	-ms-border-radius: 0;
+}
+
+body .form-search input {
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	border: 0;
+}
+
+body .form-search i {
+	margin: -22px 0 0 205px;
 }
 
 .areas .card.area .header {
