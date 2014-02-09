@@ -80,6 +80,7 @@ body h4 {
 body h5 {
 	font-size: 20px;
 	margin-top: 1.4em;
+	font-weight: 400;
 }
 
 .area h5 {
@@ -186,6 +187,10 @@ body.hoshin .content-body img {
 }
 body.hoshin .form-horizontal {
 	margin: 0;
+}
+
+body .modal .form-horizontal {
+	margin: inherit;
 }
 
 body.hoshin form.inline-form input {
