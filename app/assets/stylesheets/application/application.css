@@ -26,6 +26,11 @@ body .container h4 {
 	font-size: 1.7em;
 }
 
+body .areas .card.area {
+	min-width: inherit;
+	width: 100%;
+}
+
 }
 
 html body {
