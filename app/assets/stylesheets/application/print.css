@@ -46,8 +46,10 @@
 		content: ""
 	}
 	
-	body.hoshin .collection.areas {
-		table-layout:fixed;
+	body.hoshin .container .collection.areas {
+		display: table; 
+		table-layout: fixed; 
+		width: 100%;
 	}
 	body.hoshin .goals h3 {
 		font-size: 3em;
@@ -75,6 +77,11 @@
 	body.hoshin div.goals {
 		background-color: transparent;
 		border: 1px solid black;
+	}
+	
+	body.hoshin .container
+	.collection.areas > .item {
+		display: table-cell;
 	}
 	
 	@page {

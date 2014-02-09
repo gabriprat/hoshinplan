@@ -1,6 +1,6 @@
 @media all and (max-width: 640px) {
 
-body.hoshin .collection.areas {
+body.hoshin .container .collection.areas {
 	display: block;
 	width: 100%;
 }
@@ -10,12 +10,20 @@ body.hoshin a:after
 content: none;
 }
 
-body.hoshin .collection.areas > .item {
+body.hoshin .container .collection.areas > .item {
 	display: block;
 	width: 100%;
 }
 .ordering-handle {
 	display: none;
+}
+
+body .container h2.heading {
+	font-size: 2em;
+}
+
+body .container h4 {
+	font-size: 1.7em;
 }
 
 }
@@ -367,10 +375,6 @@ body .form-search input {
 	-moz-box-shadow: none;
 	-ms-box-shadow: none;
 	border: 0;
-}
-
-body .form-search i {
-	margin: -22px 0 0 205px;
 }
 
 .areas .card.area .header {
