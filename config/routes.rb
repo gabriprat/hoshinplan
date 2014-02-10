@@ -14,6 +14,7 @@ Hoshinplan::Application.routes.draw do
   match 'search' => 'front#search', :as => 'site_search'
   
   match 'first' => 'front#first', :as => 'front_first'
+  match 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
 
   match 'mail_preview' => 'mail_preview#index'
   
