@@ -1,7 +1,12 @@
 <def tag="scard" for="UserCompany">
-	<scard class="objective table-row" param="default" merge>
+	<scard class="usercompany table-row" param="default" merge>
 		<div class="column" data-label="Name">
+			<if test="&can_update?(object=this.user)">
+			<view with="&this.user"/>
+			</if>
+			<else>
 			#{this.user.name}
+			</else>
 		</div>
 		<div class="column" data-label="Email">
 			#{this.user.email_address}

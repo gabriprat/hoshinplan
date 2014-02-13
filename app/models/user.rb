@@ -117,9 +117,10 @@ class User < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? ||
-      (acting_user == self && only_changed?(:name, :email_address, :crypted_password,
-                                            :current_password, :password, :password_confirmation))
+    f = only_changed?(:name, :email_address, :crypted_password,
+                                            :current_password, :password, :password_confirmation)
+    acting_user.administrator? or
+      ((acting_user == self or same_company_admin) && f)
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
@@ -129,10 +130,14 @@ class User < ActiveRecord::Base
   end
   
   def same_company 
-      self.companies.unscoped.find(acting_user.companies)
+    acting_user.user_companies.where(:company_id => self.user_companies.*.company_id).present?
+  end
+  
+  def same_company_admin
+     acting_user.user_companies.where(:state => :admin, :company_id => self.user_companies.*.company_id).present?
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || same_company
+    acting_user.administrator? or same_company
   end
 end
