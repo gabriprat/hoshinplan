@@ -13,7 +13,7 @@
 			<textarea name="collaborators"></textarea>
 			<p class="bubble">
 				Send collaboration invitations by pasting 
-				one email address per line the textbox.
+				one email address per line in the textbox.
 			</p>
 			<div class="actions form-actions">
 			<submit label="Add collaborators" /> or 
