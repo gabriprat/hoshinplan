@@ -33,6 +33,10 @@ body .areas .card.area {
 
 }
 
+body h1, body h2, body h3, body h4, body h5, body h6 {
+	line-height: 1em;
+}
+
 html body {
 	font-size: 13px;
 	font-family: "Muli", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -117,7 +121,8 @@ body h2.heading {
 	sans-serif;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
-	font-size: 4em;
+	font-size: 3.5em;
+	margin: 0;
 }
 
 
