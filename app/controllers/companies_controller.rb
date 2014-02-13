@@ -20,7 +20,7 @@ class CompaniesController < ApplicationController
       begin
         params[:collaborators].each_line do |email|
           email.squish! 
-          user = User.where(:email_address => email).first
+          user = User.unscoped.where(:email_address => email).first
           if user.nil?
             user = User::Lifecycle.invite(:email_address => email)
             user.email_address = email
