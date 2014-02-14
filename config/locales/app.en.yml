@@ -30,7 +30,9 @@ en:
   area:
     no_xx_defined: There are no %{xx} in this %{model}
     child_tasks: Tasks from child hoshins
-    
+  rtable:
+    columns:
+      Id: ! '#'
   date:
     formats:
       default: ! '%Y/%m/%d'

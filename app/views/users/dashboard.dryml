@@ -4,7 +4,7 @@
 
   <content:>
     <header class="content-header">
-      <h1>My dashboard</h1>
+      <h1><t key="user.my_dashboard" default="My Dashboard"/></h1>
     </header>
 
 
