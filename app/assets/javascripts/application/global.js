@@ -96,6 +96,7 @@ var equalHeightSections = function() {
 
 var equalHeights = function(elements) {
 	$(elements).height("auto");
+	if (window.matchMedia('(max-width: 640px)').matches) return;
 	var maxHeight = Math.max.apply(null, $(elements + "").map(function ()
 	{
 	    return $(this).height();
