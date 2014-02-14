@@ -136,8 +136,8 @@ es:
       Actions: Acciones
   date:
     formats:
-      default: ! '%Y/%m/%d'
-      short: ! '%b %d'
+      default: ! '%d/%m/%Y'
+      short: ! '%d %b'
   number:
     format:
       delimiter: .

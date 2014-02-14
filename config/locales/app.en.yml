@@ -35,7 +35,7 @@ en:
       Id: ! '#'
   date:
     formats:
-      default: ! '%Y/%m/%d'
+      default: ! '%m/%d/%Y'
       long: ! '%B %d, %Y'
       short: ! '%b %d'
   number:

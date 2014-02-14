@@ -11,11 +11,11 @@
             </ht>
 	</a></h5>
 	
-	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden" success="attatchAutosubmit();">
+	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden" success="attachAutosubmit();">
 		<field-list: fields="name" />
 		<actions: replace />
 	</form>
-	<rtable:objectives columns="Id,Objective,Responsible" class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit(); attatchAutosubmit();"/>
+	<rtable:objectives columns="Id,Objective,Responsible" class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit(); attachAutosubmit();"/>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives"/>
