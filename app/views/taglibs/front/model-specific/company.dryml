@@ -5,14 +5,10 @@
 		<rtable:user_companies columns="Name, Email, State, Actions" part="users" id="users" />
 		
 		<a href="#" onclick="$('#add-collaborators').toggle()"><t key="company.add_collaborators" default="Add collaborators"/></a>
-		<!-- <form param>
-			<input type="text" name="collaborators" value="jo@gabriel.prat.name" />
-			<submit />
-		</form>-->
 		<form param id="add-collaborators">
 			<textarea name="collaborators"></textarea>
 			<p class="bubble">
-				<t key="send_invitations">
+				<t key="company.send_invitations">
 				Send collaboration invitations by pasting 
 				one email address per line in the textbox.
 				</t>
