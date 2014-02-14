@@ -38,6 +38,9 @@ en:
       default: ! '%m/%d/%Y'
       long: ! '%B %d, %Y'
       short: ! '%b %d'
+  client_app:
+    here_you_can: Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a %{rest_link}.
+    to_learn: To learn how to use it please visit our %{developers_link}.
   number:
     human:
       decimal_units:

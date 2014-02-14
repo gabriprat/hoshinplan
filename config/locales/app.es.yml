@@ -101,6 +101,14 @@ es:
             remove: Eliminar
             resend_invite: Reenviar invitación
             cancel_invitation: Cancelar invitación
+      client_application:
+        ClientApplication: Aplicación cliente
+        name: Nombre
+        description: Descripción
+        key: Clave
+        secret: Secreto
+        actions: Acciones
+        user: Usuario
   index:
     title: Haz que tu estrategia de negocio funcione
     enter_ij_user: Introduce tu nombre de usuario de InfoJobs
@@ -111,6 +119,17 @@ es:
     manage_collaborators: Gestionar colaboradores
     add_collaborators: Añadir colaboradores
     send_invitations: Envía invitaciones de colaboración escribiendo una dirección de email por lína en la caja de texto.
+  client_app:
+    sign_a_request: Firma una petición al API
+    requests_to_the_restful: Las peticiones al API RESTful tienen que estar firmadas con el campo secreto de la Aplicación Cliente. Este formulario te permitirá firmar una petición. Tienes que entrar la ruta de la petición que quieres firmar sin los parámetros "timestamp" ni "signature". Al clicar en el botón "Firmar" te devolverá la URL con estos parámetros.
+    for_example: ! 'Por ejemplo si entras:'
+    you_will_get: ! 'Obtendrás algo similar a:'
+    sign: Firmar
+    connect_your_apps: Conecta tus aplicaciones a nuestro API
+    here_you_can: Aquí puedes crear aplicaciones cliente que usen el API de Hoshinplan para leer o escribir datos. Hoshinplan dispone de una %{rest_link}.
+    to_learn: Para aprender cómo usarla visita nuestro %{developers_link}.
+    developers_link: site para desarrolladores
+    rest_link: API REST
   log_in_with: Accede con %{provider}
   change_locale: ! 'Idioma:'
   home: Inicio
