@@ -1,17 +1,18 @@
 <extend tag="show-page" for="ClientApplication">
 	<old-show-page merge>
 		<append-content-body:>
-		<h3>Sign a request to the API</h3>
-		<p>Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters. 
+		<h3><t key="client_app.sign_a_request" default="Sign a request to the API"/></h3>
+		<p>
+		<t key="client_app.requests_to_the_restful">Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters.</t>
 		</p>
-		<p> For example, if you enter:
+		<p> <t key="client_app.for_example" default="For example, if you enter:"/>
 			<ul><li>/companies/15-asdf?app_key=3623cff0f924c50fb582fead9aff8669</li></ul>
-		    You will get something like:
+		    <t key="client_app.you_will_get" default="You will get something like:"/>
 		    	<ul><li>/companies?app_key=3623cff0f924c50fb582fead9aff8669&amp;timestamp=2013-11-17T09%3A15%3A28%2B01%3A00&amp;signature=tYTBSCyejDzLOxGMfa0jzwpfyNnw2PDGAvxnmKSSXgc=</li></ul>
 		</p>
 		<form method="GET" web-method="sign" ajax>
 			<input name="data" type="text" />
-			<input type="submit" value="sign" />
+			<input type="submit" value="#{t :key => 'client_app.sign', :default => 'Sign'}" />
 		</form>
 		</append-content-body:>
 	</old-show-page>
@@ -23,8 +24,12 @@
 	        <append-content-body:>
 			<if />
 			<else>
-				<h2>Connect your applications to our API</h2>
-				<p>Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST API</a>. </p><p>To learn how to use it please visit our <a href="http://doc.hoshinplan.com/developer">developers site</a>.
+				<h2><t key="client_app.connect_your_apps" default="Connect your applications to our API"/></h2>
+				<p>
+				<%= t("client_app.here_you_can", :rest_link => link_to(t("client_app.rest_link", :default=>'REST API'), "http://en.wikipedia.org/wiki/Representational_state_transfer")) %>
+				</p>
+				<p>
+				<%= t("client_app.to_learn", :developers_link => link_to(t("client_app.developers_link", :default=>'developers site'), "http://doc.hoshinplan.com/developer")) %>
 				</p>
 			</else>
 		</append-content-body:>
