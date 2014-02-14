@@ -11,7 +11,7 @@ class ClientApplication < ActiveRecord::Base
     secret :string
     timestamps
   end
-  attr_accessible :name, :description
+  attr_accessible :name, :description, :user, :user_id
   attr_readonly :key, :secret
   
   belongs_to :user, :inverse_of => :client_applications

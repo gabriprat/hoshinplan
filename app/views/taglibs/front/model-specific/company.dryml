@@ -22,3 +22,13 @@
 	</append-content-body:>
 	</old-edit-page>
 </extend>
+
+<extend tag="show-page" for="Company">
+	<old-show-page merge>
+		<prepend-content-header: >
+		  <a with="&this.class" param="parent-link">&laquo; <t key="hobo.actions.back">Back to</t> <t key="hobo.index.heading" model="&this.model_name.human">Index <model-name-human/></t></a>
+		 </prepend-content-header:>
+		 
+ 	</old-show-page>
+ </extend>
+		 
