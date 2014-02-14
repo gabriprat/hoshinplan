@@ -9,6 +9,9 @@
 # please post it to http://hobousers.googlegroups.com. Thank you!
 
 es:
+  hobo:
+    actions:
+      submit: Enviar
   user_company:
     collection:
       heading: Usuarios
@@ -54,21 +57,75 @@ es:
         current_password: Contraseña Actual
         password_confirmation: Confirmación Contraseña
         email_address: Correo Electrónico
+        image: Imagen
+        state: Estado
       objective:
         name: Nombre
         description: Descripción
         responsible: Responsable
         parent: Padre
+      company:
+        name: Nombre
+        Company: Empresa
+        actions: Acciones
+      hoshin:
+        name: Nombre
+        header: Cabecera
+        parent: Padre
+      goal:
+        name: Nombre
+      area:
+        name: Nombre
+        description: Descripción
+      indicator:
+        name: Nombre
+        description: Descripción
+        frequency: Frecuencia
+        next_update: Prox. Actualiz.
+        responsible: Responsable
+        goal: Objetivo
+        min_value: Valor mínimo
+        max_value: Valor máximo
+        higher: Mejor si mayor
+      task:
+        name: Nombre
+        description: Descripción
+        responsible: Responsable
+        deadline: Vencimiento
+        show_on_parent: Subir tarea
   index:
     title: Haz que tu estrategia de negocio funcione
     enter_ij_user: Introduce tu nombre de usuario de InfoJobs
     you_must_introduce: Tienes que introducir tu nombre de usuario para acceder.
+  user:
+    my_dashboard: Mi panel de control
+  company:
+    manage_collaborators: Gestionar colaboradores
+    add_collaborators: Añadir colaboradores
+    send_invitations: Envia invitaciones de colaboración escribiendo una dirección de email por lína en la caja de texto.
   log_in_with: Accede con %{provider}
+  change_locale: ! 'Idioma:'
   home: Inicio
   area:
-    no_xx_defined: No hay ningun %{xx} en esta %{model}
+    no_xx_defined: No hay %{xx} en esta %{model}
     child_tasks: Tareas de hoshin plans hijos
- 
+  rtable:
+    column:
+      Id: ! '#'
+      Objective: Objetivo
+      Responsible: Resp.
+      Value: Valor
+      Goal: Objetivo
+      Deadline: Vencimiento
+      Dev: Desv.
+      Status: Acciones
+      Task: Tarea
+      Company: Empresa
+      Area: Área
+      Name: Nombre
+      Email: Email
+      State: Estado
+      Actions: Acciones
   date:
     formats:
       default: ! '%Y/%m/%d'

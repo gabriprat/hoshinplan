@@ -1,7 +1,7 @@
 <extend tag="show-page" for="User">
 	<old-show-page merge>
 		<prepend-content-header:>
-			<a action="dashboard"  class="btn pull-right" if="&current_user == this">My Dashboard</a>
+			<a action="dashboard"  class="btn pull-right" if="&current_user == this"><t key="user.my_dashboard" default="My Dashboard"/></a>
 		</prepend-content-header:>
 	</old-show-page>
 </extend>

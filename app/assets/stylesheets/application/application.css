@@ -33,6 +33,16 @@ body .areas .card.area {
 
 }
 
+.navbar-inner {
+	padding-top: 10px;
+}
+
+.change-locale {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
 body h1, body h2, body h3, body h4, body h5, body h6 {
 	line-height: 1em;
 }
@@ -137,10 +147,10 @@ body.hoshin .goals h3 {
 	-moz-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
-	transform-origin: 19% 187% 0;
-	-moz-transform-origin: 19% 187% 0;
-	-ms-transform-origin: 19% 187% 0;
-	-webkit-transform-origin: 19% 187% 0;
+	transform-origin: 17% 400% 0;
+	-moz-transform-origin: 17% 400% 0;
+	-ms-transform-origin: 17% 400% 0;
+	-webkit-transform-origin: 17% 400% 0;
 	width: 200px;
 	color: #fff;
 }

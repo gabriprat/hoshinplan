@@ -1,10 +1,10 @@
 <extend tag="edit-page" for="Company">
 	<old-edit-page merge>
 	<append-content-body:>
-		<h2>Manage collaborators</h2>
+		<h2><t key="company.manage_collaborators" default="Manage collaborators" /></h2>
 		<rtable:user_companies columns="Name, Email, State, Actions" part="users" id="users" />
 		
-		<a href="#" onclick="$('#add-collaborators').toggle()">Add colaborators</a>
+		<a href="#" onclick="$('#add-collaborators').toggle()"><t key="company.add_collaborators" default="Add collaborators"/></a>
 		<!-- <form param>
 			<input type="text" name="collaborators" value="jo@gabriel.prat.name" />
 			<submit />
@@ -12,12 +12,14 @@
 		<form param id="add-collaborators">
 			<textarea name="collaborators"></textarea>
 			<p class="bubble">
+				<t key="send_invitations">
 				Send collaboration invitations by pasting 
 				one email address per line in the textbox.
+				</t>
 			</p>
 			<div class="actions form-actions">
-			<submit label="Add collaborators" /> or 
-			<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();">Cancel</a>
+			<submit label="&t(:key=>'company.add_collaborators', :default=>'Add collaborators')" /> <t key="hobo.support.or" default="or"/> 
+			<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();"><t key="hobo.actions.cancel" default="Cancel" /></a>
 			</div>
 			
 		</form>
