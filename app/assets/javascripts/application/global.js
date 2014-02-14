@@ -16,9 +16,7 @@ var preventDoubleSubmit = function(e) {
 };
 
 var isValidDate = function (value, userFormat) {
-  var
-
-  userFormat = userFormat || 'mm/dd/yyyy', // default format
+  var userFormat = userFormat || 'mm/dd/yyyy', // default format
 
   delimiter = /[^mdy]/.exec(userFormat)[0],
   theFormat = userFormat.split(delimiter),
@@ -56,7 +54,7 @@ var validateDate = function(formElem) {
 	return true;
 }
 
-var attatchAutosubmit = function() {
+var attachAutosubmit = function() {
 	$('.bootstrap-datepicker').datepicker();
 	$(".autosubmit input[type=text]")
 		.unbind("change", submitClosestForm).change(submitClosestForm);
@@ -67,7 +65,7 @@ var attatchAutosubmit = function() {
 	equalHeightSections();
 }
 
-$(document).ready(attatchAutosubmit);
+$(document).ready(attachAutosubmit);
 
 var colorize = function () {
 	$(".indicator-tpc").parent().heatcolor(
@@ -209,7 +207,7 @@ function enterFullscreen() {
 
 }
 
-var attatchKeyEvents = function() {
+var attachKeyEvents = function() {
 	$('body').keydown(function(e){
 		if (!presenting) {
 			return;
@@ -231,5 +229,5 @@ var attatchKeyEvents = function() {
 	});
 }
 
-$(document).ready(attatchKeyEvents);
+$(document).ready(attachKeyEvents);
 
