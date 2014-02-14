@@ -2,26 +2,6 @@
 	<old-show-page merge>
 		<collection-heading: replace />
 		<prepend-content-header:>
-		<% begin
-      d=I18n.t(:"date.formats.default")
-      {"%Y" => "yyyy",
-       "%y" => "yy",
-       "%m" => "mm",
-       "%_m" => "m",
-       "%-m" => "m",
-       "%B" => "MM",
-       "%^B" => "MM",
-       "%b" => "M",
-       "%^b" => "M",
-       "%h" => "M",
-       "%d" => "dd",
-       "%-d" => "d",
-       "%j" => "oo",
-       "%D" => "mm/dd/yy",
-       "%F" => "yy-mm-dd",
-       "%x" => "mm/dd/yy"}.each {|rb, js| d.gsub!(rb,js)}
-     d
-    end %><%= d %>----
 			<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
 	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new area
