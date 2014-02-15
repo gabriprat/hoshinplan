@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  
+  helper CmsHelper
 
   rescue_from RuntimeError do |exception|
     error = {message:exception.message}

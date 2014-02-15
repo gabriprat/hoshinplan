@@ -9,7 +9,9 @@
 			</else>
 		</stylesheets:>
 		<append-body: >
+			<%= raw "<"+"/span>" %>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
+			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" />
 		</append-body:>
 	  	<app-name:><a class="brand" href="/"><strong>Hoshin</strong>plan</a></app-name:>
 	 </old-page>

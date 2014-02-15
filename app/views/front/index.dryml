@@ -2,18 +2,18 @@
 
   <body: class="front-page"/>
 
-  <content:>
-    <header class="content-header hero-unit">
+  <content:> 
+    <if test='&logged_in?'>
+    <header class="content-header hero-unit"> 
       <h1><strong>Hoshin</strong>plan</h1>
       <section class="welcome-message">
         <h3><t key="index.title" default="Make your business strategy work"/></h3>
-	<if test='&!logged_in?'>
-	<a href="/auth/InfoJobs" onclick="return getUser(this.href);" class="btn btn-primary"><t key="log_in_with" provider="InfoJobs"/></a>
-	<a href="/auth/google_oauth2" class="btn btn-primary"><t key="log_in_with" provider="Google"/></a>
-	</if>
       </section>
     </header>
-
+    </if>
+    <else>
+    	<cms key="custom_fragments/home_no_logged_#{locale}" />
+    </else>
     <section class="content-body">
     </section>
   </content:>

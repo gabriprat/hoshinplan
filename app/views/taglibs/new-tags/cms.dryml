@@ -1,0 +1,6 @@
+<def tag="cms" attrs="key, expires">
+    <% expires ||= 1.week %>
+    <% cache('localhost:5000/cms/' + key, :expires_in => expires) do %>
+    	<div id="cms"><%= raw ERB.new(cmsGet(key)).result(binding) %></div>
+    <% end %>
+</def>
