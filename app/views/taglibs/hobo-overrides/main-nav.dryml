@@ -1,8 +1,9 @@
 <def tag="main-nav">
-  <navigation class="main-nav" merge-attrs param="default">
+  <navigation class="main-nav" merge-attrs param="default" if="&logged_in?">
     <nav-item with="&ClientApplication"><ht key="client_application.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Company"><ht key="company.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
+  
   <div class="change-locale">
 	  <span><t key="change_locale" default="Language: "/></span>
 	  <a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath">es</a>
