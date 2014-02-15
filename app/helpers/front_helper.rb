@@ -1,2 +1,2 @@
-module FrontHelper
+module FrontHelper 
 end
