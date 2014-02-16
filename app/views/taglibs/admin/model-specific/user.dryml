@@ -1,0 +1,18 @@
+<extend tag="index-page">
+	<old-index-page merge>
+		<collection: replace>
+		<%
+		  field_names = standard_fields(this.member_class)
+		  field_names = field_names.join(',')
+		  %>
+			<table-plus fields="&field_names">
+			       <append-controls: >
+			       <if test="&User.eql?(this.class)">
+				<%=     button_to("Supplant", object_url(this, "supplant", :method => :post)) %>
+				
+			       	</if>
+			       </append-controls:>
+			   </table-plus>
+		</collection:>
+	</old-index-page>
+</extend>

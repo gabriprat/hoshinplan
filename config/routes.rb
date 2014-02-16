@@ -26,6 +26,8 @@ Hoshinplan::Application.routes.draw do
   
   match  'cms/:key' => 'cms#show', :constraints => {:key => /.*/}
   
+  match  '/login' => 'front#login'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

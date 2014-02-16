@@ -180,6 +180,10 @@ Hoshinplan::Application.routes.draw do
   namespace :admin do
 
 
+    # Resource routes for controller admin/openid_providers
+    resources :openid_providers
+
+
     # Resource routes for controller admin/users
     resources :users, :only => [:index, :edit, :show, :update, :destroy] do
       collection do

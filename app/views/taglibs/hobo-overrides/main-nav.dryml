@@ -1,4 +1,11 @@
 <def tag="main-nav">
+  <if test="&subsite.eql?('admin')">
+  <navigation class="main-nav" if="&logged_in?">
+    <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+  </navigation>
+  </if>
+  <else>
   <navigation class="main-nav" merge-attrs param="default" if="&logged_in?">
     <nav-item with="&ClientApplication"><ht key="client_application.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Company"><ht key="company.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -9,4 +16,5 @@
 	  <a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath">es</a>
 	  <a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath">en</a>
   </div>
+  </else>
 </def>
