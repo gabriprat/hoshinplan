@@ -33,6 +33,57 @@ body .areas .card.area {
 
 }
 
+.social-login {
+	text-align: center;
+	margin: 0 2em;
+}
+
+.modal h1 {
+	font-size: 2em;
+	font-weight: 400;
+}
+
+.sep, .line.sep {
+	margin: 2em auto;
+}
+
+html body .btn-big {
+	margin: 1em 0;
+	height: auto;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background-image: none;
+	text-shadow: none;
+	padding: 5px 12px;
+	border: 0;
+	width: 100%;
+}
+
+.line {
+  display: table;
+  vertical-align: baseline;
+  position: relative;
+  padding: 0 20px;
+  margin: auto;
+}
+
+.line:before, .line:after {
+  content: '';
+  display: table-cell;
+  width: 100%;
+  position: absolute;
+  top: 0.73em;
+  border-top: 1px solid black;
+}
+
+.line:before {
+  right: 100%;
+}
+
+.line:after {
+  left: 100%;
+}
 .navbar-inner {
 	padding-top: 10px;
 }

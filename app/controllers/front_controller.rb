@@ -2,6 +2,8 @@ class FrontController < ApplicationController
 
   hobo_controller
 
+ 
+  
   # Require the user to be logged in for every other action on this controller
   # except :index. 
   skip_before_filter :my_login_required, :only => [:index, :sendreminders]
@@ -14,6 +16,13 @@ class FrontController < ApplicationController
  
   def first
     
+  end
+  
+  def login
+    user, domain = params["email"].split("@")
+    oi = OpenidProvider.where(:email_domain => domain).first.openid_url
+    url = oi.gsub('{user}', user)
+    redirect_to "/auth/openid?openid_url=" + url
   end
   
   def sendreminders

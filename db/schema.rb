@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140204085431) do
+ActiveRecord::Schema.define(:version => 20140215233139) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -172,6 +172,13 @@ ActiveRecord::Schema.define(:version => 20140204085431) do
   add_index "objectives", ["hoshin_id"], :name => "index_objectives_on_hoshin_id"
   add_index "objectives", ["parent_id"], :name => "index_objectives_on_parent_id"
   add_index "objectives", ["responsible_id"], :name => "index_objectives_on_responsible_id"
+
+  create_table "openid_providers", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email_domain"
+    t.string   "openid_url"
+  end
 
   create_table "tasks", :force => true do |t|
     t.string   "name"

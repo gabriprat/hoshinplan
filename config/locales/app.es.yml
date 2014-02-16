@@ -131,6 +131,7 @@ es:
     developers_link: site para desarrolladores
     rest_link: API REST
   log_in_with: Accede con %{provider}
+  use_your_corporate: Utiliza tus credenciales corporativas
   change_locale: ! 'Idioma:'
   home: Inicio
   area:

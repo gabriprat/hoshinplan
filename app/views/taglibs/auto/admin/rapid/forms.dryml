@@ -1,6 +1,18 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="OpenidProvider">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="email_domain, openid_url" param/>
+    <div param="actions">
+      <submit label="#{ht 'openid_provider.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
