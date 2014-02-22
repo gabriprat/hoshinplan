@@ -85,8 +85,8 @@ html body .btn-big {
   left: 100%;
 }
 .navbar-inner {
-	padding-top: 10px;
-}
+	padding: 4px 0;
+} 
 
 .change-locale {
 	position: absolute;
@@ -436,6 +436,7 @@ body .navbar-inner {
         background: #f8faff url(
 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHUlEQVQIW2PceeKZsbuF1FkGKGCEMTAEYCoxVAAAWc0IBTHROCEAAAAASUVORK5CYII=        ) repeat;
 	border: 0;
+	border-top: 3px solid #25A9E0;
 }
 
 .front-page .row {
