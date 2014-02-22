@@ -93,7 +93,10 @@ class UserCompany < ActiveRecord::Base
      transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do
        UserCompanyMailer.transition(user, "Colaboration canceled", 
        "#{acting_user.name} cancelled your collaboration to the Hoshinplan of #{company.name}").deliver
-     end
+       Objective.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
+       Indicator.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
+       Task.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
+      end
 
    end
 
