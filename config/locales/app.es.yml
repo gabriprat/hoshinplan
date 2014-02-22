@@ -178,7 +178,7 @@ es:
       format:
         unit: ''
         delimiter: ''
-        precision: 1
+        precision: 2
         significant: true
         strip_insignificant_zeros: true
 #    attribute_help:
