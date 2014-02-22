@@ -106,7 +106,16 @@ html body {
 
 body .navbar .brand {
 	font-family: "Yanone Kaffeesatz", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 30px;
+	font-size: 35px;
+        -o-transition: all 1s;
+        -moz-transition: all 1s;
+        -webkit-transition: all 1s;
+        -ms-transition: all 1s;
+	color: #555;
+}
+
+body .navbar .brand:hover {
+	color: #25A9E0;
 }
 
 body .navbar .nav {
@@ -424,8 +433,8 @@ body .navbar-inner {
 	-moz-box-shadow: none;
 	-ms-box-shadow: none;
 	box-shadow: none;
-	background-color: #f8faff;
-	background-image: none;
+        background: #f8faff url(
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHUlEQVQIW2PceeKZsbuF1FkGKGCEMTAEYCoxVAAAWc0IBTHROCEAAAAASUVORK5CYII=        ) repeat;
 	border: 0;
 }
 
@@ -442,15 +451,20 @@ body .hero-unit {
 }
 
 body .form-search input {
-	border-radius: 0;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-ms-border-radius: 0;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	-ms-box-shadow: none;
+
 	border: 0;
+	    -moz-border-radius: 0;
+	    -webkit-border-radius: 0;
+	    border-radius: 0;
+	    -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+	    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+	    box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+}
+
+body .form-search input:focus {
+	    -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+	    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+	    box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
 }
 
 .areas .card.area .header {
