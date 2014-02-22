@@ -1,4 +1,21 @@
+@media all and (max-width: 979px) {
+	body {
+		padding: 0;
+	}
+	body h1 {
+		font-size: 3em;
+	}
+}
+
 @media all and (max-width: 640px) {
+	
+body {
+	padding: 0;
+}
+
+body h1 {
+	font-size: 3em;
+}
 
 body.hoshin .container .collection.areas {
 	display: block;
@@ -90,7 +107,7 @@ html body .btn-big {
 
 .change-locale {
 	position: absolute;
-	top: 5px;
+	top: -10px;
 	right: 20px;
 }
 
@@ -112,6 +129,7 @@ body .navbar .brand {
         -webkit-transition: all 1s;
         -ms-transition: all 1s;
 	color: #555;
+	margin: 0;
 }
 
 body .navbar .brand:hover {
@@ -127,16 +145,8 @@ body.show-page {
 	background: url(/assets/bg.png) repeat;
 }
 
-body a, body a:hover, body a:visited, body a:active {
+ul.input-many > li > div.buttons button {
 	color: #25A9E0;
-}
-
-body .btn, ul.input-many > li > div.buttons button {
-	color: #25A9E0;
-}
-
-body a.btn-primary, body a.btn-primary:hover, body a.btn-primary:visited, body a.btn-primary:active {
-	color: #fff;
 }
 
 body h1, body h2, body h3, body h4, body h5 {
@@ -144,7 +154,7 @@ body h1, body h2, body h3, body h4, body h5 {
 	font-weight: 300;
 }
 
-body h1 {
+h1 {
 	font-size: 70px;
 }
 
@@ -528,30 +538,101 @@ div.table.indicators .table-head .table-row div.column:nth-child(3) {
 	display: inline;
 }
 
-body .btn {
-	padding: 0 5px;
-	border: 0;
-	border-top: 1px solid #c7c9d8;
-	background-image: none;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	height: 1.5em;
-	margin: 0 0.5em;
+.btn.area-link {
+	padding: 2px 8px;
 }
 
-body .btn-primary {
-	padding: 0 5px;
-	background-color: #25A9E0;
-	border: 0;
-	border-top: 1px solid #c7c9d8;
-	background-image: none;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	height: 1.5em;
-	color: #fff;
+.header.well .btn {
+        margin: 0 3px;
 }
+
+a, a:hover, a:active {
+	color: #25A9E0;
+}
+
+.btn {
+  color: #555;
+  background-color: #f5f5f5;
+  text-shadow: none;
+  background-image: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
+  border: 0;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.open .dropdown-toggle.btn {
+  color: #555;
+  background-color: #fff;
+  border-color: #f5f5f5;
+}
+.btn:active,
+.btn.active,
+.open .dropdown-toggle.btn {
+  background: #e0e0e0;
+  border-color: #f5f5f5;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn,
+.btn.disabled:hover,
+.btn[disabled]:hover,
+fieldset[disabled] .btn:hover,
+.btn.disabled:focus,
+.btn[disabled]:focus,
+fieldset[disabled] .btn:focus,
+.btn.disabled:active,
+.btn[disabled]:active,
+fieldset[disabled] .btn:active,
+.btn.disabled.active,
+.btn[disabled].active,
+fieldset[disabled] .btn.active {
+  background-color: #bdc3c7;
+  border-color: #bdc3c7;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #25A9E0;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #5FC3ED;
+  border-color: #5FC3ED;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  background: #0690C9;
+  border-color: #0690C9;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #25A9E0;
+  border-color: #25A9E0;
+}
+
 
 .bubble {
 	position: relative;

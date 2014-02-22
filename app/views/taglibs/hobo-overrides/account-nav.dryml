@@ -2,6 +2,11 @@
   <old-account-nav merge without-sign-up without-account>
     <logged-in-as:  >
     	<a to="&current_user"><t key="hobo.actions.logged_in_as" name="&name">Logged in as <name/></t><view:image/></a>
+        <div class="change-locale">
+      	  <span><t key="change_locale" default="Language: "/></span>
+      	  <a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath">es</a>
+      	  <a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath">en</a>
+        </div>
     </logged-in-as:>
     <log-in:>
     	<script type="text/javascript">
@@ -17,6 +22,11 @@
     		}
     	    </script>
 	    <a href="#" onclick="$('#login').modal('show'); return false;"><ht key="hoshin.actions.login"/></a>
+    <div class="change-locale">
+  	  <span><t key="change_locale" default="Language: "/></span>
+  	  <a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath">es</a>
+  	  <a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath">en</a>
+    </div>
     </log-in:>
   </old-account-nav>
 </extend>
