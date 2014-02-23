@@ -132,7 +132,9 @@ es:
     rest_link: API REST
   log_in_with: Accede con %{provider}
   use_your_corporate: Utiliza tus credenciales corporativas
-  change_locale: ! 'Idioma:'
+  change_locale: Idioma
+  locale_en_US: Inglés (EEUU)
+  locale_es_ES: Español (España)
   home: Inicio
   area:
     no_xx_defined: No hay %{xx} en esta %{model}
