@@ -249,7 +249,7 @@ body.hoshin .collection.areas {
 body.hoshin
 .collection.areas > .item {
 	display: table-cell; 
-	min-width: 300px;
+	min-width: 270px;
 	width: 100%;
 }
 
