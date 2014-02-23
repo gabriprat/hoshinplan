@@ -722,6 +722,7 @@ form#add-collaborators textarea {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	-webkit-transition: 0.25s;
+	-moz-transition: 0.25s;
 	transition: 0.25s;
 	padding: 3px 4px;
 }
@@ -736,11 +737,12 @@ form#add-collaborators textarea {
   visibility: visible;
 }
 @media (max-width: 767px) {
-  .navbar-nav > li > .dropdown-menu {
-    -webkit-transition: all 0s;
-    transition: all 0s;
-    display: none;
-  }
+	.navbar-nav > li > .dropdown-menu {
+		-webkit-transition: all 0s;
+		-moz-transition: all 0s;
+		transition: all 0s;
+		display: none;
+	}
 }
 @media (max-width: 767px) {
   .navbar-nav > li.open > .dropdown-menu {
@@ -762,6 +764,7 @@ form#add-collaborators textarea {
 	z-index: 10;
 	-webkit-transform: rotate(360deg);
 	-webkit-transition: 0.25s;
+	-moz-transition: 0.25s;
 	transition: 0.25s;
 }
 
@@ -830,4 +833,33 @@ width: 0;
 	margin-left: -4px;
 	margin-right: -4px;
 	border: 0;
+}
+
+.fa-plus-small:after {
+	content: "\f067";
+	margin-left: -0.7em;
+	font-size: .6em;
+	text-shadow: -1.5px -1.5px 0 #f8faff, 0.5px -1.5px 0 #f8faff, -1.5px 1.5px 0 #f8faff, 1.5px 1.5px 0 #f8faff;
+}
+
+.hoshin-tasks span {
+	font-size: 1.5em;
+	color: #aaa;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.hoshin-tasks:hover span {
+	color: #000;
+}
+
+button.link, button.link:focus, button.link:active {
+	background: none;
+	border: 0;
+	outline: none;
+}
+
+body.collaborators td.controls button {
+	font-size: 1.6em;
 }

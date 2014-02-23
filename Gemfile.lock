@@ -88,6 +88,8 @@ GEM
     execjs (2.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    font-awesome-sass (4.0.2)
+      sass-rails (>= 3.1.1)
     hashie (2.0.5)
     hike (1.2.3)
     hobo (2.0.1)
@@ -240,6 +242,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   delocalize
+  font-awesome-sass
   hobo
   hobo_bootstrap
   hobo_bootstrap_ui

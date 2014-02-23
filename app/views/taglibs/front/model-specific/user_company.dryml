@@ -15,10 +15,28 @@
 			#{this.state}
 		</div>
 	        <div class="column nowrap" data-label="Actions"> 
-			<transition-buttons in-place="true" update="users"/>	
+			<transition-buttons in-place="true" update="users" />
 	        </div>
 	</scard>
 </def>
+
+
+<def tag='uc-transition-buttons'>
+  <% ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS) %>
+  <div class='transitions' merge-attrs='&amp;html_attrs'>
+    <% transitions = this.lifecycle.publishable_transitions_for(current_user) %>
+    <if test='&transitions'>
+      <% transitions.each do |t| %>
+        <transition-button transition='&t' merge-attrs='&amp;ajax_attrs'>
+		<button: replace>
+			<a merge action='&t.name'/>
+		</button:> 
+	</transition-button>
+      <% end %>
+    </if>
+  </div>
+</def>
+
 
 <extend tag="accept-page" for="UserCompany">
   <old-accept-page title="Accept the invitation to collaborate" merge>
