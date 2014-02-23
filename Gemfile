@@ -65,3 +65,5 @@ gem 'unicorn'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'delocalize'
+gem 'font-awesome-sass'
+

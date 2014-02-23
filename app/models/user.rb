@@ -84,6 +84,14 @@ class User < ActiveRecord::Base
                :params => [ :password, :password_confirmation ]
 
   end
+  
+  def all_companies
+    Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+  end
+  
+  def all_hoshins
+    Hoshin.unscoped.where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+  end
 
   def signed_up?
     state=="active" || state=="invited"

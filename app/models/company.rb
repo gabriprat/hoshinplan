@@ -34,7 +34,10 @@ class Company < ActiveRecord::Base
     where(:id => UserCompany.select(:company_id)
       .where('user_id=? and user_companies.state = ?',  
         User.current_id, :admin) ) }
-        
+  
+  def collaborators=
+  end
+  
   def self.current_id=(id)
     Thread.current[:company_id] = id
   end

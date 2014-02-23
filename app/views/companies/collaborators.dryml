@@ -1,0 +1,80 @@
+<page title="#{ht 'hoshin.show.title', :default=>['Hoshin'], :name => name(:no_wrapper => true) }" without-aside>
+
+    <body: class="show-page hoshin collaborators" />
+    
+    <content-header: class="well">
+     <a>&laquo; <ht key="company.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a>
+      <h2>
+        <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
+          Company <name/>
+        </ht> - 
+	<t key="company.manage_collaborators" default="Manage collaborators" />
+      </h2>
+    </content-header:>
+    
+    
+    <content-body: class="well">
+		
+		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right"><t key="company.add_collaborators" default="Add collaborators"/></a>
+		<form id="add-collaborators">
+			<textarea name="collaborators"></textarea>
+			<p class="bubble">
+				<t key="company.send_invitations">
+				Send collaboration invitations by pasting 
+				one email address per line in the textbox.
+				</t>
+			</p>
+			<div class="actions form-actions">
+			<submit label="&t(:key=>'company.add_collaborators', :default=>'Add collaborators')" /> <t key="hobo.support.or" default="or"/> 
+			<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();"><t key="hobo.actions.cancel" default="Cancel" /></a>
+			</div>
+			
+		</form>	
+		<table-plus with="&@collaborators" fields="user, state" part="users" id="users" part-id="users" if="&@collaborators">
+			<user-view:>
+				#{this.name} (#{this.email_address})
+			</user-view:>
+			<controls:>
+				<if test="&this.state == 'invited'">
+					<transition-button transition="resend_invite" ajax success="location.reload();">
+						<form: class="inline-form"/>
+						<button: replace>
+							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.resend_invite', :default=>:resend_invite.to_s.titleize)}">
+								<span class="fa fa-envelope-o fa-fw"></span>
+							</button>
+						</button:>
+					</transition-button>
+				</if>
+				<if test="&this.state == 'admin'">
+					<transition-button transition="revoke_admin" ajax success="location.reload();">
+						<form: class="inline-form"/>
+						<button: replace>
+							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.revoke_admin', :default=>:revoke_admin.to_s.titleize)}">
+								<span class="fa fa-user fa-fw"></span>
+							</button>
+						</button:>
+					</transition-button>
+				</if>
+				<if test="&this.state == 'active'">
+					<transition-button transition="make_admin" ajax success="location.reload();">
+						<form: class="inline-form"/>
+						<button: replace>
+							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>:make_admin.to_s.titleize)}">
+								<span class="fa fa-key fa-fw"></span>
+							</button>
+						</button:>
+					</transition-button>
+				</if>
+				<transition-button transition="remove" ajax success="location.reload();">
+					<form: class="inline-form"/>
+					<button: replace>
+						
+						<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.remove', :default=>:remove.to_s.titleize)}">
+							<span class="fa fa-trash-o fa-fw"></span>
+						</button>
+					</button:>
+				</transition-button>
+			</controls>
+		</table-plus>
+    </content-body: >
+</page>

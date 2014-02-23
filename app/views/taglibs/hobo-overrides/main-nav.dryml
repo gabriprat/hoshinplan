@@ -11,7 +11,7 @@
     <li class='nav-item dropdown'>
    	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><ht key="company.nav_item" count="100"><model-name-human with="&Company" count="100"/></ht> <b class="caret"></b></a>
     	<ul class="dropdown-menu">
-		<li class='#{scope.even_odd}' param='item' repeat='&current_user.companies'>
+		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_companies'>
 		<a />
 		</li>
 		<li class="divider"></li>
@@ -21,7 +21,7 @@
     <li class='nav-item dropdown'>
    	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><ht key="hoshin.nav_item" count="100"><model-name-human with="&Hoshin" count="100"/></ht> <b class="caret"></b></a>
     	<ul class="dropdown-menu" with="&current_user.hoshins">
-		<li class='#{scope.even_odd}' param='item' repeat='&current_user.hoshins'>
+		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
 			<a>#{this.name} (#{this.company.name})</a>
 		</li>
 		<li class="divider"></li>

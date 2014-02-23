@@ -26,6 +26,9 @@ Hoshinplan::Application.routes.draw do
     collection do
       get 'complete_users'
     end
+    member do
+      get 'collaborators'
+    end
   end
 
 
