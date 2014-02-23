@@ -1,12 +1,7 @@
 <extend tag="account-nav">
-  <old-account-nav merge without-sign-up without-account>
+  <old-account-nav without-sign-up without-account include-search="&logged_in?" >
     <logged-in-as:  >
     	<a to="&current_user"><t key="hobo.actions.logged_in_as" name="&name">Logged in as <name/></t><view:image/></a>
-        <div class="change-locale">
-      	  <span><t key="change_locale" default="Language: "/></span>
-      	  <a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath">es</a>
-      	  <a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath">en</a>
-        </div>
     </logged-in-as:>
     <log-in:>
     	<script type="text/javascript">
@@ -22,12 +17,17 @@
     		}
     	    </script>
 	    <a href="#" onclick="$('#login').modal('show'); return false;"><ht key="hoshin.actions.login"/></a>
-    <div class="change-locale">
-  	  <span><t key="change_locale" default="Language: "/></span>
-  	  <a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath">es</a>
-  	  <a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath">en</a>
-    </div>
     </log-in:>
+    
+   <append-ul: >
+   <li class='nav-item dropdown'>
+	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><t key="change_locale">Language</t> <b class="caret"></b></a>
+			    <ul class="dropdown-menu">
+			                        <li><a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath"><t key="locale_en_US">English (US)</t></a></li>
+			                        <li><a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath"><t key="locale_es_ES">Spanish (Spain)</t></a></li>
+			                      </ul>
+   </li>
+   </append-ul: >
   </old-account-nav>
 </extend>
 
