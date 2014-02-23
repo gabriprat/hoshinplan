@@ -64,4 +64,4 @@ gem "actionmailer_inline_css"
 gem 'unicorn'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-
+gem 'delocalize'
