@@ -34,6 +34,11 @@ en:
     columns:
       Id: ! '#'
   date:
+    input:
+      formats:
+        - :default
+        - :long
+        - :short
     formats:
       default: ! '%m/%d/%Y'
       long: ! '%B %d, %Y'

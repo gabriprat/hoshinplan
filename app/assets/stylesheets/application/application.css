@@ -241,6 +241,11 @@ body.hoshin .collection.areas {
 	table-layout: auto; 
 	width: 100%;
 }
+
+#areas {
+	overflow: scroll;
+}
+
 body.hoshin
 .collection.areas > .item {
 	display: table-cell; 

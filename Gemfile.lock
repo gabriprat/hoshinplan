@@ -79,6 +79,8 @@ GEM
     delayed_job_active_record (4.0.0)
       activerecord (>= 3.0, < 4.1)
       delayed_job (>= 3.0, < 4.1)
+    delocalize (0.3.2)
+      rails (>= 3.0, < 4)
     dryml (2.0.1)
       actionpack (~> 3.2.0)
       hobo_support (= 2.0.1)
@@ -237,6 +239,7 @@ DEPENDENCIES
   clockwork
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
+  delocalize
   hobo
   hobo_bootstrap
   hobo_bootstrap_ui
