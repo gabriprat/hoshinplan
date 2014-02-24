@@ -727,6 +727,14 @@ form#add-collaborators textarea {
 	padding: 3px 4px;
 }
 
+.datepicker.dropdown-menu {
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
 .dropdown-menu > li > a {
 	color: #e1e4e7;
 }
