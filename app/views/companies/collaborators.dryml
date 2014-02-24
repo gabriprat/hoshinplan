@@ -14,8 +14,7 @@
     
     
     <content-body: class="well">
-		
-		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right"><t key="company.add_collaborators" default="Add collaborators"/></a>
+		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.add_collaborators" default="Add collaborators"/></a>
 		<form id="add-collaborators">
 			<textarea name="collaborators"></textarea>
 			<p class="bubble">
