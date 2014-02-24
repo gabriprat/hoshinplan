@@ -62,14 +62,14 @@
 	      	  <if test="#{this.status=='active'?'true':''}">
 	      		  <li class="complete">
 	      		  <form ajax lifecycle="discard" class="inline-form">
-					<button type="submit" class="hoshin-tasks link">
+					<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.discard', :default => 'Discard'}">
 						<span class="fa fa-times-circle fa-fw"></span>
 					</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="discard">
 	      		  <form ajax lifecycle="complete" class="inline-form">
-				<button type="submit" class="hoshin-tasks link">
+				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.complete', :default => 'Complete'}">
 					<span class="fa fa-check-circle fa-fw"></span>
 				</button>
 	      		  </form>
@@ -78,14 +78,14 @@
 	      	  <else>
 	      		  <li class="reactivate">
 	      		  <form ajax lifecycle="reactivate" class="inline-form">
-				<button type="submit" class="hoshin-tasks link">
+				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.reactivate', :default => 'Reactivate'}">
 					<span class="fa fa-play-circle fa-fw"></span>
 				</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="delete">
 	      		  <form ajax lifecycle="delete" class="inline-form">
-				<button type="submit" class="hoshin-tasks link">
+				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.delete', :default => 'Delete'}">
 					<span class="fa fa-trash-o fa-fw"></span>
 				</button>
 	      		  </form>

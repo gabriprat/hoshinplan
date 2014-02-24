@@ -27,7 +27,7 @@
 		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
-					<a title="Add new indicator" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-kpi-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks"><span class="fa fa-tachometer fa-plus-small"></span></a>
+					<a title="#{ht key='indicator.actions.new'}" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-kpi-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks"><span class="fa fa-tachometer fa-plus-small"></span></a>
 					<modal id="add-kpi-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>
@@ -49,7 +49,7 @@
 					</modal>
 				</li>
 				<li class="task">
-					<a title="Add new task" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks"><span class="fa fa-tasks fa-plus-small"></span></a>
+					<a title="#{ht key='task.actions.new'}" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks"><span class="fa fa-tasks fa-plus-small"></span></a>
 					<modal id="add-task-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>

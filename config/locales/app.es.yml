@@ -93,7 +93,15 @@ es:
         responsible: Responsable
         deadline: Vencimiento
         show_on_parent: Subir tarea
+        lifecycle:
+          transitions:
+            discard: Descartar
+            complete: Completar
+            reactivate: Reactivar
+            delete: Borrar
       user_company:
+        user: Usuario
+        state: Estado
         lifecycle:
           transitions:
             make_admin: Hacer administrador
@@ -131,6 +139,7 @@ es:
     developers_link: site para desarrolladores
     rest_link: API REST
   log_in_with: Accede con %{provider}
+  invite_collaborators: Invitar colaboradores
   use_your_corporate: Utiliza tus credenciales corporativas
   change_locale: Idioma
   locale_en_US: Inglés (EEUU)
@@ -139,6 +148,8 @@ es:
   area:
     no_xx_defined: No hay %{xx} en esta %{model}
     child_tasks: Tareas de hoshin plans hijos
+  indicator:
+    show_chart: Mostrar gráfico
   rtable:
     column:
       Id: ! '#'
