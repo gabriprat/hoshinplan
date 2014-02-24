@@ -18,6 +18,7 @@
 					var del="#{t 'number.format.delimiter'}";
 					var df="#{date_format_default}";
 					document.documentElement.setAttribute("data-sep", sep);
+					document.documentElement.setAttribute("data-del", del);
 					document.documentElement.setAttribute("data-df", df);
 					
 				})();
