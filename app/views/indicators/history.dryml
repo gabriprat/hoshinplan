@@ -1,29 +1,61 @@
 <show-page: >
-	<custom-scripts:>
-		<script type='text/javascript' src='http://www.google.com/jsapi'></script>
-		<script type='text/javascript'>
-		  google.load('visualization', '1', {'packages':['annotatedtimeline']});
-		  google.setOnLoadCallback(drawChart);
-		  function drawChart() {
-		    var data = new google.visualization.DataTable();
-		    data.addColumn('date', 'Date');
-		    data.addColumn('number', 'Value');
-		    data.addRows([
-		        <repeat:indicator_histories join=",">
-			  [new Date(#{this.day.year}, #{this.day.month-1}, #{this.day.mday}),#{this.value}]
-			 </repeat:indicator_histories>
-		    ]);
-
-		    var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
-		    chart.draw(data, {displayAnnotations: true});
-		  }
-		</script>
-	</custom-scripts:>
 	<content-header: >
 		<a with="&this.objective.area.hoshin">&laquo; Back to hoshin #{name}</a>
 		<h1>#{this.name}</h1>
 	</content-header:>
 	<content-body:>
-		<div id='chart_div' style='width: 1000px; height: 500px;'></div>
+		<section class="panel">
+		        <header class="panel-heading">
+		            <t key="history.historic_values">Historic values and goals</t>
+		        </header>
+		        <div class="panel-body" style="display: block;">
+		            <div id="graph-line" style="position: relative;"></div>
+		        </div>
+	    	</section>
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function () {
+				var rtime = new Date(1, 1, 2000, 12,00,00);
+				var timeout = false;
+				var delta = 200;
+				var df = document.documentElement.getAttribute("data-df").replace("yyyy","yy");
+				var dateFormat = function(d) {
+					var ret = $.datepicker.formatDate(df, new Date(d));
+					return ret;
+				}
+				function resizeend() {
+				    if (delta > new Date() - rtime) {
+				        setTimeout(resizeend, delta);
+				    } else {
+				        timeout = false;
+				        chart.redraw();
+				    }               
+				}
+				var data = [
+					<repeat:indicator_histories join=",">
+					  {date:"#{this.day.year}-#{this.day.month}-#{this.day.mday}",
+					   value:#{this.value},goal:#{this.goal ? this.goal : "null"}}
+					</repeat:indicator_histories>
+				];
+				var chart = Morris.Line({
+				  element: 'graph-line',
+				  data: data,
+				  xkey: 'date',
+				  ykeys: ['value','goal'],
+				  labels: ['Value','Goal'],
+				  dateFormat: dateFormat,
+				  xLabels: "day",
+				  xLabelFormat: dateFormat
+				});
+				$(window).resize(function() {
+					rtime = new Date();
+					if (timeout === false) {
+						timeout = true;
+						setTimeout(resizeend, delta);
+					}
+				});
+			});
+		</script>
 	</content-body:>
 </show-page:>

@@ -54,6 +54,7 @@ class Indicator < ActiveRecord::Base
         ih.day = Date.today
       end
       ih.value = indicator.value
+      ih.goal = indicator.goal
       ih.save!
     #end
   end

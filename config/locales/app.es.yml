@@ -150,6 +150,8 @@ es:
     child_tasks: Tareas de hoshin plans hijos
   indicator:
     show_chart: Mostrar gráfico
+  history:
+    historic_values: Valores históricos
   rtable:
     column:
       Id: ! '#'
