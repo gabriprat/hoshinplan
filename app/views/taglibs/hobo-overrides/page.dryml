@@ -1,5 +1,5 @@
 <extend tag="page">
-	<old-page merge>
+	<old-page merge lang="#{locale}">
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">
 				<stylesheet name='pdf' param='app-stylesheet'/>
@@ -12,6 +12,14 @@
 			<%= raw "<"+"/span>" %>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
 			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" if="&ENV[&apos;RAILS_ENV&apos;] == &apos;production&apos;"/>
+			<script type="text/javascript">
+				(function() {
+					var sep="#{t 'number.format.separator'}";
+					var del="#{t 'number.format.delimiter'}";
+					document.documentElement.setAttribute("data-sep", sep);
+					document.documentElement.setAttribute("data-del", del);
+				})();
+			</script>
 		</append-body:>
 	  	<app-name:><a class="brand" href="/"><strong>Hoshin</strong>plan</a></app-name:>
 	 </old-page>

@@ -71,6 +71,10 @@ var colorize = function () {
 	$(".indicator-tpc").parent().heatcolor(
 		function() {
 			var num = $(this).children(".indicator-tpc").text();
+			var sep = document.documentElement.getAttribute('data-sep').replace('.','\\.');
+			var del = document.documentElement.getAttribute('data-del').replace('.','\\.');;
+			num = num.replace(new RegExp(del, 'g'), '');
+			num = num.replace(new RegExp(sep, 'g'), '.');
 			num = num>100 ? 100 : num<50 ? 50 : num;
 			return num;
 		}, 
