@@ -10,7 +10,8 @@
 		    data.addColumn('number', 'Value');
 		    data.addRows([
 		        <repeat:indicator_histories join=",">
-			  [new Date(#{this.day.year}, #{this.day.month-1}, #{this.day.mday}),#{this.value}]</repeat:indicator_histories>
+			  [new Date(#{this.day.year}, #{this.day.month-1}, #{this.day.mday}),#{this.value}]
+			 </repeat:indicator_histories>
 		    ]);
 
 		    var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
