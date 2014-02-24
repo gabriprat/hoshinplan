@@ -42,7 +42,7 @@
 		  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
 	</if>
 	<if test="&column == '%'">
-		  <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc format="%1.1f"/>%</span> <span class="arrow #{this.trend}"></span>
+		  <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc  precision="1"/>%</span> <span class="arrow #{this.trend}"></span>
 			  <modal id="update-kpi-modal-#{this.id}">
 				  <modal:>
 			        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">

@@ -1,7 +1,10 @@
-<extend tag='view' for="Numeric" attrs='format, human' >
+<extend tag='view' for="Numeric" attrs='human, precision' >
+	<% 
+		precision ||= human ? t("number.human.format.precision") : t("number.format.precision")
+		precision = precision.to_i
+	%>
 	<%= human ? 
-		number_to_human(this) : 
-		format ? 
-			number_with_delimiter(this, :format => format) : 
-			number_with_delimiter(this) %>
+		number_to_human(this, :precision => precision) : 
+			number_with_precision(this, :precision => precision) 
+	%>
 </extend>
