@@ -45,9 +45,13 @@ class User < ActiveRecord::Base
     state :active
     
     create :from_omniauth, :params => [:name, :email_address], :become => :active do
-      @subject = "#{self.name} welcome to Hoshinplan!"
-      UserCompanyMailer.welcome(self, 
-      @subject).deliver
+      if (self.email_address.split("@").last == "infojobs.net")
+        self.companies = [Company.find(1)]
+      else
+        @subject = "#{self.name} welcome to Hoshinplan!"
+        UserCompanyMailer.welcome(self, 
+        @subject).deliver
+      end
     end
 
     create :invite,
