@@ -28,7 +28,9 @@
 		<li><a with="&Hoshin" action="new">+ <ht key="hoshin.actions.create"/></a></li>
 	</ul>
     </li>
-    <nav-item with="&Company.find(Company.current_id)" action="collaborators" if="&Company.current_id">Invite collaborators</nav-item>
+    <nav-item with="&Company.find(Company.current_id)" action="collaborators" if="&Company.current_id">
+    	<t key="invite_collaborators">Invite collaborators</t>
+    </nav-item>
     
   </navigation>
   </else>
