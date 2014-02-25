@@ -29,6 +29,7 @@ class Hoshin < ActiveRecord::Base
   # --- Permissions --- #
   
   def same_company
+    return false if User.current_id.nil?
     user = User.find(User.current_id)
     user.user_companies.where(:company_id => company_id)
   end
