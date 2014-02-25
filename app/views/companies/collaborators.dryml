@@ -30,9 +30,12 @@
 			
 		</form>	
 		<table-plus with="&@collaborators" fields="user, state" part="users" id="users" part-id="users" if="&@collaborators">
-			<user-view:>
-				#{this.name} (#{this.email_address})
-			</user-view:>
+			<user-view: >
+				<a action="edit" if="&can_edit?">#{this.name} (#{this.email_address})</a>
+				<else >
+				<view >#{this.name} (#{this.email_address})</view>
+				</else >
+			</user-view: >
 			<controls:>
 				<if test="&this.state == 'invited'">
 					<transition-button transition="resend_invite" ajax success="location.reload();">

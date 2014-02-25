@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   end
   attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image
   
-  has_many :hoshins, :through => :companies, :accessible => true
+  has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :destroy, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :indicators, :dependent => :destroy, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :tasks, :dependent => :destroy, :inverse_of => :responsible, foreign_key: :responsible_id
