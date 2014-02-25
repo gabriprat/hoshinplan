@@ -49,11 +49,13 @@ class UserCompany < ActiveRecord::Base
 
      create :invite, :params => [ :company, :user ], :become => :invited,
                       :available_to => "User", :new_key => true do
-       UserCompanyMailer.invite(self, "Join me at #{company.name} Hoshin Plan", 
-         "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
-         "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
-         "Accept",
-         lifecycle.key, acting_user).deliver
+       if (self.user.email_address.split("@").last != "ifojobs.net")
+         UserCompanyMailer.invite(self, "Join me at #{company.name} Hoshin Plan", 
+           "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
+           "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
+           "Accept",
+           lifecycle.key, acting_user).deliver
+       end
      end
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
