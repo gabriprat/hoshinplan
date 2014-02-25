@@ -25,6 +25,11 @@ en:
 #        email_address: We will never share your address with third parties
 
 en:	
+  activerecord:
+    models:
+      goal:
+        one: Long term goal
+        other: Long term goals
   log_in_with: Log in with %{provider}
   home: Home
   area:
