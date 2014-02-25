@@ -67,6 +67,13 @@ var attachAutosubmit = function() {
 
 $(document).ready(attachAutosubmit);
 
+$(window).scroll(function () {  
+        $("body.fixed-headers .navbar, body.fixed-headers .content-header").map(function() {
+		$(this).css({"width": $(this).width()});
+		$(this).css({"margin-left": $(window).scrollLeft()}); 
+	});
+}); 
+
 var colorize = function () {
 	$(".indicator-tpc").parent().heatcolor(
 		function() {
@@ -83,6 +90,9 @@ var colorize = function () {
 }
 
 $( window ).resize(function() {
+	$("body.fixed-headers .navbar, body.fixed-headers .content-header").map(function() {
+		$(this).css({"width": "auto"});
+	});
   equalHeightSections();
 });
 

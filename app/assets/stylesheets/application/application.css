@@ -146,6 +146,7 @@ body .navbar .brand:hover {
 body.show-page {
 	font-weight: 200;
 	background: url(/assets/bg.png) repeat;
+	background-attachment: fixed;
 }
 
 ul.input-many > li > div.buttons button {
@@ -243,10 +244,6 @@ body.hoshin .collection.areas {
 	display: table; 
 	table-layout: auto; 
 	width: 100%;
-}
-
-#areas {
-	overflow: scroll;
 }
 
 body.hoshin
