@@ -1,7 +1,9 @@
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
+		<body: class="fixed-headers" />
+		<navbar: />
 		<collection-heading: replace />
-		<prepend-content-header:>
+		<prepend-content-header: saf="sdf">
 			<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
 	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new area
