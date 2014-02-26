@@ -8,13 +8,13 @@
         <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
           Company <name/>
         </ht> - 
-	<t key="company.manage_collaborators" default="Manage collaborators" />
+	<t key="company.manage_collaborators">Manage collaborators</t>
       </h2>
     </content-header:>
     
     
     <content-body: class="well">
-		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.add_collaborators" default="Add collaborators"/></a>
+		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.add_collaborators">Add collaborators"</t></a>
 		<form id="add-collaborators">
 			<textarea name="collaborators"></textarea>
 			<p class="bubble">
@@ -24,8 +24,9 @@
 				</t>
 			</p>
 			<div class="actions form-actions">
-			<submit label="&t(:key=>'company.add_collaborators', :default=>'Add collaborators')" /> <t key="hobo.support.or" default="or"/> 
-			<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();"><t key="hobo.actions.cancel" default="Cancel" /></a>
+			<submit label="&t(:key=>'company.add_collaborators', :default=>'Add collaborators')" /> 
+			<t key="hobo.support.or">or</t> 
+			<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();"><t key="hobo.actions.cancel">Cancel</t></a>
 			</div>
 			
 		</form>	

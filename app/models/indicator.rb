@@ -47,10 +47,10 @@ class Indicator < ActiveRecord::Base
     end
     #if indicator.value_changed?
       indicator.last_value = indicator.value_was
-      ih = indicator.indicator_histories.where(:day => Date.today).first
+      ih = indicator.indicator_histories.unscoped.where(:day => Date.today).first
       if ih.nil?
         ih = IndicatorHistory.create
-        ih.indicator_id = indicator.id
+        ih.indicator = indicator
         ih.day = Date.today
       end
       ih.value = indicator.value

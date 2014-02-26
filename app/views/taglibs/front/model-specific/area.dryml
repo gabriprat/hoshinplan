@@ -47,7 +47,7 @@
 	<h5><model-name-human model="&Task" count="100"/></h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
 	<else><ht key="area.no_xx_defined" xx="&Task.model_name.human.pluralize" /></else>
-	<h6 if="child_tasks"><t key="area.child_tasks" default="Tasks from children hoshin plans"/></h6>
+	<h6 if="child_tasks"><t key="area.child_tasks">Tasks from children hoshin plans"</t></h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
 	</div>
 	</div>
