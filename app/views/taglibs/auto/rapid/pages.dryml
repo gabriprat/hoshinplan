@@ -1540,6 +1540,48 @@
 
   </page>
 </def>
+<def tag="activate-ij-page" polymorphic/>
+<def tag="activate-ij-page" for="UserCompany">
+
+  <page title="#{ht 'user_company.activate_ij.title', :default=>['Activate Ij']}" merge>
+
+    <body: class="lifecycle-start-page activate-ij-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user_company.activate_ij.heading">
+          Activate Ij
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <activate-ij-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="revoke-admin-page" polymorphic/>
+<def tag="revoke-admin-page" for="UserCompany">
+  <page title="#{ht 'user_company.revoke_admin.title', :default=>['Revoke Admin']}" merge>
+
+    <body: class="lifecycle-transition-page revoke-admin-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user_company.revoke_admin.heading">
+          Revoke Admin
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <revoke-admin-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
 
 <def tag="resend-invite-page" polymorphic/>
 <def tag="resend-invite-page" for="UserCompany">
@@ -1620,27 +1662,6 @@
 
     <content-body: param>
       <make-admin-form param="form"/>
-    </content-body:>
-
-  </page>
-</def>
-
-<def tag="revoke-admin-page" polymorphic/>
-<def tag="revoke-admin-page" for="UserCompany">
-  <page title="#{ht 'user_company.revoke_admin.title', :default=>['Revoke Admin']}" merge>
-
-    <body: class="lifecycle-transition-page revoke-admin-page" param/>
-
-    <content-header: param>
-      <h2 param="heading">
-        <ht key="user_company.revoke_admin.heading">
-          Revoke Admin
-        </ht>
-      </h2>
-    </content-header:>
-
-    <content-body: param>
-      <revoke-admin-form param="form"/>
     </content-body:>
 
   </page>

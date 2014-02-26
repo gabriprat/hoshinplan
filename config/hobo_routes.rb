@@ -140,8 +140,12 @@ Hoshinplan::Application.routes.draw do
     collection do
       post 'invite', :action => 'do_invite'
       get 'invite'
+      post 'activate_ij', :action => 'do_activate_ij'
+      get 'activate_ij'
     end
     member do
+      put 'revoke_admin', :action => 'do_revoke_admin'
+      get 'revoke_admin'
       put 'resend_invite', :action => 'do_resend_invite'
       get 'resend_invite'
       put 'accept', :action => 'do_accept'

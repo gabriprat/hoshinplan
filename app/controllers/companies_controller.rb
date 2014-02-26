@@ -38,14 +38,24 @@ class CompaniesController < ApplicationController
           email.squish! 
           user = User.unscoped.where(:email_address => email).first
           if user.nil?
-            user = User::Lifecycle.invite(:email_address => email)
-            user.email_address = email
-            user.save!(:validate => false)
+            if (email.split("@").last == "infojobs.net")
+              user = User::Lifecycle.activate_ij(:email_address => email)
+              user.email_address = email
+              user.save!(:validate => false)
+            else
+              user = User::Lifecycle.invite(:email_address => email)
+              user.email_address = email
+              user.save!(:validate => false)
+            end
           end
           uc = UserCompany.where(:company_id => params[:id], :user_id => user.id).first
           if uc.nil? 
             company = Company.find(params[:id])
-            UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+            if (email.split("@").last == "infojobs.net")
+              UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
+            else
+              UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+            end
           end
         end
         redirect_to Company.find(params[:id]), :action => :collaborators unless error
