@@ -42,8 +42,8 @@
 	<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
 	            <i class="fa fa-google-plus"></i> <t key="log_in_with" provider="Google"/>
 	</a>
-	<p class="line sep"><ht key="hoshin.support.or" default="or"/></p>
-	<p class="sep"><t key="use_your_corporate" default="Use your corporate credentials"/></p>
+	<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
+	<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
 	<form action="/login" method="get">
 		<input type="text" name="email" placeholder="Email" class="input-block-level"/>
 		<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
