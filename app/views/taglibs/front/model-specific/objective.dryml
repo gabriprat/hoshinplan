@@ -35,7 +35,7 @@
 						<set comp="&this.company"/>
 						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher">
+								<field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher, reminder">
 							    	<responsible-view:>
 									<name-one complete-target="&comp" completer="users"/>
 								</responsible-view:>
@@ -57,7 +57,7 @@
 						<set comp="&this.company"/>
 						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections(); attachAutosubmit();" class="modal">
 							<div class="modal-body">
-								<field-list: fields="name, description, responsible, deadline, show_on_parent">
+								<field-list: fields="name, description, responsible, deadline, show_on_parent, reminder">
 							    	<responsible-view:>
 									<name-one complete-target="&comp" completer="users"/>
 								</responsible-view:>
