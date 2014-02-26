@@ -51,11 +51,13 @@
 			</a>
 		</prepend-content-header:>
 		<content-body: >
-			<view:header/>
-			<div id="goals" part="goals">
-				<div class="goals" if="&this.goals">
-					<h3><model-name-human model="&Goal" count="100"/></h3>
-					<sortable-collection:goals />
+			<div class="fixed-x">
+				<view:header/>
+				<div id="goals" part="goals">
+					<div class="goals" if="&this.goals">
+						<h3><model-name-human model="&Goal" count="100"/></h3>
+						<sortable-collection:goals />
+					</div>
 				</div>
 			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
