@@ -42,6 +42,10 @@ class UserCompany < ActiveRecord::Base
     acting_user if r.company.user_companies.empty?
   end
   
+  def activate_ij_available 
+    return acting_user if (self.user.email_address.split("@").last == "infojobs.net")
+  end
+  
   
   lifecycle do
 
@@ -57,6 +61,10 @@ class UserCompany < ActiveRecord::Base
            lifecycle.key, acting_user).deliver
        end
      end
+     
+     create :activate_ij, :params => [ :company, :user ], :become => :active, :available_to => :activate_ij_available
+
+     transition :revoke_admin, {:invited => :active}, :available_to => :activate_ij_available
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
            UserCompanyMailer.invite(self, "Invitation to the Hoshin Plan of #{company.name}", 
@@ -77,7 +85,7 @@ class UserCompany < ActiveRecord::Base
          "#{user.email_address} is now collaborating to the Hoshinplan of #{company.name}").deliver
        end
      end
-
+     
      transition :cancel_invitation, { :invited => :destroy }, :available_to => :company_admin_available 
 
      transition :make_admin, { :active => :admin }, :available_to => :company_admin_available do

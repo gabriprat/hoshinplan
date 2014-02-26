@@ -196,7 +196,28 @@
     </div>
   </form>
 </def>
+<def tag="activate-ij-form" polymorphic/>
+<def tag="activate-ij-form" for="UserCompany">
+  <form lifecycle="activate_ij" merge param="default">
+    <error-messages param/>
+    <field-list fields="company, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'user_company.actions.activate_ij', :default=>['Activate Ij']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
+<def tag="revoke-admin-form" polymorphic/>
+<def tag="revoke-admin-form" for="UserCompany">
+  <form lifecycle="revoke_admin" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.revoke_admin', :default=>['Revoke Admin']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="resend-invite-form" polymorphic/>
 <def tag="resend-invite-form" for="UserCompany">
   <form lifecycle="resend_invite" merge param="default">
@@ -238,17 +259,6 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>['Make Admin']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-<def tag="revoke-admin-form" polymorphic/>
-<def tag="revoke-admin-form" for="UserCompany">
-  <form lifecycle="revoke_admin" merge param="default">
-    <error-messages param/>
-    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="" param/>
-    <div param="actions">
-      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.revoke_admin', :default=>['Revoke Admin']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
