@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
   end
   
   def same_company 
-    acting_user.user_companies.where(:company_id => self.user_companies.*.company_id).present?
+    acting_user == self || acting_user.user_companies.where(:company_id => self.user_companies.*.company_id).present?
   end
   
   def same_company_admin
