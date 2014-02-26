@@ -49,7 +49,7 @@ class UserCompany < ActiveRecord::Base
 
      create :invite, :params => [ :company, :user ], :become => :invited,
                       :available_to => "User", :new_key => true do
-       if (self.user.email_address.split("@").last != "ifojobs.net")
+       if (self.user.email_address.split("@").last != "infojobs.net")
          UserCompanyMailer.invite(self, "Join me at #{company.name} Hoshin Plan", 
            "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
            "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
