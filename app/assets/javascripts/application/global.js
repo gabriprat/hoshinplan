@@ -68,7 +68,7 @@ var attachAutosubmit = function() {
 $(document).ready(attachAutosubmit);
 
 $(window).scroll(function () {  
-        $("body.fixed-headers .navbar, body.fixed-headers .content-header").map(function() {
+        $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"width": $(this).width()});
 		$(this).css({"margin-left": $(window).scrollLeft()}); 
 	});
@@ -90,7 +90,7 @@ var colorize = function () {
 }
 
 $( window ).resize(function() {
-	$("body.fixed-headers .navbar, body.fixed-headers .content-header").map(function() {
+	$("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"width": "auto"});
 	});
   equalHeightSections();
