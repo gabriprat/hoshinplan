@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
       :params => [:name, :email_address, :password, :password_confirmation],
       :become => :invited
       
-    create :active_ij,
+    create :activate_ij,
         :params => [:name, :email_address, :password, :password_confirmation],
         :become => :active
     
