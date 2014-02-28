@@ -198,8 +198,8 @@ es:
       format:
         unit: ''
         delimiter: .
-        precision: 2
-        significant: true
+        precision: 1
+        significant: false
         strip_insignificant_zeros: true
 #    attribute_help:
 #      user:

@@ -33,7 +33,11 @@
 				<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'/>
 			</else>
 			<form ajax class="autosubmit inline-form" style="display:none;" complete="attachAutosubmit()" >
-				<field-list: fields="value" />
+				<field-list: fields="value">
+					<value-view: >
+						<input value="&number_with_delimiter(this)"/>
+					</value-view>
+				</field-list:>
 		  	 	<actions: replace />
 			 </form>
 		  </div>
