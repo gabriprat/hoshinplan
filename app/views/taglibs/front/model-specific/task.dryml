@@ -28,7 +28,7 @@
 	      					<select-one options="&this_parent.objective.area_objectives" />
 	      				</objective-view:>
 	      			    	<responsible-view:>
-	      					<name-one complete-target="&this_parent.company" completer="users"/>
+	      					<name-one-user complete-target="&this_parent.company" />
 	      				</responsible-view:>
 	      			    </field-list:>
 	      		    </div>

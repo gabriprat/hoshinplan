@@ -27,7 +27,7 @@
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />
 				    	<responsible-view:>
-						<name-one complete-target="&comp" completer="users"/>
+						<name-one-user complete-target="&comp" />
 					</responsible-view:>
 				</field-list:>
 				<hidden-field:hoshin_id value="#{hid}"/>

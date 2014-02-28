@@ -5,7 +5,11 @@ class CompaniesController < ApplicationController
   auto_actions :all
   
   autocomplete :users do
-   render :json => find_instance.users.*.name
+    ret = []
+    users = find_instance.users.each { |user| 
+      ret << user.name + " (" + user.email_address + ")"
+    }
+    render :json => ret
   end
   
   include RestController

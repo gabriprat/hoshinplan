@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   
   hobo_user_controller
-  
-  autocomplete
-  
+    
   show_action :dashboard
   
   # Allow only the omniauth_callback action to skip the condition that
@@ -33,6 +31,11 @@ class UsersController < ApplicationController
         redirect_to home_page
       end
     end
+  end
+  
+  def update
+    fail param.to_yaml
+    hobo_update
   end
   
   def update_data

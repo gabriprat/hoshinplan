@@ -10,9 +10,17 @@ class IndicatorsController < ApplicationController
   
   
   def update
+    obj = params["indicator"]
+    select_responsible(obj)
     hobo_update do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
     end
+  end
+  
+  def create
+    obj = params["indicator"]
+    select_responsible(obj)
+    hobo_create
   end
   
   def history

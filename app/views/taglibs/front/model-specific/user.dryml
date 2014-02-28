@@ -5,3 +5,14 @@
 		</prepend-content-header:>
 	</old-show-page>
 </extend>
+
+<def tag="name-one-user">
+	<% 
+	if !this.nil?
+		value ||= this.name + " (" + this.email_address + ")" 
+	else
+		value ||= ""
+	end
+	%>
+	<name-one completer="users" value="#{value}" merge/>
+</def>
