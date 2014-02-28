@@ -14,5 +14,5 @@
 		value ||= ""
 	end
 	%>
-	<name-one completer="users" value="#{value}" merge/>
+	<name-one completer="users" value="#{value}" autocomplete='off' merge/>
 </def>

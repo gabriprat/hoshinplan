@@ -84,7 +84,7 @@
 						<select-one options="&this_parent.objective.area_objectives" />
 					</objective-view:>
 				    	<responsible-view:>
-						<name-one-user complete-target="&this_parent.objective.company" autocomplete='off'/>
+						<name-one-user complete-target="&this_parent.objective.company" />
 					</responsible-view:>
 				    </field-list:>
 	</old-form>
