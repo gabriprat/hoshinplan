@@ -42,6 +42,7 @@
 								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
+								<hidden-field:company_id value="#{comp.id}"/>
 							</div>
 							<modal-form-footer/>
 						</form>
@@ -64,6 +65,7 @@
 								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
+								<hidden-field:company_id value="#{comp.id}"/>
 							</div>
 							<modal-form-footer/>
 						</form>
@@ -74,3 +76,20 @@
 		</div>
 </scard>
 </def>
+
+<extend tag="form" for="Objective">
+	<old-form merge>
+			            <field-list:>
+				    	<area-view:>
+						<select-one options="&this_parent.area.hoshin.areas" />
+					</area-view:>
+				    	<objective-view:>
+						<select-one options="&this_parent.objective.area_objectives" />
+					</objective-view:>
+				    	<responsible-view:>
+						<name-one-user complete-target="&this_parent.company"/>
+					</responsible-view:>
+				    </field-list:>
+	</old-form>
+</extend>
+

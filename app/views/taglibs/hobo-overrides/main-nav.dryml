@@ -12,7 +12,7 @@
    	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><ht key="company.nav_item" count="100"><model-name-human with="&Company" count="100"/></ht> <b class="caret"></b></a>
     	<ul class="dropdown-menu">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_companies'>
-		<a />
+		<a><view:name/></a>
 		</li>
 		<li class="divider"></li>
 		<li><a with="&Company" action="new">+ <ht key="company.actions.create"/></a></li>
@@ -22,10 +22,15 @@
    	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><ht key="hoshin.nav_item" count="100"><model-name-human with="&Hoshin" count="100"/></ht> <b class="caret"></b></a>
     	<ul class="dropdown-menu" with="&current_user.hoshins">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
-			<a>#{this.name} (#{this.company.name})</a>
+			<a><view:name/> (<view:company.name />)</a>
 		</li>
-		<li class="divider"></li>
-		<li><a with="&Hoshin" action="new">+ <ht key="hoshin.actions.create"/></a></li>
+		<li class="divider" if="&Company.current_id"></li>
+		<li if="&Company.current_id">
+		<% @company = Company.find(Company.current_id) %>
+	        <a with="&@company.hoshins" action="new" if="&can_create?(@company.hoshins)" param="new-link">
+	          + <ht key="hoshin.actions.create" count="1" />
+	        </a>
+		</li>
 	</ul>
     </li>
     <nav-item with="&Company.find(Company.current_id)" action="collaborators" if="&Company.current_id">

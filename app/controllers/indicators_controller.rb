@@ -4,6 +4,8 @@ class IndicatorsController < ApplicationController
 
   auto_actions :all, :except => :index
   
+  auto_actions_for :objective, [:index, :new, :create]
+  
   show_action :history
   
   include RestController

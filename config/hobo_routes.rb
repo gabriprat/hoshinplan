@@ -6,7 +6,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller areas
-  resources :areas, :only => [:new, :edit, :show, :create, :update, :destroy] do
+  resources :areas, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
       post 'reorder'
     end
@@ -51,7 +51,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller hoshins
-  resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy]
+  resources :hoshins, :only => [:edit, :show, :create, :update, :destroy]
 
   # Owner routes for controller hoshins
   resources :companies, :as => :company, :only => [] do
@@ -75,6 +75,17 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       get 'history'
+    end
+  end
+
+  # Owner routes for controller indicators
+  resources :objectives, :as => :objective, :only => [] do
+    resources :indicators, :only => [] do
+      get 'new', :on => :new, :action => 'new_for_objective'
+      collection do
+        get 'index', :action => 'index_for_objective'
+        post 'create', :action => 'create_for_objective'
+      end
     end
   end
 
@@ -102,7 +113,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller tasks
-  resources :tasks, :only => [:new, :edit, :show, :create, :update, :destroy] do
+  resources :tasks, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
       post 'reorder'
     end
@@ -129,6 +140,7 @@ Hoshinplan::Application.routes.draw do
     resources :tasks, :only => [] do
       get 'new', :on => :new, :action => 'new_for_objective'
       collection do
+        get 'index', :action => 'index_for_objective'
         post 'create', :action => 'create_for_objective'
       end
     end

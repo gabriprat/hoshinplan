@@ -34,7 +34,7 @@ class Company < ActiveRecord::Base
     where(:id => UserCompany.select(:company_id)
       .where('user_id=? and user_companies.state = ?',  
         User.current_id, :admin) ) }
-  
+          
   def collaborators=
   end
   
@@ -61,7 +61,7 @@ class Company < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    new_record? || acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).empty?
+    new_record? || acting_user.administrator? || acting_user.respond_to?("id") && !acting_user.all_companies.find(self).nil?
   end
 
 end

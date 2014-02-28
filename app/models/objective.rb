@@ -34,7 +34,7 @@ class Objective < ActiveRecord::Base
         User.current_id) ) }
   
   before_create do |objective|
-    objective.company = objective.area.company
+      objective.company_id = objective.area.company_id
   end
   
   def area_objectives
@@ -57,7 +57,10 @@ class Objective < ActiveRecord::Base
   # --- Permissions --- #
   
   def same_company
-    acting_user.user_companies.where(:company_id => self.company_id)
+    user = acting_user ? acting_user : User.find(User.current_id)
+    cid = company_id ? company_id : Company.current_id
+    ret = user.all_companies.where(:id => cid).exists?
+    ret
   end
   
   def validate_company
@@ -65,7 +68,7 @@ class Objective < ActiveRecord::Base
   end
   
   def create_permitted?
-    true
+    same_company
   end
 
   def update_permitted?
@@ -77,7 +80,7 @@ class Objective < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    same_company
   end
 
 end

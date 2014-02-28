@@ -24,19 +24,21 @@ class Hoshin < ActiveRecord::Base
   validate :validate_company
   
   default_scope lambda { 
-    where(:company_id => Company.current_id) if Company.current_id}
+    where(
+        :company_id => (Company.current_id ? Company.current_id : User.current_id.nil? ? -1 : User.find(User.current_id).companies)
+    )
+  }
 
   # --- Permissions --- #
   
   def same_company
-    return false if User.current_id.nil?
-    user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id)
+    user = acting_user ? acting_user : User.find(User.current_id)
+    user.all_companies.where(:id => company_id).exists?
   end
   
   def same_company_admin
-    user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id, :state => :admin)
+    user = acting_user ? acting_user : User.find(User.current_id)
+    user.user_companies.where(:company_id => company_id, :state => :admin).exists?
   end
   
   def parent_same_company

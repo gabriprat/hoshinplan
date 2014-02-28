@@ -13,7 +13,7 @@ class UserCompany < ActiveRecord::Base
   #validate :company_admin_validator
   
   default_scope lambda { 
-    where("user_companies.company_id = ?", Company.current_id) if Company.current_id }
+    where("user_companies.company_id = ?", Company.current_id) if Company.current_id }  
   
   def company_admin_validator
     if acting_user.nil?

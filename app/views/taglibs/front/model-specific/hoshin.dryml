@@ -3,6 +3,9 @@
 		<body: class="fixed-headers" />
 		<navbar: />
 		<collection-heading: replace />
+		<parent-link: >
+			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
+		</parent-link:>
 		<prepend-content-header: saf="sdf">
 			<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
 	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
@@ -29,17 +32,19 @@
     			<modal id="add-goal-modal">
     				<modal:>
     				<set hid="#{this.id}"/>
+				<set comp="&this.company"/>
     				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" update="goals" class="modal">
     					<div class="modal-body">
     						<field-list: fields="name" />
     						<hidden-field:hoshin_id value="#{hid}"/>
+    						<hidden-field:company_id value="#{comp.id}"/>
     					</div>
     					<modal-form-footer/>
     				</form>
     				</modal:>
     			</modal>
 			
-			<a href="#{this.id}-#{this.name}.pdf" class="btn pull-right">
+			<a href="#{this.id}.pdf" class="btn pull-right">
 	    	            <ht key="hoshin.actions.export_as_pdf" name="#{name(:no_wrapper => true)}">
 	    	              Export as PDF
 	    	            </ht>
