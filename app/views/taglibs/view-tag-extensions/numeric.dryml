@@ -8,3 +8,7 @@
 			number_with_precision(this, :precision => precision) 
 	%>
 </extend>
+
+<extend tag="input" for="BigDecimal">
+	<old-input value="&number_with_delimiter(this)" merge/>
+</extend>
