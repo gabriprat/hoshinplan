@@ -52,7 +52,7 @@
 						<select-one options="&this_parent.objective.area_objectives" />
 					</objective-view:>
 				    	<responsible-view:>
-						<name-one complete-target="&this_parent.company" completer="users"/>
+						<name-one-user complete-target="&this_parent.company"/>
 					</responsible-view:>
 				    </field-list:>
 						</div>
@@ -72,3 +72,21 @@
   </div>
 </scard>
 </def>
+
+
+<extend tag="form" for="Indicator">
+	<old-form merge>
+			            <field-list:>
+				    	<area-view:>
+						<select-one options="&this_parent.area.hoshin.areas" />
+					</area-view:>
+				    	<objective-view:>
+						<select-one options="&this_parent.objective.area_objectives" />
+					</objective-view:>
+				    	<responsible-view:>
+						<name-one-user complete-target="&this_parent.company"/>
+					</responsible-view:>
+				    </field-list:>
+	</old-form>
+</extend>
+

@@ -13,7 +13,7 @@
 				    <field-list: fields="name, description, responsible, parent">
 						<parent-tag: options="&options" />
 					    	<responsible-view:>
-							<name-one complete-target="&this_parent.company" completer="users"/>
+							<name-one-user complete-target="&this_parent.company" />
 						</responsible-view:>
 					</field-list:>
 					</div>
@@ -37,7 +37,7 @@
 							<div class="modal-body">
 								<field-list: fields="name, description, frequency, next_update, responsible, goal, min_value, max_value, higher, reminder">
 							    	<responsible-view:>
-									<name-one complete-target="&comp" completer="users"/>
+									<name-one-user complete-target="&comp" />
 								</responsible-view:>
 								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
@@ -59,7 +59,7 @@
 							<div class="modal-body">
 								<field-list: fields="name, description, responsible, deadline, show_on_parent, reminder">
 							    	<responsible-view:>
-									<name-one complete-target="&comp" completer="users"/>
+									<name-one-user complete-target="&comp" />
 								</responsible-view:>
 								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>

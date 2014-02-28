@@ -132,4 +132,18 @@ end
     return false 
   end
   
+  def select_responsible(obj)
+    if (obj["responsible_id"].nil? && !obj["responsible"].nil?) 
+      r = Regexp.new(/\(([a-zA-Z0-9\._%+-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]+)\)/)     
+      email = obj["responsible"].scan(r).last
+      if (!email.nil?)
+        user = User.find_by_email_address(email)
+        if (!user.nil?)
+          obj["responsible_id"] = user.id
+          obj.delete("responsible")
+        end
+      end
+    end
+  end
+  
   

@@ -165,7 +165,6 @@ Hoshinplan::Application.routes.draw do
   # Resource routes for controller users
   resources :users, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
-      get 'complete_name'
       post 'signup', :action => 'do_signup'
       get 'signup'
     end
