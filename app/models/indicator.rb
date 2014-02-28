@@ -104,7 +104,10 @@ class Indicator < ActiveRecord::Base
   # --- Permissions --- #
   
   def same_company
-    acting_user.user_companies.where(:company_id => self.company_id)
+    user = acting_user ? acting_user : User.find(User.current_id)
+    cid = company_id ? company_id : Company.current_id
+    ret = user.all_companies.where(:id => cid).exists?
+    ret
   end
   
   def validate_company
@@ -112,7 +115,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def create_permitted?
-    true
+    same_company
   end
 
   def update_permitted?
@@ -124,7 +127,7 @@ class Indicator < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    same_company
   end
   
 end

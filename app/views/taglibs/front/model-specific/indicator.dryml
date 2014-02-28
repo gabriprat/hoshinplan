@@ -78,13 +78,13 @@
 	<old-form merge>
 			            <field-list:>
 				    	<area-view:>
-						<select-one options="&this_parent.area.hoshin.areas" />
+						<select-one options="&this_parent.objective.area.hoshin.areas" />
 					</area-view:>
 				    	<objective-view:>
 						<select-one options="&this_parent.objective.area_objectives" />
 					</objective-view:>
 				    	<responsible-view:>
-						<name-one-user complete-target="&this_parent.company"/>
+						<name-one-user complete-target="&this_parent.objective.company" autocomplete='off'/>
 					</responsible-view:>
 				    </field-list:>
 	</old-form>

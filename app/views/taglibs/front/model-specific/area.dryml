@@ -32,6 +32,7 @@
 				</field-list:>
 				<hidden-field:hoshin_id value="#{hid}"/>
 				<hidden-field:area_id value="#{aid}"/>
+				<hidden-field:company_id value="#{comp.id}"/>
 			</div>
 			<modal-form-footer/>
 		</form>

@@ -2,9 +2,9 @@ class TasksController < ApplicationController
 
   hobo_model_controller
 
-  auto_actions :all, :except => :index
+  auto_actions :all, :except => [:index, :new]
 
-  auto_actions_for :objective, [:new, :create]
+  auto_actions_for :objective, [:index, :new, :create]
   
   include RestController
   

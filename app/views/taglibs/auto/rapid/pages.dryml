@@ -35,9 +35,6 @@
     </content-header:>
 
     <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="area.actions.new">New Area</ht>
-      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -45,6 +42,13 @@
 
       <page-nav param="bottom-page-nav"/>
 
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="area.form.new.heading">New Area</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(Area)" param/>
+      </div>
 
     </content-body:>
   </page>
@@ -530,9 +534,6 @@
     </content-header:>
 
     <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="hoshin.actions.new">New Hoshin</ht>
-      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -540,6 +541,13 @@
 
       <page-nav param="bottom-page-nav"/>
 
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="hoshin.form.new.heading">New Hoshin</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(Hoshin)" param/>
+      </div>
 
     </content-body:>
   </page>
@@ -883,6 +891,77 @@
   </page>
 </def>
 
+<def tag="index-for-objective-page" polymorphic/>
+<def tag="index-for-objective-page" for="Indicator">
+  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicator for']} #{name :with => @objective, :no_wrapper => true}">
+    <body: class="index-for-owner-page objective indicator" param/>
+    <content-header: param>
+      <div param="back-to">
+        <t key="hobo.actions.back">Back to</t> <a with="&@objective"/>
+      </div>
+      <h2 param="heading" if="&@owner">
+        <ht key="indicator.index_for_owner.heading" count="&@objective.indicators.count">
+          <human-collection-name with="&@objective" collection="indicators" your/>
+        </ht>
+      </h2>
+
+      <h3 param="subheading">
+        <ht key="indicator.index_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@objective"/>
+      </h3>
+      <p param="count" if>
+        <ht key="indicator.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&@objective.indicators" param="new-link">
+        <ht key="indicator.actions.new" >New Indicator</ht>
+      </a>
+
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-for-objective-page" polymorphic/>
+<def tag="new-for-objective-page" for="Indicator">
+  <page merge title="#{ht 'indicator.new_for_owner.title', :default=>['New Indicator for']} #{name :with => @objective}">
+    <body: class="new-for-owner-page  indicator" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator.new_for_owner.heading">
+          New Indicator
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="indicator.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@objective"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="objective" method="post" param>
+        <field-list: skip="objective"/>
+        <submit: label="#{ht 'indicator.actions.create', :default=>['Create Indicator']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
 
 
 
@@ -1089,18 +1168,19 @@
         </h3>
 
         <collection:indicators param/>
+
+        <a:indicators action="new" if="&can_create?(@objective.indicators)" param="new-link">
+          <ht key="indicator.actions.new" count="1">
+            New Indicator
+          </ht>
+        </a:indicators>
       </section>
     </content-body:>
 
     <aside: param>
-      <section param="tasks-collection-section">
-        <h3 param="tasks-collection-heading">
-          <ht key="task.collection.heading" count="&this.tasks.count" >
-            <human-collection-name collection="tasks" your/>
-          </ht>
-        </h3>
-        <collection:tasks  param="tasks-collection"/>
-      </section>
+     <collection-preview:tasks.recent param="tasks-preview">
+       <heading-content:><human-collection-name with="&this.origin" collection="tasks" your/></heading-content:>
+     </collection-preview:tasks.recent>
     </aside:>
 
   </page>
@@ -1183,9 +1263,6 @@
     </content-header:>
 
     <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="task.actions.new">New Task</ht>
-      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -1193,6 +1270,13 @@
 
       <page-nav param="bottom-page-nav"/>
 
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="task.form.new.heading">New Task</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(Task)" param/>
+      </div>
 
     </content-body:>
   </page>
@@ -1271,6 +1355,47 @@
   </page>
 </def>
 
+<def tag="index-for-objective-page" polymorphic/>
+<def tag="index-for-objective-page" for="Task">
+  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Task for']} #{name :with => @objective, :no_wrapper => true}">
+    <body: class="index-for-owner-page objective task" param/>
+    <content-header: param>
+      <div param="back-to">
+        <t key="hobo.actions.back">Back to</t> <a with="&@objective"/>
+      </div>
+      <h2 param="heading" if="&@owner">
+        <ht key="task.index_for_owner.heading" count="&@objective.tasks.count">
+          <human-collection-name with="&@objective" collection="tasks" your/>
+        </ht>
+      </h2>
+
+      <h3 param="subheading">
+        <ht key="task.index_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@objective"/>
+      </h3>
+      <p param="count" if>
+        <ht key="task.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&@objective.tasks" param="new-link">
+        <ht key="task.actions.new" >New Task</ht>
+      </a>
+
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+    </content-body:>
+  </page>
+</def>
 
 
 <def tag="new-for-objective-page" polymorphic/>

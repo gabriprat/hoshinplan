@@ -6,7 +6,7 @@ class Goal < ActiveRecord::Base
     name :string
     timestamps
   end
-  attr_accessible :name, :hoshin, :hoshin_id
+  attr_accessible :name, :hoshin, :hoshin_id, :company_id
   
   belongs_to :hoshin, :inverse_of => :objectives
   belongs_to :company
@@ -27,13 +27,15 @@ class Goal < ActiveRecord::Base
   # --- Permissions --- #
   
   def same_company
-    user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id)
+    user = acting_user ? acting_user : User.find(User.current_id)
+    cid = company_id ? company_id : Company.current_id
+    ret = user.all_companies.where(:id => cid).exists?
+    ret
   end
   
   def same_company_admin
-    user = User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id, :state => :admin)
+    user = acting_user ? acting_user : User.find(User.current_id)
+    user.user_companies.where(:company_id => company_id, :state => :admin).exists?
   end
   
 
