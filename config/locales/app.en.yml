@@ -52,6 +52,12 @@ en:
     here_you_can: Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a %{rest_link}.
     to_learn: To learn how to use it please visit our %{developers_link}.
   number:
+    format:
+      delimiter: ','
+      precision: 2
+      separator: .
+      significant: false
+      strip_insignificant_zeros: true
     human:
       decimal_units:
         format: "%n%u"
@@ -62,6 +68,12 @@ en:
           billion: B
           trillion: T
           quadrillion: Q
+      format:
+        unit: ''
+        delimiter: ','
+        precision: 1
+        significant: false
+        strip_insignificant_zeros: true
   user_company:
     collection:
       heading: Users
