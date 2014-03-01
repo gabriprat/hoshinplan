@@ -16,6 +16,7 @@
 			</span>
 			<div class="inline edit-image">
 			<view:image />
+			<div><a action="edit"><t key="dashboard.change">Change</t></a></div>
 			</div>
 			<div class="inline">
 			<strong><view:name /></strong>
@@ -31,7 +32,7 @@
 			<collection:companies>
 			        <header>
 			          <h4><a><name/></a></h4>
-				  <a action="delete" />
+				  <a action="delete">adfs</a>
 			        </header>
 				<collection:hoshins class="timeline">
 					<view/>
