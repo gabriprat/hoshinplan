@@ -1,5 +1,8 @@
 class Objective < ActiveRecord::Base
 
+  include ModelBase
+  
+  
   hobo_model # Don't put anything above this
 
   fields do
@@ -72,7 +75,7 @@ class Objective < ActiveRecord::Base
   end
 
   def update_permitted?
-    same_company
+    true #same_company
   end
 
   def destroy_permitted?
@@ -80,7 +83,7 @@ class Objective < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    same_company
+    true #same_company
   end
 
 end

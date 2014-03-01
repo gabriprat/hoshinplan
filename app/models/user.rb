@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  include ModelBase
+  
+  
   hobo_user_model # Don't put anything above this
   
   NEXT_FRIDAY = DateTime.now.next_week.next_day(4)
