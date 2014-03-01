@@ -34,7 +34,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    fail param.to_yaml
     hobo_update
   end
   
