@@ -1,0 +1,75 @@
+<show-page title="My dashboard" aside-location="left" content-size="8">
+
+  <body: class="dashboard hoshin"/>
+
+  <content-header:>
+    
+  </content-header:>
+  	
+  <aside:/>
+  
+  <aside-column:>
+  	<div class="panel">
+		<div class="panel-heading clearfix">
+			<span class="tools pull-right hoshin-tasks">
+		            <a action="edit"><span class="fa fa-cog"/></a>
+			</span>
+			<div class="inline edit-image">
+			<view:image />
+			</div>
+			<div class="inline">
+			<strong><view:name /></strong>
+			<br/>
+			<span class="lower">#{this.email_address.to_s}</span>
+			<br/><br/>
+			<delete-button value="#{t 'delete_account', :default => 'Delete account'}"/>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h4><t key="dashboard.collaborating_with">Collaborating with</t></h4>
+			<hr/>
+			<collection:companies>
+			        <header>
+			          <h4><a><name/></a></h4>
+				  <a action="delete" />
+			        </header>
+				<collection:hoshins class="timeline">
+					<view/>
+				</collection>
+			</collection>
+		</div>
+	</div>
+  </aside-column:>
+  
+  <content-body:>
+
+    <section class="content-body">
+
+    
+    <do:dashboard>
+    
+    <div class="panel">
+    <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
+    <div class="panel-body">
+	<rtable:indicators columns="#,Company,Hoshin,Area,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators" class="indicators" sortable/>
+	<else>
+	    <ht key="indicator.dashboard.no_kpis" count="0">You have no <model-name-human with="&Indicator" count="0"/> with to update</ht>
+	</else>
+	</div>
+    </div>
+    <div class="panel">
+    <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
+    <div class="panel-body">
+	    <rtable:tasks columns="#,Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" sortable/>
+	    <else>
+	    <ht key="task.dashboard.no_tasks" count="0">You have no <model-name-human with="&Task" count="0"/> with a close deadline</ht>
+	    </else>
+	    </div>
+    </div>
+    </do>
+    
+    </section>
+  </content-body:>
+
+</show-page>
+

@@ -24,6 +24,6 @@
 
 <include src="taglibs/front/model-specific/*"/>
 
-
+<include gem='hobo_paperclip'/>
 
 

@@ -12,7 +12,7 @@ class FrontController < ApplicationController
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
       redirect_to "/first"
     elsif !current_user.nil? && !current_user.guest?
-       redirect_to current_user, :action => :dashboard
+       redirect_to current_user
     end
   end
  

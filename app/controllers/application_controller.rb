@@ -34,7 +34,6 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user  
 
              def scope_current_user
-               Rails.logger.debug params.to_yaml
                  if !params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?
                    inst = model.unscoped.find(params[:id]) unless params[:id].nil?
                    inst = Company.unscoped.find(params[:company_id]) unless inst || params[:company_id].nil?

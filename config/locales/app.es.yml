@@ -12,6 +12,9 @@ es:
   hobo:
     actions:
       submit: Enviar
+    dashboard:
+      no_kpis: No tienes %{model} pendientes de actualizar
+      no_tasks: No tienes %{model} con una fecha de finalización cercana
   user_company:
     collection:
       heading: Usuarios
