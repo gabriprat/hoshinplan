@@ -1103,6 +1103,10 @@ ul.timeline li.highlight:hover:after {
 	color: #fff;
 }
 
+.user .edit-image a {
+	color: #fff;
+}
+
 .user .edit-image .user-image img {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
