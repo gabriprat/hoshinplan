@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   hobo_user_controller
-    
+  
   show_action :dashboard
   
   # Allow only the omniauth_callback action to skip the condition that
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
       render :text => "Permission Denied", :status => 403 unless current_user.administrator?
   end
   
+  def dashboard
+    redirect_to current_user
+  end
+  
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on
   #  first run.  This method creates the initial user.
@@ -34,7 +38,9 @@ class UsersController < ApplicationController
   end
   
   def update
-    hobo_update
+    hobo_update do
+      redirect_to current_user
+    end
   end
   
   def update_data
@@ -58,10 +64,6 @@ class UsersController < ApplicationController
   
   def sign_in(user) 
     sign_user_in(user)
-  end
-  
-  def dashboard 
-    @this = find_instance
   end
   
 end

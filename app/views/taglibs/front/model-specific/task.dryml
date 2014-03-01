@@ -11,7 +11,7 @@
 	</if>
 	<if test="&column == 'Hoshin'">
 		<div class="column" data-label="Hoshin">
-		<%= link_to this.area.hoshin_id, :controller => "hoshins", :action => "show", :id => this.area.hoshin_id %>
+		<%= link_to this.area.hoshin, :controller => "hoshins", :action => "show", :id => this.area.hoshin_id %>
 		</div>
 	</if>
 	<if test="&column == 'Area'">

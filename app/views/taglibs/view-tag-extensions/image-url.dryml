@@ -1,3 +1,7 @@
 <def tag='view' for="HoboFields::Types::ImageUrl">
 	#{this.to_html}
 </def>
+
+<def tag="view" for="Paperclip::Attachment">
+  <img src="#{this.url(:thumb)}" />
+</def>

@@ -12,10 +12,15 @@ class User < ActiveRecord::Base
   fields do
     name          :string, :required
     email_address :email_address, :login => true
-    image         HoboFields::Types::ImageUrl
     administrator :boolean, :default => false
     timestamps
   end
+  has_attached_file :image, :styles => {
+    :thumb => "104x104#" },
+    :default_url => "/assets/default.jpg"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  #validates_attachment_size :image, :less_than => 10.megabytes    
+    
   attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image
   
   has_many :hoshins, :through => :companies
@@ -37,7 +42,7 @@ class User < ActiveRecord::Base
   default_scope lambda { 
     where(:id => UserCompany.select(:user_id)
       .where('company_id=?',  
-        Company.current_id) ) unless Company.current_id.nil? }  
+        Company.current_id) ) unless Company.current_id.nil? }                                
 
   # --- Signup lifecycle --- #
 
@@ -123,9 +128,9 @@ class User < ActiveRecord::Base
   def dashboard
     Company.current_id = nil
     {
-        "indicators" => self.indicators.unscoped.where("next_update < ? and responsible_id = ?", NEXT_FRIDAY, self.id).order("next_update ASC"),
-        "tasks" => self.tasks.unscoped.where("deadline < ? and responsible_id = ? and status = 'active'", NEXT_FRIDAY, self.id).order("deadline ASC")
-        }
+        "indicators" => Indicator.where("next_update < ? and responsible_id = ?", NEXT_FRIDAY, self.id).order("next_update ASC"),
+        "tasks" => Task.where("deadline < ? and responsible_id = ? and status = 'active'", NEXT_FRIDAY, self.id).order("deadline ASC")
+    }
   end
   
   # --- Permissions --- #
@@ -135,9 +140,8 @@ class User < ActiveRecord::Base
     self.class.count == 0
   end
 
-  def update_permitted?
-    f = only_changed?(:name, :email_address, :crypted_password,
-                                            :current_password, :password, :password_confirmation)
+  def update_permitted?     
+    f = none_changed?(:administrator)
     acting_user.administrator? or
       ((acting_user == self or same_company_admin) && f)
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
@@ -145,7 +149,7 @@ class User < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user == self || acting_user.administrator?
   end
   
   def same_company 

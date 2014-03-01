@@ -69,3 +69,7 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'delocalize'
 gem 'font-awesome-sass'
+gem 'aws-sdk'
+gem 'paperclip'
+gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
+

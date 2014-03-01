@@ -124,7 +124,7 @@ class UserCompany < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || acting_user.user_companies.company_is(company).where(:state => :admin).exists?
+    user_id = acting_user.id || acting_user.administrator? || acting_user.user_companies.company_is(company).where(:state => :admin).exists?
   end
 
   def view_permitted?(field)
