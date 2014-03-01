@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 
+  include ModelBase
+  
   hobo_model # Don't put anything above this
 
   fields do
