@@ -77,7 +77,7 @@ class Indicator < ActiveRecord::Base
     end
   end
     
-  def higher
+  def higher?
     worst_value < goal
   end
   
