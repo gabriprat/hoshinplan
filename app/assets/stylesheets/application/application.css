@@ -533,7 +533,7 @@ body div.ordering-handle {
 	background-color: rgba(0,0,0,0.2);
 }
 
-div.table.indicators .table-head .table-row div.column:nth-child(3) {
+.area div.table.indicators .table-head .table-row div.column:nth-child(3) {
 	min-width: 220px;
 }
 
