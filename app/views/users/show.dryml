@@ -1,7 +1,7 @@
 <show-page title="My dashboard" aside-location="left" content-size="8">
 
-  <body: class="dashboard hoshin"/>
-
+  <body: class="dashboard hoshin" />
+	
   <content-header:>
     
   </content-header:>
@@ -29,10 +29,10 @@
 		<div class="panel-body">
 			<h4><t key="dashboard.collaborating_with">Collaborating with</t></h4>
 			<hr/>
-			<collection:companies>
+			<collection:companies part="companies">
 			        <header>
 			          <h4><a><name/></a></h4>
-				  <a action="delete">adfs</a>
+				  <delete-button with="&this.user_companies.where(:user_id => current_user.id).first" action="destroy" class="pull-right fa fa-trash-o link" value="&#xf014;" success="window.location.reload(true);"/>
 			        </header>
 				<collection:hoshins class="timeline">
 					<view/>
@@ -44,7 +44,7 @@
   
   <content-body:>
 
-    <section class="content-body">
+    <section class="content-body" part="body">
 
     
     <do:dashboard>

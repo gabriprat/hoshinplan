@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   
   def update
     hobo_update do
-      redirect_to current_user
+      redirect_to current_user, :dgv => Time.now.to_i 
     end
   end
   

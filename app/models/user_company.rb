@@ -27,6 +27,11 @@ class UserCompany < ActiveRecord::Base
     end
   end
   
+  before_destroy do |uc|
+    Indicator.where(:company_id => uc.company_id, :responsible_id => uc.user_id).update_all(:responsible_id => nil)
+    Task.where(:company_id => uc.company_id, :responsible_id => uc.user_id).update_all(:responsible_id => nil)
+  end
+  
   def company_admin
     self.company.nil? || #!self.company_changed? ||
     acting_user.user_companies.company_is(self.company).state_is(:admin).exists?

@@ -872,10 +872,11 @@ width: 0;
 	color: #000;
 }
 
-button.link, button.link:focus, button.link:active {
+.link, .link:focus, .link:active {
 	background: none;
 	border: 0;
 	outline: none;
+	box-shadow: none;
 }
 
 body.collaborators td.controls button {
