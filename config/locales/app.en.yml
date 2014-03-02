@@ -30,6 +30,10 @@ en:
       goal:
         one: Long term goal
         other: Long term goals
+    attributes:
+      indicator:
+        goal: 100% value
+        worst_value: 0% value
   log_in_with: Log in with %{provider}
   home: Home
   area:

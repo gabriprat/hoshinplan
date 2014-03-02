@@ -863,7 +863,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, frequency, next_update, last_update, last_value, goal, min_value, max_value, position, area, company, responsible" param/>
+      <field-list fields="value, frequency, next_update, last_update, last_value, goal, worst_value, position, area, company, responsible" param/>
     </content-body:>
 
   </page>
