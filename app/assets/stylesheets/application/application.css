@@ -242,7 +242,6 @@ body.hoshin ul.collection.goals .goal {
 body.hoshin .collection.areas {
 	display: table; 
 	table-layout: auto; 
-	position: absolute;
 }
 
 body.hoshin
