@@ -18,7 +18,7 @@ class Indicator < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
-    :higher, :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id
+   :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator, :conditions => "indicator_histories.value is not null"
   
@@ -72,7 +72,7 @@ class Indicator < ActiveRecord::Base
       if last_value == value 
         :equal 
       else 
-        ((last_value < value && higher) || (value < last_value && !higher)) ? :positive : :negative
+        ((last_value < value && higher?) || (value < last_value && !higher?)) ? :positive : :negative
       end
     end
   end
