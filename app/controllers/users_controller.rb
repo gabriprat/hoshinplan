@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  hobo_user_controller
+  hobo_user_controller  
   
   show_action :dashboard
   
@@ -64,6 +64,13 @@ class UsersController < ApplicationController
   
   def sign_in(user) 
     sign_user_in(user)
+  end
+  
+  def sign_user_in(user)
+    params[:remember_me] = true
+    super(user)
+    current_user.remember_me
+    create_auth_cookie
   end
   
 end
