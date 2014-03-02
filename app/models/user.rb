@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
   default_scope lambda { 
     where(:id => UserCompany.select(:user_id)
       .where('company_id=?',  
-        Company.current_id) ) unless Company.current_id.nil? }                                
-
+        Company.current_id) ) unless Company.current_id.nil? }    
+        
   # --- Signup lifecycle --- #
 
   lifecycle do

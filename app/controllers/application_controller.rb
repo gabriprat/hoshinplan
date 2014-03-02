@@ -24,7 +24,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   respond_to :html, :html, :xml
-  
+    
+  before_filter :login_from_cookie
+   
   before_filter :authenticate_client_app
 
   before_filter :my_login_required,  :except => [:index, :login, :signup, :activate,
@@ -90,12 +92,12 @@ class ApplicationController < ActionController::Base
   # User count. 
   def my_login_required
     #return false if !defined?(logged_in)
+    login_from_cookie
     return true if logged_in?
     flash[:warning]='Please login to continue'
     session[:return_to] = request.url
     redirect_to "/auth/google_oauth2"
     return false 
-     
   end
   
     private
@@ -121,15 +123,6 @@ class ApplicationController < ActionController::Base
   
 end
 
- def login_required
-    if session[:user]
-      return true
-    end
-    flash[:warning]='Please login to continue'
-    session[:return_to]=request.request_uri
-    redirect_to "/auth/google_oauth2"
-    return false 
-  end
   
   def select_responsible(obj)
     if (obj["responsible_id"].nil? && !obj["responsible"].nil?) 
