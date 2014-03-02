@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140302195941) do
+ActiveRecord::Schema.define(:version => 20140302200909) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -122,18 +122,15 @@ ActiveRecord::Schema.define(:version => 20140302195941) do
     t.string   "name"
     t.decimal  "value"
     t.text     "description"
-    t.boolean  "higher",         :default => true
     t.string   "frequency"
     t.date     "next_update"
     t.decimal  "goal",           :default => 100.0
-    t.decimal  "max_value",      :default => 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
     t.integer  "area_id"
     t.integer  "position"
     t.date     "last_update"
-    t.decimal  "min_value",      :default => 0.0
     t.decimal  "last_value"
     t.integer  "responsible_id"
     t.integer  "company_id"
