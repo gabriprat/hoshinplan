@@ -17,11 +17,6 @@ body h1 {
 	font-size: 3em;
 }
 
-body.hoshin .container .collection.areas {
-	display: block;
-	width: 100%;
-}
-
 body.hoshin a:after
 {
 content: none;
@@ -247,7 +242,7 @@ body.hoshin ul.collection.goals .goal {
 body.hoshin .collection.areas {
 	display: table; 
 	table-layout: auto; 
-	width: 100%;
+	position: absolute;
 }
 
 body.hoshin

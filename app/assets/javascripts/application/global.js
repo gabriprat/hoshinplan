@@ -55,7 +55,7 @@ var validateDate = function(formElem) {
 }
 
 var attachAutosubmit = function() {
-	$('.bootstrap-datepicker').datepicker();
+	$('.bootstrap-datepicker').datepicker({orientation: "top left"});
 	$(".autosubmit input[type=text]")
 		.unbind("change", submitClosestForm).change(submitClosestForm);
 	$(".autosubmit input.indicator-value")
