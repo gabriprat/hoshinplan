@@ -8,19 +8,17 @@ class Indicator < ActiveRecord::Base
     name        :string
     value       :decimal
     description :text
-    higher      :boolean, :default => true
     frequency   HoboFields::Types::EnumString.for(:weekly, :monthly, :quarterly)
     next_update :date
     last_update :date
     last_value  :decimal
     goal        :decimal, :default => 100.0
-    min_value   :decimal, :default => 0.0
-    max_value   :decimal, :default => 100.0
+    worst_value :decimal, :default => 0.0
     reminder    :boolean, :default => true
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
-    :higher, :frequency, :next_update, :goal, :min_value, :max_value, :area, :area_id, :trend, :company, :company_id
+    :higher, :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator, :conditions => "indicator_histories.value is not null"
   
@@ -79,15 +77,14 @@ class Indicator < ActiveRecord::Base
     end
   end
     
+  def higher
+    worst_value < goal
+  end
   
   def tpc 
     ret = 0
-    if !max_value.nil? && !min_value.nil? && !value.nil? && (max_value-min_value)!=0
-      if higher
-        ret = 100 * (value-min_value) / (goal-min_value)
-      else
-        ret = 100 * ((max_value-value) / (max_value-goal))
-      end 
+    if !worst_value.nil? && !value.nil? && (goal-worst_value)!=0
+      ret = 100 * (value-worst_value) / (goal-worst_value)
     end 
   end
   

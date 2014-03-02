@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140301214835) do
+ActiveRecord::Schema.define(:version => 20140302195941) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20140301214835) do
     t.integer  "responsible_id"
     t.integer  "company_id"
     t.boolean  "reminder",       :default => true
+    t.decimal  "worst_value",    :default => 0.0
   end
 
   add_index "indicators", ["area_id"], :name => "index_indicators_on_area_id"
@@ -231,7 +232,6 @@ ActiveRecord::Schema.define(:version => 20140301214835) do
     t.datetime "updated_at"
     t.string   "state",                                   :default => "inactive"
     t.datetime "key_timestamp"
-    t.string   "image"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

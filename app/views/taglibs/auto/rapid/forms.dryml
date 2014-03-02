@@ -76,7 +76,7 @@
 <def tag="form" for="Indicator">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, value, description, higher, frequency, next_update, last_update, last_value, goal, min_value, max_value, reminder, position, area, company, objective, responsible" param/>
+    <field-list fields="name, value, description, frequency, next_update, last_update, last_value, goal, worst_value, reminder, position, area, company, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'indicator.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -21,7 +21,7 @@ class FrontController < ApplicationController
   end
   
   def login
-    user, domain = params["email"].split("@") 
+    user, domain = params["email"].split("@")
     oi = OpenidProvider.where(:email_domain => domain).first.openid_url
     url = oi.gsub('{user}', user)
     redirect_to "/auth/openid?openid_url=" + url

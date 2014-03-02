@@ -86,9 +86,10 @@ es:
         frequency: Frecuencia
         next_update: Prox. Actualiz.
         responsible: Responsable
-        goal: Objetivo
+        goal: Valor 100%
         min_value: Valor mínimo
         max_value: Valor máximo
+        worst_value: Valor 0%
         higher: Mejor si mayor
       task:
         name: Nombre
