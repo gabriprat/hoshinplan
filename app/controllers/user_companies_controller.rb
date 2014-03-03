@@ -14,7 +14,6 @@ class UserCompaniesController < ApplicationController
   end
 
   def do_accept
-    do_transition_action :accept, :redirect => find_instance.company
-    
+    do_transition_action :accept, :redirect => "/invitation-accepted"
   end
 end

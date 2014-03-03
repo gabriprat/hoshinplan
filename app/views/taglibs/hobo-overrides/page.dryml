@@ -11,7 +11,7 @@
 		<append-body: >
 			<%= raw "<"+"/span>" %>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
-			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" if="&ENV[&apos;RAILS_ENV&apos;] == &apos;production&apos;"/>
+			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" if="&ENV[&apos;RAILS_ENV&apos;] != &apos;production&apos;"/>
 			<script type="text/javascript">
 				(function() {
 					var sep="#{t 'number.format.separator'}";
