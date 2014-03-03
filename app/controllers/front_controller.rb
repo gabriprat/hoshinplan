@@ -1,8 +1,6 @@
 class FrontController < ApplicationController
 
-  hobo_controller
-
- 
+  hobo_controller 
   
   # Require the user to be logged in for every other action on this controller
   # except :index. 
@@ -18,6 +16,10 @@ class FrontController < ApplicationController
  
   def first
     
+  end
+  
+  def invitation_accepted
+    flash[:notice] = nil
   end
   
   def login
