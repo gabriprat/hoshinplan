@@ -27,7 +27,7 @@ class Objective < ActiveRecord::Base
   belongs_to :hoshin, :inverse_of => :objectives
   belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
   
-  acts_as_list :scope => :area
+  acts_as_list :scope => :area, :column => "obj_pos"
   
   validate :validate_company
   
@@ -38,6 +38,10 @@ class Objective < ActiveRecord::Base
   
   before_create do |objective|
       objective.company_id = objective.area.company_id
+  end
+  
+  def position
+    obj_pos
   end
   
   def area_objectives

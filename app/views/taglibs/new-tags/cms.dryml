@@ -1,7 +1,3 @@
 <def tag="cms" attrs="key, expires">
-    <% expires ||= 1.month %>
-    <% ActionController::Base.new.expire_fragment('localhost:5000/cms/' + key) if params["clear_cache"] %>
-    <% cache('localhost:5000/cms/' + key, :expires_in => expires) do %>
-    	<div id="cms"><%= raw ERB.new(cmsGet(key)).result(binding).force_encoding("UTF-8") %></div>
-    <% end %>
+    
 </def>

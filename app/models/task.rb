@@ -22,9 +22,9 @@ class Task < ActiveRecord::Base
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
-  acts_as_list :scope => :area
+  acts_as_list :scope => :area, :column => "tsk_pos"
   
-  set_default_order [:status, :position]
+  set_default_order [:status, :tsk_pos]
   
   validate :validate_company
   
@@ -59,6 +59,10 @@ class Task < ActiveRecord::Base
     if task.original_deadline.nil? && !task.deadline.nil?
       task.original_deadline = task.deadline
     end
+  end
+  
+  def position
+    tsk_pos
   end
   
   def deadline_status 

@@ -13,7 +13,7 @@
 				    <field-list: fields="name, description, responsible, parent">
 						<parent-tag: options="&options" />
 					    	<responsible-view:>
-							<name-one-user complete-target="&this_parent.company" />
+							<name-one-user />
 						</responsible-view:>
 					</field-list:>
 					</div>
@@ -32,17 +32,17 @@
 						<modal:>
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
-						<set comp="&this.company"/>
+						<set compid="&this.company_id"/>
 						<form with="&Indicator.new" update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, frequency, next_update, responsible, goal, worst_value, reminder">
 							    	<responsible-view:>
-									<name-one-user complete-target="&comp" />
+									<name-one-user />
 								</responsible-view:>
 								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
-								<hidden-field:company_id value="#{comp.id}"/>
+								<hidden-field:company_id value="#{compid}"/>
 							</div>
 							<modal-form-footer/>
 						</form>
@@ -55,17 +55,17 @@
 						<modal:>
 						<set aid="#{this.area.id}"/>
 						<set obid="#{this.id}"/>
-						<set comp="&this.company"/>
+						<set compid="&this.company_id"/>
 						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections(); attachAutosubmit();" class="modal">
 							<div class="modal-body">
 								<field-list: fields="name, description, responsible, deadline, show_on_parent, reminder">
 							    	<responsible-view:>
-									<name-one-user complete-target="&comp" />
+									<name-one-user />
 								</responsible-view:>
 								</field-list:>
 								<hidden-field:area_id value="#{aid}"/>
 								<hidden-field:objective_id value="#{obid}"/>
-								<hidden-field:company_id value="#{comp.id}"/>
+								<hidden-field:company_id value="#{compid}"/>
 							</div>
 							<modal-form-footer/>
 						</form>
@@ -87,7 +87,7 @@
 						<select-one options="&this_parent.objective.area_objectives" />
 					</objective-view:>
 				    	<responsible-view:>
-						<name-one-user complete-target="&this_parent.company"/>
+						<name-one-user />
 					</responsible-view:>
 				    </field-list:>
 	</old-form>

@@ -53,10 +53,10 @@
 					   <div class="modal-body">
 			            <field-list: fields="name, description, frequency, next_update, responsible, goal, worst_value, reminder, objective">
 				    	<objective-view:>
-						<select-one options="&this_parent.objective.area_objectives" />
+						<select-one options="&this_parent.area.objectives" />
 					</objective-view:>
 				    	<responsible-view:>
-						<name-one-user complete-target="&this_parent.company"/>
+						<name-one-user />
 					</responsible-view:>
 				    </field-list:>
 						</div>
@@ -85,10 +85,10 @@
 						<select-one options="&this_parent.objective.area.hoshin.areas" />
 					</area-view:>
 				    	<objective-view:>
-						<select-one options="&this_parent.objective.area_objectives" />
+						<select-one options="&this_parent.area.objectives" />
 					</objective-view:>
 				    	<responsible-view:>
-						<name-one-user complete-target="&this_parent.objective.company" />
+						<name-one-user />
 					</responsible-view:>
 				    </field-list:>
 	</old-form>

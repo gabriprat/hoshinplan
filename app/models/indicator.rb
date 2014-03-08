@@ -25,10 +25,10 @@ class Indicator < ActiveRecord::Base
   belongs_to :company
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
-  belongs_to :area, :inverse_of => :tasks, :counter_cache => false
+  belongs_to :area, :inverse_of => :indicators, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
   
-  acts_as_list :scope => :area
+  acts_as_list :scope => :area, :column => "ind_pos"
   
   validate :validate_company
   
@@ -57,6 +57,10 @@ class Indicator < ActiveRecord::Base
       ih.goal = indicator.goal
       ih.save!
     #end
+  end
+  
+  def position
+    ind_pos
   end
   
   def status 
