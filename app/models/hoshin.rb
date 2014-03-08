@@ -1,4 +1,6 @@
 class Hoshin < ActiveRecord::Base
+  
+  include ModelBase
 
   hobo_model # Don't put anything above this
 
@@ -30,16 +32,6 @@ class Hoshin < ActiveRecord::Base
   }
 
   # --- Permissions --- #
-  
-  def same_company
-    user = acting_user ? acting_user : User.find(User.current_id)
-    user.all_companies.where(:id => company_id).exists?
-  end
-  
-  def same_company_admin
-    user = acting_user ? acting_user : User.find(User.current_id)
-    user.user_companies.where(:company_id => company_id, :state => :admin).exists?
-  end
   
   def parent_same_company
     parent_id.nil? || Hoshin.find(parent_id).company_id == company_id

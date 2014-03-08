@@ -125,6 +125,15 @@ class User < ActiveRecord::Base
     Thread.current[:client_id]
   end  
   
+  def self.current_user
+    ret = Thread.current[:user]
+    if (ret.nil? && !self.current_id.nil?) 
+      ret = User.find(self.current_id)
+      Thread.current[:user] = ret
+    end
+    ret
+  end
+  
   def dashboard
     Company.current_id = nil
     {

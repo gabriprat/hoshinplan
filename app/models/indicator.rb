@@ -102,13 +102,6 @@ class Indicator < ActiveRecord::Base
   
   # --- Permissions --- #
   
-  def same_company
-    user = acting_user ? acting_user : User.find(User.current_id)
-    cid = company_id ? company_id : Company.current_id
-    ret = user.all_companies.where(:id => cid).exists?
-    ret
-  end
-  
   def validate_company
     errors.add(:company, "You don't have permissions on this company") unless same_company
   end

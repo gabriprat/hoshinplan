@@ -47,23 +47,32 @@ class Company < ActiveRecord::Base
   def self.current_id
     Thread.current[:company_id]
   end  
+  
+  def self.current_company
+    ret = Thread.current[:company]
+    if (ret.nil? && !self.current_id.nil?) 
+      ret = Company.find(self.current_id)
+      Thread.current[:company] = ret
+    end
+    ret
+  end
 
   # --- Permissions --- #
 
   def create_permitted?
-    users(acting_user)
+    acting_user.signed_up?
   end
 
   def update_permitted?
-     acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).where(:state => :admin).empty?
+     acting_user.administrator? || same_company_admin(id)
   end
 
   def destroy_permitted?
-     acting_user.administrator? || acting_user.respond_to?("id") && !user_companies.user_is(acting_user.id).where(:state => :admin).empty?
+     acting_user.administrator? || same_company_admin(id)
   end
 
   def view_permitted?(field)
-    new_record? || acting_user.administrator? || acting_user.respond_to?("id") && !acting_user.all_companies.find(self).nil?
+    new_record? || acting_user.administrator? || same_company(id)
   end
 
 end
