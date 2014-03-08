@@ -12,9 +12,9 @@ class Area < ActiveRecord::Base
 
   attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id
 
-  has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'position'
-  has_many :indicators, :through => :objectives, :accessible => true, :order => 'position'
-  has_many :tasks, :through => :objectives, :accessible => true, :order => 'status, position', :conditions => ["status != 'deleted' and (status = 'active' or deadline>current_date-30)"]
+  has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'obj_pos'
+  has_many :indicators, :through => :objectives, :accessible => true, :order => 'ind_pos'
+  has_many :tasks, :through => :objectives, :accessible => true, :order => 'status, tsk_pos', :conditions => ["status != 'deleted' and (status = 'active' or deadline>current_date-30)"]
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
   belongs_to :company, :inverse_of => :areas

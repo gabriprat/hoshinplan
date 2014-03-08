@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140302200909) do
+ActiveRecord::Schema.define(:version => 20140308161146) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20140302200909) do
     t.datetime "updated_at"
     t.integer  "objective_id"
     t.integer  "area_id"
-    t.integer  "position"
+    t.integer  "ind_pos"
     t.date     "last_update"
     t.decimal  "last_value"
     t.integer  "responsible_id"
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(:version => 20140302200909) do
     t.datetime "updated_at"
     t.integer  "area_id"
     t.integer  "hoshin_id"
-    t.integer  "position"
+    t.integer  "obj_pos"
     t.integer  "parent_id"
     t.integer  "responsible_id"
     t.integer  "company_id"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(:version => 20140302200909) do
     t.integer  "objective_id"
     t.string   "status",            :default => "active"
     t.datetime "key_timestamp"
-    t.integer  "position"
+    t.integer  "tsk_pos"
     t.integer  "area_id"
     t.boolean  "show_on_parent"
     t.string   "type"

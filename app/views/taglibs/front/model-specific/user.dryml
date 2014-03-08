@@ -6,7 +6,7 @@
 		value ||= ""
 	end
 	%>
-	<name-one completer="users" value="#{value}" autocomplete='off' merge/>
+	<name-one completer="users" value="#{value}" complete-target="&Company.current_company" autocomplete='off' merge/>
 </def>
 
 <extend tag="form" for="User">

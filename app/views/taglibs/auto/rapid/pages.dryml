@@ -863,7 +863,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, frequency, next_update, last_update, last_value, goal, worst_value, position, area, company, responsible" param/>
+      <field-list fields="value, frequency, next_update, last_update, last_value, goal, worst_value, ind_pos, area, company, responsible" param/>
     </content-body:>
 
   </page>
@@ -1159,7 +1159,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position, area, company, hoshin, parent, responsible" param/>
+      <field-list fields="obj_pos, area, company, hoshin, parent, responsible" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="indicator.collection.heading" count="&this.indicators.count" >
@@ -1327,7 +1327,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="deadline, original_deadline, position, status, area, company, objective, responsible" param/>
+      <field-list fields="deadline, original_deadline, tsk_pos, status, area, company, objective, responsible" param/>
     </content-body:>
 
   </page>
