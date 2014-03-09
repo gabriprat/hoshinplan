@@ -52,7 +52,7 @@
 					</modal>
 				</li>
 				<li class="task">
-					<a title="#{ht key='task.actions.new'}" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks"><span class="fa fa-tasks fa-plus-small"></span></a>
+					<a title="#{ht key='task.actions.new'}" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks" if="&can_create? Task"><span class="fa fa-tasks fa-plus-small"></span></a>
 					<modal id="add-task-modal-#{this.id}">
 						<modal:>
 						<set aid="#{this.area.id}"/>
