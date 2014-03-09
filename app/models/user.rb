@@ -118,18 +118,18 @@ class User < ActiveRecord::Base
   end
   
   def self.current_id=(id)
-    Thread.current[:client_id] = id
+    RequestStore.store[:client_id] = id
   end
 
   def self.current_id
-    Thread.current[:client_id]
+    RequestStore.store[:client_id]
   end  
   
   def self.current_user
-    ret = Thread.current[:user]
+    ret = RequestStore.store[:user]
     if (ret.nil? && !self.current_id.nil?) 
       ret = User.find(self.current_id)
-      Thread.current[:user] = ret
+      RequestStore.store[:user] = ret
     end
     ret
   end

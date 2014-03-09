@@ -75,3 +75,5 @@ gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branc
 gem 'memcachier'
 gem 'dalli'
 gem 'memcache-client'
+gem 'request_store'
+
