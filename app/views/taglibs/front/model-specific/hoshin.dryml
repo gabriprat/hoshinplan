@@ -56,7 +56,6 @@
 			</a>
 		</prepend-content-header:>
 		<content-body: >
-			<!-- swept-cache route-on suffix="hoshin_all" -->
 			<div class="fixed-x">
 				<view:header/>
 				<div id="goals" part="goals">
@@ -67,7 +66,6 @@
 				</div>
 			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
-			<!-- /swept-cache -->
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>
