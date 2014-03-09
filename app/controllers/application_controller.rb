@@ -36,6 +36,9 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user  
 
              def scope_current_user
+                 if request.method == 'POST' && model && params[model.model_name.singular]
+                     params[:company_id] ||= params[model.model_name.singular]["company_id"] 
+                 end
                  if !params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?
                    inst = model.unscoped.find(params[:id]) unless params[:id].nil?
                    inst = Company.unscoped.find(params[:company_id]) unless inst || params[:company_id].nil?
