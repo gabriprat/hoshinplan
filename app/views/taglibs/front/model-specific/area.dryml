@@ -19,7 +19,7 @@
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives"/>
-		<set hid="#{this.hoshin.id}"/>
+		<set hid="#{this.hoshin_id}"/>
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
 		<form with="&Objective.new" update="objectives-#{this.id}" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
