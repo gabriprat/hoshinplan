@@ -1,5 +1,5 @@
 <def tag="scard" for="Objective">
-<swept-cache route-on suffix="scard">
+<swept-cache route-on suffix="scard" path="&request.fullpath">
 <scard class="objective table-row" param="default" merge>
 		<div class="column" data-label="Id" id="objective_#{this.id}_position">
 			#{this.position}
