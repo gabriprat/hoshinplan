@@ -54,11 +54,11 @@ class Objective < ActiveRecord::Base
   
   def parent_hoshin
     ret = hoshin.parent_id unless hoshin.nil?
-    ret.nil? ? 0 : ret
+    ret.nil? ? -1 : ret
   end
 
   def parent_objectives
-    result = Objective.find_all_by_hoshin_id(parent_hoshin)
+    result = Objective.find_all_by_hoshin_id(parent_hoshin) unless parent_hoshin < 1
   end
   
   # --- Permissions --- #
