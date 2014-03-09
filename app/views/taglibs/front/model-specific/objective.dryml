@@ -1,6 +1,6 @@
 <def tag="scard" for="Objective">
 <scard class="objective table-row" param="default" merge>
-		<div class="column" data-label="Id">
+		<div class="column" data-label="Id" id="objective_#{this.id}_position">
 			#{this.position}
 		</div>
 		<div class="column" data-label="Name">

@@ -2,9 +2,9 @@
 <scard class="task table-row" part-id="task" id="task-#{this.id}" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
-	        <div class="column" data-label="Id">
-	      	 #{this.objective.position}
+	        <div class="column" data-label="Id" id="task_#{this.id}">
 	        </div>
+		<script type="text/javascript">$("#task_#{this.id}").html($("#objective_#{this.objective_id}_position").html());</script>
   	</if>
 	<if test="&column == 'Company'">
 		<div class="column" data-label="Company"><view:company/></div>
