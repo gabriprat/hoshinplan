@@ -56,7 +56,7 @@
 			</a>
 		</prepend-content-header:>
 		<content-body: >
-		        <swept-cache route-on suffix="view" path="&request.fullpath">
+		        <swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?">
 			<div class="fixed-x">
 				<view:header/>
 				<div id="goals" part="goals">
