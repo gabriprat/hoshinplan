@@ -6,6 +6,9 @@ class ObjectivesController < ApplicationController
 
   auto_actions_for :area, [:new, :create]
   
+  cache_sweeper :objectives_sweeper
+  
+  
   include RestController
   
   
