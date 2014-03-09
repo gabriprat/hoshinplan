@@ -57,7 +57,7 @@ class Hoshin < ActiveRecord::Base
   end
 
   def update_permitted?
-    true #same_company
+    same_company
   end
 
   def destroy_permitted?
@@ -65,7 +65,7 @@ class Hoshin < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true #same_company
+    same_company
   end
 
 end
