@@ -52,7 +52,7 @@
     <div class="panel">
     <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
     <div class="panel-body">
-	<rtable:indicators columns="#,Company,Hoshin,Area,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators" class="indicators" sortable/>
+	<rtable:indicators columns="Company,Hoshin,Area,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators" class="indicators" />
 	<else>
 	    <ht key="indicator.dashboard.no_kpis" count="0">You have no <model-name-human with="&Indicator" count="0"/> with to update</ht>
 	</else>
@@ -61,7 +61,7 @@
     <div class="panel">
     <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
     <div class="panel-body">
-	    <rtable:tasks columns="#,Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" sortable/>
+	    <rtable:tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" />
 	    <else>
 	    <ht key="task.dashboard.no_tasks" count="0">You have no <model-name-human with="&Task" count="0"/> with a close deadline</ht>
 	    </else>
