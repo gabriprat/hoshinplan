@@ -16,7 +16,7 @@ class Objective < ActiveRecord::Base
     :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
-  has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'position'
+  has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'tsk_pos'
 
   children :indicators, :tasks
 

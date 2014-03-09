@@ -30,6 +30,13 @@ class Hoshin < ActiveRecord::Base
         :company_id => (Company.current_id ? Company.current_id : User.current_id.nil? ? -1 : User.find(User.current_id).companies)
     )
   }
+  
+  def child_elements_ids
+    objids = Objective.select("id").where(:hoshin_id => id)
+    kpiids = Indicator.select("id").includes(:area).where("areas.hoshin_id = ?", id)
+    tskids = Task.select("id").includes(:area).where("areas.hoshin_id = ?", id)
+    objids + kpiids + tskids
+  end
 
   # --- Permissions --- #
   

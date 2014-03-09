@@ -393,7 +393,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="goal.actions.new">New Long term goal</ht>
+        <ht key="goal.actions.new">New Goal</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -409,20 +409,20 @@
 
 
 <def tag="new-page" for="Goal">
-  <page merge title="#{ht 'goal.new.title', :default=>[' New Long term goal'] }">
+  <page merge title="#{ht 'goal.new.title', :default=>[' New Goal'] }">
     <body: class="new-page goal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="goal.new.heading">
-          New Long term goal
+          New Goal
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'goal.actions.create', :default=>['Create Long term goal']}"/>
+        <submit: label="#{ht 'goal.actions.create', :default=>['Create Goal']}"/>
       </form>
     </content-body:>
   </page>
@@ -430,14 +430,14 @@
 
 
 <def tag="show-page" for="Goal">
-  <page merge title="#{ht 'goal.show.title', :default=>['Long term goal'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'goal.show.title', :default=>['Goal'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page goal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="goal.show.heading" name="#{name(:no_wrapper => true)}">
-          Long term goal <name/>
+          Goal <name/>
         </ht>
       </h2>
 
@@ -445,7 +445,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="goal.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Long term goal
+          Edit Goal
         </ht>
       </a>
     </content-header:>
@@ -459,17 +459,17 @@
 
 
 <def tag="edit-page" for="Goal">
-  <page merge title="#{ht 'goal.edit.title', :default=>['Edit Long term goal'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'goal.edit.title', :default=>['Edit Goal'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page goal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="goal.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Long term goal
+          Edit Goal
         </ht>
       </h2>
-      <delete-button label="#{ht 'goal.actions.delete', :default=>['Remove This Long term goal']}" param/>
+      <delete-button label="#{ht 'goal.actions.delete', :default=>['Remove This Goal']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -483,7 +483,7 @@
 
 <def tag="new-for-hoshin-page" polymorphic/>
 <def tag="new-for-hoshin-page" for="Goal">
-  <page merge title="#{ht 'goal.new_for_owner.title', :default=>['New Long term goal for']} #{name :with => @hoshin}">
+  <page merge title="#{ht 'goal.new_for_owner.title', :default=>['New Goal for']} #{name :with => @hoshin}">
     <body: class="new-for-owner-page  goal" param/>
 
     <content-header: param>
@@ -503,7 +503,7 @@
     <content-body: param>
       <form owner="hoshin" method="post" param>
         <field-list: skip="hoshin"/>
-        <submit: label="#{ht 'goal.actions.create', :default=>['Create Long term goal']}"/>
+        <submit: label="#{ht 'goal.actions.create', :default=>['Create Goal']}"/>
       </form>
     </content-body:>
   </page>
@@ -581,7 +581,7 @@
     <body: class="show-page hoshin" param/>
 
     <content-header: param>
-      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Empresa" name="&this">Back to <name/></ht></a:company>
+      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a:company>
       <h2 param="heading">
         <ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">
           Hoshin <name/>
@@ -845,7 +845,7 @@
     <body: class="show-page indicator" param/>
 
     <content-header: param>
-      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objetivo" name="&this">Back to <name/></ht></a:objective>
+      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objective" name="&this">Back to <name/></ht></a:objective>
       <h2 param="heading">
         <ht key="indicator.show.heading" name="#{name(:no_wrapper => true)}">
           Indicator <name/>
@@ -893,7 +893,7 @@
 
 <def tag="index-for-objective-page" polymorphic/>
 <def tag="index-for-objective-page" for="Indicator">
-  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicator for']} #{name :with => @objective, :no_wrapper => true}">
+  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicators for']} #{name :with => @objective, :no_wrapper => true}">
     <body: class="index-for-owner-page objective indicator" param/>
     <content-header: param>
       <div param="back-to">
@@ -1357,7 +1357,7 @@
 
 <def tag="index-for-objective-page" polymorphic/>
 <def tag="index-for-objective-page" for="Task">
-  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Task for']} #{name :with => @objective, :no_wrapper => true}">
+  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Tasks for']} #{name :with => @objective, :no_wrapper => true}">
     <body: class="index-for-owner-page objective task" param/>
     <content-header: param>
       <div param="back-to">
