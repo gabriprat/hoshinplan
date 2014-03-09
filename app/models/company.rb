@@ -41,18 +41,18 @@ class Company < ActiveRecord::Base
   end
   
   def self.current_id=(id)
-    Thread.current[:company_id] = id
+    RequestStore.store[:company_id] = id
   end
 
   def self.current_id
-    Thread.current[:company_id]
+    RequestStore.store[:company_id]
   end  
   
   def self.current_company
-    ret = Thread.current[:company]
+    ret = RequestStore.store[:company]
     if (ret.nil? && !self.current_id.nil?) 
       ret = Company.find(self.current_id)
-      Thread.current[:company] = ret
+      RequestStore.store[:company] = ret
     end
     ret
   end

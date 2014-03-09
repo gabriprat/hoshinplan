@@ -23,11 +23,11 @@ class ClientApplication < ActiveRecord::Base
   end
   
   def self.current_app=(app)
-    Thread.current[:client_app] = app
+    RequestStore.store[:client_app] = app
   end
 
   def self.current_app
-    Thread.current[:client_app]
+    RequestStore.store[:client_app]
   end  
   
   def sign(data)

@@ -2,19 +2,19 @@ module ModelBase
   
   
   def all_user_companies=(companies)
-    Thread.current[:all_user_companies] = companies
+    RequestStore.store[:all_user_companies] = companies
   end
 
   def all_user_companies
-    Thread.current[:all_user_companies]
+    RequestStore.store[:all_user_companies]
   end  
   
   def admin_user_companies=(companies)
-    Thread.current[:admin_user_companies] = companies
+    RequestStore.store[:admin_user_companies] = companies
   end
 
   def admin_user_companies
-    Thread.current[:admin_user_companies]
+    RequestStore.store[:admin_user_companies]
   end  
   
   def same_company(cid=nil)
