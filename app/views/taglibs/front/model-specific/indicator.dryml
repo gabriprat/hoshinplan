@@ -1,5 +1,6 @@
 
 <def tag="scard" for="Indicator" attrs="columns">
+<swept-cache route-on suffix="scard">
 <scard class="indicator table-row" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
@@ -75,6 +76,7 @@
 	</ul>
   </div>
 </scard>
+</swept-cache>
 </def>
 
 

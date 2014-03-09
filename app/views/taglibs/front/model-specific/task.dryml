@@ -1,4 +1,5 @@
 <def tag="scard" for="Task" attrs="columns">
+<swept-cache route-on suffix="scard">
 <scard class="task table-row" part-id="task" id="task-#{this.id}" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
@@ -96,6 +97,7 @@
 	</if>
   <% end %>
 </scard>
+</swept-cache>
 </def>
 
 

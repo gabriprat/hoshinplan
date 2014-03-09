@@ -6,6 +6,9 @@ class TasksController < ApplicationController
 
   auto_actions_for :objective, [:index, :new, :create]
   
+  cache_sweeper :tasks_sweeper
+  
+  
   include RestController
   
   def create

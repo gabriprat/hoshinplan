@@ -8,6 +8,9 @@ class IndicatorsController < ApplicationController
   
   show_action :history
   
+  cache_sweeper :indicators_sweeper
+  
+  
   include RestController
   
   

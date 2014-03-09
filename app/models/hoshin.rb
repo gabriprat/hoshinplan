@@ -31,11 +31,14 @@ class Hoshin < ActiveRecord::Base
     )
   }
   
-  def child_elements_ids
-    objids = Objective.select("id").where(:hoshin_id => id)
-    kpiids = Indicator.select("id").includes(:area).where("areas.hoshin_id = ?", id)
-    tskids = Task.select("id").includes(:area).where("areas.hoshin_id = ?", id)
-    objids + kpiids + tskids
+  def cache_key
+    objids = Objective.select("id").where(:hoshin_id => id).*.id
+    kpiids = Indicator.select("id").includes(:area).where("areas.hoshin_id = ?", id).*.id
+    tskids = Task.select("id").includes(:area).where("areas.hoshin_id = ?", id).*.id
+    objids = objids.map { |id| "o" + id.to_s }
+    kpiids = kpiids.map { |id| "k" + id.to_s }
+    tskids = tskids.map { |id| "t" + id.to_s }
+    (objids + kpiids + tskids).join("-").hash
   end
 
   # --- Permissions --- #
