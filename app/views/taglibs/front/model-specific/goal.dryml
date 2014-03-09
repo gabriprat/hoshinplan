@@ -1,6 +1,7 @@
 
 <extend tag="card" for="Goal">
 	<old-card: replace>
+	<swept-cache route-on suffix="card">
 		<div>
 			<a onclick="$('#update-goal-modal-#{this.id}').modal('show'); $('#update-goal-modal-#{this.id} form').trigger('reset'); return false;"><name/></a>
 			<modal id="update-goal-modal-#{this.id}">
@@ -14,5 +15,6 @@
 				</modal:>
 			</modal>
 		</div>
+	</swept-cache>
 	</old-card>
 </extend>
