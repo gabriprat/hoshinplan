@@ -1,12 +1,18 @@
 <def tag="name-one-user">
 	<% 
+	comp = Company.current_id ? Company.current_company : nil
 	if !this.nil?
 		value ||= this.name + " (" + this.email_address + ")" 
 	else
 		value ||= ""
 	end
+	if (comp.nil? && !this_parent.nil? && this_parent.respond_to?("company"))
+		comp = this_parent.company
+	end
+	
+	 fail "nil" if (comp.nil?)
 	%>
-	<name-one completer="users" value="#{value}" complete-target="&Company.current_company" autocomplete='off' merge/>
+	<name-one completer="users" value="#{value}" complete-target="&comp" autocomplete='off' merge/>
 </def>
 
 <extend tag="form" for="User">
