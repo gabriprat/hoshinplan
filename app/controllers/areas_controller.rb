@@ -6,5 +6,7 @@ class AreasController < ApplicationController
   
   include RestController
   
+  cache_sweeper :areas_sweeper
+  
   
 end
