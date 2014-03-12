@@ -3,15 +3,21 @@ class ObjectivesSweeper < ActionController::Caching::Sweeper
   observe Objective
 
   def after_create(objective)
-    expire_swept_caches_for(objective.area.hoshin)
+    if Rails.configuration.action_controller.perform_caching
+      expire_swept_caches_for(objective.area.hoshin)
+    end
   end
 
   def after_update(objective)
-    expire_swept_caches_for(objective)
+    if Rails.configuration.action_controller.perform_caching
+      expire_swept_caches_for(objective)
+    end
   end
 
   def after_destroy(objective)
-    expire_swept_caches_for(objective)
-    expire_swept_caches_for(objective.area.hoshin)
+    if Rails.configuration.action_controller.perform_caching
+      expire_swept_caches_for(objective)
+      expire_swept_caches_for(objective.area.hoshin)
+    end
   end
 end

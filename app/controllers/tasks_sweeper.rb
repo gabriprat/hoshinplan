@@ -3,16 +3,21 @@ class TasksSweeper < ActionController::Caching::Sweeper
   observe Task
 
   def after_create(task)
-    Rails.logger.debug "============== CACHE SWEEP" + task.area.hoshin_id.to_s
-    expire_swept_caches_for(task.area.hoshin)
+    if Rails.configuration.action_controller.perform_caching
+      expire_swept_caches_for(task.area.hoshin)
+    end
   end
 
   def after_update(task)
-    expire_swept_caches_for(task)
+    if Rails.configuration.action_controller.perform_caching
+      expire_swept_caches_for(task)
+    end
   end
 
   def after_destroy(task)
-    expire_swept_caches_for(task)
-    expire_swept_caches_for(task.area.hoshin)
+    if Rails.configuration.action_controller.perform_caching
+      expire_swept_caches_for(task)
+      expire_swept_caches_for(task.area.hoshin)
+    end
   end
 end
