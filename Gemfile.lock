@@ -171,6 +171,7 @@ GEM
     multipart-post (2.0.0)
     nested_has_many_through (0.0.2)
       rails (>= 3.0.0)
+    newrelic_rpm (3.7.3.204)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth2 (0.9.3)
@@ -299,6 +300,7 @@ DEPENDENCIES
   memcachier
   morrisjs-rails
   nested_has_many_through
+  newrelic_rpm
   omniauth-google-oauth2
   omniauth-openid
   paperclip
