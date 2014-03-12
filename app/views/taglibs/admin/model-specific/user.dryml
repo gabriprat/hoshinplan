@@ -1,6 +1,17 @@
 <extend tag="index-page">
 	<old-index-page merge>
+	
 		<collection: replace>
+		<table>
+		<% 
+		h = Hash.new(0)
+		ObjectSpace.each_object.with_object(h){|obj, h| h[obj.class] +=1 } 
+		h = h.sort_by {|_key, value| value }.reverse
+		%>
+		<repeat with="&h">
+		<tr><td> <%= this[1] %></td><td><%=this[0]%></td></tr>
+		</repeat>
+		</table>
 		<%
 		  field_names = standard_fields(this.member_class)
 		  field_names = field_names.join(',')
