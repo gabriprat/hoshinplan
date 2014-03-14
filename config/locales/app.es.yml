@@ -145,6 +145,7 @@ es:
   log_in_with: Accede con %{provider}
   invite_collaborators: Invitar colaboradores
   use_your_corporate: Utiliza tus credenciales corporativas
+  use_your_user: Utiliza tu usuario de hoshinplan.com
   change_locale: Idioma
   locale_en_US: Inglés (EEUU)
   locale_es_ES: Español (España)

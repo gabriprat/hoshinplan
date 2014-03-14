@@ -170,6 +170,7 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? or same_company
+    # permit password fields to avoid the reset password page to fail
+    field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
   end
 end

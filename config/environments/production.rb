@@ -54,8 +54,9 @@ Hoshinplan::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store
-
+  config.cache_store = :redis_store, "redis://rediscloud:eTsC3jjDCjUWEGT1@pub-redis-19161.eu-west-1-1.2.ec2.garantiadata.com:19161", :expires_in => 60.minutes
+  config.hobo.stable_cache_store = :redis_store, "redis://rediscloud:eTsC3jjDCjUWEGT1@pub-redis-19161.eu-west-1-1.2.ec2.garantiadata.com:19161"
+  
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 

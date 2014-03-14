@@ -66,9 +66,13 @@ class UsersController < ApplicationController
     sign_user_in(user)
   end
   
-  def sign_user_in(user)
+  def sign_user_in(user, password=nil)
     params[:remember_me] = true
-    super(user)
+    if (password.nil?)
+      super(user)
+    else
+      super(user, password)
+    end
     current_user.remember_me
     create_auth_cookie
   end
