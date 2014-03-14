@@ -79,5 +79,8 @@ en:
         significant: false
         strip_insignificant_zeros: true
   user_company:
+    that_operation_is: This operation is not allowed
+    the_invitation: The invitation you are trying to accept was sent to a different user. Please log with the user the invitation was sent to.
+    the_provided_key: The provided invitation is not valid. It can only be used once. Please ask the person that invited you to resend the invitation.
     collection:
       heading: Users

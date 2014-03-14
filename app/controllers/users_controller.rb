@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     redirect_to current_user
   end
   
+  def logout_and_return
+    logout_current_user
+    redirect_to params["return_url"]
+  end
+  
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on
   #  first run.  This method creates the initial user.
