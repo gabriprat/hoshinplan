@@ -1,12 +1,18 @@
-<extend tag='permission-denied-page'>
+<extend attrs="message" tag='permission-denied-page'>
+  <% message ||= t 'permission_denied.that_operation_is', :default => 'That operation is not allowed' %>
 <old-permission-denied-page merge>
+<heading:><message/></heading:>
 <append-content:>
 	<if test="&params['controller']=='user_companies' && params['action']=='accept'">
 		<if test="&model.find_by_id(params['id']).user.to_yaml != controller.current_user.to_yaml">
+			<t key="permission_denied.the_invitation">
 			The invitation you are trying to accept was sent to a different user. Please log in with the user the invitation was sent to.
+			</t>
 		</if>
 		<else>
-			The provided key is not valid. It can only be used once. Please ask the person that invited you to resend the invitation. 
+			<t key="permission_denied.the_provided_key">
+			The provided invitation is not valid. It can only be used once. Please ask the person that invited you to resend the invitation.
+			</t>
 		</else>
 	</if>
 </append-content:>

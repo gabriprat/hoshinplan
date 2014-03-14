@@ -142,6 +142,10 @@ es:
     to_learn: Para aprender cómo usarla visita nuestro %{developers_link}.
     developers_link: site para desarrolladores
     rest_link: API REST
+  permission_denied:
+    that_operation_is: Esta operación no está permitida
+    the_invitation: La invitación que estás intentando aceptar se envió a otro usuario. Por favor inicia sesión con el usuario al que se envió la invitación.
+    the_provided_key: ! 'La invitación ya no es válida, sólo se puede utilizar una vez. Por favor, pide a la persona que te invitó que te reenvie la invitación.'
   log_in_with: Accede con %{provider}
   invite_collaborators: Invitar colaboradores
   use_your_corporate: Utiliza tus credenciales corporativas
