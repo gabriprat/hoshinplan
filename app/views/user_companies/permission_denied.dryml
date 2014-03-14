@@ -1,0 +1,6 @@
+
+<permission-denied-page message="#{@title}">
+  <append-content:>
+  	<view with="#{@message}"/>
+  </append-content:>
+</permission-denied-page>
