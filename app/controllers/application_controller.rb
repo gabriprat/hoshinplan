@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user  
 
              def scope_current_user
-                 if request.method == 'POST' && model && params[model.model_name.singular]
+                 if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                      params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                  end
                  if !params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?
@@ -97,9 +97,8 @@ class ApplicationController < ActionController::Base
     #return false if !defined?(logged_in)
     login_from_cookie
     return true if logged_in?
-    flash[:warning]='Please login to continue'
     session[:return_to] = request.url
-    redirect_to "/auth/google_oauth2"
+    redirect_to "/login"
     return false 
   end
   

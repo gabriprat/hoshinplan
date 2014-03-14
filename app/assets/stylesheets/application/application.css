@@ -54,7 +54,6 @@ a {
 
 .social-login {
 	text-align: center;
-	margin: 0 2em;
 }
 
 .modal h1 {
@@ -63,7 +62,7 @@ a {
 }
 
 .sep, .line.sep {
-	margin: 2em auto;
+	margin: 1em auto;
 }
 
 html body .btn-big {
@@ -186,8 +185,8 @@ body h2.heading {
 	font-family: 'Yanone Kaffeesatz',
 	sans-serif;
 	line-height: 1em;
-	font-size: 5em;
-	margin: 0;
+	font-size: 4em;
+	margin: 0 0 0.4em 0;
 }
 
 .nowrap {

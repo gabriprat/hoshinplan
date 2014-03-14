@@ -78,4 +78,3 @@ gem 'memcache-client'
 gem 'request_store'
 gem 'newrelic_rpm'
 gem "oink"
-

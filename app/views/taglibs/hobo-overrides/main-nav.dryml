@@ -43,17 +43,7 @@
 <modal:>
 	<modal-header><h1><ht key="hoshin.actions.login">Login</ht></h1></modal-header>
 	<div class="modal-body">
-	<div class="social-login">
-	<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
-	            <i class="fa fa-google-plus"></i> <t key="log_in_with" provider="Google"/>
-	</a>
-	<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
-	<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
-	<form action="/login" method="get">
-		<input type="text" name="email" placeholder="Email" class="input-block-level"/>
-		<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
-	</form>
-	</div>
+		<login-form />
 	</div>
 </modal:>
   </modal>

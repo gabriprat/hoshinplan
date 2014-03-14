@@ -1,0 +1,24 @@
+<def attrs='user-model' tag='login-form'>
+	<% user_model ||= User -%>
+		<div class="social-login">
+			<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
+			            <i class="fa fa-google-plus"></i> <t key="log_in_with" provider="Google"/>
+			</a>
+			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
+			<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
+			<form action="/login" method="get">
+				<input type="text" name="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
+				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
+			</form>
+			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
+			<p class="sep"><t key="use_your_user">Use your hoshinplan user</t></p>			
+			<form merge class='login' action='/login'>
+			    <input type="text" name="login" id="login" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
+			   <input name='password' class='string input-block-level' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}"/>  
+			    <div param='actions'>
+			      <submit label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/><if class='nav-item' test='&signup_url'>
+			      <t key='hobo.support.or'>or</t> <a href='&signup_url' param='signup'><t key='hobo.login.signup'>Sign up</t></a></if>
+			    </div>
+			  </form>
+		</div>
+</def>
