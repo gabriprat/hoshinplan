@@ -1,0 +1,6 @@
+<def tag="hoshin-link">
+	<% 
+		hoshin = Company.current_company.all_hoshins[this.to_i] unless Company.current_company.nil?
+	%>
+	<a with="&hoshin"/>
+</def>

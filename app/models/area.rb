@@ -36,7 +36,9 @@ class Area < ActiveRecord::Base
     child_hoshins = hoshin.children.*.id
     return nil unless child_hoshins
     child_objectives = Objective.where(:parent_id => objectives.*.id)
-    tasks = Task.where(:objective_id => child_objectives, :show_on_parent => true)
+    tasks = Task
+      .select("tasks.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
+      .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true)
     tasks.collect{ |t| t.becomes(ChildTask) }
   end
   
@@ -44,7 +46,9 @@ class Area < ActiveRecord::Base
     child_hoshins = hoshin.children.*.id
     return nil unless child_hoshins
     child_objectives = Objective.where(:parent_id => objectives.*.id)
-    indicators = Indicator.where(:objective_id => child_objectives, :show_on_parent => true)
+    indicators = Indicator
+      .select("indicators.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
+      .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true)
     indicators.collect{ |t| t.becomes(ChildIndicator) }
   end
   

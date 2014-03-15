@@ -10,6 +10,8 @@
 
 es:
   hobo:
+    area:
+      child_models: '%{model} de hoshin plans hijos'
     actions:
       submit: Enviar
     dashboard:
@@ -162,7 +164,6 @@ es:
   home: Inicio
   area:
     no_xx_defined: No hay %{xx} en esta %{model}
-    child_tasks: Tareas de hoshin plans hijos
   indicator:
     show_chart: Mostrar gráfico
     upload: Enviar
