@@ -22,15 +22,11 @@ class FrontController < ApplicationController
     flash[:notice] = nil
   end
   
-  def logins
-    if params["email"]
+  def oid_login
       user, domain = params["email"].split("@")
       oi = OpenidProvider.where(:email_domain => domain).first.openid_url
       url = oi.gsub('{user}', user)
       redirect_to "/auth/openid?openid_url=" + url
-    else 
-      @this = current_user
-    end
   end
   
   def sendreminders
