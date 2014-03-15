@@ -42,21 +42,32 @@ class Indicator < ActiveRecord::Base
   end
   
   before_update do |indicator|
-    if !indicator.next_update_changed?
-      indicator.next_update = compute_next_update(indicator)
-    end
-    #if indicator.value_changed?
-      indicator.last_value = indicator.value_was
-      ih = IndicatorHistory.unscoped.where(:day => Date.today, :indicator_id => indicator.id).first
+    if indicator.value_changed?
+      if (indicator.next_update <= Date.today) 
+        #Updating on time or late, assume value is for the next_update
+        update_date = indicator.next_update
+      else
+        #Updating before time, assuming the user is correcting last value
+        update_date = indicator.last_update
+        #Assume today if this was the first update and was before time
+        update_date ||= Date.today
+      end
+      if !indicator.next_update_changed?
+        indicator.next_update = compute_next_update(indicator)
+      end
+    
+      if indicator.last_update.nil? || indicator.last_update < Date.today 
+        #only update trends once per day
+        indicator.last_value = indicator.value_was
+        indicator.last_update = update_date
+      end      
+      ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => indicator.id).first
       if ih.nil?
-        ih = IndicatorHistory.create
-        ih.indicator = indicator
-        ih.day = Date.today
+        ih = IndicatorHistory.create(:day => update_date, :indicator_id => indicator.id, :goal => indicator.goal)
       end
       ih.value = indicator.value
-      ih.goal = indicator.goal
       ih.save!
-    #end
+    end
   end
   
   def position
@@ -93,14 +104,18 @@ class Indicator < ActiveRecord::Base
   end
   
   def compute_next_update(indicator)
-    t = Time.now
-    case indicator.frequency
-    when "weekly"
-      t + 1.week
-    when "monthly"
-      t + 1.month
-    when "quarterly"
-      t + 3.month
+    t = next_update
+    if (Time.now >= t)
+      case indicator.frequency
+      when "weekly"
+        t + 1.week
+      when "monthly"
+        t + 1.month
+      when "quarterly"
+        t + 3.month
+      end
+    else
+      t
     end
   end
   
