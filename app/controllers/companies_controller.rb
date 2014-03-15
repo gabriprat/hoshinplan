@@ -7,7 +7,7 @@ class CompaniesController < ApplicationController
   autocomplete :users do
     ret = []
     users = find_instance.users.each { |user| 
-      ret << user.name + " (" + user.email_address + ")"
+      ret << user.name.to_s + " (" + user.email_address.to_s + ")"
     }
     render :json => ret
   end
