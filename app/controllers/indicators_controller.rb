@@ -15,15 +15,6 @@ class IndicatorsController < ApplicationController
   
   include RestController
   
-  
-  def update
-    obj = params["indicator"]
-    select_responsible(obj)
-    hobo_update do
-      redirect_to this.objective.area.hoshin if valid? && !request.xhr?
-    end
-  end
-  
   def create
     obj = params["indicator"]
     select_responsible(obj)
@@ -50,13 +41,19 @@ class IndicatorsController < ApplicationController
       redirect_to find_instance, {:action => :history}
       end
     else
+      obj = params[:indicator]
+      select_responsible(obj)
       if params[:indicator] && params[:indicator][:value]
         i = find_instance
         i.value = params[:indicator][:value]
         i.value_will_change!
-        hobo_update(i, :attributes => :value)
+        hobo_update(i, :attributes => :value) do
+          redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+        end
       else
-        hobo_update
+        hobo_update do
+          redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+        end
       end
       
     end
