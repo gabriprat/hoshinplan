@@ -8,6 +8,8 @@ class ObjectivesController < ApplicationController
   
   cache_sweeper :objectives_sweeper
   
+  show_action :form
+  
   
   include RestController
   
@@ -24,6 +26,10 @@ class ObjectivesController < ApplicationController
     hobo_update do
       redirect_to this.area.hoshin if valid? && !request.xhr?
     end
+  end
+  
+  def form
+    @this = find_instance
   end
 
 end

@@ -6,7 +6,9 @@ class IndicatorsController < ApplicationController
   
   auto_actions_for :objective, [:index, :new, :create]
   
-  show_action :history
+  show_action :history, :form
+  
+  index_action :form
   
   cache_sweeper :indicators_sweeper
   
@@ -67,5 +69,16 @@ class IndicatorsController < ApplicationController
       else
         respond_with(@this)
       end
+  end
+  
+  def form
+    if (params[:id]) 
+      @this = find_instance
+    else
+      @this = Indicator.new
+      @this.company_id = params[:company_id]
+      @this.objective_id = params[:objective_id]
+      @this.area_id = params[:area_id]
+    end
   end
 end

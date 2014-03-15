@@ -63,6 +63,25 @@ var attachAutosubmit = function() {
 	$(".autosubmit").unbind("submit", preventDoubleSubmit).submit(preventDoubleSubmit);
 	colorize();
 	equalHeightSections();
+	
+	$("[data-rmodal]").each(function () {
+		var that = $(this);
+		var id = that.data('target-id');
+		if ($('#' + id).length == 0) {
+			var url = that.data('rmodal');
+			that.click(function () {
+				if ($('#' + id).length==0) {
+					that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="loading"></div></div></div>')
+					$('#' + id).load(url, function() {
+						$('#' + id).hjq('init');
+						attachAutosubmit();
+					}); 
+				}
+				$('#' + id).modal('show'); 
+				return false;
+			});
+		}
+	})
 }
 
 $(document).ready(attachAutosubmit);

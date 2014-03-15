@@ -1,0 +1,19 @@
+				<set options="&this.parent_objectives"/>
+				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal" id="upd-obj-#{this.id}" update="area-#{this.area_id}">
+				   <div class="modal-body">
+				    <field-list: fields="name, description, responsible, parent, area">
+						<parent-tag: options="&options" />
+					    	<description-view:>
+							<click-editor/>
+						</description-view:>
+					    	<responsible-view:>
+							<name-one-user />
+						</responsible-view:>
+					</field-list:>
+					</div>
+					 <modal-form-footer-delete />
+				 </form> 
+	  			<script>
+	  				$('#update-objective-modal-#{this.id}').hjq('init');
+	  				attachAutosubmit();
+	  			</script>

@@ -56,6 +56,17 @@ class Company < ActiveRecord::Base
     end
     ret
   end
+  
+  def user_abbrevs
+    ret = RequestStore.store[:user_abbrevs]
+    if (ret.nil? && !Company.current_id.nil?) 
+      ret = {}
+      users.each {|user|
+        ret[user.id] = user.name.split.map{|x| x[0,1]}.join()
+      }
+    end
+    ret
+  end
 
   # --- Permissions --- #
 

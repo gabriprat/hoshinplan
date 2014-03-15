@@ -19,30 +19,10 @@
 		<div class="column" data-label="Hoshin"><view:area/></div>
 	</if>
 	<if test="&column == 'Task'">
-		<div class="column" data-label="Name"><a onclick="$('#update-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); return false;"><name/></a></div>
-	      	<modal id="update-task-modal-#{this.id}">
-	      		<modal:>
-	      		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
-	      		   <div class="modal-body">
-	      			    <field-list: fields="name, description, responsible, deadline, show_on_parent, reminder">
-    			    	<description-view:>
-    					<click-editor/>
-    				</description-view:>
-	      			    	<objective-view:>
-	      					<select-one options="&this_parent.area.objectives" />
-	      				</objective-view:>
-	      			    	<responsible-view:>
-	      					<name-one-user />
-	      				</responsible-view:>
-	      			    </field-list:>
-	      		    </div>
-	      		    <modal-form-footer/>
-	      		</form> 
-	      		</modal:>
-	      	</modal>
+		<div class="column" data-label="Name"><a data-rmodal="#{url_for this}/form" data-target-id="update-task-modal-#{this.id}"><name/></a></div>
 	</if>
 	<if test="&column == 'Resp.'">
-	        <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
+	        <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
 	</if>
 	<if test="&column == 'Deadline'">
 		  <div class="column nowrap" data-label="Deadline">
