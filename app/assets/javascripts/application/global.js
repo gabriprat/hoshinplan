@@ -146,7 +146,7 @@ var equalHeights = function(elements) {
 	
 }
 
-var PRESENTATION_SELECTOR = 'div.navbar,div.content-header,div.hoshin-header,div.area,.ordering-handle,.column.ordering';
+var PRESENTATION_SELECTOR = 'div.navbar,div.content-header,div.hoshin-header,div.area,.ordering-handle,.column.ordering,#goals';
 
 var presenting = false;
 var currentArea = 1;
