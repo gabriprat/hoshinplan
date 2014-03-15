@@ -13,3 +13,7 @@
 	</a>
 	</else>
 </def>
+
+<def tag="user-abbrev">
+	#{Company.current_company.user_abbrevs[this]}
+</def>

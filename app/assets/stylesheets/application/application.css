@@ -526,6 +526,13 @@ body div.ordering-handle {
 	background-color: rgba(0,0,0,0.2);
 }
 
+.loading {
+        background: url(/assets/ajax-loader.gif) no-repeat;
+	width: 16px;
+	height: 16px;
+	margin: auto;
+}
+
 .help-block.description-help {
 	white-space: normal;
 }

@@ -20,30 +20,10 @@
 		<div class="column" data-label="Hoshin"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column" data-label="KPI"><a onclick="$('#update-kpi-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); return false;"><name/></a></div>
-		  <modal id="update-kpi-modal-#{this.id}">
-			  <modal:>
-		        <form ajax success="$('#update-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
-				   <div class="modal-body">
-		            <field-list: fields="name, description, frequency, next_update, responsible, goal, worst_value, reminder">
-			    	<description-view:>
-					<click-editor/>
-				</description-view:>
-			    	<objective-view:>
-					<select-one options="&this_parent.area.objectives" />
-				</objective-view:>
-			    	<responsible-view:>
-					<name-one-user />
-				</responsible-view:>
-			    </field-list:>
-					</div>
-					 <modal-form-footer-delete />
-		         </form> 
-			 </modal:>
-		    </modal>
+		  <div class="column" data-label="KPI"><a data-rmodal="#{url_for this}/form" data-target-id="update-kpi-modal-#{this.id}"><name/></a></div>
   	</if>
 	<if test="&column == 'Resp.'">
-  		<div class="column" data-label="Responsible"><view:responsible abbrev/></div>
+  		<div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
 	</if>
 	<if test="&column == 'Value'">
 		  <div class="column nowrap" data-label="Value">

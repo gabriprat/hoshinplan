@@ -43,7 +43,7 @@ class Indicator < ActiveRecord::Base
   
   before_update do |indicator|
     if indicator.value_changed?
-      if (indicator.next_update <= Date.today) 
+      if (!indicator.next_update.nil? && indicator.next_update <= Date.today) 
         #Updating on time or late, assume value is for the next_update
         update_date = indicator.next_update
       else
@@ -104,6 +104,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def compute_next_update(indicator)
+    return nil if next_update.nil?
     t = next_update
     if (Time.now >= t)
       case indicator.frequency

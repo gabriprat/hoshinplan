@@ -71,10 +71,12 @@ Hoshinplan::Application.routes.draw do
   # Resource routes for controller indicators
   resources :indicators, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do
+      get 'form'
       post 'reorder'
     end
     member do
       get 'history'
+      get 'form'
     end
   end
 
@@ -99,6 +101,9 @@ Hoshinplan::Application.routes.draw do
     collection do
       post 'reorder'
     end
+    member do
+      get 'form'
+    end
   end
 
   # Owner routes for controller objectives
@@ -115,9 +120,11 @@ Hoshinplan::Application.routes.draw do
   # Resource routes for controller tasks
   resources :tasks, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
+      get 'form'
       post 'reorder'
     end
     member do
+      get 'form'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'complete', :action => 'do_complete'

@@ -5,77 +5,16 @@
 			#{this.position}
 		</div>
 		<div class="column" data-label="Name">
-			<a onclick="$('#update-objective-modal-#{this.id}').modal('show'); $('#update-objective-modal-#{this.id} form').trigger('reset'); return false;"><name/></a>
-			<modal id="update-objective-modal-#{this.id}">
-				<modal:>
-				<set options="&this.parent_objectives"/>
-				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-obj-#{this.id}" update="area-#{this.area_id}">
-				   <div class="modal-body">
-				    <field-list: fields="name, description, responsible, parent">
-						<parent-tag: options="&options" />
-					    	<description-view:>
-							<click-editor/>
-						</description-view:>
-					    	<responsible-view:>
-							<name-one-user />
-						</responsible-view:>
-					</field-list:>
-					</div>
-					 <modal-form-footer-delete />
-				 </form> 
-				</modal:>
-			</modal>
-			
+			<a data-rmodal="#{url_for this}/form" data-target-id="update-objective-modal-#{this.id}"><name/></a>	
 		</div>
-		<div class="column" data-label="Responsible"><view:responsible abbrev/></div>
+		<div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
 		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
-					<a title="#{ht key='indicator.actions.new'}" onclick="$('#add-kpi-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-kpi-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks"><span class="fa fa-tachometer fa-plus-small"></span></a>
-					<modal id="add-kpi-modal-#{this.id}">
-						<modal:>
-						<set aid="#{this.area.id}"/>
-						<set obid="#{this.id}"/>
-						<set compid="&this.company_id"/>
-						<%= this.to_yaml %>
-						<form with="&Indicator.new"  update="indicators-#{this.area.id}" success="$('#add-kpi-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections();" class="modal">
-							<div class="modal-body">
-								<field-list: fields="name, description, frequency, next_update, responsible, goal, worst_value, reminder">
-							    	<responsible-view:>
-									<name-one-user />
-								</responsible-view:>
-								</field-list:>
-								<hidden-field:area_id value="#{aid}"/>
-								<hidden-field:objective_id value="#{obid}"/>
-								<hidden-field:company_id value="#{compid}"/>
-							</div>
-							<modal-form-footer/>
-						</form>
-						</modal:>
-					</modal>
+					<a title="#{ht key='indicator.actions.new'}" data-rmodal="#{url_for Indicator.new}/form?company_id=#{this.company_id}&area_id=#{this.area_id}&objective_id=#{this.id}" data-target-id="add-objective-modal-#{this.id}" class="hoshin-tasks"><span class="fa fa-tachometer fa-plus-small"></span></a>
 				</li>
 				<li class="task">
-					<a title="#{ht key='task.actions.new'}" onclick="$('#add-task-modal-#{this.id}').modal('show'); $('.bootstrap-datepicker').datepicker(); $('#add-task-modal-#{this.id} form').trigger('reset');  return false;" class="hoshin-tasks" if="&can_create? Task"><span class="fa fa-tasks fa-plus-small"></span></a>
-					<modal id="add-task-modal-#{this.id}">
-						<modal:>
-						<set aid="#{this.area.id}"/>
-						<set obid="#{this.id}"/>
-						<set compid="&this.company_id"/>
-						<form with="&Task.new" update="tasks-#{this.area.id}" success="$('#add-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); equalHeightSections(); attachAutosubmit();" class="modal">
-							<div class="modal-body">
-								<field-list: fields="name, description, responsible, deadline, show_on_parent, reminder">
-							    	<responsible-view:>
-									<name-one-user />
-								</responsible-view:>
-								</field-list:>
-								<hidden-field:area_id value="#{aid}"/>
-								<hidden-field:objective_id value="#{obid}"/>
-								<hidden-field:company_id value="#{compid}"/>
-							</div>
-							<modal-form-footer/>
-						</form>
-						</modal:>
-					</modal>
+					<a title="#{ht key='task.actions.new'}" data-rmodal="#{url_for Task.new}/form?company_id=#{this.company_id}&area_id=#{this.area_id}&objective_id=#{this.id}" data-target-id="add-objective-modal-#{this.id}" class="hoshin-tasks" if="&can_create? Task"><span class="fa fa-tasks fa-plus-small"></span></a>
 				</li>
 			</ul>
 		</div>

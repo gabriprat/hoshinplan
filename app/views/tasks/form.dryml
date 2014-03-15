@@ -1,0 +1,17 @@
+	      		 <% update = @this.new_record? ? "tasks-" + this.area.id.to_s : "" %>
+			<form update="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal">
+	      		   <div class="modal-body">
+	      			    <field-list: fields="name, description, responsible, deadline, show_on_parent, reminder, objective">
+    			    	<description-view:>
+    					<click-editor/>
+    				</description-view:>
+	      			    	<objective-view:>
+	      					<select-one options="&this_parent.area.objectives" />
+	      				</objective-view:>
+	      			    	<responsible-view:>
+	      					<name-one-user />
+	      				</responsible-view:>
+	      			    </field-list:>
+	      		    </div>
+	      		    <modal-form-footer/>
+	      		</form>
