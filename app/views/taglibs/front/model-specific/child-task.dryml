@@ -4,7 +4,7 @@
 	 #{this.objective.parent.position}
   </div>
   <div class="column" data-label="Name"><name/></div>
-  <div class="column" data-label="Responsible"><view:responsible abbrev/></div>
+  <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
   <div class="column" data-label="Deadline">#{this.deadline}</div>
   <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
   <div class="column" data-label="Hoshin"><view:objective.area.hoshin /></div>

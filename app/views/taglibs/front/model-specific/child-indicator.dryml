@@ -1,0 +1,14 @@
+<def tag="scard" for="ChildIndicator">
+<scard class="task table-row" param="default" merge>
+  <div class="column" data-label="Id">
+	 #{this.objective.parent.position}
+  </div>
+  <div class="column" data-label="Name"><name/></div>
+  <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
+  <div class="column" data-label="Value"><view:value human/></div>
+  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
+  <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc  precision="1"/>%</span> <span class="arrow #{this.trend}"></span>
+  </div>
+  <div class="column" data-label="Hoshin"><view:objective.area.hoshin /></div>
+</scard>
+</def>

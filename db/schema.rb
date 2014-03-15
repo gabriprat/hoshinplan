@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140308161146) do
+ActiveRecord::Schema.define(:version => 20140315221907) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -136,12 +136,15 @@ ActiveRecord::Schema.define(:version => 20140308161146) do
     t.integer  "company_id"
     t.boolean  "reminder",       :default => true
     t.decimal  "worst_value",    :default => 0.0
+    t.boolean  "show_on_parent"
+    t.string   "type"
   end
 
   add_index "indicators", ["area_id"], :name => "index_indicators_on_area_id"
   add_index "indicators", ["company_id"], :name => "index_indicators_on_company_id"
   add_index "indicators", ["objective_id"], :name => "index_indicators_on_objective_id"
   add_index "indicators", ["responsible_id"], :name => "index_indicators_on_responsible_id"
+  add_index "indicators", ["type"], :name => "index_indicators_on_type"
 
   create_table "milestones", :force => true do |t|
     t.decimal  "value"
