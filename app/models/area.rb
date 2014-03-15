@@ -39,6 +39,7 @@ class Area < ActiveRecord::Base
     tasks = Task
       .select("tasks.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
       .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true)
+      .where("status != 'deleted' and (status = 'active' or deadline>current_date-30)")
     tasks.collect{ |t| t.becomes(ChildTask) }
   end
   
