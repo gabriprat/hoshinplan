@@ -48,7 +48,15 @@ class IndicatorsController < ApplicationController
       redirect_to find_instance, {:action => :history}
       end
     else
-      hobo_update
+      if params[:indicator] && params[:indicator][:value]
+        i = find_instance
+        i.value = params[:indicator][:value]
+        i.value_will_change!
+        hobo_update(i, :attributes => :value)
+      else
+        hobo_update
+      end
+      
     end
   end
   
