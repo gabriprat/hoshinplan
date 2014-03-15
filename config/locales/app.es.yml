@@ -124,6 +124,13 @@ es:
         secret: Secreto
         actions: Acciones
         user: Usuario
+    attribute_help:
+      objective:
+        description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
+      task:
+        description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
+      indicator:
+        description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
   index:
     title: Haz que tu estrategia de negocio funcione
     enter_ij_user: Introduce tu nombre de usuario de InfoJobs
@@ -158,6 +165,9 @@ es:
     child_tasks: Tareas de hoshin plans hijos
   indicator:
     show_chart: Mostrar gráfico
+    upload: Enviar
+    upload_values: Cargar valores
+    upload_values_by: 'Carga valores en bloque escribiendo un valor por línea. Cada línea tiene que tener el formato: dd/mm/yyy;valor;objetivo. Por ejemplo: 21/4/2014;29,3;100'
   history:
     historic_values: Valores históricos
   rtable:

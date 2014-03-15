@@ -195,8 +195,8 @@ var endPresentation = function() {
 	var size = parseInt($('body').css('font-size')) - 8;
 	$('body').css('font-size', size);
 	$('div.area').removeAttr('style');
-	equalHeightSections();
 	presenting = false;
+	equalHeightSections();
 }
 
 /**
@@ -245,4 +245,5 @@ var attachKeyEvents = function() {
 }
 
 $(document).ready(attachKeyEvents);
+
 

@@ -13,6 +13,9 @@
 				   <div class="modal-body">
 				    <field-list: fields="name, description, responsible, parent">
 						<parent-tag: options="&options" />
+					    	<description-view:>
+							<click-editor/>
+						</description-view:>
 					    	<responsible-view:>
 							<name-one-user />
 						</responsible-view:>

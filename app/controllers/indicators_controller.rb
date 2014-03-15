@@ -28,6 +28,30 @@ class IndicatorsController < ApplicationController
     hobo_create
   end
   
+  def update
+    if params[:history_values]
+      error = false
+      begin
+        options = {}
+        if t('number.format.separator') == ','
+          options[:col_sep] = ';'
+        end
+        CSV.parse( params[:history_values], options) do |row|
+          d = Date.parse(row[0])
+          v = row[1].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.').to_f unless row[1].nil?
+          g = row[2].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.').to_f unless row[2].nil?
+          ih = find_instance.indicator_histories.find_or_initialize_by_day(d)
+          ih.value = v
+          ih.goal = g
+          ih.save!
+        end
+      redirect_to find_instance, {:action => :history}
+      end
+    else
+      hobo_update
+    end
+  end
+  
   def history
       @this = Indicator.includes(:indicator_histories).find(params[:id])
       if request.xhr?

@@ -7,7 +7,7 @@ class Objective < ActiveRecord::Base
 
   fields do
     name        :string
-    description :text
+    description HoboFields::Types::TextileString
     indicators_count :integer, :default => 0, :null => false
     tasks_count :integer, :default => 0, :null => false
     timestamps
