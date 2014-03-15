@@ -15,5 +15,9 @@
 </def>
 
 <def tag="user-abbrev">
-	#{Company.current_company.user_abbrevs[this]}
+	<% 
+		name = Company.current_company.user_abbrevs[this]
+		abbr = name.split.map{|x| x[0,1]}.join() unless abbr.nil?
+	%>
+	<acronym title="#{name}">#{abbr}</acronym>
 </def>

@@ -62,7 +62,7 @@ class Company < ActiveRecord::Base
     if (ret.nil? && !Company.current_id.nil?) 
       ret = {}
       users.each {|user|
-        ret[user.id] = user.name.split.map{|x| x[0,1]}.join()
+        ret[user.id] = user.name
       }
     end
     ret
