@@ -8,7 +8,7 @@ class IndicatorHistory < ActiveRecord::Base
     day   :date
     timestamps
   end
-  attr_accessible :value, :goal, :indicator, :indicator_id, :date
+  attr_accessible :value, :goal, :indicator, :indicator_id, :day
 
   belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
 

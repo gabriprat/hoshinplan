@@ -7,6 +7,23 @@
 		<section class="panel">
 		        <header class="panel-heading">
 		            <t key="history.historic_values">Historic values and goals</t>
+    			<a style="text-transform: none;" href="#" onclick="$('#upload').toggle()" class="btn btn-primary pull-right"><t key="indicator.upload_values">Upload values</t></a>
+			<div style="text-transform: none;">
+    			<form id="upload" class="hide">
+    				<textarea name="history_values" style="width: 20em; height: 10em;"></textarea>
+    				<p class="bubble">
+    					<t key="indicator.upload_values_by">
+    					Upload values by putting one value per line. Each line must have the format: mm/dd/yyy,value,goal. For example: 4/21/2014,29.3,100
+    					</t>
+    				</p>
+    				<div class="actions form-actions">
+    				<submit label="&t(:key=>'indicator.upload', :default=>'Upload')" /> 
+    				<t key="hobo.support.or">or</t> 
+    				<a class="cancel" href="#" rel="nofollow" onclick="$('#upload')[0].reset(); $('#upload').toggle();"><t key="hobo.actions.cancel">Cancel</t></a>
+    				</div>
+			
+    			</form>
+			</div>
 		        </header>
 		        <div class="panel-body" style="display: block;">
 		            <div id="graph-line" style="position: relative;"></div>
@@ -35,7 +52,7 @@
 				var data = [
 					<repeat:indicator_histories join=",">
 					  {date:"#{this.day.year}-#{this.day.month}-#{this.day.mday}",
-					   value:#{this.value},goal:#{this.goal ? this.goal : "null"}}
+					   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}}
 					</repeat:indicator_histories>
 				];
 				var chart = Morris.Line({

@@ -7,7 +7,7 @@ class Indicator < ActiveRecord::Base
   fields do
     name        :string
     value       :decimal
-    description :text
+    description HoboFields::Types::TextileString
     frequency   HoboFields::Types::EnumString.for(:weekly, :monthly, :quarterly)
     next_update :date
     last_update :date
@@ -20,7 +20,7 @@ class Indicator < ActiveRecord::Base
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id
 
-  has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator, :conditions => "indicator_histories.value is not null"
+  has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
   
   belongs_to :company
 

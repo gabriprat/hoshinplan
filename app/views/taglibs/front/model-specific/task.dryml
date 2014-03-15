@@ -25,6 +25,9 @@
 	      		<form ajax success="$('#update-task-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal">
 	      		   <div class="modal-body">
 	      			    <field-list: fields="name, description, responsible, deadline, show_on_parent, reminder">
+    			    	<description-view:>
+    					<click-editor/>
+    				</description-view:>
 	      			    	<objective-view:>
 	      					<select-one options="&this_parent.area.objectives" />
 	      				</objective-view:>

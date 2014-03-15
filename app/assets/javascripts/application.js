@@ -11,5 +11,3 @@
 //= require raphael
 //= require morris
 //= require_tree ./application
-
-

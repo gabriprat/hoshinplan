@@ -34,6 +34,13 @@ en:
       indicator:
         goal: 100% value
         worst_value: 0% value
+    attribute_help:
+      objective:
+        description: 'You can use Textile markup to include format this text. For example, you can include a link like this: "Text":www.hoshinplan.com'
+      task:
+        description: 'You can use Textile markup to include format this text. For example, you can include a link like this: "Text":www.hoshinplan.com'
+      indicator:
+        description: 'You can use Textile markup to include format this text. For example, you can include a link like this: "Text":www.hoshinplan.com'
   log_in_with: Log in with %{provider}
   home: Home
   area:
