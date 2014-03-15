@@ -1,7 +1,9 @@
 <def tag="scard" for="ChildIndicator">
 <scard class="task table-row" param="default" merge>
   <div class="column" data-label="Id">
-	 #{this.objective.parent.position}
+  	<div class="column" data-label="Id" id="kpi_#{this.id}">
+  	</div>
+	 <script type="text/javascript">$("#kpi_#{this.id}").html($("#objective_#{this.parent_objective_id}_position").html());</script>
   </div>
   <div class="column" data-label="Name"><name/></div>
   <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
@@ -9,6 +11,6 @@
   <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
   <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc  precision="1"/>%</span> <span class="arrow #{this.trend}"></span>
   </div>
-  <div class="column" data-label="Hoshin"><view:objective.area.hoshin /></div>
+  <div class="column" data-label="Hoshin"><hoshin-link:hoshin_id /></div>
 </scard>
 </def>

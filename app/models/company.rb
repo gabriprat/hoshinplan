@@ -64,6 +64,19 @@ class Company < ActiveRecord::Base
       users.each {|user|
         ret[user.id] = user.name
       }
+      RequestStore.store[:user_abbrevs] = ret
+    end
+    ret
+  end
+  
+  def all_hoshins
+    ret = RequestStore.store[:company_hoshins]
+    if (ret.nil? && !Company.current_id.nil?) 
+      ret = {}
+      hoshins.each {|hoshin|
+        ret[hoshin.id] = hoshin
+      }
+      RequestStore.store[:company_hoshins] = ret
     end
     ret
   end

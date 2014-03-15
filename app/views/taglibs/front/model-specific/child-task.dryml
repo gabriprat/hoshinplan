@@ -1,12 +1,14 @@
 <def tag="scard" for="ChildTask">
 <scard class="task table-row" param="default" merge>
   <div class="column" data-label="Id">
-	 #{this.objective.parent.position}
+   	<div class="column" data-label="Id" id="task_#{this.id}">
+   	</div>
+ 	 <script type="text/javascript">$("#task_#{this.id}").html($("#objective_#{this.parent_objective_id}_position").html());</script>
   </div>
   <div class="column" data-label="Name"><name/></div>
   <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
   <div class="column" data-label="Deadline">#{this.deadline}</div>
   <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
-  <div class="column" data-label="Hoshin"><view:objective.area.hoshin /></div>
+  <div class="column" data-label="Hoshin"><hoshin-link:hoshin_id /></div>
 </scard>
 </def>
