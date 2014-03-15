@@ -52,7 +52,7 @@
     <div class="panel">
     <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
     <div class="panel-body">
-	<rtable:indicators columns="Company,Hoshin,Area,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators" class="indicators" />
+	<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" part="indicators" id="indicators" class="indicators" />
 	<else>
 	    <ht key="indicator.dashboard.no_kpis" count="0">You have no <model-name-human with="&Indicator" count="0"/> with to update</ht>
 	</else>
