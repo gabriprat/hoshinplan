@@ -94,9 +94,9 @@ $(window).scroll(function () {
 }); 
 
 var colorize = function () {
-	$(".indicator-tpc").parent().heatcolor(
+	$(".indicator-tpc, .child-indicator-tpc").parent().heatcolor(
 		function() {
-			var num = $(this).children(".indicator-tpc").text();
+			var num = $(this).children(".indicator-tpc, .child-indicator-tpc").text();
 			var sep = document.documentElement.getAttribute('data-sep').replace('.','\\.');
 			var del = document.documentElement.getAttribute('data-del').replace('.','\\.');;
 			num = num.replace(new RegExp(del, 'g'), '');

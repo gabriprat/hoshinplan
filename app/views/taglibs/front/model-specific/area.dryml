@@ -43,6 +43,8 @@
 	<h5><model-name-human model="&Indicator" count="100"/></h5>
 	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
 	<else><ht key="area.no_xx_defined" xx="&Indicator.model_name.human.pluralize" /></else>
+	<h6 if="child_kpis"><t key="area.child_kpis">#{Indicator.model_name.human.pluralize} from children hoshin plans"</t></h6>
+	<rtable:child_kpis columns="#,KPI,Resp.,Value,Goal,%,Hoshin"/>
 	</div>
 	<div class="tasks-wrapper">
 	<h5><model-name-human model="&Task" count="100"/></h5>

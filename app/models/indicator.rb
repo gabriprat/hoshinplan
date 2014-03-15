@@ -15,10 +15,11 @@ class Indicator < ActiveRecord::Base
     goal        :decimal, :default => 100.0
     worst_value :decimal, :default => 0.0
     reminder    :boolean, :default => true
+    show_on_parent    :boolean
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
-   :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id
+   :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent
 
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
   
@@ -142,4 +143,7 @@ class Indicator < ActiveRecord::Base
     true #same_company
   end
   
+end
+
+class ChildIndicator < Indicator
 end

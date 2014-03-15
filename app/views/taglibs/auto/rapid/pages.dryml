@@ -852,7 +852,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="reminder" param/>
+      <record-flags fields="reminder, show_on_parent" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="indicator.actions.edit" name="#{name(:no_wrapper => true)}">

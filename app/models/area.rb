@@ -40,6 +40,14 @@ class Area < ActiveRecord::Base
     tasks.collect{ |t| t.becomes(ChildTask) }
   end
   
+  def child_kpis
+    child_hoshins = hoshin.children.*.id
+    return nil unless child_hoshins
+    child_objectives = Objective.where(:parent_id => objectives.*.id)
+    indicators = Indicator.where(:objective_id => child_objectives, :show_on_parent => true)
+    indicators.collect{ |t| t.becomes(ChildIndicator) }
+  end
+  
   def parent_hoshin
     ret = hoshin.parent_id
     ret.nil? ? 0 : ret
