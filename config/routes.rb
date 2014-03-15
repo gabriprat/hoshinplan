@@ -30,7 +30,9 @@ Hoshinplan::Application.routes.draw do
   match  'cms/:key' => 'cms#show', :constraints => {:key => /.*/}
   
   match  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
-    
+  
+  match  'oid_login' => 'front#oid_login', :as => 'oid_login'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
