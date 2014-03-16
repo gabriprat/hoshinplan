@@ -12,6 +12,8 @@ class IndicatorsController < ApplicationController
   
   cache_sweeper :indicators_sweeper
   
+  include FrontHelper
+  
   
   include RestController
   
@@ -24,22 +26,48 @@ class IndicatorsController < ApplicationController
   def update
     if params[:history_values]
       error = false
-      begin
+      @this = find_instance
+      IndicatorHistory.transaction do
         options = {}
+        col_sep = ','
         if t('number.format.separator') == ','
-          options[:col_sep] = ';'
+          col_sep = ';'
         end
+        options[:col_sep] = col_sep
+        idx = 0
         CSV.parse( params[:history_values], options) do |row|
-          d = Date.parse(row[0])
-          v = row[1].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.').to_f unless row[1].nil?
-          g = row[2].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.').to_f unless row[2].nil?
-          ih = find_instance.indicator_histories.find_or_initialize_by_day(d)
-          ih.value = v
-          ih.goal = g
-          ih.save!
+          idx = idx + 1
+          if row.length != 3 
+            @this.errors.add(:indicator, t("errors.row_invalid_length", :row => idx, :expected => 3, :found => row.length, :sep => col_sep))
+            next
+          end
+          begin
+            d = Date.strptime(row[0], t('date.formats.default'))
+          rescue ArgumentError
+            @this.errors.add(:indicator, t("errors.date_format_error", :row => idx, :expected => date_format_default, :found => row[0]))
+          end
+          begin
+            v = Float row[1].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.') unless row[1].nil?
+          rescue
+            @this.errors.add(:indicator, t("errors.value_format_error", :row => idx, :found => row[1]))
+          end
+          begin
+            g = Float row[2].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.') unless row[2].nil?
+          rescue
+            @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
+          end
+          if @this.errors.messages.length==0
+            ih = find_instance.indicator_histories.find_or_initialize_by_day(d)
+            ih.value = v
+            ih.goal = g
+            ih.save!
+          end
         end
-      redirect_to find_instance, {:action => :history}
+        if @this.errors.messages.length>0
+          raise ActiveRecord::Rollback
+        end
       end
+      render :history
     else
       obj = params[:indicator]
       select_responsible(obj)
