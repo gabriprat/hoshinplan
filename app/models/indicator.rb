@@ -12,10 +12,10 @@ class Indicator < ActiveRecord::Base
     next_update :date
     last_update :date
     last_value  :decimal
-    goal        :decimal, :default => 100.0
-    worst_value :decimal, :default => 0.0
-    reminder    :boolean, :default => true
-    show_on_parent    :boolean
+    goal        :decimal, :default => 100.0, :null => false
+    worst_value :decimal, :default => 0.0, :null => false
+    reminder    :boolean, :default => true, :null => false
+    show_on_parent    :boolean, :default => false, :null => false
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
