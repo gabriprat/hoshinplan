@@ -81,7 +81,26 @@ var attachAutosubmit = function() {
 				return false;
 			});
 		}
-	})
+	});
+	
+	$('.in-place-edit a').filter(function() {
+	   return this.hostname && getServerAndTld(this.hostname) !== getServerAndTld(location.hostname);
+	}).each(function () {
+		$(this).addClass("external");
+		$(this).attr('target', '_blank');
+		$(this).click(function (event) { event.stopPropagation(); });
+	});
+	
+	$('.my-click-editor .in-place-editor').click(function () {
+		$(this).toggle();
+		$(this).next('.in-place-input').toggle();
+	});
+}
+
+function getServerAndTld(host) {
+	var arr = host.split(".");
+	arr = arr.slice(Math.max(arr.length - 2, 0));
+	return arr.join(".");
 }
 
 $(document).ready(attachAutosubmit);

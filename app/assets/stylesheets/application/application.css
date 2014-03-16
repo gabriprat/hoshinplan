@@ -8,7 +8,7 @@
 }
 
 @media all and (max-width: 640px) {
-	
+
 body {
 	padding: 0;
 }
@@ -43,6 +43,16 @@ body .areas .card.area {
 	width: 100%;
 }
 
+}
+
+a.external:after {
+	content: "\00A0\00A0\f08e";
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 0.8em;
+	display: inline-block;
+	text-decoration: inherit;
 }
 
 a {
