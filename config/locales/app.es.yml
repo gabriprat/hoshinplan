@@ -1,14 +1,7 @@
-# Hobo application translation file for Spanish.
-# Please, add the specific models and attributes for your application.
-
-# Translated by Domizio Demichelis (dd.nexus@gmail.com)
-# Corrections by Ricardo Pacheco
-
-# This file might be used for other Latin America Spanish Countries without any change
-# It might be ok also for Spain. If you find any error, or if you have any more specific translation,
-# please post it to http://hobousers.googlegroups.com. Thank you!
-
 es:
+  errors:
+    permission_denied: Permiso denegado
+    parent_hoshin_same_company: El hoshin padre tiene que ser de la misma empresa
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'
@@ -33,6 +26,12 @@ es:
     updated_at: Actualizado el
 
   activerecord:
+    errors:
+      template:
+        header:
+          one: Un error ha impedido que este %{model} se guardara
+          other: '%{count} errores han impedido que este #{model} se guardara'
+        body: 'Ha habido problemas con los siguientes campos:'
     models:
       user:
         one: Usuario
@@ -58,6 +57,9 @@ es:
       client_application:
         one: Aplicación cliente
         other: Aplicaciones cliente
+      hoshin:
+        one: Hoshin
+        other: Hoshins
     attributes:
       user:
         name: Nombre
@@ -80,6 +82,7 @@ es:
         name: Nombre
         header: Cabecera
         parent: Padre
+        company: Empresa
       goal:
         name: Nombre
       area:
@@ -155,6 +158,7 @@ es:
     developers_link: site para desarrolladores
     rest_link: API REST
   log_in_with: Accede con %{provider}
+  new_child_for_parent: Nuevo %{child} para %{parent}
   invite_collaborators: Invitar colaboradores
   use_your_corporate: Utiliza tus credenciales corporativas
   use_your_user: Utiliza tu usuario de hoshinplan.com

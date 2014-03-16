@@ -1,4 +1,5 @@
 				<set options="&this.parent_objectives"/>
+				<set areas="&this.hoshin.areas"/>
 				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal" id="upd-obj-#{this.id}" update="area-#{this.area_id}">
 				   <div class="modal-body">
 				    <field-list: fields="name, description, responsible, parent, area">
@@ -9,6 +10,7 @@
 					    	<responsible-view:>
 							<name-one-user />
 						</responsible-view:>
+						<area-tag: options="&areas" />
 					</field-list:>
 					</div>
 					 <modal-form-footer-delete />

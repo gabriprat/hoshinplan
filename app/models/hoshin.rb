@@ -48,12 +48,12 @@ class Hoshin < ActiveRecord::Base
   end
   
   def validate_company
-    errors.add(:company, "You don't have permissions on this company") unless same_company
-    errors.add(:parent, "Parent hoshin must be from the same company") unless parent_same_company
+    errors.add(:company, I18n.t("errors.permission_denied", :default => "Permission denied")) unless same_company
+    errors.add(:parent, I18n.t("errors.parent_hoshin_same_company", :default => "Parent hoshin must be from the same company")) unless parent_same_company
   end
 
   def create_permitted?
-    same_company
+    true
   end
 
   def update_permitted?
@@ -65,7 +65,7 @@ class Hoshin < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    same_company
+    self.new_record? || same_company
   end
 
 end

@@ -534,6 +534,9 @@
     </content-header:>
 
     <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="hoshin.actions.new">New Hoshin</ht>
+      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -541,13 +544,6 @@
 
       <page-nav param="bottom-page-nav"/>
 
-
-      <div param="new-form">
-        <h3 param="new-form-heading">
-          <ht key="hoshin.form.new.heading">New Hoshin</ht>
-        </h3>
-        <form with="&@invalid_record || new_for_current_user(Hoshin)" param/>
-      </div>
 
     </content-body:>
   </page>

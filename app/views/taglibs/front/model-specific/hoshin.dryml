@@ -72,3 +72,10 @@
 		<field-list: fields=""/>
 	 </old-show-page>
 </extend>
+
+
+<extend tag="form" for="Hoshin">
+	<old-form merge>
+            <field-list: fields="name, header, company"/>
+	</old-form>
+</extend>
