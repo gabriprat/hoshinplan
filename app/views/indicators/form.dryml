@@ -3,7 +3,7 @@
 				   <div class="modal-body">
 		            <field-list: fields="name, description, frequency, next_update, responsible, goal, worst_value, reminder, objective, show_on_parent">
 			    	<description-view:>
-					<click-editor/>
+					<my-click-editor/>
 				</description-view:>
 			    	<objective-view:>
 					<select-one options="&this_parent.area.objectives" />

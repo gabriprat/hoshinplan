@@ -5,7 +5,7 @@
 				    <field-list: fields="name, description, responsible, parent, area">
 						<parent-tag: options="&options" />
 					    	<description-view:>
-							<click-editor/>
+							<my-click-editor/>
 						</description-view:>
 					    	<responsible-view:>
 							<name-one-user />
