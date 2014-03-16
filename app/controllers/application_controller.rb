@@ -36,25 +36,25 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user  
 
              def scope_current_user
-                 if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
-                     params[:company_id] ||= params[model.model_name.singular]["company_id"] 
+               if defined?("logged_in?")
+                 User.current_id = logged_in? ? current_user.id : nil
+               end
+               Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
+               if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
+                   params[:company_id] ||= params[model.model_name.singular]["company_id"] 
+               end
+               if !params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?
+                 inst = model.find(params[:id]) unless params[:id].nil?
+                 inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
+                 inst = Hoshin.find(params[:area][:hoshin_id]) unless inst
+                 Rails.logger.debug inst.to_yaml
+                 if inst.respond_to?(:company_id)
+                   Company.current_id = inst.company_id
+                 elsif inst.is_a? Company
+                   Company.current_id = inst.id
                  end
-                 if !params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?
-                   inst = model.unscoped.find(params[:id]) unless params[:id].nil?
-                   inst = Company.unscoped.find(params[:company_id]) unless inst || params[:company_id].nil?
-                   inst = Hoshin.unscoped.find(params[:area][:hoshin_id]) unless inst
-                   Rails.logger.debug inst.to_yaml
-                   if inst.respond_to?(:company_id)
-                     Company.current_id = inst.company_id
-                   elsif inst.is_a? Company
-                     Company.current_id = inst.id
-                   end
-                 end
-                 Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
-                 if defined?("logged_in?")
-                   User.current_id = logged_in? ? current_user.id : nil
-                 end
-                 Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
+               end
+               Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
              yield
              ensure
                  #avoids issues when an exception is raised, to clear the current_id

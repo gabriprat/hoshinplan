@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   end
   
   def all_hoshins
-    Hoshin.unscoped.where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+    Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company).where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
   end
 
   def signed_up?

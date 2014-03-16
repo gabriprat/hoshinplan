@@ -28,9 +28,7 @@ class Company < ActiveRecord::Base
   end
 
   default_scope lambda { 
-    where(:id => UserCompany.select(:company_id)
-      .where('user_id=?',  
-        User.current_id) ) }
+    where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") }
   
   scope :admin, lambda { 
     where(:id => UserCompany.select(:company_id)
@@ -96,7 +94,7 @@ class Company < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    new_record? || acting_user.administrator? || same_company(id)
+    self.new_record? || acting_user.administrator? || same_company(id)
   end
 
 end

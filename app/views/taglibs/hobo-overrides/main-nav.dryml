@@ -9,7 +9,16 @@
   <navigation class="main-nav" merge-attrs param="default" if="&logged_in?">
     <!--<nav-item with="&ClientApplication"><ht key="client_application.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>-->
     <li class='nav-item dropdown'>
-   	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><ht key="company.nav_item" count="100"><model-name-human with="&Company" count="100"/></ht> <b class="caret"></b></a>
+    	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		<if test="&Company.current_id.nil?">
+		 	<ht key="company.nav_item" count="100"><model-name-human with="&Company" count="100"/></ht>
+		</if>
+		<else>
+			#{Company.model_name.human}:
+			<view with="&Company.current_company.name"/>
+		</else>
+		 <b class="caret"></b> 
+	</a>
     	<ul class="dropdown-menu">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_companies'>
 		<a><view:name/></a>
@@ -19,18 +28,27 @@
 	</ul>  
     </li>
     <li class='nav-item dropdown'>
-   	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><ht key="hoshin.nav_item" count="100"><model-name-human with="&Hoshin" count="100"/></ht> <b class="caret"></b></a>
+   	 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	 	<ht key="hoshin.nav_item" count="100"><model-name-human with="&Hoshin" count="100"/></ht>
+		<b class="caret"></b>
+	</a>
     	<ul class="dropdown-menu" with="&current_user.hoshins">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
-			<a><view:name/> (<view:company.name />)</a>
+			<a><view:name/> (<view:company_name />)</a>
 		</li>
-		<li class="divider" if="&Company.current_id"></li>
+		<li class="divider"></li>
 		<li if="&Company.current_id">
 		<% @company = Company.find(Company.current_id) %>
 	        <a with="&@company.hoshins" action="new" if="&can_create?(@company.hoshins)" param="new-link">
+	          + <t key="new_child_for_parent" child="&Hoshin.model_name.human" parent="&@company.name" />
+	        </a>
+		</li>
+		<li if="&Company.current_id.nil?">
+	        <a with="&Hoshin" action="new" param="new-link">
 	          + <ht key="hoshin.actions.create" count="1" />
 	        </a>
 		</li>
+		
 	</ul>
     </li>
     <nav-item with="&Company.find(Company.current_id)" action="collaborators" if="&Company.current_id">
