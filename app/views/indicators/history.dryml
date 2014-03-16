@@ -26,6 +26,7 @@
 			</div>
 		        </header>
 		        <div class="panel-body" style="display: block;">
+			    <error-messages />
 		            <div id="graph-line" style="position: relative;"></div>
 		        </div>
 	    	</section>
