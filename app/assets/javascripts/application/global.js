@@ -91,7 +91,7 @@ var attachAutosubmit = function() {
 		$(this).click(function (event) { event.stopPropagation(); });
 	});
 	
-	$('.my-click-editor .in-place-editor').click(function () {
+	$('.my-click-editor .in-place-edit').click(function () {
 		$(this).toggle();
 		$(this).next('.in-place-input').toggle();
 	});
