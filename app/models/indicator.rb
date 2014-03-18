@@ -82,7 +82,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def trend
-    if last_value.nil?
+    if last_value.nil? || value.nil?
       :equal
     else 
       if last_value == value 
