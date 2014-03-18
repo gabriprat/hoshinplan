@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140315221907) do
+ActiveRecord::Schema.define(:version => 20140316231547) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20140315221907) do
     t.text     "description"
     t.string   "frequency"
     t.date     "next_update"
-    t.decimal  "goal",           :default => 100.0
+    t.decimal  "goal",           :default => 100.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
@@ -134,9 +134,9 @@ ActiveRecord::Schema.define(:version => 20140315221907) do
     t.decimal  "last_value"
     t.integer  "responsible_id"
     t.integer  "company_id"
-    t.boolean  "reminder",       :default => true
-    t.decimal  "worst_value",    :default => 0.0
-    t.boolean  "show_on_parent"
+    t.boolean  "reminder",       :default => true,  :null => false
+    t.decimal  "worst_value",    :default => 0.0,   :null => false
+    t.boolean  "show_on_parent", :default => false, :null => false
     t.string   "type"
   end
 
