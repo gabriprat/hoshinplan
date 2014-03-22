@@ -73,9 +73,15 @@
 	 </old-show-page>
 </extend>
 
-
 <extend tag="form" for="Hoshin">
 	<old-form merge>
-            <field-list: fields="name, header, company"/>
+            <field-list: fields="name, header, company">
+	    	<company-view:>
+			<input if="&current_user.all_companies.length &gt; 0"/>
+			<else>
+				<input type="text" name="new-company-name"/>
+			</else>
+		</company-view:>
+	    </field-list:>
 	</old-form>
 </extend>
