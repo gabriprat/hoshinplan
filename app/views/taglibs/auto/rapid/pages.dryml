@@ -577,7 +577,7 @@
     <body: class="show-page hoshin" param/>
 
     <content-header: param>
-      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a:company>
+      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Empresa" name="&this">Back to <name/></ht></a:company>
       <h2 param="heading">
         <ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">
           Hoshin <name/>
@@ -841,7 +841,7 @@
     <body: class="show-page indicator" param/>
 
     <content-header: param>
-      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objective" name="&this">Back to <name/></ht></a:objective>
+      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objetivo" name="&this">Back to <name/></ht></a:objective>
       <h2 param="heading">
         <ht key="indicator.show.heading" name="#{name(:no_wrapper => true)}">
           Indicator <name/>
@@ -889,7 +889,7 @@
 
 <def tag="index-for-objective-page" polymorphic/>
 <def tag="index-for-objective-page" for="Indicator">
-  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicators for']} #{name :with => @objective, :no_wrapper => true}">
+  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicator for']} #{name :with => @objective, :no_wrapper => true}">
     <body: class="index-for-owner-page objective indicator" param/>
     <content-header: param>
       <div param="back-to">
@@ -1353,7 +1353,7 @@
 
 <def tag="index-for-objective-page" polymorphic/>
 <def tag="index-for-objective-page" for="Task">
-  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Tasks for']} #{name :with => @objective, :no_wrapper => true}">
+  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Task for']} #{name :with => @objective, :no_wrapper => true}">
     <body: class="index-for-owner-page objective task" param/>
     <content-header: param>
       <div param="back-to">
