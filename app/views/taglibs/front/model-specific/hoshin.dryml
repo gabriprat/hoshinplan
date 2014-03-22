@@ -6,7 +6,7 @@
 		<parent-link: >
 			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
 		</parent-link:>
-		<prepend-content-header: saf="sdf">
+		<prepend-content-header: >
 			<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
 	            <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new area
