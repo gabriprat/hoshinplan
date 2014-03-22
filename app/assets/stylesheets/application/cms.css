@@ -1,0 +1,209 @@
+#cms {
+	padding: 0 20px;
+	text-align: center;
+}
+
+#cms h2 {
+	max-width: 1000px;
+	margin: auto;
+	margin-top: 1em;
+	font-weight: 400;
+	font-size: 1.6em;
+}
+
+#cms h1 {
+	margin: auto;
+}
+
+
+#cms footer {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+}
+
+#cms #enum {
+	display: inline-block;
+	text-align: center;
+	width: 50%;
+	margin-top: 4em;
+}
+
+#cms #enum ol {
+	margin: 0 20px 10px 25px;
+	text-align: left;
+}
+
+#cms #enum li {
+	
+	position: relative;
+	background-image: none;
+	margin: 0px 0 0 0;
+	padding: 25px 0 0 60px;
+	list-style-type: none;
+	min-height: 40px;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: FontAwesome;
+}
+
+#cms #enum li:before {
+	content: "\f058";
+	position: absolute;
+	left: 0;
+	color: #25A9E0;
+	font-size: 55px;
+	top: 7px;
+}
+
+#cms #enum a {
+	font-size: 2em;
+	line-height: 1.5em;
+}
+
+#cms .quotes {
+	text-align: center;
+}
+
+#cms img {
+	width: 49%;
+	vertical-align: top;
+	margin-top: 5em;
+	margin-bottom: 4em;
+}
+
+.claim {
+	margin: -20px -20px 0 -20px;
+	text-align: center;
+	color: #fff;
+	background: url(http://doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDIvMjMvMDIvMDUvMzkvNDU2L2hvc2hpbl9iYWNrLmpwZyJdXQ/hoshin-back.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.claim .btn {
+	font-size: 2em;
+	line-height: 1.5em;
+	margin-top: 1em;
+}
+
+.inner-bg {
+	padding: 55px 0 60px 0;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAHklEQVQIW2NkYGD4D8SMQAwCcDZMACqOoPBKUMkoAJyiBAdsFa0qAAAAAElFTkSuQmCC);
+	-moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+	-webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+}
+
+.claim h1 {
+	font-size: 40px;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}
+
+.claim h2 {
+	margin-top: 20px;
+	font-size: 18px;
+	line-height: 36px;
+	text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}
+
+#cms .quotes {
+	margin: 20px -20px 0 -20px;
+	background: #f8faff;
+	padding: 40px 0;
+}
+
+#cms .quotes footer {
+	bottom: -40px;
+}
+
+#cms blockquote p {
+	position: relative;
+	width: 240px;
+	height: 100px;
+	padding: 0px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 20px;
+	-moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+	-webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+        -webkit-transition: .5s ease-out;
+        -moz-transition: .5s ease-out;
+        -o-transition: .5s ease-out;
+	font-size: 1.3em;
+	padding-top: 2em;	
+}
+
+#cms .quotes.outViewPort blockquote p {
+	-ms-transform: scale(0); 
+	-moz-transform: scale(0); 
+	-webkit-transform: scale(0); 
+	transform: scale(0);
+}
+
+#cms blockquote p:after {
+  content: "";
+  position: absolute;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px ;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px ;
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px ;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  bottom: -10px;
+  left: 20%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #FFF #FFF transparent;
+}
+
+#cms blockquote {
+	position: relative;
+	display: inline-block;
+	border: 0;
+	margin-bottom: 60px;
+}
+@media all and (max-width: 640px) {
+	
+	#cms .quotes {
+		margin: 0;
+	}
+	
+	#cms .claim {
+		margin: -20px 0 0 0;
+	}
+
+	#cms .inner-bg {
+		padding: 45px 0 50px 0;
+	}
+
+	#cms .claim h1 {
+		font-size: 36px;
+		padding: 0 20px;
+	}
+
+	#cms .claim h2 {
+		padding: 0 20px;
+	}
+	
+	#cms {
+		padding: 0;
+	}
+	
+	#cms #enum {
+		width: 100%;
+	}
+	
+	#cms img {
+		width: 100%;
+	}
+
+}
