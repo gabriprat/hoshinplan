@@ -32,7 +32,12 @@ class CompaniesController < ApplicationController
           .order_by(parse_sort_param(:state, :user => "name || email_address"))
           .paginate(:page => params[:page], :per_page => 15).all
   end
-  
+
+  def destroy
+    hobo_destroy do
+      redirect_to "/" if valid? && !request.xhr?
+    end
+  end
   
   def update
     if params[:collaborators]

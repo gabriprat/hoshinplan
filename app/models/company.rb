@@ -23,7 +23,7 @@ class Company < ActiveRecord::Base
   children :hoshins
   
   after_create do |company|
-    user = acting_user
+    user = User.current_user
     company.user_companies = [UserCompany::Lifecycle.new_company([company, user], {:user => user, :company => company})]
   end
 
