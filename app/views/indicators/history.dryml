@@ -1,7 +1,7 @@
 <show-page: >
 	<content-header: >
 		<a with="&this.objective.area.hoshin">&laquo; Back to hoshin #{name}</a>
-		<h1>#{this.name}</h1>
+		<h2>#{this.name}</h2>
 	</content-header:>
 	<content-body:>
 		<section class="panel">
