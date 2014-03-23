@@ -1,6 +1,8 @@
 class IndicatorHistory < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
+  
+  include ModelBase
 
   fields do
     value :decimal
