@@ -1,6 +1,6 @@
 <extend tag="card" for="Area">
   <old-card merge>
-  	
+    <creator-link: replace />
     <append-body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
 	<div class="objectives-wrapper">

@@ -13,7 +13,8 @@ class Area < ActiveRecord::Base
   attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator_id
   
   belongs_to :creator, :class_name => "User", :creator => true
-
+  never_show :creator
+  
   has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'obj_pos'
   has_many :indicators, :through => :objectives, :accessible => true, :order => 'ind_pos'
   has_many :tasks, :through => :objectives, :accessible => true, :order => 'status, tsk_pos', :conditions => ["status != 'deleted' and (status = 'active' or deadline>current_date-30)"]
