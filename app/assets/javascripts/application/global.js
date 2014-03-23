@@ -228,7 +228,7 @@ var startPresentation = function() {
 	$('body').css({'font-size': size, 'overflow': 'hidden'});
 	$("div.objectives-wrapper,div.indicators-wrapper,div.tasks-wrapper").height("auto");
 	currentSlide = $('.slide-page').length - $('div.area').length;
-	alert(currentSlide);
+	currentSlide = currentSlide < 0 ? 0 : currentSlide;
 	presenting = true;
 	$('.slide-page').width("100%");
 	$('.slide-page').css({position:'absolute', left:0, top:0, outline: '1px solid transparent'});

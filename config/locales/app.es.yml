@@ -134,6 +134,8 @@ es:
         actions: Acciones
         user: Usuario
     attribute_help:
+      hoshin:
+        header: 'Puedes usar código Textile (http://redcloth.org/hobix.com/textile/) para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
       objective:
         description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
       task:
