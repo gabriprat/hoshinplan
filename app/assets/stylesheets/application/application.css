@@ -200,7 +200,7 @@ body h2.heading {
 	sans-serif;
 	line-height: 1em;
 	font-size: 4em;
-	margin: 0 0 0.4em 0;
+	margin: 0;
 }
 
 h2.heading .title-action {
@@ -243,11 +243,13 @@ body.hoshin .goals h3 {
 	-moz-transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
-	transform-origin: 17% 400% 0;
-	-moz-transform-origin: 17% 400% 0;
-	-ms-transform-origin: 17% 400% 0;
-	-webkit-transform-origin: 17% 400% 0;
-	width: 200px;
+	transform-origin: left bottom 0;
+	-moz-transform-origin: left bottom 0;
+	-ms-transform-origin: left bottom 0;
+	-webkit-transform-origin: left bottom 0;
+	position: absolute;
+	left: -0.5em;
+	bottom: 0;
 	color: #fff;
 }
 
@@ -255,11 +257,17 @@ body.hoshin div.goals {
 	background: #f8faff;
 	border-left: 2em solid #25A9E0;
 	margin-bottom: 10px;
-	padding: 0;
+	padding: 2em 0;
+	position: relative;
+}
+
+body.hoshin ul.collection.goals {
+	margin: 0;
 }
 
 body.hoshin ul.collection.goals .goal {
 	border: 1px solid #25A9E0;
+	margin: 0;
 }
 
 body.hoshin .collection.areas {

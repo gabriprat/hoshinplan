@@ -59,9 +59,9 @@
 		<content-body: >
 		        <swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?">
 			<div class="fixed-x">
-				<view:header/>
+				<view:header class="well slide-page" unless="&this.header.empty?"/>
 				<div id="goals" part="goals">
-					<div class="goals well" if="&this.goals">
+					<div class="goals well slide-page" if="&this.goals">
 						<h3><model-name-human model="&Goal" count="100"/></h3>
 						<sortable-collection:goals />
 					</div>
