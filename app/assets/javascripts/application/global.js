@@ -225,7 +225,7 @@ var showSlide = function(num) {
 var startPresentation = function() {
 	$(PRESENTATION_SELECTOR).hide();
 	var size = parseInt($('body').css('font-size')) + 8;
-	$('body').css({'font-size': size, 'overflow': 'hidden'});
+	$('body').css({'font-size': size, 'overflow-x': 'hidden'});
 	$("div.objectives-wrapper,div.indicators-wrapper,div.tasks-wrapper").height("auto");
 	currentSlide = $('.slide-page').length - $('div.area').length;
 	currentSlide = currentSlide < 0 ? 0 : currentSlide;
