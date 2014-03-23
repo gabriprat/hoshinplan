@@ -1,0 +1,14 @@
+<extend tag="show-page" for="Company">
+	<old-show-page merge>
+		<prepend-content-header: >
+			<% new_hoshin_url = object_url @this.hoshins, :action => :new %>
+		        <a href="#{new_hoshin_url}" class="btn pull-right">
+		          <ht key="hoshin.actions.new" count="1">
+		            New Hoshin #{@this.hoshins}
+		          </ht>
+		        </a>
+		</prepend-content-header: >
+		
+		<new-link: replace/>
+	</old-show-page>
+</extend>

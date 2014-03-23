@@ -11,7 +11,10 @@ class Hoshin < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header
-  attr_accessible :areas, :children, :children_ids
+  attr_accessible :areas, :children, :children_ids, :creator_id
+  
+  belongs_to :creator, :class_name => "User", :creator => true
+  never_show :creator
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
   belongs_to :parent, :class_name => "Hoshin"

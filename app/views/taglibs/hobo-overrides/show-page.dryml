@@ -1,0 +1,11 @@
+<extend tag="show-page">
+	<old-show-page merge>
+	<heading:>
+		<a action="edit">
+		<param-content for="heading"/>
+		</a>
+	</heading:>
+	<edit-link: replace/>
+	<creator-link: replace/>
+	</old-show-page>
+</extend>

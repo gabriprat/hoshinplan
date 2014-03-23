@@ -8,17 +8,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
-    </body:>
-  </card>
-</def>
-
-<def tag="card" for="Authorization">
-  <card class="authorization" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-    <body: param>
-      <view:description param="description"/>
+      <a:creator param="creator-link"/>
     </body:>
   </card>
 </def>
@@ -62,6 +52,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
+      <a:creator param="creator-link"/>
       <ht key="hoshin.collection.count" count="&this.hoshins.size">
          <count:hoshins param/>
       </ht>
@@ -74,6 +65,9 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <a:creator param="creator-link"/>
+    </body:>
   </card>
 </def>
 
@@ -83,6 +77,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
+      <a:creator param="creator-link"/>
       <ht key="area.collection.count" count="&this.areas.size">
          <count:areas param/>
       </ht>
@@ -97,15 +92,16 @@
     </header:>
     <body: param>
       <view:description param="description"/>
+      <a:creator param="creator-link"/>
     </body:>
   </card>
 </def>
 
 <def tag="card" for="IndicatorHistory">
   <card class="indicator-history" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
+    <body: param>
+      <a:creator param="creator-link"/>
+    </body:>
   </card>
 </def>
 
@@ -124,6 +120,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
+      <a:creator param="creator-link"/>
       <ht key="indicator.collection.count" count="&this.indicators.size">
          <count:indicators param/>
       </ht>
@@ -146,6 +143,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
+      <a:creator param="creator-link"/>
     </body:>
   </card>
 </def>

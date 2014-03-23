@@ -8,7 +8,9 @@ class IndicatorHistory < ActiveRecord::Base
     day   :date
     timestamps
   end
-  attr_accessible :value, :goal, :indicator, :indicator_id, :day
+  attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id
+  
+  belongs_to :creator, :class_name => "User", :creator => true
 
   belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
 
@@ -17,19 +19,19 @@ class IndicatorHistory < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    true
+    same_company
   end
 
   def update_permitted?
-    acting_user.administrator?
+    same_company
   end
 
   def destroy_permitted?
-    true
+    same_company_admin
   end
 
   def view_permitted?(field)
-    true
+    same_company
   end
 
 end

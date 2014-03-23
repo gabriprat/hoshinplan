@@ -9,9 +9,12 @@ class Company < ActiveRecord::Base
     hoshins_count :integer, :default => 0, :null => false
     timestamps
   end
-  attr_accessible :name
+  attr_accessible :name, :creator_id
+  
+  belongs_to :creator, :class_name => "User", :creator => true
   
   has_many :hoshins, :dependent => :destroy, :inverse_of => :company, :order => :name
+  
   has_many :areas, :dependent => :destroy, :inverse_of => :company, :order => :name
   has_many :objectives, :dependent => :destroy, :inverse_of => :company, :order => :name
   has_many :indicators, :dependent => :destroy, :inverse_of => :company, :order => :name

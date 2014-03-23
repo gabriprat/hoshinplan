@@ -19,8 +19,11 @@ class Indicator < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
-   :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent
+   :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
+   :creator_id
 
+  belongs_to :creator, :class_name => "User", :creator => true
+  
   has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
   
   belongs_to :company
@@ -136,7 +139,7 @@ class Indicator < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    same_company
+    same_company_admin
   end
 
   def view_permitted?(field)

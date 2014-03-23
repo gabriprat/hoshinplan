@@ -8,7 +8,9 @@ class Goal < ActiveRecord::Base
     name :string
     timestamps
   end
-  attr_accessible :name, :hoshin, :hoshin_id, :company_id
+  attr_accessible :name, :hoshin, :hoshin_id, :company_id, :creator_id
+  
+  belongs_to :creator, :class_name => "User", :creator => true
   
   belongs_to :hoshin, :inverse_of => :objectives
   belongs_to :company

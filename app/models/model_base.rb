@@ -1,5 +1,4 @@
-module ModelBase 
-  
+module ModelBase   
   
   def all_user_companies=(companies)
     RequestStore.store[:all_user_companies] = companies
@@ -19,6 +18,9 @@ module ModelBase
   
   def same_company(cid=nil)
     user = acting_user ? acting_user : User.current_user
+    if respond_to?("creator_id") && (user.id == creator_id)
+      return true
+    end
     if (self.all_user_companies.nil? && !user.nil?)
       self.all_user_companies = user.all_companies.*.id
     end
@@ -33,6 +35,9 @@ module ModelBase
   
   def same_company_admin(cid=nil)
     user = acting_user ? acting_user : User.find(User.current_id)
+    if respond_to?("creator_id") && (user.id == creator_id)
+      return true
+    end
     if self.is_a?(Company)
       cid = self.id
     else

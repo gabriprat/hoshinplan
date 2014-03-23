@@ -34,6 +34,10 @@ body .container h2.heading {
 	font-size: 2em;
 }
 
+body h2.heading .title-action {
+	font-size: 0.8em;
+}
+
 body .container h4 {
 	font-size: 1.7em;
 }
@@ -199,6 +203,16 @@ body h2.heading {
 	margin: 0 0 0.4em 0;
 }
 
+h2.heading .title-action {
+	font-size: 0.4em;
+	margin: 0 15px;
+	color: #aaa;
+}
+
+h2.heading .title-action:hover {
+	color: inherit;
+}
+
 .nowrap {
 	white-space: nowrap;
 }
@@ -348,13 +362,17 @@ body.hoshin .image-button.delete-button {
 	margin: 0;
 }
 
-#areas input[type=submit].delete-button {
+.modal-footer-delete input[type=submit].delete-button {
 	background-color: darkred;
 	background-image: none;
 	color: white;
 	text-shadow: none;
 	font-weight: 100;
 	float: left;
+}
+
+.parent-link {
+	white-space: nowrap;
 }
 
 div.tasks {

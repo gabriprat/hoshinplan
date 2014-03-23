@@ -1,10 +1,8 @@
 <page title="Create your first company">
 
   <body: class="front-page"/>
-
-  <content:>
-    
-  </content:>
-
+  
+  <main-nav: replace />
+  
 </page>
 
