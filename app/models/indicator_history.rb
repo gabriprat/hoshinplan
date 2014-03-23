@@ -31,15 +31,15 @@ class IndicatorHistory < ActiveRecord::Base
   end
 
   def update_permitted?
-    same_company
+    indicator.update_permitted?
   end
 
   def destroy_permitted?
-    same_company
+    indicator.destroy_permitted?
   end
 
   def view_permitted?(field)
-    same_company
+    indicator.view_permitted?
   end
 
 end
