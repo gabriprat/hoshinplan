@@ -47,7 +47,5 @@ module ModelBase
       self.admin_user_companies = user.user_companies.unscoped.where(:state => :admin, :user_id => user.id).*.company_id
     end
     self.admin_user_companies.include? cid
-    fail (self.admin_user_companies).to_yaml
-    
   end
 end
