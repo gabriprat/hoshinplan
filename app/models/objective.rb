@@ -13,7 +13,9 @@ class Objective < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id, 
-    :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id
+    :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id, :creator_id
+    
+  belongs_to :creator, :class_name => "User", :creator => true  
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
   has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'tsk_pos'
@@ -76,7 +78,7 @@ class Objective < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    same_company
+    same_company_admin
   end
 
   def view_permitted?(field)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140316231547) do
+ActiveRecord::Schema.define(:version => 20140323005443) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "hoshin_id"
     t.integer  "position"
     t.integer  "company_id"
+    t.integer  "creator_id"
   end
 
   add_index "areas", ["company_id"], :name => "index_areas_on_company_id"
+  add_index "areas", ["creator_id"], :name => "index_areas_on_creator_id"
   add_index "areas", ["hoshin_id"], :name => "index_areas_on_hoshin_id"
 
   create_table "authorizations", :force => true do |t|
@@ -64,7 +66,10 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "hoshins_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_id"
   end
+
+  add_index "companies", ["creator_id"], :name => "index_companies_on_creator_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -89,9 +94,11 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "hoshin_id"
     t.integer  "company_id"
     t.integer  "position"
+    t.integer  "creator_id"
   end
 
   add_index "goals", ["company_id"], :name => "index_goals_on_company_id"
+  add_index "goals", ["creator_id"], :name => "index_goals_on_creator_id"
   add_index "goals", ["hoshin_id"], :name => "index_goals_on_hoshin_id"
 
   create_table "hoshins", :force => true do |t|
@@ -102,9 +109,11 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "company_id"
     t.integer  "parent_id"
     t.text     "header"
+    t.integer  "creator_id"
   end
 
   add_index "hoshins", ["company_id"], :name => "index_hoshins_on_company_id"
+  add_index "hoshins", ["creator_id"], :name => "index_hoshins_on_creator_id"
   add_index "hoshins", ["parent_id"], :name => "index_hoshins_on_parent_id"
 
   create_table "indicator_histories", :force => true do |t|
@@ -114,8 +123,10 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "indicator_id"
     t.date     "day"
     t.decimal  "goal"
+    t.integer  "creator_id"
   end
 
+  add_index "indicator_histories", ["creator_id"], :name => "index_indicator_histories_on_creator_id"
   add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
 
   create_table "indicators", :force => true do |t|
@@ -138,10 +149,12 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.decimal  "worst_value",    :default => 0.0,   :null => false
     t.boolean  "show_on_parent", :default => false, :null => false
     t.string   "type"
+    t.integer  "creator_id"
   end
 
   add_index "indicators", ["area_id"], :name => "index_indicators_on_area_id"
   add_index "indicators", ["company_id"], :name => "index_indicators_on_company_id"
+  add_index "indicators", ["creator_id"], :name => "index_indicators_on_creator_id"
   add_index "indicators", ["objective_id"], :name => "index_indicators_on_objective_id"
   add_index "indicators", ["responsible_id"], :name => "index_indicators_on_responsible_id"
   add_index "indicators", ["type"], :name => "index_indicators_on_type"
@@ -166,10 +179,12 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "parent_id"
     t.integer  "responsible_id"
     t.integer  "company_id"
+    t.integer  "creator_id"
   end
 
   add_index "objectives", ["area_id"], :name => "index_objectives_on_area_id"
   add_index "objectives", ["company_id"], :name => "index_objectives_on_company_id"
+  add_index "objectives", ["creator_id"], :name => "index_objectives_on_creator_id"
   add_index "objectives", ["hoshin_id"], :name => "index_objectives_on_hoshin_id"
   add_index "objectives", ["parent_id"], :name => "index_objectives_on_parent_id"
   add_index "objectives", ["responsible_id"], :name => "index_objectives_on_responsible_id"
@@ -198,10 +213,12 @@ ActiveRecord::Schema.define(:version => 20140316231547) do
     t.integer  "responsible_id"
     t.integer  "company_id"
     t.boolean  "reminder",          :default => true
+    t.integer  "creator_id"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
   add_index "tasks", ["company_id"], :name => "index_tasks_on_company_id"
+  add_index "tasks", ["creator_id"], :name => "index_tasks_on_creator_id"
   add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"
   add_index "tasks", ["responsible_id"], :name => "index_tasks_on_responsible_id"
   add_index "tasks", ["status"], :name => "index_tasks_on_status"

@@ -13,5 +13,5 @@
 	      				</responsible-view:>
 	      			    </field-list:>
 	      		    </div>
-	      		    <modal-form-footer/>
+	      		    <modal-form-footer-delete/>
 	      		</form>

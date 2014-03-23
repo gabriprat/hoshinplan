@@ -24,13 +24,22 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image
   
   has_many :hoshins, :through => :companies
-  has_many :objectives, :dependent => :destroy, :inverse_of => :responsible, foreign_key: :responsible_id
-  has_many :indicators, :dependent => :destroy, :inverse_of => :responsible, foreign_key: :responsible_id
-  has_many :tasks, :dependent => :destroy, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :indicators, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :tasks, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
+  
+  has_many :my_companies, :class_name => "Company", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_hoshins, :class_name => "Hoshin", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_areas, :class_name => "Area", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_goals, :class_name => "Goal", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_objectives, :class_name => "Objective", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_tasks, :class_name => "Task", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_indicators, :class_name => "Indicator", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_indicator_histories, :class_name => "IndicatorHistory", :inverse_of => :creator, :foreign_key => :creator_id
     
   # This gives admin rights and an :active state to the first sign-up.
   before_create do |user|

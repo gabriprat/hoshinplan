@@ -14,8 +14,10 @@ class Task < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder,
-    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id
+    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id
 
+  belongs_to :creator, :class_name => "User", :creator => true
+  
   belongs_to :company
   
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
@@ -94,7 +96,7 @@ class Task < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    same_company
+    same_company_admin
   end
 
   def view_permitted?(field)

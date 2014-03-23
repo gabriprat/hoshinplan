@@ -10,7 +10,9 @@ class Area < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id
+  attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator_id
+  
+  belongs_to :creator, :class_name => "User", :creator => true
 
   has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'obj_pos'
   has_many :indicators, :through => :objectives, :accessible => true, :order => 'ind_pos'
