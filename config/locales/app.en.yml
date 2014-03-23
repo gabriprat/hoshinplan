@@ -38,6 +38,8 @@ en:
         goal: 100% value
         worst_value: 0% value
     attribute_help:
+      hoshin:
+        header: 'You can use Textile (http://redcloth.org/hobix.com/textile/) markup to include format this text. For example, you can include a link like this: "Text":www.hoshinplan.com'
       objective:
         description: 'You can use Textile markup to include format this text. For example, you can include a link like this: "Text":www.hoshinplan.com'
       task:
