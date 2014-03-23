@@ -13,10 +13,16 @@ class IndicatorHistory < ActiveRecord::Base
   attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id
   
   belongs_to :creator, :class_name => "User", :creator => true
+  
+  belongs_to :company
 
   belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
 
   validates_uniqueness_of :day, :scope => [:indicator_id]
+  
+  before_create do |ih|
+    ih.company = ih.indicator.company
+  end
 
   # --- Permissions --- #
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140323005443) do
+ActiveRecord::Schema.define(:version => 20140323021607) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -124,8 +124,10 @@ ActiveRecord::Schema.define(:version => 20140323005443) do
     t.date     "day"
     t.decimal  "goal"
     t.integer  "creator_id"
+    t.integer  "company_id"
   end
 
+  add_index "indicator_histories", ["company_id"], :name => "index_indicator_histories_on_company_id"
   add_index "indicator_histories", ["creator_id"], :name => "index_indicator_histories_on_creator_id"
   add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
 
