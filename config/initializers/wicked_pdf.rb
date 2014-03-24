@@ -1,5 +1,6 @@
 WickedPdf.config = {
-  :page_size => 'A2',
+  :page_size => 'A4',
   :print_media_type => true,
-  :orientation => 'Landscape'
+  :orientation => 'Landscape',
+  :show_as_html => true
 }
