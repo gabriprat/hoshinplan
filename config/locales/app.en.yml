@@ -23,6 +23,10 @@ en:
 #        email_address: We will never share your address with third parties
 
 en:
+  hoshin:
+    actions:
+      presentation: Presentation
+      export_as_pdf: Export as PDF
   errors:
     row_invalid_length: 'The row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remind that %{sep} is expected to separate columns.'
     date_format_error: 'The row %{row} contains an invalid date. The date "%{found}" does not follow the expected format "%{expected}".'
