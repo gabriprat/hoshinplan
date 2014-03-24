@@ -141,26 +141,24 @@ var equalHeightSections = function() {
 	$("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"width": "auto"});
 	});
-	equalHeights("div.tasks-wrapper");
-	equalHeights("div.indicators-wrapper");
 	equalHeights("div.objectives-wrapper");
+	equalHeights("div.indicators-wrapper");
+	equalHeights("div.tasks-wrapper");
 	eh = false;
 }
 
 var equalHeights = function(elements) {
 	$(elements).height("auto");
 	if (window.matchMedia('(max-width: 640px)').matches) return;
-	var maxHeight = Math.max.apply(null, $(elements + "").map(function ()
-	{
-	    return $(this).height();
-	}).get());
-	if (window.location.pathname.indexOf("_pdf") != -1) {
-		maxHeight = maxHeight / 2.5 + 90;
-	} else {
-		
-	}
-	$(elements).height(maxHeight);
+	var maxHeight = 0;
 	//$(elements).css({border: "1px solid red"});
+	$(elements).each(function(){
+        	//$("body").append("Hola: " + $(this).parent().attr("id") + " . " + $(this).innerHeight() + "<br/>");
+    		if ($(this).height() > maxHeight) {
+	 	       maxHeight = $(this).height();
+		}
+	});
+	$(elements).height(maxHeight);
 	//$(elements).height("auto");
 	//$("body").append("MH: " + maxHeight + "<br/>");
 	

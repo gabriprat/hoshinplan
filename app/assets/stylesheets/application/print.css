@@ -4,8 +4,11 @@
 		-webkit-box-shadow: none !important;
 		-moz-box-shadow: none !important;
 		box-shadow: none !important;
+		border-radius: 0 !important;
+		-moz-border-radius: 0 !important;
+		-webkit-border-radius: 0 !important;
 	}
-	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons {
+	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action {
 		display: none;
 	}
 	div.ordering-handle, .column.ordering {
@@ -48,11 +51,17 @@
 	
 	body.hoshin .container .collection.areas {
 		display: table; 
-		table-layout: fixed; 
 		width: 100%;
 	}
+	
+	body.hoshin #goals .well {
+		padding: 1em;
+		border: 0;
+	}
+	
 	body.hoshin .goals h3 {
-		font-size: 3em;
+		position: initial;
+		font-size: 1.8em;
 		transform: none;
 		-moz-transform: none;
 		-ms-transform: none;
@@ -74,10 +83,6 @@
 		border: 0 0 0 1px;
 		border-color: #000;
 	}
-	body.hoshin div.goals {
-		background-color: transparent;
-		border: 1px solid black;
-	}
 	
 	body.hoshin .container
 	.collection.areas > .item {
@@ -85,6 +90,6 @@
 	}
 	
 	@page {
-		size: A3 landscape;
+		size: A4 landscape;
 	}
 }
