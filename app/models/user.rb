@@ -62,7 +62,8 @@ class User < ActiveRecord::Base
     state :active
     
     create :from_omniauth, :params => [:name, :email_address], :become => :active do
-      if (self.email_address.split("@").last == "infojobs.net")
+      domain = self.email_address.split("@").last
+      if (domain == "infojobs.net" || domain == "lectiva.com")
         self.companies = [Company.find(1)]
       else
         @subject = "#{self.name} welcome to Hoshinplan!"

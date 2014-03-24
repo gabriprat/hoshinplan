@@ -47,7 +47,8 @@ class CompaniesController < ApplicationController
           email.squish! 
           user = User.unscoped.where(:email_address => email).first
           if user.nil?
-            if (email.split("@").last == "infojobs.net")
+            domain = email.split("@").last
+            if (domain == "infojobs.net" || domain == "lectiva.com")
               user = User::Lifecycle.activate_ij(:email_address => email)
               user.email_address = email
               user.save!(:validate => false)
@@ -60,7 +61,7 @@ class CompaniesController < ApplicationController
           uc = UserCompany.where(:company_id => params[:id], :user_id => user.id).first
           if uc.nil? 
             company = Company.find(params[:id])
-            if (email.split("@").last == "infojobs.net")
+            if (domain == "infojobs.net" || domain == "lectiva.com")
               UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
             else
               UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
