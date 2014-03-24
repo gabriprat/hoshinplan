@@ -50,8 +50,9 @@ class UserCompany < ActiveRecord::Base
     acting_user if r.company.user_companies.empty?
   end
   
-  def activate_ij_available 
-    return acting_user if (self.user.email_address.split("@").last == "infojobs.net")
+  def activate_ij_available
+    domain = self.user.email_address.split("@").last 
+    return acting_user if (domain == "infojobs.net" || domain == "lectiva.com")
   end
   
   
@@ -61,7 +62,8 @@ class UserCompany < ActiveRecord::Base
 
      create :invite, :params => [ :company, :user ], :become => :invited,
                       :available_to => "User", :new_key => true do
-       if (self.user.email_address.split("@").last != "infojobs.net")
+       domain = self.user.email_address.split("@").last
+       if (domain != "infojobs.net" && domain != "lectiva.com")
          UserCompanyMailer.invite(self, "Join me at #{company.name} Hoshin Plan", 
            "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
            "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
