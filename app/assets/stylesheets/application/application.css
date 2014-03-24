@@ -280,6 +280,9 @@ body.hoshin
 	display: table-cell; 
 	min-width: 270px;
 	width: 100%;
+}
+
+ul.collection.sortable li.item {
 	outline: 1px solid transparent;
 }
 
