@@ -1,4 +1,5 @@
 es:
+  click_to_edit: <Haz clic para editar>
   errors:
     permission_denied: Permiso denegado
     parent_hoshin_same_company: El hoshin padre tiene que ser de la misma empresa

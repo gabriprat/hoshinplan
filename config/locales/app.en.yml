@@ -23,6 +23,7 @@ en:
 #        email_address: We will never share your address with third parties
 
 en:
+  click_to_edit: <Click to edit>
   hoshin:
     actions:
       presentation: Presentation
