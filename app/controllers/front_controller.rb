@@ -24,9 +24,15 @@ class FrontController < ApplicationController
   
   def oid_login
       user, domain = params["email"].split("@")
-      oi = OpenidProvider.where(:email_domain => domain).first.openid_url
-      url = oi.gsub('{user}', user)
-      redirect_to "/auth/openid?openid_url=" + url
+      oiprov = OpenidProvider.where(:email_domain => domain).first
+      if oiprov.nil?
+        flash[:error] = t("no_oid_url", :default => "No corporate login for the given email")
+        render "index"
+      else
+        oi = oiprov.openid_url
+        url = oi.gsub('{user}', user)
+        redirect_to "/auth/openid?openid_url=" + url
+      end
   end
   
   def sendreminders

@@ -1,5 +1,6 @@
 es:
   click_to_edit: <Haz clic para editar>
+  no_oid_url: No existe un login corporativo para el email introducido
   errors:
     permission_denied: Permiso denegado
     parent_hoshin_same_company: El hoshin padre tiene que ser de la misma empresa
