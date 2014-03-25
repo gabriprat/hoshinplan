@@ -1,6 +1,6 @@
 <def tag="my-click-editor">
 	<div class="my-click-editor">
-		<view class="in-place-edit"/>
+		<view class="in-place-edit" with="&this + '<Click to edit>'"/>
 		<input class="in-place-input hide"/>
 	</div>
 </def>
