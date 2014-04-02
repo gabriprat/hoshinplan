@@ -83,7 +83,7 @@ var attachAutosubmit = function() {
 		}
 	});
 	
-	$('.in-place-edit a').filter(function() {
+	$('.in-place-edit a, .description-help a, .header-help a').filter(function() {
 	   return this.hostname && getServerAndTld(this.hostname) !== getServerAndTld(location.hostname);
 	}).each(function () {
 		$(this).addClass("external");

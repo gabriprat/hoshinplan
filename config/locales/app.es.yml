@@ -1,4 +1,6 @@
 es:
+  you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
+  textile: Textile
   click_to_edit: <Haz clic para editar>
   no_oid_url: No existe un login corporativo para el email introducido
   errors:
@@ -135,15 +137,6 @@ es:
         secret: Secreto
         actions: Acciones
         user: Usuario
-    attribute_help:
-      hoshin:
-        header: 'Puedes usar código Textile (http://redcloth.org/hobix.com/textile/) para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
-      objective:
-        description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
-      task:
-        description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
-      indicator:
-        description: 'Puedes usar código Textile para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":www.hoshinplan.com'
   index:
     title: Haz que tu estrategia de negocio funcione
     enter_ij_user: Introduce tu nombre de usuario de InfoJobs
