@@ -718,6 +718,15 @@ fieldset[disabled] .btn-primary.active {
 	width: 10px;
 }
 
+.bubble.bubble-top:after {
+	box-shadow: -1px -1px 1px 0 rgba( 37, 169, 224, 0.4 );
+	left: 50%;
+	top: -5px;
+}
+.description-help.bubble {
+	margin-top: 10px;
+}
+
 form#add-collaborators {
 	display: none;
 	margin-top: 1em;

@@ -31,9 +31,20 @@
 				<span class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'><nil-view: /></span>
 		  	</if>
 			<else>
+			<script type="text/javascript">
+				function cls() {
+					return(true);
+					if (confirm('are you sure?')) {
+						return(true);
+					} else {
+						attachAutosubmit();
+						return false;
+					}
+				}
+			</script>
 				<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'/>
 			</else>
-			<form ajax class="autosubmit inline-form" style="display:none;" complete="attachAutosubmit()" >
+			<form ajax class="autosubmit inline-form" style="display:none;" complete="attachAutosubmit()" before="cls()">
 				<field-list: fields="value">
 					<value-view: >
 						<input value="&number_with_delimiter(this)"/>

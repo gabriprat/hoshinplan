@@ -7,6 +7,11 @@
 					    	<description-view:>
 							<my-click-editor/>
 						</description-view:>
+						<description-help: class="bubble bubble-top">
+					                <t key="you_can_use_textile" textile="&link_to(t('textile', :default => 'Textile'), t('textle_href', :default => 'http://en.wikipedia.org/wiki/Textile_(markup_language)'))">
+							You can use Textile markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
+							</t>
+						</description-help:>
 					    	<responsible-view:>
 							<name-one-user />
 						</responsible-view:>
