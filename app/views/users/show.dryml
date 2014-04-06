@@ -29,10 +29,12 @@
 		<div class="panel-body">
 			<h4><t key="dashboard.collaborating_with">Collaborating with</t></h4>
 			<hr/>
-			<collection:companies part="companies">
+			<collection:companies part="companies" id="companies">
 			        <header>
-			          <h4><a><name/></a></h4>
-				  <delete-button with="&this.user_companies.where(:user_id => current_user.id).first" action="destroy" class="pull-right fa fa-trash-o link" value="&#xf014;" success="window.location.reload(true);"/>
+			          <h4>
+				  <a><name/></a>
+				  <delete-button with="&this.user_companies.where(:user_id => current_user.id).first" action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')"/>
+				  </h4>
 			        </header>
 				<collection:hoshins class="timeline">
 					<view/>
