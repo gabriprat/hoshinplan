@@ -11,6 +11,7 @@ class ObjectivesSweeper < ActionController::Caching::Sweeper
   def after_update(objective)
     if Rails.configuration.action_controller.perform_caching
       expire_swept_caches_for(objective)
+      expire_swept_caches_for(objective.area.hoshin)
     end
   end
 

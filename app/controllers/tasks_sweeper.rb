@@ -11,6 +11,7 @@ class TasksSweeper < ActionController::Caching::Sweeper
   def after_update(task)
     if Rails.configuration.action_controller.perform_caching
       expire_swept_caches_for(task)
+      expire_swept_caches_for(task.area.hoshin)
     end
   end
 
