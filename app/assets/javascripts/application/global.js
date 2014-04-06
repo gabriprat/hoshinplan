@@ -290,4 +290,13 @@ var attachKeyEvents = function() {
 
 $(document).ready(attachKeyEvents);
 
+function cls() {
+	return(true);
+	if (confirm('are you sure?')) {
+		return(true);
+	} else {
+		attachAutosubmit();
+		return false;
+	}
+}
 

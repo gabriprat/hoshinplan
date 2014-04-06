@@ -11,6 +11,7 @@ class IndicatorsSweeper < ActionController::Caching::Sweeper
   def after_update(indicator)
     if Rails.configuration.action_controller.perform_caching
       expire_swept_caches_for(indicator)
+      expire_swept_caches_for(indicator.area.hoshin)
     end
   end
 
