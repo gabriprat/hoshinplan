@@ -143,6 +143,8 @@ es:
     you_must_introduce: Tienes que introducir tu nombre de usuario para acceder.
   user:
     my_dashboard: Mi panel de control
+    messages:
+      end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
   company:
     manage_collaborators: Gestionar colaboradores
     add_collaborators: Añadir colaboradores
