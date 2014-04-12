@@ -59,7 +59,6 @@ gem "omniauth-google-oauth2"
 gem "clockwork"
 gem 'delayed_job_active_record'
 
-gem "actionpack"
 gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "nested_has_many_through"
 gem "actionmailer_inline_css"
@@ -77,5 +76,5 @@ gem 'dalli'
 gem 'memcache-client'
 gem 'request_store'
 gem 'newrelic_rpm'
-gem "oink"
+gem 'oink'
 gem 'RedCloth'
