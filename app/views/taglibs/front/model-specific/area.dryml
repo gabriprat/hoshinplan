@@ -1,7 +1,20 @@
 <extend tag="card" for="Area">
   <old-card merge class="slide-page">
     <creator-link: replace />
+    <header:>
+    	 <h4 param="heading"><a onclick="$('#update-area-modal-#{this.id}').modal('show'); $('#update-area-modal-#{this.id} form').trigger('reset'); return false;"><name/></a></h4>
+    </header:>
     <append-body: >
+	<modal id="update-area-modal-#{this.id}">
+	<modal:>
+		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-area-#{this.id}" update="area-#{this.id}">
+		   <div class="modal-body">
+		    <field-list: fields="name"/>
+		   </div>
+		   <modal-form-footer-delete />
+		 </form>
+	</modal:>
+	</modal>
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>

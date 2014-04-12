@@ -2,7 +2,7 @@
 	<old-index-page merge>
 	
 		<collection: replace>
-		<table>
+		<table class="hide">
 		<% 
 		h = Hash.new(0)
 		ObjectSpace.each_object.with_object(h){|obj, h| h[obj.class] +=1 } 

@@ -57,6 +57,7 @@
 		<edit-link: replace/>
 		
 		<content-body: >
+		        <%# swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?" %>
 			<div class="fixed-x">
 				<view:header class="well slide-page" unless="&this.header.empty?"/>
 				<div id="goals" part="goals">
@@ -67,6 +68,7 @@
 				</div>
 			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
+			<%# /swept-cache %>
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>
