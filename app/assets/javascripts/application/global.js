@@ -107,6 +107,8 @@ $(document).ready(attachAutosubmit);
 
 function fixedHorizontal() {
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
+		$(this).css({"margin-left": "0"}); 
+		$(this).css({"width": "auto"});
 		$(this).css({"width": $(this).width()});
 		$(this).css({"margin-left": $(window).scrollLeft()}); 
 	});
