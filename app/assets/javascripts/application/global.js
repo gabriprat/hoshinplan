@@ -105,12 +105,17 @@ function getServerAndTld(host) {
 
 $(document).ready(attachAutosubmit);
 
-$(window).scroll(function () {
-	if (presenting) return;
+function fixedHorizontal() {
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"width": $(this).width()});
 		$(this).css({"margin-left": $(window).scrollLeft()}); 
 	});
+}
+
+
+$(window).scroll(function () {
+	if (presenting) return;
+        fixedHorizontal();
 }); 
 
 var colorize = function () {
@@ -138,9 +143,7 @@ var equalHeightSections = function() {
 	if (presenting) return;
 	if (eh) return;
 	eh = true;
-	$("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
-		$(this).css({"width": "auto"});
-	});
+	fixedHorizontal();
 	equalHeights("div.objectives-wrapper");
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
