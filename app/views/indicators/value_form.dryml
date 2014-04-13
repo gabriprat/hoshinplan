@@ -6,16 +6,16 @@
 			<if test="&this_parent.status == :current">
 				<h5><t key="indicator.value_form.this_indicator_doesnt">This indicator doesn't need an update. What would you like to do?</t></h5>
 				<div class="radio">
-				  <label>
-				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.last_update.to_formatted_s}" /> 
+				  <label unless="&this_parent.last_update.nil?">
+				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.last_update}" /> 
 				  	<t key="indicator.value_form.overwrite_the_value">Overwrite the value from last update</t> <view with="&this_parent.last_update"/>
 				  </label>
 				  <label>
-					  <input type="radio" name="indicator[last_update]" value="#{Date.today.to_formatted_s}" checked="checked"/> 
+					  <input type="radio" name="indicator[last_update]" value="#{Date.today}" checked="checked"/> 
 					  <t key="indicator.value_form.set_a_value_for_today">Set a value for today</t> <view with="&Date.today"/>
 				  </label>
 				  <label>
-					 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update.to_formatted_s}" /> 
+					 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update}" /> 
 					 <t key="indicator.value_form.anticipate_the_value">Anticipate the value for next update</t> <view with="&this_parent.next_update"/>
 				  </label>
 				</div>
@@ -24,7 +24,7 @@
 				<h5><t key="indicator.value_form.this_indicator_is_missing">This indicator is missing multiple values. What would you like to do?</t></h5>
 				<div class="radio">
 				  <label>
-				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update.to_formatted_s}" /> 
+				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update}" /> 
 				  	<t key="indicator.value_form.set_the_first">Set the first missing value</t> <view with="&this_parent.next_update"/>
 				  </label>
 				  <label>
