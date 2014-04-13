@@ -77,6 +77,7 @@ Hoshinplan::Application.routes.draw do
     member do
       get 'history'
       get 'form'
+      get 'value_form'
     end
   end
 

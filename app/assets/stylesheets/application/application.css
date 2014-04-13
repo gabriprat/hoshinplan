@@ -434,17 +434,18 @@ span.arrow.equal:after {
 	content: "=";
 }
 
+.multioverdue, .multioverdue a, .multioverdue a:hover, .multioverdue a:visited, .multioverdue a:active
 .overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active {
 	color: red;
 	font-weight: 500;
 }
 
-.completed, .completed .overdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {
+.completed, .completed .overdue, .completed .multioverdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {
 	color: #999;
 	font-weight: 200;
 }
 
-.discarded, .discarded .overdue, .discarded a, .discarded a:active, .discarded a:hover, .discarded a:visited {
+.discarded, .discarded .overdue, .discarded .multioverdue, .discarded a, .discarded a:active, .discarded a:hover, .discarded a:visited {
 	color: #999;
 	text-decoration: line-through;
 	font-weight: 200;
@@ -1172,4 +1173,13 @@ ul.timeline li.highlight:hover:after {
 body.show-page.user #companies .form-horizontal {
 	display: inline-block;
 	vertical-align: bottom;
+}
+
+form.indicator-value {
+	text-align: initial;
+	white-space: initial;
+}
+
+form.indicator-value input[type=radio] {
+	margin-top: 4px;
 }

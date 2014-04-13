@@ -6,7 +6,7 @@ class IndicatorsController < ApplicationController
   
   auto_actions_for :objective, [:index, :new, :create]
   
-  show_action :history, :form
+  show_action :history, :form, :value_form
   
   index_action :form
   
@@ -75,7 +75,12 @@ class IndicatorsController < ApplicationController
         i = find_instance
         i.value = params[:indicator][:value]
         i.value_will_change!
-        hobo_update(i, :attributes => :value) do
+        attributes = :value
+        if params[:indicator][:last_update]
+          i.last_update = params[:indicator][:last_update]
+          attributes = [:value, :last_update]
+        end
+        hobo_update(i, :attributes => attributes) do
           redirect_to this.objective.area.hoshin if valid? && !request.xhr?
         end
       else
@@ -105,5 +110,9 @@ class IndicatorsController < ApplicationController
       @this.objective_id = params[:objective_id]
       @this.area_id = params[:area_id]
     end
+  end
+  
+  def value_form
+      @this = find_instance
   end
 end

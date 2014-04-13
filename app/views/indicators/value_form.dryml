@@ -1,0 +1,41 @@
+<% update = @this.new_record? ? "indicators-" + this.area.id.to_s : "" %>
+<form update="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal indicator-value">
+	<div class="modal-body">
+		<field-list: fields="value,last_update">
+			<last-update-field:>
+			<if test="&this_parent.status == 'current'">
+				<h5>This indicator didn't need an update. What were you trying to do?</h5>
+				<div class="radio">
+				  <label>
+				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.last_update.to_formatted_s}" /> 
+				  	Correcting the value from last update <view with="&this_parent.last_update"/>
+				  </label>
+				  <label>
+					  <input type="radio" name="indicator[last_update]" value="#{Date.today.to_formatted_s}" checked="checked"/> 
+					  Setting a value for today <view with="&Date.today"/>
+				  </label>
+				  <label>
+					 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update.to_formatted_s}" /> 
+					 Anticipating the value for next update <view with="&this_parent.next_update"/>
+				  </label>
+				</div>
+			</if>
+			<else>
+				<h5>This indicator is missing multiple values. What would you like to do?</h5>
+				<div class="radio">
+				  <label>
+				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update.to_formatted_s}" /> 
+				  	Set the first missing value for <view with="&this_parent.next_update"/>
+				  </label>
+				  <label>
+					  <input type="radio" name="indicator[last_update]" value="#{this_parent.last_missing_value}" checked="checked"/> 
+					  Set the last missing value for <view with="&this_parent.last_missing_value"/>
+				  </label>
+				</div>
+			</else>
+			</last-update-field>
+		</field-list:>
+		
+	</div>
+	<modal-form-footer />
+</form>
