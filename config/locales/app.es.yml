@@ -107,6 +107,7 @@ es:
         max_value: Valor máximo
         worst_value: Valor 0%
         higher: Mejor si mayor
+        value: Valor
       task:
         name: Nombre
         description: Descripción
