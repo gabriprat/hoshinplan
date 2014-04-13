@@ -20,7 +20,7 @@ class Indicator < ActiveRecord::Base
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
-   :creator_id
+   :creator_id, :last_update, :last_missing_value
 
   belongs_to :creator, :class_name => "User", :creator => true
   
@@ -46,24 +46,15 @@ class Indicator < ActiveRecord::Base
   end
   
   before_update do |indicator|
-    if indicator.value_changed?
-      if (!indicator.next_update.nil? && indicator.next_update <= Date.today) 
-        #Updating on time or late, assume value is for the next_update
-        update_date = indicator.next_update
-      else
-        #Updating before time, assuming the user is correcting last value
-        update_date = indicator.last_update
-        #Assume today if this was the first update and was before time
-        update_date ||= Date.today
-      end
-      if !indicator.next_update_changed?
-        indicator.next_update = compute_next_update(indicator)
-      end
-    
-      if indicator.last_update.nil? || indicator.last_update < Date.today 
+    if indicator.value_changed? && !indicator.last_update_changed? && indicator.next_update <= Date.today
+      indicator.last_update = indicator.next_update
+    end
+    if indicator.value_changed? && indicator.last_update_changed?
+      update_date = indicator.last_update
+      if indicator.last_update.nil? || indicator.last_update_changed?
         #only update trends once per day
         indicator.last_value = indicator.value_was
-        indicator.last_update = update_date
+        indicator.next_update = compute_next_update(indicator)
       end      
       ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => indicator.id).first
       if ih.nil?
@@ -80,9 +71,17 @@ class Indicator < ActiveRecord::Base
   
   def status 
     if !next_update.nil?
-      next_update < Date.today ? :overdue : :current
+      if next_update > Date.today
+        :current
+      elsif next_update == Date.today
+        :due
+      elsif next_update < Date.today && next_update > (Date.today - increment(frequency))
+        :overdue
+      else
+        :multioverdue
+      end
     end
-  end
+  end 
   
   def trend
     if last_value.nil? || value.nil?
@@ -107,20 +106,39 @@ class Indicator < ActiveRecord::Base
     end 
   end
   
-  def compute_next_update(indicator)
+  def last_missing_value
     return nil if next_update.nil?
-    t = next_update
-    if (Time.now >= t)
-      case indicator.frequency
-      when "weekly"
-        t + 1.week
-      when "monthly"
-        t + 1.month
-      when "quarterly"
-        t + 3.month
-      end
-    else
-      t
+    n = next_update + increment(frequency)
+    p = next_update
+    while (n <= Date.today)
+      n += increment(frequency)
+      p += increment(frequency)
+    end
+    p
+  end
+  
+  def compute_next_update(indicator)
+    next_update_after(indicator.last_update, indicator.frequency)
+  end
+  
+  def next_update_after(d, freq)
+    return nil if d.nil?
+    n = d
+    l = d
+    while (l >= n || Date.today >= n)
+      n += increment(freq)
+    end
+    n
+  end
+  
+  def increment(freq)
+    case freq
+    when "weekly"
+      1.week
+    when "monthly"
+      1.month
+    when "quarterly"
+      3.month
     end
   end
   
