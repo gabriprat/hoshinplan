@@ -46,9 +46,7 @@ class Indicator < ActiveRecord::Base
   end
   
   before_update do |indicator|
-    if !indicator.value.nil? && indicator.value_changed? 
-      && !indicator.last_update.nil? && !indicator.last_update_changed? 
-      && !indicator.next_update.nil? && indicator.next_update <= Date.today
+    if (!indicator.value.nil? && indicator.value_changed? && !indicator.last_update.nil? && !indicator.last_update_changed? && !indicator.next_update.nil? && indicator.next_update <= Date.today)
       indicator.last_update = indicator.next_update
     end
     if indicator.value_changed? && indicator.last_update_changed?
