@@ -3,7 +3,7 @@
 	<div class="modal-body">
 		<field-list: fields="value,last_update">
 			<last-update-field:>
-			<if test="&this_parent.status == 'current'">
+			<if test="&this_parent.status == :current">
 				<h5>This indicator didn't need an update. What were you trying to do?</h5>
 				<div class="radio">
 				  <label>
