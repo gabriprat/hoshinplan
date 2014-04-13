@@ -4,32 +4,32 @@
 		<field-list: fields="value,last_update">
 			<last-update-field:>
 			<if test="&this_parent.status == :current">
-				<h5>This indicator didn't need an update. What were you trying to do?</h5>
+				<h5><t key="indicator.value_form.this_indicator_doesnt">This indicator doesn't need an update. What would you like to do?</t></h5>
 				<div class="radio">
 				  <label>
 				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.last_update.to_formatted_s}" /> 
-				  	Correcting the value from last update <view with="&this_parent.last_update"/>
+				  	<t key="indicator.value_form.overwrite_the_value">Overwrite the value from last update</t> <view with="&this_parent.last_update"/>
 				  </label>
 				  <label>
 					  <input type="radio" name="indicator[last_update]" value="#{Date.today.to_formatted_s}" checked="checked"/> 
-					  Setting a value for today <view with="&Date.today"/>
+					  <t key="indicator.value_form.set_a_value_for_today">Set a value for today</t> <view with="&Date.today"/>
 				  </label>
 				  <label>
 					 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update.to_formatted_s}" /> 
-					 Anticipating the value for next update <view with="&this_parent.next_update"/>
+					 <t key="indicator.value_form.anticipate_the_value">Anticipate the value for next update</t> <view with="&this_parent.next_update"/>
 				  </label>
 				</div>
 			</if>
 			<else>
-				<h5>This indicator is missing multiple values. What would you like to do?</h5>
+				<h5><t key="indicator.value_form.this_indicator_is_missing">This indicator is missing multiple values. What would you like to do?</t></h5>
 				<div class="radio">
 				  <label>
 				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.next_update.to_formatted_s}" /> 
-				  	Set the first missing value for <view with="&this_parent.next_update"/>
+				  	<t key="indicator.value_form.set_the_first">Set the first missing value</t> <view with="&this_parent.next_update"/>
 				  </label>
 				  <label>
 					  <input type="radio" name="indicator[last_update]" value="#{this_parent.last_missing_value}" checked="checked"/> 
-					  Set the last missing value for <view with="&this_parent.last_missing_value"/>
+					  <t key="indicator.value_form.set_the_last">Set the last missing value</t> <view with="&this_parent.last_missing_value"/>
 				  </label>
 				</div>
 			</else>
