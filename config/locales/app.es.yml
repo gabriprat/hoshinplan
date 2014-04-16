@@ -187,6 +187,8 @@ es:
       set_the_last: Introducir el último valor pendiente
   history:
     historic_values: Valores históricos
+    messages:
+      confirm_delete: ¿Estás seguro de querer borrar el valor para la fecha XXX? 
   rtable:
     column:
       Id: ! '#'

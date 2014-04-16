@@ -24,7 +24,7 @@ class Indicator < ActiveRecord::Base
 
   belongs_to :creator, :class_name => "User", :creator => true
   
-  has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator
+  has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator, :order => :day
   
   belongs_to :company
 
@@ -164,7 +164,7 @@ class Indicator < ActiveRecord::Base
     same_company_admin
   end
 
-  def view_permitted?(field)
+  def view_permitted?(field=nil)
     same_company
   end
   

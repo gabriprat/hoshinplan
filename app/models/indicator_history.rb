@@ -25,20 +25,34 @@ class IndicatorHistory < ActiveRecord::Base
   end
   
   after_save do |ih|
-    latest = IndicatorHistory.where("indicator_id = ? and day <= ?", indicator_id, Date.today).order("day desc").first
-    ind = ih.indicator
-    if (ind.value.nil? || (!ind.last_update.nil? && ind.last_update <= latest.day))
-      ind.value = latest.value
-      ind.goal  = latest.goal
-      ind.save!
-    end
+    update_indicator(ih)
+  end
+
+  before_destroy do |ih|
+    update_indicator(ih, destroy=true)
   end
   
+  def update_indicator(ih, destroy=false)
+    ind = Indicator.find(ih.indicator_id)
+    latest = IndicatorHistory.where("indicator_id = ? and day <= ? and id != ?", 
+                                    ind.id, Date.today, destroy ? ih.id : -1).order("day desc").first
+                                    
+    if (!latest.nil? && (
+          ind.value.nil? || 
+          (destroy && !ind.last_update.nil? && ind.last_update == ih.day)  || 
+          (!ind.last_update.nil? && ind.last_update <= latest.day)
+      ))
+      ind.update_column(:value, latest.value)
+      ind.update_column(:goal, latest.goal)
+      ind.update_column(:last_update, latest.day)      
+    end
+    
+  end
 
   # --- Permissions --- #
 
   def create_permitted?
-    same_company
+    same_comp-1
   end
 
   def update_permitted?
