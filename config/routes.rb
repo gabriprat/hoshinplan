@@ -18,6 +18,8 @@ Hoshinplan::Application.routes.draw do
   match 'invitation-accepted' => 'front#invitation_accepted', :as => 'front_invitation_accepted'
 
   match 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
+  
+  match 'updateindicators' => 'front#updateindicators', :as => 'update_indicators'
 
   match 'mail_preview' => 'mail_preview#index'
   

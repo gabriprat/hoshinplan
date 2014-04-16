@@ -45,6 +45,21 @@ class FrontController < ApplicationController
     }
     render "index"
   end
+  
+  def updateindicators
+    puts "Initiating updateindicators job!"
+    ihs = IndicatorHistory.joins(:indicator).where("day = ? and last_update < day", Date.today)
+    ihs.each { |ih| 
+      ind = ih.indicator
+      ind.goal = ih.goal
+      if (ind.value != ih.value)
+        ind.value = ih.value
+        ind.last_update
+      end
+      ind.save!
+    }
+    render "index"
+  end
 
   def summary
     if !current_user.administrator?
