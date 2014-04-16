@@ -67,7 +67,8 @@ class IndicatorsController < ApplicationController
           raise ActiveRecord::Rollback
         end
       end
-      render :history
+      redirect_to @this, :action => :history if valid?
+      render :history unless valid?
     else
       obj = params[:indicator]
       select_responsible(obj)
@@ -93,7 +94,7 @@ class IndicatorsController < ApplicationController
   end
   
   def history
-      @this = Indicator.includes(:indicator_histories).find(params[:id])
+      @this = Indicator.find(params[:id])
       if request.xhr?
         hobo_ajax_response
       else

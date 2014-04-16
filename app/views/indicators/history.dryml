@@ -53,7 +53,7 @@
 				var data = [
 					<repeat:indicator_histories join=",">
 					  {date:"#{this.day.year}-#{this.day.month}-#{this.day.mday}",
-					   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}}
+					   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}, id:#{this.id}}
 					</repeat:indicator_histories>
 				];
 				var chart = Morris.Line({
@@ -64,7 +64,11 @@
 				  labels: ['Value','Goal'],
 				  dateFormat: dateFormat,
 				  xLabels: "day",
-				  xLabelFormat: dateFormat
+				  xLabelFormat: dateFormat,
+				  hoverCallback: function (index, options, content) {
+				    var row = data[index];
+				    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + row.date + '\\');">delete</a>'
+				  }
 				});
 				$(window).resize(function() {
 					rtime = new Date();
@@ -74,6 +78,15 @@
 					}
 				});
 			});
+			function deleteHistory(id, date) {
+				var form = $("#delete-form");
+				form.attr("action", "/indicator_histories/" + id);
+				var conf = "<t key='history.messages.confirm_delete'>Are you sure you want to delete the value for the date XXX?</t>";
+				form.data("confirm", conf.replace("XXX", date));
+				form.submit();
+			}
 		</script>
+		<form action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
+		</form>
 	</content-body:>
 </show-page:>
