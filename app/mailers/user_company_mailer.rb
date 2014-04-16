@@ -17,9 +17,11 @@ class UserCompanyMailer < ActionMailer::Base
   
   def reminder(user, subject, message)
     @user, @message = user, message
-    mail( :subject => subject,
-          :to      => @user.email_address,
-          :from    => "alerts@hoshinplan.com")
+    if @user.state == "active" 
+      mail( :subject => subject,
+            :to      => @user.email_address,
+            :from    => "alerts@hoshinplan.com")
+    end
   end
   
   def welcome(user, subject)
