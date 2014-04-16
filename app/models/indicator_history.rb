@@ -23,6 +23,17 @@ class IndicatorHistory < ActiveRecord::Base
   before_create do |ih|
     ih.company = ih.indicator.company
   end
+  
+  after_save do |ih|
+    latest = IndicatorHistory.where("indicator_id = ? and day <= ?", indicator_id, Date.today).order("day desc").first
+    ind = ih.indicator
+    if (ind.value.nil? || (!ind.last_update.nil? && ind.last_update <= latest.day))
+      ind.value = latest.value
+      ind.goal  = latest.goal
+      ind.save!
+    end
+  end
+  
 
   # --- Permissions --- #
 
