@@ -67,7 +67,7 @@
 				  xLabelFormat: dateFormat,
 				  hoverCallback: function (index, options, content) {
 				    var row = data[index];
-				    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + row.date + '\\');">delete</a>'
+				    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + row.date + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
 				  }
 				});
 				$(window).resize(function() {
