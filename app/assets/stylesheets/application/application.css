@@ -1292,18 +1292,17 @@ form.indicator-value input[type=radio] {
 	display: inline-block;
 }
 
-@media all and (min-width: 979px) {
-	#sec-actions {
-		margin-top: -30px;
-	}
-}
-
 #sec-actions > * {
 	vertical-align: text-bottom;
 }
 
 #health-popover .popover {
 	max-width: none;
+}
+
+#health-popover .popover-content {	
+	max-height: 340px;
+	overflow: scroll;
 }
 
 .timeline.checked li.done:before {
@@ -1315,4 +1314,11 @@ form.indicator-value input[type=radio] {
 	position: absolute;
 	left: -1.45em;
 	top: -.15em;
+}
+
+
+@media all and (min-width: 979px) {
+	#sec-actions {
+		margin-top: -30px;
+	}
 }
