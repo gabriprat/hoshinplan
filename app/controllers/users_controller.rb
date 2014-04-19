@@ -56,7 +56,8 @@ class UsersController < ApplicationController
       elsif step == -1
         @this.tutorial_step.pop
       elsif step == 0
-        @this.tutorial_step = User.tutorial_step_values
+        logger.debug "sdfsañlkj dsaklfj añsklfdj alksdfj añlsk "
+        @this.tutorial_step = User.values_for_tutorial_step
       end
       if !params[:user]
         params[:user] = {}
