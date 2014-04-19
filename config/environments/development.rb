@@ -60,5 +60,4 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
   }
   
   config.auto_cms_calls = false
-  config.avoid_all_cms_calls = false
 end

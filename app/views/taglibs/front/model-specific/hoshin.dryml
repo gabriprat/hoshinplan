@@ -62,7 +62,6 @@
 				<button onclick="$('#change_step').val(0); $('form#change-step').submit();" if="&health[:action] == 'followup'">
 					Finish tutorial
 				</button>    
-				---#{health[:action]}...
 			</div>
 			<form with="&this.creator" updates="#sec-actions" id="change-step" before="$.undim(); true;" if="&this.tutorial">
 			    <hidden-field name="tutorial_step" value="0" id="change_step"/>
