@@ -27,6 +27,8 @@ class Company < ActiveRecord::Base
   
   after_create do |company|
     user = User.current_user
+    user.tutorial_step << :company
+    user.save!
     company.user_companies = [UserCompany::Lifecycle.new_company([company, user], {:user => user, :company => company})]
   end
 

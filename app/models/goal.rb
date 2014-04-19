@@ -27,6 +27,12 @@ class Goal < ActiveRecord::Base
     goal.company = h.company
   end
   
+  after_create do |obj|
+    user = User.current_user
+    user.tutorial_step << :goal
+    user.save!
+  end
+  
 
   # --- Permissions --- #
 

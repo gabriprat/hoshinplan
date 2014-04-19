@@ -45,6 +45,12 @@ class Indicator < ActiveRecord::Base
     indicator.company = indicator.objective.company
   end
   
+  after_create do |obj|
+    user = User.current_user
+    user.tutorial_step << :indicator
+    user.save!
+  end
+  
   before_update do |indicator|
     if (!indicator.value.nil? && indicator.value_changed? && !indicator.last_update_changed? && (indicator.next_update.nil? || indicator.next_update <= Date.today))
         if indicator.next_update.nil?

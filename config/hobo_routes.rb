@@ -190,6 +190,7 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       get 'dashboard'
+      get 'tutorial'
       get 'account'
       put 'activate', :action => 'do_activate'
       get 'activate'

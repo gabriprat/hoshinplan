@@ -26,7 +26,7 @@ class Objective < ActiveRecord::Base
 
   belongs_to :parent, :class_name => "Objective"
   belongs_to :area, :inverse_of => :objectives, :counter_cache => false
-  belongs_to :hoshin, :inverse_of => :objectives
+  belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
   
   acts_as_list :scope => :area, :column => "obj_pos"
@@ -40,6 +40,12 @@ class Objective < ActiveRecord::Base
   
   before_create do |objective|
       objective.company_id = objective.area.company_id
+  end
+  
+  before_create do |obj|
+    user = User.current_user
+    user.tutorial_step << :objective
+    user.save!
   end
   
   def position

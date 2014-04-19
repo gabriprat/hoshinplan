@@ -6,7 +6,7 @@
 			<a onclick="$('#update-goal-modal-#{this.id}').modal('show'); $('#update-goal-modal-#{this.id} form').trigger('reset'); return false;"><name/></a>
 			<modal id="update-goal-modal-#{this.id}">
 				<modal:>
-				<form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-goal-#{this.id}" update="goals">
+				<form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-goal-#{this.id}" updates="#goals,#sec-actions">
 				   <div class="modal-body">
 				    <field-list: fields="name"/>
 				   </div>

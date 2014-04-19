@@ -1,6 +1,6 @@
 				<set options="&this.parent_objectives"/>
 				<set areas="&this.hoshin.areas"/>
-				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal" id="upd-obj-#{this.id}" update="area-#{this.area_id}">
+				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal" id="upd-obj-#{this.id}" updates="#area-#{this.area_id}, #sec-actions">
 				   <div class="modal-body">
 				    <field-list: fields="name, description, responsible, parent, area">
 						<parent-tag: options="&options" />

@@ -54,6 +54,9 @@
     <nav-item with="&Company.find(Company.current_id)" action="collaborators" if="&Company.current_id">
     	<t key="invite_collaborators">Invite collaborators</t>
     </nav-item>
+    <nav-item with="&current_user" action="tutorial" if="&User.current_user.administrator?">
+    	<t key="tutorial">Tutorial</t>
+    </nav-item>
     
   </navigation>
   </else>
