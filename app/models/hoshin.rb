@@ -87,7 +87,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def tutorial
-    if User.current_user == creator && health[:action] != 'none' 
+    if User.current_user == creator && !User.current_user.tutorial_step?(:followup) && health[:action] != 'none' 
        "tutorial"
     else 
       ""
