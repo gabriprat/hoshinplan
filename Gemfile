@@ -79,5 +79,4 @@ gem 'newrelic_rpm'
 gem 'oink'
 gem 'RedCloth'
 gem 'bitmask_attributes'
-
-
+gem 'detect_timezone_rails'

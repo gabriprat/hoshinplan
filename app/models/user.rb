@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     email_address :email_address, :login => true
     administrator :boolean, :default => false
     tutorial_step :integer
+    timezone      HoboFields::Types::Timezone
     timestamps
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
@@ -24,7 +25,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   #validates_attachment_size :image, :less_than => 10.megabytes    
     
-  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image
+  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone
   
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id

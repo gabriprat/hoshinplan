@@ -48,9 +48,16 @@ class UsersController < ApplicationController
   
   def update
     ajax = request.xhr?
+    @this = find_instance
+    
+    if @this.timezone.nil? && !cookies[:tz].nil?
+   	  zone = cookies[:tz]
+   	  zone = Hoshinplan::Timezone.get(zone)
+      @this.timezone = zone.name unless zone.nil?
+    end
+    
     if params[:tutorial_step] 
       step = params[:tutorial_step].to_i
-      @this = find_instance
       if step == 1
         @this.tutorial_step << @this.next_tutorial
       elsif step == -1
@@ -87,9 +94,18 @@ class UsersController < ApplicationController
     atts.each { |k, v| 
       atts.delete(k) if !current_user.attributes[k].nil? && !current_user.attributes[k].empty? || v.nil?
     }
-    current_user.attributes = atts
+    begin
+      current_user.attributes = atts
+    rescue
+      current_user.attributes = atts.delete('photo')
+    end
     if current_user.lifecycle.state.name == :invited
       current_user.lifecycle.activate!(current_user)
+    end
+    if current_user.timezone.nil? && !cookies[:tz].nil?
+   	  zone = cookies[:tz]
+   	  zone = Hoshinplan::Timezone.get(zone)
+      current_user.timezone = zone.name unless zone.nil?
     end
     current_user.save!
   end
