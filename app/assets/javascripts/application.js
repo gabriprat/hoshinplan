@@ -10,4 +10,6 @@
 //= require jquery-ui
 //= require raphael
 //= require morris
+//= require detect_timezone
+//= require jquery.detect_timezone
 //= require_tree ./application

@@ -103,6 +103,8 @@ GEM
       delayed_job (>= 3.0, < 4.1)
     delocalize (0.3.2)
       rails (>= 3.0, < 4)
+    detect_timezone_rails (0.0.5)
+      railties (>= 3.1)
     dryml (2.0.1)
       actionpack (~> 3.2.0)
       hobo_support (= 2.0.1)
@@ -292,6 +294,7 @@ DEPENDENCIES
   dalli
   delayed_job_active_record
   delocalize
+  detect_timezone_rails
   font-awesome-sass
   hobo
   hobo_bootstrap

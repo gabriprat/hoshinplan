@@ -370,6 +370,13 @@ var attachKeyEvents = function() {
 	});
 }
 
+$(document).ready(function() {
+	var domain = document.location.hostname.replace(/[^\.]*\./,'');
+	var tz = $(document).get_timezone();
+	document.cookie = "tz=" + tz+";domain="+domain;
+});
+
+
 $(document).ready(attachKeyEvents);
 
 function cls() { return true; }
