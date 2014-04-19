@@ -38,6 +38,12 @@ class Task < ActiveRecord::Base
   before_create do |task|
     task.company = task.objective.company
   end
+  
+  after_create do |obj|
+    user = User.current_user
+    user.tutorial_step << :task
+    user.save!
+  end
 
   lifecycle :state_field => :status do
     state :active, :default => true

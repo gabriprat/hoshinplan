@@ -7,6 +7,7 @@ class Hoshin < ActiveRecord::Base
   fields do
     name :string
     areas_count :integer, :default => 0, :null => false
+    objectives_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
     timestamps
   end
@@ -34,6 +35,12 @@ class Hoshin < ActiveRecord::Base
     )
   }
   
+  after_create do |obj|
+    user = User.current_user
+    user.tutorial_step << :hoshin
+    user.save!
+  end
+  
   def cache_key
     objids = Objective.select("id").where(:hoshin_id => id).*.id
     kpiids = Indicator.select("id").includes(:area).where("areas.hoshin_id = ?", id).*.id
@@ -43,7 +50,50 @@ class Hoshin < ActiveRecord::Base
     tskids = tskids.map { |id| "t" + id.to_s }
     (objids + kpiids + tskids).join("-").hash
   end
-
+  
+  def health
+    value = 20
+    if goals.length == 0
+       ret = {:action => "goal"}
+    else
+      value += 16
+    end
+    if areas.length == 0
+       ret = ret || {:action => "area"}
+    else
+       value += 16
+    end
+    if objectives.length == 0
+      ret = ret || { :action => "objective"}
+    else
+      value += 16
+    end
+    if Indicator.where(:objective_id => Objective.select(:id).where(:area_id => areas)).length == 0
+      ret = ret || { :action => "indicator"}
+    else
+      value += 16
+    end
+    if Task.where(:objective_id => Objective.select(:id).where(:area_id => areas)).length == 0
+      ret = ret || { :value => 75, :action => "task"}
+    else
+      value += 16
+    end
+    if !User.current_user.tutorial_step?(:followup)
+      ret = ret || {:action => "followup"}
+    end
+    ret = ret || {:action => "none"}
+    ret[:value] = value
+    return ret
+  end
+  
+  def tutorial
+    if User.current_user == creator && health[:action] != 'none' 
+       "tutorial"
+    else 
+      ""
+    end
+  end
+  
   # --- Permissions --- #
   
   def parent_same_company

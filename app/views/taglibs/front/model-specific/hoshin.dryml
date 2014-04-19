@@ -2,6 +2,7 @@
 	<old-show-page merge>
 		<body: class="fixed-headers" />
 		<navbar: />
+		        
 		<collection-heading: replace />
 		<parent-link: >
 			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
@@ -15,7 +16,7 @@
 		<modal id="add-area-modal">
 			<modal:>
 			<set hid="#{this.id}"/>
-			<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" update="areas" class="modal">
+			<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" updates="#areas,#sec-actions" class="modal">
 				<div class="modal-body">
 					<field-list: fields="name, description" />
 					<hidden-field:hoshin_id value="#{hid}"/>
@@ -33,7 +34,7 @@
 				<modal:>
 				<set hid="#{this.id}"/>
 			<set compid="&this.company_id"/>
-				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" update="goals" class="modal">
+				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" updates="#goals,#sec-actions" class="modal">
 					<div class="modal-body">
 						<field-list: fields="name" />
 						<hidden-field:hoshin_id value="#{hid}"/>
@@ -46,12 +47,35 @@
 		</prepend-content-header:>
 		
 		<append-heading:>
+			<do part="sec-actions" id="sec-actions">
 			<a href="#{this.id}.pdf" title="&ht 'hoshin.actions.export_as_pdf'" class="title-action">
 	    	            <span class="fa fa-download"/>
 			</a>
 			<a onclick="startPresentation(); return false;" title="&ht 'hoshin.actions.presentation'" class="title-action">
 	    	            <span class="fa fa-desktop"/>
 			</a>
+			<% health = this.health %>
+			<div class="timer #{this.tutorial} hide" id="health" data-toggle="popover" title="&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot; onclick=&quot;$('#health').popover('hide');$.undim();&quot;&gt;&amp;times;&lt;/button&gt;#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}" data-percent="#{health[:value]}" if="&User.current_user.administrator?"></div>
+			<div class="hide" if="&this.tutorial">
+				<cms key="tutorial/#{health[:action]}_#{locale}" if="&Rails.application.config.auto_cms_calls"/>
+  				
+				<button onclick="$('#change_step').val(0); $('form#change-step').submit();" if="&health[:action] == 'followup'">
+					Finish tutorial
+				</button>    
+				---#{health[:action]}...
+			</div>
+			<form with="&this.creator" updates="#sec-actions" id="change-step" before="$.undim(); true;" if="&this.tutorial">
+			    <hidden-field name="tutorial_step" value="0" id="change_step"/>
+			</form>
+			<else>
+			<div class="hide">
+				Your hoshin has full health! Congratulations!!
+			</div>
+			</else>
+			<script type="text/javascript">if (updateTimer) window.setTimeout(updateTimer, 1000);</script>
+			</do>
+			
+			
 		</append-heading:>
 		
 		<edit-link: replace/>
@@ -69,6 +93,7 @@
 			</div>
 			<sortable-collection:areas part="areas" id="areas"/>
 			<%# /swept-cache %>
+			<div id="health-popover"></div>
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>

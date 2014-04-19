@@ -13,8 +13,11 @@ class User < ActiveRecord::Base
     name          :string, :required
     email_address :email_address, :login => true
     administrator :boolean, :default => false
+    tutorial_step :integer
     timestamps
   end
+  bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
+
   has_attached_file :image, :styles => {
     :thumb => "104x104#" },
     :default_url => "/assets/default.jpg"
@@ -52,7 +55,12 @@ class User < ActiveRecord::Base
     where(:id => UserCompany.select(:user_id)
       .where('company_id=?',  
         Company.current_id) ) unless Company.current_id.nil? }    
-        
+       
+  def next_tutorial
+    ret = (User.values_for_tutorial_step - tutorial_step).first
+    ret.nil? ? [] : ret 
+  end
+  
   # --- Signup lifecycle --- #
 
   lifecycle do

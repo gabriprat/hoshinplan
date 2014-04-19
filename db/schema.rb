@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140323021607) do
+ActiveRecord::Schema.define(:version => 20140418170927) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -103,13 +103,14 @@ ActiveRecord::Schema.define(:version => 20140323021607) do
 
   create_table "hoshins", :force => true do |t|
     t.string   "name"
-    t.integer  "areas_count", :default => 0, :null => false
+    t.integer  "areas_count",      :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "parent_id"
     t.text     "header"
     t.integer  "creator_id"
+    t.integer  "objectives_count", :default => 0, :null => false
   end
 
   add_index "hoshins", ["company_id"], :name => "index_hoshins_on_company_id"
@@ -255,6 +256,7 @@ ActiveRecord::Schema.define(:version => 20140323021607) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "tutorial_step"
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"

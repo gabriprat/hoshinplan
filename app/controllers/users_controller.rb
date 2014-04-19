@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   hobo_user_controller  
   
-  show_action :dashboard
+  show_action :dashboard, :tutorial
   
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     redirect_to current_user
   end
   
+  def tutorial
+    @this = find_instance
+  end
+  
   def logout_and_return
     logout_current_user
     redirect_to params["return_url"]
@@ -43,8 +47,29 @@ class UsersController < ApplicationController
   end
   
   def update
+    ajax = request.xhr?
+    if params[:tutorial_step] 
+      step = params[:tutorial_step].to_i
+      @this = find_instance
+      if step == 1
+        @this.tutorial_step << @this.next_tutorial
+      elsif step == -1
+        @this.tutorial_step.pop
+      elsif step == 0
+        @this.tutorial_step = User.tutorial_step_values
+      end
+      if !params[:user]
+        params[:user] = {}
+      end
+      params[:user][:tutorial_step] = @this.tutorial_step
+      ajax = true
+    end
     hobo_update do
-      redirect_to current_user, :dgv => Time.now.to_i 
+      if ajax
+        hobo_ajax_response
+      else
+        redirect_to current_user, :dgv => Time.now.to_i if valid?
+      end
     end
   end
   

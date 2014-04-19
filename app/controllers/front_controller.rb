@@ -18,6 +18,10 @@ class FrontController < ApplicationController
     
   end
   
+  def cms
+    
+  end
+  
   def invitation_accepted
     flash[:notice] = nil
   end

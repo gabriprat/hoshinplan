@@ -54,6 +54,81 @@ var validateDate = function(formElem) {
 	return true;
 }
 
+$.fn.timer = function(){
+	var percent = this.data("percent");
+	this.html('<div class="percent"></div><div class="slice'+(percent > 50?' gt50':'')+'"><div class="pie"></div><div class="pie fill"></div></div><div class="bg"></div>');
+	var deg = 360/100*percent;
+	this.find('.slice .pie').css({
+		'-moz-transform':'rotate('+deg+'deg)',
+		'-webkit-transform':'rotate('+deg+'deg)',
+		'-o-transform':'rotate('+deg+'deg)',
+		'transform':'rotate('+deg+'deg)'
+	});
+	this.find('.percent').html(Math.round(percent)+'%');
+}
+
+$(window).load(function() {
+    window.loaded = true;
+});
+
+function updateTimer() {
+	if (!window.loaded) {
+		$(window).load(updateTimer);
+		return;
+	}
+	$("#health").popover('destroy');
+	$("#health-popover").html("");
+	with($(".timer[data-percent]")) {
+		timer();
+		heatcolor(
+			function() {
+				var num = data("percent");
+				return num;
+			}, 
+			{ maxval: 100, minval: 0, colorStyle: 'greentored', lightness: 0.4, 
+			  elementFunction: function() {return children(".percent")} });
+		children(".percent").each(function() {
+			var col = $(this).css("background-color");
+			$(this).parent().find(".pie").css("border-color", col);
+		});
+		show();
+	}
+	$('#health').popover({
+	    container: '#health-popover',
+	    html: true,
+	    content: function () {
+	        return $(this).next().html();
+	    }
+	});
+	$( "#health" ).click(function( event ) {
+	  event.stopPropagation();
+	});
+	with($("#health.tutorial")) {
+		if (length) {
+			dimBackground();
+			popover('show');
+		}
+	}
+}
+
+$(document).ready(function() {
+	$('.popper').popover({
+	    container: 'body',
+	    html: true,
+	    content: function () {
+	        return $(this).next().html();
+	    }
+	});
+	$('body').on('keyup.dismiss.healthPopover', function (e) {
+		e.which == 27 && $('#health').popover('hide');
+	});
+	$('body').on('click.dismiss.healthPopover', function (e) {
+		if ($('#health-popover div.popover:visible').length){
+			$('#health').popover('hide');
+		}
+	});
+});
+
 var attachAutosubmit = function() {
 	$('.bootstrap-datepicker').datepicker({orientation: "top left"});
 	$(".autosubmit input[type=text]")
@@ -67,11 +142,13 @@ var attachAutosubmit = function() {
 	$("[data-rmodal]").each(function () {
 		var that = $(this);
 		var id = that.data('target-id');
-		if ($('#' + id).length == 0) {
+		if ($('#' + id).length == 0 || $('#' + id).children().length == 0) {
 			var url = that.data('rmodal');
 			that.click(function () {
-				if ($('#' + id).length==0) {
-					that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="loading"></div></div></div>')
+				if ($('#' + id).length==0 || $('#' + id).children().length == 0) {
+					if ($('#' + id).length==0) {
+						that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="loading"></div></div></div>')
+					}
 					$('#' + id).load(url, function() {
 						$('#' + id).hjq('init');
 						attachAutosubmit();

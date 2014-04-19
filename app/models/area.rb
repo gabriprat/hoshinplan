@@ -35,6 +35,12 @@ class Area < ActiveRecord::Base
     area.company = area.hoshin.company
   end
   
+  after_create do |obj|
+    user = User.current_user
+    user.tutorial_step << :area
+    user.save!
+  end
+  
   def child_tasks 
     child_hoshins = hoshin.children.*.id
     return nil unless child_hoshins
