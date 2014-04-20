@@ -40,47 +40,57 @@ class FrontController < ApplicationController
   end
   
   def sendreminders
-    puts "Initiating send remainders job!"
-    kpis = Indicator.unscoped.due('5 day').joins(:responsible).merge(User.at_hour(7))
-    tasks = Task.unscoped.due('5 day').joins(:responsible).merge(User.at_hour(7))
+    @text = DateTime.now.to_s + " Initiating send remainders job!\n"
+    kpis = User.at_hour(7).joins(:indicators).merge(Indicator.unscoped.due('5 day'))
+    tasks = User.at_hour(7).joins(:tasks).merge(Task.unscoped.due('5 day'))
     (kpis | tasks).each { |user|
+      @text +=  DateTime.now.to_s + " User: " + user.email_address + "\n"
       UserCompanyMailer.reminder(user, "You have KPIs or tasks to update!", 
       "You can access all the KPIs and tasks you have to update at your dashboard:").deliver
     }
-    render "empty"
+    @text += DateTime.now.to_s + " End send reminders job!"
+    render :text => @text, :content_type => Mime::TEXT
   end
   
   def updateindicators
-    puts "Initiating updateindicators job!"
+    @text = DateTime.now.to_s + " Initiating updateindicators job!\n"
     ihs = IndicatorHistory.joins(:indicator => :responsible)
       .where("day = #{User::TODAY_SQL} and last_update < day")
     ihs.each { |ih| 
+      @text += DateTime.now.to_s + " " + ind.name + ": "
       ind = ih.indicator
+      @text += "goal #{ind.goal} => #{ih.goal} "
       ind.goal = ih.goal
       if (ind.value != ih.value)
+        @text += "value #{ind.value} => #{ih.value} last_update #{ind.last_update} => #{ih.day}"
         ind.value = ih.value
-        ind.last_update
+        ind.last_update = ih.day
       end
+      @text += "\n"
       ind.save!
     }
-    render "empty"
+    @text += DateTime.now.to_s + " End update indicators job!"
+    render :text => @text, :content_type => Mime::TEXT
   end
   
   def expirecaches
-    puts "Initiating expirecaches job!"
+    @text = DateTime.now.to_s + " Initiating expirecaches job!\n"
     if Rails.configuration.action_controller.perform_caching
       kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(0))
       kpis.each { |indicator| 
+        @text +=  DateTime.now.to_s + " KPI: " + kpi.name + "\n"
         expire_swept_caches_for(indicator)
         #expire_swept_caches_for(indicator.area.hoshin)
       }
       tasks = Task.unscoped.due_today.merge(User.at_hour(0))
       tasks.each { |task| 
+        @text +=  DateTime.now.to_s + " Task: " + task.name + "\n"
         expire_swept_caches_for(task)
         #expire_swept_caches_for(indicator.area.hoshin)
       }
     end
-    render "empty"
+    @text += DateTime.now.to_s + " End expirecaches job!"
+    render :text => @text, :content_type => Mime::TEXT
   end
 
   def summary
