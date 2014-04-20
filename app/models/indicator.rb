@@ -40,6 +40,15 @@ class Indicator < ActiveRecord::Base
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
         User.current_id) ) }
+        
+  
+  scope :due, lambda { |*interval|
+    joins(:responsible)
+    .where("reminder = true 
+      and next_update between #{User::TODAY_SQL}-interval ?  and #{User::TODAY_SQL}", interval)
+  }
+  
+  scope :due_today, -> { due('0 hour') }
  
   before_create do |indicator|
     indicator.company = indicator.objective.company
@@ -58,6 +67,7 @@ class Indicator < ActiveRecord::Base
         else
           indicator.last_update = indicator.next_update 
         end 
+        indicator.last_update_will_change!
     end
     if indicator.value_changed? && indicator.last_update_changed?
       update_date = indicator.last_update

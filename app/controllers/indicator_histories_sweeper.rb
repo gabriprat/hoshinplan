@@ -4,20 +4,20 @@ class IndicatorHistoriesSweeper < ActionController::Caching::Sweeper
 
   def after_create(ih)
     if Rails.configuration.action_controller.perform_caching
-      expire_swept_caches_for(ih.indicator.area.hoshin)
+      #expire_swept_caches_for(ih.indicator.area.hoshin)
     end
   end
 
   def after_update(ih)
     if Rails.configuration.action_controller.perform_caching
-      expire_swept_caches_for(ih.indicator.area.hoshin)
+      #expire_swept_caches_for(ih.indicator.area.hoshin)
       expire_swept_caches_for(ih.indicator)
     end
   end
 
   def after_destroy(ih)
     if Rails.configuration.action_controller.perform_caching
-      expire_swept_caches_for(ih.indicator)
+      #expire_swept_caches_for(ih.indicator)
       expire_swept_caches_for(ih.indicator.area.hoshin)
     end
   end
