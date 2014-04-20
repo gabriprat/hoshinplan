@@ -41,7 +41,10 @@
 				<form ajax class="autosubmit inline-form" style="display:none;" complete="attachAutosubmit()">
 					<field-list: fields="value">
 						<value-view: >
+						<div class="input-append">
 							<input value="&number_with_delimiter(this)"/>
+							<button class="btn fa fa-check" type="submit"></button>
+						</div>
 						</value-view>
 					</field-list:>
 			  	 	<actions: replace />

@@ -57,6 +57,17 @@ class User < ActiveRecord::Base
       .where('company_id=?',  
         Company.current_id) ) unless Company.current_id.nil? }    
        
+  TODAY_SQL = "date_trunc('day',now() at time zone coalesce(timezone, current_setting('TIMEZONE')))"
+  
+  scope :at_hour, lambda { |*hour|
+    where("date_part('hour',current_time at time zone coalesce(timezone, current_setting('TIMEZONE'))) = ?", hour) 
+  }
+  
+  scope :task_reminders, lambda { 
+    joins(:indicators)
+    .where('reminder = true and next_update between current_date-5 and current_date')
+  }
+
   def next_tutorial
     ret = (User.values_for_tutorial_step - tutorial_step).first
     ret.nil? ? [] : ret 

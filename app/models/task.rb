@@ -35,6 +35,15 @@ class Task < ActiveRecord::Base
       .where('user_id=?',  
         User.current_id)) }
   
+  scope :due, lambda { |*interval|
+    joins(:responsible)
+    .where("reminder = true 
+      and deadline between #{User::TODAY_SQL} - interval ?
+      and #{User::TODAY_SQL} and status = ?", interval, :active)
+  }
+  
+  scope :due_today, -> { due('0 hour') }
+ 
   before_create do |task|
     task.company = task.objective.company
   end

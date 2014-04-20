@@ -246,6 +246,23 @@ GEM
       railties
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.7)
+    redis-actionpack (3.2.4)
+      actionpack (~> 3.2.0)
+      redis-rack (~> 1.4.4)
+      redis-store (~> 1.1.4)
+    redis-activesupport (3.2.5)
+      activesupport (~> 3.2.0)
+      redis-store (~> 1.1.0)
+    redis-rack (1.4.4)
+      rack (~> 1.4.0)
+      redis-store (~> 1.1.4)
+    redis-rails (3.2.4)
+      redis-actionpack (~> 3.2.4)
+      redis-activesupport (~> 3.2.4)
+      redis-store (~> 1.1.4)
+    redis-store (1.1.4)
+      redis (>= 2.2)
     ref (1.0.5)
     request_store (1.0.5)
     ruby-openid (2.5.0)
@@ -320,6 +337,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.17)
   raphaeljs-rails
+  redis-rails
   request_store
   sass-rails (~> 3.2.3)
   therubyracer

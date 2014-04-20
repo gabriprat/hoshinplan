@@ -16,7 +16,9 @@ Hoshinplan::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true 
   config.action_controller.perform_caching = false
-  config.cache_store = :mem_cache_store, "127.0.0.1"
+  config.cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280', { :expires_in => 90.minutes }
+  config.hobo.stable_cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280'
+
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true

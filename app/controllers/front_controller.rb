@@ -41,13 +41,13 @@ class FrontController < ApplicationController
   
   def sendreminders
     puts "Initiating send remainders job!"
-    kpis = User.joins('INNER JOIN "indicators" ON "indicators"."responsible_id" = "users"."id"').where("reminder = true and next_update between current_date-5 and current_date")
-    tasks = User.joins('INNER JOIN "tasks" ON "tasks"."responsible_id" = "users"."id"').where("reminder = true and deadline between current_date-5 and current_date and status = 'active'")
+    kpis = Indicator.unscoped.due('5 day').joins(:responsible).merge(User.at_hour(7))
+    tasks = Task.unscoped.due('5 day').joins(:responsible).merge(User.at_hour(7))
     (kpis | tasks).each { |user|
       UserCompanyMailer.reminder(user, "You have KPIs or tasks to update!", 
       "You can access all the KPIs and tasks you have to update at your dashboard:").deliver
     }
-    render "index"
+    render "empty"
   end
   
   def updateindicators
@@ -62,7 +62,24 @@ class FrontController < ApplicationController
       end
       ind.save!
     }
-    render "index"
+    render "empty"
+  end
+  
+  def expirecaches
+    puts "Initiating expirecaches job!"
+    if Rails.configuration.action_controller.perform_caching
+      kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(0))
+      kpis.each { |indicator| 
+        expire_swept_caches_for(indicator)
+        #expire_swept_caches_for(indicator.area.hoshin)
+      }
+      tasks = Task.unscoped.due_today.merge(User.at_hour(0))
+      tasks.each { |task| 
+        expire_swept_caches_for(task)
+        #expire_swept_caches_for(indicator.area.hoshin)
+      }
+    end
+    render "empty"
   end
 
   def summary

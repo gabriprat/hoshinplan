@@ -20,6 +20,8 @@ Hoshinplan::Application.routes.draw do
   match 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
   
   match 'updateindicators' => 'front#updateindicators', :as => 'update_indicators'
+  
+  match 'expirecaches' => 'front#expirecaches', :as => 'expire_caches'
 
   match 'mail_preview' => 'mail_preview#index'
   
