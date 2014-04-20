@@ -76,17 +76,17 @@ class FrontController < ApplicationController
   def expirecaches
     @text = DateTime.now.to_s + " Initiating expirecaches job!\n"
     if Rails.configuration.action_controller.perform_caching
-      kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(0))
+      kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(1))
       kpis.each { |indicator| 
-        @text +=  DateTime.now.to_s + " KPI: " + kpi.name + "\n"
+        @text +=  DateTime.now.to_s + " KPI: " + indicator.name + "\n"
         expire_swept_caches_for(indicator)
-        #expire_swept_caches_for(indicator.area.hoshin)
+        expire_swept_caches_for(indicator.area)
       }
       tasks = Task.unscoped.due_today.merge(User.at_hour(0))
       tasks.each { |task| 
         @text +=  DateTime.now.to_s + " Task: " + task.name + "\n"
         expire_swept_caches_for(task)
-        #expire_swept_caches_for(indicator.area.hoshin)
+        expire_swept_caches_for(indicator.area)
       }
     end
     @text += DateTime.now.to_s + " End expirecaches job!"

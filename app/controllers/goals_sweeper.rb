@@ -4,7 +4,7 @@ class GoalsSweeper < ActionController::Caching::Sweeper
 
   def after_create(goal)
     if Rails.configuration.action_controller.perform_caching
-      expire_swept_caches_for(goal.hoshin)
+      #expire_swept_caches_for(goal.hoshin)
     end
   end
 
