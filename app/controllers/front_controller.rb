@@ -52,7 +52,8 @@ class FrontController < ApplicationController
   
   def updateindicators
     puts "Initiating updateindicators job!"
-    ihs = IndicatorHistory.joins(:indicator).where("day = ? and last_update < day", Date.today)
+    ihs = IndicatorHistory.joins(:indicator => :responsible)
+      .where("day = #{User::TODAY_SQL} and last_update < day")
     ihs.each { |ih| 
       ind = ih.indicator
       ind.goal = ih.goal

@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :indicators, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :indicator_histories, :through => :indicators
   has_many :tasks, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 

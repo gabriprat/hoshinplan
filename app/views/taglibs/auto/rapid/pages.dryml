@@ -755,7 +755,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="value, goal, day, company, indicator" param/>
+      <field-list fields="value, goal, day, company, indicator, responsible" param/>
     </content-body:>
 
   </page>

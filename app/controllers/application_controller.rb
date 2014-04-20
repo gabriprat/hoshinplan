@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
   before_filter :my_login_required,  :except => [:index, :login, :oid_login, :signup, :activate,
          :do_activate, :do_signup, :forgot_password, :reset_password,
          :do_reset_password, :mail_preview]
+        
+  around_filter :set_user_time_zone
          
          around_filter :scope_current_user  
 
@@ -103,6 +105,14 @@ class ApplicationController < ActionController::Base
   end
   
     private
+    
+    def set_user_time_zone
+      old_time_zone = Time.zone
+      Time.zone = current_user.timezone if defined?("logged_in?") && logged_in?
+      yield
+    ensure
+      Time.zone = old_time_zone
+    end
     
     def authenticate_client_app
       return if (request.format.html? || request.xhr?)
