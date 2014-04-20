@@ -5,6 +5,8 @@
     	 <h4 param="heading"><a onclick="$('#update-area-modal-#{this.id}').modal('show'); $('#update-area-modal-#{this.id} form').trigger('reset'); return false;"><name/></a></h4>
     </header:>
     <append-body: >
+	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
+	<swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?">
 	<modal id="update-area-modal-#{this.id}">
 	<modal:>
 		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-area-#{this.id}" updates="#area-#{this.id},#sec-actions">
@@ -15,7 +17,6 @@
 		 </form>
 	</modal:>
 	</modal>
-	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>
 	<a class="btn pull-right" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">
@@ -64,6 +65,7 @@
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
 	</div>
+	</swept-cache>
 	</div>
     </append-body:>
   </old-card>
