@@ -25,6 +25,8 @@ Hoshinplan::Application.routes.draw do
 
   match 'resetcounters' => 'front#resetcounters', :as => 'reset_counters'
 
+  match 'healthupdate' => 'front#healthupdate', :as => 'health_update'
+
   match 'mail_preview' => 'mail_preview#index'
   
   match 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'

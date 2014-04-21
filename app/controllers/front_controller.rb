@@ -4,7 +4,7 @@ class FrontController < ApplicationController
   
   # Require the user to be logged in for every other action on this controller
   # except :index. 
-  skip_before_filter :my_login_required, :only => [:index, :sendreminders, :updateindicators, :expirecaches, :resetcounters]
+  skip_before_filter :my_login_required, :only => [:index, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate]
   
   def index
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
@@ -127,9 +127,13 @@ class FrontController < ApplicationController
   end
   
   def healthupdate
+    @text = ll "Initiating healthupdate job!"
     Hoshin.all.each{|hoshin|
+      @text = ll "Updating hoshin #{hoshin.id} -- #{hoshin.name}"
       hoshin.health_update!
     }
+    @text += ll "End healthupdate job!"
+    render :text => @text, :content_type => Mime::TEXT
   end
   
   def resetcounters
