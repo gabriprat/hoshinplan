@@ -128,7 +128,7 @@ class FrontController < ApplicationController
   
   def healthupdate
     @text = ll "Initiating healthupdate job!"
-    Hoshin.unscoped.all.each{|hoshin|
+    Hoshin.all.each{|hoshin|
       @text += ll "Updating hoshin #{hoshin.id} -- #{hoshin.name}"
       begin
         hoshin.health_update!
