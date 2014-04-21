@@ -23,6 +23,8 @@ Hoshinplan::Application.routes.draw do
   
   match 'expirecaches' => 'front#expirecaches', :as => 'expire_caches'
 
+  match 'resetcounters' => 'front#resetcounters', :as => 'reset_counters'
+
   match 'mail_preview' => 'mail_preview#index'
   
   match 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'
