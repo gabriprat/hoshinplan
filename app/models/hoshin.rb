@@ -6,7 +6,11 @@ class Hoshin < ActiveRecord::Base
 
   fields do
     name :string
+    goals_count :integer, :default => 0, :null => false
     areas_count :integer, :default => 0, :null => false
+    objectives_count :integer, :default => 0, :null => false
+    indicators_count :integer, :default => 0, :null => false
+    tasks_count :integer, :default => 0, :null => false
     objectives_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
     timestamps
@@ -22,7 +26,9 @@ class Hoshin < ActiveRecord::Base
   has_many :children, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
   
   has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
-  has_many :objectives, :through => :areas, :accessible => true
+  has_many :objectives, :through => :areas, :inverse_of => :hoshin, :accessible => true
+  has_many :indicators, :through => :objectives, :inverse_of => :hoshin, :accessible => true
+  has_many :tasks, :through => :objectives, :accessible => true
   has_many :goals, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
   
   children :areas
@@ -53,27 +59,27 @@ class Hoshin < ActiveRecord::Base
   
   def health
     value = 20
-    if goals.length == 0
+    if goals.size == 0
        ret = {:action => "goal"}
     else
       value += 16
     end
-    if areas.length == 0
+    if areas.size == 0
        ret = ret || {:action => "area"}
     else
        value += 16
     end
-    if objectives.length == 0
+    if objectives.size == 0
       ret = ret || { :action => "objective"}
     else
       value += 16
     end
-    if Indicator.where(:objective_id => Objective.select(:id).where(:area_id => areas)).length == 0
+    if indicators.size == 0
       ret = ret || { :action => "indicator"}
     else
       value += 16
     end
-    if Task.where(:objective_id => Objective.select(:id).where(:area_id => areas)).length == 0
+    if tasks.size == 0
       ret = ret || { :value => 75, :action => "task"}
     else
       value += 16

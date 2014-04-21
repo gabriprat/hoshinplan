@@ -40,7 +40,7 @@ class FrontController < ApplicationController
   end
   
   def sendreminders
-    @text = DateTime.now.to_s + " Initiating send remainders job!\n"
+    @text = DateTime.now.to_s + " Initiating send reminders job!\n"
     kpis = User.at_hour(7).joins(:indicators).merge(Indicator.unscoped.due('5 day'))
     tasks = User.at_hour(7).joins(:tasks).merge(Task.unscoped.due('5 day'))
     (kpis | tasks).each { |user|

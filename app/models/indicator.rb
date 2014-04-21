@@ -20,7 +20,7 @@ class Indicator < ActiveRecord::Base
   end
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
-   :creator_id, :last_update, :last_missing_value
+   :creator_id, :last_update, :last_missing_value, :hoshin, :hoshin_id
 
   belongs_to :creator, :class_name => "User", :creator => true
   
@@ -29,7 +29,9 @@ class Indicator < ActiveRecord::Base
   belongs_to :company
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
-  belongs_to :area, :inverse_of => :indicators, :counter_cache => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true
+  
+  belongs_to :area, :inverse_of => :indicators, :counter_cache => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
   
   acts_as_list :scope => :area, :column => "ind_pos"
@@ -52,6 +54,7 @@ class Indicator < ActiveRecord::Base
  
   before_create do |indicator|
     indicator.company = indicator.objective.company
+    indicator.hoshin = indicator.objective.hoshin
   end
   
   after_create do |obj|

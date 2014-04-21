@@ -871,7 +871,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="value, frequency, next_update, last_update, last_value, goal, worst_value, ind_pos, area, company, responsible" param/>
+      <field-list fields="value, frequency, next_update, last_update, last_value, goal, worst_value, ind_pos, area, company, hoshin, responsible" param/>
     </content-body:>
 
   </page>
@@ -1339,7 +1339,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="deadline, original_deadline, tsk_pos, status, area, company, objective, responsible" param/>
+      <field-list fields="deadline, original_deadline, tsk_pos, status, area, company, hoshin, objective, responsible" param/>
     </content-body:>
 
   </page>
