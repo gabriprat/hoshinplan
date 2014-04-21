@@ -90,15 +90,15 @@ class Hoshin < ActiveRecord::Base
   end
   
   def objectives_health
-    100 * (1 - (neglected_objectives_count + blind_objectives_count ) / objectives_count.to_f)
+    100.0 * (1.0 - (neglected_objectives_count.to_f + blind_objectives_count.to_f ) / objectives_count.to_f)
   end
   
   def indicators_health
-    100 * (1 - outdated_indicators_count / indicators_count.to_f)
+    100.0 * (1.0 - outdated_indicators_count.to_f / indicators_count.to_f)
   end
   
   def tasks_health
-    100 * (1 - outdated_tasks_count / tasks_count.to_f)
+    100.0 * (1.0 - outdated_tasks_count.to_f / tasks_count.to_f)
   end
   
   def health
