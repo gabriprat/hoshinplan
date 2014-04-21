@@ -21,9 +21,9 @@ class Task < ActiveRecord::Base
   belongs_to :company
   
   
-  belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
-  belongs_to :area, :inverse_of => :tasks, :counter_cache => true, :conditions => {:status => :active}
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :conditions => {:status => :active}
+  belongs_to :objective, :inverse_of => :tasks, :counter_cache => false
+  belongs_to :area, :inverse_of => :tasks, :counter_cache => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
@@ -58,6 +58,18 @@ class Task < ActiveRecord::Base
   
   after_save "hoshin.health_update!"
   after_destroy "hoshin.health_update!"
+
+  after_save :update_counter_cache
+  after_destroy :update_counter_cache
+
+  def update_counter_cache
+    self.objective.tasks_count = Task.where(:status => :active, :objective_id => self.objective_id) 
+    self.objective.save!
+    self.area.tasks_count = Task.where(:status => :active, :area_id => self.area_id) 
+    self.area.save!
+    self.hoshin.tasks_count = Task.where(:status => :active, :hoshin_id => self.hoshin_id) 
+    self.hoshin.save!
+  end
   
   after_create do |obj|
     user = User.current_user
