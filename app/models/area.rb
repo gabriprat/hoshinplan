@@ -80,19 +80,19 @@ class Area < ActiveRecord::Base
   end
   
   def create_permitted?
-    same_company
+    acting_user.administrator? || same_company
   end
 
   def update_permitted?
-    same_company
+    acting_user.administrator? || same_company
   end
 
   def destroy_permitted?
-    same_company_admin
+    acting_user.administrator? || same_company_admin
   end
 
   def view_permitted?(field)
-    same_company
+    acting_user.administrator? || same_company
   end
 
 end
