@@ -22,8 +22,8 @@ class Task < ActiveRecord::Base
   
   
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
-  belongs_to :area, :inverse_of => :tasks, :counter_cache => true
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true
+  belongs_to :area, :inverse_of => :tasks, :counter_cache => true, :conditions => {:status => :active}
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :conditions => {:status => :active}
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
@@ -44,12 +44,20 @@ class Task < ActiveRecord::Base
       and #{User::TODAY_SQL} and status = ?", interval, :active)
   }
   
+  scope :overdue, lambda {
+    includes(:responsible)
+    .where("deadline < #{User::TODAY_SQL} and status = ?", :active)
+  }
+  
   scope :due_today, -> { due('0 hour') }
  
   before_create do |task|
     task.company = task.objective.company
     task.hoshin = task.objective.hoshin
   end
+  
+  after_save "hoshin.health_update!"
+  after_destroy "hoshin.health_update!"
   
   after_create do |obj|
     user = User.current_user

@@ -38,6 +38,9 @@ class Objective < ActiveRecord::Base
       .where('user_id=?',  
         User.current_id) ) }
   
+  after_save "hoshin.health_update!"
+  after_destroy "hoshin.health_update!"
+        
   before_create do |objective|
       objective.company_id = objective.area.company_id
   end

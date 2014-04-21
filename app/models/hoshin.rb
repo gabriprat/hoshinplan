@@ -10,6 +10,10 @@ class Hoshin < ActiveRecord::Base
     areas_count :integer, :default => 0, :null => false
     objectives_count :integer, :default => 0, :null => false
     indicators_count :integer, :default => 0, :null => false
+    outdated_indicators_count :integer, :default => 0, :null => false
+    outdated_tasks_count :integer, :default => 0, :null => false
+    blind_objectives_count :integer, :default => 0, :null => false
+    neglected_objectives_count :integer, :default => 0, :null => false
     tasks_count :integer, :default => 0, :null => false
     objectives_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
@@ -47,6 +51,34 @@ class Hoshin < ActiveRecord::Base
     user.save!
   end
   
+  def health_update!
+    task = Task.arel_table
+    objective = Objective.arel_table
+    indicator = Indicator.arel_table
+    tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].eq(:active))
+    neglected = Objective.unscoped.joins(:indicators)
+      .where(:hoshin_id => self.id)
+      .where(Task.unscoped.where(tasks_cond).exists.not)
+      .merge(Indicator.unscoped.under_tpc(100)).count(:id)
+    self.neglected_objectives_count = neglected
+    
+    outdated = Indicator.unscoped.overdue
+      .where(:hoshin_id => self.id).count(:id)
+    self.outdated_indicators_count = outdated
+    
+    outdated = Task.unscoped.overdue
+      .where(:hoshin_id => self.id).count(:id)
+    self.outdated_tasks_count = outdated
+    
+    indicator_cond = indicator[:objective_id].eq(objective[:id])
+    blind = Objective.unscoped
+      .where(Indicator.unscoped.where(indicator_cond).exists.not)
+      .where(:hoshin_id => self.id).count(:id)
+    self.blind_objectives_count = blind  
+
+    self.save!
+  end
+  
   def cache_key
     objids = Objective.select("id").where(:hoshin_id => id).*.id
     kpiids = Indicator.select("id").includes(:area).where("areas.hoshin_id = ?", id).*.id
@@ -57,7 +89,30 @@ class Hoshin < ActiveRecord::Base
     (objids + kpiids + tskids).join("-").hash
   end
   
+  def objectives_health
+    100 * (1 - (neglected_objectives_count + blind_objectives_count ) / objectives_count.to_f)
+  end
+  
+  def indicators_health
+    100 * (1 - outdated_indicators_count / indicators_count.to_f)
+  end
+  
+  def tasks_health
+    100 * (1 - outdated_tasks_count / tasks_count.to_f)
+  end
+  
   def health
+    ret = incomplete_health
+    return ret unless ret[:action] == "none"
+    
+    obj = objectives_health
+    ind = indicators_health
+    tsk = tasks_health
+  
+    ret = {:value => (obj+ind+tsk)/3, :action => "none"}
+  end
+  
+  def incomplete_health
     value = 20
     if goals.size == 0
        ret = {:action => "goal"}
