@@ -120,8 +120,8 @@ class UsersController < ApplicationController
     else
       super(user, password)
     end
-    current_user.remember_me
-    create_auth_cookie
+    current_user.remember_me if logged_in?
+    create_auth_cookie if logged_in?
   end
   
 end
