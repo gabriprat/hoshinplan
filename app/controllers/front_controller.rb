@@ -128,9 +128,13 @@ class FrontController < ApplicationController
   
   def healthupdate
     @text = ll "Initiating healthupdate job!"
-    Hoshin.all.each{|hoshin|
-      @text = ll "Updating hoshin #{hoshin.id} -- #{hoshin.name}"
-      hoshin.health_update!
+    Hoshin.unscoped.all.each{|hoshin|
+      @text += ll "Updating hoshin #{hoshin.id} -- #{hoshin.name}"
+      begin
+        hoshin.health_update!
+      rescue
+        @text += ll "Error!"
+      end
     }
     @text += ll "End healthupdate job!"
     render :text => @text, :content_type => Mime::TEXT
