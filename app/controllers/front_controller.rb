@@ -4,7 +4,7 @@ class FrontController < ApplicationController
   
   # Require the user to be logged in for every other action on this controller
   # except :index. 
-  skip_before_filter :my_login_required, :only => [:index, :sendreminders]
+  skip_before_filter :my_login_required, :only => [:index, :sendreminders, :updateindicators, :expirecaches]
   
   def index
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
