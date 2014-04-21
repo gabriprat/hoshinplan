@@ -55,15 +55,28 @@ class FrontController < ApplicationController
   def updateindicators
     @text = DateTime.now.to_s + " Initiating updateindicators job!\n"
     ihs = IndicatorHistory.joins(:indicator => :responsible)
-      .where("day = #{User::TODAY_SQL} and last_update < day")
+      .where("day = #{User::TODAY_SQL} 
+        and (
+          indicator_histories.goal != indicators.goal
+          or indicators.goal is null and indicator_histories.goal is not null 
+          or indicator_histories.value != indicators.value
+          or indicators.value is null and indicator_histories.value is not null 
+          or last_update != day
+          or last_update is null
+          )")
     ihs.each { |ih| 
-      @text += DateTime.now.to_s + " " + ind.name + ": "
       ind = ih.indicator
-      @text += "goal #{ind.goal} => #{ih.goal} "
-      ind.goal = ih.goal
-      if (ind.value != ih.value)
-        @text += "value #{ind.value} => #{ih.value} last_update #{ind.last_update} => #{ih.day}"
+      @text += DateTime.now.to_s + " " + ind.name + ": "
+      if (ind.goal.nil? || ind.goal != ih.goal)
+        @text += "goal #{ind.goal} => #{ih.goal}"
+        ind.goal = ih.goal
+      end
+      if (ind.value.nil? || ind.value != ih.value)
+        @text += " value #{ind.value} => #{ih.value} last_update #{ind.last_update} => #{ih.day}"
         ind.value = ih.value
+      end
+      if (ind.last_update.nil? || ind.last_update < ih.day) 
+        @text += " last_update #{ind.last_update} => #{ih.day}"
         ind.last_update = ih.day
       end
       @text += "\n"
