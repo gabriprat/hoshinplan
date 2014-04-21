@@ -68,7 +68,24 @@
 			</form>
 			<else>
 			<div class="hide">
-				Your hoshin has full health! Congratulations!!
+				<p if="&health[:value]==100">
+					Your hoshin has full health! Congratulations!!
+				</p>
+				<else>
+					<h3>Objectives health: <view:objectives_health />%</h3>
+					<ul>
+					<li> You have #{this.neglected_objectives_count}/#{this.objectives_count} objectives with low KPIs and no active tasks</li>
+					<li> You have #{this.blind_objectives_count}/#{this.objectives_count} objectives with no KPIs</li>
+					</ul>
+					<h3>Indicators health: <view:indicators_health /></h3>
+					<ul>
+					<li> You have #{this.outdated_indicators_count}/#{this.indicators_count} outdated indicators</li>
+					</ul>
+					<h3>Tasks health: <view:tasks_health /></h3>
+					<ul>
+					<li> You have #{this.outdated_tasks_count}/#{this.tasks_count} outdated tasks</li>
+					</ul>
+				</else>
 			</div>
 			</else>
 			<script type="text/javascript">if (updateTimer) window.setTimeout(updateTimer, 1000);</script>

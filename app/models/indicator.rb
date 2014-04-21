@@ -50,6 +50,15 @@ class Indicator < ActiveRecord::Base
       and next_update between #{User::TODAY_SQL}-interval ?  and #{User::TODAY_SQL}", interval)
   }
   
+  scope :overdue, lambda {
+    includes(:responsible)
+    .where("next_update < #{User::TODAY_SQL}")
+  }
+  
+  scope :under_tpc, lambda { |*tpc|
+    where("goal<>worst_value and (100 * (value-worst_value) / (goal-worst_value)) < ?", tpc)
+  }
+  
   scope :due_today, -> { due('0 hour') }
  
   before_create do |indicator|
@@ -62,6 +71,9 @@ class Indicator < ActiveRecord::Base
     user.tutorial_step << :indicator
     user.save!
   end
+  
+  after_save "hoshin.health_update!"
+  after_destroy "hoshin.health_update!"
   
   before_update do |indicator|
     if (!indicator.value.nil? && indicator.value_changed? && !indicator.last_update_changed? && (indicator.next_update.nil? || indicator.next_update <= Date.today))
