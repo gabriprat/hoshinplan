@@ -52,7 +52,7 @@
 <def tag="form" for="Hoshin">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, header, company, objectives, parent" param/>
+    <field-list fields="name, header, company, indicators, objectives, parent, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'hoshin.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -76,7 +76,7 @@
 <def tag="form" for="Indicator">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, value, description, frequency, next_update, last_update, last_value, goal, worst_value, reminder, show_on_parent, ind_pos, area, company, creator, objective, responsible" param/>
+    <field-list fields="name, value, description, frequency, next_update, last_update, last_value, goal, worst_value, reminder, show_on_parent, ind_pos, area, company, creator, hoshin, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'indicator.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -112,7 +112,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, deadline, original_deadline, show_on_parent, reminder, tsk_pos, status, area, company, creator, objective, responsible" param/>
+    <field-list fields="name, description, deadline, original_deadline, show_on_parent, reminder, tsk_pos, status, area, company, creator, hoshin, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

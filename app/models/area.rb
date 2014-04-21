@@ -7,6 +7,9 @@ class Area < ActiveRecord::Base
   fields do
     name        :string
     description :text
+    objectives_count :integer, :default => 0, :null => false
+    indicators_count :integer, :default => 0, :null => false
+    tasks_count :integer, :default => 0, :null => false
     timestamps
   end
 

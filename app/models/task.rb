@@ -14,14 +14,16 @@ class Task < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder,
-    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id
+    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id
 
   belongs_to :creator, :class_name => "User", :creator => true
   
   belongs_to :company
   
+  
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => true
-  belongs_to :area, :inverse_of => :tasks, :counter_cache => false
+  belongs_to :area, :inverse_of => :tasks, :counter_cache => true
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
@@ -46,6 +48,7 @@ class Task < ActiveRecord::Base
  
   before_create do |task|
     task.company = task.objective.company
+    task.hoshin = task.objective.hoshin
   end
   
   after_create do |obj|

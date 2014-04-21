@@ -11,10 +11,10 @@
 		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
-					<a title="#{ht key='indicator.actions.new'}" data-rmodal="#{url_for Indicator.new}/form?company_id=#{this.company_id}&area_id=#{this.area_id}&objective_id=#{this.id}" data-target-id="add-kpi-modal-#{this.id}" class="hoshin-tasks"><span class="fa fa-tachometer fa-plus-small"></span></a>
+					<a title="#{ht key='indicator.actions.new'}" data-rmodal="#{url_for Indicator.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" data-target-id="add-kpi-modal-#{this.id}" class="hoshin-tasks"><span class="fa fa-tachometer fa-plus-small"></span></a>
 				</li>
 				<li class="task">
-					<a title="#{ht key='task.actions.new'}" data-rmodal="#{url_for Task.new}/form?company_id=#{this.company_id}&area_id=#{this.area_id}&objective_id=#{this.id}" data-target-id="add-task-modal-#{this.id}" class="hoshin-tasks" if="&can_create? Task"><span class="fa fa-tasks fa-plus-small"></span></a>
+					<a title="#{ht key='task.actions.new'}" data-rmodal="#{url_for Task.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" data-target-id="add-task-modal-#{this.id}" class="hoshin-tasks" if="&can_create? Task"><span class="fa fa-tasks fa-plus-small"></span></a>
 				</li>
 			</ul>
 		</div>

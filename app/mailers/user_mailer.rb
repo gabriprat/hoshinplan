@@ -14,9 +14,9 @@ class UserMailer < ActionMailer::Base
           :to      => user.email_address )
   end
   
-  def remainder(user, kpis, key)
+  def reminder(user, kpis, key)
     @user, @kpis, @key = user, kpis, key
-    mail( :subject => "#{app_name} -- remainder",
+    mail( :subject => "#{app_name} -- reminder",
           :to      => user.email_address )
   end
 

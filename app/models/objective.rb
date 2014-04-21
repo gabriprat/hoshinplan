@@ -25,7 +25,7 @@ class Objective < ActiveRecord::Base
   belongs_to :company
 
   belongs_to :parent, :class_name => "Objective"
-  belongs_to :area, :inverse_of => :objectives, :counter_cache => false
+  belongs_to :area, :inverse_of => :objectives, :counter_cache => true
   belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
   

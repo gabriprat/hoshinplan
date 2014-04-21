@@ -12,7 +12,8 @@ class Goal < ActiveRecord::Base
   
   belongs_to :creator, :class_name => "User", :creator => true
   
-  belongs_to :hoshin, :inverse_of => :objectives
+  belongs_to :hoshin, :inverse_of => :goals, :counter_cache => true
+  
   belongs_to :company
   
   acts_as_list :scope => :hoshin
