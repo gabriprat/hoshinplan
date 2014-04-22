@@ -63,11 +63,11 @@ class Task < ActiveRecord::Base
   after_destroy :update_counter_cache
 
   def update_counter_cache
-    self.objective.tasks_count = Task.where(:status => :active, :objective_id => self.objective_id) 
+    self.objective.tasks_count = Task.where(:status => :active, :objective_id => self.objective_id).count(:id)
     self.objective.save!
-    self.area.tasks_count = Task.where(:status => :active, :area_id => self.area_id) 
+    self.area.tasks_count = Task.where(:status => :active, :area_id => self.area_id).count(:id)
     self.area.save!
-    self.hoshin.tasks_count = Task.where(:status => :active, :hoshin_id => self.hoshin_id) 
+    self.hoshin.tasks_count = Task.where(:status => :active, :hoshin_id => self.hoshin_id).count(:id)
     self.hoshin.save!
   end
   
