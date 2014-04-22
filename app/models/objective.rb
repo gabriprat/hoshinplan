@@ -36,7 +36,27 @@ class Objective < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id) ) }
+        User.current_id)
+      ) 
+  }
+        
+  scope :blind, -> {
+    indicator = Indicator.arel_table
+    objective = Objective.arel_table
+    indicator_cond = 
+    where(Indicator.unscoped
+        .where(indicator[:objective_id].eq(objective[:id]))
+        .exists.not)
+  }
+  
+  scope :neglected, -> { 
+    task = Task.arel_table
+    objective = Objective.arel_table
+    tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].eq(:active))
+    joins(:indicators)
+      .where(Task.unscoped.where(tasks_cond).exists.not)
+      .merge(Indicator.unscoped.under_tpc(100))
+  }
   
   after_save "hoshin.health_update!"
   after_destroy "hoshin.health_update!"

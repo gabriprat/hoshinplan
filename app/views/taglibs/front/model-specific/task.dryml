@@ -16,7 +16,7 @@
 		</div>
 	</if>
 	<if test="&column == 'Area'">
-		<div class="column" data-label="Hoshin"><view:area/></div>
+		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'Task'">
 		<div class="column" data-label="Name"><a data-rmodal="#{url_for this}/form" data-target-id="update-task-modal-#{this.id}"><name/></a></div>

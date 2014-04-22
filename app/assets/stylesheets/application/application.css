@@ -586,9 +586,30 @@ body div.ordering-handle {
 .help-block.description-help {
 	white-space: normal;
 }
+.column.ordering {
+	width: 0.5em;
+}
+div.table .table-row div.column[data-label="Id"] {
+	width: 1em;
+}
 
-.area div.table.indicators .table-head .table-row div.column:nth-child(3) {
+div.table .table-row div.column[data-label="Name"] {
 	min-width: 220px;
+	width: 60%;
+}
+
+div.table .table-row div.column[data-label="Responsible"] {
+	width: 2em;
+}
+
+
+div.table .table-row div.column[data-label="Actions"] {
+	text-align: right;
+}
+
+button.hoshin-tasks.link {
+	margin: 0;
+	padding: 0;
 }
 
 .dashboard .table .odd {

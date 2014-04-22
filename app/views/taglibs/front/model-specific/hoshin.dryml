@@ -8,6 +8,7 @@
 			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
 		</parent-link:>
 		<prepend-content-header: >
+		<if test="&params['action']=='show'">
 		<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
             <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
               Add new area
@@ -44,6 +45,7 @@
 				</form>
 				</modal:>
 			</modal>
+		</if>
 		</prepend-content-header:>
 		
 		<append-heading:>
@@ -54,41 +56,7 @@
 			<a onclick="startPresentation(); return false;" title="&ht 'hoshin.actions.presentation'" class="title-action">
 	    	            <span class="fa fa-desktop"/>
 			</a>
-			<% health = this.health %>
-			<div class="timer #{this.tutorial} hide" id="health" data-toggle="popover" title="&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot; onclick=&quot;$('#health').popover('hide');$.undim();&quot;&gt;&amp;times;&lt;/button&gt;#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}" data-percent="#{health[:value]}" if="&User.current_user.administrator?"></div>
-			<div class="hide" if="&health[:action]!='none'">
-				<cms key="tutorial/#{health[:action]}_#{locale}" if="&Rails.application.config.auto_cms_calls"/>
-  				
-				<button onclick="$('#change_step').val(0); $('form#change-step').submit();" if="&health[:action] == 'followup'">
-					Finish tutorial
-				</button>    
-			</div>
-			<form with="&this.creator" updates="#sec-actions" id="change-step" before="$.undim(); true;" if="&health[:action]!='none'">
-			    <hidden-field name="tutorial_step" value="0" id="change_step"/>
-			</form>
-			<else>
-			<div class="hide">
-				<p if="&health[:value]==100">
-					Your hoshin has full health! Congratulations!!
-				</p>
-				<else>
-					<h3>Objectives health: <view:objectives_health />%</h3>
-					<ul>
-					<li> You have #{this.neglected_objectives_count}/#{this.objectives_count} objectives with low KPIs and no active tasks</li>
-					<li> You have #{this.blind_objectives_count}/#{this.objectives_count} objectives with no KPIs</li>
-					</ul>
-					<h3>Indicators health: <view:indicators_health /></h3>
-					<ul>
-					<li> You have #{this.outdated_indicators_count}/#{this.indicators_count} outdated indicators</li>
-					</ul>
-					<h3>Tasks health: <view:tasks_health /></h3>
-					<ul>
-					<li> You have #{this.outdated_tasks_count}/#{this.tasks_count} outdated tasks</li>
-					</ul>
-				</else>
-			</div>
-			</else>
-			<script type="text/javascript">if (updateTimer) window.setTimeout(updateTimer, 1000);</script>
+			<health/>
 			</do>
 			
 			
