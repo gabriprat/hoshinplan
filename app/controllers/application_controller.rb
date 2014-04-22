@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :my_login_required,  :except => [:index, :login, :oid_login, :signup, :activate,
          :do_activate, :do_signup, :forgot_password, :reset_password,
-         :do_reset_password, :mail_preview]
+         :do_reset_password, :mail_preview, :failure]
         
   around_filter :set_user_time_zone
          
@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
-             yield
+               yield
              ensure
                  #avoids issues when an exception is raised, to clear the current_id
                  User.current_id = nil   

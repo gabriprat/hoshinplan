@@ -177,5 +177,15 @@ class FrontController < ApplicationController
       site_search(params[:query])
     end
   end
+  
+  def failure
+    msg = t("errors." + params[:message], :default => t("errors.unknown")) 
+    unless params[:error_reason].blank? 
+      msg += " " + t("errors.provider_said", :default => "The message from your authentication provider was: ") + " " + params[:error_reason]
+    end
+    flash[:error] = msg
+    
+    render 'index'
+  end
 
 end
