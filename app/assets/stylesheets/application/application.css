@@ -593,6 +593,14 @@ div.table .table-row div.column[data-label="Id"] {
 	width: 1em;
 }
 
+div.table .table-row div.column[data-label="Company"] {
+	width: 25%;
+}
+
+div.table .table-row div.column[data-label="Hoshin"] {
+	width: 30%;
+}
+
 div.table .table-row div.column[data-label="Name"] {
 	min-width: 220px;
 	width: 60%;

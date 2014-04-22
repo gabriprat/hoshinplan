@@ -52,7 +52,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def health_update!
-    objectives.neglected.count(:id)
+    neglected = objectives.neglected.count(:id)
     self.neglected_objectives_count = neglected
     
     outdated = indicators.overdue.count(:id)
