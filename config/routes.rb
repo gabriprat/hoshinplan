@@ -41,6 +41,9 @@ Hoshinplan::Application.routes.draw do
   
   match  'oid_login' => 'front#oid_login', :as => 'oid_login'
   
+  match "/auth/failure" => "front#failure"
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

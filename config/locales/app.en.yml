@@ -35,6 +35,9 @@ en:
     date_format_error: 'The row %{row} contains an invalid date. The date "%{found}" does not follow the expected format "%{expected}".'
     value_format_error: 'The row %{row} contains an incorrect value "%{found}".'
     goal_format_error: 'The row %{row} contains an incorrect objective "%{found}".'
+    invalid_credentials: 'The credentials you used were not valid.'
+    provider_said: 'The message from your authentication provider was: '
+    unknown: 'Unknown error.'
   activerecord:
     models:
       goal:

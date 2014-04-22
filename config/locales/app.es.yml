@@ -10,6 +10,9 @@ es:
     date_format_error: 'La fila %{row} contiene una fecha incorrecta. La fecha "%{found}" no estaba en el formato esperado "%{expected}".'
     value_format_error: 'La fila %{row} contiene un valor incorrecto "%{found}".'
     goal_format_error: 'La fila %{row} contiene un objetivo incorrecto "%{found}".'
+    invalid_credentials: 'Las credenciales proporcionadas no son válidas.'
+    provider_said: 'El mensaje del proveedor de autenticación fue: '
+    unknown: 'Error desconocido.'
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'
