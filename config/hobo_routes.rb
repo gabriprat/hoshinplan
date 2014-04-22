@@ -51,7 +51,11 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller hoshins
-  resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy]
+  resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    member do
+      get 'health'
+    end
+  end
 
   # Owner routes for controller hoshins
   resources :companies, :as => :company, :only => [] do

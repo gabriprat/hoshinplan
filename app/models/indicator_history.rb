@@ -18,7 +18,7 @@ class IndicatorHistory < ActiveRecord::Base
 
   belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
 
-  belongs_to :responsible, :class_name => "User", :inverse_of => :indicator_histories
+  belongs_to :responsible, :class_name => "User", :inverse_of => :indicator_histories  
 
   validates_uniqueness_of :day, :scope => [:indicator_id]
   

@@ -1,0 +1,36 @@
+<show-page aside-location="right" content-size="8">
+<body: class="hoshin health-page"/>
+	<parent-link:>
+		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
+	</parent-link:>
+	<heading:>
+		Hoshinplan health for <name/> <health/>
+	</heading:>
+	<content-body:>
+		<div class="well">
+			<h3>Objectives with no KPIs</h3>
+			<rtable:objectives.blind part="blind" columns="Objective,Responsible,Area" class="objectives"  	id="blind-#{this.id}"/>
+
+			<h3>Objectives with KPIs under 100% and no active tasks</h3>
+			<rtable:objectives.neglected part="neglected" columns="Objective,Responsible,Area" class="objectives" id="neglected-#{this.id}" />
+
+			<h3>Overdue tasks</h3>
+			<rtable:tasks.overdue columns="Task,Resp.,Area,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks"/>
+
+			<h3>Overdue indicators</h3>
+			<rtable:indicators.overdue columns="KPI,Resp.,Area,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators"/>
+		</div>
+	</content-body:>
+	
+	<aside:/>
+	<aside-column:>
+		<div class="well">
+			<h3>Top users with pending actions</h3>
+			<ol>
+			<% this.users_with_pending_actions.each { |user,num| %>
+				<li><view with="&user"/>(<view  with="&num"/>)</li>
+			<% } %>
+			</ol>
+		</div>
+	</aside-column:>
+</show-page>

@@ -6,6 +6,8 @@ class HoshinsController < ApplicationController
   
   auto_actions_for :company, [:new, :create]
   
+  show_action :health
+  
   include RestController
   
   cache_sweeper :hoshins_sweeper
@@ -18,6 +20,11 @@ class HoshinsController < ApplicationController
       params["hoshin"]["company_id"] = company.id
     end
     hobo_create
+  end
+  
+  def health
+    @this = find_instance
+  
   end
 
 end

@@ -52,31 +52,31 @@ class Hoshin < ActiveRecord::Base
   end
   
   def health_update!
-    task = Task.arel_table
-    objective = Objective.arel_table
-    indicator = Indicator.arel_table
-    tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].eq(:active))
-    neglected = Objective.unscoped.joins(:indicators)
-      .where(:hoshin_id => self.id)
-      .where(Task.unscoped.where(tasks_cond).exists.not)
-      .merge(Indicator.unscoped.under_tpc(100)).count(:id)
+    objectives.neglected.count(:id)
     self.neglected_objectives_count = neglected
     
-    outdated = Indicator.unscoped.overdue
-      .where(:hoshin_id => self.id).count(:id)
+    outdated = indicators.overdue.count(:id)
     self.outdated_indicators_count = outdated
-    
-    outdated = Task.unscoped.overdue
-      .where(:hoshin_id => self.id).count(:id)
+
+    outdated = tasks.overdue.count(:id)
     self.outdated_tasks_count = outdated
     
-    indicator_cond = indicator[:objective_id].eq(objective[:id])
-    blind = Objective.unscoped
-      .where(Indicator.unscoped.where(indicator_cond).exists.not)
-      .where(:hoshin_id => self.id).count(:id)
+    blind = objectives.blind.count(:id)
     self.blind_objectives_count = blind  
 
     self.save!
+  end
+  
+  def users_with_pending_actions
+    users = {}
+    (objectives.neglected | objectives.blind | indicators.overdue | tasks.overdue).each {|o|
+      if (users.has_key? o.responsible)
+        users[o.responsible] += 1
+      else
+        users[o.responsible]=1
+      end
+    }
+    users.sort_by {|k,v| v}.reverse
   end
   
   def cache_key
