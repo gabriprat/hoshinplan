@@ -4,10 +4,14 @@
 		-webkit-box-shadow: none !important;
 		-moz-box-shadow: none !important;
 		box-shadow: none !important;
+	}
+	
+	.well {
 		border-radius: 0 !important;
 		-moz-border-radius: 0 !important;
 		-webkit-border-radius: 0 !important;
 	}
+
 	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action {
 		display: none;
 	}
@@ -87,6 +91,10 @@
 	body.hoshin .container
 	.collection.areas > .item {
 		display: table-cell;
+	}
+	
+	.timer .bg {
+		display: none;
 	}
 	
 	@page {
