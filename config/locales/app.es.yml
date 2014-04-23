@@ -1,7 +1,7 @@
 es:
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile
-  click_to_edit: <Haz clic para editar>
+  click_to_edit: '&lt;Haz clic para editar&gt;'
   no_oid_url: No existe un login corporativo para el email introducido
   errors:
     permission_denied: Permiso denegado
