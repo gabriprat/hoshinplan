@@ -70,11 +70,14 @@
 				
 				var txt = "";
 				for (var i = 0; data.length > i; i++) {
+					if (i>0) {
+						txt += "\\n";
+					}
 					var date = dateFormat(data[i].date);
 					var value = numberFormat(data[i].value);
 					var goal = numberFormat(data[i].goal);
-					txt += date + ";" + value + ";" + goal;
-					txt += "\\n";
+					var fieldSep = sep == ',' ? ';' : ','; 
+					txt += date + fieldSep + value + fieldSep + goal;
 				}
 				$("#upload textarea").val(txt);
 				
