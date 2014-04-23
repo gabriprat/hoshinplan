@@ -603,7 +603,7 @@ div.table .table-row div.column[data-label="Hoshin"] {
 
 div.table .table-row div.column[data-label="Name"] {
 	min-width: 220px;
-	width: 60%;
+	width: 54%;
 }
 
 div.table .table-row div.column[data-label="Responsible"] {

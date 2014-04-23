@@ -9,10 +9,10 @@
 	<content-body:>
 		<div class="well">
 			<h3>Objectives with no KPIs</h3>
-			<rtable:objectives.blind part="blind" columns="Objective,Responsible,Area" class="objectives"  	id="blind-#{this.id}"/>
+			<rtable:objectives.blind part="blind" columns="Objective,Resp.,Area" class="objectives"  	id="blind-#{this.id}"/>
 
 			<h3>Objectives with KPIs under 100% and no active tasks</h3>
-			<rtable:objectives.neglected part="neglected" columns="Objective,Responsible,Area" class="objectives" id="neglected-#{this.id}" />
+			<rtable:objectives.neglected part="neglected" columns="Objective,Resp.,Area" class="objectives" id="neglected-#{this.id}" />
 
 			<h3>Overdue tasks</h3>
 			<rtable:tasks.overdue columns="Task,Resp.,Area,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks"/>
