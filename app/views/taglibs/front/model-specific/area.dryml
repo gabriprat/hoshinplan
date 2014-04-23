@@ -29,7 +29,7 @@
 		<field-list: fields="name" />
 		<actions: replace />
 	</form>
-	<rtable:objectives columns="Id,Objective,Responsible" class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit(); attachAutosubmit();"/>
+	<rtable:objectives columns="Id,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit(); attachAutosubmit();"/>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives"/>

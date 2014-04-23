@@ -12,7 +12,7 @@
 				<a data-rmodal="#{url_for this}/form" data-target-id="update-objective-modal-#{this.id}"><name/></a>	
 			</div>
 		</if>
-		<if test="&column == 'Responsible'">
+		<if test="&column == 'Resp.' || column == 'Responsible'">
 			<div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
 		</if>
 		<if test="&column == 'Area'">
