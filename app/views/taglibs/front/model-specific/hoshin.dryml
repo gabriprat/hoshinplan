@@ -50,7 +50,7 @@
 		
 		<append-heading:>
 			<do part="sec-actions" id="sec-actions">
-			<a href="#{this.id}.pdf" title="&ht 'hoshin.actions.export_as_pdf'" class="title-action">
+			<a href="#{url_for this}.pdf" title="&ht 'hoshin.actions.export_as_pdf'" class="title-action">
 	    	            <span class="fa fa-download"/>
 			</a>
 			<a onclick="startPresentation(); return false;" title="&ht 'hoshin.actions.presentation'" class="title-action">
