@@ -45,7 +45,7 @@ class IndicatorHistory < ActiveRecord::Base
           (!ind.last_update.nil? && ind.last_update <= latest.day)
       ))
       ind.update_column(:value, latest.value)
-      ind.update_column(:goal, latest.goal)
+      ind.update_column(:goal, latest.goal) unless latest.goal.nil?
       ind.update_column(:last_update, latest.day)      
     end
     
