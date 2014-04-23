@@ -192,11 +192,11 @@ class Indicator < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || same_company_admin
+    User.current_user.administrator? || same_company_admin
   end
 
   def view_permitted?(field=nil)
-    acting_user.administrator? || same_company
+    User.current_user.administrator? || same_company
   end
   
 end
