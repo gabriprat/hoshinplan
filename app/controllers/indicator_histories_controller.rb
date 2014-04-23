@@ -9,9 +9,9 @@ class IndicatorHistoriesController < ApplicationController
   include RestController
   
   def destroy
-    self.this = model.user_find(current_user, 657)
+    inst = find_instance.indicator
     hobo_destroy do
-      redirect_to :back if valid? && !request.xhr?
+      redirect_to inst, :action => :history if valid? && !request.xhr?
     end
   end
 
