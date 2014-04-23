@@ -38,11 +38,22 @@
 				var timeout = false;
 				var delta = 200;
 				var df = document.documentElement.getAttribute("data-df").replace("yyyy","yy");
+				var sep = document.documentElement.getAttribute("data-sep");
+				var del = document.documentElement.getAttribute("data-del");
 				var dateFormat = function(d) {
 					var ret = $.datepicker.formatDate(df, new Date(d));
 					return ret;
 				}
-				function resizeend() {
+				var numberFormat = function(num) {
+					if (num == null) {
+						return '';
+					} else {
+						var parts = num.toString().split(".");
+					    	parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, del);
+					    	return parts.join(sep);
+					}
+				}
+				var resizeend = function() {
 				    if (delta > new Date() - rtime) {
 				        setTimeout(resizeend, delta);
 				    } else {
@@ -56,6 +67,17 @@
 					   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}, id:#{this.id}}
 					</repeat:indicator_histories>
 				];
+				
+				var txt = "";
+				for (var i = 0; data.length > i; i++) {
+					var date = dateFormat(data[i].date);
+					var value = numberFormat(data[i].value);
+					var goal = numberFormat(data[i].goal);
+					txt += date + ";" + value + ";" + goal;
+					txt += "\\n";
+				}
+				$("#upload textarea").val(txt);
+				
 				var chart = Morris.Line({
 				  element: 'graph-line',
 				  data: data,
