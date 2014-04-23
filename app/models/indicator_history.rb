@@ -54,19 +54,19 @@ class IndicatorHistory < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    same_comp-1
+    same_company
   end
 
   def update_permitted?
-    indicator.update_permitted?
+    indicator.updatable_by?(acting_user)
   end
 
   def destroy_permitted?
-    indicator.destroy_permitted?
+    indicator.destroyable_by?(acting_user)
   end
 
   def view_permitted?(field)
-    indicator.view_permitted?
+    indicator.viewable_by?(acting_user)
   end
 
 end
