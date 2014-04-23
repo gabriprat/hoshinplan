@@ -25,7 +25,7 @@ en:
 en:
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
-  click_to_edit: <Click to edit>
+  click_to_edit: '&lt;Click to edit&gt;'
   hoshin:
     actions:
       presentation: Presentation

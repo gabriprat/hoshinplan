@@ -1,6 +1,9 @@
 <def tag="my-click-editor">
 	<div class="my-click-editor">
-		<view class="in-place-edit" with="&(this.nil? || this.empty? ? ' ' + t('click_to_edit') : this)"/>
+		<div class="in-place-edit">
+			<view/>
+			<span><t key="click_to_edit"/></span>
+		</div>
 		<input class="in-place-input hide"/>
 	</div>
 </def>
