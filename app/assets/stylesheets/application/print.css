@@ -73,6 +73,11 @@
 		width: 100%;
 		color: #000;
 	}
+	
+	body.hoshin h4, body.hoshin h2.heading, body.hoshin .goals h3 {
+		font-weight: 400;
+	}
+	
 	body.hoshin ul.collection.goals > li {
 		list-style-type: decimal;
 		display: list-item;
@@ -93,9 +98,15 @@
 		display: table-cell;
 	}
 	
-	.timer .bg {
+	.timer {
+		background: transparent;
+	}
+	
+	.timer .bg,  {
 		display: none;
 	}
+	
+	
 	
 	@page {
 		size: A4 landscape;
