@@ -48,27 +48,29 @@ class UsersController < ApplicationController
   
   def update
     ajax = request.xhr?
-    @this = find_instance
+    self.this = find_instance
     
-    if @this.timezone.nil? && !cookies[:tz].nil?
+    if self.this.timezone.nil? && !cookies[:tz].nil?
    	  zone = cookies[:tz]
    	  zone = Hoshinplan::Timezone.get(zone)
-      @this.timezone = zone.name unless zone.nil?
+      self.this.timezone = zone.name unless zone.nil?
     end
     
     if params[:tutorial_step] 
       step = params[:tutorial_step].to_i
       if step == 1
-        @this.tutorial_step << @this.next_tutorial
+        self.this.tutorial_step << self.this.next_tutorial
       elsif step == -1
-        @this.tutorial_step.pop
-      elsif step == 0
-        @this.tutorial_step = User.values_for_tutorial_step
+        self.this.tutorial_step.pop
+      elsif step > 1
+        self.this.tutorial_step = User.values_for_tutorial_step
+      elsif step < -1
+        self.this.tutorial_step = []
       end
       if !params[:user]
         params[:user] = {}
       end
-      params[:user][:tutorial_step] = @this.tutorial_step
+      params[:user][:tutorial_step] = self.this.tutorial_step
       ajax = true
     end
     hobo_update do
