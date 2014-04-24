@@ -1268,14 +1268,15 @@ form.indicator-value input[type=radio] {
 	height: 1em;
 	clip: rect(0px,1em,1em,0.5em);
 	margin: -.1em 0em 0em -.1em;
+	
 }
 
-.timer > .slice.gt50 {
+.timer > .slice.gt50s {
 	clip: rect(auto, auto, auto, auto);
 }
 
 .timer > .slice > .pie {
-	border: 0.1em solid #c0c0c0;
+	border: 0.1em solid #f00;
 	position: absolute;
 	width: 0.8em; /* 1 - (2 * border width) */
 	height:0.8em; /* 1 - (2 * border width) */
@@ -1283,9 +1284,35 @@ form.indicator-value input[type=radio] {
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	border-radius: 0.5em;
+        -webkit-transition: transform 2s linear;
+        -moz-transition: transform 2s linear;
+        -o-transition: transform 2s linear;
+        transition: transform 2s linear;
+	-moz-transform:rotate(0deg);
+	-webkit-transform:rotate(0deg);
+	-o-transform:rotate(0deg);
+	transform:rotate(0deg);
 }
 
+.timer > .slice > .pie.fill {
+	width: 0;
+	border-color: #fbca6a;
+	-moz-transform:rotate(180deg);
+	-webkit-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform:rotate(180deg);
+}
 
+.timer > .slice {
+        -webkit-transition: all 0s linear;
+        -moz-transition: all 0s linear;
+        -o-transition: all 0s linear;
+        transition: all 0s linear;
+        -webkit-transition-delay: 2s;
+        -moz-transition-delay: 2s;
+        -o-transition-delay: 2s;
+	transition-delay: 2s;
+}
 
 .timer > .bg {
 	position: absolute;
@@ -1308,7 +1335,7 @@ form.indicator-value input[type=radio] {
 	box-sizing: border-box;
 }
 
-.timer > .slice.gt50 > .pie.fill {
+.timer > .slice.gt50s > .pie.fill {
 	-moz-transform: rotate(180deg) !important;
 	-webkit-transform: rotate(180deg) !important;
 	-o-transform: rotate(180deg) !important;
