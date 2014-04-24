@@ -43,6 +43,9 @@ class IndicatorsController < ApplicationController
           end
           begin
             d = Date.strptime(row[0], t('date.formats.default'))
+            if d.year < 1900
+              @this.errors.add(:indicator, t("errors.date_format_error", :row => idx, :expected => date_format_default, :found => row[0]))
+            end
           rescue ArgumentError
             @this.errors.add(:indicator, t("errors.date_format_error", :row => idx, :expected => date_format_default, :found => row[0]))
           end
