@@ -8,7 +8,11 @@
 		          </ht>
 		        </a>
 		</prepend-content-header: >
-		
+		<append-content-body: >
+		<if test="&this.hoshins_count > 0 ? '' : 'true'">
+		<cms key="tutorial/hoshin_#{locale}" if="&!Rails.application.config.auto_cms_calls"/>
+		</if>
+		</append-content-body:>
 		<new-link: replace/>
 	</old-show-page>
 </extend>
