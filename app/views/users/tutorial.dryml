@@ -22,6 +22,12 @@
 		    $('#modal .modal-body').html('<div class="loading"></div>');
 		});
 	</script>
+	
+	<form>
+		<input name="tutorial_step" type="hidden" value="-2"/>
+		<submit label="Reiniciar tutorial"/>
+	</form>
+		
   </content-body:>
   
 </show-page>
