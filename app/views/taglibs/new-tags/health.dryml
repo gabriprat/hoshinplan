@@ -35,5 +35,6 @@
 				</else>
 			</div>
 			</else>
-			<script type="text/javascript">if (updateTimer) window.setTimeout(updateTimer, 1000);</script>
+			<script type="text/javascript">if (updateTimer) window.setTimeout(function () {
+			updateTimer(); updateTimer()}, 100);</script>
 </def>

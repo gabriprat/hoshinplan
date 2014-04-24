@@ -9,7 +9,7 @@
 	<swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?">
 	<modal id="update-area-modal-#{this.id}">
 	<modal:>
-		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-area-#{this.id}" updates="#area-#{this.id},#sec-actions">
+		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); colorize();" class="modal" id="upd-area-#{this.id}" updates="#areas,#sec-actions">
 		   <div class="modal-body">
 		    <field-list: fields="name"/>
 		   </div>

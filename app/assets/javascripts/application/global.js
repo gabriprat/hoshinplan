@@ -55,14 +55,14 @@ var validateDate = function(formElem) {
 }
 
 $.fn.timer = function(percent){
-	var percent = percent ? percent : this.attr("data-percent");
+	var percent = percent && !isNaN(percent) ? percent : this.attr("data-percent");
 	this.html('<div class="percent"></div><div class="slice'+(percent > 50?' gt50':'')+'"><div class="pie"></div><div class="pie fill"></div></div><div class="bg"></div>');
 	this.show();
 	var that = this;
 	var deg = 360/100*percent;
 	var d1 = Math.max(0, (percent-50)*2/50);
 	var d2 = Math.min(percent, 50)*2/50;
-	var deg2 = Math.min(180,deg)
+	var deg2 = Math.min(180,deg);
 	if (percent>50) {
 		$(this).find('.slice .pie.fill').css({	
 	        '-webkit-transition': 'transform '+d1+'s linear 2s, width 0s linear 2s',
@@ -88,8 +88,11 @@ $.fn.timer = function(percent){
 		'-o-transform':'rotate('+d1+'deg)',
 		'transform':'rotate('+deg2+'deg)'
 		});
-	
-	$(this).animate({percent: percent}, { duration: (d1+d2)*1000, step: function (now,fx) {
+	var duration = (d1+d2)*1000;
+	if ($("body.pdf")) { 
+		duration = 0;
+	};
+	$(this).animate({percent: percent}, { duration: duration, step: function (now,fx) {
 		$(this).heatcolor(
 		function() {
 			return now;
@@ -98,6 +101,7 @@ $.fn.timer = function(percent){
 		  elementFunction: function() {return $(this).children(".percent")} });
 		$(this).children(".percent").each(function() {
 			var col = $(this).css("background-color");
+			$(this).css("background-color", "transparent");
 			$(this).parent().find(".pie").css("border-color", col);
 		});
 	}});
@@ -106,11 +110,11 @@ $.fn.timer = function(percent){
 
 $(window).load(function() {
     window.loaded = true;
+    window.setTimeout(updateTimer, 100);
 });
 
 function updateTimer(percent) {
 	if (!window.loaded) {
-		$(window).load(updateTimer);
 		return;
 	}
 	$(".timer").timer(percent);
