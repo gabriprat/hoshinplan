@@ -110,7 +110,8 @@ $.fn.timer = function(percent){
 
 $(window).load(function() {
     window.loaded = true;
-    window.setTimeout(updateTimer, 100);
+    updateTimer();
+    updateTimer();
 });
 
 function updateTimer(percent) {
@@ -130,6 +131,7 @@ function updateTimer(percent) {
 	$( "#health" ).click(function( event ) {
 	  event.stopPropagation();
 	});
+	$.undim();
 	with($("#health.tutorial")) {
 		if (length) {
 			dimBackground();
