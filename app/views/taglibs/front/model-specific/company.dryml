@@ -10,7 +10,7 @@
 		</prepend-content-header: >
 		<append-content-body: >
 		<if test="&this.hoshins_count > 0 ? '' : 'true'">
-		<cms key="tutorial/hoshin_#{locale}" if="&!Rails.application.config.auto_cms_calls"/>
+		<cms key="tutorial/hoshin_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
 		</if>
 		</append-content-body:>
 		<new-link: replace/>
