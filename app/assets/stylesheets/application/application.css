@@ -1366,7 +1366,8 @@ form.indicator-value input[type=radio] {
 }
 
 #health-popover .popover {
-	max-width: none;
+	max-width: 620px;
+	margin-bottom: 2em;
 }
 
 #health-popover .popover-content {	
