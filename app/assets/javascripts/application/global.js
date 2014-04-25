@@ -125,12 +125,14 @@ function updateTimer(percent) {
 	$('#health').popover({
 	    container: '#health-popover',
 	    html: true,
+	    placement: 'bottom',
 	    content: function () {
 	        return $(this).next().html();
 	    }
 	});
 	$( "#health" ).click(function( event ) {
 	  event.stopPropagation();
+	  $("#health-popover .popover").addClass("fixed-x");
 	});
 	$.undim();
 	with($("#health.tutorial")) {
@@ -145,6 +147,7 @@ $(document).ready(function() {
 	$('.popper').popover({
 	    container: 'body',
 	    html: true,
+	    placement: 'auto bottom',
 	    content: function () {
 	        return $(this).next().html();
 	    }
