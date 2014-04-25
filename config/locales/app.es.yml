@@ -218,6 +218,9 @@ es:
     formats:
       default: ! '%d/%m/%Y'
       short: ! '%d %b'
+  time:
+    formats:
+      long: ! '%d/%m/%Y %H:%M'
   number:
     format:
       delimiter: .

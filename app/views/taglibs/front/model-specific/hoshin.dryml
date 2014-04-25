@@ -58,7 +58,9 @@
 			</a>
 			<health/>
 			</do>
-			
+			<if test="#{@pdf?'true':''}">
+				<view with="&l Time.now, :format => :long" />
+			</if>
 			
 		</append-heading:>
 		

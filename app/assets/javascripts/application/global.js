@@ -215,7 +215,7 @@ function getServerAndTld(host) {
 $(document).ready(attachAutosubmit);
 
 function fixedHorizontal() {
-	if ($("body.pdf").length > 0) { return; }
+	if ($("html.pdf").length > 0) { return; }
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"margin-left": "0"}); 
 		$(this).css({"width": "auto"});
