@@ -112,13 +112,13 @@ $.fn.timer = function(percent){
 $(window).load(function() {
     window.loaded = true;
     updateTimer();
-    updateTimer();
 });
 
 function updateTimer(percent) {
 	if (!window.loaded) {
 		return;
 	}
+	$(".timer").timer(percent);
 	$(".timer").timer(percent);
 	$("#health").popover('destroy');
 	$("#health-popover").html("");
@@ -134,7 +134,6 @@ function updateTimer(percent) {
 	  event.stopPropagation();
 	  $("#health-popover .popover").addClass("fixed-x");
 	});
-	$.undim();
 	with($("#health.tutorial")) {
 		if (length) {
 			dimBackground();
