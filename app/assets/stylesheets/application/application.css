@@ -515,7 +515,7 @@ body .hero-unit {
 }
 
 body .form-search input {
-
+	width: 150px;
 	border: 0;
 	    -moz-border-radius: 0;
 	    -webkit-border-radius: 0;
@@ -523,6 +523,10 @@ body .form-search input {
 	    -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
 	    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
 	    box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+}
+
+body .form-search i {
+	margin-left: 155px;
 }
 
 body .form-search input:focus {
