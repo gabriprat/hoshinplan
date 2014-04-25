@@ -8,30 +8,30 @@
 			<div class="hide" if="&health[:action]!='none'">
 				<cms key="tutorial/#{health[:action]}_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
   				
-				<button onclick="$('#change_step').val(2); $('form#change-step').submit();" if="&health[:action] == 'followup'">
-					Finish tutorial
+				<button class="btn btn-primary" onclick="$('#change_step').val(2); $('form#change-step').submit();" if="&health[:action] == 'followup'">
+					<t key="hoshin.finish_tutorial">Finish tutorial</t>
 				</button>    
 			</div>
 			<else>
 			<div class="hide">
 				<p if="&health[:value]==100">
-					Your hoshin has full health! Congratulations!!
+					<t key="hoshin.full_health">Your hoshin has full health! Congratulations!!</t>
 				</p>
 				<else>
-					<h3>Objectives health: <view:objectives_health />%</h3>
+					<h4><t key="hoshin.objectives_health" health="#{number_with_precision this.objectives_health}">Objectives health: <view:objectives_health />%</t></h4>
 					<ul>
-					<li> You have #{this.neglected_objectives_count}/#{this.objectives_count} objectives with low KPIs and no active tasks</li>
-					<li> You have #{this.blind_objectives_count}/#{this.objectives_count} objectives with no KPIs</li>
+					<li> <ht key="objective.hoshin.neglected_objectives" neglected="#{this.neglected_objectives_count}" count="#{this.objectives_count}" kpi="&Indicator.model_name.human(:count => 100)" task="&Task.model_name.human(:count => 100)">You have #{this.neglected_objectives_count}/#{this.objectives_count} <model-name-human model="&Objective"/> with low <model-name-human model="&Indicator" count="100"/> and no active <model-name-human model="&Task" count="100"/></ht></li>
+					<li> <ht key="objective.hoshin.blind_objectives" blind="#{this.blind_objectives_count}" count="#{this.objectives_count}" kpi="&Indicator.model_name.human(:count => 100)" objective="&Objective.model_name.human(:count => 100)">You have #{this.blind_objectives_count}/#{this.objectives_count} <model-name-human model="&Objective" count="100"/> with no <model-name-human model="&Indicator" count="100"/></ht></li>
 					</ul>
-					<h3>Indicators health: <view:indicators_health />%</h3>
+					<h4><t key="hoshin.indicators_health" health="#{number_with_precision this.indicators_health}">Objectives health: <view:indicators_health />%</t></h4>
 					<ul>
-					<li> You have #{this.outdated_indicators_count}/#{this.indicators_count} outdated indicators</li>
+					<li> <ht key="indicator.hoshin.outdated_model" outdated="#{this.outdated_indicators_count}" count="#{this.indicators_count}">You have #{this.outdated_indicators_count}/#{this.indicators_count} outdated <model-name-human model="&Indicator" count="#{this.outdated_indicators_count}"/></ht></li>
 					</ul>
-					<h3>Tasks health: <view:tasks_health />%</h3>
+					<h4>Tasks health: <view:tasks_health />%</h4>
 					<ul>
-					<li> You have #{this.outdated_tasks_count}/#{this.tasks_count} outdated tasks</li>
+					<li> <ht key="task.hoshin.outdated_model" outdated="#{this.outdated_tasks_count}" count="#{this.tasks_count}">You have #{this.outdated_tasks_count}/#{this.tasks_count} outdated <model-name-human model="&Task" count="#{this.outdated_tasks_count}"/></ht></li>
 					</ul>
-					<a action="health">See detailed health report</a>
+					<a action="health"><t key="hoshin.see_detailed_health">See detailed health report</t></a>
 				</else>
 			</div>
 			</else>
