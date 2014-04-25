@@ -60,6 +60,4 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-  
-  config.auto_cms_calls = false
 end

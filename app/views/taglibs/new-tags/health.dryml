@@ -6,7 +6,7 @@
 			</form>			
 			<div class="timer #{this.tutorial} hide" id="health" onclick="$.undim()" data-toggle="popover" title="&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-hidden=&quot;true&quot; onclick=&quot;$('#health').popover('hide');$.undim();&quot;&gt;&amp;times;&lt;/button&gt;#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}" data-percent="#{health[:value]}" if="&User.current_user.administrator?"></div>
 			<div class="hide" if="&health[:action]!='none'">
-				<cms key="tutorial/#{health[:action]}_#{locale}" if="&!Rails.application.config.auto_cms_calls"/>
+				<cms key="tutorial/#{health[:action]}_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
   				
 				<button onclick="$('#change_step').val(2); $('form#change-step').submit();" if="&health[:action] == 'followup'">
 					Finish tutorial
