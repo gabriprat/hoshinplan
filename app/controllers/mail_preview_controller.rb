@@ -1,11 +1,10 @@
 class MailPreviewController < ApplicationController
   
-  skip_before_filter :my_login_required
-  skip_around_filter :scope_current_user
+  hobo_controller
 
-
+  
   def index() 
-    @previews = ["welcome", "invite"]
+    @previews = ["welcome", "invite", "reminder"]
   end
   
   def preview() 
@@ -13,12 +12,12 @@ class MailPreviewController < ApplicationController
   end
   
   def preview_welcome()
-    @user = User.find(1)
+    @user = current_user
     render :file => 'user_company_mailer/welcome'
   end
   
   def send_welcome()
-    @user = User.find(1)
+    @user = current_user
     @subject = "#{@user.name} welcome to Hoshinplan!"
     UserCompanyMailer.welcome(@user, 
     @subject).deliver
@@ -26,8 +25,7 @@ class MailPreviewController < ApplicationController
   end
   
   def preview_invite()
-    user = User.find(1)
-    acting_user = user
+    user = current_user
     user_company = user.user_companies.first
     company = user_company.company
     @key, @user, @user_company, @lead, @message, @callout, @accept_url = 
@@ -39,17 +37,31 @@ class MailPreviewController < ApplicationController
   end
   
   def send_invite()
-    user = User.find(1)
+    user = current_user
     @user = user
-    acting_user = user
     user_company = user.user_companies.first
     company = user_company.company
     @subject = "Invitation to the Hoshin Plan of #{company.name}"
     UserCompanyMailer.invite(user_company, @subject, 
-      "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
+      "#{current_user.name} wants to invite you to collaborate to their Hoshin Plan.",
       "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
       "Accept",
       "fakekey").deliver
+    render :json => { subject: @subject, to: @user.email_address }
+  end
+
+  def preview_reminder
+    @user = current_user
+    @app_name = "hoshinplan"
+    @message = "You can access all the KPIs and tasks you have to update at your dashboard:"
+    render :file => 'user_company_mailer/reminder'
+  end
+  
+  def send_reminder
+    @user = current_user
+    @subject = "You have KPIs or tasks to update!"
+    UserCompanyMailer.reminder(@user, @subject, 
+    "You can access all the KPIs and tasks you have to update at your dashboard:").deliver
     render :json => { subject: @subject, to: @user.email_address }
   end
 

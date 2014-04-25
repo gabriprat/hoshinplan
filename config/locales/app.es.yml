@@ -155,6 +155,10 @@ es:
     you_must_introduce: Tienes que introducir tu nombre de usuario para acceder.
   user:
     my_dashboard: Mi panel de control
+    show_all: Mostrar todas
+    show_only_pending: Mostrar sólo las acciones pendientes
+    dashboard_for: Panel de control para %{name}
+    pending_actions_for: Acciones pendientes para %{name}
     messages:
       end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
   hoshin:

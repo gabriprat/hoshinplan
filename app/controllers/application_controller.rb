@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
-  respond_to :html, :html, :xml
+  respond_to :html, :json, :xml
     
   before_filter :login_from_cookie
    
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                end
-               if !params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?
+               if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
                  inst = model.find(params[:id]) unless params[:id].nil?
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
                  inst = Hoshin.find(params[:area][:hoshin_id]) unless inst
@@ -97,7 +97,7 @@ class ApplicationController < ActionController::Base
   # User count. 
   def my_login_required
     #return false if !defined?(logged_in)
-    login_from_cookie
+    login_from_cookie if self.respond_to?(:login_from_cookie)
     return true if logged_in?
     session[:return_to] = request.url
     redirect_to "/login"
@@ -108,7 +108,7 @@ class ApplicationController < ActionController::Base
     
     def set_user_time_zone
       old_time_zone = Time.zone
-      Time.zone = current_user.timezone if defined?("logged_in?") && logged_in?
+      Time.zone = current_user.timezone if self.respond_to?("logged_in?") && logged_in?
       yield
     ensure
       Time.zone = old_time_zone
