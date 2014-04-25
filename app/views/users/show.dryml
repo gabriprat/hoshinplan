@@ -2,9 +2,22 @@
 
   <body: class="dashboard hoshin" />
 	
-  <content-header:>
-    
-  </content-header:>
+  <heading:>
+  	<if test="&params[:action] == 'pending' ? 'true' : ''">
+	<t key="user.pending_actions_for" name="#{this.name}">Pending actions for <name/> </t>
+	</if>
+	<else>
+  	<t key="user.dashboard_for" name="#{this.name}">Dashboard for <name/> </t>
+	</else>
+  </heading:>
+  <append-content-header:>
+	<if test="&params[:action] == 'pending' ? 'true' : ''">
+	<a> <t key="user.show_all">Show all</t></a>
+	</if>
+	<else>
+	<a action="pending"> <t key="user.show_only_pending">Show only pending actions</t></a>
+	</else>
+  </append-content-header:>
   	
   <aside:/>
   
@@ -47,29 +60,25 @@
   <content-body:>
 
     <section class="content-body" part="body">
-
-    
-    <do:dashboard>
     
     <div class="panel">
     <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
     <div class="panel-body">
-	<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" part="indicators" id="indicators" class="indicators" />
+	<rtable with="&@indicators" columns="Company,Hoshin,Area,KPI,Value,Goal,%" part="indicators" id="indicators" class="indicators" />
 	<else>
-	    <ht key="indicator.dashboard.no_kpis" count="0">You have no <model-name-human with="&Indicator" count="0"/> with to update</ht>
+	    <ht key="indicator.collection.empty_message"/>
 	</else>
 	</div>
     </div>
     <div class="panel">
     <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
     <div class="panel-body">
-	    <rtable:tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" />
+	    <rtable with="&@tasks" columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" />
 	    <else>
-	    <ht key="task.dashboard.no_tasks" count="0">You have no <model-name-human with="&Task" count="0"/> with a close deadline</ht>
+	    <ht key="indicator.collection.empty_message"/>
 	    </else>
 	    </div>
     </div>
-    </do>
     
     </section>
   </content-body:>

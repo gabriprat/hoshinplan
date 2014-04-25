@@ -15,7 +15,7 @@
 	      ;
           }); 
       </script>
-    <form id="sendForm" action="/mail_preview/send_#{@id}" method="POST"><submit value="Send!"/></form>
+    <form id="sendForm" action="/mail_preview/send_#{@id}" method="GET"><submit value="Send!"/></form>
     
     <iframe src="/mail_preview/preview_#{@id}" width="100%" height="100%" frameborder="0"  style="overflow:hidden;height:500px;width:100%" />
   </content:>

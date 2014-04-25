@@ -64,6 +64,14 @@ class User < ActiveRecord::Base
     where("date_part('hour',now() at time zone coalesce(users.timezone, 'Europe/Berlin')) = ?", hour) 
   }
   
+  def pending_tasks
+    Task.includes(:responsible).where("deadline <= #{User::TODAY_SQL} and status=? and responsible_id = ?", :active, id)
+  end
+  
+  def pending_indicators
+    Indicator.includes(:responsible).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
+  end
+  
   def next_tutorial
     ret = (User.values_for_tutorial_step - tutorial_step).first
     ret.nil? ? [] : ret 
@@ -158,14 +166,6 @@ class User < ActiveRecord::Base
       RequestStore.store[:user] = ret
     end
     ret
-  end
-  
-  def dashboard
-    Company.current_id = nil
-    {
-        "indicators" => Indicator.where("next_update < ? and responsible_id = ?", NEXT_FRIDAY, self.id).order("next_update ASC"),
-        "tasks" => Task.where("deadline < ? and responsible_id = ? and status = 'active'", NEXT_FRIDAY, self.id).order("deadline ASC")
-    }
   end
   
   # --- Permissions --- #
