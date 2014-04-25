@@ -21,6 +21,14 @@ es:
     dashboard:
       no_kpis: No tienes %{model} pendientes de actualizar
       no_tasks: No tienes %{model} con una fecha de finalización cercana
+    hoshin:
+      neglected_objectives: Tienes %{neglected}/%{count} %{model} con %{kpi} con valores bajos y sin %{task} activas.
+      blind_objectives: Tienes %{blind}/%{count} %{objective} sin %{kpi}.
+      outdated_model: Tienes %{outdated}/%{count} %{model} por actualizar.
+    health:
+      blind_objectives: "%{model} sin %{kpi}"
+      neglected_objectives: "%{model} con %{kpi} por debajo del 100% y sin %{task} activas"
+      overdue_model: "%{model} sin actualizar"
   user_company:
     that_operation_is: Esta operación no está permitida
     the_invitation: La invitación que estás intentando aceptar se envió a otro usuario. Por favor inicia sesión con el usuario al que se envió la invitación.
@@ -149,6 +157,17 @@ es:
     my_dashboard: Mi panel de control
     messages:
       end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
+  hoshin:
+    how_to_improve: ¿Cómo mejorar la salud de mi hoshinplan?
+    finish_tutorial: Finalizar el tutorial
+    full_health: Tu hoshin tiene una salud perfecta. ¡¡Felicicades!!
+    objectives_health: "Salud de tus objetivos: %{health}%"
+    indicators_health: "Salud de tus indicadores: %{health}%"
+    tasks_health: "Salud de tus tareas: %{health}%"
+    see_detailed_health: Ver un informe de salud detallado
+  health:
+    health_for: Salud para %{name}
+    top_users_with_pending: Ranking de usuarios con más acciones pendientes
   company:
     manage_collaborators: Gestionar colaboradores
     add_collaborators: Añadir colaboradores

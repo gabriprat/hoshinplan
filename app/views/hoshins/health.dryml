@@ -4,20 +4,32 @@
 		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
 	</parent-link:>
 	<heading:>
-		Health for <name/> <health/>
+		<t key="health.health_for" name="#{this.name}">Health for <name/></t>
+		<health/>
 	</heading:>
 	<content-body:>
 		<div class="well">
-			<h3 if="&this.blind_objectives_count > 0? true : ''">Objectives with no KPIs</h3>
+			<h3 if="&this.blind_objectives_count > 0? true : ''">
+			
+			<ht key="objective.health.blind_objectives" kpi="&Indicator.model_name.human(:count => 100)" count="100"><model-name-human model="&Objective" count="100"/> with no <model-name-human model="&Indicator" count="100"/></ht>
+			
+			</h3>
 			<rtable:objectives.blind part="blind" columns="Objective,Resp.,Area" class="objectives"  	id="blind-#{this.id}" />
 
-			<h3 if="&this.neglected_objectives_count > 0? true : ''">Objectives with KPIs under 100% and no active tasks</h3>
+			<h3 if="&this.neglected_objectives_count > 0? true : ''">
+			
+			<ht key="objective.health.neglected_objectives" kpi="&Indicator.model_name.human(:count => 100)" task="&Task.model_name.human(:count => 100)" count="100"><model-name-human model="&Objective" count="100"/> with <model-name-human model="&Indicator" count="100"/> under 100% and no active <model-name-human model="&Task" count="100"/></ht>
+			</h3>
 			<rtable:objectives.neglected part="neglected" columns="Objective,Resp.,Area" class="objectives" id="neglected-#{this.id}" />
 
-			<h3 if="&this.outdated_tasks_count > 0? true : ''">Overdue tasks</h3>
+			<h3 if="&this.outdated_tasks_count > 0? true : ''">
+			<ht key="task.health.overdue_model" count="100">Overdue <model-name-human model="&Task" count="100"/></ht>
+			</h3>
 			<rtable:tasks.overdue columns="Task,Resp.,Area,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks"/>
 
-			<h3 if="&this.outdated_indicators_count > 0? true : ''">Overdue indicators</h3>
+			<h3 if="&this.outdated_indicators_count > 0? true : ''">
+			<ht key="indicator.health.overdue_model" count="100">Overdue <model-name-human model="&Indicator" count="100"/></ht>
+			</h3>
 			<rtable:indicators.overdue columns="KPI,Resp.,Area,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators"/>
 		</div>
 	</content-body:>
@@ -25,7 +37,7 @@
 	<aside:/>
 	<aside-column:>
 		<div class="well">
-			<h3>Top users with pending actions</h3>
+			<h3><t key="health.top_users_with_pending">Top users with pending actions</t></h3>
 			<ol>
 			<% this.users_with_pending_actions.each { |user,num| %>
 				<li><view with="&user"/>(<view  with="&num"/>)</li>
