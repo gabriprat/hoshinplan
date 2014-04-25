@@ -76,7 +76,7 @@ $.fn.timer = function(percent){
 		'-o-transform':'rotate('+deg+'deg)',
 		'transform':'rotate('+deg+'deg)',
 		});
-		$(this).find('.slice').css({'clip':'rect(auto, auto, auto, auto)'});
+		$(this).find('.slice').css({'clip':'rect(0, 1em, 1em, 0)'});
 	}
 	$(this).find('.slice .pie:not(.fill)').css({
 	        '-webkit-transition': 'transform '+d2+'s linear',
@@ -89,7 +89,7 @@ $.fn.timer = function(percent){
 		'transform':'rotate('+deg2+'deg)'
 		});
 	var duration = (d1+d2)*1000;
-	if ($("body.pdf")) { 
+	if ($("body.pdf").length > 0) { 
 		duration = 0;
 	};
 	$(this).animate({percent: percent}, { duration: duration, step: function (now,fx) {
@@ -98,7 +98,8 @@ $.fn.timer = function(percent){
 			return now;
 		}, 
 		{ maxval: 100, minval: 0, colorStyle: 'greentored', lightness: 0.4, 
-		  elementFunction: function() {return $(this).children(".percent")} });
+		  elementFunction: function() {return $(this).children(".percent")}
+	  	 });
 		$(this).children(".percent").each(function() {
 			var col = $(this).css("background-color");
 			$(this).css("background-color", "transparent");
