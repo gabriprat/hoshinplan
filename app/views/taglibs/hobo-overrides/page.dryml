@@ -1,6 +1,5 @@
 <extend tag="page">
-	<old-page merge lang="#{locale}">
-		<body: class="#{@pdf?'pdf':''}"/>
+	<old-page merge class="#{@pdf?'pdf':''}" lang="#{locale}">
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">
 				<stylesheet name='pdf' param='app-stylesheet'/>

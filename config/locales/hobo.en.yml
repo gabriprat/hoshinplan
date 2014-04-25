@@ -98,7 +98,7 @@ en:
       signup: "Signup"
       login: "Login"
       logout: "Log out"
-      logged_in_as: "Logged in as %{name}"
+      logged_in_as: "%{name}"
       account: "Account"
       save_account: "Save Your Data"
 
