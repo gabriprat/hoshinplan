@@ -6,7 +6,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller areas
-  resources :areas, :only => [:edit, :show, :create, :update, :destroy] do
+  resources :areas, :only => [:index, :edit, :show, :create, :update, :destroy] do
     collection do
       post 'reorder'
     end
