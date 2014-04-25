@@ -1,1 +1,1 @@
-<%= raw @this %>
+<cms key="#{@key}"/>
