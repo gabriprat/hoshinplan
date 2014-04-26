@@ -5,15 +5,19 @@
 	<else>
 	<a title="#{this.name}">
 		<if test="&abbrev">
-		<user-abbrev/>
+		<%= this.name.split.map{|x| x[0,1]}.join() %>
 		</if>
 		<else>
-		<name/>
+		#{this.name}
 		</else>
 	</a>
 	</else>
 </def>
 
 <def tag="user-abbrev">
-	<acronym title="#{this.name}"><view:abbrev/></acronym>
+	<% 
+		name = Company.current_company.user_abbrevs[this] unless Company.current_company.nil?
+		abbr = name.split.map{|x| x[0,1]}.join() unless name.nil?
+	%>
+	<acronym title="#{name}">#{abbr}</acronym>
 </def>
