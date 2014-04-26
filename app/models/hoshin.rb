@@ -43,7 +43,7 @@ class Hoshin < ActiveRecord::Base
     where(
         :company_id => (Company.current_id ? Company.current_id : User.current_id.nil? ? -1 : User.find(User.current_id).companies)
     )
-  }
+  };
   
   after_create do |obj|
     user = User.current_user
@@ -51,7 +51,12 @@ class Hoshin < ActiveRecord::Base
     user.save!
   end
   
+  def taks_by_status(status)
+    tasks.where(:status => status)
+  end
+  
   def health_update!
+    return;
     neglected = objectives.neglected.count(:id)
     self.neglected_objectives_count = neglected
     

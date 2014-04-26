@@ -56,6 +56,9 @@
 			<a onclick="startPresentation(); return false;" title="&ht 'hoshin.actions.presentation'" class="title-action">
 	    	            <span class="fa fa-desktop"/>
 			</a>
+			<a href="#{url_for this}/kanban" title="Kanban" class="title-action">
+	    	            <span class="fa fa-table"/>
+			</a>
 			<health/>
 			</do>
 			<if test="#{@pdf?'true':''}">

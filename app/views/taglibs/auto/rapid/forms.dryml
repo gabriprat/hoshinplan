@@ -112,7 +112,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, deadline, original_deadline, show_on_parent, reminder, tsk_pos, status, area, company, creator, hoshin, objective, responsible" param/>
+    <field-list fields="name, description, deadline, original_deadline, show_on_parent, reminder, tsk_pos, lane_pos, status, area, company, creator, hoshin, objective, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -172,6 +172,61 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.delete', :default=>['Delete']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="to-backlog-form" polymorphic/>
+<def tag="to-backlog-form" for="Task">
+  <form lifecycle="to_backlog" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.to_backlog', :default=>['To Backlog']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="to-active-form" polymorphic/>
+<def tag="to-active-form" for="Task">
+  <form lifecycle="to_active" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.to_active', :default=>['To Active']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="to-completed-form" polymorphic/>
+<def tag="to-completed-form" for="Task">
+  <form lifecycle="to_completed" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.to_completed', :default=>['To Completed']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="to-discarded-form" polymorphic/>
+<def tag="to-discarded-form" for="Task">
+  <form lifecycle="to_discarded" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.to_discarded', :default=>['To Discarded']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="to-deleted-form" polymorphic/>
+<def tag="to-deleted-form" for="Task">
+  <form lifecycle="to_deleted" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.to_deleted', :default=>['To Deleted']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

@@ -54,6 +54,8 @@ Hoshinplan::Application.routes.draw do
   resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy] do
     member do
       get 'health'
+      get 'kanban'
+      post 'kanban_update'
     end
   end
 
@@ -140,10 +142,22 @@ Hoshinplan::Application.routes.draw do
       get 'reactivate'
       put 'reactivate', :action => 'do_reactivate'
       get 'reactivate'
+      put 'reactivate', :action => 'do_reactivate'
+      get 'reactivate'
       put 'delete', :action => 'do_delete'
       get 'delete'
       put 'delete', :action => 'do_delete'
       get 'delete'
+      put 'to_backlog', :action => 'do_to_backlog'
+      get 'to_backlog'
+      put 'to_active', :action => 'do_to_active'
+      get 'to_active'
+      put 'to_completed', :action => 'do_to_completed'
+      get 'to_completed'
+      put 'to_discarded', :action => 'do_to_discarded'
+      get 'to_discarded'
+      put 'to_deleted', :action => 'do_to_deleted'
+      get 'to_deleted'
     end
   end
 
