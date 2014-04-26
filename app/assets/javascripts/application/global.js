@@ -206,6 +206,22 @@ var attachAutosubmit = function() {
 	});
 }
 
+$(document).ready(
+function() {
+    $( ".connectedSortable" ).sortable({
+      connectWith: ".connectedSortable",
+      items: "li:not(.ui-state-disabled)",
+      stop: function (event, ui) {
+	      console.log("idx: " + ui.item.index() + "elem: " + ui.item.data("id") + " target: " +$(event.target).data("state"));
+      	      var lane_id = ui.item.closest("ul[data-state]").data("state");
+	      var item_id = ui.item.data("id");
+	      var item_position = ui.item.index();
+	      $.post( "kanban_update" , { lane_id: lane_id, item_id: item_id, item_position: item_position } );
+      }
+    }).disableSelection();
+  }
+);
+
 function getServerAndTld(host) {
 	var arr = host.split(".");
 	arr = arr.slice(Math.max(arr.length - 2, 0));

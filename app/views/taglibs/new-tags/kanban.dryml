@@ -1,0 +1,12 @@
+<def tag="kanban-lane" attrs="lane">
+<ul class="kb-lane connectedSortable" data-state="#{lane}">
+	<li class="ui-state-default ui-state-disabled"><h2><view with="&lane"/></h2></li>
+	<repeat with="&this.tasks.lane(lane)" >
+		<li class="kanban-card postit" data-id="#{this.id}" part="kanban">
+			<a data-rmodal="#{url_for this}/form" data-target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></a>
+			<click-editor:name/>
+			<click-editor:description/>
+		</li>
+	</repeat>
+</ul>
+</def>

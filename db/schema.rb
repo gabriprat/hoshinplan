@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140422150224) do
+ActiveRecord::Schema.define(:version => 20140426020610) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(:version => 20140422150224) do
 
   add_index "indicator_histories", ["company_id"], :name => "index_indicator_histories_on_company_id"
   add_index "indicator_histories", ["creator_id"], :name => "index_indicator_histories_on_creator_id"
-  add_index "indicator_histories", ["indicator_id", "day"], :name => "index_indicator_histories_on_indicator_id_and_day"
   add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
   add_index "indicator_histories", ["responsible_id"], :name => "index_indicator_histories_on_responsible_id"
 
@@ -151,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20140422150224) do
     t.text     "description"
     t.string   "frequency"
     t.date     "next_update"
-    t.decimal  "goal",           :default => 100.0, :null => false
+    t.decimal  "goal",           :default => 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
@@ -233,6 +232,7 @@ ActiveRecord::Schema.define(:version => 20140422150224) do
     t.boolean  "reminder",          :default => true
     t.integer  "creator_id"
     t.integer  "hoshin_id"
+    t.integer  "lane_pos"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"

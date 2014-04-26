@@ -27,6 +27,7 @@ class Task < ActiveRecord::Base
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
+  acts_as_list :scope => [:status, :hoshin_id], :column => "lane_pos"
   
   set_default_order [:status, :tsk_pos]
   
@@ -36,6 +37,10 @@ class Task < ActiveRecord::Base
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
         User.current_id)) }
+  
+  scope :lane, lambda {|*status|
+    where(:status => status).order(:lane_pos)
+  }
   
   scope :due, lambda { |*interval|
     joins(:responsible)
@@ -63,11 +68,11 @@ class Task < ActiveRecord::Base
   after_destroy :update_counter_cache
 
   def update_counter_cache
-    self.objective.tasks_count = Task.where(:status => :active, :objective_id => self.objective_id).count(:id)
+    self.objective.tasks_count = Task.where(:status => [:active, :backlog], :objective_id => self.objective_id).count(:id)
     self.objective.save!
-    self.area.tasks_count = Task.where(:status => :active, :area_id => self.area_id).count(:id)
+    self.area.tasks_count = Task.where(:status => [:active, :backlog], :area_id => self.area_id).count(:id)
     self.area.save!
-    self.hoshin.tasks_count = Task.where(:status => :active, :hoshin_id => self.hoshin_id).count(:id)
+    self.hoshin.tasks_count = Task.where(:status => [:active, :backlog], :hoshin_id => self.hoshin_id).count(:id)
     self.hoshin.save!
   end
   
@@ -78,20 +83,32 @@ class Task < ActiveRecord::Base
   end
 
   lifecycle :state_field => :status do
-    state :active, :default => true
-    state :completed, :discarded, :deleted
+    state :backlog, :default => true
+    state :active, :completed, :discarded, :deleted
     
+    create :backlog,
+      :params => [:company_id, :objective_id, :area_id],
+      :become => :backlog    
+      
     transition :activate, {nil => :active}, :available_to => "User" 
     
     transition :complete, {:active => :completed}, :available_to => "User" 
     
     transition :discard, {:active => :discarded}, :available_to => "User" 
     
+    transition :reactivate, {:backlog => :active}, :available_to => "User" 
     transition :reactivate, {:completed => :active}, :available_to => "User" 
     transition :reactivate, {:discarded => :active}, :available_to => "User" 
     
     transition :delete, {:completed => :deleted}, :available_to => "User" 
     transition :delete, {:discarded => :deleted}, :available_to => "User" 
+    
+    transition :to_backlog, {Task::Lifecycle.states.keys => :backlog}, :available_to => "User" 
+    transition :to_active, {Task::Lifecycle.states.keys => :active}, :available_to => "User" 
+    transition :to_completed, {Task::Lifecycle.states.keys => :completed}, :available_to => "User" 
+    transition :to_discarded, {Task::Lifecycle.states.keys => :discarded}, :available_to => "User" 
+    transition :to_deleted, {Task::Lifecycle.states.keys => :deleted}, :available_to => "User" 
+    
       
   end
   

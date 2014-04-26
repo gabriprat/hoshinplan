@@ -1,0 +1,10 @@
+<show-page>
+	<content-header:>
+	</content-header:>
+	<content-body:>
+		<kanban-lane lane="backlog"/>
+		<kanban-lane lane="active"/>
+		<kanban-lane lane="completed"/>
+		<kanban-lane lane="discarded"/>
+	</content-body:>
+</show-page>

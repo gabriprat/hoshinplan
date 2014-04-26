@@ -32,7 +32,7 @@ class TasksController < ApplicationController
     if (params[:id]) 
       @this = find_instance
     else
-      @this = Task.new
+      @this = Task::Lifecycle.backlog(current_user, {:company_id => params[:company_id], :objective_id => params[:objective_id], :area_id => params[:area_id]})
       @this.company_id = params[:company_id]
       @this.objective_id = params[:objective_id]
       @this.area_id = params[:area_id]
