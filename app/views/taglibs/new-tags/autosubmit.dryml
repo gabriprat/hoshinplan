@@ -1,0 +1,20 @@
+<def tag="autosubmit" attrs="live, name">
+	<% 
+		attrs = attributes
+		attrs = add_classes(attrs, type_id.dasherize, type_and_field.dasherize) unless type_id.nil? || type_and_field.nil?
+		attrs[:name] ||= this_field
+	%>
+	<div class="autosubmit" data-rapid='#{data_rapid("autosubmit")}'>
+	<% hide = 'display:none;' unless live %>
+  	<unless test='&live'>
+		
+		<view param="view" class="#{name} autosubmit-toggle" merge-attrs="&attributes"/>
+		
+	</unless>
+	<form with="&this_parent" ajax class="autosubmit inline-form" style="#{hide}" merge-attrs="&attributes">
+		<with-fields fields="&attrs[:name]" param="default">
+		<input field="&name"/>
+		</with-fields>
+	 </form>
+	</div>
+</def>

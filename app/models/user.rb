@@ -135,6 +135,10 @@ class User < ActiveRecord::Base
 
   end
   
+  def abbrev
+    name.split.map{|x| x[0,1]}.join() unless name.nil?
+  end
+  
   def all_companies
     Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
   end

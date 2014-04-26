@@ -1,11 +1,6 @@
-var submitClosestForm = function() {
-	$(this)
-		.closest('form')
-		.submit();
-	return false;
-}
 
-var preventDoubleSubmit = function(e) {  
+
+var preventDoubleSubmit_delete = function(e) {  
     if (this.beenSubmitted) {
 	  e.preventDefault();
       return false;
@@ -162,36 +157,9 @@ $(document).ready(function() {
 });
 
 var attachAutosubmit = function() {
-	$('.bootstrap-datepicker').datepicker({orientation: "top left"});
-	$(".autosubmit input[type=text]")
-		.unbind("change", submitClosestForm).change(submitClosestForm);
-	$(".autosubmit input.indicator-value")
-		.unbind("blur", submitClosestForm).blur(submitClosestForm);
-	$(".autosubmit").unbind("submit", preventDoubleSubmit).submit(preventDoubleSubmit);
 	colorize();
 	equalHeightSections();
-	
-	$("[data-rmodal]").each(function () {
-		var that = $(this);
-		var id = that.data('target-id');
-		if ($('#' + id).length == 0 || $('#' + id).children().length == 0) {
-			var url = that.data('rmodal');
-			that.click(function () {
-				if ($('#' + id).length==0 || $('#' + id).children().length == 0) {
-					if ($('#' + id).length==0) {
-						that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="loading"></div></div></div>')
-					}
-					$('#' + id).load(url, function() {
-						$('#' + id).hjq('init');
-						attachAutosubmit();
-					}); 
-				}
-				$('#' + id).modal('show'); 
-				return false;
-			});
-		}
-	});
-	
+		
 	$('.in-place-edit a, .description-help a, .header-help a').filter(function() {
 	   return this.hostname && getServerAndTld(this.hostname) !== getServerAndTld(location.hostname);
 	}).each(function () {
