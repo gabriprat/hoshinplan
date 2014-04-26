@@ -1321,7 +1321,6 @@
     <body: class="show-page task" param/>
 
     <content-header: param>
-      <a:lane param="parent-link">&laquo; <ht key="task.actions.back_to_parent" parent="" name="&this">Back to <name/></ht></a:lane>
       <h2 param="heading">
         <ht key="task.show.heading" name="#{name(:no_wrapper => true)}">
           Task <name/>

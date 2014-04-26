@@ -1,0 +1,3 @@
+<def tag="rmodal" attrs="url,target-id">
+	<a data-rapid="#{data_rapid('rmodal', {url: url, target_id: target_id})}" data-rmodal="#{url}" href="#{url}" merge/>
+</def>

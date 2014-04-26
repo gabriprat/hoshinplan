@@ -20,35 +20,24 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column" data-label="Name"><a data-rmodal="#{url_for this}/form" data-target-id="update-kpi-modal-#{this.id}"><name/></a></div>
+		  <div class="column" data-label="Name"><rmodal url="#{url_for this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal></div>
   	</if>
 	<if test="&column == 'Resp.'">
   		<div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
 	</if>
 	<if test="&column == 'Value'">
 		  <div class="column nowrap" data-label="Value">
-			<if test="&this.status == :current || this.status == :multioverdue">
+			<if test="&false && this.status == :current || this.status == :multioverdue">
 			  	
-					<view with="&this.value.nil? ? 'N/A' : this.value" human class="value" data-rmodal="#{url_for this}/value_form" data-target-id="update-kpi-value-modal-#{this.id}"/>
+					<rmodal class="value" url="#{url_for this}/value_form" target-id="update-kpi-value-modal-#{this.id}"><view human with="&this.value.nil? ? 'N/A' : this.value"/></rmodal>
 			</if>
 			<else>
-			  	<if test="&this.value.nil?">
-					<span class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'><nil-view: /></span>
-			  	</if>
-				<else>
-					<view:value human class="value" onclick='$(this).toggle(); $(this).next(".autosubmit").toggle(); $(this).next(".autosubmit").find(".indicator-value").first().focus();'/>
-				</else>
-				<form ajax class="autosubmit inline-form" style="display:none;" complete="attachAutosubmit()">
-					<field-list: fields="value">
-						<value-view: >
-						<div class="input-append">
-							<input value="&number_with_delimiter(this)"/>
-							<button class="btn fa fa-check" type="submit"></button>
-						</div>
-						</value-view>
-					</field-list:>
-			  	 	<actions: replace />
-				 </form>
+				<autosubmit:value>
+					<div class="input-append">
+						<input />
+						<button class="btn fa fa-check" type="submit"></button>
+					</div>
+				</autosubmit>
 			 </else>
 		  </div>
 	</if>

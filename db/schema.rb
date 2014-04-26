@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20140426020610) do
 
   add_index "indicator_histories", ["company_id"], :name => "index_indicator_histories_on_company_id"
   add_index "indicator_histories", ["creator_id"], :name => "index_indicator_histories_on_creator_id"
+  add_index "indicator_histories", ["indicator_id", "day"], :name => "index_indicator_histories_on_indicator_id_and_day"
   add_index "indicator_histories", ["indicator_id"], :name => "index_indicator_histories_on_indicator_id"
   add_index "indicator_histories", ["responsible_id"], :name => "index_indicator_histories_on_responsible_id"
 

@@ -1,4 +1,4 @@
-	      		 <% update = @this.new_record? ? "#sec-actions,.kanban-card,#tasks-" + this.area.id.to_s : "#sec-actions,.kanban-card" %>
+	      		 <% update = @this.new_record? ? "#sec-actions,#tasks-" + this.area.id.to_s : "#sec-actions" %>
 			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal">
 	      		   <div class="modal-body">
 	      			    <field-list: fields="name, description, responsible, deadline, show_on_parent, reminder, objective">

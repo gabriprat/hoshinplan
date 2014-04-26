@@ -443,8 +443,8 @@ span.arrow.equal:after {
 	content: "=";
 }
 
-.multioverdue, .multioverdue a, .multioverdue a:hover, .multioverdue a:visited, .multioverdue a:active
-.overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active {
+body .multioverdue, body .overdue, .multioverdue a, .multioverdue a:hover, .multioverdue a:visited, .multioverdue a:active
+.overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active, .overdue + .in-place-edit, .multioverdue + .in-place-edit {
 	color: red;
 	font-weight: 500;
 }
@@ -1444,6 +1444,16 @@ form.indicator-value input[type=radio] {
 .postit .in-place-edit.task-description {
 	font-family:'Reenie Beanie';   
 	font-size:1.5em;
+}
+
+.postit div.deadline {
+	float: left;
+	margin: 0.5em;
+}
+
+.postit .user-image {
+	float: right;
+	margin: 0.5em;
 }
  
 .kb-frame {

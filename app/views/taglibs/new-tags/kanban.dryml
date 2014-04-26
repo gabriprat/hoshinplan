@@ -2,10 +2,14 @@
 <ul class="kb-lane connectedSortable" data-state="#{lane}">
 	<li class="ui-state-default ui-state-disabled"><h2><view with="&lane"/></h2></li>
 	<repeat with="&this.tasks.lane(lane)" >
-		<li class="kanban-card postit" data-id="#{this.id}" part="kanban">
-			<a data-rmodal="#{url_for this}/form" data-target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></a>
-			<click-editor:name/>
-			<click-editor:description/>
+		<li class="kanban-card postit" data-id="#{this.id}" part="kanban" id="kanban-#{this.id}">
+			<rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
+			<div><click-editor-innards:name/></div>
+			<div><click-editor-innards:description/></div>
+			<div class="deadline">
+				<autosubmit:deadline class="#{this.deadline_status}" />
+			</div>
+			<view:responsible.image data-initials="#{this.responsible.abbrev}" if="&this.responsible"/>
 		</li>
 	</repeat>
 </ul>

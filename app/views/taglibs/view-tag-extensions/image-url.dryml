@@ -3,5 +3,5 @@
 </def>
 
 <def tag="view" for="Paperclip::Attachment">
-  <img src="#{this.url(:thumb)}" />
+  <image param src="#{this.url(:thumb)}" merge-attrs/>
 </def>

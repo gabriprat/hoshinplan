@@ -4,7 +4,6 @@ class LanePos < ActiveRecord::Migration
 
     add_column :tasks, :lane_pos, :integer
 
-    remove_index :indicator_histories, :name => :index_indicator_histories_on_indicator_id_and_day rescue ActiveRecord::StatementInvalid
   end
 
   def self.down
@@ -12,6 +11,5 @@ class LanePos < ActiveRecord::Migration
 
     remove_column :tasks, :lane_pos
 
-    add_index :indicator_histories, [:indicator_id, :day]
   end
 end

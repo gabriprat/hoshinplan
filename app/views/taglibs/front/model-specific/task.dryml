@@ -19,7 +19,7 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'Task'">
-		<div class="column" data-label="Name"><a data-rmodal="#{url_for this}/form" data-target-id="update-task-modal-#{this.id}"><name/></a></div>
+		<div class="column" data-label="Name"><rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal></div>
 	</if>
 	<if test="&column == 'Resp.'">
 	        <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
@@ -27,10 +27,7 @@
 	<if test="&column == 'Deadline'">
 		  <div class="column nowrap" data-label="Deadline">
 			  	<if test="#{this.status=='active' || this.status == 'backlog' ?'true':''}">
-					<form ajax update="Task-#{this.id}" class="autosubmit inline-form wider" complete="attachAutosubmit()" before="validateDate(this);">
-						<field-list: fields="deadline" disable/>
-						<actions: replace/>
-				 	</form>
+					<autosubmit:deadline class="inline-form wider" live/>
 				</if>
 				<else>
 					#{this.deadline}

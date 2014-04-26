@@ -24,6 +24,6 @@
      d
     end
   %>
-	<old-bootstrap-datepicker merge placeholder="#{options['format']}">
+	<old-bootstrap-datepicker merge placeholder="#{options['format']}" data-rapid="#{data_rapid('datepicker')}">
 	</old-bootstrap-datepicker>
 </extend>
