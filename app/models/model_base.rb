@@ -18,6 +18,7 @@ module ModelBase
   
   def same_company(cid=nil)
     user = acting_user ? acting_user : User.current_user
+    return true if user.administrator?
     if respond_to?("creator_id") && (user.id == creator_id)
       return true
     end
@@ -35,6 +36,7 @@ module ModelBase
   
   def same_company_admin(cid=nil)
     user = acting_user ? acting_user : User.find(User.current_id)
+    return true if user.administrator?
     if respond_to?("creator_id") && (user.id == creator_id)
       return true
     end

@@ -43,7 +43,7 @@ class FrontController < ApplicationController
     "#{DateTime.now.to_s} #{text}\n"
   end
   
-  def sendreminders
+  def sendreminders    
     @text = ll "Initiating send reminders job!"
     kpis = User.at_hour(7).joins(:indicators).merge(Indicator.unscoped.due('5 day'))
     tasks = User.at_hour(7).joins(:tasks).merge(Task.unscoped.due('5 day'))
@@ -57,8 +57,10 @@ class FrontController < ApplicationController
   end
   
   def updateindicators
+    self.current_user = User.administrator.first
+    User.current_user = self.current_user
     @text = ll " Initiating updateindicators job!"
-    ihs = IndicatorHistory.joins(:indicator => :responsible)
+    ihs = IndicatorHistory.includes({:indicator => :responsible}, {:indicator => :hoshin})
       .where("day = #{User::TODAY_SQL} 
         and (
           indicator_histories.goal != indicators.goal
@@ -70,7 +72,7 @@ class FrontController < ApplicationController
           )")
     ihs.each { |ih| 
       ind = ih.indicator
-      line += ind.name + ": "
+      line = ind.id.to_s + " " + (ind.name.nil? ? 'N/A' : ind.name)   + ": "
       if (ind.goal.nil? || ind.goal != ih.goal)
         line += "goal #{ind.goal} => #{ih.goal}"
         ind.goal = ih.goal
@@ -84,7 +86,7 @@ class FrontController < ApplicationController
         ind.last_update = ih.day
       end
       @text += ll line
-      ind.save!
+      ind.save!({:validate => false})
     }
     @text += ll "End update indicators job!"
     render :text => @text, :content_type => Mime::TEXT
@@ -121,19 +123,21 @@ class FrontController < ApplicationController
     lines.each.with_index do |sql, i|
       ret += ll "(#{i}/#{n}) Executing: #{sql}"
       res = ActiveRecord::Base.connection.execute(sql)
-      ret += ll "====  Done! #{res.ntuples} rows affected"
+      ret += ll "====  Done! #{res.cmd_tuples} rows affected"
     end
     ret
   end
   
   def healthupdate
     @text = ll "Initiating healthupdate job!"
-    Hoshin.all.each{|hoshin|
+    self.current_user = User.administrator.first
+    User.current_user = self.current_user
+    Hoshin.unscoped.all.each{|hoshin|
       @text += ll "Updating hoshin #{hoshin.id} -- #{hoshin.name}"
       begin
         hoshin.health_update!
-      rescue
-        @text += ll "Error!"
+      rescue => e 
+        @text += ll "Error!"  + e.inspect + e.backtrace.to_yaml
       end
     }
     @text += ll "End healthupdate job!"

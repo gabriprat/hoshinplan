@@ -175,7 +175,7 @@ class Hoshin < ActiveRecord::Base
   # --- Permissions --- #
   
   def parent_same_company
-    parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
+    User.current_user.administrator? || parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
   end
   
   def validate_company
