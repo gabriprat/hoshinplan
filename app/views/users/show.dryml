@@ -62,21 +62,41 @@
     <section class="content-body" part="body">
     
     <div class="panel">
-    <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
-    <div class="panel-body">
-	<rtable with="&@indicators" columns="Company,Hoshin,Area,KPI,Value,Goal,%" part="indicators" id="indicators" class="indicators" />
-	<else>
-	    <ht key="indicator.collection.empty_message"/>
-	</else>
-	</div>
+	    <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
+	    <div class="panel-body">
+		<do part="indicators">
+	        <if test="&params[:action] == 'pending'">
+			<rtable:pending_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" />
+			<else>
+			    <ht key="indicator.collection.empty_message"/>
+			</else>
+	        </if>
+		<else>
+			<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" />
+			<else>
+			    <ht key="indicator.collection.empty_message"/>
+			</else>
+		</else>
+		</do>
+	    </div>
     </div>
     <div class="panel">
-    <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
-    <div class="panel-body">
-	    <rtable with="&@tasks" columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" part="tasks" id="tasks" class="tasks" />
-	    <else>
-	    <ht key="indicator.collection.empty_message"/>
-	    </else>
+	    <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
+	    <div class="panel-body">
+	    	    <do part="tasks">
+		    <if test="&params[:action] == 'pending'">
+		    	<rtable:pending_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" />
+		    	<else>
+		    		<ht key="indicator.collection.empty_message"/>
+		    	</else>
+		    </if>
+		    <else>
+		    	<rtable:tasks.active columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" />
+		    	<else>
+		    		<ht key="indicator.collection.empty_message"/>
+		    	</else>
+		    </else>
+		    </do>
 	    </div>
     </div>
     

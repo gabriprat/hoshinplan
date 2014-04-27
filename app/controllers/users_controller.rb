@@ -24,20 +24,6 @@ class UsersController < ApplicationController
     redirect_to current_user
   end
   
-  def pending
-    self.this = find_instance
-    @indicators = self.this.pending_indicators
-    @tasks = self.this.pending_tasks
-    render "show"
-  end
-  
-  def show
-    self.this = find_instance
-    @indicators = self.this.indicators
-    @tasks = self.this.tasks.active
-    hobo_show
-  end
-  
   def tutorial
     @this = find_instance
   end
