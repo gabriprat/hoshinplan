@@ -13,6 +13,7 @@ class Task < ActiveRecord::Base
     reminder          :boolean, :default => true
     timestamps
   end
+  index [:deadline, :status]
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id
 

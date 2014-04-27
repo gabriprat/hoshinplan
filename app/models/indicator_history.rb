@@ -10,6 +10,8 @@ class IndicatorHistory < ActiveRecord::Base
     day   :date
     timestamps
   end
+  index [:indicator_id, :day]
+  
   attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id
   
   belongs_to :creator, :class_name => "User", :creator => true
