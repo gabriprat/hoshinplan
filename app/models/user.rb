@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
     Task.includes(:responsible).where("deadline <= #{User::TODAY_SQL} and status=? and responsible_id = ?", :active, id)
   end
   
+  def dashboard_tasks
+    tasks.where(:status => [:active, :backlog])
+  end
+  
   def pending_indicators
     Indicator.includes(:responsible).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
   end

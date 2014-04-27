@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     redirect_to current_user
   end
   
+  def pending
+    @this = find_instance
+  end
+
   def tutorial
     @this = find_instance
   end
