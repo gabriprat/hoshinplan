@@ -1,1 +1,1 @@
-<def tag="nil-view"><span>N/A</span></def>
+<def tag="nil-view"><call-tag tag="span" merge>N/A</call-tag></def>

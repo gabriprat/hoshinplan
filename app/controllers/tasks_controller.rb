@@ -21,6 +21,11 @@ class TasksController < ApplicationController
   end
   
   def update
+    self.this = find_instance
+    if (params[:task] && params[:task][:status]) 
+      self.this.lifecycle.send("to_" + params[:task][:status] + "!", current_user)
+      params[:task].delete(:status)
+    end
     obj = params["task"]
     select_responsible(obj)
     hobo_update do
@@ -32,7 +37,7 @@ class TasksController < ApplicationController
     if (params[:id]) 
       @this = find_instance
     else
-      @this = Task::Lifecycle.backlog(current_user, {:company_id => params[:company_id], :objective_id => params[:objective_id], :area_id => params[:area_id]})
+      @this = Task.new
       @this.company_id = params[:company_id]
       @this.objective_id = params[:objective_id]
       @this.area_id = params[:area_id]

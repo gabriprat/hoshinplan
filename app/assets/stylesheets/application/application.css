@@ -444,7 +444,7 @@ span.arrow.equal:after {
 }
 
 body .multioverdue, body .overdue, .multioverdue a, .multioverdue a:hover, .multioverdue a:visited, .multioverdue a:active
-.overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active, .overdue + .in-place-edit, .multioverdue + .in-place-edit {
+.overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active {
 	color: red;
 	font-weight: 500;
 }
@@ -1387,46 +1387,60 @@ form.indicator-value input[type=radio] {
 }
 
 /* kanban */
-.kb-lane {
-	background: #eeeeee;
-	overflow: auto;
-	-moz-border-radius: 0px 0px 5px 5px;
-	border-radius: 0px 0px 5px 5px;
-	padding: .5%;
-	margin-right: .5%;
-	display: table-cell;
+.kb-frame .connected-sortable-wrapper {
+	display:table-cell;
 	width: 20%;
+}
+
+.kb-frame .panel-heading {
 	border-right: 1px solid lightgray;
 }
-.kb-header {
-	background: #eeeeee;
+
+.kb-frame {
+	width: 98%;
 	overflow: auto;
-	-moz-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
-	padding: .5%;
-	margin-right: .5%;
-	float: left;
-	display: inline;
-	height: 30px;
-	overflow: hidden;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: .5%;
+	display: table;
+	height: 600;
 }
+
+.kb-lane {
+	-moz-border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 5px 5px;
+	width: 100%;
+	border-right: 1px solid lightgray;
+	box-sizing: border-box;
+	min-height: 200px;
+}
+
+.kb-lane ul {
+	margin: 0;
+}
+
+.cs-size-kb-lane {
+	display: inline;
+}
+
+
 .postit {    
   text-align:center;     
   width: 98%;    
-  margin: .1em;    
+  margin: .4em 0;    
   min-height:5em;
   padding-top: 1em;
   position:relative;   
   border:1px solid #E8E8E8;       
   border-bottom-right-radius: 6em .5em;
   display:inline-block;    
-  background: rgb(255,255,136); /* Old browsers */
-  background: -moz-linear-gradient(-45deg, rgba(255,255,136,1) 77%, rgba(255,255,214,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(77%,rgba(255,255,136,1)), color-stop(100%,rgba(255,255,214,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%); /* IE10+ */
-  background: linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%); /* W3C */
+  background: rgb(255,255,186); /* Old browsers */
+  background: -moz-linear-gradient(-45deg, rgba(255,255,186,1) 77%, rgba(255,255,214,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(77%,rgba(255,255,186,1)), color-stop(100%,rgba(255,255,214,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, rgba(255,255,186,1) 77%,rgba(255,255,214,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg, rgba(255,255,186,1) 77%,rgba(255,255,214,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg, rgba(255,255,186,1) 77%,rgba(255,255,214,1) 100%); /* IE10+ */
+  background: linear-gradient(-45deg, rgba(255,255,186,1) 77%,rgba(255,255,214,1) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffff88',GradientType=0 ); /* IE6-9 fallback on horizontal gradient */
 }
 
@@ -1439,6 +1453,11 @@ form.indicator-value input[type=radio] {
 	position: absolute;
 	right: 5px;
 	top: 5px;
+	visibility: hidden;
+}
+
+.postit:hover a.edit {
+	visibility: visible;
 }
 
 .postit .in-place-edit.task-description {
@@ -1455,20 +1474,6 @@ form.indicator-value input[type=radio] {
 	float: right;
 	margin: 0.5em;
 }
- 
-.kb-frame {
-	background: #eeeeee;
-	width: 98%;
-	overflow: auto;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	padding: .5%;
-	margin: .5%;
-	display: table-cell;
-	height: 600;
-}
-
-
 
 @media all and (min-width: 979px) {
 	#sec-actions {

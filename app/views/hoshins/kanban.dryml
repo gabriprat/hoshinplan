@@ -1,10 +1,15 @@
 <show-page>
-	<content-header:>
-	</content-header:>
+	<parent-link:>
+		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
+	</parent-link:>
+	<heading: replace>
+	</heading:>
 	<content-body:>
-		<kanban-lane lane="backlog"/>
-		<kanban-lane lane="active"/>
-		<kanban-lane lane="completed"/>
-		<kanban-lane lane="discarded"/>
+		<div class="kb-frame">
+			<kanban-lane:backlog_tasks lane="backlog"/>
+			<kanban-lane:active_tasks lane="active"/>
+			<kanban-lane:completed_tasks lane="completed"/>
+			<kanban-lane:discarded_tasks lane="discarded"/>
+		</div>
 	</content-body:>
 </show-page>

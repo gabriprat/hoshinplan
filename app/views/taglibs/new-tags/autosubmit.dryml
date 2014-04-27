@@ -8,7 +8,8 @@
 	<% hide = 'display:none;' unless live %>
   	<unless test='&live'>
 		
-		<view param="view" class="#{name} autosubmit-toggle" merge-attrs="&attributes"/>
+		<view param="view" class="#{name} autosubmit-toggle" merge-attrs="&attributes" unless="&this.nil?"/>
+		<else><nil-view class="#{name} autosubmit-toggle" merge-attrs="&attributes"/></else>
 		
 	</unless>
 	<form with="&this_parent" ajax class="autosubmit inline-form" style="#{hide}" merge-attrs="&attributes">
