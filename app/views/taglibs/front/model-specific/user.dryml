@@ -20,3 +20,107 @@
     <field-list: fields="name, email_address, image, companies, timezone"/>
   </old-form>
 </extend>
+
+
+<extend tag="show-page" for="User">
+<old-show-page merge>
+  <body: class="dashboard hoshin" />
+	
+  <heading:>
+  	<if test="&attributes[:pending]">
+	<t key="user.pending_actions_for" name="#{this.name}">Pending actions for <name/> </t>
+	</if>
+	<else>
+  	<t key="user.dashboard_for" name="#{this.name}">Dashboard for <name/> </t>
+	</else>
+  </heading:>
+  <append-content-header:>
+	<if test="&attributes[:pending]">
+	<a> <t key="user.show_all">Show all</t></a>
+	</if>
+	<else>
+	<a action="pending"> <t key="user.show_only_pending">Show only pending actions</t></a>
+	</else>
+  </append-content-header:>
+  	
+  <aside:/>
+  
+  <aside-column:>
+  	<div class="panel">
+		<div class="panel-heading clearfix">
+			<span class="tools pull-right hoshin-tasks" style="margin-left: -20px;">
+		            <a action="edit"><span class="fa fa-cog"/></a>
+			</span>
+			<div class="inline edit-image">
+			<view:image />
+			<div><a action="edit"><t key="dashboard.change">Change</t></a></div>
+			</div>
+			<div class="inline">
+			<strong><view:name /></strong>
+			<br/>
+			<span class="lower">#{this.email_address.to_s}</span>
+			<br/><br/>
+			<delete-button value="#{t 'delete_account', :default => 'Delete account'}"/>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h4><t key="dashboard.collaborating_with">Collaborating with</t></h4>
+			<hr/>
+			<collection:companies part="companies" id="companies">
+			        <header>
+			          <h4>
+				  <a><name/></a>
+				  <delete-button with="&this.user_companies.where(:user_id => current_user.id).first" action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')"/>
+				  </h4>
+			        </header>
+				<collection:hoshins class="timeline">
+					<view/>
+				</collection>
+			</collection>
+		</div>
+	</div>
+  </aside-column:>
+  
+  <content-body:>
+    <div class="content-body">
+
+    <div class="panel">
+    
+	    <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
+	    <div class="panel-body">
+	        <if test="&attributes[:pending]">
+			<rtable:pending_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="pending-indicators" />
+			<else>
+			    <ht key="indicator.collection.empty_message"/>
+			</else>
+	        </if>
+		<else>
+			<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="indicators" />
+			<else>
+			    <ht key="indicator.collection.empty_message"/>
+			</else>
+		</else>
+	    </div>
+    </div>
+    <div class="panel">
+	    <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
+	    <div class="panel-body">
+		    <if test="&attributes[:pending]">
+		    	<rtable:pending_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="pending-tasks" />
+		    	<else>
+		    		<ht key="indicator.collection.empty_message"/>
+		    	</else>
+		    </if>
+		    <else>
+		    	<rtable:dashboard_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="tasks" />
+		    	<else>
+		    		<ht key="indicator.collection.empty_message"/>
+		    	</else>
+		    </else>
+	    </div>
+    </div>
+    
+    </div>
+  </content-body:>
+</old-show-page>
+</extend>
