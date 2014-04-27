@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
     reminder          :boolean, :default => true
     timestamps
   end
-  attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder,
+  attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id
 
   belongs_to :creator, :class_name => "User", :creator => true
@@ -39,22 +39,26 @@ class Task < ActiveRecord::Base
         User.current_id)) }
   
   scope :lane, lambda {|*status|
-    where(:status => status).order(:lane_pos)
+    visible.where(:status => status).order(:lane_pos)
   }
   
   scope :due, lambda { |*interval|
     joins(:responsible)
     .where("reminder = true 
       and deadline between #{User::TODAY_SQL} - interval ?
-      and #{User::TODAY_SQL} and status = ?", interval, :active)
+      and #{User::TODAY_SQL} and status in (?)", interval, [:active, :backlog])
   }
   
   scope :overdue, lambda {
     includes(:responsible)
-    .where("deadline < #{User::TODAY_SQL} and status = ?", :active)
+    .where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog])
   }
   
   scope :due_today, -> { due('0 hour') }
+  
+  scope :visible, -> {
+    where("status != 'deleted' and (status = 'active' or status = 'backlog' or deadline>current_date-30)")
+  }  
  
   before_create do |task|
     task.company = task.objective.company
@@ -124,7 +128,7 @@ class Task < ActiveRecord::Base
   
   def deadline_status 
     if deadline?
-      deadline < Date.today ? :overdue : :current
+      deadline < Date.today && ['active', 'backlog'].include?(status) ? :overdue : :current
     end
   end
   

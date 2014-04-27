@@ -55,16 +55,28 @@ class Hoshin < ActiveRecord::Base
     tasks.where(:status => status)
   end
   
+  def backlog_tasks
+    tasks.backlog.order(:lane_pos)
+  end
+  def active_tasks
+    tasks.active.order(:lane_pos)
+  end
+  def completed_tasks
+    tasks.completed.order(:lane_pos)
+  end
+  def discarded_tasks
+    tasks.discarded.order(:lane_pos)
+  end
+  
   def health_update!
-    return;
     neglected = objectives.neglected.count(:id)
     self.neglected_objectives_count = neglected
     
-    outdated = indicators.overdue.count(:id)
-    self.outdated_indicators_count = outdated
+    outdated_ind = indicators.overdue.count(:id)
+    self.outdated_indicators_count = outdated_ind
 
-    outdated = tasks.overdue.count(:id)
-    self.outdated_tasks_count = outdated
+    outdated_tsk = tasks.overdue.count(:id)
+    self.outdated_tasks_count = outdated_tsk
     
     blind = objectives.blind.count(:id)
     self.blind_objectives_count = blind  
