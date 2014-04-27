@@ -41,7 +41,8 @@ class Indicator < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id) ) }
+        User.current_id) ) if User.current_id 
+  }
         
   
   scope :due, lambda { |*interval|

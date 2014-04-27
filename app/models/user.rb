@@ -167,9 +167,13 @@ class User < ActiveRecord::Base
     ret = RequestStore.store[:user]
     if (ret.nil? && !self.current_id.nil?) 
       ret = User.find(self.current_id)
-      RequestStore.store[:user] = ret
+      User.current_user = ret
     end
     ret
+  end
+  
+  def self.current_user=(id)
+    RequestStore.store[:user] = id
   end
   
   # --- Permissions --- #
