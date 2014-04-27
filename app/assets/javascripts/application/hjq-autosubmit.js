@@ -6,6 +6,7 @@
 		that.find("input[type=text]").focus(methods.focus);
 		that.find("input[type=text]").blur(methods.blur);
 		that.find("button[type=submit], input[type=submit]").mousedown(methods.cancelBlur);
+		that.find("button[type=submit], input[type=submit]").click(methods.cancelBlur);
 		that.find(".autosubmit-toggle").click(methods.toggle);
 		that.find("form.autosubmit").submit(methods.submit);
 		

@@ -41,7 +41,12 @@
 				var sep = document.documentElement.getAttribute("data-sep");
 				var del = document.documentElement.getAttribute("data-del");
 				var dateFormat = function(d) {
-					var ret = $.datepicker.formatDate(df, new Date(d));
+					if (d instanceof Array) {
+						var date = new Date(d[0],d[1],d[2]);
+					} else {
+						var date = new Date(d);
+					}
+					var ret = $.datepicker.formatDate(df, date);
 					return ret;
 				}
 				var numberFormat = function(num) {
@@ -73,7 +78,7 @@
 					if (i>0) {
 						txt += "\\n";
 					}
-					var date = dateFormat(data[i].date);
+					var date = dateFormat(data[i].date.split("-"));
 					var value = numberFormat(data[i].value);
 					var goal = numberFormat(data[i].goal);
 					var fieldSep = sep == ',' ? ';' : ','; 
