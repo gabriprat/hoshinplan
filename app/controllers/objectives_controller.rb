@@ -8,7 +8,7 @@ class ObjectivesController < ApplicationController
   
   cache_sweeper :objectives_sweeper
   
-  show_action :form
+  web_method :form
   
   
   include RestController
