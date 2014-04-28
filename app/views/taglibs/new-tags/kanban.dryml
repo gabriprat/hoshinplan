@@ -10,7 +10,7 @@
 			<div class="deadline">
 				<autosubmit:deadline class="#{this.deadline_status}"/>
 			</div>
-			<user-img:responsible.id />
+			<user-img:responsible_id />
 			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-#{scope.connect_with}">
 				<hidden-fields fields="lane_pos, status"/>
 			</formlet>
