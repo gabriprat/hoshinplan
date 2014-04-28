@@ -1,6 +1,6 @@
 <def tag="scard" for="Task" attrs="columns">
 <swept-cache route-on suffix="scard" path="&request.fullpath">
-<scard class="task table-row" part-id="task" id="task-#{this.id}" param="default" merge>
+<scard class="task table-row" id="task-#{this.id}" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
 	        <div class="column" data-label="Id" id="task_#{this.id}">
@@ -42,14 +42,14 @@
 	      	<ul class="icons">
 	      	  <if test="#{this.status=='active'?'true':''}">
 	      		  <li class="complete">
-	      		  <form ajax lifecycle="discard" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id}" lifecycle="discard" class="inline-form" complete="attachAutosubmit()">
 					<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.discard', :default => 'Discard'}">
 						<span class="fa fa-times-circle fa-fw"></span>
 					</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="discard">
-	      		  <form ajax lifecycle="complete" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id}" lifecycle="complete" class="inline-form" complete="attachAutosubmit()">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.complete', :default => 'Complete'}">
 					<span class="fa fa-check-circle fa-fw"></span>
 				</button>
@@ -58,14 +58,14 @@
 	        	  </if>
 	      	  <else>
 	      		  <li class="reactivate">
-	      		  <form ajax lifecycle="reactivate" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id}" lifecycle="reactivate" class="inline-form" complete="attachAutosubmit()">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.reactivate', :default => 'Reactivate'}">
 					<span class="fa fa-play-circle fa-fw"></span>
 				</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="delete">
-	      		  <form ajax lifecycle="delete" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id}" lifecycle="delete" class="inline-form" complete="attachAutosubmit()">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.delete', :default => 'Delete'}">
 					<span class="fa fa-trash-o fa-fw"></span>
 				</button>
