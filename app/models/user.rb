@@ -139,6 +139,16 @@ class User < ActiveRecord::Base
 
   end
   
+  def img_url(size) 
+    key = "user-image-" + id.to_s + "-" + size.to_s
+    ret = RequestStore.store[key]
+    if ret.nil? 
+      ret = image.url(:thumb) if image.exists?
+      RequestStore.store[key] = ret
+    end
+    ret
+  end
+  
   def abbrev
     name.split.map{|x| x[0,1]}.join() unless name.nil?
   end

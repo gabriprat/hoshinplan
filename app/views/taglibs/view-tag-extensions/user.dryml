@@ -22,7 +22,9 @@
 <def tag="user-img">
 	<% user = Company.current_company.comp_users[this] unless Company.current_company.nil? %>
 	<do with="&user" unless="&user.nil?">
-		<view:image title="#{this.name}" data-default="#{this.abbrev}" if="&this.image.exists?"/>
+		<span class="view user-image" data-default="#{this.abbrev}">
+			<image src="#{this.img_url(:thumb)}" class="#{'no-image' unless this.img_url(:thumb)}"/>
+		</span>
 		<else>
 			<user-abbrev:id class="user-image" style="background-color:#{this.color}"/>
 		</else>
