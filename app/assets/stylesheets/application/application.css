@@ -1406,6 +1406,9 @@ form.indicator-value input[type=radio] {
 }
 
 /* kanban */
+.modal.formlet .modal-body {
+	min-height: 170px;
+}
 .kb-colors {
 	text-align: center;
 }
