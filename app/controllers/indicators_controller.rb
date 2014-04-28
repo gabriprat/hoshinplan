@@ -6,9 +6,10 @@ class IndicatorsController < ApplicationController
   
   auto_actions_for :objective, [:index, :new, :create]
   
-  show_action :history, :form, :value_form
+  show_action :history
   
-  index_action :form
+  web_method :form
+  web_method :value_form
   
   cache_sweeper :indicators_sweeper
   

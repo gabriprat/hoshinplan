@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
     end
     
     def authenticate_client_app
-      return unless (request.format.json? || request.format.xml?)
+      return unless request.format && (request.format.json? || request.format.xml?)
       app_key = params[:app_key].presence
       raise Errors::SecurityError.new(1), "Client application key parameter (app_key) not provided." unless app_key
       t = Time.xmlschema(params[:timestamp].presence)

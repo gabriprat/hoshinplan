@@ -2,7 +2,7 @@
 	<% columns ||= "" ; columns = comma_split(columns) -%>
 	<% sortable ||= false %>
 	<% tag = sortable ? "sortable-collection" : "collection" %>
-	<div class="table" merge-attrs merge-params unless='empty?'>
+	<div class="table" merge-attrs merge-params unless='blank?'>
 		<ul class="table-head">
 			<li class="table-row">
 				<div class="column ordering" if="&sortable"></div>

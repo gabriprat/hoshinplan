@@ -128,9 +128,12 @@ class Task < ActiveRecord::Base
   end
   
   def deadline_status 
-    if deadline?
-      deadline < Date.today && ['active', 'backlog'].include?(status) ? :overdue : :current
+    ret = ""
+    if self.deadline
+      ret = (self.deadline < Date.today) && ['active', 'backlog'].include?(self.status) ? :overdue : :current
+      logger.debug (self.deadline < Date.today).to_yaml + ",,,," + ['active', 'backlog'].include?(self.status).to_yaml + ",,,," + ret.to_yaml
     end
+    ret
   end
   
   def deviation
