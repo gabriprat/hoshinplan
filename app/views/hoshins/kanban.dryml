@@ -12,7 +12,7 @@
 					<formlet ajax success="updateColors(); $('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal" id="upd-area-#{this.id}">
 					    <modal-header><view:name/></modal-header>
 					    <div class="modal-body">
-					    <field-list fields="color"/>
+					    <feckless-fieldset class="horizontal" fields="color"/>
 					    </div>
 					    <modal-form-footer/>
 					 </formlet>
