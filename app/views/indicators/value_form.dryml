@@ -1,4 +1,4 @@
-<% update = @this.new_record? ? "indicators-" + this.area.id.to_s : "" %>
+<% update = @this.new_record? ? "#neglected,indicators-" + this.area.id.to_s : "#neglected" %>
 <form update="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal indicator-value">
 	<div class="modal-body">
 		<field-list: fields="value,last_update">
