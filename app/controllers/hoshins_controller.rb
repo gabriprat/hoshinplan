@@ -25,8 +25,7 @@ class HoshinsController < ApplicationController
   end
   
   def health
-    @this = find_instance
-  
+    show
   end
   
   def kanban_update    

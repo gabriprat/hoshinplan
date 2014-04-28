@@ -67,6 +67,18 @@ class Hoshin < ActiveRecord::Base
   def discarded_tasks
     tasks.discarded.order(:lane_pos)
   end
+  def outdated_tasks
+    tasks.overdue
+  end
+  def outdated_indicators
+    tasks.overdue
+  end
+  def blind_indicators
+    tasks.overdue
+  end
+  def outdated_indicators
+    tasks.overdue
+  end
   
   def health_update!
     neglected = objectives.neglected.count(:id)

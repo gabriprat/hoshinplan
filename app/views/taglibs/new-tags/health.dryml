@@ -23,7 +23,7 @@
 					<li> <ht key="objective.hoshin.neglected_objectives" neglected="#{this.neglected_objectives_count}" count="#{this.objectives_count}" kpi="&Indicator.model_name.human(:count => 100)" task="&Task.model_name.human(:count => 100)">You have #{this.neglected_objectives_count}/#{this.objectives_count} <model-name-human model="&Objective"/> with low <model-name-human model="&Indicator" count="100"/> and no active <model-name-human model="&Task" count="100"/></ht></li>
 					<li> <ht key="objective.hoshin.blind_objectives" blind="#{this.blind_objectives_count}" count="#{this.objectives_count}" kpi="&Indicator.model_name.human(:count => 100)" objective="&Objective.model_name.human(:count => 100)">You have #{this.blind_objectives_count}/#{this.objectives_count} <model-name-human model="&Objective" count="100"/> with no <model-name-human model="&Indicator" count="100"/></ht></li>
 					</ul>
-					<h4><t key="hoshin.indicators_health" health="#{number_with_precision this.indicators_health}">Objectives health: <view:indicators_health />%</t></h4>
+					<h4><t key="hoshin.indicators_health" health="#{number_with_precision this.indicators_health}">Indicators health: <view:indicators_health />%</t></h4>
 					<ul>
 					<li> <ht key="indicator.hoshin.outdated_model" outdated="#{this.outdated_indicators_count}" count="#{this.indicators_count}">You have #{this.outdated_indicators_count}/#{this.indicators_count} outdated <model-name-human model="&Indicator" count="#{this.outdated_indicators_count}"/></ht></li>
 					</ul>

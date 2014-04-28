@@ -43,6 +43,10 @@ Hoshinplan::Application.routes.draw do
   
   match "/auth/failure" => "front#failure"
   
+  post "/tasks/form" => "tasks#form", :as => 'task_form'
+
+  post "/indicators/form" => "indicators#form", :as => 'indicators_form'
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

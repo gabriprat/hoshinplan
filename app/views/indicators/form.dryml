@@ -1,4 +1,4 @@
-		        <% update = @this.new_record? ? "#sec-actions,#indicators-" + this.area.id.to_s : "#sec-actions" %>
+		        <% update = @this.new_record? ? "#sec-actions,#hindicators,#indicators-" + this.area.id.to_s : "#sec-actions" %>
 			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); colorize(); attachAutosubmit();" class="modal">
 				   <div class="modal-body">
 		            <field-list: fields="name, description, frequency, next_update, responsible, goal, worst_value, reminder, objective, show_on_parent">

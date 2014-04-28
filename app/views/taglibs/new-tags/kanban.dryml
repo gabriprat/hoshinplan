@@ -2,19 +2,19 @@
 <connected-sortable connect-with="kb-lane" title="#{lane}" list-id="#{lane}" class="panel panel-default">
 	<title: class="panel-heading"/>
 	<body: class="panel-body"/>
-			
-	
-	<item: class="kanban-card postit" data-id="#{this.id}"/>
-	<default:>
-		<do part="kanban-card">
-		<rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
-		<div><click-editor:name/></div>
-		<div><click-editor:description/></div>
-		<div class="deadline">
-			<autosubmit:deadline class="#{this.deadline_status}" part="deadline"/>
-		</div>
-		<view:responsible.image data-initials="#{this.responsible.abbrev}" if="&this.responsible"/>
-		</do>
-	</default>
+	<item: replace>
+		<li class="kanban-card postit" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
+			<rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
+			<div><click-editor-innards:name/></div>
+			<div><click-editor-innards:description/></div>
+			<div class="deadline">
+				<autosubmit:deadline class="#{this.deadline_status}"/>
+			</div>
+			<view:responsible.image data-initials="#{this.responsible.abbrev}" if="&this.responsible"/>
+			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-#{scope.connect_with}">
+				<hidden-fields fields="lane_pos, status"/>
+			</formlet>
+		</li>
+	</item:>
 </connected-sortable>
 </def>

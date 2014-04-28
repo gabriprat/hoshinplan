@@ -561,7 +561,7 @@ body .form-search input:focus {
 .ordering-handle br {
 	display: none;
 }
-.value {
+.value, .autosubmit-toggle {
 	background-color: white;
 	border: none;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);

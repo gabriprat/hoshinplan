@@ -13,7 +13,7 @@
 			if ($('#' + id).length==0) {
 				that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="loading"></div></div></div>')
 			}
-			$('#' + id).load(url, function() {
+			$('#' + id).load(url, {'page_path':window.location.pathname}, function() {
 				$('#' + id).hjq('init');
 				attachAutosubmit();
 			}); 
