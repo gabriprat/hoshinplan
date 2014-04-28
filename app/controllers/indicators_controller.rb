@@ -83,6 +83,7 @@ class IndicatorsController < ApplicationController
         attributes = :value
         if params[:indicator][:last_update]
           i.last_update = params[:indicator][:last_update]
+          i.last_update_will_change!
           attributes = [:value, :last_update]
         end
         hobo_update(i, :attributes => attributes) do
