@@ -70,6 +70,10 @@ a {
 	text-align: center;
 }
 
+.modal {
+	text-align: left;
+}
+
 .modal h1 {
 	font-size: 2em;
 	font-weight: 400;
@@ -825,6 +829,10 @@ form#add-collaborators textarea {
 
 .column[data-label=Value], .column[data-label=Goal], .column[data-label=Deviation] {
 	text-align: right;
+}
+
+.form-horizontal .simpleColorContainer, .horizontal .simpleColorContainer {
+	display: inline-block;
 }
 
 .dropdown-menu {
