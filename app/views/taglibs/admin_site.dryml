@@ -10,7 +10,7 @@
 
 <include gem='hobo_bootstrap_ui'/>
 
-<include gem='hobo_simple_color'/>
+<include src='hobo_simple_color'/>
 
 <include src="taglibs/auto/admin/rapid/cards"/>
 <include src="taglibs/auto/admin/rapid/pages"/>
