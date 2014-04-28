@@ -573,6 +573,14 @@ body .form-search input:focus {
 	transition: border linear 0.2s, box-shadow linear 0.2s;
 	padding: 0 0 0 1em;
 }
+
+.postit .autosubmit-toggle {
+	background: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
 body div.ordering-handle {
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
