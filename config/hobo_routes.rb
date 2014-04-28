@@ -108,7 +108,7 @@ Hoshinplan::Application.routes.draw do
       post 'reorder'
     end
     member do
-      get 'form'
+      post 'form'
     end
   end
 
