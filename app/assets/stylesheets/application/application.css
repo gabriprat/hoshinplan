@@ -1412,10 +1412,11 @@ form.indicator-value input[type=radio] {
 
 .kb-color {
 	display: inline-block;
-	width: 20%;
+	width: 15%;
 	height: 2em;
 	margin-right: 3em;
 	line-height: 2em;
+	margin-bottom: 1em;
 }
 
 .kb-frame .connected-sortable-wrapper {
