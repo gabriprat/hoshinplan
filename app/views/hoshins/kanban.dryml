@@ -6,8 +6,19 @@
 	</heading:>
 	<content-body:>
 		<div class="kb-colors">
-			<repeat:areas>
-				<div class="kb-color" style="background-color:#{this.color}"><view:name/></div>
+			<repeat:areas part="colors">
+				<modal id="update-area-modal-#{this.id}">
+				<modal:>
+					<formlet ajax success="updateColors(); $('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal" id="upd-area-#{this.id}">
+					    <modal-header><view:name/></modal-header>
+					    <div class="modal-body">
+					    <field-list fields="color"/>
+					    </div>
+					    <modal-form-footer/>
+					 </formlet>
+				</modal:>
+				</modal>
+				<modal-open-button class="kb-color" data-color-id="#{this.id}" style="background-color:#{this.color}" modal="update-area-modal-#{this.id}"><view:name/></modal-open-button>
 			</repeat>
 		</div>
 		<div class="kb-frame">

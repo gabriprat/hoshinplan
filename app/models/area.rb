@@ -16,7 +16,7 @@ class Area < ActiveRecord::Base
     timestamps
   end
 
-  attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator_id
+  attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator_id, :color
   
   belongs_to :creator, :class_name => "User", :creator => true
   never_show :creator
@@ -52,11 +52,14 @@ class Area < ActiveRecord::Base
   end
   
   def defaultColor
-    hexFromString(name + id.to_s, 0.9)
+    hexFromString((self.name.nil? ? 'area' : name) + "-" + id.to_s, 0.9)
   end
   
   def color
-    @color.blank? ? defaultColor : @color
+    if super().blank? 
+      self.color = defaultColor
+    end 
+    super()
   end
   
   def child_tasks 

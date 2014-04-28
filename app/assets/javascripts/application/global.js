@@ -182,6 +182,15 @@ function getServerAndTld(host) {
 
 $(document).ready(attachAutosubmit);
 
+function updateColors() {
+	$('.kb-color').each(function () {
+		var col = $(this).css('background-color');
+		var colId = $(this).data('color-id');
+		$(".kb-color-" + colId).css('background',col);
+	});
+}
+$(document).ready(updateColors);
+
 function fixedHorizontal() {
 	if ($("html.pdf").length > 0) { return; }
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
