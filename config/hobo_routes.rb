@@ -146,6 +146,8 @@ Hoshinplan::Application.routes.draw do
       get 'delete'
       put 'delete', :action => 'do_delete'
       get 'delete'
+      put 'delete', :action => 'do_delete'
+      get 'delete'
       put 'to_backlog', :action => 'do_to_backlog'
       get 'to_backlog'
       put 'to_active', :action => 'do_to_active'
