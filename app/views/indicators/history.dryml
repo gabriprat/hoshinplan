@@ -42,7 +42,7 @@
 				var del = document.documentElement.getAttribute("data-del");
 				var dateFormat = function(d) {
 					if (d instanceof Array) {
-						var date = new Date(d[0],d[1],d[2]);
+						var date = new Date(d[0],d[1]-1,d[2]);
 					} else {
 						var date = new Date(d);
 					}
