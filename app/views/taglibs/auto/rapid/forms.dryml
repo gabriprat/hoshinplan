@@ -4,7 +4,7 @@
 <def tag="form" for="Area">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, position, company, hoshin, indicators, tasks" param/>
+    <field-list fields="name, description, color, position, company, hoshin, indicators, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'area.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

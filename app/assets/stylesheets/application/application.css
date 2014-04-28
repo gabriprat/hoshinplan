@@ -304,15 +304,18 @@ body.hoshin form.inline-form {
 }
 
 body.hoshin form.inline-form input[type=image] {
-	width: 20px;
-	height: 20px;
+	width: 2em;
+	height: 2em;
 }
 
-body.hoshin .content-body .user-image img {
-	width: 20px;
-	height: 20px;
-	max-width: 20px;
+body.hoshin .content-body .user-image {
+	width: 2em;
+	height: 2em;
+	max-width: 2em;
+	line-height: 2em;
+	color: #fff;
 }
+
 body.hoshin .form-horizontal {
 	margin: 0;
 }
@@ -788,8 +791,8 @@ form#add-collaborators textarea {
 	height: 10em;
 }
 
-.user-image img {
-	border-radius: 52px;
+.user-image, .user-image img {
+	border-radius: 50%;
 }
 
 .user .bootstrap-content .user-image img {
@@ -1395,6 +1398,18 @@ form.indicator-value input[type=radio] {
 }
 
 /* kanban */
+.kb-colors {
+	text-align: center;
+}
+
+.kb-color {
+	display: inline-block;
+	width: 20%;
+	height: 2em;
+	margin-right: 3em;
+	line-height: 2em;
+}
+
 .kb-frame .connected-sortable-wrapper {
 	display:table-cell;
 	width: 20%;

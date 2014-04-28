@@ -81,3 +81,4 @@ gem 'RedCloth'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
 gem 'redis-rails'
+

@@ -103,7 +103,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="position, company" param/>
+      <field-list fields="color, position, company" param/>
     </content-body:>
 
   </page>

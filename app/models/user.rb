@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   include ModelBase
-  
+  include ColorHelper
   
   hobo_user_model # Don't put anything above this
   
@@ -141,6 +141,10 @@ class User < ActiveRecord::Base
   
   def abbrev
     name.split.map{|x| x[0,1]}.join() unless name.nil?
+  end
+  
+  def color
+    hexFromString(name)
   end
   
   def all_companies

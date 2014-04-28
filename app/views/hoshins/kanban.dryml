@@ -5,6 +5,11 @@
 	<heading: replace>
 	</heading:>
 	<content-body:>
+		<div class="kb-colors">
+			<repeat:areas>
+				<div class="kb-color" style="background-color:#{this.color}"><view:name/></div>
+			</repeat>
+		</div>
 		<div class="kb-frame">
 			<kanban-lane:backlog_tasks lane="backlog"/>
 			<kanban-lane:active_tasks lane="active"/>

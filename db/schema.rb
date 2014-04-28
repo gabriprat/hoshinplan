@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140427031939) do
+ActiveRecord::Schema.define(:version => 20140428183236) do
 
   create_table "areas", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                            :null => false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20140427031939) do
     t.integer  "objectives_count", :default => 0, :null => false
     t.integer  "indicators_count", :default => 0, :null => false
     t.integer  "tasks_count",      :default => 0, :null => false
+    t.string   "color"
   end
 
   add_index "areas", ["company_id"], :name => "index_areas_on_company_id"
@@ -239,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20140427031939) do
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
   add_index "tasks", ["company_id"], :name => "index_tasks_on_company_id"
   add_index "tasks", ["creator_id"], :name => "index_tasks_on_creator_id"
+  add_index "tasks", ["deadline", "status"], :name => "index_tasks_on_deadline_and_status"
   add_index "tasks", ["hoshin_id"], :name => "index_tasks_on_hoshin_id"
   add_index "tasks", ["objective_id"], :name => "index_tasks_on_objective_id"
   add_index "tasks", ["responsible_id"], :name => "index_tasks_on_responsible_id"

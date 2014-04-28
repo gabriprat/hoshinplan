@@ -60,14 +60,14 @@ class Company < ActiveRecord::Base
     ret
   end
   
-  def user_abbrevs
-    ret = RequestStore.store[:user_abbrevs]
+  def comp_users
+    ret = RequestStore.store[:comp_users]
     if (ret.nil? && !Company.current_id.nil?) 
       ret = {}
       users.each {|user|
-        ret[user.id] = user.name
+        ret[user.id] = user
       }
-      RequestStore.store[:user_abbrevs] = ret
+      RequestStore.store[:comp_users] = ret
     end
     ret
   end

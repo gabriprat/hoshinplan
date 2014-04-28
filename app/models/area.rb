@@ -4,9 +4,12 @@ class Area < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
   
+  include ColorHelper
+  
   fields do
-    name        :string
+    name        :string, :null => false
     description :text
+    color       Color
     objectives_count :integer, :default => 0, :null => false
     indicators_count :integer, :default => 0, :null => false
     tasks_count :integer, :default => 0, :null => false
@@ -38,10 +41,22 @@ class Area < ActiveRecord::Base
     area.company = area.hoshin.company
   end
   
+  before_save do |area|
+    area.color = area.defaultColor if area.color.blank?
+  end
+  
   after_create do |obj|
     user = User.current_user
     user.tutorial_step << :area
     user.save!
+  end
+  
+  def defaultColor
+    hexFromString(name + id.to_s, 0.9)
+  end
+  
+  def color
+    @color.blank? ? defaultColor : @color
   end
   
   def child_tasks 
