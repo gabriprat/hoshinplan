@@ -15,9 +15,16 @@
 </def>
 
 <def tag="user-abbrev">
-	<% 
-		name = Company.current_company.user_abbrevs[this] unless Company.current_company.nil?
-		abbr = name.split.map{|x| x[0,1]}.join() unless name.nil?
-	%>
-	<acronym title="#{name}">#{abbr}</acronym>
+	<% user = Company.current_company.comp_users[this] unless Company.current_company.nil? %>
+	<acronym title="#{user.name}" merge-attrs unless="&user.nil?">#{user.abbrev}</acronym>
+</def>
+
+<def tag="user-img">
+	<% user = Company.current_company.comp_users[this] unless Company.current_company.nil? %>
+	<do with="&user" unless="&user.nil?">
+		<view:image title="#{this.name}" data-default="#{this.abbrev}" if="&this.image.exists?"/>
+		<else>
+			<user-abbrev:id class="user-image" style="background-color:#{this.color}"/>
+		</else>
+	</do>
 </def>

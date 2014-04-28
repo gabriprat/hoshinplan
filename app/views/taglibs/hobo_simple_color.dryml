@@ -1,0 +1,43 @@
+<%# 
+This input uses [jQuery Simple Color](https://github.com/recurser/jquery-simple-color) to provide a color picker.
+
+### Usage
+
+If you are using the Color rich type for your fields, this input will be used automatically.   If not, use the `<simple-color>` tag.
+
+### Attributes
+
+All attributes supported by [jQuery Simple Color](https://github.com/recurser/jquery-simple-color) are supported.
+
+### Examples:
+
+    <input insert="before" displayColorCode="&true" class="my_class"/>
+%>
+<def tag="input" for="Color">
+  <simple-color merge/>
+</def>
+
+
+<%# 
+This input uses [jQuery Simple Color](https://github.com/recurser/jquery-simple-color) to provide a color picker.
+
+### Attributes
+
+All attributes supported by [jQuery Simple Color](https://github.com/recurser/jquery-simple-color) are supported.
+
+### Examples:
+
+    <simple-color insert="before" displayColorCode="&true" class="my_class"/>
+%>
+<def tag="simple-color" attrs="name"><%=
+  options, attrs = attributes.partition_hash(['defaultColor', 'border', 'cellWidth', 'cellHeight', 'cellMargin', 'boxWidth', 'boxHeight', 'columns', 'insert', 'buttonClass', 'colors', 'displayColorCode', 'colorCodeAlign', 'colorCodeColor'])
+  add_data_rapid!(attrs, 'simple-color', options)
+  name ||= param_name_for_this
+  text_field_tag(name, this, deunderscore_attributes(attrs))
+%></def>
+
+
+<%# a simple view for the Color rich type %>
+<def tag="view" for="Color">
+  <span style="background-color: #{html_escape(this)};"><%= this %></span>
+</def>

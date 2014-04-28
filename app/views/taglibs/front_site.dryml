@@ -26,4 +26,6 @@
 
 <include gem='hobo_paperclip'/>
 
+<include src='hobo_simple_color'/>
+
 

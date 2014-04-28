@@ -3,14 +3,14 @@
 	<title: class="panel-heading"/>
 	<body: class="panel-body"/>
 	<item: replace>
-		<li class="kanban-card postit" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
+		<li class="kanban-card postit" style="background:#{this.area.color}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
 			<rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
 			<div><click-editor-innards:name/></div>
 			<div><click-editor-innards:description/></div>
 			<div class="deadline">
 				<autosubmit:deadline class="#{this.deadline_status}"/>
 			</div>
-			<view:responsible.image data-initials="#{this.responsible.abbrev}" if="&this.responsible"/>
+			<user-img:responsible.id />
 			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-#{scope.connect_with}">
 				<hidden-fields fields="lane_pos, status"/>
 			</formlet>
