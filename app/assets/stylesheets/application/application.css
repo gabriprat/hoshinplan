@@ -308,7 +308,7 @@ body.hoshin form.inline-form input[type=image] {
 	height: 20px;
 }
 
-body.hoshin .content-body img {
+body.hoshin .content-body .user-image img {
 	width: 20px;
 	height: 20px;
 	max-width: 20px;
