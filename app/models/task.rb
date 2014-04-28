@@ -105,6 +105,7 @@ class Task < ActiveRecord::Base
     transition :reactivate, {:completed => :active}, :available_to => "User" 
     transition :reactivate, {:discarded => :active}, :available_to => "User" 
     
+    transition :delete, {:backlog => :deleted}, :available_to => "User" 
     transition :delete, {:completed => :deleted}, :available_to => "User" 
     transition :delete, {:discarded => :deleted}, :available_to => "User" 
     
