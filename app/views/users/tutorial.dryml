@@ -1,7 +1,7 @@
-<show-page title="Tutorial">
-
+<show-page title="Tutorial" content-size="12">
+  <aside-column: replace/>
   <body: class="tutorial" />
-  <header:/>
+  <content-header: replace/>
   <content-body:>
   	<cms key="tutorial/index_#{locale}"/>
 	

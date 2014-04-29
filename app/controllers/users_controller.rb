@@ -24,6 +24,22 @@ class UsersController < ApplicationController
     redirect_to current_user
   end
   
+  def show
+    begin
+      hobo_show
+    rescue Hobo::PermissionDeniedError => e
+      self.current_user = nil
+      redirect_to "/login?force=true"
+    end
+  end
+  
+  def login
+    unless params[:force]
+      hobo_login
+    end
+  end
+    
+  
   def pending
     @this = find_instance
   end
