@@ -140,7 +140,7 @@ common: &default_settings
     # call. In other words, when SQL statements exceed this threshold,
     # then capture and send to New Relic the current stack trace. This is
     # helpful for pinpointing where long SQL calls originate from.
-    stack_trace_threshold: 0.500
+    stack_trace_threshold: 0.300
 
     # Determines whether the agent will capture query plans for slow
     # SQL queries.  Only supported in mysql and postgres.  Should be
