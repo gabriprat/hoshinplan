@@ -1,7 +1,9 @@
+require 'murmurhash3'
+
 module ColorHelper
   
   def hexFromString(str, l=0.4, s=0.7)
-    h = str.hash % 360
+    h = MurmurHash3::V32.str_hash(str) % 360
     hslToHex(h, s, l)
   end
   
