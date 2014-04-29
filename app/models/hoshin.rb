@@ -62,10 +62,10 @@ class Hoshin < ActiveRecord::Base
     tasks.active.order(:lane_pos)
   end
   def completed_tasks
-    tasks.completed.order(:lane_pos)
+    tasks.completed.where("deadline > current_date - interval '32 day'").order(:lane_pos)
   end
   def discarded_tasks
-    tasks.discarded.order(:lane_pos)
+    tasks.discarded.where("deadline > current_date - interval '32 day'").order(:lane_pos)
   end
   def outdated_tasks
     tasks.overdue
