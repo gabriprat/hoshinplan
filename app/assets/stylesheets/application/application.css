@@ -199,12 +199,25 @@ body h5 {
 }
 
 body h2.heading {
-	font-weight: 300;
-	font-family: 'Yanone Kaffeesatz',
-	sans-serif;
-	line-height: 1em;
-	font-size: 4em;
-	margin: 0;
+       font-weight: 300;
+       font-family: 'Yanone Kaffeesatz',
+       sans-serif;
+       line-height: 1em;
+       font-size: 4em;
+       margin: 0;
+}
+
+.health-page h2.heading {
+	font-size: 3.2em;
+}
+.health-page h2.heading p {
+	max-width: 80%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	line-height: 1.2em;
+	display: inline-block;
+	vertical-align: text-bottom;
 }
 
 h2.heading .title-action {
@@ -401,6 +414,10 @@ body.hoshin .image-button.delete-button {
 
 .parent-link {
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 99%;
+	display: inline-block;
 }
 
 div.tasks {
@@ -1515,7 +1532,7 @@ form.indicator-value input[type=radio] {
 }
 
 @media all and (min-width: 979px) {
-	#sec-actions {
+	:not(.health-page) #sec-actions {
 		margin-top: -30px;
 	}
 }
