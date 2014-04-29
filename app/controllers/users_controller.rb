@@ -41,7 +41,12 @@ class UsersController < ApplicationController
     
   
   def pending
-    @this = find_instance
+    begin
+      @this = find_instance
+    rescue Hobo::PermissionDeniedError => e
+      self.current_user = nil
+      redirect_to "/login?force=true"
+    end
   end
 
   def tutorial
