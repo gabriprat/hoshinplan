@@ -52,7 +52,7 @@ class Area < ActiveRecord::Base
   end
   
   def defaultColor
-    str = "area." + (name.nil? ? rand(1000000000).to_s(16) : name)
+    str = "area+" + (name.nil? ? rand(1000000000).to_s(16) : name)
     res = hexFromString(str, 0.95 - (position.nil? ? 1 : position)/30.0)  
     return res
   end
