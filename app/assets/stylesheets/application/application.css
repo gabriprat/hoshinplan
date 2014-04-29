@@ -1484,6 +1484,10 @@ form.indicator-value input[type=radio] {
         font-size:2em;
 }
 
+.postit .in-place-edit.task-description {
+        color: #0033aa;
+}
+
 .postit a.edit {
 	position: absolute;
 	right: 5px;
