@@ -27,6 +27,8 @@ Hoshinplan::Application.routes.draw do
 
   match 'healthupdate' => 'front#healthupdate', :as => 'health_update'
 
+  match 'colorize' => 'front#colorize', :as => 'colorize'
+
   match 'mail_preview' => 'mail_preview#index'
   
   match 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'

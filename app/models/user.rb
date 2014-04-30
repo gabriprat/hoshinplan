@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   
   fields do
     name          :string, :required
+    color         Color
     email_address :email_address, :login => true
     administrator :boolean, :default => false
     tutorial_step :integer
@@ -53,6 +54,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  before_save do |user| 
+    if user.color.nil?
+      user.color = hexFromString(name)
+    end
+  end
+      
   default_scope lambda { 
     where(:id => UserCompany.select(:user_id)
       .where('company_id=?',  
@@ -154,7 +161,13 @@ class User < ActiveRecord::Base
   end
   
   def color
-    hexFromString(name)
+    ret = super()
+    if ret.nil? && !new_record?
+      str = name.nil? ? rand(1000000000).to_s(16) : name
+      ret = hexFromString(str) 
+      update_column(:color, ret)
+    end
+    ret
   end
   
   def all_companies
