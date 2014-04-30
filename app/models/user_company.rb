@@ -9,6 +9,7 @@ class UserCompany < ActiveRecord::Base
     timestamps
   end
   attr_accessible :company, :company_id, :user, :user_id
+  index [:user_id, :company_id]
   
   belongs_to  :company, :accessible => true
   belongs_to  :user, :accessible => true
