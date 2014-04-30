@@ -14,6 +14,8 @@ class Task < ActiveRecord::Base
     timestamps
   end
   index [:deadline, :status]
+  index [:area_id, :status]
+  
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id
 

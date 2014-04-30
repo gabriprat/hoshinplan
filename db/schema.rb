@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430214524) do
+ActiveRecord::Schema.define(:version => 20140430222730) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",                            :null => false
@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(:version => 20140430214524) do
     t.integer  "lane_pos"
   end
 
+  add_index "tasks", ["area_id", "status"], :name => "index_tasks_on_area_id_and_status"
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
   add_index "tasks", ["company_id"], :name => "index_tasks_on_company_id"
   add_index "tasks", ["creator_id"], :name => "index_tasks_on_creator_id"
@@ -258,6 +259,7 @@ ActiveRecord::Schema.define(:version => 20140430214524) do
 
   add_index "user_companies", ["company_id"], :name => "index_user_companies_on_company_id"
   add_index "user_companies", ["state"], :name => "index_user_companies_on_state"
+  add_index "user_companies", ["user_id", "company_id"], :name => "index_user_companies_on_user_id_and_company_id"
   add_index "user_companies", ["user_id"], :name => "index_user_companies_on_user_id"
 
   create_table "users", :force => true do |t|
