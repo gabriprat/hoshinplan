@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140428183236) do
+ActiveRecord::Schema.define(:version => 20140430214524) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",                            :null => false
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(:version => 20140428183236) do
     t.datetime "image_updated_at"
     t.integer  "tutorial_step"
     t.string   "timezone"
+    t.string   "color"
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"

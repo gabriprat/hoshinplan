@@ -58,10 +58,12 @@ class Area < ActiveRecord::Base
   end
   
   def color
-    if super().blank? 
-      self.color = self.defaultColor
+    ret = super()
+    if ret.blank? && !new_record?
+      ret = self.defaultColor
+      update_column(:color, ret)
     end 
-    super()
+    ret
   end
   
   def child_tasks 

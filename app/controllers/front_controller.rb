@@ -4,7 +4,7 @@ class FrontController < ApplicationController
   
   # Require the user to be logged in for every other action on this controller
   # except :index. 
-  skip_before_filter :my_login_required, :only => [:index, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate]
+  skip_before_filter :my_login_required, :only => [:index, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize]
   
   def index
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
@@ -167,6 +167,22 @@ class FrontController < ApplicationController
       update tasks set area_id = (select area_id from objectives where objectives.id = objective_id) where area_id != (select area_id from objectives where objectives.id = objective_id) ;
       update areas set tasks_count = (select count(*) from tasks where area_id = areas.id and status = 'active') where tasks_count != (select count(*) from tasks where area_id = areas.id and status = 'active');
     ");
+    render :text => @text, :content_type => Mime::TEXT
+  end
+  
+  def colorize
+    @text = ll "Initiating colorize job!"
+    @text = ""
+    Area.unscoped.where(:color => nil).each{ |area|
+      col = area.color
+      @text += ll "Area #{area.id}: #{col}"
+    }
+    
+    User.unscoped.where(:color => nil).each{ |user|
+      col = user.color
+      @text += ll "User #{user.id}: #{col}"
+    }
+    @text += ll "End colorize job!"
     render :text => @text, :content_type => Mime::TEXT
   end
 
