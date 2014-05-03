@@ -25,7 +25,10 @@ class HoshinsController < ApplicationController
   end
   
   def show
-    self.this = Hoshin.includes([:company, {:areas => [:objectives, :tasks, :indicators]}, :goals]).user_find(current_user, params[:id])
+    #self.this = Hoshin.includes([:company, {:areas => [:objectives, :tasks, :indicators]}, :goals]).user_find(current_user, params[:id])
+    
+    #if we were sure no caches would be hit we could use the above statement and avoid 9 queries!!
+    self.this = Hoshin.includes([:areas, :goals]).user_find(current_user, params[:id])
     hobo_show
   end
   
