@@ -40,20 +40,23 @@ class ApplicationController < ActionController::Base
              def scope_current_user
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
+                 User.current_user = current_user
                end
                Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
-               end
+               end               
                if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
-                 inst = model.find(params[:id]) unless params[:id].nil?
+                 inst = model.user_find(current_user, params[:id]) unless params[:id].nil?                 
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
                  inst = Hoshin.find(params[:area][:hoshin_id]) unless inst
                  Rails.logger.debug inst.to_yaml
                  if inst.respond_to?(:company_id)
                    Company.current_id = inst.company_id
+                   Company.current_company = Company.find(inst.company_id)
                  elsif inst.is_a? Company
                    Company.current_id = inst.id
+                   Company.current_company = inst
                  end
                end
                Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"

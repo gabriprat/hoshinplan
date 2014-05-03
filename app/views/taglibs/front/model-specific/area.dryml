@@ -4,7 +4,7 @@
     <header:>
     	 <h4 param="heading"><a onclick="$('#update-area-modal-#{this.id}').modal('show'); $('#update-area-modal-#{this.id} form').trigger('reset'); return false;"><name/></a></h4>
     </header:>
-    <append-body: >
+    <body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
 	<swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?">
 	<modal id="update-area-modal-#{this.id}">
@@ -32,7 +32,10 @@
 	<rtable:objectives columns="Id,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit(); attachAutosubmit();"/>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
-		<set options="&this.parent_objectives"/>
+		<set options="&this.parent_objectives" unless="&this.hoshin.parent_id.nil?"/>
+		<else>
+		<set options="&{}"/>
+		</else>
 		<set hid="#{this.hoshin_id}"/>
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
@@ -56,17 +59,21 @@
 	<div class="indicators-wrapper">
 	<h5><model-name-human model="&Indicator" count="100"/></h5>
 	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
+	<if test="&this.hoshin.hoshins_count>0 ? true : ''">
 	<h6 if="child_kpis"><ht key="indicator.area.child_models" count="100">#{Indicator.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_kpis columns="#,KPI,Resp.,Value,Goal,%,Hoshin"/>
+	</if>
 	</div>
 	<div class="tasks-wrapper">
 	<h5><model-name-human model="&Task" count="100"/></h5>
 	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
+	<if test="&this.hoshin.hoshins_count>0 ? true : ''">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
+	</if>
 	</div>
 	</swept-cache>
 	</div>
-    </append-body:>
+    </body:>
   </old-card>
 </extend>

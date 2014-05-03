@@ -22,8 +22,8 @@ class Area < ActiveRecord::Base
   never_show :creator
   
   has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'obj_pos'
-  has_many :indicators, :through => :objectives, :accessible => true, :order => 'ind_pos'
-  has_many :tasks, :through => :objectives, :accessible => true, :order => 'status, tsk_pos', :conditions => Task.visible.where_values
+  has_many :indicators, :inverse_of => :area, :accessible => true, :order => 'ind_pos'
+  has_many :tasks, :inverse_of => :area, :accessible => true, :order => 'status, tsk_pos', :conditions => Task.visible.where_values
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
   belongs_to :company, :inverse_of => :areas
@@ -55,15 +55,6 @@ class Area < ActiveRecord::Base
     str = "area+" + (name.nil? ? rand(1000000000).to_s(16) : name)
     res = hexFromString(str, 0.95 - (position.nil? ? 1 : position)/30.0)  
     return res
-  end
-  
-  def color
-    ret = super()
-    if ret.blank? && !new_record?
-      ret = self.defaultColor
-      update_column(:color, ret)
-    end 
-    ret
   end
   
   def child_tasks 

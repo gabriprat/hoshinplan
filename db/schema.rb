@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140430222730) do
+ActiveRecord::Schema.define(:version => 20140503164827) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",                            :null => false
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20140430222730) do
     t.integer  "outdated_tasks_count",       :default => 0, :null => false
     t.integer  "blind_objectives_count",     :default => 0, :null => false
     t.integer  "neglected_objectives_count", :default => 0, :null => false
+    t.integer  "hoshins_count",              :default => 0, :null => false
   end
 
   add_index "hoshins", ["company_id"], :name => "index_hoshins_on_company_id"

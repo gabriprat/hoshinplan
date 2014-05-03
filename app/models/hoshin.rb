@@ -16,6 +16,7 @@ class Hoshin < ActiveRecord::Base
     neglected_objectives_count :integer, :default => 0, :null => false
     tasks_count :integer, :default => 0, :null => false
     objectives_count :integer, :default => 0, :null => false
+    hoshins_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
     timestamps
   end
@@ -26,8 +27,8 @@ class Hoshin < ActiveRecord::Base
   never_show :creator
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
-  belongs_to :parent, :class_name => "Hoshin"
-  has_many :children, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
+  belongs_to :parent, :inverse_of => :children, :class_name => "Hoshin", :counter_cache => true
+  has_many :children, :inverse_of => :parent, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
   
   has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
   has_many :objectives, :through => :areas, :inverse_of => :hoshin, :accessible => true
@@ -39,11 +40,13 @@ class Hoshin < ActiveRecord::Base
   
   validate :validate_company
   
-  default_scope lambda { 
-    where(
-        :company_id => (Company.current_id ? Company.current_id : User.current_id.nil? ? -1 : User.find(User.current_id).companies)
-    )
-  };
+  default_scope lambda {
+    if Company.current_id
+      where(:company_id => Company.current_id)
+    else
+      joins(:company => :user_companies).where("user_id = ?", User.current_id)
+    end
+  }
   
   after_create do |obj|
     user = User.current_user

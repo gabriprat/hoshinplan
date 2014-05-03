@@ -45,6 +45,7 @@ gem 'jquery-rails'
 gem "hobo"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
+gem "active_record_query_trace", :group => :development
 # Hobo's version of will_paginate is required.
 gem "will_paginate", :git => "git://github.com/Hobo/will_paginate.git"
 gem "hobo_bootstrap"
@@ -76,7 +77,6 @@ gem 'dalli'
 gem 'memcache-client'
 gem 'request_store'
 gem 'newrelic_rpm'
-gem 'oink'
 gem 'RedCloth'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'

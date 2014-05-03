@@ -51,11 +51,15 @@ class Company < ActiveRecord::Base
     RequestStore.store[:company_id]
   end  
   
+  def self.current_company=(comp)
+    RequestStore.store[:company] = comp
+  end
+  
   def self.current_company
     ret = RequestStore.store[:company]
     if (ret.nil? && !self.current_id.nil?) 
       ret = Company.find(self.current_id)
-      RequestStore.store[:company] = ret
+      self.current_company = ret
     end
     ret
   end

@@ -38,7 +38,7 @@
 		</li>
 		<li class="divider"></li>
 		<li if="&Company.current_id">
-		<% @company = Company.find(Company.current_id) %>
+		<% @company = Company.current_company %>
 	        <a with="&@company.hoshins" action="new" if="&can_create?(@company.hoshins)" param="new-link">
 	          + <t key="new_child_for_parent" child="&Hoshin.model_name.human" parent="&@company.name" />
 	        </a>
@@ -51,7 +51,7 @@
 		
 	</ul>
     </li>
-    <nav-item with="&Company.find(Company.current_id)" action="collaborators" if="&Company.current_id">
+    <nav-item with="&Company.current_company" action="collaborators" if="&Company.current_id">
     	<t key="invite_collaborators">Invite collaborators</t>
     </nav-item>
     <nav-item with="&current_user" action="tutorial" if="&User.current_user && User.current_user.administrator?">
