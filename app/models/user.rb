@@ -160,16 +160,6 @@ class User < ActiveRecord::Base
     name.split.map{|x| x[0,1]}.join() unless name.nil?
   end
   
-  def color
-    ret = super()
-    if ret.nil? && !new_record?
-      str = name.nil? ? rand(1000000000).to_s(16) : name
-      ret = hexFromString(str) 
-      update_column(:color, ret)
-    end
-    ret
-  end
-  
   def all_companies
     Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
   end

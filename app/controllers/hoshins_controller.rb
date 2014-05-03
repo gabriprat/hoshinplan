@@ -24,6 +24,11 @@ class HoshinsController < ApplicationController
     hobo_create
   end
   
+  def show
+    self.this = Hoshin.includes([:company, {:areas => [:objectives, :tasks, :indicators]}, :goals]).user_find(current_user, params[:id])
+    hobo_show
+  end
+  
   def health
     show
   end
