@@ -3,6 +3,90 @@
 		<a with="&this.objective.area.hoshin">&laquo; Back to hoshin #{name}</a>
 		<h2>#{this.name}</h2>
 	</content-header:>
+	<custom-javascript:>
+	$(document).ready(function () {
+		var rtime = new Date(1, 1, 2000, 12,00,00);
+		var timeout = false;
+		var delta = 200;
+		var df = document.documentElement.getAttribute("data-df").replace("yyyy","yy");
+		var sep = document.documentElement.getAttribute("data-sep");
+		var del = document.documentElement.getAttribute("data-del");
+		var dateFormat = function(d) {
+			if (d instanceof Array) {
+				var date = new Date(d[0],d[1]-1,d[2]);
+			} else {
+				var date = new Date(d);
+			}
+			var ret = $.datepicker.formatDate(df, date);
+			return ret;
+		}
+		var numberFormat = function(num) {
+			if (num == null) {
+				return '';
+			} else {
+				var parts = num.toString().split(".");
+			    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, del);
+			    	return parts.join(sep);
+			}
+		}
+		var resizeend = function() {
+		    if (delta > new Date() - rtime) {
+		        setTimeout(resizeend, delta);
+		    } else {
+		        timeout = false;
+		        chart.redraw();
+		    }               
+		}
+		var data = [
+			<repeat:indicator_histories join=",">
+			  {date:"#{this.day.year}-#{this.day.month}-#{this.day.mday}",
+			   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}, id:#{this.id}}
+			</repeat:indicator_histories>
+		];
+		
+		var txt = "";
+		for (var i = 0; data.length > i; i++) {
+			if (i>0) {
+				txt += "\\n";
+			}
+			var date = dateFormat(data[i].date.split("-"));
+			var value = numberFormat(data[i].value);
+			var goal = numberFormat(data[i].goal);
+			var fieldSep = sep == ',' ? ';' : ','; 
+			txt += date + fieldSep + value + fieldSep + goal;
+		}
+		$("#upload textarea").val(txt);
+		
+		var chart = Morris.Line({
+		  element: 'graph-line',
+		  data: data,
+		  xkey: 'date',
+		  ykeys: ['value','goal'],
+		  labels: ['Value','Goal'],
+		  dateFormat: dateFormat,
+		  xLabels: "day",
+		  xLabelFormat: dateFormat,
+		  hoverCallback: function (index, options, content) {
+		    var row = data[index];
+		    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + row.date + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
+		  }
+		});
+		$(window).resize(function() {
+			rtime = new Date();
+			if (timeout === false) {
+				timeout = true;
+				setTimeout(resizeend, delta);
+			}
+		});
+	});
+	function deleteHistory(id, date) {
+		var form = $("#delete-form");
+		form.attr("action", "/indicator_histories/" + id);
+		var conf = "<t key='history.messages.confirm_delete'>Are you sure you want to delete the value for the date XXX?</t>";
+		form.data("confirm", conf.replace("XXX", date));
+		form.submit();
+	}
+	</custom-javascript:>
 	<content-body:>
 		<section class="panel">
 		        <header class="panel-heading">
@@ -30,92 +114,6 @@
 		            <div id="graph-line" style="position: relative;"></div>
 		        </div>
 	    	</section>
-		
-		
-		<script type="text/javascript">
-			$(document).ready(function () {
-				var rtime = new Date(1, 1, 2000, 12,00,00);
-				var timeout = false;
-				var delta = 200;
-				var df = document.documentElement.getAttribute("data-df").replace("yyyy","yy");
-				var sep = document.documentElement.getAttribute("data-sep");
-				var del = document.documentElement.getAttribute("data-del");
-				var dateFormat = function(d) {
-					if (d instanceof Array) {
-						var date = new Date(d[0],d[1]-1,d[2]);
-					} else {
-						var date = new Date(d);
-					}
-					var ret = $.datepicker.formatDate(df, date);
-					return ret;
-				}
-				var numberFormat = function(num) {
-					if (num == null) {
-						return '';
-					} else {
-						var parts = num.toString().split(".");
-					    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, del);
-					    	return parts.join(sep);
-					}
-				}
-				var resizeend = function() {
-				    if (delta > new Date() - rtime) {
-				        setTimeout(resizeend, delta);
-				    } else {
-				        timeout = false;
-				        chart.redraw();
-				    }               
-				}
-				var data = [
-					<repeat:indicator_histories join=",">
-					  {date:"#{this.day.year}-#{this.day.month}-#{this.day.mday}",
-					   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}, id:#{this.id}}
-					</repeat:indicator_histories>
-				];
-				
-				var txt = "";
-				for (var i = 0; data.length > i; i++) {
-					if (i>0) {
-						txt += "\\n";
-					}
-					var date = dateFormat(data[i].date.split("-"));
-					var value = numberFormat(data[i].value);
-					var goal = numberFormat(data[i].goal);
-					var fieldSep = sep == ',' ? ';' : ','; 
-					txt += date + fieldSep + value + fieldSep + goal;
-				}
-				$("#upload textarea").val(txt);
-				
-				var chart = Morris.Line({
-				  element: 'graph-line',
-				  data: data,
-				  xkey: 'date',
-				  ykeys: ['value','goal'],
-				  labels: ['Value','Goal'],
-				  dateFormat: dateFormat,
-				  xLabels: "day",
-				  xLabelFormat: dateFormat,
-				  hoverCallback: function (index, options, content) {
-				    var row = data[index];
-				    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + row.date + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
-				  }
-				});
-				$(window).resize(function() {
-					rtime = new Date();
-					if (timeout === false) {
-						timeout = true;
-						setTimeout(resizeend, delta);
-					}
-				});
-			});
-			function deleteHistory(id, date) {
-				var form = $("#delete-form");
-				form.attr("action", "/indicator_histories/" + id);
-				var conf = "<t key='history.messages.confirm_delete'>Are you sure you want to delete the value for the date XXX?</t>";
-				form.data("confirm", conf.replace("XXX", date));
-				form.submit();
-			}
-		</script>
 		<form action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
 		</form>
 	</content-body:>

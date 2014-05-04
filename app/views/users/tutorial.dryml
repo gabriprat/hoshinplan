@@ -2,26 +2,25 @@
   <aside-column: replace/>
   <body: class="tutorial" />
   <content-header: replace/>
+  <custom-javascript:>
+	$("#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','}").addClass("done");
+	$('li a').click(function(){
+		$('#modal .modal-header h3').text($(this).text());
+	});
+	$( document ).ajaxComplete(function() {
+	  var aspect = $('iframe').attr("height") / $('iframe').attr("width");
+	  var nw = $('#modal').width()-30;
+	  var nh = nw * aspect;
+	  $('iframe').attr("width", nw);
+	  $('iframe').attr("height", nh);
+	});
+	$('body').on('hidden.bs.modal', '.modal', function () {
+	    $(this).removeData();
+	    $('#modal .modal-body').html('<div class="loading"></div>');
+	});
+  </custom-javascript>
   <content-body:>
   	<cms key="tutorial/index_#{locale}"/>
-	
-	<script type="text/javascript">
-		$("#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','}").addClass("done");
-		$('li a').click(function(){
-			$('#modal .modal-header h3').text($(this).text());
-		});
-		$( document ).ajaxComplete(function() {
-		  var aspect = $('iframe').attr("height") / $('iframe').attr("width");
-		  var nw = $('#modal').width()-30;
-		  var nh = nw * aspect;
-		  $('iframe').attr("width", nw);
-		  $('iframe').attr("height", nh);
-		});
-		$('body').on('hidden.bs.modal', '.modal', function () {
-		    $(this).removeData();
-		    $('#modal .modal-body').html('<div class="loading"></div>');
-		});
-	</script>
 	
 	<form>
 		<input name="tutorial_step" type="hidden" value="-2"/>
