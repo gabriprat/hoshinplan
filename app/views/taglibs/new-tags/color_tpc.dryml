@@ -1,0 +1,4 @@
+<def tag="color-tpc">
+	<span data-rapid='#{data_rapid("color_tpc", :options => {:tpc => this.to_s})}' class="tpc"><view merge/>%</span>
+</def>
+

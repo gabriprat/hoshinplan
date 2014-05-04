@@ -49,78 +49,18 @@ var validateDate = function(formElem) {
 	return true;
 }
 
-$.fn.timer = function(percent){
-	var percent = percent && !isNaN(percent) ? percent : this.attr("data-percent");
-	this.html('<div class="percent"></div><div class="slice'+(percent > 50?' gt50':'')+'"><div class="pie"></div><div class="pie fill"></div></div><div class="bg"></div>');
-	this.show();
-	var that = this;
-	var deg = 360/100*percent;
-	var d1 = Math.max(0, (percent-50)*2/50);
-	var d2 = Math.min(percent, 50)*2/50;
-	var deg2 = Math.min(180,deg);
-	if (percent>50) {
-		$(this).find('.slice .pie.fill').css({	
-	        '-webkit-transition': 'transform '+d1+'s linear 2s, width 0s linear 2s',
-	        '-moz-transition': 'transform '+d1+'s linear 2s, width 0s linear 2s',
-	        '-o-transition': 'transform '+d1+'s linear 2s, width 0s linear 2s',
-	        'transition': 'transform '+d1+'s linear 2s, width 0s linear 2s'});
-		$(this).find('.slice .pie.fill').css({	
-		'width':'0.8em',    
-		'-moz-transform':'rotate('+deg+'deg)',
-		'-webkit-transform':'rotate('+deg+'deg)',
-		'-o-transform':'rotate('+deg+'deg)',
-		'transform':'rotate('+deg+'deg)',
-		});
-		$(this).find('.slice').css({'clip':'rect(0, 1em, 1em, 0)'});
-	}
-	$(this).find('.slice .pie:not(.fill)').css({
-	        '-webkit-transition': 'transform '+d2+'s linear',
-	        '-moz-transition': 'transform '+d2+'s linear',
-	        '-o-transition': 'transform '+d2+'s linear',
-	        'transition': 'transform '+d2+'s linear',
-		'-moz-transform':'rotate('+deg2+'deg)',
-		'-webkit-transform':'rotate('+deg2+'deg)',
-		'-o-transform':'rotate('+d1+'deg)',
-		'transform':'rotate('+deg2+'deg)'
-		});
-	var duration = (d1+d2)*1000;
-	if ($("body.pdf").length > 0) { 
-		duration = 0;
-	};
-	$(this).animate({percent: percent}, { duration: duration, step: function (now,fx) {
-		$(this).heatcolor(
-		function() {
-			return now;
-		}, 
-		{ maxval: 100, minval: 0, colorStyle: 'greentored', lightness: 0.4, 
-		  elementFunction: function() {return $(this).children(".percent")}
-	  	 });
-		$(this).children(".percent").each(function() {
-			var col = $(this).css("background-color");
-			$(this).css("background-color", "transparent");
-			$(this).parent().find(".pie").css("border-color", col);
-		});
-	}});
-	this.find('.percent').html(Math.round(percent)+'%');
-}
-
-$(window).load(function() {
-    window.loaded = true;
-    updateTimer();
-});
 
 function updateTimer(percent) {
-	if (!window.loaded) {
-		return;
-	}
-	$(".timer").timer(percent);
-	$(".timer").timer(percent);
 	$("#health").popover('destroy');
 	$("#health-popover").html("");
 	$('#health').popover({
 	    container: '#health-popover',
 	    html: true,
 	    placement: 'bottom',
+	    title: function () {
+		    var close = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(\'#health\').popover(\'hide\');$.undim();">&times;</button>';
+		    return $(this).data("title") + close;
+	    },
 	    content: function () {
 	        return $(this).next().html();
 	    }
@@ -135,17 +75,6 @@ function updateTimer(percent) {
 			popover('show');
 		}
 	}
-}
-
-$(document).ready(function() {
-	$('.popper').popover({
-	    container: 'body',
-	    html: true,
-	    placement: 'auto bottom',
-	    content: function () {
-	        return $(this).next().html();
-	    }
-	});
 	$('body').on('keyup.dismiss.healthPopover', function (e) {
 		e.which == 27 && $('#health').popover('hide');
 	});
@@ -154,10 +83,9 @@ $(document).ready(function() {
 			$('#health').popover('hide');
 		}
 	});
-});
+}
 
 var attachAutosubmit = function() {
-	colorize();
 	equalHeightSections();
 		
 	$('.in-place-edit a, .description-help a, .header-help a').filter(function() {
@@ -207,21 +135,6 @@ $(window).scroll(function () {
         fixedHorizontal();
 }); 
 
-
-var colorize = function () {
-	$(".indicator-tpc, .child-indicator-tpc").parent().heatcolor(
-		function() {
-			var num = $(this).children(".indicator-tpc, .child-indicator-tpc").text();
-			var sep = document.documentElement.getAttribute('data-sep').replace('.','\\.');
-			var del = document.documentElement.getAttribute('data-del').replace('.','\\.');;
-			num = num.replace(new RegExp(del, 'g'), '');
-			num = num.replace(new RegExp(sep, 'g'), '.');
-			num = num>100 ? 100 : num<50 ? 50 : num;
-			return num;
-		}, 
-		{ maxval: 100, minval: 50, colorStyle: 'greentored', lightness: 0.4 }
-	);
-}
 
 $( window ).resize(function() {
   equalHeightSections();

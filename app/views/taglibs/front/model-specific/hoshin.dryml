@@ -17,7 +17,7 @@
 		<modal id="add-area-modal">
 			<modal:>
 			<set hid="#{this.id}"/>
-			<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" updates="#areas,#sec-actions" class="modal">
+			<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove();" updates="#areas,#sec-actions" class="modal">
 				<div class="modal-body">
 					<field-list: fields="name, description" />
 					<hidden-field:hoshin_id value="#{hid}"/>
@@ -35,7 +35,7 @@
 				<modal:>
 				<set hid="#{this.id}"/>
 			<set compid="&this.company_id"/>
-				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove(); colorize();" updates="#goals,#sec-actions" class="modal">
+				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove();" updates="#goals,#sec-actions" class="modal">
 					<div class="modal-body">
 						<field-list: fields="name" />
 						<hidden-field:hoshin_id value="#{hid}"/>
