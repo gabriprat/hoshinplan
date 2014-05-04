@@ -82,3 +82,5 @@ gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
 gem 'redis-rails'
 gem 'murmurhash3'
+gem 'heroku-deflater', :group => :production
+
