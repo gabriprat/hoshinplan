@@ -6,7 +6,7 @@
   	<if test="&column == '#'">
 		  <div class="column" data-label="Id" id="kpi_#{this.id}">
 		  </div>
-		  <script type="text/javascript">$("#kpi_#{this.id}").html($("#objective_#{this.objective_id}_position").html());</script>
+		  <script type="text/javascript">document.getElementById("kpi_#{this.id}").innerHTML=document.getElementById("objective_#{this.objective_id}_position").innerHTML;</script>
 	</if>
 	<if test="&column == 'Company'">
 		<div class="column" data-label="Company"><view:company/></div>
