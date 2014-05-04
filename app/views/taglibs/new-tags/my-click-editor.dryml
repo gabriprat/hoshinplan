@@ -1,6 +1,6 @@
 <def tag="my-click-editor">
 	<div class="my-click-editor">
-		<div class="in-place-edit">
+		<div class="in-place-edit" data-rapid='#{data_rapid("my-click-editor")}'>
 			<view/>
 			<span><t key="click_to_edit"/></span>
 		</div>

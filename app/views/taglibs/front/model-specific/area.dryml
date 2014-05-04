@@ -25,11 +25,11 @@
             </ht>
 	</a></h5>
 	
-	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden" success="attachAutosubmit();">
+	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden">
 		<field-list: fields="name" />
 		<actions: replace />
 	</form>
-	<rtable:objectives columns="Id,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit(); attachAutosubmit();"/>
+	<rtable:objectives columns="Id,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit();"/>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives" unless="&this.hoshin.parent_id.nil?"/>
@@ -39,7 +39,7 @@
 		<set hid="#{this.hoshin_id}"/>
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
-		<form with="&Objective.new" updates="#area-#{aid},#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); attachAutosubmit();" class="modal">
+		<form with="&Objective.new" updates="#area-#{aid},#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />

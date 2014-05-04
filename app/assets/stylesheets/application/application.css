@@ -47,6 +47,32 @@ body .areas .card.area {
 	width: 100%;
 }
 
+
+body div.table .table-row div.column[data-label="Id"] {
+	width: auto;
+}
+
+body div.table .table-row div.column[data-label="Company"] {
+	width: auto;
+}
+
+body div.table .table-row div.column[data-label="Hoshin"] {
+	width: auto;
+}
+
+body div.table .table-row div.column[data-label="Name"] {
+	min-width: auto;
+	width: auto;
+}
+
+body div.table .table-row div.column[data-label="Responsible"] {
+	width: auto;
+}
+
+body div.table .table-row div.column[data-label="Actions"] {
+	text-align: left;
+}
+
 }
 
 a.external:after {
@@ -57,13 +83,6 @@ a.external:after {
 	font-size: 0.8em;
 	display: inline-block;
 	text-decoration: inherit;
-}
-
-a {
-	-ms-transition: 0.25s;
-	-moz-transition: 0.25s;
-	-webkit-transition: 0.25s;
-	transition: 0.25s;
 }
 
 .social-login {
@@ -143,15 +162,15 @@ html body {
 body .navbar .brand {
 	font-family: "Yanone Kaffeesatz", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 35px;
-        -o-transition: all 1s;
-        -moz-transition: all 1s;
-        -webkit-transition: all 1s;
-        -ms-transition: all 1s;
 	color: #2f4154;
 	margin: 0;
 }
 
 body .navbar .brand:hover {
+        -o-transition: color 1s;
+        -moz-transition: color 1s;
+        -webkit-transition: color 1s;
+        -ms-transition: color 1s;
 	color: #25A9E0;
 }
 
@@ -995,6 +1014,8 @@ width: 0;
 .hoshin-tasks span {
 	font-size: 1.5em;
 	color: #aaa;
+}
+.hoshin-tasks span {
 	-webkit-transition: 0.5s;
 	-moz-transition: 0.5s;
 	transition: 0.5s;
