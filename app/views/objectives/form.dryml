@@ -20,7 +20,4 @@
 					</div>
 					 <modal-form-footer-delete />
 				 </form> 
-	  			<script>
-	  				$('#update-objective-modal-#{this.id}').hjq('init');
-	  				attachAutosubmit();
-	  			</script>
+	  			
