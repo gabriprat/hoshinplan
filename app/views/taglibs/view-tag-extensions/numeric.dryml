@@ -10,5 +10,5 @@
 </extend>
 
 <extend tag="input" for="BigDecimal">
-	<old-input value="&number_with_delimiter(this)" merge/>
+	<old-input value="&number_with_delimiter(this)" type="number" merge/>
 </extend>

@@ -42,14 +42,14 @@
 	      	<ul class="icons">
 	      	  <if test="#{this.status=='active'?'true':''}">
 	      		  <li class="complete">
-	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="discard" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="discard" class="inline-form">
 					<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.discard', :default => 'Discard'}">
 						<span class="fa fa-times-circle fa-fw"></span>
 					</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="discard">
-	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="complete" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="complete" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.complete', :default => 'Complete'}">
 					<span class="fa fa-check-circle fa-fw"></span>
 				</button>
@@ -58,14 +58,14 @@
 	        	  </if>
 	      	  <else>
 	      		  <li class="reactivate">
-	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="reactivate" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="reactivate" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.reactivate', :default => 'Reactivate'}">
 					<span class="fa fa-play-circle fa-fw"></span>
 				</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="delete">
-	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="delete" class="inline-form" complete="attachAutosubmit()">
+	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="delete" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.delete', :default => 'Delete'}">
 					<span class="fa fa-trash-o fa-fw"></span>
 				</button>

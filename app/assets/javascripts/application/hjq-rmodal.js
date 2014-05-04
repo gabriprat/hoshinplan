@@ -9,16 +9,20 @@
 		var annotations=that.data('rapid')['rmodal'];
 		var id = annotations.target_id;
 		var url = annotations.url;
-		if ($('#' + id).length==0 || $('#' + id).children().length == 0) {
-			if ($('#' + id).length==0) {
+		var target = $('#' + id);
+		if (target.length==0 || target.children().length == 0) {
+			if (target.length==0) {
 				that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="loading"></div></div></div>')
+				target = $('#' + id);
 			}
-			$('#' + id).load(url, {'page_path':window.location.pathname}, function() {
-				$('#' + id).hjq('init');
-				attachAutosubmit();
+			target.load(url, {'page_path':window.location.pathname}, function() {
+				var that = $(this);
+				that.hjq('init');
+				that.trigger('rapid:ajax:success', [that]);
+				that.trigger('rapid:ajax:complete', [that]);
 			}); 
 		}
-		$('#' + id).modal('show'); 
+		target.modal('show'); 
 		return false;
 	}
     };
