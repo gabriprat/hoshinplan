@@ -49,8 +49,6 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
 
   # Do not compress assets
   config.assets.compress = false
-  config.assets.css_compressor = :yui
-  config.assets.js_compressor = :uglify
 
   # Expands the lines which load the assets
   config.assets.debug = true
