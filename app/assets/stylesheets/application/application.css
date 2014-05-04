@@ -159,18 +159,19 @@ html body {
 	color: #2f4154;
 }
 
-body .navbar .brand {
+body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong,  body .navbar a.brand span {
 	font-family: "Yanone Kaffeesatz", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 35px;
 	color: #2f4154;
 	margin: 0;
+
+        -o-transition: color 1s ease-in-out;
+        -moz-transition: color 1s ease-in-out;
+        -webkit-transition: color 1s ease-in-out;
+        -ms-transition: color 1s ease-in-out;
 }
 
-body .navbar .brand:hover {
-        -o-transition: color 1s;
-        -moz-transition: color 1s;
-        -webkit-transition: color 1s;
-        -ms-transition: color 1s;
+body .navbar .brand:hover, body .navbar .brand:hover strong, body .navbar .brand:hover span {
 	color: #25A9E0;
 }
 
@@ -698,7 +699,7 @@ button.hoshin-tasks.link {
         margin: 0 3px;
 }
 
-a, a:hover, a:active {
+a, a:hover, a:active, a:visited {
 	color: #25A9E0;
 }
 

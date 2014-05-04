@@ -25,6 +25,6 @@
 				})();
 			</script>
 		</append-body:>
-	  	<app-name:><a class="brand" href="/"><strong>Hoshin</strong>plan</a></app-name:>
+	  	<app-name:><a class="brand" href="/"><strong>Hoshin</strong><span>plan</span></a></app-name:>
 	 </old-page>
 </extend>
