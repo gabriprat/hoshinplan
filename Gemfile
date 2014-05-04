@@ -23,6 +23,7 @@ group :assets do
   gem 'less'
   gem 'raphaeljs-rails'
   gem 'morrisjs-rails'
+  gem 'yui-compressor'
 end
 
 gem 'jquery-rails'
@@ -83,4 +84,3 @@ gem 'detect_timezone_rails'
 gem 'redis-rails'
 gem 'murmurhash3'
 gem 'heroku-deflater', :group => :production
-
