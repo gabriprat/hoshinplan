@@ -137,6 +137,7 @@ class Indicator < ActiveRecord::Base
   
   def tpc 
     ret = 0
+    return ret if goal.nil?
     if !worst_value.nil? && !value.nil? && (goal-worst_value)!=0
       ret = 100 * (value-worst_value) / (goal-worst_value)
     end 
