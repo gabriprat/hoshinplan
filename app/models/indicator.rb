@@ -132,7 +132,7 @@ class Indicator < ActiveRecord::Base
   end
     
   def higher?
-    worst_value < goal
+    goal.nil? ? true : worst_value < goal
   end
   
   def tpc 
