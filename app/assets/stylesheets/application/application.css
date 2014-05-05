@@ -748,10 +748,11 @@ fieldset[disabled] .btn.active {
   border-color: #bdc3c7;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:link, .btn-primary:visited  {
   color: #ffffff;
   background-color: #25A9E0;
 }
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
