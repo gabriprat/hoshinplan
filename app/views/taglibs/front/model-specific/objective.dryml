@@ -1,5 +1,5 @@
 <def tag="scard" for="Objective" attrs="columns">
-<swept-cache route-on suffix="scard" path="&request.fullpath">
+<%# swept-cache route-on suffix="scard" path="&request.fullpath" %>
 <scard class="objective table-row" param="default" merge>
   	<% columns.each do |column| %>
 		<if test="&column == 'Id'">
@@ -30,7 +30,7 @@
 			</ul>
 		</div>
 </scard>
-</swept-cache>
+<%# /swept-cache %>
 </def>
 
 <extend tag="form" for="Objective">
