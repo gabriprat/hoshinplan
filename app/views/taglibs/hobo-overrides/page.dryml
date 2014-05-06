@@ -12,7 +12,7 @@
 		<append-body: >
 			<%= raw "<"+"/span>" %>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
-			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
+			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="&Rails.application.config.action_controller.perform_caching"/>
 			<script type="text/javascript">
 				(function() {
 					var sep="#{t 'number.format.separator'}";

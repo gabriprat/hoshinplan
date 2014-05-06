@@ -1,7 +1,17 @@
-<def tag="cms" attrs="key, expires">
-    <% expires ||= 100.year %>
-    <% ActionController::Base.new.expire_fragment(request.host+'/cms/' + key) if params["clear_cache"] %>
-    <% cache(request.host + '/cms/' + key, :expires_in => expires, :compress => true) do %>
-    	<div id="cms"><%= raw ERB.new(cmsGet(key)).result(binding).force_encoding("UTF-8") %></div>
-    <% end %>
+<def tag="cms" attrs="key, expires, async">
+     <% 
+     	expires ||= 1.month 
+	async ||= false
+    	cache_key = request.host + '/cms/' + key 
+     	ActionController::Base.new.expire_fragment(cache_key) if params["clear_cache"] 
+     	if async %>
+   		<div id="cms"><%= raw ERB.new(cmsAsyncGet(key, cache_key, expires)).result(binding).force_encoding("UTF-8") %></div>
+     <%
+     	else 
+     		cache(cache_key, :expires_in => expires) do %>
+    			<div id="cms"><%= raw ERB.new(cmsGet(key)).result(binding).force_encoding("UTF-8") %></div>
+     <% 
+     		end 
+     	end
+     %> 
 </def>
