@@ -84,3 +84,6 @@ gem 'detect_timezone_rails'
 gem 'redis-rails'
 gem 'murmurhash3'
 gem 'heroku-deflater', :group => :production
+gem 'rainbows'
+gem 'em-http-request'
+gem "faraday"
