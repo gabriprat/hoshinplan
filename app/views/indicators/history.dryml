@@ -79,15 +79,17 @@
 			}
 		});
 	});
-	function deleteHistory(id, date) {
-		var form = $("#delete-form");
-		form.attr("action", "/indicator_histories/" + id);
-		var conf = "<t key='history.messages.confirm_delete'>Are you sure you want to delete the value for the date XXX?</t>";
-		form.data("confirm", conf.replace("XXX", date));
-		form.submit();
-	}
 	</custom-javascript:>
 	<content-body:>
+		<script type="text/javascript">
+			function deleteHistory(id, date) {
+				var form = $("#delete-form");
+				form.attr("action", "/indicator_histories/" + id);
+				var conf = "<t key='history.messages.confirm_delete'>Are you sure you want to delete the value for the date XXX?</t>";
+				form.data("confirm", conf.replace("XXX", date));
+				form.submit();
+			}
+		</script>
 		<section class="panel">
 		        <header class="panel-heading">
 		            <t key="history.historic_values">Historic values and goals</t>
