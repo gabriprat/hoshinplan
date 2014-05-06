@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
   
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
-  has_many :indicators, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :indicators, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id, :order => :next_update
   has_many :indicator_histories, :through => :indicators
-  has_many :tasks, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :tasks, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id, :order => :deadline
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
   has_many :authorizations, :dependent => :destroy
@@ -72,15 +72,19 @@ class User < ActiveRecord::Base
   }
   
   def pending_tasks
-    Task.includes(:responsible).where("deadline <= #{User::TODAY_SQL} and status=? and responsible_id = ?", :active, id)
+    Task.includes(:responsible, :area, :hoshin, :company).where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id)
   end
   
   def dashboard_tasks
-    tasks.where(:status => [:active, :backlog])
+    Task.includes(:responsible, :area, :hoshin, :company).where(:status => [:active, :backlog], :responsible_id => id)
   end
   
   def pending_indicators
-    Indicator.includes(:responsible).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
+    Indicator.includes(:responsible, :area, :hoshin, :company).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
+  end
+  
+  def dashboard_indicators
+    Indicator.includes(:responsible, :area, :hoshin, :company).where(:responsible_id => id)
   end
   
   def next_tutorial

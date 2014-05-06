@@ -95,7 +95,7 @@
 			</else>
 	        </if>
 		<else>
-			<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
+			<rtable:dashboard_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
 			<else>
 			    <ht key="indicator.collection.empty_message"/>
 			</else>

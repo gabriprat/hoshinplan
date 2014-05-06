@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   
   def show
     begin
+      self.this = User.includes(:hoshins, :companies).where(:id => params[:id]).first
       hobo_show
     rescue Hobo::PermissionDeniedError => e
       self.current_user = nil
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   
   def pending
     begin
-      @this = find_instance
+      self.this = User.includes(:hoshins, :companies).where(:id => params[:id]).first
     rescue Hobo::PermissionDeniedError => e
       self.current_user = nil
       redirect_to "/login?force=true"
