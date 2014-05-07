@@ -33,9 +33,9 @@ class ApplicationController < ActionController::Base
          :do_activate, :do_signup, :forgot_password, :reset_password,
          :do_reset_password, :mail_preview, :failure, :activate_from_email]
         
-  around_filter :set_user_time_zone
+  around_filter :set_user_time_zone,  :except => [:activate_from_email]
          
-         around_filter :scope_current_user  
+         around_filter :scope_current_user,  :except => [:activate_from_email]
 
              def scope_current_user
                if defined?("logged_in?")

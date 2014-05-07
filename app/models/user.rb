@@ -72,19 +72,19 @@ class User < ActiveRecord::Base
   }
   
   def pending_tasks
-    Task.includes(:responsible, :area, :hoshin, :company).where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id)
+    Task.includes(:responsible, :area, :hoshin, :company).where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id).order(:deadline)
   end
   
   def dashboard_tasks
-    Task.includes(:responsible, :area, :hoshin, :company).where(:status => [:active, :backlog], :responsible_id => id)
+    Task.includes(:responsible, :area, :hoshin, :company).where(:status => [:active, :backlog], :responsible_id => id).order(:deadline)
   end
   
   def pending_indicators
-    Indicator.includes(:responsible, :area, :hoshin, :company).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
+    Indicator.includes(:responsible, :area, :hoshin, :company).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id).order(:next_update)
   end
   
   def dashboard_indicators
-    Indicator.includes(:responsible, :area, :hoshin, :company).where(:responsible_id => id)
+    Indicator.includes(:responsible, :area, :hoshin, :company).where(:responsible_id => id).order(:next_update)
   end
   
   def next_tutorial
