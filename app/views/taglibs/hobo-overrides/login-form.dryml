@@ -18,6 +18,7 @@
 			    <div param='actions'>
 			      <submit label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/><if class='nav-item' test='&signup_url'>
 			      <t key='hobo.support.or'>or</t> <a href='&signup_url' param='signup'><t key='hobo.login.signup'>Sign up</t></a></if>
+			      <if test="&forgot_password_url">or <a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
 			    </div>
 			  </form>
 		</div>
