@@ -33,9 +33,9 @@ class ApplicationController < ActionController::Base
          :do_activate, :do_signup, :forgot_password, :reset_password,
          :do_reset_password, :mail_preview, :failure, :activate_from_email]
         
-  around_filter :set_user_time_zone,  :except => [:activate_from_email]
+  around_filter :set_user_time_zone,  :except => [:activate_from_email, :activate]
          
-         around_filter :scope_current_user,  :except => [:activate_from_email]
+         around_filter :scope_current_user,  :except => [:activate_from_email, :activate]
 
              def scope_current_user
                if defined?("logged_in?")
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                end               
                if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
-                 inst = model.user_find(current_user, params[:id]) unless params[:id].nil?                 
+                 inst = model.find(params[:id]) unless params[:id].nil?                 
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
                  inst = Hoshin.find(params[:area][:hoshin_id]) unless inst
                  Rails.logger.debug inst.to_yaml
