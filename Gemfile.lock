@@ -68,7 +68,7 @@ GEM
       activerecord (>= 3.0)
     addressable (2.3.6)
     arel (3.0.3)
-    aws-sdk (1.39.0)
+    aws-sdk (1.40.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bitmask_attributes (1.0.0)
