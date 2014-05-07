@@ -95,8 +95,10 @@ class Hoshin < ActiveRecord::Base
     
     blind = objectives.blind.count(:id)
     self.blind_objectives_count = blind  
-
-    self.save!
+    begin
+      self.save!
+    rescue ActiveRecord::ReadOnlyRecord
+    end
   end
   
   def users_with_pending_actions
