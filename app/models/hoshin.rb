@@ -84,6 +84,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def health_update!
+    return if self.readonly?
     neglected = objectives.neglected.count(:id)
     self.neglected_objectives_count = neglected
     
@@ -95,10 +96,8 @@ class Hoshin < ActiveRecord::Base
     
     blind = objectives.blind.count(:id)
     self.blind_objectives_count = blind  
-    begin
-      self.save!
-    rescue ActiveRecord::ReadOnlyRecord
-    end
+    
+    self.save!
   end
   
   def users_with_pending_actions
