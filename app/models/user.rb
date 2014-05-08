@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
     end
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
-      acting_user = user
+      acting_user = self
       @subject = "#{self.name} welcome to Hoshinplan!"
       UserCompanyMailer.welcome(self, 
       @subject).deliver
