@@ -149,6 +149,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def incomplete_health
+    return "none" unless creator == User.current_user
     value = 20
     if goals.size == 0
        ret = {:action => "goal"}
