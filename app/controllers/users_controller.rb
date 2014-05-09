@@ -16,6 +16,13 @@ class UsersController < ApplicationController
   
   include RestController
   
+  def do_activate
+    do_transition_action :activate do
+      self.current_user = model.find(params[:id])
+      redirect_to home_page
+    end
+  end
+  
   def admin_only
       render :text => "Permission Denied", :status => 403 unless current_user.administrator?
   end
@@ -36,7 +43,13 @@ class UsersController < ApplicationController
   
   def login
     unless params[:force]
-      hobo_login
+      hobo_login do
+        if performed?
+          redirect_to home_page 
+        else
+          true #continue normal hobo_login behavior
+        end
+      end
     end
   end
     

@@ -126,8 +126,8 @@ es:
       destroy:
         success: "La eliminación de %{model} ha sido tenido éxito."
       signup:
-        success: "¡Gracias por registrarte!"
-        must_activate: "Tiene que activar la cuenta antes de iniciar la sesión. Por favor verifique su correo eléctronico."
+        success: "¡Gracias por registrarte! Tiene que activar la cuenta antes de iniciar la sesión. Por favor verifique su correo eléctronico."
+        must_activate: "Tienes que activar la cuenta antes de iniciar la sesión. Por favor verifique su correo eléctronico."
       login:
         success: "Ha iniciado la sesión."
         error: "¡No se ingresaron %{login} y Contraseña válidos!"

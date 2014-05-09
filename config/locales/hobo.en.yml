@@ -118,7 +118,7 @@ en:
       destroy:
         success: "The %{model} was deleted"
       signup:
-        success: "Thanks for signing up!"
+        success: "Thanks for signing up! You must activate your account before you can log in. Please check your email."
         must_activate: "You must activate your account before you can log in. Please check your email."
       login:
         success: "You have logged in."

@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
     end
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
-      acting_user = self
+      current_user = acting_user
       @subject = "#{self.name} welcome to Hoshinplan!"
       UserCompanyMailer.welcome(self, 
       @subject).deliver
@@ -223,14 +223,17 @@ class User < ActiveRecord::Base
   end
   
   def same_company 
+    return false unless self.signed_up?
     acting_user == self || acting_user.user_companies.where(:company_id => self.user_companies.*.company_id).present?
   end
   
   def same_company_admin
-     acting_user.user_companies.where(:state => :admin, :company_id => self.user_companies.*.company_id).present?
+    return false unless self.signed_up?
+    acting_user.user_companies.where(:state => :admin, :company_id => self.user_companies.*.company_id).present?
   end
 
   def view_permitted?(field)
+    logger.debug field.to_yaml
     # permit password fields to avoid the reset password page to fail
     field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
   end
