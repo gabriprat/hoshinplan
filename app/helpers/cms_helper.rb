@@ -1,14 +1,19 @@
 module CmsHelper
   def cmsGet(key) 
-    url = URI.parse('http://doc.hoshinplan.com/' + key)
-    req = Net::HTTP::Get.new(url.path)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    if (res.code.to_i < 300) 
-      res.body
-    else
-      ""
+    begin
+      url = URI.parse('http://doc.hoshinplan.com/' + key)
+      req = Net::HTTP::Get.new(url.path)
+      res = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(req)
+      }
+      if (res.code.to_i < 300) 
+        res.body
+      else
+        ""
+      end
+    rescue SocketError => e
+      fail e unless Rails.env.development?
+      "cmsGet failed: " + e.to_s
     end
   end 
   

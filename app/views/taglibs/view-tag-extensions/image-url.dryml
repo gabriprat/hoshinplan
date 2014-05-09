@@ -3,5 +3,9 @@
 </def>
 
 <def tag="view" for="Paperclip::Attachment">
+  <% begin %>
   <image param src="#{this.url(:thumb)}" class="#{'no-image' unless this.exists?}" merge-attrs/>
+  <% rescue SocketError => e %>
+  <image src="/assets/default.jpg" class="no-image" merge-attrs/>
+  <% end %>
 </def>
