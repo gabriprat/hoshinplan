@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
   
   before_save do |user| 
-    if user.color.nil?
+    if user.color.nil? && !name.nil?
       user.color = hexFromString(name)
     end
   end
