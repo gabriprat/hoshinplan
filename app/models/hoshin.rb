@@ -84,7 +84,10 @@ class Hoshin < ActiveRecord::Base
   end
   
   def health_update!
-    return if self.readonly?
+    if self.readonly?
+      logger.debug "====== Not updating read-only hoshin"
+      return
+    end
     neglected = objectives.neglected.count(:id)
     self.neglected_objectives_count = neglected
     
@@ -96,7 +99,7 @@ class Hoshin < ActiveRecord::Base
     
     blind = objectives.blind.count(:id)
     self.blind_objectives_count = blind  
-    
+  
     self.save!
   end
   

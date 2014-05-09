@@ -48,6 +48,8 @@ class Area < ActiveRecord::Base
   after_create do |obj|
     user = User.current_user
     user.tutorial_step << :area
+    #FIXME: Trying to avoid health not to appear on complete hoshinplans without goals 
+    user.tutorial_step << :goal
     user.save!
   end
   

@@ -1,0 +1,8 @@
+<extend tag="permission-denied-page">
+	<old-permission-denied-page merge>
+		<append-content-header:>
+			<pre class='debug' if='&Rails.env.development?'><%= @permission_error.backtrace.join("\n") %></pre>
+		</append-content-header:>
+	</old-permission-denied-page>
+
+</extend>

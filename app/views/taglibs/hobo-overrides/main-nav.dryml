@@ -54,7 +54,7 @@
     <nav-item with="&Company.current_company" action="collaborators" if="&Company.current_id">
     	<t key="invite_collaborators">Invite collaborators</t>
     </nav-item>
-    <nav-item with="&current_user" action="tutorial" if="&User.current_user && User.current_user.administrator?">
+    <nav-item with="&current_user" action="tutorial">
     	<t key="tutorial">Tutorial</t>
     </nav-item>
     
