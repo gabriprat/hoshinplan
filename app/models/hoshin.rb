@@ -149,10 +149,10 @@ class Hoshin < ActiveRecord::Base
   end
   
   def incomplete_health
-    return "none" unless creator == User.current_user
     value = 20
+    ret = {:action => "none"} unless creator_id == User.current_id
     if goals.size == 0
-       ret = {:action => "goal"}
+       ret = ret || {:action => "goal"}
     else
       value += 16
     end
