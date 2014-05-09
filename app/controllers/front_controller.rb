@@ -105,7 +105,7 @@ class FrontController < ApplicationController
       tasks.each { |task| 
         @text +=  ll "Task: #{task.name}"
         expire_swept_caches_for(task)
-        expire_swept_caches_for(indicator.area)
+        expire_swept_caches_for(task.area)
       }
     end
     @text += ll "End expirecaches job!"
