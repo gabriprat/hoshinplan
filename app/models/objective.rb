@@ -71,6 +71,13 @@ class Objective < ActiveRecord::Base
     user.save!
   end
   
+  after_update do |obj|
+    if obj.area_id_changed?
+      obj.indicators.update_all(:area_id => area_id)
+      obj.tasks.update_all(:area_id => area_id)
+    end
+  end
+  
   def position
     obj_pos
   end
@@ -107,7 +114,7 @@ class Objective < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || creator || hoshin_creator || same_company_admin
+    acting_user.administrator? || same_creator || hoshin_creator || same_company_admin
   end
 
   def view_permitted?(field)
