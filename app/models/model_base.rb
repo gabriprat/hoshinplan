@@ -34,6 +34,16 @@ module ModelBase
     ret
   end
   
+  def hoshin_creator
+    user = acting_user ? acting_user : User.find(User.current_id)
+    return self.respond_to?("hoshin") && self.hoshin.creator_id == user.id
+  end
+  
+  def same_creator
+    user = acting_user ? acting_user : User.find(User.current_id)
+    return self.respond_to?("creator") && self.creator_id == user.id
+  end
+  
   def same_company_admin(cid=nil)
     user = acting_user ? acting_user : User.find(User.current_id)
     return true if user.administrator?

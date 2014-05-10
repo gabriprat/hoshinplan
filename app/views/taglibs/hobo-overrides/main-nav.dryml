@@ -32,7 +32,7 @@
 	 	<ht key="hoshin.nav_item" count="100"><model-name-human with="&Hoshin" count="100"/></ht>
 		<b class="caret"></b>
 	</a>
-    	<ul class="dropdown-menu" with="&current_user.hoshins">
+    	<ul class="dropdown-menu">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
 			<a><view:name/> (<view:company_name />)</a>
 		</li>

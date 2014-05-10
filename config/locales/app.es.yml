@@ -102,6 +102,7 @@ es:
         header: Cabecera
         parent: Padre
         company: Empresa
+        creator: Responsable
       goal:
         name: Nombre
       area:
