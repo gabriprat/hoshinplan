@@ -859,10 +859,20 @@ form#add-collaborators textarea {
 	border-bottom-style: solid
 }
 
-.header .logged-in-as img {
+.header .logged-in-as img, .header .logged-in-as .user-image {
 	height: 2em;
 	width: 2em;
 	margin-left: 5px;
+}
+
+acronym.user-image {
+	height: 2em;
+	width: 2em;
+	color: #fff;
+	font-weight: 200;
+	text-align: center;
+	line-height: 2em;
+	display: inline-block;
 }
 
 .column[data-label=Value], .column[data-label=Goal], .column[data-label=Deviation] {
