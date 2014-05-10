@@ -90,7 +90,7 @@
 
 <extend tag="form" for="Hoshin">
 	<old-form merge>
-            <field-list: fields="name, header, parent, company">
+            <field-list: fields="name, header, parent, creator, company" no-edit="view">
 	    	<company-view:>
 			<input if="&current_user.all_companies.length &gt; 0"/>
 			<else>

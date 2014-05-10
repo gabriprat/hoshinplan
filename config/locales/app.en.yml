@@ -47,6 +47,8 @@ en:
       indicator:
         goal: 100% value
         worst_value: 0% value
+      hoshin:
+        creator: Responsible
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   home: Home

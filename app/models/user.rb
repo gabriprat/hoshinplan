@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   #validates_attachment_size :image, :less_than => 10.megabytes    
     
-  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :''
+  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step
   
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
@@ -167,11 +167,15 @@ class User < ActiveRecord::Base
   end
   
   def all_companies
-    Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+    Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id)
+    .where('user_id = ?', self.id))
+    .order(:name)
   end
   
   def all_hoshins
-    Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company).where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+    Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company)
+    .where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+    .order(:company_id, :name)
   end
 
   def signed_up?

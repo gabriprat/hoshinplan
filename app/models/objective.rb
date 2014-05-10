@@ -107,7 +107,7 @@ class Objective < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || same_company_admin
+    acting_user.administrator? || creator || hoshin_creator || same_company_admin
   end
 
   def view_permitted?(field)

@@ -21,10 +21,9 @@ class Hoshin < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header
-  attr_accessible :areas, :children, :children_ids, :creator_id
+  attr_accessible :areas, :children, :children_ids, :creator_id, :creator
   
-  belongs_to :creator, :class_name => "User", :creator => true
-  never_show :creator
+  belongs_to :creator, :class_name => "User", :creator => true, :inverse_of => :my_hoshins
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
   belongs_to :parent, :inverse_of => :children, :class_name => "Hoshin", :counter_cache => true
@@ -212,7 +211,7 @@ class Hoshin < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || same_company_admin
+    acting_user.administrator? || same_creator || same_company_admin
   end
 
   def view_permitted?(field)
