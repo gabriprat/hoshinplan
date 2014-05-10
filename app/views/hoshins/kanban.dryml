@@ -18,7 +18,10 @@
 					 </formlet>
 				</modal:>
 				</modal>
-				<modal-open-button class="kb-color" data-color-id="#{this.id}" style="background-color:#{this.color}" modal="update-area-modal-#{this.id}"><view:name/></modal-open-button>
+				<modal-open-button class="kb-color" data-color-id="#{this.id}" style="background-color:#{this.color}" modal="update-area-modal-#{this.id}">
+				<view:name/>
+				<span onclick="$('.kb-color-#{this.id}, .col-tog-#{this.id}').toggle(); event.stopPropagation(); return false;" class="edit hoshin-tasks pull-right"><span class="fa fa-eye col-tog-#{this.id}"></span><span class="fa fa-eye-slash col-tog-#{this.id}" style="display:none"></span></span>
+				</modal-open-button>
 			</repeat>
 		</div>
 		<div class="kb-frame">
