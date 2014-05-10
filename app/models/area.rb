@@ -53,6 +53,14 @@ class Area < ActiveRecord::Base
     user.save!
   end
   
+  after_update do |area|
+    if area.hoshin_id_changed?
+      area.objectives.update_all(:hoshin_id => hoshin_id)
+      area.indicators.update_all(:hoshin_id => hoshin_id)
+      area.tasks.update_all(:hoshin_id => hoshin_id)
+    end
+  end
+  
   def defaultColor
     str = "area+" + (name.nil? ? rand(1000000000).to_s(16) : name)
     res = hexFromString(str, 0.95 - (position.nil? ? 1 : position)/30.0)  
@@ -103,7 +111,7 @@ class Area < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || creator || hoshin_creator || same_company_admin
+    acting_user.administrator? || same_creator || hoshin_creator || same_company_admin
   end
 
   def view_permitted?(field)

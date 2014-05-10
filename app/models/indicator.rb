@@ -194,7 +194,7 @@ class Indicator < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator? || same_company_admin || creator || hoshin_creator
+    acting_user.administrator? || same_company_admin || same_creator || hoshin_creator
   end
 
   def view_permitted?(field=nil)

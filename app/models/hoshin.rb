@@ -102,6 +102,18 @@ class Hoshin < ActiveRecord::Base
     self.save!
   end
   
+  after_update do |hoshin|
+    if hoshin.company_id_changed?
+      IndicatorHistory.joins(:indicator).where(:indicators => {:hoshin_id => id}).update_all(:company_id => company_id)
+      hoshin.indicators.update_all(:company_id => company_id)
+      hoshin.tasks.update_all(:company_id => company_id)
+      hoshin.objectives.update_all(:company_id => company_id)
+      hoshin.areas.update_all(:company_id => company_id)
+      hoshin.goals.update_all(:company_id => company_id)
+    end
+  end
+  
+  
   def users_with_pending_actions
     users = {}
     (objectives.neglected | objectives.blind | indicators.overdue | tasks.overdue).each {|o|

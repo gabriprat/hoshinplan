@@ -4,12 +4,9 @@
 	<div param="title"><h2><view with="&title"/>(<div part="cs-size" class="cs-size-#{connect_with}" id="cs-size-#{connect_with}-#{list_id}">#{this.count}</div>)</h2></div>
 	<section param="body" class="#{connect_with} connected-sortable" data-rapid="&data_rapid('connectedsortable', {connect_with: '.'+connect_with, list_id: list_id})" merge-attrs>
 	<set-scoped connect-with='&connect_with' list-id='&list_id' items='&this'>
-	<call-tag tag="ul">
+	<call-tag tag="&list_tag">
 		<li repeat="&scope.items" data-rapid-context='&typed_id' data-id="&this.id" param="item">
 			<do param='default'><card param/></do>
-			<formlet class="csupdate" param updates=".cs-size-#{scope.connect_with}">
-				<hidden-fields fields="lane_pos, status"/>
-			</formlet>
 		</li>
 	</call-tag>
 	</set-scoped>

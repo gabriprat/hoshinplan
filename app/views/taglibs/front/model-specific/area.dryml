@@ -5,13 +5,13 @@
     	 <h4 param="heading"><a onclick="$('#update-area-modal-#{this.id}').modal('show'); $('#update-area-modal-#{this.id} form').trigger('reset'); return false;"><name/></a></h4>
     </header:>
     <body: >
-	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}">
+	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}" class="area-part">
 	<swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?">
 	<modal id="update-area-modal-#{this.id}">
 	<modal:>
 		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal" id="upd-area-#{this.id}" updates="#areas,#sec-actions">
 		   <div class="modal-body">
-		    <field-list: fields="name"/>
+		    <field-list: fields="name, hoshin"/>
 		   </div>
 		   <modal-form-footer-delete />
 		 </form>
