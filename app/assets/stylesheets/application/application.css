@@ -1462,6 +1462,11 @@ form.indicator-value input[type=radio] {
 	margin-bottom: 1em;
 }
 
+.kb-color a {
+	font-size: 1.1em;
+	color: #2f4154;
+}
+
 .kb-frame .connected-sortable-wrapper {
 	display:table-cell;
 	width: 20%;
