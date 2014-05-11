@@ -17,7 +17,7 @@
 
 <extend tag="form" for="User">
   <old-form merge multipart>
-    <field-list: fields="name, email_address, image, companies, timezone"/>
+    <field-list: fields="name, email_address, companies, timezone"/>
   </old-form>
 </extend>
 
@@ -53,7 +53,7 @@
 			</span>
 			<div class="inline edit-image">
 			<view:image />
-			<div><a action="edit"><t key="dashboard.change">Change</t></a></div>
+			<div><a data-toggle="modal" href="#edit-img"><t key="dashboard.change">Change</t></a></div>
 			</div>
 			<div class="inline">
 			<strong><view:name /></strong>
@@ -63,6 +63,26 @@
 			<delete-button value="#{t 'delete_account', :default => 'Delete account'}"/>
 			</div>
 		</div>
+		<modal id="edit-img">
+		<modal:>
+			<form class="modal">
+			    <div class="modal-body">
+			    <feckless-fieldset class="horizontal" fields="image">
+			    	<image-view:>
+					<div data-rapid='#{data_rapid(:image_input)}' class="image-input">
+					<input class="hide"/>
+					<a class="btn" href="#" onclick="$(this).prev('input').click()"><t key="choose_file">Choose file</t></a>
+					<div class="preview" style="max-height: 104px; max-width: 104px;">
+						<view no-wrapper/>
+					</div>
+					</div>
+				</image-view:>
+			    </feckless-fieldset>
+			    </div>
+			    <modal-form-footer/>
+			 </form>
+		</modal:>
+		</modal>
 		<div class="panel-body">
 			<h4><t key="dashboard.collaborating_with">Collaborating with</t></h4>
 			<hr/>

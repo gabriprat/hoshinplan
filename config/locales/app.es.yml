@@ -197,6 +197,7 @@ es:
   locale_en_US: Inglés (EEUU)
   locale_es_ES: Español (España)
   home: Inicio
+  choose_file: Escoje un fichero
   area:
     no_xx_defined: No hay %{xx} en esta %{model}
   indicator:
