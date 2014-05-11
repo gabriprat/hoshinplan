@@ -5,7 +5,7 @@ class Hoshin < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name :string
+    name :string, :default => 'plan', :null => false
     goals_count :integer, :default => 0, :null => false
     areas_count :integer, :default => 0, :null => false
     objectives_count :integer, :default => 0, :null => false
