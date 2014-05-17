@@ -18,3 +18,5 @@
 .DS_Store
 .env
 vendor
+
+backup_and_restore.sh
