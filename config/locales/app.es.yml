@@ -192,6 +192,8 @@ es:
   log_in_with: Accede con %{provider}
   new_child_for_parent: Nuevo %{child} para %{parent}
   invite_collaborators: Invitar colaboradores
+  pricing: Precios
+  features: Funcionalidades
   use_your_corporate: Utiliza tus credenciales corporativas
   use_your_user: Utiliza tu usuario de hoshinplan.com
   change_locale: Idioma

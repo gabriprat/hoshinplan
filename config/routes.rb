@@ -17,6 +17,10 @@ Hoshinplan::Application.routes.draw do
 
   match 'about' => 'cms#page', :as => 'cms_about', :key => :about
 
+  match 'features' => 'cms#page', :as => 'cms_features', :key => :features
+
+  match 'pricing' => 'cms#page', :as => 'cms_pricing', :key => :pricing
+
   match 'invitation-accepted' => 'front#invitation_accepted', :as => 'front_invitation_accepted'
 
   match 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'

@@ -7,7 +7,6 @@
   </if>
   <else>
   <navigation class="main-nav" merge-attrs param="default" if="&logged_in?">
-    <!--<nav-item with="&ClientApplication"><ht key="client_application.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>-->
     <li class='nav-item dropdown'>
     	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<if test="&Company.current_id.nil?">
@@ -59,6 +58,16 @@
     </nav-item>
     
   </navigation>
+  <else>
+  <navigation class="main-nav" merge-attrs param="default" if="&false">
+  <nav-item href="/features">
+  	<t key="features">Features</t>
+  </nav-item>
+  <nav-item href="/pricing">
+  	<t key="pricing">Pricing</t>
+  </nav-item>
+  </navigation>
+  </else>
   </else>
   <modal id="login">
 <modal:>
