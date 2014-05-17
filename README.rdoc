@@ -1,261 +1,125 @@
-== Welcome to Rails
+== Hoshinplan
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
+Hoshinplan is a tool to make it easy for companies to share and track their strategy.
 
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
+We have a hosted version of the tool at http://www.hoshinplan.com
 
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
+== Bugs and feature requests
 
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+The [issue tracker](https://github.com/gabriprat/hoshinplan/issues) is
+the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests)
+and [submitting pull requests](#pull-requests), but please respect the following
+restrictions:
 
+* Please first read the issue guidelines and search for existing and closed issues. If your problem or idea is not addressed yet, please open a new issue.
 
-== Getting Started
+* Please **do not** derail or troll issues. Keep the discussion on topic and
+  respect the opinions of others.
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+## Bug reports
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+A bug is a _demonstrable problem_ that is caused by the code in the repository.
+Good bug reports are extremely helpful, so thanks!
 
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
+**Use the GitHub issue search** &mdash; check if the issue has already been reported.
 
-4. Follow the guidelines to start developing your application. You can find
-the following resources handy:
+A good bug report shouldn't leave others needing to chase you up for more
+information. Please try to be as detailed as possible in your report. What is
+your environment? What steps will reproduce the issue? What browser(s) and OS
+experience the problem? Do other browsers show the bug differently? What
+would you expect to be the outcome? All these details will help people to fix
+any potential bugs.
 
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
+Example:
 
-
-== Debugging Rails
-
-Sometimes your application goes wrong. Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
-
-First area to check is the application log files. Have "tail -f" commands
-running on the server.log and development.log. Rails will automatically display
-debugging and runtime information to these files. Debugging info will also be
-shown in the browser on requests from 127.0.0.1.
-
-You can also log your own messages directly into the log file from your code
-using the Ruby logger class from inside your controllers. Example:
-
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
-
-The result will be a message in your log file along the lines of:
-
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
-
-More information on how to use the logger is at http://www.ruby-doc.org/core/
-
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
-
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
-
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
+> Short and descriptive example bug report title
+>
+> A summary of the issue and the browser/OS environment in which it occurs. If
+> suitable, include the steps required to reproduce the bug.
+>
+> 1. This is the first step
+> 2. This is the second step
+> 3. Further steps, etc.
+>>
+> Any other information you want to share that is relevant to the issue being
+> reported. This might include screenshots, the lines of code that you have identified as
+> causing the bug, and potential solutions (and your opinions on their
+> merits).
 
 
-== Debugger
+## Feature requests
 
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
-
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.all
-      debugger
-    end
-  end
-
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
-
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
-
-...and even better, you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you can enter "cont".
+Feature requests are welcome. But take a moment to find out whether your idea
+fits with the scope and aims of the project. It's up to *you* to make a strong
+case to convince the project's developers of the merits of this feature. Please
+provide as much detail and context as possible.
 
 
-== Console
+## Pull requests
 
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
+Good pull requests—patches, improvements, new features—are a fantastic
+help. They should remain focused in scope and avoid containing unrelated
+commits.
 
-To start the console, run <tt>rails console</tt> from the application
-directory.
+**Please ask first** before embarking on any significant pull request (e.g.
+implementing features, refactoring code, ...),
+otherwise you risk spending a lot of time working on something that the
+project's developers might not want to merge into the project.
 
-Options:
+Please adhere to the [coding guidelines](#code-guidelines) used throughout the
+project (indentation, accurate comments, etc.) and any other requirements
+(such as test coverage).
 
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
+Adhering to the following process is the best way to get your work
+included in the project:
 
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
+1. [Fork](http://help.github.com/fork-a-repo/) the project, clone your fork,
+   and configure the remotes:
 
-More information about irb can be found at:
-link:http://www.rubycentral.org/pickaxe/irb.html
+   ```bash
+   # Clone your fork of the repo into the current directory
+   git clone https://github.com/<your-username>/hoshinplan.git
+   # Navigate to the newly cloned directory
+   cd hoshinplan
+   # Assign the original repo to a remote called "upstream"
+   git remote add upstream https://github.com/gabriprat/hoshinplan
+   ```
 
+2. If you cloned a while ago, get the latest changes from upstream:
 
-== dbconsole
+   ```bash
+   git checkout master
+   git pull upstream master
+   ```
 
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
+3. Create a new topic branch (off the main project development branch) to
+   contain your feature, change, or fix:
 
-== Description of Contents
+   ```bash
+   git checkout -b <topic-branch-name>
+   ```
 
-The default directory structure of a generated Ruby on Rails application:
+4. Commit your changes in logical chunks. Please adhere to these [git commit
+   message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+   or your code is unlikely be merged into the main project. Use Git's
+   [interactive rebase](https://help.github.com/articles/interactive-rebase)
+   feature to tidy up your commits before making them public.
 
-  |-- app
-  |   |-- assets
-  |   |   |-- images
-  |   |   |-- javascripts
-  |   |   `-- stylesheets
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-  |   `-- views
-  |       `-- layouts
-  |-- config
-  |   |-- environments
-  |   |-- initializers
-  |   `-- locales
-  |-- db
-  |-- doc
-  |-- lib
-  |   |-- assets
-  |   `-- tasks
-  |-- log
-  |-- public
-  |-- script
-  |-- test
-  |   |-- fixtures
-  |   |-- functional
-  |   |-- integration
-  |   |-- performance
-  |   `-- unit
-  |-- tmp
-  |   `-- cache
-  |       `-- assets
-  `-- vendor
-      |-- assets
-      |   |-- javascripts
-      |   `-- stylesheets
-      `-- plugins
+5. Locally merge (or rebase) the upstream development branch into your topic branch:
 
-app
-  Holds all the code that's specific to this particular application.
+   ```bash
+   git pull [--rebase] upstream master
+   ```
 
-app/assets
-  Contains subdirectories for images, stylesheets, and JavaScript files.
+6. Push your topic branch up to your fork:
 
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from
-  ApplicationController which itself descends from ActionController::Base.
+   ```bash
+   git push origin <topic-branch-name>
+   ```
 
-app/models
-  Holds models that should be named like post.rb. Models descend from
-  ActiveRecord::Base by default.
+7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
+    with a clear title and description against the `master` branch.
 
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.html.erb for the WeblogsController#index action. All views use
-  eRuby syntax by default.
+**IMPORTANT**: By submitting a patch, you agree to allow the project owners to
+license your work under the terms of the [MIT License](LICENSE).
 
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the
-  common header/footer method of wrapping views. In your views, define a layout
-  using the <tt>layout :default</tt> and create a file named default.html.erb.
-  Inside default.html.erb, call <% yield %> to render the view using this
-  layout.
-
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are
-  generated for you automatically when using generators for controllers.
-  Helpers can be used to wrap functionality for your views into methods.
-
-config
-  Configuration files for the Rails environment, the routing map, the database,
-  and other dependencies.
-
-db
-  Contains the database schema in schema.rb. db/migrate contains all the
-  sequence of Migrations for your schema.
-
-doc
-  This directory is where your application documentation will be stored when
-  generated using <tt>rake doc:app</tt>
-
-lib
-  Application specific libraries. Basically, any kind of custom code that
-  doesn't belong under controllers, models, or helpers. This directory is in
-  the load path.
-
-public
-  The directory available for the web server. Also contains the dispatchers and the
-  default HTML files. This should be set as the DOCUMENT_ROOT of your web
-  server.
-
-script
-  Helper scripts for automation and generation.
-
-test
-  Unit and functional tests along with fixtures. When using the rails generate
-  command, template test files will be generated for you and placed in this
-  directory.
-
-vendor
-  External libraries that the application depends on. Also includes the plugins
-  subdirectory. If the app has frozen rails, those gems also go here, under
-  vendor/rails/. This directory is in the load path.
