@@ -9,9 +9,11 @@
 			</else>
 			<%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400|Lato:300,400,700|Reenie+Beanie:400;", :media => 'all' %>
 		</stylesheets:>
+		<custom-scripts:>
+			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
+		</custom-scripts:>
 		<append-body: >
 			<%= raw "<"+"/span>" %>
-			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
 			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="&Rails.application.config.action_controller.perform_caching"/>
 			<script type="text/javascript">
 				(function() {
