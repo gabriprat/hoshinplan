@@ -43,7 +43,7 @@ class Hoshin < ActiveRecord::Base
     if Company.current_id
       where(:company_id => Company.current_id)
     else
-      joins(:company => :user_companies).where("user_id = ?", User.current_id)
+      where(:company_id => UserCompany.select(:company_id).where(:user_id => User.current_id))
     end
   }
   

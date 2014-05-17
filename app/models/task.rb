@@ -11,6 +11,7 @@ class Task < ActiveRecord::Base
     original_deadline :date
     show_on_parent    :boolean
     reminder          :boolean, :default => true
+    lane_pos          :integer, :default => 0, :null => false
     timestamps
   end
   index [:deadline, :status]
@@ -30,7 +31,6 @@ class Task < ActiveRecord::Base
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
-  acts_as_list :scope => [:status, :hoshin_id], :column => "lane_pos"
   
   set_default_order [:status, :tsk_pos]
   
@@ -42,7 +42,7 @@ class Task < ActiveRecord::Base
         User.current_id)) }
   
   scope :lane, lambda {|*status|
-    visible.where(:status => status).order(:lane_pos)
+    visible.where(:status => status).order(:status)
   }
   
   scope :due, lambda { |*interval|
@@ -67,12 +67,69 @@ class Task < ActiveRecord::Base
     task.company = task.objective.company
     task.hoshin = task.objective.hoshin
   end
-  
+
   after_save "hoshin.health_update!"
   after_destroy "hoshin.health_update!"
 
   after_save :update_counter_cache
   after_destroy :update_counter_cache
+  
+  after_update :update_lane_positions
+  after_destroy :decrement_lane_positions_on_lower_items
+  before_create :add_to_lane_list_bottom
+  
+  def decrement_lane_positions_on_lower_items(position=nil)
+    acts_as_list_class.unscoped.where(
+      "status='#{status}' AND hoshin_id = #{hoshin_id} AND #{position_column} > #{lane_pos}"
+    ).update_all(
+      "lane_pos = (lane_pos - 1)"
+    )
+  end
+  
+  def bottom_lane_item
+    Task.unscoped.in_list.where("status='#{status}' AND hoshin_id = #{hoshin_id}").order("tasks.lane_pos DESC").first
+  end
+  
+  def add_to_lane_list_bottom
+    self.lane_pos = bottom_lane_item
+  end
+  
+  def update_lane_positions
+      old_position = lane_pos_was
+      new_position = lane_pos
+
+      return unless Task.unscoped.where("status = '#{status}' AND hoshin_id = #{hoshin_id} AND lane_pos = #{new_position}").count > 1
+      shuffle_lane_positions_on_intermediate_items old_position, new_position, id
+  end
+  
+  def shuffle_lane_positions_on_intermediate_items(old_position, new_position, avoid_id = nil)
+    return if old_position == new_position
+    avoid_id_condition = avoid_id ? " AND #{self.class.primary_key} != #{self.class.quote_value(avoid_id)}" : ''
+
+    if old_position < new_position
+      # Decrement position of intermediate items
+      #
+      # e.g., if moving an item from 2 to 5,
+      # move [3, 4, 5] to [2, 3, 4]
+      Task.unscoped.where(
+        "status = '#{status}' AND hoshin_id = #{hoshin_id} AND lane_pos > #{old_position} AND lane_pos <= #{new_position}#{avoid_id_condition}"
+      ).update_all(
+        "lane_pos = (lane_pos - 1)"
+      )
+    else
+      # Increment position of intermediate items
+      #
+      # e.g., if moving an item from 5 to 2,
+      # move [2, 3, 4] to [3, 4, 5]
+      Task.unscoped.where(
+        "status = '#{status}' AND hoshin_id = #{hoshin_id} AND lane_pos >= #{new_position} AND lane_pos < #{old_position}#{avoid_id_condition}"
+      ).update_all(
+        "lane_pos = (lane_pos + 1)"
+      )
+    end
+  end
+  
+  
 
   def update_counter_cache
     self.objective.tasks_count = Task.where(:status => [:active, :backlog], :objective_id => self.objective_id).count(:id)
