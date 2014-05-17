@@ -4,10 +4,10 @@
         init: function(annotations) {
 		var options = this.hjq('getOptions', annotations);
 		this.on('update', options.update);
-		methods.update.call(this, options.percent)
+		methods.update.call(this, options.percent, options.href)
         },
-	update: function(percent) {
-		this.timer(percent);
+	update: function(percent, href) {
+		this.timer(percent, href);
 		this.trigger("update");
 	}
     };
