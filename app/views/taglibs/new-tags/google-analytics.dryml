@@ -1,5 +1,5 @@
 <def attrs='tracking,domain' tag='google-analytics'>
-  <if test='&ENV[&apos;RAILS_ENV&apos;] == &apos;production&apos;'>
+  <if test='&ENV[&apos;RAILS_ENV&apos;] != &apos;production&apos;'>
   
 	  <script>
 	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -10,7 +10,7 @@
 	    ga('create', 'UA-47284244-1', 'hoshinplan.com');
 	    ga('send', 'pageview');
 	    <if test="#{User.current_id}">
-	    ga(‘set’, ‘<%= '&uid' %>'}’, #{User.current_id});
+	    ga('set', '<%= raw '&uid' %>', #{User.current_id});
 	    </if>
 	  </script>
   </if>
