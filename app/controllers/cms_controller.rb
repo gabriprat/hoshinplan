@@ -9,4 +9,8 @@ class CmsController < ApplicationController
     @key = params["key"]
   end  
   
+  def page 
+    @key = params["key"]
+  end  
+  
 end
