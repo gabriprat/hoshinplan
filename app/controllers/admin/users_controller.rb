@@ -23,7 +23,7 @@ class Admin::UsersController < Admin::AdminSiteController
   
   def index
     @users = model.search(params[:search], :email_address).
-     order_by(parse_sort_param(:name, :email_address)).paginate(:page => params[:page], :per_page => 15).all
+     order_by(parse_sort_param(:name, :email_address, :id, :created_at, :administrator, :timezone, :state, :email_address)).paginate(:page => params[:page], :per_page => 15).all
     hobo_index
   end
   
