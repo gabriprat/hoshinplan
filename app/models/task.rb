@@ -80,7 +80,7 @@ class Task < ActiveRecord::Base
   
   def decrement_lane_positions_on_lower_items(position=nil)
     acts_as_list_class.unscoped.where(
-      "status='#{status}' AND hoshin_id = #{hoshin_id} AND #{position_column} > #{lane_pos}"
+      "status='#{status}' AND hoshin_id = #{hoshin_id} AND lane_pos > #{lane_pos}"
     ).update_all(
       "lane_pos = (lane_pos - 1)"
     )
