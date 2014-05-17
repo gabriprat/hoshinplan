@@ -1571,6 +1571,32 @@ form.indicator-value input[type=radio] {
 	text-align: center;
 }
 
+.footer {
+	background-color: #555;
+}
+
+.footer-links {
+	margin-top: 20px;
+	padding-left: 0;
+	color: #e5e5e5;
+	text-align: center;
+}
+
+.footer-links a, .footer-links a:hover, .footer-links a:visited, .footer-links a:link, .footer-links a:active{
+	color: #e5e5e5;
+	text-decoration: underline;
+}
+
+.footer-links li {
+	display: inline;
+	padding: 0;
+}
+
+.footer-links li + li:before {
+	content: '·';
+	margin: 0 0.5em;
+}
+
 @media all and (min-width: 979px) {
 	:not(.health-page) #sec-actions {
 		margin-top: -30px;
