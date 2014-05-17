@@ -1,5 +1,9 @@
-$.fn.timer = function(percent){
-	this.html('<div class="percent"></div><div class="slice'+(percent > 50?' gt50':'')+'"><div class="pie"></div><div class="pie fill"></div></div><div class="bg"></div>');
+$.fn.timer = function(percent, href){
+	var tpcHtml = '<div class="percent"></div>';
+	if (href) {
+		tpcHtml = '<a href="' + href + '" class="percent"></a>';
+	}
+	this.html('<div class="slice'+(percent > 50?' gt50':'')+'"><div class="pie"></div><div class="pie fill"></div></div><div class="bg"></div>' + tpcHtml);
 	var that = this;	
 	$(this).heatcolor(
 	function() {
