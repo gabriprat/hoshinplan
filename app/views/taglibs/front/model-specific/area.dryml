@@ -25,7 +25,7 @@
             </ht>
 	</a></h5>
 	
-	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden">
+	<form id="reorder-#{this.id}" ajax="true" updates="area-#{this.id}" class="hidden" success="equalHeightSections();">
 		<field-list: fields="name" />
 		<actions: replace />
 	</form>
