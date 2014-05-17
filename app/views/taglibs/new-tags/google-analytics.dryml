@@ -9,10 +9,10 @@
 
 	    ga('create', 'UA-47284244-1', 'hoshinplan.com');
 	    ga('require', 'displayfeatures');
-	    ga('send', 'pageview');
 	    <if test="#{User.current_id}">
 	    ga('set', '<%= raw '&uid' %>', #{User.current_id});
 	    </if>
+	    ga('send', 'pageview');
 	  </script>
   </if>
 </def>
