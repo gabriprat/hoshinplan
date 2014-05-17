@@ -92,6 +92,7 @@ class Task < ActiveRecord::Base
   
   def add_to_lane_list_bottom
     self.lane_pos = bottom_lane_item
+    self.lane_pos ||= 0
   end
   
   def update_lane_positions
