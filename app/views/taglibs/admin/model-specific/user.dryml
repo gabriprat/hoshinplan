@@ -12,11 +12,7 @@
 		<tr><td> <%= this[1] %></td><td><%=this[0]%></td></tr>
 		</repeat>
 		</table>
-		<%
-		  field_names = standard_fields(this.member_class)
-		  field_names = field_names.join(',')
-		  %>
-			<table-plus fields="&field_names">
+			<table-plus fields="id, created_at, name, color, email_address, administrator, tutorial_step, timezone, state">
 			       <append-controls: >
 			       <if test="&User.eql?(this.class)">
 				<%=     button_to("Supplant", object_url(this, "supplant", :method => :post)) %>
