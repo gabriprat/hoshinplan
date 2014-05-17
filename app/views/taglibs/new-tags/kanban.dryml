@@ -7,8 +7,20 @@
 			<rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
 			<div><click-editor-innards:name/></div>
 			<div><click-editor-innards:description/></div>
+			<if test="&this.original_deadline != this.deadline">
+			<div class="original-deadline">
+				<view:original-deadline/>
+			</div>
+			</if>
 			<div class="deadline">
-				<autosubmit:deadline class="#{this.deadline_status}"/>
+				<autosubmit:deadline class="#{this.deadline_status} inline">
+					<append-wrapper:>
+					<if test="&this_parent.original_deadline != this">
+					<set diff="&this - this_parent.original_deadline"/>
+					<view class="&(diff > 0 ? 'overdue' : '') + ' inline'" with="&'(' + (diff).to_s + ')'"/>
+					</if>
+					</append-wrapper:>
+				</autosubmit>
 			</div>
 			<user-img:responsible_id />
 			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-#{scope.connect_with}">

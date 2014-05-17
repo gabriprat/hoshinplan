@@ -34,8 +34,8 @@
 		var $form = that.find("form.autosubmit");
 		that.find(".autosubmit-toggle").each( function () {
 			$(this).toggle();
-			that.find("form.autosubmit").toggle();
-			that.find("form.autosubmit input[type=text]:visible").first().focus();
+			$form.toggle();
+			$form.find("input[type=text]:visible").first().focus();
 		});
 	},
 	submit: function(e) {
