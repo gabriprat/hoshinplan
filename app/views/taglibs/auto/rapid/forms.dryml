@@ -153,6 +153,17 @@
     </div>
   </form>
 </def>
+<def tag="start-form" polymorphic/>
+<def tag="start-form" for="Task">
+  <form lifecycle="start" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.task.lifecycle.transitions.start', :default=>['Start']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="reactivate-form" polymorphic/>
 <def tag="reactivate-form" for="Task">
   <form lifecycle="reactivate" merge param="default">
