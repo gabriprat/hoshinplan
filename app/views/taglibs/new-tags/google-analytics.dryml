@@ -10,7 +10,7 @@
 	    ga('create', 'UA-47284244-1', 'hoshinplan.com');
 	    ga('send', 'pageview');
 	    <if test="#{User.current_id}">
-	    ga(‘set’, ‘&amp;uid’, #{User.current_id}); // Establezca el ID de usuario mediante el user_id con el que haya iniciado sesión.
+	    ga(‘set’, ‘<%= '&uid' %>'}’, #{User.current_id});
 	    </if>
 	  </script>
   </if>
