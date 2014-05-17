@@ -1,10 +1,10 @@
-== Hoshinplan
+# Hoshinplan
 
 Hoshinplan is a tool to make it easy for companies to share and track their strategy.
 
 We have a hosted version of the tool at http://www.hoshinplan.com
 
-== Bugs and feature requests
+## Bugs and feature requests
 
 The [issue tracker](https://github.com/gabriprat/hoshinplan/issues) is
 the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests)
