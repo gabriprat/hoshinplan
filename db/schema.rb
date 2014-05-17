@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140503164827) do
+ActiveRecord::Schema.define(:version => 20140517180101) do
 
   create_table "areas", :force => true do |t|
     t.string   "name",                            :null => false
@@ -106,23 +106,23 @@ ActiveRecord::Schema.define(:version => 20140503164827) do
   add_index "goals", ["hoshin_id"], :name => "index_goals_on_hoshin_id"
 
   create_table "hoshins", :force => true do |t|
-    t.string   "name"
-    t.integer  "areas_count",                :default => 0, :null => false
+    t.string   "name",                       :default => "plan", :null => false
+    t.integer  "areas_count",                :default => 0,      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "parent_id"
     t.text     "header"
     t.integer  "creator_id"
-    t.integer  "objectives_count",           :default => 0, :null => false
-    t.integer  "goals_count",                :default => 0, :null => false
-    t.integer  "indicators_count",           :default => 0, :null => false
-    t.integer  "tasks_count",                :default => 0, :null => false
-    t.integer  "outdated_indicators_count",  :default => 0, :null => false
-    t.integer  "outdated_tasks_count",       :default => 0, :null => false
-    t.integer  "blind_objectives_count",     :default => 0, :null => false
-    t.integer  "neglected_objectives_count", :default => 0, :null => false
-    t.integer  "hoshins_count",              :default => 0, :null => false
+    t.integer  "objectives_count",           :default => 0,      :null => false
+    t.integer  "goals_count",                :default => 0,      :null => false
+    t.integer  "indicators_count",           :default => 0,      :null => false
+    t.integer  "tasks_count",                :default => 0,      :null => false
+    t.integer  "outdated_indicators_count",  :default => 0,      :null => false
+    t.integer  "outdated_tasks_count",       :default => 0,      :null => false
+    t.integer  "blind_objectives_count",     :default => 0,      :null => false
+    t.integer  "neglected_objectives_count", :default => 0,      :null => false
+    t.integer  "hoshins_count",              :default => 0,      :null => false
   end
 
   add_index "hoshins", ["company_id"], :name => "index_hoshins_on_company_id"
@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(:version => 20140503164827) do
     t.boolean  "reminder",          :default => true
     t.integer  "creator_id"
     t.integer  "hoshin_id"
-    t.integer  "lane_pos"
+    t.integer  "lane_pos",          :default => 0,         :null => false
   end
 
   add_index "tasks", ["area_id", "status"], :name => "index_tasks_on_area_id_and_status"
