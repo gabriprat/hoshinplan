@@ -908,6 +908,11 @@ acronym.user-image {
 	transition: none;
 }
 
+.typeahead.dropdown-menu {
+	top: 1em !important;
+	left: 0 !important;
+}
+
 .dropdown-menu > li > a {
 	color: #e1e4e7;
 }

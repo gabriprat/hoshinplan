@@ -12,7 +12,9 @@
 	
 	 fail "nil" if (comp.nil?)
 	%>
+	<div style="position:relative">
 	<name-one completer="users" value="#{value}" complete-target="&comp" autocomplete='off' merge/>
+	</div>
 </def>
 
 <extend tag="form" for="User">
