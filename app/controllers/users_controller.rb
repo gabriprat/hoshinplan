@@ -132,7 +132,7 @@ class UsersController < ApplicationController
       atts['name'] = auth['info']['nickname']
     end
     atts.each { |k, v| 
-      atts.delete(k) if !current_user.attributes[k].nil? && !current_user.attributes[k].empty? || v.nil?
+      atts.delete(k) if !current_user.attributes[k].nil? && !current_user.attributes[k].blank? || v.nil?
     }
     begin
       current_user.attributes = atts
