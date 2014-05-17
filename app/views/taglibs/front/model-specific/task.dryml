@@ -58,8 +58,9 @@
 	        	  </if>
 	      	  <else>
 	      		  <li class="reactivate">
-	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="reactivate" class="inline-form">
-				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.reactivate', :default => 'Reactivate'}">
+			  <set trans="&this.status=='backlog' ? 'start' : 'reactivate'"/>
+	      		  <form ajax updates="tasks-#{this.area_id},#sec-actions,#neglected" lifecycle="#{trans}" class="inline-form">
+				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.' + trans, :default => trans.capitalize}">
 					<span class="fa fa-play-circle fa-fw"></span>
 				</button>
 	      		  </form>

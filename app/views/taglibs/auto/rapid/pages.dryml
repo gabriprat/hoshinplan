@@ -1504,6 +1504,27 @@
   </page>
 </def>
 
+<def tag="start-page" polymorphic/>
+<def tag="start-page" for="Task">
+  <page title="#{ht 'task.start.title', :default=>['Start']}" merge>
+
+    <body: class="lifecycle-transition-page start-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task.start.heading">
+          Start
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <start-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="reactivate-page" polymorphic/>
 <def tag="reactivate-page" for="Task">
   <page title="#{ht 'task.reactivate.title', :default=>['Reactivate']}" merge>

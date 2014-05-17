@@ -130,6 +130,7 @@ es:
           transitions:
             discard: Descartar
             complete: Completar
+            start: Iniciar
             reactivate: Reactivar
             delete: Borrar
       user_company:
