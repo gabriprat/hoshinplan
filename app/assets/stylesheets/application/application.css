@@ -1571,8 +1571,23 @@ form.indicator-value input[type=radio] {
 	text-align: center;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
 .footer {
-	background-color: #555;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #2f4154;
 }
 
 .footer-links {
@@ -1582,9 +1597,12 @@ form.indicator-value input[type=radio] {
 	text-align: center;
 }
 
-.footer-links a, .footer-links a:hover, .footer-links a:visited, .footer-links a:link, .footer-links a:active{
-	color: #e5e5e5;
-	text-decoration: underline;
+.footer-links a, .footer-links a:hover, .footer-links a:visited, .footer-links a:link {
+	color: #f8faff;
+}
+
+.footer-links a:active {
+	color: #fff;
 }
 
 .footer-links li {
