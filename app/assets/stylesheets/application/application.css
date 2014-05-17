@@ -1559,6 +1559,12 @@ form.indicator-value input[type=radio] {
 	margin: 0.5em;
 }
 
+.postit div.original-deadline {
+	margin-left: 1.5em;
+	text-decoration: line-through;
+	color: #999;
+}
+
 .postit .user-image {
 	float: right;
 	margin: 0.5em;

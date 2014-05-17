@@ -4,7 +4,7 @@
 		attrs = add_classes(attrs, type_id.dasherize, type_and_field.dasherize) unless type_id.nil? || type_and_field.nil?
 		attrs[:name] ||= this_field
 	%>
-	<div class="autosubmit" data-rapid='#{data_rapid("autosubmit")}'>
+	<div class="autosubmit" data-rapid="#{data_rapid('autosubmit')}" param="wrapper">
 	<% hide = 'display:none;' unless live %>
   	<unless test='&live'>
 		
