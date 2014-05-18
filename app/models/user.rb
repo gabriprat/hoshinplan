@@ -237,7 +237,6 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    logger.debug field.to_yaml
     # permit password fields to avoid the reset password page to fail
     field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
   end

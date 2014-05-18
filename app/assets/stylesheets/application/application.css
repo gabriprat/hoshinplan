@@ -831,6 +831,10 @@ form#add-collaborators textarea {
 	height: 10em;
 }
 
+form.hoshin textarea.hoshin-header {
+	height: 10em;
+}
+
 .user-image, .user-image img {
 	border-radius: 50%;
 }
