@@ -232,6 +232,7 @@ es:
     column:
       Id: ! '#'
       Objective: Objetivo
+      KPI: Indicador
       Responsible: Resp.
       Value: Valor
       Goal: Objetivo
