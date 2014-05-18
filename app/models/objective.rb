@@ -96,7 +96,11 @@ class Objective < ActiveRecord::Base
   end
 
   def parent_objectives
-    result = Objective.find_all_by_hoshin_id(parent_hoshin) unless parent_hoshin < 1
+    if parent_hoshin.nil? || parent_hoshin < 1 
+      result = []
+    else
+      result = Objective.find_all_by_hoshin_id(parent_hoshin) unless parent_hoshin < 1
+    end
   end
   
   # --- Permissions --- #
