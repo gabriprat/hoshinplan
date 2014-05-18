@@ -36,6 +36,9 @@
 <extend tag="form" for="Objective">
 	<old-form merge>
 			            <field-list:>
+				    	<parent-field:>
+						adsf
+					</parent-field:>
 				    	<area-view:>
 						<select-one options="&this_parent.area.hoshin.areas" />
 					</area-view:>

@@ -1,8 +1,9 @@
 				<set options="&this.parent_objectives"/>
+				<set parent=", parent" if="&options.size>0"/>
 				<set areas="&this.hoshin.areas"/>
 				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal" id="upd-obj-#{this.id}" updates=".area-part, #sec-actions">
 				   <div class="modal-body">
-				    <field-list: fields="name, description, responsible, parent, area">
+				    <field-list: fields="name, description, responsible #{parent}, area">
 						<parent-tag: options="&options" />
 					    	<description-view:>
 							<my-click-editor/>
