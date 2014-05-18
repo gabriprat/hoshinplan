@@ -120,12 +120,20 @@ es:
         worst_value: Valor 0%
         higher: Mejor si mayor
         value: Valor
+        reminder: Recordatorio
+        objective: Objetivo
+      indicator/frequencys:
+        weekly: Semanal
+        monthly: Mensual
+        quarterly: Trimestral	      
       task:
         name: Nombre
         description: Descripción
         responsible: Responsable
         deadline: Vencimiento
         show_on_parent: Subir tarea
+        reminder: Recordatorio
+        objective: Objetivo
         lifecycle:
           transitions:
             discard: Descartar
