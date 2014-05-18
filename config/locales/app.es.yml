@@ -65,8 +65,8 @@ es:
         one: Objetivo
         other: Objetivos
       indicator:
-        one: KPI
-        other: KPIs
+        one: Indicador
+        other: Indicadores
       task:
         one: Tarea
         other: Tareas
