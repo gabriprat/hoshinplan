@@ -1,5 +1,5 @@
 
-var PRESENTATION_SELECTOR = '.slide-page,div.navbar,div.content-header,div.hoshin-header,.ordering-handle,.column.ordering';
+var PRESENTATION_SELECTOR = '.slide-page,div.navbar,div.content-header,div.hoshin-header,.ordering-handle,.column.ordering,.footer';
 
 var presenting = false;
 var currentSlide = 1;
