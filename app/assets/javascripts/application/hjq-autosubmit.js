@@ -3,8 +3,9 @@
     var methods = {
         init: function(annotations) {
 		var that = $(this)
-		that.find("input[type=text]").focus(methods.focus);
-		that.find("input[type=text]").blur(methods.blur);
+		that.find("input[type=text]:not(.date)").focus(methods.focus);
+		that.find("input[type=text]").on("changeDate", methods.submitClosestForm);
+		that.find("input[type=text]:not(.date)").blur(methods.blur);
 		that.find("button[type=submit], input[type=submit]").mousedown(methods.cancelBlur);
 		that.find("button[type=submit], input[type=submit]").click(methods.cancelBlur);
 		that.find(".autosubmit-toggle").click(methods.toggle);
@@ -13,8 +14,7 @@
         },
 	focus: function(event) {
 	        $(this).data('originalValue', this.value);
-		$(this).on("changeDate", methods.submitClosestForm);
-		
+		$(this).on("changeDate", methods.submitClosestForm);	
 	},
 	cancelBlur: function() {
 		var that = $(this).closest('div.autosubmit')
@@ -46,6 +46,7 @@
 		$(this).find(".bootstrap-datepicker").off("changeDate");
 	},
 	submitClosestForm: function() {
+		alert(1);
 		var $form = $(this).closest("form.autosubmit");
 		if (!$form.data('submitted')) {
 			$form.data('submitted', true);

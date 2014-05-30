@@ -397,7 +397,7 @@ body.hoshin form.inline-form .actions {
 	display: none;
 }
 
-body.hoshin form.inline-form div {
+body.hoshin form.inline-form div.input-append {
 	display: inline;
 	min-width: 3em;
 	margin: 0;
