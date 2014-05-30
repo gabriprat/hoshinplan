@@ -906,8 +906,9 @@ acronym.user-image {
 	display: inline-block;
 }
 
-.form-horizontal button {
-	margin-top: -5px;
+form#delete-history, form#delete-history input {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .dropdown-menu {
