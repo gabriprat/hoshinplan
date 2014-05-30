@@ -83,6 +83,7 @@ Hoshinplan::Application.routes.draw do
       get 'history'
       post 'form'
       post 'value_form'
+      post 'delete_history'
     end
   end
 

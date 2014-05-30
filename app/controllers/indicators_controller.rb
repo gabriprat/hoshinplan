@@ -10,6 +10,7 @@ class IndicatorsController < ApplicationController
   
   web_method :form
   web_method :value_form
+  web_method :delete_history
   
   cache_sweeper :indicators_sweeper
   
@@ -105,6 +106,12 @@ class IndicatorsController < ApplicationController
       else
         respond_with(@this)
       end
+  end
+  
+  def delete_history
+    @this = find_instance
+    IndicatorHistory.delete_all(:indicator_id => @this.id)
+    redirect_to @this, :action => :history
   end
   
   def form

@@ -136,6 +136,3 @@ $(document).ready(function() {
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
 	document.cookie = "tz=" + tz+";domain="+domain;
 });
-
-
-

@@ -429,15 +429,6 @@ body.hoshin .image-button.delete-button {
 	margin: 0;
 }
 
-.modal-footer-delete input[type=submit].delete-button {
-	background-color: darkred;
-	background-image: none;
-	color: white;
-	text-shadow: none;
-	font-weight: 100;
-	float: left;
-}
-
 .parent-link {
 	white-space: nowrap;
 	overflow: hidden;
@@ -795,6 +786,26 @@ fieldset[disabled] .btn-primary.active {
   border-color: #25A9E0;
 }
 
+.btn-danger, .btn-danger:active, .btn-danger:hover, .btn-danger:visited, .btn-danger:focus {
+	background-color: darkred;
+	background-image: none;
+	color: white;
+	text-shadow: none;
+	font-weight: 100;
+}
+
+.modal-footer-delete input[type=submit].delete-button {
+	background-color: darkred;
+	background-image: none;
+	color: white;
+	text-shadow: none;
+	font-weight: 100;
+	float: left;
+}
+
+.history-actions {
+	float: right;
+}
 
 .bubble {
 	position: relative;
@@ -893,6 +904,10 @@ acronym.user-image {
 
 .form-horizontal .simpleColorContainer, .horizontal .simpleColorContainer {
 	display: inline-block;
+}
+
+.form-horizontal button {
+	margin-top: -5px;
 }
 
 .dropdown-menu {

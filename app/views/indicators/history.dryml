@@ -92,8 +92,13 @@
 		</script>
 		<section class="panel">
 		        <header class="panel-heading">
-		            <t key="history.historic_values">Historic values and goals</t>
-    			<a style="text-transform: none;" href="#" onclick="$('#upload').toggle()" class="btn btn-primary pull-right"><t key="indicator.upload_values">Upload values</t></a>
+		            <p class="inline"><t key="history.historic_values">Historic values and goals</t></p>
+    			<div class="history-actions">
+			<form id="delete-history" action="delete_history" method="post">
+				<button style="text-transform: none;" onclick="$('#upload').toggle()" class="btn btn-primary inline"><t key="indicator.upload_values">Add/update values</t></button>
+				<submit style="text-transform: none;" class="btn btn-danger inline" label="&t(:key=>'indicator.delete_values', :default=>'Delete all values')"/>
+			</form>
+			</div>
 			<div style="text-transform: none;">
     			<form id="upload" class="hide">
     				<textarea name="history_values" style="width: 20em; height: 10em;"></textarea>
