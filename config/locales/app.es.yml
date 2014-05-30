@@ -214,7 +214,8 @@ es:
   indicator:
     show_chart: Mostrar gráfico
     upload: Enviar
-    upload_values: Cargar valores
+    upload_values: Añadir/reemplazar valores
+    delete_values: Borrar todos los valores
     upload_values_by: 'Carga valores en bloque escribiendo un valor por línea. Cada línea tiene que tener el formato: dd/mm/yyy;valor;objetivo. Por ejemplo: 21/4/2014;29,3;100'
     value_form:
       this_indicator_doesnt: Este indicador no necesita ser actualizado. ¿Qué quieres hacer?
