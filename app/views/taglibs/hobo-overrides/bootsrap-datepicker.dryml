@@ -1,3 +1,0 @@
-<extend tag='bootstrap-datepicker'>
-	<old-bootstrap-datepicker language="#{locale}" data-date-week-start="&locale.to_s.start_with?('en') ? 0 : 1" merge/>
-</extend>

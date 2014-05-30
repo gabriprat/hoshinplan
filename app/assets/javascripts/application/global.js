@@ -131,6 +131,7 @@ var equalHeights = function(elements) {
 }
 
 $(document).ready(function() {
+	$(".bootsrap-datepicker").on("show", function() {alert(1)});
 	var tz = $(document).get_timezone();
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
 	document.cookie = "tz=" + tz+";domain="+domain;

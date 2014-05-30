@@ -1,4 +1,4 @@
-<extend tag="bootstrap-datepicker">
+<def attrs='name, value' tag='bootstrap-datepicker'>
 <% 
     options, attrs = attributes.partition_hash(['format', 'weekstart', 'language', 'autoclose'])
 
@@ -23,10 +23,13 @@
        "%x" => "mm/dd/yy"}.each {|rb, js| d.gsub!(rb,js)}
      d
     end
-    options["orientation"] = "left"
+    
+    if this && value.nil? && this.class == Date
+      value = I18n.l(this)
+    end
+
   %>
-  	<div class="input-group date">
-	<old-bootstrap-datepicker merge placeholder="#{options['format']}" orientation="left" data-role="date" language="#{locale}" data-date-week-start="&locale.to_s.start_with?('en') ? 0 : 1">
-	</old-bootstrap-datepicker>
+	<div style="position: relative">
+		<input name='#{name}' data-rapid="#{data_rapid('pickdate')}" data-date-weekstart='#{options[&apos;weekstart&apos;]}' data-date-language='#{options[&apos;language&apos;]}' merge-attrs data-value='&value' type='text' data-date-format='#{options[&apos;format&apos;]}'/>
 	</div>
-</extend>
+</def>
