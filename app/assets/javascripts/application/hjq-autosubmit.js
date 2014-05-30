@@ -46,7 +46,6 @@
 		$(this).find(".bootstrap-datepicker").off("changeDate");
 	},
 	submitClosestForm: function() {
-		alert(1);
 		var $form = $(this).closest("form.autosubmit");
 		if (!$form.data('submitted')) {
 			$form.data('submitted', true);
