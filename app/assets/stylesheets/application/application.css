@@ -405,6 +405,11 @@ body.hoshin form.inline-form div.input-append {
 	vertical-align: bottom;
 }
 
+input.date[readonly] {
+	cursor: pointer;
+	background-color: #fff;
+}
+
 body.hoshin form.inline-form label {
 	display: none;
 }

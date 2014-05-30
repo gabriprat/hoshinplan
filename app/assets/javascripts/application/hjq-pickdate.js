@@ -4,7 +4,7 @@
         init: function(annotations) {
 		var that=$(this);
 		var language = that.data("date-language");
-		var weekstart = that.data("date-weekstart");
+		var weekstart = that.data("date-week-start");
 		var format = that.data("date-format");
 		var languages = { 'es' : {
 		    monthsFull: [ 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre' ],
