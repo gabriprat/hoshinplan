@@ -19,8 +19,7 @@
 		var options = {
 			format: format,
 			firstDay: weekstart,
-			onClose: methods.triggerChange,
-			editable: true
+			onClose: methods.triggerChange
 		};
 		jQuery.extend(settings, options);
 		$(this).pickadate(
