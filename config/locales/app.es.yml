@@ -229,6 +229,7 @@ es:
     historic_values: Valores históricos
     messages:
       confirm_delete: ¿Estás seguro de querer borrar el valor para la fecha XXX? 
+      confirm_delete_all: ¿Estás seguro de querer borrar TODOS los valores para este indicador? 
   rtable:
     column:
       Id: ! '#'
