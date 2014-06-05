@@ -137,14 +137,18 @@ class Hoshin < ActiveRecord::Base
   end
   
   def objectives_health
+    return 100.0 if objectives_count.to_f == 0
+    return 0 if neglected_objectives_count.to_f + blind_objectives_count.to_f > objectives_count.to_f
     100.0 * (1.0 - (neglected_objectives_count.to_f + blind_objectives_count.to_f ) / objectives_count.to_f)
   end
   
   def indicators_health
+    return 100.0 if indicators_count.to_f == 0
     100.0 * (1.0 - outdated_indicators_count.to_f / indicators_count.to_f)
   end
   
   def tasks_health
+    return 100.0 if tasks_count.to_f == 0
     100.0 * (1.0 - outdated_tasks_count.to_f / tasks_count.to_f)
   end
   
