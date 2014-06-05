@@ -5,6 +5,9 @@
 		methods.colorize.call(this, annotations.options.tpc);
         },
 	colorize: function (tpc) {
+		if (isNaN(tpc) || tpc == "") {
+			return;
+		}
 		this.heatcolor(
 			function() { 
 				return tpc>100 ? 100 : tpc<50 ? 50 : tpc;
