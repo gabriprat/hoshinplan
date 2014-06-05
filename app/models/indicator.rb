@@ -97,6 +97,7 @@ class Indicator < ActiveRecord::Base
         ih = IndicatorHistory.create(:day => update_date, :indicator_id => indicator.id, :goal => indicator.goal)
       end
       ih.value = indicator.value
+      ih.goal = indicator.goal
       ih.save!
     end
   end
