@@ -9,7 +9,7 @@
   <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
   <div class="column" data-label="Value"><view:value human/></div>
   <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
-  <div class="column nowrap" data-label="Tpc"><span class="tpc"><view:tpc  precision="1"/>%</span> <span class="arrow #{this.trend}"></span>
+  <div class="column nowrap" data-label="Tpc"><span class="tpc"><color-tpc:tpc precision="1"/></span> <span class="arrow #{this.trend}"></span>
   </div>
   <div class="column" data-label="Hoshin"><hoshin-link:hoshin_id /></div>
 </scard>
