@@ -94,14 +94,14 @@ function fixedHorizontal() {
 
 
 $(window).scroll(function () {
-	if (presenting) return;
+	if (typeof presenting != "undefined" && presenting) return;
         fixedHorizontal();
 }); 
 
 var eh = false;
 
 var equalHeightSections = function() {
-	if (presenting) return;
+	if (typeof presenting != "undefined" && presenting) return;
 	if (eh) return;
 	eh = true;
 	fixedHorizontal();
