@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_attached_file :image, :styles => {
     :thumb => "104x104#" },
     :default_url => "/assets/default.jpg"
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   #validates_attachment_size :image, :less_than => 10.megabytes    
     
   attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at

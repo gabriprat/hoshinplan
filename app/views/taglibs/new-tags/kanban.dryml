@@ -13,11 +13,11 @@
 			</div>
 			</if>
 			<div class="deadline">
-				<autosubmit:deadline class="#{this.deadline_status} inline">
+				<autosubmit:deadline class="#{this.deadline_status} inline" live>
 					<append-wrapper:>
 					<if test="&this_parent.original_deadline != this">
 					<set diff="&this - this_parent.original_deadline"/>
-					<view class="&(diff > 0 ? 'overdue' : '') + ' inline'" with="&'(' + (diff).to_s + ')'"/>
+					<view class="&(diff > 0 ? 'overdue' : '') + ' inline'" with="&'(' + (diff).to_i.to_s + ')'"/>
 					</if>
 					</append-wrapper:>
 				</autosubmit>
