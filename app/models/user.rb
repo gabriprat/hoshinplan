@@ -92,6 +92,10 @@ class User < ActiveRecord::Base
     ret.nil? ? [] : ret 
   end
   
+  def tutorial_complete?
+    ret = next_tutorial.empty?
+  end
+  
   # --- Signup lifecycle --- #
 
   lifecycle do
