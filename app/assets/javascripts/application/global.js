@@ -136,3 +136,8 @@ $(document).ready(function() {
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
 	document.cookie = "tz=" + tz+";domain="+domain;
 });
+
+$(document).ready(function() {
+	var sel = document.documentElement.getAttribute("data-tutorial-steps");
+	$(sel).addClass("done");
+})

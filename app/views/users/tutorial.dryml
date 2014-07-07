@@ -4,7 +4,6 @@
   <content-header: replace/>
   <custom-javascript:>
   	$(document).ready(function() {
-		$("#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','}").addClass("done");
 		$('li a').click(function(){
 			$('#modal .modal-header h3').text($(this).text());
 		});
