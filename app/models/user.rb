@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
     create :from_omniauth, :params => [:name, :email_address], :become => :active do
       domain = self.email_address.split("@").last
       if (domain == "infojobs.net" || domain == "lectiva.com")
-        self.companies = [Company.find(1)]
+        self.companies = [Company.unscoped.find(1)]
       else
         @subject = "#{self.name} welcome to Hoshinplan!"
         UserCompanyMailer.welcome(self, 
