@@ -1145,6 +1145,16 @@ ul.timeline {
   list-style: none;
   margin: 0 auto;
   padding: 0;
+  float: left;
+  margin-right: 2em;
+}
+
+.tutorial-side {
+	float: left;
+}
+
+.tutorial-side + br {
+	clear: both;
 }
 
 ul.timeline:after {

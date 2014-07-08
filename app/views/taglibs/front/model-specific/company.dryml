@@ -1,5 +1,10 @@
 <extend tag="show-page" for="Company">
 	<old-show-page merge>
+		<prepend-main-content: >
+			<if test="&this.hoshins_count > 0 ? '' : 'true'">
+			<cms key="tutorial/hoshin_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
+			</if>
+		</prepend-main-content: >
 		<prepend-content-header: >
 			<% new_hoshin_url = object_url @this.hoshins, :action => :new %>
 		        <a href="#{new_hoshin_url}" class="btn pull-right">
@@ -8,11 +13,6 @@
 		          </ht>
 		        </a>
 		</prepend-content-header: >
-		<append-content-body: >
-		<if test="&this.hoshins_count > 0 ? '' : 'true'">
-		<cms key="tutorial/hoshin_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
-		</if>
-		</append-content-body:>
 		<new-link: replace/>
 	</old-show-page>
 </extend>

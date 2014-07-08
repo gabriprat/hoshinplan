@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
     :thumb => "104x104#" },
     :default_url => "/assets/default.jpg"
   #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  #validates_attachment_size :image, :less_than => 10.megabytes    
+  #validates_attachment_size :image, :less_than => 10.megabytes   
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] } 
     
   attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at
   
