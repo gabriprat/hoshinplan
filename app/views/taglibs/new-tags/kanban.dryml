@@ -16,7 +16,7 @@
 				<autosubmit:deadline class="#{this.deadline_status} inline" live>
 					<append-wrapper:>
 					<if test="&this_parent.original_deadline != this">
-					<set diff="0"/>
+					<set diff="&0"/>
 					<set diff="&this - this_parent.original_deadline" unless="&this_parent.original_deadline.nil? || this.nil?"/>
 					<view class="&(diff > 0 ? 'overdue' : '') + ' inline'" with="&'(' + (diff).to_i.to_s + ')'"/>
 					</if>
