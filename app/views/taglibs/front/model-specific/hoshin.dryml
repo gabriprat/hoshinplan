@@ -1,8 +1,11 @@
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
 		<prepend-main-content: >
+			<form with="&current_user" ajax id="finish-tutorial">
+				<input name="tutorial_step" type="hidden" value="2"/>
+			</form>
 			<set health-action="#{this.health[:action]}" />
-			<div data-tutorial="#{health_action}" if="&health_action!='none' && params['action']=='show'">
+			<div data-tutorial="#{health_action}" if="&health_action!='none' && params['action']=='show' && current_user.tutorial_step.to_i<255">
 			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" />
 			</div>
 		</prepend-main-content: >

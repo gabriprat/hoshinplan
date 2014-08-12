@@ -160,7 +160,8 @@ class Hoshin < ActiveRecord::Base
     ind = indicators_health
     tsk = tasks_health
   
-    ret = {:value => (obj+ind+tsk)/3, :action => "none"}
+    ret[:value] = (obj+ind+tsk)/3
+    ret
   end
   
   def incomplete_health

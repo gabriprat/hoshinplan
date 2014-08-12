@@ -126,7 +126,6 @@ var equalHeights = function(elements) {
 }
 
 $(document).ready(function() {
-	$(".bootsrap-datepicker").on("show", function() {alert(1)});
 	var tz = $(document).get_timezone();
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
 	document.cookie = "tz=" + tz+";domain="+domain;
@@ -137,7 +136,17 @@ var updateTutorial = function() {
 	$(sel).addClass("done");
 	var step = $("[data-tutorial]").data("tutorial");
 	var sel = "#" + step + " a";
-	$(sel).trigger("click");
+	if ($(sel).hjq_ra) {
+		$(sel).hjq_ra("click");
+	}
+	$("#tutorial-close").click(function() {
+		$("#finish-tutorial").submit();
+		var off = $("#nav-tutorial a").offset();
+		var cms = $("#cms");
+		cms.css({position:"absolute", overflow: "hidden", top: cms.offset().top, left: cms.offset().left})
+			.animate({top:off.top + 30, width:0, height: 0, left: off.left}, 
+				{duration: 1500, easing: "easeOutExpo"});
+	});
 }
 
 $(document).ready(function() {
