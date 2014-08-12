@@ -57,12 +57,7 @@ function updateTimer(percent) {
 	  event.stopPropagation();
 	  $("#health-popover .popover").addClass("fixed-x");
 	});
-	with($("#health.tutorial")) {
-		if (length) {
-			dimBackground();
-			popover('show');
-		}
-	}
+	updateTutorial();
 	$('body').on('keyup.dismiss.healthPopover', function (e) {
 		e.which == 27 && $('#health').popover('hide');
 	});
@@ -137,7 +132,14 @@ $(document).ready(function() {
 	document.cookie = "tz=" + tz+";domain="+domain;
 });
 
-$(document).ready(function() {
+var updateTutorial = function() {
 	var sel = document.documentElement.getAttribute("data-tutorial-steps");
 	$(sel).addClass("done");
-})
+	var step = $("[data-tutorial]").data("tutorial");
+	var sel = "#" + step + " a";
+	$(sel).trigger("click");
+}
+
+$(document).ready(function() {
+	updateTutorial();
+});

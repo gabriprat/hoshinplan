@@ -1,5 +1,13 @@
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
+		<prepend-main-content: >
+			<if test="&this.hoshins_count > 0 ? '' : 'true'">
+			<div data-tutorial="#{this.health[:action]}">
+			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" />
+			</div>
+			</if>
+		</prepend-main-content: >
+	
 		<body: class="fixed-headers" />
 		<navbar: />
 		        

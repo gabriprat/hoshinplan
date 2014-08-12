@@ -5,11 +5,11 @@
     	cache_key = request.host + '/cms/' + key 
      	ActionController::Base.new.expire_fragment(cache_key) if params["clear_cache"] 
      	if async %>
-   		<div id="cms"><%= raw ERB.new(cmsAsyncGet(key, cache_key, expires)).result(binding).force_encoding("UTF-8") %></div>
+   		<div id="cms" merge><%= raw ERB.new(cmsAsyncGet(key, cache_key, expires)).result(binding).force_encoding("UTF-8") %></div>
      <%
      	else 
      		cache(cache_key, :expires_in => expires) do %>
-    			<div id="cms"><%= raw ERB.new(cmsGet(key)).result(binding).force_encoding("UTF-8") %></div>
+    			<view id="cms" with="&raw ERB.new(cmsGet(key)).result(binding).force_encoding('UTF-8')" block merge />
      <% 
      		end 
      	end

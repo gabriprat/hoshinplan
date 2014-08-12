@@ -1150,6 +1150,10 @@ ul.timeline {
 
 .tutorial-side {
 	float: left;
+	width: 60%;
+	height: 25em;
+	overflow: scroll;
+	border-left: 1px solid #999;
 }
 
 .tutorial-side + br {

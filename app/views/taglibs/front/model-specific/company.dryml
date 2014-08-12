@@ -2,7 +2,7 @@
 	<old-show-page merge>
 		<prepend-main-content: >
 			<if test="&this.hoshins_count > 0 ? '' : 'true'">
-			<cms key="tutorial/hoshin_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
+			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" data-tutorial="hoshin"/>
 			</if>
 		</prepend-main-content: >
 		<prepend-content-header: >
