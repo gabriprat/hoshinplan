@@ -1,19 +1,8 @@
 <def tag="health" polymorphic/>
 <def tag="health" for="Hoshin">
-			<% health = this.health %>
-			<form with="&current_user" style="display:inline-block;" updates="#sec-actions" id="change-step" before="$.undim(); true;">
-			    <hidden-field name="tutorial_step" value="0" id="change_step"/>
-			</form>			
+			<% health = this.health %>		
 			<timer class="timer #{this.tutorial} hide" id="health" onclick="$.undim(); return false;" data-toggle="popover" data-title="#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}" percent="#{health[:value]}" onupdate="updateTimer()" href="#{object_url(this, 'health')}"/>
-			<div class="hide" if="&health[:action]!='none'">
-				<cms key="tutorial/#{health[:action]}_#{locale}" if="&Rails.application.config.action_controller.perform_caching"/>
-  				
-				<button class="btn btn-primary" onclick="$('#change_step').val(2); $('form#change-step').submit();" if="&health[:action] == 'followup'">
-					<t key="hoshin.finish_tutorial">Finish tutorial</t>
-				</button>    
-			</div>
-			<else>
-			<div class="hide">
+			<div class="hide" if="&health[:action]=='none'">
 				<p if="&health[:value]==100">
 					<t key="hoshin.full_health">Your hoshin has full health! Congratulations!!</t>
 				</p>
@@ -34,5 +23,4 @@
 					<a action="health"><t key="hoshin.see_detailed_health">See detailed health report</t></a>
 				</else>
 			</div>
-			</else>
 </def>
