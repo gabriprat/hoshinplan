@@ -2,7 +2,7 @@
 	<old-show-page merge>
 		<prepend-main-content: >
 			<set health-action="#{this.health[:action]}" />
-			<div data-tutorial="#{health_action}" if="&health_action!='none'">
+			<div data-tutorial="#{health_action}" if="&health_action!='none' && params['action']=='show'">
 			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" />
 			</div>
 		</prepend-main-content: >
