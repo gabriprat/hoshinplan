@@ -154,7 +154,7 @@ class Hoshin < ActiveRecord::Base
   
   def health
     ret = incomplete_health
-    return ret unless ret[:action] == "none"
+    return ret unless ret[:value] >= 100
     
     obj = objectives_health
     ind = indicators_health
