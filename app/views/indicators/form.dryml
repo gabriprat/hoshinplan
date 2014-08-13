@@ -1,4 +1,4 @@
-		        <% update = @this.new_record? ? "#sec-actions,#blind,#hindicators,#indicators-" + this.area.id.to_s : "#sec-actions,#blind,#neglected" %>
+		        <% update = @this.new_record? ? "#tutorial,#sec-actions,#blind,#hindicators,#indicators-" + this.area.id.to_s : "#tutorial,#sec-actions,#blind,#neglected" %>
 			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal">
 				   <div class="modal-body">
 				   <set show-on-parent=", show_on_parent" if="&this.objective.parent"/>
