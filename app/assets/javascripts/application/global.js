@@ -57,7 +57,7 @@ function updateTimer(percent) {
 	  event.stopPropagation();
 	  $("#health-popover .popover").addClass("fixed-x");
 	});
-	updateTutorial();
+	$("#tutorial").hjq_tutorial("update");
 	$('body').on('keyup.dismiss.healthPopover', function (e) {
 		e.which == 27 && $('#health').popover('hide');
 	});
@@ -129,26 +129,4 @@ $(document).ready(function() {
 	var tz = $(document).get_timezone();
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
 	document.cookie = "tz=" + tz+";domain="+domain;
-});
-
-var updateTutorial = function() {
-	var sel = document.documentElement.getAttribute("data-tutorial-steps");
-	$(sel).addClass("done");
-	var step = $("[data-tutorial]").data("tutorial");
-	var sel = "#" + step + " a";
-	if ($(sel).hjq_ra) {
-		$(sel).hjq_ra("click");
-	}
-	$("#tutorial-close").click(function() {
-		$("#finish-tutorial").submit();
-		var off = $("#nav-tutorial a").offset();
-		var cms = $("#cms");
-		cms.css({position:"absolute", overflow: "hidden", top: cms.offset().top, left: cms.offset().left})
-			.animate({top:off.top + 30, width:0, height: 0, left: off.left}, 
-				{duration: 1500, easing: "easeOutExpo"});
-	});
-}
-
-$(document).ready(function() {
-	updateTutorial();
 });

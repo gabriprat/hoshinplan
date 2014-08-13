@@ -9,7 +9,7 @@
 	<!-- swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?" -->
 	<modal id="update-area-modal-#{this.id}">
 	<modal:>
-		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal" id="upd-area-#{this.id}" updates="#areas,#sec-actions">
+		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
 		   <div class="modal-body">
 		    <field-list: fields="name, hoshin"/>
 		   </div>
@@ -39,7 +39,7 @@
 		<set hid="#{this.hoshin_id}"/>
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
-		<form with="&Objective.new" updates="#area-#{aid},#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal">
+		<form with="&Objective.new" updates="#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />

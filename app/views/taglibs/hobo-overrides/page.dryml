@@ -20,11 +20,9 @@
 					var sep="#{t 'number.format.separator'}";
 					var del="#{t 'number.format.delimiter'}";
 					var df="#{date_format_default}";
-					var ts="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }";
 					document.documentElement.setAttribute("data-sep", sep);
 					document.documentElement.setAttribute("data-del", del);
 					document.documentElement.setAttribute("data-df", df);
-					document.documentElement.setAttribute("data-tutorial-steps", ts);
 				})();
 			</script>
 		</append-body:>
