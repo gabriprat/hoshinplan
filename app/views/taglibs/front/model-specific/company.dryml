@@ -1,8 +1,8 @@
 <extend tag="show-page" for="Company">
 	<old-show-page merge>
 		<prepend-main-content: >
-			<call-tag tag="div" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="#{this.health[:action]}" unless="&this.hoshins_count > 0" part="tutorial" id="tutorial">
-			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" data-tutorial="hoshin"/>
+			<call-tag tag="div" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="hoshin" unless="&this.hoshins_count > 0" part="tutorial" id="tutorial">
+			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" />
 			</call-tag>			
 		</prepend-main-content: >
 		<prepend-content-header: >
