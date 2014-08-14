@@ -13,7 +13,7 @@
 		methods.update.call(this);
         },
 	update: function() {
-		var tutorial = $("#tutorial");
+		var tutorial = $("#tutorial div");
 		var sel = tutorial.data("tutorial-steps");
 		$(sel).addClass("done");
 		var step = tutorial.data("tutorial");
@@ -21,7 +21,6 @@
 		if ($(sel).hjq_ra) {
 			$(sel).hjq_ra("click");
 		}
-		alert(1);
 	}
     };
 
