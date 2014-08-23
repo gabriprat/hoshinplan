@@ -13,7 +13,10 @@
 		methods.update.call(this);
         },
 	update: function() {
-		var tutorial = $("#tutorial div");
+		var tutorial = $("#tutorial [data-tutorial]");
+		if (tutorial.length != 1) {
+			return;
+		}
 		var sel = tutorial.data("tutorial-steps");
 		$(sel).addClass("done");
 		var step = tutorial.data("tutorial");
