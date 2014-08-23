@@ -22,7 +22,7 @@ class Area < ActiveRecord::Base
   
   has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'obj_pos'
   has_many :indicators, :inverse_of => :area, :accessible => true, :order => 'ind_pos'
-  has_many :tasks, :inverse_of => :area, :accessible => true, :order => 'status, tsk_pos', :conditions => Task.visible.where_values
+  has_many :tasks, :inverse_of => :area, :accessible => true, :order => 'CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos', :conditions => Task.visible.where_values
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
   belongs_to :company, :inverse_of => :areas
