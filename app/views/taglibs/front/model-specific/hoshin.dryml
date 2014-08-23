@@ -5,7 +5,7 @@
 				<input name="tutorial_step" type="hidden" value="2"/>
 			</form>
 			<call-tag tag="div" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="#{this.health[:action]}" if="&this.health[:action]!='none' && params['action']!='health' && current_user.tutorial_step.to_i<255" part="tutorial" id="tutorial">
-			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" />
+			<cms key="tutorial/index_#{locale}" />
 			</call-tag>
 		</prepend-main-content: >
 	
