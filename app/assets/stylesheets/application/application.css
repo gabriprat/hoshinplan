@@ -165,7 +165,7 @@ body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong
 	color: #f8faff;
 	margin: 0;
 	text-shadow: none;
-
+	
         -o-transition: color 1s ease-in-out;
         -moz-transition: color 1s ease-in-out;
         -webkit-transition: color 1s ease-in-out;

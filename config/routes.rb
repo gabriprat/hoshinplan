@@ -55,6 +55,8 @@ Hoshinplan::Application.routes.draw do
 
   post "/indicators/form" => "indicators#form", :as => 'indicators_form'
   
+  match "/pitch" => "front#pitch"
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
