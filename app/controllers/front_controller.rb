@@ -26,6 +26,9 @@ class FrontController < ApplicationController
     
   end
   
+  def pitch
+  end
+  
   def invitation_accepted
     flash[:notice] = nil
   end
