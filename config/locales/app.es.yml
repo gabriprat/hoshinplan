@@ -1,4 +1,5 @@
 es:
+  show_all: Mostrar todo...
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Haz clic para editar&gt;'
