@@ -1,19 +1,24 @@
-<def tag="rtable" attrs="columns, sortable">
+<def tag="rtable" attrs="columns, sortable, limit, success">
 	<% columns ||= "" ; columns = comma_split(columns) -%>
 	<% sortable ||= false %>
 	<% tag = sortable ? "sortable-collection" : "collection" %>
-	<div class="table" merge-attrs merge-params unless='blank?'>
+	<% limit = limit.to_i %>
+	<% count = this.nil? ? 0 : this.count %>
+	<% items = params[:show_all] || limit == 0 ? this : this.limit(limit); items.member_class = this.member_class %>
+	<% more = !params[:show_all] && limit > 0 && count > limit %>
+	<div class="table" merge-attrs merge-params if='&count > 0'>
 		<ul class="table-head">
 			<li class="table-row">
 				<div class="column ordering" if="&sortable"></div>
 				<div class="column" repeat="&columns"><t key="rtable.column.#{this}">#{this}</t></div>
 			</li>
 		</ul>		
-		<call-tag tag="&tag" merge-attrs merge-params class="table-body">
+		<call-tag with="&items" tag="&tag" merge-attrs merge-params class="table-body">
 			<item: class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''}"/>
 			<default: replace>
 				<scard param columns="&columns"/>
 			</default>
 		</call-tag>
 	</div>
+	<a href="?show_all=true" if="&more" ajax merge-attrs="success">Show all...</a>
 </def>

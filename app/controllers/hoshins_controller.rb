@@ -25,13 +25,17 @@ class HoshinsController < ApplicationController
   end
   
   def show
-    hobo_show do |format|
+    if request.xhr?
+      hobo_ajax_response
+    else
+      hobo_show do |format|
             format.json { hobo_show }
             format.xml { hobo_show }
             format.html {
-              self.this = Hoshin.includes([:company, {:areas => [:objectives, :tasks, :indicators]}, :goals]).user_find(current_user, params[:id])
+              self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators]}, :goals]).user_find(current_user, params[:id])
               hobo_show
             }
+      end
     end 
     
     #if we were sure no caches would be hit we could use the above statement and avoid 9 queries!!
