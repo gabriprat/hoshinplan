@@ -1,17 +1,7 @@
 <extend tag="index-page">
 	<old-index-page merge>
-	
+		<bottom_page_nav: replace/>
 		<collection: replace>
-		<table class="hide">
-		<% 
-		h = Hash.new(0)
-		ObjectSpace.each_object.with_object(h){|obj, h| h[obj.class] +=1 } 
-		h = h.sort_by {|_key, value| value }.reverse
-		%>
-		<repeat with="&h">
-		<tr><td> <%= this[1] %></td><td><%=this[0]%></td></tr>
-		</repeat>
-		</table>
 			<table-plus fields="id, created_at, name, color, email_address, administrator, tutorial_step, timezone, state">
 			       <append-controls: >
 			       <if test="&User.eql?(this.class)">
