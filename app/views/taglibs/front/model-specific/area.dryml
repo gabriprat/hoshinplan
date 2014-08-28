@@ -9,7 +9,7 @@
 	<!-- swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?" -->
 	<modal id="update-area-modal-#{this.id}">
 	<modal:>
-		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
+		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
 		   <div class="modal-body">
 		    <field-list: fields="name, hoshin"/>
 		   </div>
@@ -66,7 +66,7 @@
 	</div>
 	<div class="tasks-wrapper">
 	<h5><model-name-human model="&Task" count="100"/></h5>
-	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable/>
+	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
