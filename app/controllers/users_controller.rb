@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     atts = authorization.attributes.slice(*model.accessible_attributes.to_a)
     # PATCH: InfoJobs Open Id returns only the family name as the name and the full name in nickname... Strange...
     domain = current_user.email_address.split("@").last
-    if (domain == "infojobs.net" || domain == "lectiva.com")
+    if (domain == "infojobs.net" || domain == "lectiva.com" || domain == "scmspain.com")
       atts['name'] = auth['info']['nickname']
     end
     atts.each { |k, v| 
