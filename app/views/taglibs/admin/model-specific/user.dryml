@@ -1,4 +1,4 @@
-<extend tag="index-page" for="User">
+<extend tag="index-page">
 	<old-index-page merge>
 		<bottom_page_nav: replace/>
 		<collection: replace>
