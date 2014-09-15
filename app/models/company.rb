@@ -33,7 +33,7 @@ class Company < ActiveRecord::Base
   end
 
   default_scope lambda { 
-    where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") }
+    where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless User.current_user.administrator? }
   
   scope :admin, lambda { 
     where(:id => UserCompany.select(:company_id)
