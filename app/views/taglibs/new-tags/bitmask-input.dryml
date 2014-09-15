@@ -1,0 +1,16 @@
+<def tag="input" for="BitmaskAttributes::ValueProxy">
+	<% this_field_name = this_field %>
+	<% tp = this_parent %>
+	<% options ||= this_parent.class.send("values_for_" + this_field) %>
+	<% name ||= param_name_for_this %>
+        <ul class="check-many" param="default" merge-attrs>
+		<call-tag tag="input" type="hidden" name="#{name}[]" value=""/><% # ensure all items are removed when nothing checked 
+		%>
+		<li repeat="&options" param>
+		<call-tag tag="input" id="#{name}#{this}" type="checkbox" name="#{name}[]" value="#{this}" checked="&tp.send(this_field_name + '?', this)" />
+		<label for="#{name}#{this}">
+			<name param/>
+		</label>
+		</li>
+	</ul>
+</def>
