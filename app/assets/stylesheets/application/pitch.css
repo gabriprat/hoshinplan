@@ -1,0 +1,51 @@
+#cms .product-block .list li{margin:0 0 75px;}
+
+#cms .product-block .list{
+	padding:0 ;
+	margin:0;
+	list-style:none;
+	overflow:hidden;
+	font:18px/24px "Lato", Arial, Helvetica, sans-serif;
+	color:#a4a4a4;
+}
+#cms .product-block .list li{
+	overflow:hidden;
+	background:url(//doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTgvNTQvOTc0L2J1bGxldC5wbmciXV0/bullet.png) no-repeat ;
+	padding:7px 0 0 67px;
+	margin:0 0 72px;
+}
+#cms .product-block .list h4{
+	margin:0;
+	font-weight:bold;
+	font-size:24px;
+	color:#333;
+}
+#cms .product-block .list p{margin:0;}
+
+#cms .product-pitch {
+	margin: 4em -20px 0 -20px;
+	padding: 4em 0;	
+	background: #eee url(//doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTkvMDAvNzE4L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
+}
+
+#cms .product-block{
+	overflow:hidden;
+	width: 1000px;
+	margin: 0 auto;
+	padding:24px 0 0 56px;
+}
+#cms .product-block img{
+	display:inline;
+	float:left;
+	vertical-align:top;
+	margin:0 53px 0 0;
+	width: 456px;
+	height: 269px;
+}
+#cms .product-block img.right {
+	float: right;
+}
+#cms .product-block .list{
+	overflow:hidden;
+	padding:24px 0 0;
+}
