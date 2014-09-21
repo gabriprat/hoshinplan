@@ -30,7 +30,7 @@
 
 #cms .product-block{
 	overflow:hidden;
-	width: 1000px;
+	max-width: 1000px;
 	margin: 0 auto;
 	padding:24px 0 0 56px;
 }
@@ -48,4 +48,36 @@
 #cms .product-block .list{
 	overflow:hidden;
 	padding:24px 0 0;
+}
+
+@media all and (max-width: 1100px) {
+	#cms .product-block img{
+			width:45%;
+			height: auto;
+	}
+}
+
+@media all and (max-width: 640px) {
+	#cms .product-pitch {
+		margin: 4em 0 0 0;
+	}
+}
+@media all and (max-width: 750px) {
+	#cms .product-block {
+		width: 100%;
+		padding: 0;
+	}
+	#cms .product-block img{
+			width:100%;
+			height:auto;
+			margin: auto;
+			box-sizing: border-box;
+			padding: 0 24px;
+		}
+	#cms .product-block img.right {
+		float: none;
+	}
+	#cms .product-block .list {
+		padding: 67px 24px 0 24px;
+	}
 }
