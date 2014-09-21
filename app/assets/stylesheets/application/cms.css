@@ -131,8 +131,8 @@
 }
 
 #cms .quotes {
-	margin: 20px -20px 0 -20px;
-	background: #f8faff;
+	margin: 0 -20px 0 -20px;
+	background: #f8faff url(//doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTkvMDAvNzE4L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
 	padding: 40px 0;
 }
 
