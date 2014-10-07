@@ -103,6 +103,7 @@ var equalHeightSections = function() {
 	equalHeights("div.objectives-wrapper");
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
+	equalHeights("div.kb-lane");
 	eh = false;
 }
 $(window).resize(equalHeightSections);
