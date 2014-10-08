@@ -108,6 +108,7 @@ var equalHeightSections = function() {
 }
 $(window).resize(equalHeightSections);
 $(document).ready(equalHeightSections);
+$(window).load(equalHeightSections);
 
 var equalHeights = function(elements) {
 	$(elements).height("auto");
