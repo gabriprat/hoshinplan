@@ -147,6 +147,9 @@ class UsersController < ApplicationController
    	  zone = Hoshinplan::Timezone.get(zone)
       current_user.timezone = zone.name unless zone.nil?
     end
+    if current_user.language.nil?
+      current_user.language = I18n.locale
+    end
     current_user.save!
   end
   

@@ -19,7 +19,7 @@
 
 <extend tag="form" for="User">
   <old-form merge multipart>
-    <field-list: fields="name, email_address, companies, timezone"/>
+    <field-list: fields="name, email_address, companies, timezone, language"/>
   </old-form>
 </extend>
 
