@@ -343,7 +343,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, color, email_address, administrator, tutorial_step, timezone, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
+    <field-list fields="name, color, email_address, administrator, tutorial_step, timezone, language, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

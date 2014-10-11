@@ -56,8 +56,7 @@ class FrontController < ApplicationController
     tasks = User.at_hour(7).joins(:tasks).merge(Task.unscoped.due('5 day'))
     (kpis | tasks).each { |user|
       @text +=  ll " User: #{user.email_address}" 
-      UserCompanyMailer.reminder(user, "You have KPIs or tasks to update!", 
-      "You can access all the KPIs and tasks you have to update at your dashboard:").deliver
+      UserCompanyMailer.reminder(user).deliver
     }
     @text += ll "End send reminders job!"
     render :text => @text, :content_type => Mime::TEXT

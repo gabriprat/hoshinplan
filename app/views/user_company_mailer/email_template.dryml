@@ -1,12 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<def tag="email" attrs="message, url, user, app-name">
+<html>
 <head>
 <!-- If you delete this meta tag, Half Life 3 will never be released. -->
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title></title>
-
 <style>
 /* ------------------------------------- 
 		GLOBAL 
@@ -233,7 +232,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						<td>
 							<%= image_tag asset_path 'logo.png' %>
 						</td>
-						<td align="right"><h6 class="collapse">Make your business strategy work</h6></td>
+						<td align="right"><h6 class="collapse">#{ I18n.translate "emails.claim", :default => "Make your company strategy work"}</h6></td>
 					</tr>
 				</table>
 				</div>
@@ -254,11 +253,15 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 			<table>
 				<tr>
 					<td>
-						<h3>Hi <%= @user.name.empty? ? @user.email_address : @user.name %>! </h3>
-						<p><%= @message %></p>
-						<p><%= link_to(polymorphic_path(@user, action: :pending, only_path: false), polymorphic_path(@user, action: :pending, only_path: false)) %></p>
-						<p>Thank you,</p>
-						<p>The <%= @app_name %> team.</p>
+						<do param="default">
+							<h3 param="header">#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h3>
+							<p><%= message %></p>
+							<p><a href="#{url}" param="link">#{url}</a></p>
+							<do param="footer">
+							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}</p>
+							<p>#{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>
+							</do>
+						</do>
 					</td>
 				</tr>
 			</table>
@@ -283,7 +286,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						<p>
 							<a href="#">Terms</a> |
 							<a href="#">Privacy</a> |
-							<a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>
+							<a href="#">Unsubscribe</a>
 						</p>
 					</td>
 				</tr>
@@ -297,3 +300,5 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 </body>
 </html>
+
+</def>

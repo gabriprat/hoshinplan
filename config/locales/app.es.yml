@@ -1,4 +1,12 @@
 es:
+  emails:
+    thank_you: 'Gracias,'
+    claim: 'Haz que la estrategia de tu empresa funcione'
+    the_team: El equipo de %{app_name}
+    hi: ¡Hola %{name}!
+    reminder:
+      subject: Tienes indicadores o tareas pendientes
+      message: 'Puedes acceder a todos los indicadores y tareas pendientes en tu panel de control:'
   show_all: Mostrar todo...
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile
@@ -91,6 +99,11 @@ es:
         email_address: Correo Electrónico
         image: Imagen
         state: Estado
+        language: Idioma
+        timezone: Zona horaria
+      user/languages:
+        es: Español (España)
+        en: English (US)
       objective:
         name: Nombre
         description: Descripción
@@ -208,7 +221,7 @@ es:
   use_your_corporate: Utiliza tus credenciales corporativas
   use_your_user: Utiliza tu usuario de hoshinplan.com
   change_locale: Idioma
-  locale_en_US: Inglés (EEUU)
+  locale_en_US: English (US)
   locale_es_ES: Español (España)
   home: Inicio
   choose_file: Escoje un fichero

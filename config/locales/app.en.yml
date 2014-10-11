@@ -23,6 +23,14 @@ en:
 #        email_address: We will never share your address with third parties
 
 en:
+  emails:
+    thank_you: 'Thank you,'
+    claim: 'Make your business strategy work'
+    the_team: The %{app_name} team
+    hi: Hi %{name}!
+    reminder:
+      subject: You have KPIs or tasks to update
+      message: 'You can access all the KPIs and tasks you have to update at your dashboard:'
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Click to edit&gt;'
@@ -49,6 +57,9 @@ en:
         worst_value: 0% value
       hoshin:
         creator: Responsible
+      user/languages:
+        es: Español (España)
+        en: English (US)
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   home: Home

@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
     tutorial_step :integer
     timezone      HoboFields::Types::Timezone
     timestamps
+    language      HoboFields::Types::EnumString.for(:es, :en)
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -27,7 +28,7 @@ class User < ActiveRecord::Base
   #validates_attachment_size :image, :less_than => 10.megabytes   
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] } 
     
-  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at
+  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at, :language
   
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
