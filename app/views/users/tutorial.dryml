@@ -21,7 +21,9 @@
 	});
   </custom-javascript>
   <content-body:>
-  	<cms key="tutorial/index_#{locale}"/>
+	<call-tag tag="div" class="fixed-x" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="#{this.next_tutorial if current_user.respond_to? 'next_tutorial'}" part="tutorial" id="tutorial">
+	<cms key="tutorial/index_#{locale}" />
+	</call-tag>
 	
 	<form>
 		<input name="tutorial_step" type="hidden" value="-2"/>
