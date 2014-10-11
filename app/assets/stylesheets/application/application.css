@@ -556,6 +556,13 @@ body .hero-unit {
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	-ms-border-radius: 0;
+	margin: -21px -20px 0 -20px;
+}
+
+body .hero-unit h1, body #cms .hero-unit h1 {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: 500;
+	margin-bottom: 0.5em;
 }
 
 body .form-search input {
