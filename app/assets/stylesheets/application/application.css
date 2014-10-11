@@ -176,7 +176,7 @@ body .navbar .brand:hover, body .navbar .brand:hover strong, body .navbar .brand
 	color: #25A9E0;
 }
 
-body.show-page {
+body.show-page, body.index-page {
 	font-weight: 200;
 	background: url(/assets/bg.png) repeat;
 	background-attachment: fixed;
