@@ -2,8 +2,11 @@
 	<old-show-page merge>
 		<prepend-main-content: >
 			<div id="tutorial">
-			<call-tag tag="div" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="hoshin" unless="&this.hoshins_count > 0">
-			<cms key="tutorial/index_#{locale}" if="&Rails.application.config.action_controller.perform_caching" />
+			<form with="&current_user" ajax id="finish-tutorial">
+				<input name="tutorial_step" type="hidden" value="2"/>
+			</form>
+			<call-tag tag="div" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="hoshin" if="&this.hoshins_count <= 0 && current_user.tutorial_step.to_i<255">
+			<cms key="tutorial/index_#{locale}" />
 			</call-tag>	
 			</div>		
 		</prepend-main-content: >
@@ -17,4 +20,19 @@
 		</prepend-content-header: >
 		<new-link: replace/>
 	</old-show-page>
+</extend>
+
+<extend tag="index-page" for="Company">
+	<old-index-page merge>
+		<prepend-main-content:>
+			<div id="tutorial">
+			<form with="&current_user" ajax id="finish-tutorial">
+				<input name="tutorial_step" type="hidden" value="2"/>
+			</form>
+			<call-tag tag="div" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="company" if="&this.empty? && current_user.tutorial_step.to_i<255">
+			<cms key="tutorial/index_#{locale}" />
+			</call-tag>	
+			</div>
+		</prepend-main-content:>
+	</old-index-page>
 </extend>
