@@ -28,7 +28,7 @@
 				<table class="header">
 					<tr>
 						<td class="logo">
-							<%= image_tag asset_path 'logo.png' %>
+							<%= image_tag ('http://www.hoshinplan.com' + asset_path('logo.png')) %>
 						</td>
 						<td class="claim"><h4 class="collapse">#{ I18n.translate "emails.claim", :default => "Make your company strategy work"}</h4></td>
 					</tr>
