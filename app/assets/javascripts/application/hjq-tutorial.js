@@ -20,9 +20,11 @@
 		var sel = tutorial.data("tutorial-steps");
 		$(sel).addClass("done");
 		var step = tutorial.data("tutorial");
+		if (step.length > 0) {
 		var sel = "#" + step + " a";
-		if ($(sel).hjq_ra) {
-			$(sel).hjq_ra("click");
+			if ($(sel).hjq_ra) {
+				$(sel).hjq_ra("click");
+			}
 		}
 	}
     };
