@@ -63,14 +63,7 @@ class UserCompany < ActiveRecord::Base
 
      create :invite, :params => [ :company, :user ], :become => :invited,
                       :available_to => "User", :new_key => true do
-       domain = self.user.email_address.split("@").last
-       if (domain != "infojobs.net" && domain != "lectiva.com" && domain != "scmspain.com")
-         UserCompanyMailer.invite(self, "Join me at #{company.name} Hoshin Plan", 
-           "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
-           "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
-           "Accept",
-           lifecycle.key, acting_user).deliver
-       end
+         UserCompanyMailer.invite(self, company, lifecycle.key, acting_user).deliver
      end
      
      create :activate_ij, :params => [ :company, :user ], :become => :active, :available_to => :activate_ij_available
@@ -78,11 +71,7 @@ class UserCompany < ActiveRecord::Base
      transition :revoke_admin, {:invited => :active}, :available_to => :activate_ij_available
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
-       UserCompanyMailer.invite(self, "Join me at #{company.name} Hoshin Plan", 
-         "#{acting_user.name} wants to invite you to collaborate to their Hoshin Plan.",
-         "By accepting this invitation you will be able to participate in the Hoshin plan of their company: #{company.name}.",
-         "Accept",
-         lifecycle.key, acting_user).deliver
+       UserCompanyMailer.invite(self, company, lifecycle.key, acting_user).deliver
      end
      
      create :new_company, :params => [ :company, :user ], :become => :admin
@@ -92,8 +81,7 @@ class UserCompany < ActiveRecord::Base
        #user.lifecycle.activate!(user)
        #user.save!(:validate => false)
        company.user_companies.where(:state => :admin).each do |admin| 
-         UserCompanyMailer.transition(admin.user, "Invitation accepted!", 
-         "#{user.email_address} is now collaborating to the Hoshinplan of #{company.name}").deliver
+         UserCompanyMailer.transition(admin.user, user, company, 'accept').deliver
        end
      end
      
@@ -101,19 +89,16 @@ class UserCompany < ActiveRecord::Base
 
      transition :make_admin, { :active => :admin }, :available_to => :company_admin_available do
        self.save!
-       UserCompanyMailer.transition(user, "Administrator", 
-       "#{user.name}, you are now administrating the Hoshinplan of #{company.name}").deliver
+       UserCompanyMailer.transition(user, user, company, "admin").deliver
      end
      
      transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
        self.save!
-       UserCompanyMailer.transition(user, "You are no longer administrator", 
-       "#{acting_user.name} has revoked your administration rights to the Hoshinplan of #{company.name}").deliver
+       UserCompanyMailer.transition(user, acting_user, company, "no_admin").deliver
      end
  
      transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do
-       UserCompanyMailer.transition(user, "Colaboration canceled", 
-       "#{acting_user.name} cancelled your collaboration to the Hoshinplan of #{company.name}").deliver
+       UserCompanyMailer.transition(user, acting_user, company, "removed").deliver
        Objective.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
        Indicator.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
        Task.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)

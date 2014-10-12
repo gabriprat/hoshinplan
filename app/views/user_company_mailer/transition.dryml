@@ -1,0 +1,2 @@
+<email user="&user" app-name="#{app_name}"  unsubscribe-url="#{unsubscribe_url}" message="#{message}" />
+	
