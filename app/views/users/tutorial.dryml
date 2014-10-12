@@ -2,30 +2,13 @@
   <aside-column: replace/>
   <body: class="tutorial" />
   <content-header: replace/>
-  <custom-javascript:>
-  	$(document).ready(function() {
-		$('li a').click(function(){
-			$('#modal .modal-header h3').text($(this).text());
-		});
-		$( document ).ajaxComplete(function() {
-		  var aspect = $('iframe').attr("height") / $('iframe').attr("width");
-		  var nw = $('#modal').width()-60;
-		  var nh = Math.round(nw * aspect);
-		  $('iframe').attr("width", nw);
-		  $('iframe').attr("height", nh);
-		});
-		$('body').on('hidden.bs.modal', '.modal', function () {
-		    $(this).removeData();
-		    $('#modal .modal-body').html('<div class="loading"></div>');
-		});
-	});
-  </custom-javascript>
   <content-body:>
 	<call-tag tag="div" class="fixed-x" data-rapid="&data_rapid('tutorial')" data-tutorial-steps="#{current_user.tutorial_step.map{|i| i='#'+i.to_s}.join ','  if current_user.respond_to? 'tutorial_step' }" data-tutorial="#{this.next_tutorial if current_user.respond_to? 'next_tutorial'}" part="tutorial" id="tutorial">
 	<cms key="tutorial/index_#{locale}" />
+	<cms key="tutorial/index_advanced_#{locale}" />
 	</call-tag>
 	
-	<form>
+	<form if="&current_user.administrator">
 		<input name="tutorial_step" type="hidden" value="-2"/>
 		<submit label="Reiniciar tutorial"/>
 	</form>
