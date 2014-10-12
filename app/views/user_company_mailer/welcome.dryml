@@ -1,0 +1,18 @@
+<email user="&user" app-name="#{app_name}" unsubscribe-url="#{unsubscribe_url}">
+
+<h1><%= I18n.translate('emails.welcome.title') %></h1>
+
+<p><%= I18n.translate('emails.welcome.thank_you') %></p>
+
+<p><%= I18n.translate('emails.welcome.do_you_know_html', :link => link_to('Hoshin', 'http://en.wikipedia.org/wiki/Hoshin_Kanri')).html_safe %></p>
+
+<p><%= I18n.translate('emails.welcome.it_does') %></p>
+
+<p> <%= I18n.translate('emails.welcome.lets_try') %> <a href="http://es.hoshinplan.com/first"><%= I18n.translate('emails.welcome.start') %></a></p>
+
+<p><%= I18n.translate('emails.welcome.doubts') %></p>
+
+<p><%= I18n.translate('emails.welcome.gabri_and_anna') %><br/>
+<%= I18n.translate('emails.welcome.founders') %></p>
+
+</email>

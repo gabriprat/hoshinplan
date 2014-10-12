@@ -1,0 +1,106 @@
+<def tag="email" attrs="message, url, user, app-name, unsubscribe-url">
+<html>
+<head>
+<!-- If you delete this meta tag, Half Life 3 will never be released. -->
+<meta name="viewport" content="width=device-width" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<style type="text/css">
+	<%= Rails.application.assets.find_asset('emails').to_s %>
+</style>
+</head>
+ 
+<body>
+<style data-premailer="ignore" type="text/css">
+	<%= Rails.application.assets.find_asset('emails_responsive').to_s %>
+</style>
+<table class="wrapper">
+<tr><td>
+<center>
+<!-- HEADER -->
+<table class="one-col">
+	<tr>
+		<td></td>
+		<td class="header container" >
+				
+				<div class="content">
+				<table class="header">
+					<tr>
+						<td class="logo">
+							<%= image_tag asset_path 'logo.png' %>
+						</td>
+						<td class="claim"><h4 class="collapse">#{ I18n.translate "emails.claim", :default => "Make your company strategy work"}</h4></td>
+					</tr>
+				</table>
+				</div>
+				
+		</td>
+		<td></td>
+	</tr>
+</table><!-- /HEADER -->
+
+
+<!-- BODY -->
+<table class="body-wrap one-col">
+	<tr>
+		<td></td>
+		<td class="container">
+
+			<div class="content">
+			<table>
+				<tr>
+					<td>
+						<do param="default">
+							<h2 param="header">#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h2>
+							<p><%= message %></p>
+							<p><a href="#{url}" param="link">#{url}</a></p>
+							<do param="footer">
+							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}</p>
+							<p>#{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>
+							</do>
+						</do>
+					</td>
+				</tr>
+			</table>
+			</div><!-- /content -->
+									
+		</td>
+		<td></td>
+	</tr>
+</table><!-- /BODY -->
+</center>
+<!-- FOOTER -->
+<table class="footer">
+	<tr>
+		<td></td>
+		<td class="inner">
+			
+				<!-- content -->
+				<div class="content">
+				<table class="cols">
+				<tr>
+					<td class="left">
+						<div>
+							Hoshinplan - hello@hoshinplan.com
+						</div>
+					</td>
+					<td class="right">
+						<div>
+							<%= I18n.translate key="emails.footer" %>
+							<div class="spacer">&nbsp;</div>
+							<strong><a href="#{unsubscribe_url}" param="link"><%= I18n.translate key="emails.unsubscribe" %></a></strong>
+						</div>
+					</td>
+				</tr>
+				</table>
+				</div><!-- /content -->
+		</td>
+		<td></td>
+	</tr>
+</table><!-- /FOOTER -->
+</td></tr></table><!-- /WRAPPER -->
+</body>
+</html>
+
+</def>

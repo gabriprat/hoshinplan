@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   hobo_user_controller  
   
-  show_action :dashboard, :tutorial, :pending
+  show_action :dashboard, :tutorial, :pending, :unsubscribe
   
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
@@ -61,6 +61,10 @@ class UsersController < ApplicationController
       self.current_user = nil
       redirect_to "/login?force=true"
     end
+  end
+  
+  def unsubscribe
+    @this = find_instance
   end
 
   def tutorial

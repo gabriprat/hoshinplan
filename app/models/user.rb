@@ -111,9 +111,7 @@ class User < ActiveRecord::Base
       if (domain == "infojobs.net" || domain == "lectiva.com")
         self.companies = [Company.unscoped.find(1)]
       else
-        @subject = "#{self.name} welcome to Hoshinplan!"
-        UserCompanyMailer.welcome(self, 
-        @subject).deliver
+        UserCompanyMailer.welcome(self).deliver
       end
     end
 
@@ -133,9 +131,7 @@ class User < ActiveRecord::Base
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
       current_user = acting_user
-      @subject = "#{self.name} welcome to Hoshinplan!"
-      UserCompanyMailer.welcome(self, 
-      @subject).deliver
+      UserCompanyMailer.welcome(self).deliver
     end
 
     transition :activate, { :invited => :active } do

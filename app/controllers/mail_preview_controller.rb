@@ -13,15 +13,13 @@ class MailPreviewController < ApplicationController
   
   def preview_welcome()
     @user = current_user
-    render :file => 'user_company_mailer/welcome'
+    render :text => UserCompanyMailer.welcome(current_user).body   
   end
   
   def send_welcome()
     @user = current_user
-    @subject = "#{@user.name} welcome to Hoshinplan!"
-    UserCompanyMailer.welcome(@user, 
-    @subject).deliver
-    render :json => { subject: @subject, to: @user.email_address }
+    UserCompanyMailer.welcome(@user).deliver
+    render :json => {to: @user.email_address }
   end
   
   def preview_invited_welcome()
@@ -64,16 +62,13 @@ class MailPreviewController < ApplicationController
   end
 
   def preview_reminder
-    @user = current_user
-    @app_name = "hoshinplan"
-    @message = "You can access all the KPIs and tasks you have to update at your dashboard:"
-    render :file => 'user_company_mailer/reminder'
+    render :text => UserCompanyMailer.reminder(current_user).body   
   end
   
   def send_reminder
     @user = current_user
     UserCompanyMailer.reminder(@user).deliver
-    render :json => { subject: @subject, to: @user.email_address }
+    render :json => {to: @user.email_address }
   end
 
 end
