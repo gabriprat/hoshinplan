@@ -31,7 +31,7 @@ class UserCompanyMailer < ActionMailer::Base
  
   def transition(user, user2, company, email_key)
     mail( :subject => I18n.translate("emails." + email_key + ".subject"),
-          :to      => user) do |format|
+          :to      => user.email_address) do |format|
               format.html {    
                 render_email("transition", 
                   {:user => user, :app_name => @app_name, 
