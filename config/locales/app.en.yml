@@ -44,6 +44,29 @@ en:
       doubts: 'If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
       gabri_and_anna: Gabri and Anna
       founders: Founders
+    invited_welcome:
+      subject: '%{name}, ¡Bienvenido a Hoshinplan!'
+      title: Welcome to Hoshinplan.com
+      message: 'You have accepted an invitation and are ready to use Hosninplan. Once in the application you will see a "Tutorial" tab, there you have information on how to use the application. If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
+      gabri_and_anna: Gabri and Anna
+      founders: Founders
+    invite:
+      subject: '%{name} has invited you to Hoshinplan'
+      title: '%{name} invites you to collaborate to Hoshinplan'
+      message: By accepting this invitation you will start collaborating to the Hoshinplan of %{company}.
+      call_to_action: Aceptar
+    accept:
+      subject: Invitation accepted
+      message: '%{user2} is now a collaborator of the Hoshinplan of %{company}'
+    admin:
+      subject: You are administrator
+      message: '%{user}, you are now administrator of the Hoshinplan of %{company}'
+    no_admin:
+      subject: No longer administrator
+      message: '%{user2} has revoked you the administration rights of the Hoshinplan of %{company}'
+    removed:
+      subject: Collaboration canceled
+      message: '%{user2} has canceled your collaboration to the Hoshinplan of  %{company}.'
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Click to edit&gt;'

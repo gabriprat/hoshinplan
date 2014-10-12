@@ -20,6 +20,29 @@ es:
       doubts: 'Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte.'
       gabri_and_anna: Gabri y Anna
       founders: Fundadores
+    invited_welcome:
+      subject: '%{name}, ¡Bienvenido a Hoshinplan!'
+      title: Bienvenido a Hoshinplan.com
+      message: 'Has aceptado una invitación y ya estás listo para utilizar Hosninplan. Cuando entres verás la pestaña "Tutorial", ahí tienes información sobre cómo utilizar la aplicación. Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte.'
+      gabri_and_anna: Gabri y Anna
+      founders: Fundadores
+    invite:
+      subject: '%{name} Te invita a Hoshin Plan'
+      title: '%{name} te invita a participar en su Hoshin Plan'
+      message: Aceptando esta invitación podrás empezara a colaborar con el Hoshin Plan de %{company}.
+      call_to_action: Aceptar
+    accept:
+      subject: Invitación aceptada
+      message: '%{user2} ahora es colaborador del Hoshinplan de %{company}'
+    admin:
+      subject: Eres administrador
+      message: '%{user}, ahora eres administrador del Hoshinplan de %{company}'
+    no_admin:
+      subject: Ya no eres administrador
+      message: '%{user2} te ha revocado los permisos de administración del Hoshinplan de %{company}'
+    removed:
+      subject: Colaboración cancelada
+      message: '%{user2} ha cancelado tu colaboración al Hoshinplan de %{company}'
   show_all: Mostrar todo...
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile

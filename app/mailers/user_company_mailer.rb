@@ -17,20 +17,29 @@ class UserCompanyMailer < ActionMailer::Base
     )
   end
 
-  def invite(user_company, subject, lead, message, callout, key, invitor)
-    @key, @user, @user_company, @lead, @message, @callout = 
-    key, user_company.user, user_company, lead, message, callout
-    mail( :subject => subject,
-          :to      => @user.email_address,
-          :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )
+  def invite(user_company, company, key, invitor)
+    mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.empty? ? invitor.email_address : invitor.name),
+          :to      => user_company.user.email_address,
+          :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
+              format.html {    
+                render_email("invite", 
+                  {:user => user_company.user, :app_name => @app_name, :company => user_company.company.name,
+                    :accept_url => accept_from_email_url(:id => user_company, :key => key), :invitor => invitor})          
+              }
+      end
   end
  
-  def transition(user, subject, message)
-    @user, @message = user.email_address, message
-    mail( :subject => subject,
-          :to      => @user)
+  def transition(user, user2, company, email_key)
+    mail( :subject => I18n.translate("emails." + email_key + ".subject"),
+          :to      => user) do |format|
+              format.html {    
+                render_email("transition", 
+                  {:user => user, :app_name => @app_name, 
+                    :message => I18n.translate("emails." + email_key + ".message", :user => user.name.empty? ? user.email_address : user.name, :user2 => user2.name.empty? ? user2.email_address : user2.name, :company => company.name)})          
+              }
+    end
   end
-  
+
   def get_host_port(user) 
     language = user.language || "es"
     uri = Addressable::URI.parse(root_url(:subdomain => language))
@@ -64,10 +73,16 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
   
-  def invited_welcome(user, subject)
+  def invited_welcome(user)
     @user, @message = user
-    mail( :subject => subject,
-          :to      => @user.email_address)
+    mail( :subject => I18n.translate("emails.invited_welcome.subject"),
+          :to      => @user.email_address) do |format|
+            format.html {
+              render_email("invited_welcome", 
+                {:user => user, :app_name => @app_name}          
+              )
+            }
+    end
   end
   
 end
