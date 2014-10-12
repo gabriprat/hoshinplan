@@ -29,7 +29,7 @@ es:
     invite:
       subject: '%{name} Te invita a Hoshin Plan'
       title: '%{name} te invita a participar en su Hoshin Plan'
-      message: Aceptando esta invitación podrás empezara a colaborar con el Hoshin Plan de %{company}.
+      message: Aceptando esta invitación podrás empezar a colaborar con el Hoshin Plan de %{company}.
       call_to_action: Aceptar
     accept:
       subject: Invitación aceptada
