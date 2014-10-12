@@ -4,9 +4,22 @@ es:
     claim: 'Haz que la estrategia de tu empresa funcione'
     the_team: El equipo de %{app_name}
     hi: ¡Hola %{name}!
+    footer: 'Recibes este e-mail porque te has registrado en Hoshinplan.com. Si no es así, utiliza el siguiente link y no volveremos a molestarte.'
+    unsubscribe: Cancelar subscripción
     reminder:
       subject: Tienes indicadores o tareas pendientes
       message: 'Puedes acceder a todos los indicadores y tareas pendientes en tu panel de control:'
+    welcome:
+      subject: '%{name}, ¡Bienvenido a Hoshinplan!'
+      title: Bienvenido a Hoshinplan.com
+      thank_you: Gracias por llegar hasta aquí. Nos encanta que quieras darle vida a tu estrategia.
+      do_you_know_html: '¿Sabes qué es un %{link}? En el fondo, importa poco. Hoshinplan.com existe porque sabemos lo difícil que es conectar la estrategia a largo plazo de una compañía con las actividades del día a día. Planes estratégicos en Powerpoint que nadie mira, proyectos que nunca cumplen la fecha de entrega, cuadros de mando que no sirven... ¿Te suena?'
+      it_does: 'A nosotros sí, porque lo hemos vivido en primera persona. Y probablemente hayas tenido los mismos dolores de cabeza que nosotros. Por eso estás aquí.'
+      lets_try: Vamos a intentar resolver todo esto creando un Hoshin Plan.
+      start: ¿Empezamos?
+      doubts: 'Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte.'
+      gabri_and_anna: Gabri y Anna
+      founders: Fundadores
   show_all: Mostrar todo...
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile

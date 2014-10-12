@@ -28,9 +28,22 @@ en:
     claim: 'Make your business strategy work'
     the_team: The %{app_name} team
     hi: Hi %{name}!
+    footer: 'You are receiving this email because you are a Hoshinplan.com user. Want to be removed? No problem, click below and we won''t bug you again.'
+    unsubscribe: Unsubscribe
     reminder:
       subject: You have KPIs or tasks to update
       message: 'You can access all the KPIs and tasks you have to update at your dashboard:'
+    welcome:
+      subject: '%{name} welcome to Hoshinplan!'
+      title: Welcome to Hoshinplan.com
+      thank_you: Thank you for getting here. We love that you want to give live to your strategy.
+      do_you_know_html: 'Do you know what a %{link} is? At the end of the day, it''s not very important. Hoshinplan.com exists because we know how difficult it is to connect a companiy''s long term strategy with day to day activities. Strategic plans in Powerpoints that no one looks at, projects that do not meet deadlines, dashboards that are not useful... ¿Rings a bell?'
+      it_does: 'It does to us, because we have experienced it first-hand. And problably you have the same headaches as we had. That''s why you are here.'
+      lets_try: Let''s try to solve all this by creating a Hoshin Plan.
+      start: Shall we start?
+      doubts: 'If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
+      gabri_and_anna: Gabri and Anna
+      founders: Founders
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Click to edit&gt;'
