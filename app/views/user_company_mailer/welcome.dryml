@@ -1,6 +1,6 @@
 <email user="&user" app-name="#{app_name}" unsubscribe-url="#{unsubscribe_url}">
 
-<h1><%= I18n.translate('emails.welcome.title') %></h1>
+<h1><%= I18n.translate('emails.welcome.title', :name => user.name.empty? ? user.email_address : user.name) %></h1>
 
 <p><%= I18n.translate('emails.welcome.thank_you') %></p>
 
@@ -8,7 +8,8 @@
 
 <p><%= I18n.translate('emails.welcome.it_does') %></p>
 
-<p> <%= I18n.translate('emails.welcome.lets_try') %> <a href="http://es.hoshinplan.com/first"><%= I18n.translate('emails.welcome.start') %></a></p>
+<p> <%= I18n.translate('emails.welcome.lets_try') %></p>
+<p><center><div class="btn"><a href="http://es.hoshinplan.com/first"><%= I18n.translate('emails.welcome.start') %></a></div></center></p>
 
 <p><%= I18n.translate('emails.welcome.doubts') %></p>
 

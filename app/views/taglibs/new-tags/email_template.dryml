@@ -53,7 +53,7 @@
 					<td>
 						<do param="default">
 							<h2 param="header">#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h2>
-							<p><%= message %></p>
+							<p><%= message.html_safe %></p>
 							<p param="link" unless="&url.blank?"><a href="#{url}">#{url}</a></p>
 							<do param="footer">
 							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}<br/>
