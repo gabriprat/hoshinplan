@@ -39,18 +39,18 @@
 
 
 <extend tag="accept-page" for="UserCompany">
-  <old-accept-page title="Accept the invitation to collaborate" merge>
+  <old-accept-page title="#{ht 'user_company.accept.heading'}" merge>
 
     <content-header: param>
       <h3 param="heading">
         <ht key="user_company.accept.heading">
-          Accept the intivation
+          Accept the invitation
         </ht>
       </h3>
     </content-header:>
 
     <content-body: param>
-      <p>By clicking Accept button below you will be able to view and contribute to the Hoshinplans of the company #{this.company.name}.</p>
+      <p><ht key="user_company.accept.body" company="#{this.company.name}">By clicking Accept button below you will be able to view and contribute to the Hoshinplans of the company #{this.company.name}.</ht></p>
       <accept-form param="form"/>
     </content-body:>
 

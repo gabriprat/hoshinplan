@@ -3,15 +3,15 @@ es:
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'
     the_team: El equipo de %{app_name}
-    hi: ¡Hola %{name}!
+    hi: '¡Hola %{name}!'
     footer: 'Recibes este e-mail porque te has registrado en Hoshinplan.com. Si no es así, utiliza el siguiente link y no volveremos a molestarte.'
-    unsubscribe: Cancelar subscripción
+    unsubscribe: Cancelar suscripción
     reminder:
       subject: Tienes indicadores o tareas pendientes
       message: 'Puedes acceder a todos los indicadores y tareas pendientes en tu panel de control:'
     welcome:
-      subject: '%{name}, ¡Bienvenido a Hoshinplan!'
-      title: Bienvenido a Hoshinplan.com
+      subject: '%{name}, ¡Te damos la bienvenida a Hoshinplan!'
+      title: '¡Hola %{name}!'
       thank_you: Gracias por llegar hasta aquí. Nos encanta que quieras darle vida a tu estrategia.
       do_you_know_html: '¿Sabes qué es un %{link}? En el fondo, importa poco. Hoshinplan.com existe porque sabemos lo difícil que es conectar la estrategia a largo plazo de una compañía con las actividades del día a día. Planes estratégicos en Powerpoint que nadie mira, proyectos que nunca cumplen la fecha de entrega, cuadros de mando que no sirven... ¿Te suena?'
       it_does: 'A nosotros sí, porque lo hemos vivido en primera persona. Y probablemente hayas tenido los mismos dolores de cabeza que nosotros. Por eso estás aquí.'
@@ -27,22 +27,22 @@ es:
       gabri_and_anna: Gabri y Anna
       founders: Fundadores
     invite:
-      subject: '%{name} Te invita a Hoshin Plan'
-      title: '%{name} te invita a participar en su Hoshin Plan'
-      message: Aceptando esta invitación podrás empezar a colaborar con el Hoshin Plan de %{company}.
+      subject: Únete al Hoshin plan de %{company}
+      title: '¡Hola! %{name} quiere que te unas a Hoshinplan.com'
+      message: Si aceptas esta invitación podrás colaborar junto con %{name} en el plan estratégico de %{company}. Sólo faltas tú!
       call_to_action: Aceptar
     accept:
       subject: Invitación aceptada
-      message: '%{user2} ahora es colaborador del Hoshinplan de %{company}'
+      message: '%{user2} ahora colabora con el Hoshinplan de %{company}'
     admin:
-      subject: Eres administrador
-      message: '%{user}, ahora eres administrador del Hoshinplan de %{company}'
+      subject: Ahora administras el Hoshin Plan de %{company}
+      message: '%{user2} acaba de darte permisos de administración del Hoshin Plan de %{company}. ¡Qué responsabilidad! <p>Ahora podrás: <ul><li>Invitar nuevos usuarios a colaborar</li><li>Borrar cualquier elemento aunque no te pertenezca</li><li>Convertir a los colaboradores en administradores</li></ul></p>'
     no_admin:
-      subject: Ya no eres administrador
-      message: '%{user2} te ha revocado los permisos de administración del Hoshinplan de %{company}'
+      subject: Ya no administras el Hoshin Plan de %{company}
+      message: '%{user2} ha revocado los permisos de administración que tenías del Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle. Recuerda que sigues teniendo acceso al Hoshin Plan de %{company} con permisos de usuario normal.'
     removed:
       subject: Colaboración cancelada
-      message: '%{user2} ha cancelado tu colaboración al Hoshinplan de %{company}'
+      message: '%{user2} ha cancelado tu colaboración y ya no tendrás acceso al Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle.'
   show_all: Mostrar todo...
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile
@@ -74,6 +74,9 @@ es:
       blind_objectives: "%{model} sin %{kpi}"
       neglected_objectives: "%{model} con %{kpi} por debajo del 100% y sin %{task} activas"
       overdue_model: "%{model} sin actualizar"
+    accept:
+      heading: Aceptar la invitación
+      body: Clicando el botón Aceptar podrás ver y contribuir a los Hoshinplans de %{company}.
   user_company:
     that_operation_is: Esta operación no está permitida
     the_invitation: La invitación que estás intentando aceptar se envió a otro usuario. Por favor inicia sesión con el usuario al que se envió la invitación.
@@ -203,6 +206,7 @@ es:
             remove: Eliminar
             resend_invite: Reenviar invitación
             cancel_invitation: Cancelar invitación
+            accept: Aceptar
       client_application:
         ClientApplication: Aplicación cliente
         name: Nombre
