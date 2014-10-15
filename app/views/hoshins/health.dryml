@@ -40,7 +40,7 @@
 			<h3><t key="health.top_users_with_pending">Top users with pending actions</t></h3>
 			<ol>
 			<% this.users_with_pending_actions.each { |user,num| %>
-				<li><view with="&user"/>(<view  with="&num"/>)</li>
+				<li><view with="&user" force/>(<view  with="&num"/>)</li>
 			<% } %>
 			</ol>
 		</div>

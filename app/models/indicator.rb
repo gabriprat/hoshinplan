@@ -52,7 +52,7 @@ class Indicator < ActiveRecord::Base
   }
   
   scope :overdue, lambda {
-    includes(:responsible)
+    includes([:responsible, :area])
     .where("next_update < #{User::TODAY_SQL}")
   }
   

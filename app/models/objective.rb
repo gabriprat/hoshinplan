@@ -43,8 +43,8 @@ class Objective < ActiveRecord::Base
   scope :blind, -> {
     indicator = Indicator.arel_table
     objective = Objective.arel_table
-    indicator_cond = 
-    where(Indicator.unscoped
+    indicator_cond = includes([:area, :responsible])
+    .where(Indicator.unscoped
         .where(indicator[:objective_id].eq(objective[:id]))
         .exists.not)
   }
@@ -55,7 +55,8 @@ class Objective < ActiveRecord::Base
     tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].eq(:active))
     indicator = Indicator.arel_table
     ind_cond = indicator[:objective_id].eq(objective[:id])
-    where(Task.unscoped.where(tasks_cond).exists.not)
+    includes([:area, :responsible])
+    .where(Task.unscoped.where(tasks_cond).exists.not)
       .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists)
   }
   

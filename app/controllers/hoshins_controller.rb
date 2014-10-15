@@ -32,7 +32,8 @@ class HoshinsController < ApplicationController
             format.json { hobo_show }
             format.xml { hobo_show }
             format.html {
-              self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators]}, :goals]).user_find(current_user, params[:id])
+              self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators]}, :goals])
+                .user_find(current_user, params[:id]) 
               hobo_show
             }
       end
@@ -44,7 +45,7 @@ class HoshinsController < ApplicationController
   end
   
   def health
-    show
+    hobo_show
   end
   
   def kanban_update    

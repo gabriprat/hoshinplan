@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
   }
   
   scope :overdue, lambda {
-    includes(:responsible)
+    includes([:area, :responsible])
     .where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog])
   }
   
