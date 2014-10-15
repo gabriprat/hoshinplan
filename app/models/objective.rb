@@ -53,9 +53,10 @@ class Objective < ActiveRecord::Base
     task = Task.arel_table
     objective = Objective.arel_table
     tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].eq(:active))
-    joins(:indicators)
-      .where(Task.unscoped.where(tasks_cond).exists.not)
-      .merge(Indicator.unscoped.under_tpc(100))
+    indicator = Indicator.arel_table
+    ind_cond = indicator[:objective_id].eq(objective[:id])
+    where(Task.unscoped.where(tasks_cond).exists.not)
+      .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists)
   }
   
   after_save "hoshin.health_update!"
