@@ -26,6 +26,11 @@ group :assets do
   gem 'yui-compressor'
 end
 
+group :production do 
+  gem 'unicorn'
+  gem 'unicorn-worker-killer'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
