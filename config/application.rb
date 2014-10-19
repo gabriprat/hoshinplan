@@ -75,6 +75,6 @@ module Hoshinplan
     
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     
-    config.font_assets.origin = '*'
+    config.font_assets.origin = '*.hoshinplan.com'
   end
 end
