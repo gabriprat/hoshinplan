@@ -74,5 +74,7 @@ module Hoshinplan
     config.assets.initialize_on_precompile = false
 
     config.middleware.use WickedPdf::Middleware
+    
+    I18n.config.enforce_available_locales = true
   end
 end

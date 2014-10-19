@@ -295,6 +295,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unicorn-worker-killer (0.4.2)
+      unicorn (~> 4)
     wicked_pdf (0.11.0)
       rails
     wkhtmltopdf-binary (0.9.9.3)
@@ -354,6 +356,7 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.0.3)
   unicorn
+  unicorn-worker-killer
   wicked_pdf
   wkhtmltopdf-binary
   yui-compressor
