@@ -47,7 +47,8 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+    config.action_controller.asset_host = "static.hoshinplan.com"
+  config.assets.debug = false
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
