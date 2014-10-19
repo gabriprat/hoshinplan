@@ -32,9 +32,9 @@ class User < ActiveRecord::Base
   
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
-  has_many :indicators, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id, :order => :next_update
+  has_many :indicators, -> { order :next_update }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :indicator_histories, :through => :indicators
-  has_many :tasks, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id, :order => :deadline
+  has_many :tasks,  -> { order :deadline }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
   has_many :authorizations, :dependent => :destroy
@@ -74,19 +74,19 @@ class User < ActiveRecord::Base
   }
   
   def pending_tasks
-    Task.includes(:responsible, :area, :hoshin, :company).where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id).order(:deadline)
+    Task.includes(:responsible, :area, :hoshin, :company).where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id).reorder(:deadline)
   end
   
   def dashboard_tasks
-    Task.includes(:responsible, :area, :hoshin, :company).where(:status => [:active, :backlog], :responsible_id => id).order(:deadline)
+    Task.includes(:responsible, :area, :hoshin, :company).where(:status => [:active, :backlog], :responsible_id => id).reorder(:deadline)
   end
   
   def pending_indicators
-    Indicator.includes(:responsible, :area, :hoshin, :company).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id).order(:next_update)
+    Indicator.includes(:responsible, :area, :hoshin, :company).where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id).reorder(:next_update)
   end
   
   def dashboard_indicators
-    Indicator.includes(:responsible, :area, :hoshin, :company).where(:responsible_id => id).order(:next_update)
+    Indicator.includes(:responsible, :area, :hoshin, :company).where(:responsible_id => id).reorder(:next_update)
   end
   
   def next_tutorial

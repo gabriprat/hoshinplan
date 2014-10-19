@@ -13,12 +13,12 @@ class Company < ActiveRecord::Base
   
   belongs_to :creator, :class_name => "User", :creator => true
   
-  has_many :hoshins, :dependent => :destroy, :inverse_of => :company, :order => :name
+  has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company
   
-  has_many :areas, :dependent => :destroy, :inverse_of => :company, :order => :name
-  has_many :objectives, :dependent => :destroy, :inverse_of => :company, :order => :name
-  has_many :indicators, :dependent => :destroy, :inverse_of => :company, :order => :name
-  has_many :tasks, :dependent => :destroy, :inverse_of => :company, :order => :name
+  has_many :areas, -> { order :name },:dependent => :destroy, :inverse_of => :company
+  has_many :objectives, -> { order :name },:dependent => :destroy, :inverse_of => :company
+  has_many :indicators, -> { order :name },:dependent => :destroy, :inverse_of => :company
+  has_many :tasks, -> { order :name },:dependent => :destroy, :inverse_of => :company
   
   has_many :users, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy

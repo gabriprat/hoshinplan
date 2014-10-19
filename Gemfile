@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
-gem 'rails', '3.2.18'
+gem 'rails', '4.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,8 +13,8 @@ gem 'json'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
@@ -48,7 +48,7 @@ gem "hobo"
 gem "quiet_assets", :group => :development
 gem "active_record_query_trace", :group => :development
 # Hobo's version of will_paginate is required.
-gem "will_paginate", :git => "git://github.com/Hobo/will_paginate.git"
+gem "hobo_will_paginate"
 gem "hobo_bootstrap"
 gem "hobo_jquery_ui"
 gem "hobo_bootstrap_ui"
@@ -87,4 +87,6 @@ gem 'heroku-deflater', :group => :production
 gem 'rainbows'
 gem 'em-http-request'
 gem "faraday"
+gem "protected_attributes"
+gem 'rails-observers'
 

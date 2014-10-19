@@ -1,61 +1,61 @@
 Hoshinplan::Application.routes.draw do
-  match ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
+  get ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
 
   root :to => 'front#index'
 
-  match 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
+  get 'users/:id/reset_password_from_email/:key' => 'users#reset_password', :as => 'reset_password_from_email'
 
-  match 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
+  get 'users/:id/accept_invitation_from_email/:key' => 'users#accept_invitation', :as => 'accept_invitation_from_email'
 
-  match 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
+  get 'users/:id/activate_from_email/:key' => 'users#activate', :as => 'activate_from_email'
   
-  match 'user_companies/:id/accept_from_email/:key' => 'user_companies#accept', :as => 'accept_from_email'
+  get 'user_companies/:id/accept_from_email/:key' => 'user_companies#accept', :as => 'accept_from_email'
 
-  match 'search' => 'front#search', :as => 'site_search'
+  get 'search' => 'front#search', :as => 'site_search'
   
-  match 'first' => 'front#first', :as => 'front_first'
+  get 'first' => 'front#first', :as => 'front_first'
 
-  match 'about' => 'cms#page', :as => 'cms_about', :key => :about
+  get 'about' => 'cms#page', :as => 'cms_about', :key => :about
 
-  match 'features' => 'cms#page', :as => 'cms_features', :key => :features
+  get 'features' => 'cms#page', :as => 'cms_features', :key => :features
 
-  match 'pricing' => 'cms#page', :as => 'cms_pricing', :key => :pricing
+  get 'pricing' => 'cms#page', :as => 'cms_pricing', :key => :pricing
 
-  match 'invitation-accepted' => 'front#invitation_accepted', :as => 'front_invitation_accepted'
+  get 'invitation-accepted' => 'front#invitation_accepted', :as => 'front_invitation_accepted'
 
-  match 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
+  get 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
   
-  match 'updateindicators' => 'front#updateindicators', :as => 'update_indicators'
+  get 'updateindicators' => 'front#updateindicators', :as => 'update_indicators'
   
-  match 'expirecaches' => 'front#expirecaches', :as => 'expire_caches'
+  get 'expirecaches' => 'front#expirecaches', :as => 'expire_caches'
 
-  match 'resetcounters' => 'front#resetcounters', :as => 'reset_counters'
+  get 'resetcounters' => 'front#resetcounters', :as => 'reset_counters'
 
-  match 'healthupdate' => 'front#healthupdate', :as => 'health_update'
+  get 'healthupdate' => 'front#healthupdate', :as => 'health_update'
 
-  match 'colorize' => 'front#colorize', :as => 'colorize'
+  get 'colorize' => 'front#colorize', :as => 'colorize'
 
-  match 'mail_preview' => 'mail_preview#index'
+  get 'mail_preview' => 'mail_preview#index'
   
-  match 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'
+  get 'mail_preview(/:action(/:id(.:format)))' => 'mail_preview#:action'
   
-  match  'admin' => 'admin/admin_site#index'
+  get  'admin' => 'admin/admin_site#index'
   
-  match  'cms/:key/expire' => 'cms#expire', :constraints => {:key => /.*/}
+  get  'cms/:key/expire' => 'cms#expire', :constraints => {:key => /.*/}
   
-  match  'cms/:key' => 'cms#show', :constraints => {:key => /.*/}
+  get  'cms/:key' => 'cms#show', :constraints => {:key => /.*/}
   
-  match  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
+  get  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
   
-  match  'oid_login' => 'front#oid_login', :as => 'oid_login'
+  get  'oid_login' => 'front#oid_login', :as => 'oid_login'
   
-  match "/auth/failure" => "front#failure"
+  get "/auth/failure" => "front#failure"
   
   post "/tasks/form" => "tasks#form", :as => 'task_form'
 
   post "/indicators/form" => "indicators#form", :as => 'indicators_form'
   
-  match "/pitch" => "front#pitch"
+  get "/pitch" => "front#pitch"
   
   
   # The priority is based upon order of creation:
@@ -115,7 +115,7 @@ Hoshinplan::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  match '/404' => 'errors#not_found'
-  match '/422' => 'errors#server_error'
-  match '/500' => 'errors#server_error'
+  get '/404' => 'errors#not_found'
+  get '/422' => 'errors#server_error'
+  get '/500' => 'errors#server_error'
 end
