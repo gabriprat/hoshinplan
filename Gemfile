@@ -17,10 +17,11 @@ gem 'json'
   gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+  #gem 'libv8'
+  #gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
-  gem 'less'
+  gem 'uglifier', '>= 1.3.0'
+  #gem 'less'
   gem 'raphaeljs-rails'
   gem 'morrisjs-rails'
   gem 'yui-compressor'
@@ -81,7 +82,6 @@ gem 'newrelic_rpm'
 gem 'RedCloth'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
-gem 'redis-rails'
 gem 'murmurhash3'
 gem 'heroku-deflater', :group => :production
 gem 'rainbows'

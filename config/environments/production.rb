@@ -30,7 +30,6 @@ Hoshinplan::Application.configure do
   config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
   config.assets.css_compressor = :yui
   config.assets.js_compressor = :uglify
 
@@ -65,8 +64,10 @@ Hoshinplan::Application.configure do
   #config.hobo.stable_cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280'
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "static.hoshinplan.com"
-  config.asset_host = "static.hoshinplan.com"
+  #config.action_controller.asset_host = 'http://static.hoshinplan.com'
+  #Above line does not work... Ugly workaround below...
+  config.assets.prefix = 'http://static.hoshinplan.com/assets/' 
+  
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
