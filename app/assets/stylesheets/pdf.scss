@@ -6931,7 +6931,7 @@ div.hidden-fields {
 
 .ajax-progress {
   padding: 5px 12px 5px 27px;
-  background: url(/assets/ajax-loader.gif) no-repeat 8px 6px rgba(0, 0, 0, 0.2);
+  background: assets-url("ajax-loader.gif") no-repeat 8px 6px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   display: none;
   z-index: 1000;
