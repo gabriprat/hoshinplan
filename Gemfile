@@ -89,4 +89,4 @@ gem 'em-http-request'
 gem "faraday"
 gem "protected_attributes"
 gem 'rails-observers'
-
+gem 'rails_12factor'
