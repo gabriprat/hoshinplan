@@ -74,5 +74,7 @@ module Hoshinplan
     I18n.config.enforce_available_locales = true
     
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    
+    config.font_assets.origin = 'www.hoshinplan.com es.hoshinplan.com en.hoshinplan.com'
   end
 end
