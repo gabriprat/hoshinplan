@@ -100,12 +100,7 @@ a.external:after {
 
 .sep, .line.sep {
 	margin: 1em auto;
-	float: none;
-	clear: both;
-}
-
-.btn-google-plus {
-	display: inline-block;
+	width: 100%;
 }
 
 html body .btn-big {
@@ -122,29 +117,18 @@ html body .btn-big {
 }
 
 .line {
-  display: table;
-  vertical-align: baseline;
-  position: relative;
-  padding: 0 20px;
-  margin: auto;
+  display: block;
+  
 }
 
 .line:before, .line:after {
   content: '';
-  display: table-cell;
-  width: 100%;
-  position: absolute;
-  top: 0.73em;
-  border-top: 1px solid black;
+  display: inline-block;
+  width: 6em;
+  border-bottom: 1px solid black;
+  margin: 0.25em 2em;
 }
 
-.line:before {
-  right: 100%;
-}
-
-.line:after {
-  left: 100%;
-}
 .navbar-inner {
 	padding: 4px 0;
 } 
