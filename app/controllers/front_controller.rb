@@ -4,7 +4,7 @@ class FrontController < ApplicationController
   
   # Require the user to be logged in for every other action on this controller
   # except :index. 
-  skip_before_filter :my_login_required, :only => [:index, :pitch, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize]
+  skip_before_filter :my_login_required, :only => [:index, :pitch, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize, :reprocess_photos]
   
   def index
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
@@ -60,6 +60,12 @@ class FrontController < ApplicationController
     }
     @text += ll "End send reminders job!"
     render :text => @text, :content_type => Mime::TEXT
+  end
+  
+  def reprocess_photos
+    User.unscoped.all.each do |user|
+      user.image.reprocess!
+    end
   end
   
   def updateindicators

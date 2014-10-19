@@ -21,9 +21,21 @@ class User < ActiveRecord::Base
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
-  has_attached_file :image, :styles => {
-    :thumb => "104x104#" },
+  has_attached_file :image, {
+    :styles => {
+      :thumb => "104x104#"
+    },
+    :convert_options => {
+      :medium => "-quality 80 -interlace Plane",
+      :thumb => "-quality 80 -interlace Plane"
+    },
+    :s3_headers => { 
+      'Cache-Control' => 'max-age=315576000', 
+      'Expires' => 10.years.from_now.httpdate 
+    },
     :default_url => "/assets/default.jpg"
+  }
+  
   #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   #validates_attachment_size :image, :less_than => 10.megabytes   
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] } 

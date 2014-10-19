@@ -23,6 +23,8 @@ Hoshinplan::Application.routes.draw do
 
   get 'invitation-accepted' => 'front#invitation_accepted', :as => 'front_invitation_accepted'
 
+  get 'reprocessphotos' => 'front#reprocess_photos', :as => 'reprocess_photos'
+  
   get 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
   
   get 'updateindicators' => 'front#updateindicators', :as => 'update_indicators'
