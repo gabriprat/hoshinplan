@@ -2,14 +2,15 @@ require 'omniauth-openid'
 require 'openid/store/filesystem'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :open_id, :name => 'openid'
+  provider :open_id, :name => 'openid', :store => OpenID::Store::Filesystem.new('./tmp')
   provider :google_oauth2, ENV["GOOGLE_CLIENT"], ENV["GOOGLE_SECRET"],
            {
              :approval_prompt => "auto",
              :scope => "email profile"
              
-           }         
+           } 
 end
+
 
 OmniAuth.config.on_failure do |env|
   st = ""
@@ -22,4 +23,22 @@ OmniAuth.config.on_failure do |env|
   strategy_name_query_param = env['omniauth.error.strategy'] ? "&strategy=#{env['omniauth.error.strategy'].name}" : ""
   new_path = "#{OmniAuth.config.path_prefix}/failure?message=#{message_key}#{origin_query_param}#{strategy_name_query_param}#{error_param}#{error_reason_param}"
   [302, {'Location' => new_path, 'Content-Type'=> 'text/html'}, []]
+end
+
+module OmniAuth
+  module Strategies
+    # OmniAuth strategy for connecting via OpenID. This allows for connection
+    # to a wide variety of sites, some of which are listed [on the OpenID website](http://openid.net/get-an-openid/).
+    class OpenID
+      def dummy_app
+              lambda{|env| [401, {"WWW-Authenticate" => Rack::OpenID.build_header(
+                :identifier => identifier,
+                :return_to => callback_url,
+                :required => options.required,
+                :optional => options.optional,
+                :method => 'get'
+              )}, []]}
+      end
+    end
+  end
 end

@@ -99,7 +99,6 @@ class ApplicationController < ActionController::Base
   # User count. 
   def my_login_required
     #return false if !defined?(logged_in)
-    login_from_cookie if self.respond_to?(:login_from_cookie)
     return true if logged_in?
     session[:return_to] = request.url
     redirect_to "/login"
