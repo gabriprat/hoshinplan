@@ -96,6 +96,13 @@ class ApplicationController < ActionController::Base
   end
   
   
+  after_filter :set_access_control_headers
+
+  def set_access_control_headers 
+  headers['Access-Control-Allow-Origin'] = 'http://static.hoshinplan.com/' 
+  headers['Access-Control-Request-Method'] = '*' 
+  end
+  
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
   def my_login_required
