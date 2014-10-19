@@ -68,5 +68,7 @@ module Hoshinplan
     config.middleware.use WickedPdf::Middleware
     
     I18n.config.enforce_available_locales = true
+    
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end
