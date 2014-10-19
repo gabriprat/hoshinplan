@@ -59,7 +59,7 @@ Hoshinplan::Application.routes.draw do
   
   get "/pitch" => "front#pitch"
   
-  post "/auth/:provider/callback" =>   "users#omniauth_callback"
+  #post "/auth/:provider/callback" => "users#omniauth_callback"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
