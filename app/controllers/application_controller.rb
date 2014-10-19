@@ -95,14 +95,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || extract_locale_from_subdomain || I18n.default_locale
   end
   
-  
-  after_filter :set_access_control_headers
-
-  def set_access_control_headers 
-  headers['Access-Control-Allow-Origin'] = 'http://www.hoshinplan.com/ http://es.hoshinplan.com http://en.hoshinplan.com' 
-  headers['Access-Control-Request-Method'] = '*' 
-  end
-  
   # We provide our own method to call the Hobo helper here, so we can check the 
   # User count. 
   def my_login_required

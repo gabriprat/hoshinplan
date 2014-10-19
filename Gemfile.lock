@@ -116,6 +116,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-sass (4.2.1)
       sass (~> 3.2)
+    font_assets (0.1.11)
+      rack
     hashie (3.3.1)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
@@ -301,6 +303,7 @@ DEPENDENCIES
   em-http-request
   faraday
   font-awesome-sass
+  font_assets
   heroku-deflater
   hobo
   hobo_bootstrap
