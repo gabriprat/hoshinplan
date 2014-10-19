@@ -6,23 +6,15 @@ require 'wicked_pdf'
 
 require File.expand_path('../../config/jobs/reminders', __FILE__)
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+Bundler.require(:default, Rails.env)
 
 module Hoshinplan
   class Application < Rails::Application
-    # Hobo: the admin subsite loads admin.css & admin.js
-    config.assets.precompile += %w(admin.css admin.js)
     # Hobo: Named routes have changed in Hobo 2.0.   Set to false to emit both the 2.0 and 1.3 names.
     config.hobo.dont_emit_deprecated_routes = true
     # Hobo: remove support for ERB templates
     config.hobo.dryml_only_templates = true
-    # Hobo: the front subsite loads front.css & front.js
-    config.assets.precompile += %w(pdf.css front.css front.js)
+  
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -66,7 +58,7 @@ module Hoshinplan
     config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    config.assets.enabled = true
+    # config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
