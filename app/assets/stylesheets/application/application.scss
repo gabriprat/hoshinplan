@@ -178,7 +178,7 @@ body .navbar .brand:hover, body .navbar .brand:hover strong, body .navbar .brand
 
 body.show-page, body.index-page {
 	font-weight: 200;
-	background: asset-url("bg.png") repeat;
+	background: image-url("bg.png") repeat;
 	background-attachment: fixed;
 }
 
@@ -640,7 +640,7 @@ body div.ordering-handle {
 }
 
 .loading {
-        background: asset-url("ajax-loader.gif") no-repeat;
+        background: image-url("ajax-loader.gif") no-repeat;
 	width: 16px;
 	height: 16px;
 	margin: auto;
