@@ -2503,7 +2503,7 @@ table th[class*="span"],
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("/assets/glyphicons-halflings.png");
+  background-image: asset-url("glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
@@ -2528,7 +2528,7 @@ table th[class*="span"],
 .dropdown-submenu:focus > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"],
 .dropdown-submenu:focus > a > [class*=" icon-"] {
-  background-image: url("/assets/glyphicons-halflings-white.png");
+  background-image: asset-url("glyphicons-halflings-white.png");
 }
 
 
@@ -6931,7 +6931,7 @@ div.hidden-fields {
 
 .ajax-progress {
   padding: 5px 12px 5px 27px;
-  background: assets-url("ajax-loader.gif") no-repeat 8px 6px rgba(0, 0, 0, 0.2);
+  background: asset-url("ajax-loader.gif") no-repeat 8px 6px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   display: none;
   z-index: 1000;
@@ -7018,12 +7018,12 @@ ul.collection {
 
 
 [class^="icon-"], [class*=" icon-"] {
-  background-image: url(/assets/glyphicons-halflings.png);
+  background-image: asset-url(glyphicons-halflings.png);
 }
 
 
 .icon-white {
-  background-image: url(/assets/glyphicons-halflings-white.png);
+  background-image: asset-url(glyphicons-halflings-white.png);
 }
 
 
