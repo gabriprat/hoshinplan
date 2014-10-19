@@ -611,7 +611,7 @@
           </ht>
         </h3>
 
-        <sortable-collection:areas param="collection"/>
+        <collection:areas param/>
       </section>
     </content-body:>
 
@@ -2038,7 +2038,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="color, email_address, tutorial_step, timezone, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
+      <field-list fields="color, email_address, tutorial_step, timezone, language, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
     </content-body:>
 
   </page>

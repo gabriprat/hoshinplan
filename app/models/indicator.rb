@@ -24,7 +24,7 @@ class Indicator < ActiveRecord::Base
 
   belongs_to :creator, :class_name => "User", :creator => true
   
-  has_many :indicator_histories, :dependent => :destroy, :inverse_of => :indicator, :order => :day
+  has_many :indicator_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :indicator
   
   belongs_to :company
 
@@ -39,9 +39,13 @@ class Indicator < ActiveRecord::Base
   validate :validate_company
   
   default_scope lambda { 
-    where(:company_id => UserCompany.select(:company_id)
-      .where('user_id=?',  
-        User.current_id) ) if User.current_id 
+    if User.current_id 
+      where(:company_id => UserCompany.select(:company_id)
+        .where('user_id=?',  
+          User.current_id) ).reorder('ind_pos') 
+    else
+      reorder('ind_pos')
+    end
   }
         
   
@@ -53,7 +57,7 @@ class Indicator < ActiveRecord::Base
   
   scope :overdue, lambda {
     includes([:responsible, :area])
-    .where("next_update < #{User::TODAY_SQL}")
+    .where("next_update < #{User::TODAY_SQL}").references(:responsible)
   }
   
   scope :under_tpc, lambda { |*tpc|
@@ -100,10 +104,6 @@ class Indicator < ActiveRecord::Base
       ih.goal = indicator.goal
       ih.save!
     end
-  end
-  
-  def position
-    ind_pos
   end
   
   def status 

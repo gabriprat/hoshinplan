@@ -42,9 +42,9 @@ Hoshinplan::Application.routes.draw do
   # Owner routes for controller goals
   resources :hoshins, :as => :hoshin, :only => [] do
     resources :goals, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_hoshin'
+      get '/', :on => :new, :action => 'new_for_hoshin'
       collection do
-        post 'create', :action => 'create_for_hoshin'
+        post '/', :action => 'create_for_hoshin'
       end
     end
   end
@@ -62,9 +62,9 @@ Hoshinplan::Application.routes.draw do
   # Owner routes for controller hoshins
   resources :companies, :as => :company, :only => [] do
     resources :hoshins, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_company'
+      get '/', :on => :new, :action => 'new_for_company'
       collection do
-        post 'create', :action => 'create_for_company'
+        post '/', :action => 'create_for_company'
       end
     end
   end
@@ -90,10 +90,10 @@ Hoshinplan::Application.routes.draw do
   # Owner routes for controller indicators
   resources :objectives, :as => :objective, :only => [] do
     resources :indicators, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_objective'
+      get '/', :on => :new, :action => 'new_for_objective'
       collection do
-        get 'index', :action => 'index_for_objective'
-        post 'create', :action => 'create_for_objective'
+        get '/', :action => 'index_for_objective'
+        post '/', :action => 'create_for_objective'
       end
     end
   end
@@ -116,9 +116,9 @@ Hoshinplan::Application.routes.draw do
   # Owner routes for controller objectives
   resources :areas, :as => :area, :only => [] do
     resources :objectives, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_area'
+      get '/', :on => :new, :action => 'new_for_area'
       collection do
-        post 'create', :action => 'create_for_area'
+        post '/', :action => 'create_for_area'
       end
     end
   end
@@ -165,10 +165,10 @@ Hoshinplan::Application.routes.draw do
   # Owner routes for controller tasks
   resources :objectives, :as => :objective, :only => [] do
     resources :tasks, :only => [] do
-      get 'new', :on => :new, :action => 'new_for_objective'
+      get '/', :on => :new, :action => 'new_for_objective'
       collection do
-        get 'index', :action => 'index_for_objective'
-        post 'create', :action => 'create_for_objective'
+        get '/', :action => 'index_for_objective'
+        post '/', :action => 'create_for_objective'
       end
     end
   end
@@ -221,9 +221,11 @@ Hoshinplan::Application.routes.draw do
   end
 
   # User routes for controller users
-  match 'login(.:format)' => 'users#login', :as => 'user_login'
+  post 'login(.:format)' => 'users#login', :as => 'user_login_post'
+  get 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
-  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+  get 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+  post 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password_post'
 
   namespace :admin do
 

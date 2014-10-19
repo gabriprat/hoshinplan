@@ -10,8 +10,8 @@ Hoshinplan::Application.configure do
   
   #config.hobo.show_translation_keys = true 
 
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
+  Rails.application.routes.default_url_options[:host] = 'es.hoshinplandev.com:5000'
+  
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true 

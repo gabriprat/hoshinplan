@@ -18,7 +18,7 @@ class Objective < ActiveRecord::Base
   belongs_to :creator, :class_name => "User", :creator => true  
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
-  has_many :tasks, :dependent => :destroy, :inverse_of => :objective, :order => 'tsk_pos'
+  has_many :tasks, -> { order :tsk_pos }, :dependent => :destroy, :inverse_of => :objective
 
   children :indicators, :tasks
 
@@ -37,7 +37,7 @@ class Objective < ActiveRecord::Base
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
         User.current_id)
-      ) 
+      ).reorder('obj_pos')
   }
         
   scope :blind, -> {
@@ -46,7 +46,7 @@ class Objective < ActiveRecord::Base
     indicator_cond = includes([:area, :responsible])
     .where(Indicator.unscoped
         .where(indicator[:objective_id].eq(objective[:id]))
-        .exists.not)
+        .exists.not).references(:responsible)
   }
   
   scope :neglected, -> { 
@@ -57,7 +57,7 @@ class Objective < ActiveRecord::Base
     ind_cond = indicator[:objective_id].eq(objective[:id])
     includes([:area, :responsible])
     .where(Task.unscoped.where(tasks_cond).exists.not)
-      .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists)
+      .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists).references(:responsible)
   }
   
   after_save "hoshin.health_update!"

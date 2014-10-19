@@ -4,7 +4,7 @@
 	<body: class="panel-body"/>
 	<item: replace>
 		<li class="kanban-card postit kb-color-#{this.area_id}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
-			<rmodal url="#{url_for this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
+			<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
 			<div><click-editor-innards:name/></div>
 			<div><click-editor-innards:description/></div>
 			<if test="&this.original_deadline != this.deadline">

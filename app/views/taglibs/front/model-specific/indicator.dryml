@@ -20,7 +20,7 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column" data-label="Name"><rmodal url="#{url_for this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal></div>
+		  <div class="column" data-label="Name"><rmodal url="#{indicator_path this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal></div>
   	</if>
 	<if test="&column == 'Resp.'">
   		<div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
@@ -29,7 +29,7 @@
 		  <div class="column nowrap" data-label="Value">
 			<if test="&this.status == :current || this.status == :multioverdue">
 			  	
-					<rmodal class="value" url="#{url_for this}/value_form" target-id="update-kpi-value-modal-#{this.id}"><view human with="&this.value.nil? ? 'N/A' : this.value"/></rmodal>
+					<rmodal class="value" url="#{indicator_path this}/value_form" target-id="update-kpi-value-modal-#{this.id}"><view human with="&this.value.nil? ? 'N/A' : this.value"/></rmodal>
 			</if>
 			<else>
 				<autosubmit:value human updates="#neglected">

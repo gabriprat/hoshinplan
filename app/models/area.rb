@@ -20,9 +20,9 @@ class Area < ActiveRecord::Base
   
   belongs_to :creator, :class_name => "User", :creator => true
   
-  has_many :objectives, :dependent => :destroy, :inverse_of => :area, :order => 'obj_pos'
-  has_many :indicators, :inverse_of => :area, :accessible => true, :order => 'ind_pos'
-  has_many :tasks, :inverse_of => :area, :accessible => true, :order => 'CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos', :conditions => Task.visible.where_values
+  has_many :objectives,  -> { order :obj_pos }, :dependent => :destroy, :inverse_of => :area
+  has_many :indicators, -> { order :ind_pos }, :inverse_of => :area, :accessible => true
+  has_many :tasks, -> { where(Task.visible.where_values).order('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')}, :inverse_of => :area, :accessible => true
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
   belongs_to :company, :inverse_of => :areas

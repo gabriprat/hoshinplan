@@ -39,7 +39,7 @@ class Task < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id)) }
+        User.current_id)).reorder([:status, :tsk_pos]) }
   
   scope :lane, lambda {|*status|
     visible.where(:status => status).order(:status)
@@ -54,7 +54,7 @@ class Task < ActiveRecord::Base
   
   scope :overdue, lambda {
     includes([:area, :responsible])
-    .where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog])
+    .where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog]).references(:responsible)
   }
   
   scope :due_today, -> { due('0 hour') }

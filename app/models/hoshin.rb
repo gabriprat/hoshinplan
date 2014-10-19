@@ -29,11 +29,11 @@ class Hoshin < ActiveRecord::Base
   belongs_to :parent, :inverse_of => :children, :class_name => "Hoshin", :counter_cache => true
   has_many :children, :inverse_of => :parent, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
   
-  has_many :areas, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
+  has_many :areas, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
   has_many :objectives, :through => :areas, :inverse_of => :hoshin, :accessible => true
   has_many :indicators, :through => :objectives, :inverse_of => :hoshin, :accessible => true
   has_many :tasks, :through => :objectives, :accessible => true
-  has_many :goals, :dependent => :destroy, :inverse_of => :hoshin, :order => :position
+  has_many :goals, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
   
   children :areas
   
