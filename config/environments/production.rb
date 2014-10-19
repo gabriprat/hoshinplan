@@ -40,7 +40,7 @@ Hoshinplan::Application.configure do
   config.assets.digest = true
 
   # Defaults to nil and saved in location specified by config.assets.prefix
-  config.assets.manifest = "/public/assets"
+  # config.assets.manifest = YOUR_PATH
 
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -64,10 +64,7 @@ Hoshinplan::Application.configure do
   #config.hobo.stable_cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280'
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  #config.action_controller.asset_host = 'http://static.hoshinplan.com'
-  #Above line does not work... Ugly workaround below...
-  config.assets.prefix = 'http://static.hoshinplan.com/assets/' 
-  
+  config.action_controller.asset_host = 'static.hoshinplan.com'
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
