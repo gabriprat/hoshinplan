@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.1.3"
 
 gem 'rails', '4.0.10'
 
@@ -12,7 +12,7 @@ gem 'json'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
+#group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
 
@@ -24,12 +24,7 @@ group :assets do
   gem 'raphaeljs-rails'
   gem 'morrisjs-rails'
   gem 'yui-compressor'
-end
-
-group :production do 
-  gem 'unicorn'
-  gem 'unicorn-worker-killer'
-end
+#end
 
 gem 'jquery-rails'
 
@@ -40,7 +35,8 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+gem 'unicorn-worker-killer'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -70,7 +66,6 @@ gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "nested_has_many_through"
 gem "actionmailer_inline_css"
 
-gem 'unicorn'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'delocalize'
