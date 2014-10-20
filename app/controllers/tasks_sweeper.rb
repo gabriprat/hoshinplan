@@ -1,5 +1,7 @@
 class TasksSweeper < ActionController::Caching::Sweeper
   
+  include Hobo::Controller::Cache
+  
   observe Task
 
   def after_create(task)
