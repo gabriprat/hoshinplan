@@ -613,7 +613,7 @@ hr {
   padding-bottom: 55px;
 }
 .footer .cols {
-  width: 100%;
+  width: 600px;
 }
 .footer .left,
 .footer .right {
@@ -622,6 +622,7 @@ hr {
   font-size: 12px;
   line-height: 20px;
   padding-bottom: 22px;
+  padding: 0 5px;
 }
 .footer .left {
   text-align: left;
