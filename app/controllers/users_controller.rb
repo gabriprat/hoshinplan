@@ -16,6 +16,11 @@ class UsersController < ApplicationController
   
   include RestController
   
+  def create_auth_cookie
+    cookies[:auth_token] = { :value => "#{current_user.remember_token} #{current_user.class.name}",
+                                   :expires => current_user.remember_token_expires_at, :domain => :all }
+  end
+  
   def do_activate
     do_transition_action :activate do
       self.current_user = model.find(params[:id])
