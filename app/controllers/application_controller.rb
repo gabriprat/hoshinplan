@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   
   helper CmsHelper
+  
+  include ActionController::Caching::Sweeping
 
   rescue_from RuntimeError do |exception|
     error = {message:exception.message}
