@@ -48,4 +48,5 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
     }
   }
   
+  config.session_store :cookie_store, :key => '_hoshinplan_session', :domain => :all
 end

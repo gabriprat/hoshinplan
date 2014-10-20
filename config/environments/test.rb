@@ -36,4 +36,6 @@ Hoshinplan::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr  
+  
+  config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => :all
 end
