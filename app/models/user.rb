@@ -149,8 +149,7 @@ class User < ActiveRecord::Base
     transition :activate, { :invited => :active } do
       acting_user = self
       @subject = "#{self.name} welcome to Hoshinplan!"
-      UserCompanyMailer.invited_welcome(self, 
-      @subject).deliver
+      UserCompanyMailer.invited_welcome(self).deliver
     end
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
