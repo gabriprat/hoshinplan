@@ -90,7 +90,8 @@ Hoshinplan::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+  Hoshinplan::Application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => 'hoshinplan.com'
+  
 end
 
-Hoshinplan::Application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => 'hoshinplan.com'
 
