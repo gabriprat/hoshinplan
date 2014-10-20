@@ -49,7 +49,7 @@ class UserCompanyMailer < ActionMailer::Base
     ret
   end
   
-  def reminder(user)
+  def reminder(user, kpis, tasks)
     @user = user
     if @user.state == "active" 
       mail( :subject => I18n.translate("emails.reminder.subject"),
@@ -57,7 +57,9 @@ class UserCompanyMailer < ActionMailer::Base
             :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
               format.html {    
                 render_email("reminder", 
-                  {:user => @user, :app_name => @app_name, :url => pending_user_url(@user, :host => get_host_port(user))})          
+                  {:user => @user, :app_name => @app_name, 
+                    :url => pending_user_url(@user, :host => get_host_port(user)),
+                    :kpis => kpis, :tasks => tasks})          
               }
       end
     end

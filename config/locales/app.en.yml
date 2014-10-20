@@ -32,7 +32,8 @@ en:
     unsubscribe: Unsubscribe
     reminder:
       subject: You have KPIs or tasks to update
-      message: 'You can access all the KPIs and tasks you have to update at your dashboard:'
+      message: 'You can access all the KPIs and tasks you have to update at your <a href="%{url}">dashboard</a>. You should update:'
+      update: Dashboard
     welcome:
       subject: '%{name} welcome to Hoshinplan!'
       title: Welcome to Hoshinplan.com
