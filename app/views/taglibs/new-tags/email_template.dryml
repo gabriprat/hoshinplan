@@ -54,7 +54,7 @@
 						<do param="default">
 							<h2 param="header">#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h2>
 							<p><%= message.html_safe %></p>
-							<p param="link" unless="&url.blank?"><a href="#{url}">#{url}</a></p>
+							<p param="link" unless="&url.blank?"><a href="#{url}" merge>#{url}</a></p>
 							<do param="footer">
 							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}<br/>
 							#{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>
@@ -77,7 +77,7 @@
 		<td class="inner">
 			
 				<!-- content -->
-				<div class="content">
+				<center>
 				<table class="cols">
 				<tr>
 					<td class="left">
@@ -94,7 +94,8 @@
 					</td>
 				</tr>
 				</table>
-				</div><!-- /content -->
+				</center>
+				<!-- /content -->
 		</td>
 		<td></td>
 	</tr>

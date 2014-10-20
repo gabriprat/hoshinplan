@@ -1,202 +1,207 @@
 @media only screen and (max-width: 620px) {
-  .wrapper {
-    min-width: 320px !important;
-    width: 100%!important;
-  }
-  .wrapper .one-col,
-  .wrapper .two-col,
-  .wrapper .three-col {
-    width: 320px !important;
-  }
-  .wrapper .column {
-    display: block;
-    float: left;
-    width: 320px !important;
-  }
-  .wrapper .padded {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-  .wrapper .full {
-    display: none;
-  }
-  .wrapper .block {
-    display: block !important;
-  }
-  .wrapper .hide {
-    display: none !important;
-  }
-  .wrapper .image {
-    margin-bottom: 26px !important;
-  }
-  .wrapper .image img {
-    height: auto !important;
-    width: 100% !important;
-  }
+	.break {
+		word-break: break-word;
+	}
+	.wrapper {
+		min-width: 320px !important;
+		width: 100%!important;
+	}
+	.wrapper .one-col,
+	.wrapper .two-col,
+	.wrapper .three-col {
+		width: 320px !important;
+	}
+	.wrapper .column {
+		display: block;
+		float: left;
+		width: 320px !important;
+	}
+	.wrapper .padded {
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
+	.wrapper .full {
+		display: none;
+	}
+	.wrapper .block {
+		display: block !important;
+	}
+	.wrapper .hide {
+		display: none !important;
+	}
+	.wrapper .image {
+		margin-bottom: 26px !important;
+	}
+	.wrapper .image img {
+		height: auto !important;
+		width: 100% !important;
+	}
+
 }
 
 @media only screen and (max-width: 620px) {
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td h1:last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td h1:last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td h1:last-child,
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td h2:last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td h2:last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td h2:last-child,
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td h3:last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td h3:last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td h3:last-child,
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td p:last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td p:last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td p:last-child,
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td ol:last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td ol:last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td ol:last-child,
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td ul:last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td ul:last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td ul:last-child {
-    margin-bottom: 26px !important;
-  }
-  .wrapper .one-col .column:last-child table:nth-last-child(2) td blockquote :last-child,
-  .wrapper .two-col .column:last-child table:nth-last-child(2) td blockquote :last-child,
-  .wrapper .three-col .column:last-child table:nth-last-child(2) td blockquote :last-child {
-    margin-bottom: 0 !important;
-  }
-  .wrapper .preheader {
-    display: none;
-  }
-  .wrapper .logo {
-    padding-top: 32px!important;
-  }
-  .wrapper .logo img {
-    max-width: 280px !important;
-    height: auto!important;
-  }
-  .wrapper .footer .inner {
-    padding-top: 76px !important;
-  }
-  .wrapper .footer .cols {
-    width: 320px !important;
-  }
-  .wrapper .footer .left,
-  .wrapper .footer .right {
-    display: block !important;
-    width: 300px !important;
-    text-align: center !important;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-    margin: 0 auto !important;
-  }
-  .wrapper .social {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .wrapper .social .spacer {
-    display: none!important;
-  }
-  .wrapper .social td {
-    padding-left: 0!important;
-    padding-right: 0!important;
-    display: block !important;
-  }
-  .wrapper .social td:last-child {
-    padding-bottom: 30px !important;
-  }
-  .wrapper .first .column-bottom,
-  .wrapper .second .column-top,
-  .wrapper .three-col .second .column-bottom,
-  .wrapper .three-col .third .column-top {
-    display: none;
-  }
-  .wrapper h1 {
-    font-size: 36px !important;
-    line-height: 42px !important;
-    margin-bottom: 24px !important;
-  }
-  .wrapper h2 {
-    font-size: 26px !important;
-    line-height: 32px !important;
-    margin-bottom: 20px !important;
-  }
-  .wrapper h3 {
-    font-size: 16px !important;
-    line-height: 24px !important;
-    margin-bottom: 16px !important;
-  }
-  .wrapper p,
-  .wrapper ol,
-  .wrapper ul {
-    font-size: 16px !important;
-    line-height: 26px !important;
-    margin-bottom: 26px !important;
-  }
-  .wrapper ol,
-  .wrapper ul {
-    margin-left: 32px !important;
-  }
-  .wrapper li {
-    margin-bottom: 13px !important;
-  }
-  .wrapper .image {
-    margin-bottom: 26px !important;
-  }
-  .wrapper .hr {
-    padding-bottom: 26px !important;
-  }
-  .wrapper .btn {
-    margin-bottom: 26px !important;
-  }
-  .wrapper .btn a {
-    display: block !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.02em !important;
-    line-height: 24px !important;
-    padding: 13px 10px 12px 10px !important;
-  }
-  .wrapper blockquote {
-    border-bottom: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 16px !important;
-    padding-bottom: 0 !important;
-  }
-  .wrapper blockquote:after {
-    border-top: inherit;
-    content: '';
-    display: block;
-    height: 26px;
-    margin-top: 16px;
-  }
-  .wrapper blockquote p,
-  .wrapper blockquote ol,
-  .wrapper blockquote ul {
-    font-size: 18px !important;
-    line-height: 32px !important;
-    margin-left: -10px !important;
-    margin-right: -10px !important;
-  }
-  .wrapper blockquote ol,
-  .wrapper blockquote ul {
-    margin-left: 10px !important;
-  }
-  .wrapper blockquote :last-child {
-    margin-bottom: 0 !important;
-  }
-  .wrapper .dark .column-top {
-    font-size: 62px !important;
-    line-height: 62px !important;
-  }
-  .wrapper .dark .column-bottom {
-    font-size: 38px !important;
-    line-height: 38px !important;
-  }
-  .wrapper .dark .btn a {
-    padding: 11px 10px !important;
-  }
-  .wrapper .dark blockquote {
-    padding-top: 38px !important;
-    padding-bottom: 25px !important;
-  }
-  .wrapper .dark blockquote:after {
-    display: none;
-  }
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td h1:last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td h1:last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td h1:last-child,
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td h2:last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td h2:last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td h2:last-child,
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td h3:last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td h3:last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td h3:last-child,
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td p:last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td p:last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td p:last-child,
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td ol:last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td ol:last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td ol:last-child,
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td ul:last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td ul:last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td ul:last-child {
+		margin-bottom: 26px !important;
+	}
+	.wrapper .one-col .column:last-child table:nth-last-child(2) td blockquote :last-child,
+	.wrapper .two-col .column:last-child table:nth-last-child(2) td blockquote :last-child,
+	.wrapper .three-col .column:last-child table:nth-last-child(2) td blockquote :last-child {
+		margin-bottom: 0 !important;
+	}
+	.wrapper .preheader {
+		display: none;
+	}
+	.wrapper .logo {
+		padding-top: 32px!important;
+	}
+	.wrapper .logo img {
+		max-width: 280px !important;
+		height: auto!important;
+	}
+	.wrapper .footer .inner {
+		padding-top: 76px !important;
+	}
+	.wrapper .footer .cols {
+		width: 320px !important;
+	}
+	.wrapper .footer .left,
+	.wrapper .footer .right {
+		display: block !important;
+		width: 280px !important;
+		text-align: center !important;
+		padding-left: 5px !important;
+		padding-right: 5px !important;
+		margin: 0 auto !important;
+	}
+	.wrapper .social {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.wrapper .social .spacer {
+		display: none!important;
+	}
+	.wrapper .social td {
+		padding-left: 0!important;
+		padding-right: 0!important;
+		display: block !important;
+	}
+	.wrapper .social td:last-child {
+		padding-bottom: 30px !important;
+	}
+	.wrapper .first .column-bottom,
+	.wrapper .second .column-top,
+	.wrapper .three-col .second .column-bottom,
+	.wrapper .three-col .third .column-top {
+		display: none;
+	}
+	.wrapper h1 {
+		font-size: 36px !important;
+		line-height: 42px !important;
+		margin-bottom: 24px !important;
+	}
+	.wrapper h2 {
+		font-size: 26px !important;
+		line-height: 32px !important;
+		margin-bottom: 20px !important;
+	}
+	.wrapper h3 {
+		font-size: 16px !important;
+		line-height: 24px !important;
+		margin-bottom: 16px !important;
+	}
+	.wrapper p,
+	.wrapper ol,
+	.wrapper ul {
+		font-size: 16px !important;
+		line-height: 26px !important;
+		margin-bottom: 26px !important;
+	}
+	.wrapper ol,
+	.wrapper ul {
+		margin-left: 32px !important;
+	}
+	.wrapper li {
+		margin-bottom: 13px !important;
+	}
+	.wrapper .image {
+		margin-bottom: 26px !important;
+	}
+	.wrapper .hr {
+		padding-bottom: 26px !important;
+	}
+	.wrapper .btn {
+		margin-bottom: 26px !important;
+	}
+	.wrapper .btn a {
+		display: block !important;
+		font-size: 14px !important;
+		font-weight: 700 !important;
+		letter-spacing: -0.02em !important;
+		line-height: 24px !important;
+		padding: 13px 10px 12px 10px !important;
+	}
+	.wrapper blockquote {
+		border-bottom: 0 !important;
+		margin-bottom: 0 !important;
+		padding-top: 16px !important;
+		padding-bottom: 0 !important;
+	}
+	.wrapper blockquote:after {
+		border-top: inherit;
+		content: '';
+		display: block;
+		height: 26px;
+		margin-top: 16px;
+	}
+	.wrapper blockquote p,
+	.wrapper blockquote ol,
+	.wrapper blockquote ul {
+		font-size: 18px !important;
+		line-height: 32px !important;
+		margin-left: -10px !important;
+		margin-right: -10px !important;
+	}
+	.wrapper blockquote ol,
+	.wrapper blockquote ul {
+		margin-left: 10px !important;
+	}
+	.wrapper blockquote :last-child {
+		margin-bottom: 0 !important;
+	}
+	.wrapper .dark .column-top {
+		font-size: 62px !important;
+		line-height: 62px !important;
+	}
+	.wrapper .dark .column-bottom {
+		font-size: 38px !important;
+		line-height: 38px !important;
+	}
+	.wrapper .dark .btn a {
+		padding: 11px 10px !important;
+	}
+	.wrapper .dark blockquote {
+		padding-top: 38px !important;
+		padding-bottom: 25px !important;
+	}
+	.wrapper .dark blockquote:after {
+		display: none;
+	}
+
 }
