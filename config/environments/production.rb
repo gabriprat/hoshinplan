@@ -91,3 +91,6 @@ Hoshinplan::Application.configure do
     }
   }
 end
+
+Hoshinplan::Application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => 'hoshinplan.com'
+
