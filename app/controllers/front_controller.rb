@@ -72,16 +72,15 @@ class FrontController < ApplicationController
     self.current_user = User.administrator.first
     User.current_user = self.current_user
     @text = ll " Initiating updateindicators job!"
-    ihs = IndicatorHistory.includes({:indicator => :responsible}, {:indicator => :hoshin})
-      .where("day = #{User::TODAY_SQL} 
-        and (
+    ihs = IndicatorHistory.joins(:indicator).includes({:indicator => :responsible}, {:indicator => :hoshin})
+      .where("day = #{User::TODAY_SQL}  and (
           indicator_histories.goal != indicators.goal
           or indicators.goal is null and indicator_histories.goal is not null 
           or indicator_histories.value != indicators.value
           or indicators.value is null and indicator_histories.value is not null 
           or last_update != day
           or last_update is null
-          )")
+          )").references(:indicator)
     ihs.each { |ih| 
       ind = ih.indicator
       line = ind.id.to_s + " " + (ind.name.nil? ? 'N/A' : ind.name)   + ": "
