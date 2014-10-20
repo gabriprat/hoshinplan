@@ -1,7 +1,7 @@
 class UserCompanyMailer < ActionMailer::Base
   include Rails.application.routes.url_helpers
   
-  default :from => "hello@hoshinplan.com"
+  default :from => "Hoshinplan Team <hello@hoshinplan.com>"
   
   def render_email(name, params)
     user = params[:user]
@@ -54,7 +54,7 @@ class UserCompanyMailer < ActionMailer::Base
     if @user.state == "active" 
       mail( :subject => I18n.translate("emails.reminder.subject"),
             :to      => @user.email_address,
-            :from    => "alerts@hoshinplan.com") do |format|
+            :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
               format.html {    
                 render_email("reminder", 
                   {:user => @user, :app_name => @app_name, :url => pending_user_url(@user, :host => get_host_port(user))})          
