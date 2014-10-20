@@ -1,5 +1,7 @@
 class ObjectivesSweeper < ActionController::Caching::Sweeper
   
+  include Hobo::Controller::Cache
+  
   observe Objective
 
   def after_create(objective)

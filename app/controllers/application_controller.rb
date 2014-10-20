@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   
   helper CmsHelper
-  
-  include Hobo::Controller::Cache
 
   rescue_from RuntimeError do |exception|
     error = {message:exception.message}

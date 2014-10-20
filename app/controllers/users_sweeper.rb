@@ -1,5 +1,7 @@
 class UsersSweeper < ActionController::Caching::Sweeper
   
+  include Hobo::Controller::Cache
+  
   observe User
 
   def after_create(user)

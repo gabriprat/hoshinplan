@@ -1,5 +1,7 @@
 class IndicatorsSweeper < ActionController::Caching::Sweeper
   
+  include Hobo::Controller::Cache
+  
   observe Indicator
 
   def after_create(indicator)

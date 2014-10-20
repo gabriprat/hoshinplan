@@ -1,5 +1,7 @@
 class HoshinsSweeper < ActionController::Caching::Sweeper
   
+  include Hobo::Controller::Cache
+  
   observe Hoshin
 
   def after_create(hoshin)
