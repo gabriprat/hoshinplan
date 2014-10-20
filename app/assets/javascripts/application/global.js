@@ -130,5 +130,5 @@ var equalHeights = function(elements) {
 $(document).ready(function() {
 	var tz = $(document).get_timezone();
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
-	document.cookie = "tz=" + tz+";domain="+domain;
+	document.cookie = "tz=" + tz+";domain="+domain+"; path=/";
 });
