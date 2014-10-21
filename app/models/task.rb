@@ -22,12 +22,12 @@ class Task < ActiveRecord::Base
 
   belongs_to :creator, :class_name => "User", :creator => true
   
-  belongs_to :company, :unscoped => true
+  belongs_to :company
   
   
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => false
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :unscoped => true
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
@@ -39,7 +39,7 @@ class Task < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id)).reorder([:status, :tsk_pos]) }
+        User.current_id)).reorder([:status, :tsk_pos]) unless User.current_user == -1 }
   
   scope :lane, lambda {|*status|
     visible.where(:status => status).order(:status)
