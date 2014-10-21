@@ -37,8 +37,6 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 gem 'unicorn'
-gem 'unicorn-worker-killer'
-
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -91,5 +89,4 @@ gem "protected_attributes"
 gem 'rails-observers'
 gem 'rails_12factor'
 gem 'font_assets'
-gem 'unscoped_associations'
 
