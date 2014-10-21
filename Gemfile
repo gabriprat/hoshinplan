@@ -87,6 +87,6 @@ gem 'em-http-request'
 gem "faraday"
 gem "protected_attributes"
 gem 'rails-observers'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'font_assets'
 
