@@ -91,3 +91,5 @@ gem "protected_attributes"
 gem 'rails-observers'
 gem 'rails_12factor'
 gem 'font_assets'
+gem 'unscoped_associations'
+
