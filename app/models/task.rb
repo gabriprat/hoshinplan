@@ -22,12 +22,12 @@ class Task < ActiveRecord::Base
 
   belongs_to :creator, :class_name => "User", :creator => true
   
-  belongs_to :company
+  belongs_to :company, :unscoped => true
   
   
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => false
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :unscoped => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"

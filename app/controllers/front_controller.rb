@@ -50,10 +50,11 @@ class FrontController < ApplicationController
     "#{DateTime.now.to_s} #{text}\n"
   end
   
-  def sendreminders    
+  def sendreminders   
+    hour = params[:hour] || 7 
     @text = ll "Initiating send reminders job!"
-    kpis = User.at_hour(7).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
-    tasks = User.at_hour(7).includes(:tasks, {:tasks => :hoshin}, {:tasks => :company}).joins(:tasks).merge(Task.unscoped.due('5 day')).order("tasks.company_id, tasks.hoshin_id")
+    kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
+    tasks = User.at_hour(hour).includes(:tasks, {:tasks => :hoshin}, {:tasks => :company}).joins(:tasks).merge(Task.unscoped.due('5 day')).order("tasks.company_id, tasks.hoshin_id")
     comb = {}
     kpis.each {|user|
       com = comb[user.id] || {:user => user}
@@ -68,7 +69,7 @@ class FrontController < ApplicationController
     comb.values.each { |com|
       user = com[:user]
       @text +=  ll " ==== User: #{user.email_address}" 
-      UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver
+      @text += UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver
     }
     @text += ll "End send reminders job!"
     render :text => @text, :content_type => Mime::TEXT

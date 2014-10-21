@@ -26,10 +26,10 @@ class Indicator < ActiveRecord::Base
   
   has_many :indicator_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :indicator
   
-  belongs_to :company
+  belongs_to :company, :unscoped => true
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :unscoped => true
   
   belongs_to :area, :inverse_of => :indicators, :counter_cache => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
