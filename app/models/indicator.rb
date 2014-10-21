@@ -26,10 +26,10 @@ class Indicator < ActiveRecord::Base
   
   has_many :indicator_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :indicator
   
-  belongs_to :company, :unscoped => true
+  belongs_to :company
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :unscoped => true
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true
   
   belongs_to :area, :inverse_of => :indicators, :counter_cache => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
@@ -39,7 +39,7 @@ class Indicator < ActiveRecord::Base
   validate :validate_company
   
   default_scope lambda { 
-    if User.current_id 
+    if User.current_id && User.current_id != -1
       where(:company_id => UserCompany.select(:company_id)
         .where('user_id=?',  
           User.current_id) ).reorder('ind_pos') 

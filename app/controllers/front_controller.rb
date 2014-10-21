@@ -53,6 +53,7 @@ class FrontController < ApplicationController
   def sendreminders   
     hour = params[:hour] || 7 
     @text = ll "Initiating send reminders job!"
+    User.current_user = -1
     kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
     tasks = User.at_hour(hour).includes(:tasks, {:tasks => :hoshin}, {:tasks => :company}).joins(:tasks).merge(Task.unscoped.due('5 day')).order("tasks.company_id, tasks.hoshin_id")
     comb = {}
