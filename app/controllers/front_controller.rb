@@ -70,7 +70,7 @@ class FrontController < ApplicationController
     comb.values.each { |com|
       user = com[:user]
       @text +=  ll " ==== User: #{user.email_address}" 
-      @text += UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver
+      UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver
     }
     @text += ll "End send reminders job!"
     render :text => @text, :content_type => Mime::TEXT
