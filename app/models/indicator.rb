@@ -77,7 +77,8 @@ class Indicator < ActiveRecord::Base
     user.save!
   end
   
-  after_save "hoshin.health_update!"
+  #Weird way of doing this because it is called from a batch process and no current user exists
+  after_save "Hoshin.unscoped.find(hoshin_id).health_update!"
   after_destroy "hoshin.health_update!"
   
   before_update do |indicator|
