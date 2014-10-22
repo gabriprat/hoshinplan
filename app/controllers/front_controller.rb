@@ -98,11 +98,11 @@ class FrontController < ApplicationController
     ihs.each { |ih| 
       ind = ih.indicator
       line = ind.id.to_s + " " + (ind.name.nil? ? 'N/A' : ind.name)   + ": "
-      if (ind.goal.nil? || ind.goal != ih.goal)
+      if (!ih.goal.nil? && (ind.goal.nil? || ind.goal != ih.goal))
         line += "goal #{ind.goal} => #{ih.goal}"
         ind.goal = ih.goal
       end
-      if (ind.value.nil? || ind.value != ih.value)
+      if (!ih.value.nil? && (ind.value.nil? || ind.value != ih.value))
         line += " value #{ind.value} => #{ih.value} last_update #{ind.last_update} => #{ih.day}"
         ind.value = ih.value
       end
