@@ -102,11 +102,13 @@ class FrontController < ApplicationController
         line += "goal #{ind.goal} => #{ih.goal}"
         ind.goal = ih.goal
       end
+      updated = false
       if (!ih.value.nil? && (ind.value.nil? || ind.value != ih.value))
         line += " value #{ind.value} => #{ih.value} last_update #{ind.last_update} => #{ih.day}"
         ind.value = ih.value
+        updated = true
       end
-      if (ind.last_update.nil? || ind.last_update < ih.day) 
+      if (updated && (ind.last_update.nil? || ind.last_update < ih.day))
         line += " last_update #{ind.last_update} => #{ih.day}"
         ind.last_update = ih.day
       end
