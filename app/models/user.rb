@@ -85,18 +85,36 @@ class User < ActiveRecord::Base
     where("date_part('hour',now() at time zone coalesce(users.timezone, 'Europe/Berlin')) = ?", hour) 
   }
   
+  def self.find(id)
+    Company.unscoped {
+      Hoshin.unscoped {
+        includes(:companies, :hoshins).where(:id => id).first # need to get the salt   
+      }   
+    }
+  end
+  
+  
   def pending_tasks
-    Task.includes(:responsible, :area, :hoshin, :company)
+    Task.includes([:responsible, {:area => :hoshin}, :company])
     .where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id)
     .reorder(:deadline).references(:responsible)
   end
   
+  def dashboard_tasks
+    Task.includes([:responsible, {:area => :hoshin}, :company]).where(:status => [:active, :backlog], :responsible_id => id)
+    .reorder(:deadline).references(:responsible)
+  end
+  
   def pending_indicators
-    Indicator.includes(:responsible, :area, :hoshin, :company)
+    Indicator.includes([:responsible, {:area => :hoshin}, :company])
     .where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
     .reorder(:next_update).references(:responsible)
   end
-
+  
+  def dashboard_indicators
+    Indicator.includes([:responsible, {:area => :hoshin}, :company])
+    .where(:responsible_id => id).reorder(:next_update).references(:responsible)
+  end
   
   def next_tutorial
     ret = (User.values_for_tutorial_step - tutorial_step).first
