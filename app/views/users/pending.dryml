@@ -1,1 +1,1 @@
-<show-page title="My pending actions" aside-location="right" content-size="8" pending="true"/>
+<show-page title="#{@page_title}" aside-location="right" content-size="8" pending="true"/>
