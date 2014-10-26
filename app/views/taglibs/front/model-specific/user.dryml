@@ -49,7 +49,7 @@
 		            <a action="edit"><span class="fa fa-cog"/></a>
 			</span>
 			<div class="inline edit-image">
-			<view:image />
+			<view:image size="104x104"/>
 			<div><a data-toggle="modal" href="#edit-img"><t key="user.change">Change</t></a></div>
 			</div>
 			<div class="inline">

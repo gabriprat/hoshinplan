@@ -2,9 +2,9 @@
 	#{this.to_html}
 </def>
 
-<def tag="view" for="Paperclip::Attachment">
+<def tag="view" for="Paperclip::Attachment" attrs='size'>
   <% begin %>
-  <image param src="#{this.url(:thumb)}" class="#{'no-image' unless this.exists?}" merge-attrs/>
+  <image param src="#{this.url(:thumb)}" class="#{'no-image' unless this.exists?}" size="&size" merge-attrs/>
   <% rescue SocketError => e %>
   <image src="/assets/default.jpg" class="no-image" merge-attrs/>
   <% end %>
