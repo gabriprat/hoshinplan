@@ -29,7 +29,7 @@
 	%>
 	<do with="&user" unless="&user.nil?">
 		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(:thumb)" title="#{this.name}">
-			<image src="#{this.img_url(:thumb)}" class="#{'no-image' unless this.img_url(:thumb)}"/>
+			<image src="#{this.img_url(:thumb)}" class="#{'no-image' unless this.img_url(:thumb)}" size="29x29"/>
 		</span>
 		<else>
 			<user-abbrev class="user-image" style="background-color:#{this.color}"/>
