@@ -85,15 +85,6 @@ class User < ActiveRecord::Base
     where("date_part('hour',now() at time zone coalesce(users.timezone, 'Europe/Berlin')) = ?", hour) 
   }
   
-  def self.find(id)
-    Company.unscoped {
-      Hoshin.unscoped {
-        includes(:companies, :hoshins).where(:id => id).first # need to get the salt   
-      }   
-    }
-  end
-  
-  
   def pending_tasks
     Task.includes([:responsible, {:area => :hoshin}, :company])
     .where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id)
