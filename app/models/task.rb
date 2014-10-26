@@ -59,6 +59,11 @@ class Task < ActiveRecord::Base
   
   scope :due_today, -> { due('0 hour') }
   
+  scope :pending, lambda {
+    where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog])
+    .reorder('tasks.deadline').references(:responsible)
+  }
+  
   scope :visible, -> {
     where("status != 'deleted' and (status = 'active' or status = 'backlog' or deadline>current_date-110)")
   }  

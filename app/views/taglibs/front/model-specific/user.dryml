@@ -29,12 +29,7 @@
   <body: class="dashboard hoshin" />
 	
   <heading:>
-  	<if test="&attributes[:pending]">
-	<t key="user.pending_actions_for" name="#{this.name}">Pending actions for <name/> </t>
-	</if>
-	<else>
-  	<t key="user.dashboard_for" name="#{this.name}">Dashboard for <name/> </t>
-	</else>
+  	#{@page_title}
   </heading:>
   <append-content-header:>
 	<if test="&attributes[:pending]">
@@ -117,7 +112,7 @@
 			</else>
 	        </if>
 		<else>
-			<rtable:dashboard_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
+			<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
 			<else>
 			    <ht key="indicator.collection.empty_message"/>
 			</else>
@@ -134,7 +129,7 @@
 		    	</else>
 		    </if>
 		    <else>
-		    	<rtable:dashboard_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="dashboard-tasks" />
+		    	<rtable:tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="dashboard-tasks" />
 		    	<else>
 		    		<ht key="indicator.collection.empty_message"/>
 		    	</else>

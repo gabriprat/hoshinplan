@@ -38,7 +38,14 @@ class UsersController < ApplicationController
   
   def show
     begin
-      self.this = User.includes(:hoshins, :companies).where(:id => params[:id]).first
+      self.this = User.includes(:hoshins, :companies, 
+        {:indicators => [:area, :hoshin, :company]}, 
+        {:tasks => [:area, :hoshin, :company]}).where(:id => params[:id], :tasks => {:status => [:active, :backlog]} )
+        .reorder('users.id', 'indicators.next_update', 'tasks.deadline').references(:tasks, :indicators).first
+      self.this = User.includes(:hoshins, :companies).where(:id => params[:id]).first if self.this.nil?
+      
+      @page_title = I18n.translate('user.dashboard_for', :name => self.this.name, 
+        :default => 'Dashboard for ' + self.this.name)     
       hobo_show
     rescue Hobo::PermissionDeniedError => e
       self.current_user = nil
@@ -62,6 +69,8 @@ class UsersController < ApplicationController
   def pending
     begin
       self.this = User.includes(:hoshins, :companies).where(:id => params[:id]).first
+      @page_title = I18n.translate('user.pending_actions_for', :name => self.this.name, 
+        :default => 'Pending actions for ' + self.this.name)      
     rescue Hobo::PermissionDeniedError => e
       self.current_user = nil
       redirect_to "/login?force=true"

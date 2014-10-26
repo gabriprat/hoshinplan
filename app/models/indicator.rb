@@ -64,6 +64,11 @@ class Indicator < ActiveRecord::Base
     where("goal<>worst_value and (100 * (value-worst_value) / (goal-worst_value)) < ?", tpc)
   }
   
+  scope :pending, lambda { 
+      where("next_update <= #{User::TODAY_SQL}")
+      .reorder('indicators.next_update').references(:responsible)
+  }
+  
   scope :due_today, -> { due('0 hour') }
  
   before_create do |indicator|
