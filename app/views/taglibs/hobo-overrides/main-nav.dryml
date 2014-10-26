@@ -19,7 +19,7 @@
 		 <b class="caret"></b> 
 	</a>
     	<ul class="dropdown-menu">
-		<li class='#{scope.even_odd}' param='item' repeat='&current_user.companies'>
+		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_companies'>
 		<a><view:name/></a>
 		</li>
 		<li class="divider"></li>
@@ -32,8 +32,8 @@
 		<b class="caret"></b>
 	</a>
     	<ul class="dropdown-menu">
-		<li class='#{scope.even_odd}' param='item' repeat='&current_user.hoshins'>
-			<a><view:name/> (<view:company.name />)</a>
+		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
+			<a><view:name/> (<view:company_name />)</a>
 		</li>
 		<li class="divider"></li>
 		<li if="&Company.current_id">
