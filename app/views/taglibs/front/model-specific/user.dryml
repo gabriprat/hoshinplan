@@ -70,7 +70,7 @@
 					<input class="hide"/>
 					<a class="btn" href="#" onclick="$(this).prev('input').click()"><t key="choose_file">Choose file</t></a>
 					<div class="preview" style="max-height: 104px; max-width: 104px;">
-						<view no-wrapper/>
+						<view no-wrapper size="104x104"/>
 					</div>
 					</div>
 				</image-view:>
