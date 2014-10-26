@@ -83,16 +83,18 @@
 		<div class="panel-body">
 			<h4><t key="user.collaborating_with">Collaborating with</t></h4>
 			<hr/>
-			<collection:companies part="companies" id="companies">
+			<collection:user_companies part="companies" id="companies">
 			        <header>
 			          <h4>
-				  <a><name/></a>
-				  <delete-button with="&this.user_companies.where(:user_id => current_user.id).first" action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')"/>
+				  <a><name:company/></a>
+				  <delete-button action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')"/>
 				  </h4>
 			        </header>
+				<do:company>
 				<collection:hoshins class="timeline">
 					<view/>
 				</collection>
+				</do>
 			</collection>
 		</div>
 	</div>
@@ -112,7 +114,7 @@
 			</else>
 	        </if>
 		<else>
-			<rtable:indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
+			<rtable:dashboard_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
 			<else>
 			    <ht key="indicator.collection.empty_message"/>
 			</else>
@@ -129,7 +131,7 @@
 		    	</else>
 		    </if>
 		    <else>
-		    	<rtable:tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="dashboard-tasks" />
+		    	<rtable:dashboard_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="dashboard-tasks" />
 		    	<else>
 		    		<ht key="indicator.collection.empty_message"/>
 		    	</else>
