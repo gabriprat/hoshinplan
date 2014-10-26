@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
       :thumb => "-quality 80 -interlace Plane"
     },
     :s3_headers => { 
-      'Cache-Control' => 'max-age=315576000', 
+      'Cache-Control' => 'public, max-age=315576000', 
       'Expires' => 10.years.from_now.httpdate 
     },
     :default_url => "/assets/default.jpg"
