@@ -77,7 +77,7 @@ class FrontController < ApplicationController
   end
   
   def reprocess_photos
-    User.unscoped.all.each do |user|
+    User.unscoped.where("image_updated_at < now()- interval '2 hour'").each do |user|
       user.image.reprocess!
     end
   end
