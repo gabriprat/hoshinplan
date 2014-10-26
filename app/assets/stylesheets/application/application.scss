@@ -8,7 +8,6 @@
 }
 
 @media all and (max-width: 640px) {
-
 body {
 	padding: 0;
 }
@@ -168,7 +167,7 @@ body .navbar .brand:hover, body .navbar .brand:hover strong, body .navbar .brand
 
 body.show-page, body.index-page {
 	font-weight: 200;
-	background: image-url("bg.png") repeat;
+	background: image-url("bg.jpg") repeat;
 	background-attachment: fixed;
 }
 

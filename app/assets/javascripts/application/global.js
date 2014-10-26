@@ -122,6 +122,7 @@ var equalHeights = function(elements) {
 		}
 	});
 	$(elements).height(maxHeight);
+	
 	//$(elements).height("auto");
 	//$("body").append("MH: " + maxHeight + "<br/>");
 	
