@@ -1,6 +1,6 @@
+var dummyVariableName = 1;
 var isValidDate = function (value, userFormat) {
   var userFormat = userFormat || 'mm/dd/yyyy', // default format
-
   delimiter = /[^mdy]/.exec(userFormat)[0],
   theFormat = userFormat.split(delimiter),
   theDate = value.split(delimiter),
@@ -122,7 +122,6 @@ var equalHeights = function(elements) {
 		}
 	});
 	$(elements).height(maxHeight);
-	
 	//$(elements).height("auto");
 	//$("body").append("MH: " + maxHeight + "<br/>");
 	
