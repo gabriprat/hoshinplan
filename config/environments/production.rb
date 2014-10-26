@@ -28,10 +28,10 @@ Hoshinplan::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=315576000" #10 years
+  config.static_cache_control = "max-age=315576000, public" #10 years
 
   # Compress JavaScripts and CSS
-  config.assets.css_compressor = :yui
+  config.assets.css_compressor = :sass
   config.assets.js_compressor = :uglify
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
