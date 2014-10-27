@@ -22,14 +22,16 @@
 	<acronym title="#{user.name}" merge-attrs unless="&user.nil?">#{user.abbrev}</acronym>
 </def>
 
-<def tag="user-img">
+<def tag="user-img" attrs="size">
 	<% 
+		size ||= :thumb
+		size_num = (size == :thumb ? "104x104" : "29x29")
 		user = this if this.is_a?(User)
 		user ||= Company.current_company.comp_users[this] unless Company.current_company.nil? 
 	%>
 	<do with="&user" unless="&user.nil?">
 		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(:thumb)" title="#{this.name}">
-			<image src="#{this.img_url(:thumb)}" class="#{'no-image' unless this.img_url(:thumb)}" size="29x29"/>
+			<image src="#{this.img_url(size)}" class="#{'no-image' unless this.img_url(size)}" size="&size_num"/>
 		</span>
 		<else>
 			<user-abbrev class="user-image" style="background-color:#{this.color}"/>

@@ -23,7 +23,7 @@
 					</append-wrapper:>
 				</autosubmit>
 			</div>
-			<user-img:responsible_id />
+			<user-img:responsible_id size="mini"/>
 			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-#{scope.connect_with}">
 				<hidden-fields fields="lane_pos, status"/>
 			</formlet>

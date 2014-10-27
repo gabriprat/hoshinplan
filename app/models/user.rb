@@ -25,10 +25,11 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, {
     :styles => {
-      :thumb => "104x104#"
+      :thumb => "104x104#",
+      :mini => "29x29#"
     },
     :convert_options => {
-      :medium => "-quality 80 -interlace Plane",
+      :mini => "-quality 80 -interlace Plane",
       :thumb => "-quality 80 -interlace Plane"
     },
     :s3_headers => { 
@@ -177,7 +178,7 @@ class User < ActiveRecord::Base
     key = "user-image-" + id.to_s + "-" + size.to_s
     ret = RequestStore.store[key]
     if ret.nil? 
-      ret = image.url(:thumb) if image.exists?
+      ret = image.url(size) if image.exists?
       RequestStore.store[key] = ret
     end
     ret
