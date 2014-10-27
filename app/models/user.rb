@@ -175,7 +175,8 @@ class User < ActiveRecord::Base
     key = "user-image-" + id.to_s + "-" + size.to_s
     ret = RequestStore.store[key]
     if ret.nil? 
-      ret = image.url(:thumb) if image.exists?
+      #ret = image.url(:thumb) if image.exists?
+      ret = ""
       RequestStore.store[key] = ret
     end
     ret
