@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
     timezone      HoboFields::Types::Timezone
     timestamps
     language      HoboFields::Types::EnumString.for(:es, :en)
+    last_login_at :datetime
+    login_count   :integer
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
