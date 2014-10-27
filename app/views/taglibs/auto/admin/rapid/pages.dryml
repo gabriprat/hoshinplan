@@ -203,7 +203,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="color, email_address, tutorial_step, timezone, language, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
+      <field-list fields="color, email_address, tutorial_step, timezone, language, last_login_at, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
     </content-body:>
 
   </page>
