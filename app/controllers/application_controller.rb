@@ -101,7 +101,6 @@ class ApplicationController < ActionController::Base
   def my_login_required
     #return false if !defined?(logged_in)
     return true if logged_in?
-    fail 'asdf'
     session[:return_to] = request.url
     redirect_to "/login"
     return false 
