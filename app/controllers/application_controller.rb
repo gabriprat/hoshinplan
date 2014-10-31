@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
                  User.current_user = current_user
                end
                Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
+               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                end               
@@ -61,6 +62,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
+               ::NewRelic::Agent.add_custom_parameters({ user_id: Company.current_id }) unless Company.current_id.nil?
                yield
              ensure
                  #avoids issues when an exception is raised, to clear the current_id
