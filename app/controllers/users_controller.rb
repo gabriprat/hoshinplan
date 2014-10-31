@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   def show
     begin
       self.this = User.includes({:user_companies => {:company => :hoshins}}).where(:id => params[:id]).first 
+      raise Hobo::PermissionDeniedError if self.this.nil?
       
       @page_title = I18n.translate('user.dashboard_for', :name => self.this.name, 
         :default => 'Dashboard for ' + self.this.name)     
