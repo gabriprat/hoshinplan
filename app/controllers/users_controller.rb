@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
       @page_title = I18n.translate('user.dashboard_for', :name => name, 
-        :default => 'Dashboard for ' + self.this.name)     
+        :default => 'Dashboard for ' + name)     
       hobo_show
     rescue Hobo::PermissionDeniedError => e
       self.current_user = nil
