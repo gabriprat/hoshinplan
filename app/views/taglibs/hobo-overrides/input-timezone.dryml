@@ -1,7 +1,7 @@
 <def tag='input' for="HoboFields::Types::Timezone">
 	<%
 	 require 'hoshinplan/timezone'
-	 zone = cookies[:tz]
+	 zone = @cookie_time_zone
 	 zones = Hoshinplan::Timezone.get(zone)
 	 unless zones.nil? 
 	 	zone = zones.name
