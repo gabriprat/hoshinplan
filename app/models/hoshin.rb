@@ -87,16 +87,16 @@ class Hoshin < ActiveRecord::Base
       logger.debug "====== Not updating read-only hoshin"
       return
     end
-    neglected = objectives.neglected.count(:id)
+    neglected = Objective.unscoped.where(hoshin_id: id).neglected.count(:id)
     self.neglected_objectives_count = neglected
     
-    outdated_ind = indicators.overdue.count(:id)
+    outdated_ind = Indicator.unscoped.where(hoshin_id: id).overdue.count(:id)
     self.outdated_indicators_count = outdated_ind
 
-    outdated_tsk = tasks.overdue.count(:id)
+    outdated_tsk = Task.unscoped.where(hoshin_id: id).overdue.count(:id)
     self.outdated_tasks_count = outdated_tsk
     
-    blind = objectives.blind.count(:id)
+    blind = Objective.unscoped.where(hoshin_id: id).blind.count(:id)
     self.blind_objectives_count = blind  
   
     self.save!
@@ -154,12 +154,12 @@ class Hoshin < ActiveRecord::Base
   
   def health
     ret = incomplete_health
-    return ret unless ret[:value] >= 100
+    return ret if ret[:value] < 100 || ret[:action] != 'none'
     
     obj = objectives_health
     ind = indicators_health
     tsk = tasks_health
-  
+
     ret[:value] = (obj+ind+tsk)/3
     ret
   end
