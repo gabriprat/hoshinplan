@@ -112,6 +112,23 @@ class Indicator < ActiveRecord::Base
     end
   end
   
+  def update_from_history!(destroy=false)
+    ind = self
+    latest = IndicatorHistory.where("indicator_id = ? and day <= ? and id != ?", 
+                                    ind.id, Date.today, destroy ? ih.id : -1).order("day desc").first
+                                    
+    if (!latest.nil? && (
+          ind.value.nil? || 
+          (destroy && !ind.last_update.nil? && ind.last_update == ih.day)  || 
+          (!ind.last_update.nil? && ind.last_update <= latest.day)
+      ))
+      ind.update_columns(value: latest.value) unless ind.value == latest.value
+      ind.update_columns(goal: latest.goal) unless latest.goal.nil? || ind.goal == latest.goal
+      ind.update_columns(last_update: latest.day) unless ind.last_update == latest.day
+    end
+    
+  end
+  
   def status 
     if !next_update.nil?
       if next_update > Date.today
