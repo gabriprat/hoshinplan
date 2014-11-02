@@ -30,11 +30,11 @@
 		<footer: class="fixed-x">
 		   <ul class="footer-links">
 		      <li>&copy; 2014 Hoshinplan</li>
-		      <li><a href="//github.com/gabriprat/hoshinplan">GitHub</a></li>
+		      <li><a href="http://github.com/gabriprat/hoshinplan">GitHub</a></li>
 		      <li><a href="/about/">About</a></li>
-		      <li><a href="//hoshinplan#{locale=='en'?'':locale}.wordpress.com">Blog</a></li>
+		      <li><a href="http://hoshinplan#{locale=='en'?'':locale}.wordpress.com">Blog</a></li>
 		      <li><a with="&ClientApplication">Developers</a></li>
-		      <li><a href="//github.com/gabriprat/hoshinplan/issues">Issues</a></li>
+		      <li><a href="http://github.com/gabriprat/hoshinplan/issues">Issues</a></li>
 		      <li><a href="mailto:hello@hoshinplan.com">Contact us</a></li>
 		    </ul>
 		</footer:>
