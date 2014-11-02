@@ -1,6 +1,5 @@
 <extend tag="index-page">
 	<old-index-page merge>
-		<bottom_page_nav: replace/>
 		<collection: replace>
 			<table-plus fields="id, created_at, name, color, email_address, administrator, tutorial_step, timezone, state">
 			       <append-controls: >
