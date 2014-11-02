@@ -10,7 +10,7 @@
 }
 #cms .product-block .list li{
 	overflow:hidden;
-	background:url(//doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTgvNTQvOTc0L2J1bGxldC5wbmciXV0/bullet.png) no-repeat ;
+	background:url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTgvNTQvOTc0L2J1bGxldC5wbmciXV0/bullet.png) no-repeat ;
 	padding:7px 0 0 67px;
 	margin:0 0 72px;
 }
@@ -25,7 +25,7 @@
 #cms .product-pitch {
 	margin: 4em -20px 0 -20px;
 	padding: 4em 0;	
-	background: #eee url(//doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTkvMDAvNzE4L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
+	background: #eee url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTkvMDAvNzE4L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
 }
 
 #cms .product-block{
