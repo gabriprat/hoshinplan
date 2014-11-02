@@ -14,7 +14,7 @@ class IndicatorHistoriesSweeper < ActionController::Caching::Sweeper
     if Rails.configuration.action_controller.perform_caching
       expire_swept_caches_for(ih.indicator.area)
       expire_swept_caches_for(ih.indicator)
-      expire_swept_caches_for(ih.indicator.objective.parent.area) if ih.indicator.objective.parent  
+      expire_swept_caches_for(ih.indicator.objective.parent.area) if ih.indicator.objetive && ih.indicator.objective.parent  
       
     end
   end
@@ -23,7 +23,7 @@ class IndicatorHistoriesSweeper < ActionController::Caching::Sweeper
     if Rails.configuration.action_controller.perform_caching
       expire_swept_caches_for(ih.indicator)
       expire_swept_caches_for(ih.indicator.area)
-      expire_swept_caches_for(ih.indicator.objective.parent.area) if ih.indicator.objective.parent  
+      expire_swept_caches_for(ih.indicator.objective.parent.area) if ih.indicator.objetive && ih.indicator.objective.parent  
     end
   end
 end
