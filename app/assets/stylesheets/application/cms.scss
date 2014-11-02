@@ -95,7 +95,7 @@
 	margin: -20px -20px 0 -20px;
 	text-align: center;
 	color: #fff;
-	background: url(http://doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDIvMjMvMDIvMDUvMzkvNDU2L2hvc2hpbl9iYWNrLmpwZyJdXQ/hoshin-back.jpg) no-repeat center center fixed;
+	background: image-url("hoshin-back.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -132,7 +132,7 @@
 
 #cms .quotes {
 	margin: 0 -20px 0 -20px;
-	background: #f8faff url(//doc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTkvMDAvNzE4L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
+	background: #f8faff image-url("bg-shadow.png") repeat-x 0 0;
 	padding: 40px 0;
 }
 
