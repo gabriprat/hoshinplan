@@ -62,7 +62,7 @@ class IndicatorsController < ApplicationController
             @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
           end
           if @this.errors.messages.length==0
-            ih = find_instance.indicator_histories.find_or_initialize_by_day(d)
+            ih = @this.indicator_histories.find_or_initialize_by(day: d)
             ih.value = v
             ih.goal = g
             ih.save!
@@ -71,6 +71,7 @@ class IndicatorsController < ApplicationController
         if @this.errors.messages.length>0
           raise ActiveRecord::Rollback
         end
+        @this.update_from_history!
       end
       redirect_to @this, :action => :history if valid?
       render :history unless valid?

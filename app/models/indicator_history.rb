@@ -27,30 +27,10 @@ class IndicatorHistory < ActiveRecord::Base
   before_create do |ih|
     ih.company = ih.indicator.company
   end
-  
-  after_save do |ih|
-    update_indicator(ih)
-  end
 
   before_destroy do |ih|
-    update_indicator(ih, destroy=true)
-  end
-  
-  def update_indicator(ih, destroy=false)
     ind = Indicator.find(ih.indicator_id)
-    latest = IndicatorHistory.where("indicator_id = ? and day <= ? and id != ?", 
-                                    ind.id, Date.today, destroy ? ih.id : -1).order("day desc").first
-                                    
-    if (!latest.nil? && (
-          ind.value.nil? || 
-          (destroy && !ind.last_update.nil? && ind.last_update == ih.day)  || 
-          (!ind.last_update.nil? && ind.last_update <= latest.day)
-      ))
-      ind.update_column(:value, latest.value)
-      ind.update_column(:goal, latest.goal) unless latest.goal.nil?
-      ind.update_column(:last_update, latest.day)      
-    end
-    
+    ind.update_from_history!(destroy=true)
   end
 
   # --- Permissions --- #
