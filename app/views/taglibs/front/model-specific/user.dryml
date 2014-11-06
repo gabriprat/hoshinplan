@@ -84,17 +84,19 @@
 			<h4><t key="user.collaborating_with">Collaborating with</t></h4>
 			<hr/>
 			<collection:user_companies part="companies" id="companies">
-			        <header>
+			        <if test="&this.company">
+				<header>
 			          <h4>
 				  <a><name:company/></a>
-				  <delete-button action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')"/>
+				  <delete-button action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')" if="&this.user == current_user"/>
 				  </h4>
 			        </header>
 				<do:company>
-				<collection:hoshins class="timeline" if="&this">
+				<collection:hoshins class="timeline">
 					<view/>
 				</collection>
 				</do>
+				</if>
 			</collection>
 		</div>
 	</div>
