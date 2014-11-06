@@ -91,7 +91,7 @@
 				  </h4>
 			        </header>
 				<do:company>
-				<collection:hoshins class="timeline">
+				<collection:hoshins class="timeline" if="&hoshins">
 					<view/>
 				</collection>
 				</do>
