@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user,  :except => [:activate_from_email, :activate]
 
              def scope_current_user
+               ::NewRelic::Agent.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
+
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  User.current_user = current_user
