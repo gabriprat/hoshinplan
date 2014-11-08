@@ -20,6 +20,8 @@ class Hoshin < ActiveRecord::Base
     header HoboFields::Types::TextileString
     timestamps
   end
+  index [:company_id, :parent_id]
+  
   attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header
   attr_accessible :areas, :children, :children_ids, :creator_id, :creator
   

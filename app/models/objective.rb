@@ -12,6 +12,7 @@ class Objective < ActiveRecord::Base
     tasks_count :integer, :default => 0, :null => false
     timestamps
   end
+  
   attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id, 
     :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id, :creator_id
     

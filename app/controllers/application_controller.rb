@@ -17,6 +17,26 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  rescue_from Timeout::Error, :backtrace => true do |exception|
+    NewRelic::Agent.instance.error_collector.notice_error exception,
+      uri: request.path,
+      referer: request.referer,
+      request_params: request.params
+      
+      error = {message:exception.message}
+      error[:type] = exception.class.name.split('::').last || ''
+      error[:code] = :service_unavailable
+      error[:code] = exception.code if exception.respond_to?(:code) 
+      error[:status] = :service_unavailable
+      error[:status] = exception.status if exception.respond_to?(:status) 
+      error[:stack_trace] = exception.backtrace if Rails.env.development? 
+      respond_to do |format|
+        format.html { raise exception }
+        format.json { render :json => error, status: error[:status] }
+        format.xml { render :xml => error, status: error[:status] }
+      end
+  end
+  
   require 'time'
   
   TIMESTAMP_MAX_AGE_SEC = 300.freeze
@@ -39,7 +59,6 @@ class ApplicationController < ActionController::Base
 
              def scope_current_user
                ::NewRelic::Agent.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
-
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  User.current_user = current_user
