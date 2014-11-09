@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108142505) do
+ActiveRecord::Schema.define(version: 20141109002517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,27 @@ ActiveRecord::Schema.define(version: 20141108142505) do
   add_index "areas", ["company_id"], name: "index_areas_on_company_id", using: :btree
   add_index "areas", ["creator_id"], name: "index_areas_on_creator_id", using: :btree
   add_index "areas", ["hoshin_id"], name: "index_areas_on_hoshin_id", using: :btree
+
+  create_table "authorizations", force: true do |t|
+    t.string   "provider",      null: false
+    t.string   "uid",           null: false
+    t.string   "email_address"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "location"
+    t.string   "image"
+    t.text     "description"
+    t.string   "phone"
+    t.text     "urls"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "authorizations", ["email_address"], name: "index_authorizations_on_email_address", using: :btree
+  add_index "authorizations", ["provider"], name: "index_authorizations_on_provider", using: :btree
+  add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
   create_table "client_applications", force: true do |t|
     t.string   "name"
