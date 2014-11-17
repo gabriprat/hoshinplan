@@ -90,4 +90,4 @@ gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'font_assets'
 gem 'ruby-prof', :group => :development
-
+#gem 'dryml-firemarker', :require => 'dryml13-firemarker', :group => :development
