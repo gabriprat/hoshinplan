@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
    
   before_filter :authenticate_client_app
 
-  before_filter :my_login_required,  :except => [:index, :login, :oid_login, :signup, :activate,
+  before_filter :my_login_required,  :except => [:login, :oid_login, :signup, :activate,
          :do_activate, :do_signup, :forgot_password, :reset_password,
          :do_reset_password, :mail_preview, :failure, :activate_from_email, :page]
         
