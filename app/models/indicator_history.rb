@@ -30,7 +30,7 @@ class IndicatorHistory < ActiveRecord::Base
 
   before_destroy do |ih|
     ind = Indicator.find(ih.indicator_id)
-    ind.update_from_history!(destroy=true)
+    ind.update_from_history!(destroy=true, ih=ih)
   end
 
   # --- Permissions --- #

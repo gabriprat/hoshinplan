@@ -112,7 +112,7 @@ class Indicator < ActiveRecord::Base
     end
   end
   
-  def update_from_history!(destroy=false)
+  def update_from_history!(destroy=false, ih=nil)
     ind = self
     latest = IndicatorHistory.where("indicator_id = ? and day <= ? and id != ?", 
                                     ind.id, Date.today, destroy ? ih.id : -1).order("day desc").first
