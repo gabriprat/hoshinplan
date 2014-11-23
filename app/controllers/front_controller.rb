@@ -34,6 +34,10 @@ class FrontController < ApplicationController
   end
   
   def oid_login
+    if params["email"].nil?
+      flash[:error] = t("errors.invalid_credentials")
+      render "index"
+    else
       user, domain = params["email"].split("@")
       oiprov = OpenidProvider.where(:email_domain => domain).first
       if oiprov.nil?
@@ -44,6 +48,7 @@ class FrontController < ApplicationController
         url = oi.gsub('{user}', user)
         redirect_to "/auth/openid?openid_url=" + url
       end
+    end
   end
   
   def ll(text)
