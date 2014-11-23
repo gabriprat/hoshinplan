@@ -165,7 +165,11 @@ class UsersController < ApplicationController
     if current_user.language.nil?
       current_user.language = I18n.locale
     end
-    current_user.save!
+    begin
+      current_user.save!
+    rescue ActiveRecord::RecordInvalid => invalid
+      fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml
+    end
   end
   
   def sign_in(user) 
