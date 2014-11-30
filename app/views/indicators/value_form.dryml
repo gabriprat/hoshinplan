@@ -7,11 +7,11 @@
 				<h5><t key="indicator.value_form.this_indicator_doesnt">This indicator doesn't need an update. What would you like to do?</t></h5>
 				<div class="radio">
 				  <label unless="&this_parent.last_update.nil?">
-				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.last_update}" /> 
+				 	 <input type="radio" name="indicator[last_update]" value="#{this_parent.last_update}" checked="checked"/> 
 				  	<t key="indicator.value_form.overwrite_the_value">Overwrite the value from last update</t> <view with="&this_parent.last_update"/>
 				  </label>
 				  <label>
-					  <input type="radio" name="indicator[last_update]" value="#{Date.today}" checked="checked"/> 
+					  <input type="radio" name="indicator[last_update]" value="#{Date.today}" /> 
 					  <t key="indicator.value_form.set_a_value_for_today">Set a value for today</t> <view with="&Date.today"/>
 				  </label>
 				  <label>
