@@ -101,15 +101,16 @@ class Indicator < ActiveRecord::Base
         #only update trends once per day
         indicator.last_value = indicator.value_was
         indicator.next_update = compute_next_update(indicator)
-      end      
-      ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => indicator.id).first
-      if ih.nil?
-        ih = IndicatorHistory.create(:day => update_date, :indicator_id => indicator.id, :goal => indicator.goal)
       end
-      ih.value = indicator.value
-      ih.goal = indicator.goal
-      ih.save!
     end
+    
+    ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => indicator.id).first
+    if ih.nil?
+      ih = IndicatorHistory.create(:day => update_date, :indicator_id => indicator.id, :goal => indicator.goal)
+    end
+    ih.value = indicator.value
+    ih.goal = indicator.goal
+    ih.save!
   end
   
   def update_from_history!(destroy=false, ih=nil)

@@ -88,6 +88,7 @@ class IndicatorsController < ApplicationController
           i.last_update_will_change!
           attributes = {:value => i.value, :last_update => i.last_update}
         end
+        i.save!
         hobo_update(i, :attributes => attributes) do
           redirect_to this.objective.area.hoshin if valid? && !request.xhr?
         end

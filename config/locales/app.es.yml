@@ -95,6 +95,11 @@ es:
 
   activerecord:
     errors:
+      models:
+        user:
+          attributes:
+            email_address:
+              taken: La dirección de email ya pertenece a otro usuario.
       messages:
         record_invalid: Registro incorrecto
       template:
