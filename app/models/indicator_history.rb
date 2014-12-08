@@ -10,7 +10,7 @@ class IndicatorHistory < ActiveRecord::Base
     day   :date
     timestamps
   end
-  index [:indicator_id, :day]
+  index [:indicator_id, :day], :unique => true
   
   attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id
   
@@ -22,7 +22,8 @@ class IndicatorHistory < ActiveRecord::Base
 
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicator_histories  
 
-  validates_uniqueness_of :day, :scope => [:indicator_id]
+  validates_uniqueness_of :day, :scope => :indicator_id
+    
   
   before_create do |ih|
     ih.company = ih.indicator.company
