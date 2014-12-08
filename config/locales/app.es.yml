@@ -59,6 +59,7 @@ es:
     invalid_credentials: 'Las credenciales proporcionadas no son válidas.'
     provider_said: 'El mensaje del proveedor de autenticación fue: '
     unknown: 'Error desconocido.'
+    invalid_locale: Idioma no soportado.
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'

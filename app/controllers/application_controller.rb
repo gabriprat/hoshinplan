@@ -116,7 +116,11 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-    I18n.locale = params[:locale] || extract_locale_from_subdomain || I18n.default_locale
+    begin
+      I18n.locale = params[:locale] || extract_locale_from_subdomain || I18n.default_locale
+    rescue I18n::InvalidLocale
+      flash[:error] =  t("errors.invalid_locale", :default => "Invalid locale.")
+    end
   end
   
   # We provide our own method to call the Hobo helper here, so we can check the 
