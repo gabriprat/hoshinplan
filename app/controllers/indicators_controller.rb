@@ -65,7 +65,11 @@ class IndicatorsController < ApplicationController
             ih = @this.indicator_histories.find_or_initialize_by(day: d)
             ih.value = v
             ih.goal = g
+            begin
             ih.save!
+            rescue
+             @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
+            end
           end
         end
         if @this.errors.messages.length>0
