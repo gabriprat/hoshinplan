@@ -79,5 +79,6 @@
 				</transition-button>
 			</controls>
 		</table-plus>
+		<page-nav with="&@collaborators" />
     </content-body: >
 </page>
