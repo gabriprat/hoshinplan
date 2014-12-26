@@ -14,13 +14,10 @@
 	</else>
 </def>
 
-<def tag="user-abbrev">
-	<% 
+<def tag="user-abbrev"><% 
 		user = this if this.is_a?(User)
 		user ||= Company.current_company.comp_users[this] unless Company.current_company.nil? 
-	%>
-	<acronym title="#{user.name}" merge-attrs unless="&user.nil?">#{user.abbrev}</acronym>
-</def>
+	%><acronym title="#{user.name}" merge-attrs unless="&user.nil?">#{user.abbrev}</acronym></def>
 
 <def tag="user-img" attrs="size">
 	<% 
@@ -30,9 +27,13 @@
 		user ||= Company.current_company.comp_users[this] unless Company.current_company.nil? 
 	%>
 	<do with="&user" unless="&user.nil?">
+		<% begin %>
 		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(:thumb)" title="#{this.name}">
 			<image src="#{this.img_url(size)}" class="#{'no-image' unless this.img_url(size)}" size="&size_num"/>
 		</span>
+		<% rescue SocketError 
+		end
+		%>
 		<else>
 			<user-abbrev class="user-image" style="background-color:#{this.color}"/>
 		</else>

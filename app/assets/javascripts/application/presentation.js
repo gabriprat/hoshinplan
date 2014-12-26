@@ -57,8 +57,7 @@ var showSlide = function(num) {
 
 var startPresentation = function() {
 	$(PRESENTATION_SELECTOR).hide();
-	var size = parseInt($('body').css('font-size')) + 8;
-	$('body').css({'font-size': size, 'overflow-x': 'hidden'});
+	$('body').addClass('presenting');
 	$("div.objectives-wrapper,div.indicators-wrapper,div.tasks-wrapper").height("auto");
 	currentSlide = $('.slide-page').length - $('div.area').length;
 	currentSlide = currentSlide < 0 ? 0 : currentSlide;
@@ -72,7 +71,7 @@ var endPresentation = function() {
 	$(PRESENTATION_SELECTOR).show();
 	$('.slide-page').show();
 	var size = parseInt($('body').css('font-size')) - 8;
-	$('body').removeAttr('style');
+	$('body').removeClass('presenting');
 	$('.slide-page').removeAttr('style');
 	presenting = false;
 	equalHeightSections();

@@ -20,11 +20,8 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column" data-label="Name"><rmodal url="#{indicator_path this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal></div>
+		  <div class="column" data-label="Name"><rmodal url="#{indicator_path this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal> (<user-abbrev:responsible_id />)</div>
   	</if>
-	<if test="&column == 'Resp.'">
-  		<div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
-	</if>
 	<if test="&column == 'Value'">
 		  <div class="column nowrap" data-label="Value">
 			<if test="&this.status == :current || this.status == :multioverdue">

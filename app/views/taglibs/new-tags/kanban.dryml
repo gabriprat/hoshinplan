@@ -9,7 +9,7 @@
 			<div><click-editor-innards:description/></div>
 			<if test="&this.original_deadline != this.deadline">
 			<div class="original-deadline">
-				<view:original-deadline/>
+				<%= l this.original_deadline, format: :short %>
 			</div>
 			</if>
 			<div class="deadline">

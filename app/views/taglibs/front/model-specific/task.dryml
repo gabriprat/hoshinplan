@@ -19,7 +19,7 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'Task'">
-		<div class="column" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal></div>
+		<div class="column name" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal> (<user-abbrev:responsible_id />)</div>
 	</if>
 	<if test="&column == 'Resp.'">
 	        <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
@@ -30,7 +30,7 @@
 					<autosubmit:deadline class="inline-form wider" updates="#tutorial,#sec-actions" live/>
 				</if>
 				<else>
-					#{this.deadline}
+					#{l this.deadline, format: :short}
 				</else>
 		  </div>	
 	</if>

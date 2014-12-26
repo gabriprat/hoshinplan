@@ -128,6 +128,10 @@ html body .btn-big {
   margin: 0.25em 2em;
 }
 
+.compact .navbar {
+	margin-bottom: 5px;
+}
+
 .navbar-inner {
 	padding: 4px 0;
 } 
@@ -146,6 +150,15 @@ html body {
 	font-size: 13px;
 	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #2f4154;
+}
+
+html body.presenting, html body.presenting input {
+	font-size: 23px;
+}
+
+html body.presenting input {
+	height: auto;
+	line-height: normal;
 }
 
 body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong,  body .navbar a.brand span {
@@ -202,10 +215,13 @@ body h5 {
 	font-weight: 400;
 }
 
+body.compact h5 {
+	margin-top: 0;
+}
+
 .area h5 {
 	background-color: rgba(37,169,224,.1);
 	padding: 5px 5px 6px 5px;
-	min-width: 210px;
 }
 
 body h2.heading {
@@ -248,6 +264,19 @@ h2.heading .title-action:hover {
 	border-top: 5px solid #25A9E0;
 }
 
+.compact .create-obj {
+	display: none;
+}
+
+.compact .header.well {
+	border-radius: 0;
+}
+
+.hoshin.compact .well {
+	margin-bottom: 5px;
+	padding: 5px 19px;
+}
+
 .area h4 {
 	font-weight: 200;
 	font-family: 'Yanone Kaffeesatz',
@@ -258,6 +287,13 @@ h2.heading .title-action:hover {
 	margin: 0;
 }
 
+.compact .area h4 {
+	font-size: 3em;
+}
+
+.hoshin-header p:last-child {
+	margin-bottom: 0;
+}
 
 body.hoshin ul.collection.goals > li {
 	display: inline-block;
@@ -265,26 +301,19 @@ body.hoshin ul.collection.goals > li {
 }
 
 body.hoshin .goals h3 {
-	font-size: 1em;
-	transform: rotate(-90deg);
-	-moz-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	-webkit-transform: rotate(-90deg);
-	transform-origin: left bottom 0;
-	-moz-transform-origin: left bottom 0;
-	-ms-transform-origin: left bottom 0;
-	-webkit-transform-origin: left bottom 0;
+	font-size: 3em;
 	position: absolute;
-	left: -0.5em;
-	bottom: 0;
+	left: -1.25em;
 	color: #fff;
+}
+
+body.hoshin.compact .goals h3 {
+	top: -0.2em;
 }
 
 body.hoshin div.goals {
 	background: #f8faff;
-	border-left: 2em solid #25A9E0;
-	margin-bottom: 10px;
-	padding: 2em 0;
+	border-left: 5em solid #25A9E0;
 	position: relative;
 }
 
@@ -299,7 +328,7 @@ body.hoshin ul.collection.goals .goal {
 
 body.hoshin .collection.areas {
 	display: table; 
-	table-layout: auto; 
+	table-layout: fixed;
 }
 
 body.hoshin
@@ -307,6 +336,12 @@ body.hoshin
 	display: table-cell; 
 	min-width: 270px;
 	width: 100%;
+}
+
+body.hoshin.compact
+.collection.areas > .item {
+	display: table-cell;
+	overflow: hidden;
 }
 
 ul.collection.sortable li.item {
@@ -381,7 +416,7 @@ body.hoshin form.inline-form input[type=image] {
 }
 
 body.hoshin form.inline-form input.date {
-	width: 6em;
+	width: 3em;
 }
 
 body.hoshin form.inline-*.wider input {
@@ -453,7 +488,7 @@ body .span12 {
 span.tpc {
 	display: inline-block;
 	padding: 2px;
-	width: 3.5em;
+	width: 3.6em;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -479,10 +514,9 @@ span.arrow.equal:after {
 	content: "=";
 }
 
-body .multioverdue, body .overdue, .multioverdue a, .multioverdue a:hover, .multioverdue a:visited, .multioverdue a:active
-.overdue, .overdue a, .overdue a:hover, .overdue a:visited, .overdue a:active, .autosubmit.overdue input, .autosubmit.multioverdue input  {
+body .multioverdue, body .overdue, .multioverdue a.name, .multioverdue a.name:hover, .multioverdue a.name:visited, .multioverdue a.name:active
+.overdue, .overdue a.name, .overdue a.name:hover, .overdue a.name:visited, .overdue a.name:active, .autosubmit.overdue input, .autosubmit.multioverdue input  {
 	color: red;
-	font-weight: 500;
 }
 
 .completed, .completed .overdue, .completed .multioverdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {
@@ -511,6 +545,10 @@ body .well {
 	border: 0;
 }
 
+body.compact .well {
+	border-radius: 0;
+}
+
 .areas .card.area {
 	padding: 0;
 	-webkit-box-sizing: border-box;
@@ -519,7 +557,7 @@ body .well {
 	-webkit-box-shadow: inset 0 1px #333,0 1px 2px #c8cfe6;
 	-moz-box-shadow: inset 0 1px #333,0 1px 2px #c8cfe6;
 	box-shadow: inset 0 1px #333,0 1px 2px #c8cfe6;
-	min-width: 350px;
+	/*min-width: 350px;*/
 }
 
 body .navbar-inner {
@@ -581,12 +619,16 @@ body .form-search input:focus {
 	padding: 1em 1em 1em 1.7em;
 }
 
+.areas .card.area .header {
+	padding: 0 1em 0.2em 1.7em;
+}
+
 .areas .card.area .header a {
 	color: #fff;
 }
 
 .areas .card.area .body {
-	padding: 1em;
+	padding: .5em;
 	margin-top: 0;
 }
 
@@ -598,6 +640,11 @@ body .form-search input:focus {
 	margin-right: 1em;
 	border-top: 4px solid #25A9E0;
 }
+
+.compact .areas li .card.area {
+	margin-right: 1px;
+}
+
 .ordering-handle br {
 	display: none;
 }
@@ -626,6 +673,14 @@ body div.ordering-handle {
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	background-color: rgba(0,0,0,0.2);
+}
+
+body.compact div.ordering-handle, body.compact .column.ordering {
+	display: none;
+}
+
+body.compact .column[data-label=Goal], body.compact .column[data-label=Value] {
+	display:none;
 }
 
 .loading {
@@ -657,9 +712,16 @@ div.table .table-row div.column[data-label="Name"] {
 	width: 54%;
 }
 
+.compact div.table .table-row div.column[data-label="Name"] {
+	width: auto;
+}
+
 @media all and (min-width: 1200px) {
 	div.table .table-row div.column[data-label="Name"] {
 		min-width: 220px;
+	}
+	.compact div.table .table-row div.column[data-label="Name"] {
+		min-width: 0;
 	}
 }
 
@@ -670,6 +732,14 @@ div.table .table-row div.column[data-label="Responsible"] {
 
 div.table .table-row div.column[data-label="Actions"] {
 	text-align: right;
+}
+
+.compact div.table .table-row div.column[data-label="Actions"] {
+	display: none;
+}
+
+.compact div.table .table-row div.column[data-label="Status"] {
+	display: none;
 }
 
 button.hoshin-tasks.link {
@@ -1386,7 +1456,7 @@ form.indicator-value input[type=radio] {
 	position: relative;
 	display: inline-block;
 	background: #f8faff;
-	font-size: 1.75em;
+	font-size: 1.4em;
 	width: 1em;
 	height: 1em;
 	border-radius: 50%;
@@ -1617,12 +1687,17 @@ form.indicator-value input[type=radio] {
 }
 
 .postit div.deadline {
-	float: left;
+	position: absolute;
+	bottom: 0.1em;
+	left: 0;
 	margin: 0.5em;
 }
 
 .postit div.original-deadline {
-	margin-left: 1.5em;
+	position: absolute;
+	bottom: 1.6em;
+	left: 0;
+	margin-left: 0.5em;
 	text-decoration: line-through;
 	color: #999;
 }
