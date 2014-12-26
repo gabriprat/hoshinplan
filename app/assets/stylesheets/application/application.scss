@@ -216,7 +216,7 @@ body h5 {
 }
 
 body.compact h5 {
-	margin-top: 0;
+	margin: 0.2em 0;
 }
 
 .area h5 {
@@ -229,7 +229,7 @@ body h2.heading {
        font-family: 'Yanone Kaffeesatz',
        sans-serif;
        line-height: 1em;
-       font-size: 4em;
+       font-size: 3.5em;
        margin: 0;
 }
 
@@ -264,17 +264,32 @@ h2.heading .title-action:hover {
 	border-top: 5px solid #25A9E0;
 }
 
-.compact .create-obj {
-	display: none;
-}
-
-.compact .header.well {
-	border-radius: 0;
-}
-
-.hoshin.compact .well {
-	margin-bottom: 5px;
-	padding: 5px 19px;
+body.compact {
+	.parent-link, .create-obj {
+		display: none;
+	}
+	
+	.header.well {
+		border-radius: 0;
+	}
+	
+	.well {
+		margin-bottom: 5px;
+		padding: 5px 19px;
+	}
+	
+	.timer {
+		font-size: 1.4em;
+		background: transparent;
+		border: none;
+		> .percent {
+			position: initial;
+			margin-left: 1em;
+		}
+		.slice, .bg {
+			display: none;
+		}
+	}
 }
 
 .area h4 {
@@ -547,6 +562,14 @@ body .well {
 
 body.compact .well {
 	border-radius: 0;
+}
+
+body.compact .column {
+	padding-right: 5px;
+}
+
+body.compact .table-row {
+	line-height: 1.5em;
 }
 
 .areas .card.area {
@@ -957,7 +980,8 @@ form.hoshin textarea.hoshin-header {
 .header .logged-in-as img, .header .logged-in-as .user-image {
 	height: 2em;
 	width: 2em;
-	margin-left: 5px;
+	margin: -2px 0 0 5px;
+	float: right;
 }
 
 acronym.user-image {
@@ -1067,8 +1091,6 @@ form#delete-history, form#delete-history input {
 
 .navbar .nav > li > a {
 	font-size: 1.1em;
-	padding: 15px 15px;
-	line-height: 23px;
 	font-weight: 400;
 	text-shadow: none;
 	color: #939daa;
@@ -1112,7 +1134,7 @@ form#delete-history, form#delete-history input {
 }
 
 .navbar .nav .form-search {
-	padding: 15px 15px;
+	padding: 8px 15px;
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
@@ -1456,7 +1478,7 @@ form.indicator-value input[type=radio] {
 	position: relative;
 	display: inline-block;
 	background: #f8faff;
-	font-size: 1.4em;
+	font-size: 1.75em;
 	width: 1em;
 	height: 1em;
 	border-radius: 50%;
@@ -1715,6 +1737,10 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+}
+
+body .center-block {
+	margin: 0 auto;
 }
 
 .footer {
