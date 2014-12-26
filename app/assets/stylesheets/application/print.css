@@ -12,7 +12,7 @@
 		-webkit-border-radius: 0 !important;
 	}
 
-	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action {
+	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action, .footer {
 		display: none;
 	}
 	div.ordering-handle, .column.ordering {
@@ -59,19 +59,20 @@
 	}
 	
 	body.hoshin #goals .well {
-		padding: 1em;
+		padding: 0;
 		border: 0;
 	}
 	
 	body.hoshin .goals h3 {
-		position: initial;
 		font-size: 1.8em;
-		transform: none;
-		-moz-transform: none;
-		-ms-transform: none;
-		-webkit-transform: none;
-		width: 100%;
+		position: static;
+		float: left;
+		margin: 0 0 0 1em;
 		color: #000;
+	}
+	
+	body.hoshin .goals ul {
+		float: left;
 	}
 	
 	body.hoshin h4, body.hoshin h2.heading, body.hoshin .goals h3 {
@@ -79,9 +80,22 @@
 	}
 	
 	body.hoshin ul.collection.goals > li {
+		float: left;
 		list-style-type: decimal;
 		display: list-item;
 		list-style-position: inside;
+	}
+	
+	body.hoshin ul.collection.goals > li > div.goal, body.hoshin ul.collection.goals > li > div.goal > div {
+		display: inline;
+	}
+	
+	body.hoshin ul.collection.goals > li:after {
+		margin-left: 1em;
+		content: "|";
+	}
+	body.hoshin ul.collection.goals > li:last-child:after {
+		content: "";
 	}
 	body.hoshin ul.collection.goals .goal {
 		border: 0;
