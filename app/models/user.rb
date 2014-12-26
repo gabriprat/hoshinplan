@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
     language      HoboFields::Types::EnumString.for(:es, :en)
     last_login_at :datetime
     login_count   :integer
+    preferred_view HoboFields::Types::EnumString.for(:compact, :expanded), :required, :default=> :expanded
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 

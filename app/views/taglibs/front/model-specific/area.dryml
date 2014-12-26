@@ -19,7 +19,7 @@
 	</modal>
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>
-	<a class="btn pull-right" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">
+	<a class="btn pull-right create-obj" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">
             <ht key="objective.actions.new" name="#{name(:no_wrapper => true)}">
               Add new objective
             </ht>
@@ -29,7 +29,7 @@
 		<field-list: fields="name" />
 		<actions: replace />
 	</form>
-	<rtable:objectives columns="Id,Objective,Resp." class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit();"/>
+	<rtable:objectives columns="Id,Objective" class="objectives" part="objectives" id="objectives-#{this.id}" sortable success="$('#reorder-#{this.id}').submit();"/>
 	<modal id="add-objective-modal-#{this.id}">
 		<modal:>
 		<set options="&this.parent_objectives" unless="&this.hoshin.parent_id.nil?"/>
@@ -58,18 +58,18 @@
 	</div>
 	<div class="indicators-wrapper">
 	<h5><model-name-human model="&Indicator" count="100"/></h5>
-	<rtable:indicators columns="#,KPI,Resp.,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
+	<rtable:indicators columns="#,KPI,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<h6 if="child_kpis"><ht key="indicator.area.child_models" count="100">#{Indicator.model_name.human.pluralize} from children hoshin plans</ht></h6>
-	<rtable:child_kpis columns="#,KPI,Resp.,Value,Goal,%,Hoshin"/>
+	<rtable:child_kpis columns="#,KPI.,Value,Goal,%,Hoshin"/>
 	</if>
 	</div>
 	<div class="tasks-wrapper">
 	<h5><model-name-human model="&Task" count="100"/></h5>
-	<rtable:tasks columns="#,Task,Resp.,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();"/>
+	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
-	<rtable:child_tasks columns="#,Task,Resp.,Deadline,Dev,Hoshin"/>
+	<rtable:child_tasks columns="#,Task.,Deadline,Dev"/>
 	</if>
 	</div>
 	</swept-cache>

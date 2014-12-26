@@ -17,7 +17,9 @@
 		}, 'en' : {}};
 		var settings = languages[language];
 		var options = {
-			format: format,
+			format: format.replace("/yyyy",""),
+			formatSubmit: format,
+			hiddenName: true,
 			firstDay: weekstart,
 			onClose: methods.triggerChange
 		};

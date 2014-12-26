@@ -48,6 +48,10 @@ es:
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Haz clic para editar&gt;'
+  hoshin_actions:
+    presentation: Presentación
+    export_as_pdf: Exportar cómo PDF
+    compact: Vista expandida o compacta
   no_oid_url: No existe un login corporativo para el email introducido
   errors:
     permission_denied: Permiso denegado
@@ -85,10 +89,6 @@ es:
     the_provided_key: ! 'La invitación ya no es válida. Sólo se puede utilizar una vez. Por favor pide a la persona que te invitó que te reenvie la invitación.'
     collection:
       heading: Usuarios
-  hoshin:
-    actions:
-      presentation: Presentación
-      export_as_pdf: Exportar cómo PDF
       
   attributes:
     created_at: Creado el
@@ -192,7 +192,7 @@ es:
         name: Nombre
         description: Descripción
         responsible: Responsable
-        deadline: Vencimiento
+        deadline: Venc.
         show_on_parent: Subir tarea
         reminder: Recordatorio
         objective: Objetivo
@@ -304,8 +304,8 @@ es:
       Responsible: Resp.
       Value: Valor
       Goal: Objetivo
-      Deadline: Vencimiento
-      Dev: Desv.
+      Deadline: Venc.
+      Dev: Des.
       Status: Acciones
       Task: Tarea
       Company: Empresa
@@ -321,8 +321,8 @@ es:
         - :long
         - :short
     formats:
+      short: ! '%d/%m'
       default: ! '%d/%m/%Y'
-      short: ! '%d %b'
   time:
     formats:
       long: ! '%d/%m/%Y %H:%M'
