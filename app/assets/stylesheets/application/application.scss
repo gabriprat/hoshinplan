@@ -529,8 +529,8 @@ span.arrow.equal:after {
 	content: "=";
 }
 
-body .multioverdue, body .overdue, .multioverdue a.name, .multioverdue a.name:hover, .multioverdue a.name:visited, .multioverdue a.name:active
-.overdue, .overdue a.name, .overdue a.name:hover, .overdue a.name:visited, .overdue a.name:active, .autosubmit.overdue input, .autosubmit.multioverdue input  {
+body .multioverdue, body .overdue, .multioverdue .name a, .multioverdue .name a:hover, .multioverdue .name a:visited, .multioverdue .name a:active
+.overdue, .overdue .name a, .overdue .name a:hover, .overdue .name a:visited, .overdue .name a:active, .autosubmit.overdue input, .autosubmit.multioverdue input  {
 	color: red;
 }
 
