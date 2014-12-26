@@ -112,9 +112,9 @@ jQuery.fn.heatcolor = function( valueFunction, options ) {
 		
 		// color it
 		if ( elToColor[0].nodeType == 1 )
-			elToColor.css( "background-color", curcolor );
+			elToColor.css( "background-color", curcolor + " !important" );
 		else if ( elToColor[0].nodeType == 3 )
-			elToColor.css( "color", curcolor );
+			elToColor.css( "color", curcolor + " !important" );
 				
 	});
 	
