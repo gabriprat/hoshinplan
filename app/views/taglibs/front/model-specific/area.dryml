@@ -58,7 +58,7 @@
 	</div>
 	<div class="indicators-wrapper">
 	<h5><model-name-human model="&Indicator" count="100"/></h5>
-	<rtable:indicators columns="#,KPI,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable/>
+	<rtable:indicators columns="#,KPI,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable if="&this.indicators"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<h6 if="child_kpis"><ht key="indicator.area.child_models" count="100">#{Indicator.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_kpis columns="#,KPI.,Value,Goal,%,Hoshin"/>
@@ -66,7 +66,7 @@
 	</div>
 	<div class="tasks-wrapper">
 	<h5><model-name-human model="&Task" count="100"/></h5>
-	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();"/>
+	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();" if="&this.tasks"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_tasks columns="#,Task,Deadline,Dev"/>
