@@ -6,6 +6,10 @@
 		box-shadow: none !important;
 	}
 	
+	h2 small {
+		display: inline;
+	}
+	
 	.well {
 		border-radius: 0 !important;
 		-moz-border-radius: 0 !important;
@@ -121,11 +125,7 @@
 		display: table-cell;
 	}
 	
-	.timer {
-		background: transparent;
-	}
-	
-	.timer .bg,  {
+	#sec-actions {
 		display: none;
 	}
 	
