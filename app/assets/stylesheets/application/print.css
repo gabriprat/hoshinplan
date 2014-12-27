@@ -20,6 +20,7 @@
 	}
 	.card.area {
 		border: 1px solid black;
+		font-size: 0.8em;
 	}
 	.well, .well .header, .well .header a {
 		background: transparent !important;
