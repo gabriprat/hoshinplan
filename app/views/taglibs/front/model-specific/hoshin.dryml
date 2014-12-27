@@ -94,7 +94,7 @@
 					</div>
 				</div>
 			</div>
-			<sortable-collection:areas part="areas" id="areas" hoshin="&this" class="center-block #{this.areas_count == 1 ? 'span6' : this.areas_count == 2 ? 'span10' : 'span12'}">
+			<sortable-collection:areas part="areas" id="areas" hoshin="&this" class="center-block areas#{this.areas_count}">
 				<item: style="width: #{100/this.hoshin.areas_count}%" />
 			</sortable-collection>
 			<%# /swept-cache %>
