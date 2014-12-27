@@ -76,7 +76,7 @@
 			</form>
 			<health/>
 			</do>
-			<if test="#{@pdf?'true':'true'}">
+			<if test="#{@pdf?'true':''}">
 				<small><%= l Time.now, :format => :long %></small>
 			</if>
 			
