@@ -97,6 +97,14 @@ es:
   activerecord:
     errors:
       models:
+        indicator:
+          attributes:
+            objective:
+              blank: Tienes que seleccionar un objetivo al que pertenece este indicador
+        task:
+          attributes:
+            objective:
+              blank: Tienes que seleccionar un objetivo al que pertenece esta tarea
         user:
           attributes:
             email_address:

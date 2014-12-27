@@ -152,6 +152,11 @@ html body {
 	color: #2f4154;
 }
 
+html input {
+	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 200;
+}
+
 html body.presenting, html body.presenting input {
 	font-size: 23px;
 }
@@ -264,7 +269,7 @@ h2.heading .title-action:hover {
 }
 
 body.compact {
-	.parent-link, .create-obj {
+	.parent-link {
 		display: none;
 	}
 	
@@ -289,6 +294,10 @@ body.compact {
 			display: none;
 		}
 	}
+	
+	.area h4 {
+		font-size: 3em;
+	}
 }
 
 .area h4 {
@@ -298,10 +307,6 @@ body.compact {
 	-webkit-font-smoothing: antialiased;
 	font-size: 3.5em;
 	margin: 0;
-}
-
-.compact .area h4 {
-	font-size: 3em;
 }
 
 .hoshin-header p:last-child {
@@ -577,6 +582,14 @@ body.compact .column {
 	font-size: 0.9em;
 }
 
+body.compact button.btn.fa-check {
+	font-size: 11px;
+}
+
+body.compact input {
+	font-size: 1em;
+}
+
 body.compact .table-row {
 	line-height: 1.5em;
 }
@@ -767,10 +780,7 @@ div.table div.column[data-label="Tpc"] {
 	text-align: right;
 }
 
-.compact div.table .table-row div.column[data-label="Actions"] {
-	display: none;
-}
-
+.compact div.table .table-row div.column[data-label="Actions"],
 .compact div.table .table-row div.column[data-label="Status"] {
 	display: none;
 }

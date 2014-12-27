@@ -16,9 +16,9 @@ class IndicatorHistory < ActiveRecord::Base
   
   belongs_to :creator, :class_name => "User", :creator => true
   
-  belongs_to :company
+  belongs_to :company, :null => false
 
-  belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false
+  belongs_to :indicator, :inverse_of => :indicator_histories, :counter_cache => false, :null => false
 
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicator_histories  
 

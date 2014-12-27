@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141226172514) do
+ActiveRecord::Schema.define(version: 20141227113515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20141226172514) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hoshin_id"
+    t.integer  "hoshin_id",                    null: false
     t.integer  "position"
-    t.integer  "company_id"
+    t.integer  "company_id",                   null: false
     t.integer  "creator_id"
     t.integer  "objectives_count", default: 0, null: false
     t.integer  "indicators_count", default: 0, null: false
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20141226172514) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hoshin_id"
-    t.integer  "company_id"
+    t.integer  "hoshin_id",  null: false
+    t.integer  "company_id", null: false
     t.integer  "position"
     t.integer  "creator_id"
   end
@@ -137,11 +137,11 @@ ActiveRecord::Schema.define(version: 20141226172514) do
     t.decimal  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "indicator_id"
+    t.integer  "indicator_id",   null: false
     t.date     "day"
     t.decimal  "goal"
     t.integer  "creator_id"
-    t.integer  "company_id"
+    t.integer  "company_id",     null: false
     t.integer  "responsible_id"
   end
 
@@ -160,19 +160,19 @@ ActiveRecord::Schema.define(version: 20141226172514) do
     t.decimal  "goal",           default: 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id"
-    t.integer  "area_id"
+    t.integer  "objective_id",                   null: false
+    t.integer  "area_id",                        null: false
     t.integer  "ind_pos"
     t.date     "last_update"
     t.decimal  "last_value"
     t.integer  "responsible_id"
-    t.integer  "company_id"
+    t.integer  "company_id",                     null: false
     t.boolean  "reminder",       default: true,  null: false
     t.decimal  "worst_value",    default: 0.0,   null: false
     t.boolean  "show_on_parent", default: false, null: false
     t.string   "type"
     t.integer  "creator_id"
-    t.integer  "hoshin_id"
+    t.integer  "hoshin_id",                      null: false
   end
 
   add_index "indicators", ["area_id"], name: "index_indicators_on_area_id", using: :btree
@@ -197,12 +197,12 @@ ActiveRecord::Schema.define(version: 20141226172514) do
     t.integer  "tasks_count",      default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "area_id"
-    t.integer  "hoshin_id"
+    t.integer  "area_id",                      null: false
+    t.integer  "hoshin_id",                    null: false
     t.integer  "obj_pos"
     t.integer  "parent_id"
     t.integer  "responsible_id"
-    t.integer  "company_id"
+    t.integer  "company_id",                   null: false
     t.integer  "creator_id"
   end
 
@@ -227,18 +227,18 @@ ActiveRecord::Schema.define(version: 20141226172514) do
     t.date     "original_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id"
+    t.integer  "objective_id",                          null: false
     t.string   "status",            default: "backlog"
     t.datetime "key_timestamp"
     t.integer  "tsk_pos"
-    t.integer  "area_id"
+    t.integer  "area_id",                               null: false
     t.boolean  "show_on_parent"
     t.string   "type"
     t.integer  "responsible_id"
-    t.integer  "company_id"
+    t.integer  "company_id",                            null: false
     t.boolean  "reminder",          default: true
     t.integer  "creator_id"
-    t.integer  "hoshin_id"
+    t.integer  "hoshin_id",                             null: false
     t.integer  "lane_pos",          default: 0,         null: false
   end
 
