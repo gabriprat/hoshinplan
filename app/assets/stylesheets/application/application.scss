@@ -520,17 +520,19 @@ span.tpc {
 }
 
 span.arrow {
-	font-size: 1.4em;
+	font-size: 1em;
 	font-weight: bolder;
 	line-height: 0.5em;
+	display: inline-block;
+	width: .5em;
 }
 
 span.arrow.positive:after {
-	content: "\002191";
+	content: "\f0d8";
 }
 
 span.arrow.negative:after {
-	content: "\002193";
+	content: "\f0d7";
 }
 
 span.arrow.equal:after {
