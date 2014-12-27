@@ -528,23 +528,34 @@ span.arrow {
 	line-height: 0.5em;
 	display: inline-block;
 	width: .5em;
+	
+	.positive:after {
+		content: "\f0d8";
+	}
+	.negative:after {
+		content: "\f0d7";
+	}
+	.equal:after {
+		content: "=";
+	}
+	
 }
 
-span.arrow.positive:after {
-	content: "\f0d8";
+a.tpc {
+	&, &:hover, &:visited, &:active {
+		color: #2f4154;
+	}
 }
 
-span.arrow.negative:after {
-	content: "\f0d7";
-}
-
-span.arrow.equal:after {
-	content: "=";
-}
-
-body .multioverdue, body .overdue, .multioverdue .name a, .multioverdue .name a:hover, .multioverdue .name a:visited, .multioverdue .name a:active
-.overdue, .overdue .name a, .overdue .name a:hover, .overdue .name a:visited, .overdue .name a:active, .autosubmit.overdue input, .autosubmit.multioverdue input  {
-	color: red;
+body .multioverdue, body .overdue {
+	.name a, a.tpc {
+		&, &:hover, &:visited, &:active {
+			color: red;
+		} 
+	}
+	.autosubmit.overdue input {
+		color: red;
+	}
 }
 
 .completed, .completed .overdue, .completed .multioverdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {

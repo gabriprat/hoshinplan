@@ -42,7 +42,8 @@
 		  <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
 	</if>
 	<if test="&column == '%'">
-		  <div class="column nowrap" data-label="Tpc"><color-tpc:tpc precision="1"/><span class="arrow #{this.trend} fa"></span>
+		  <div class="column nowrap" data-label="Tpc">
+		  <a action="history" class="tpc" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><color-tpc:tpc precision="1"/><span class="arrow #{this.trend} fa"></span></a>
 		  </div>
  	</if>
   <% end %>
