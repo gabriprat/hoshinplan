@@ -14,10 +14,10 @@
 	</else>
 </def>
 
-<def tag="user-abbrev"><% 
+<def tag="user-abbrev" attrs="paren"><% 
 		user = this if this.is_a?(User)
 		user ||= Company.current_company.comp_users[this] unless Company.current_company.nil? 
-	%><acronym title="#{user.name}" merge-attrs unless="&user.nil?">#{user.abbrev}</acronym></def>
+	%><acronym title="#{user.name}" merge-attrs unless="&user.nil?"><if test="&paren">(</if>#{user.abbrev}<if test="&paren">)</if></acronym></def>
 
 <def tag="user-img" attrs="size">
 	<% 

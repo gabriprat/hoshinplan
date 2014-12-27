@@ -252,6 +252,7 @@ es:
     objectives_health: "Salud de tus objetivos: %{health}%"
     indicators_health: "Salud de tus indicadores: %{health}%"
     tasks_health: "Salud de tus tareas: %{health}%"
+    click_to_know: Haz click para saber cómo llevar tu Hoshinplan al 100%
     see_detailed_health: Ver un informe de salud detallado
   health:
     health_for: Salud para %{name}
