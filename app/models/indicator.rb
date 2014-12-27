@@ -18,6 +18,9 @@ class Indicator < ActiveRecord::Base
     show_on_parent    :boolean, :default => false, :null => false
     timestamps
   end
+  
+  validates_presence_of :objective
+  
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
    :creator_id, :last_update, :last_missing_value, :hoshin, :hoshin_id
@@ -26,12 +29,12 @@ class Indicator < ActiveRecord::Base
   
   has_many :indicator_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :indicator
   
-  belongs_to :company
+  belongs_to :company, :null => false
 
-  belongs_to :objective, :inverse_of => :indicators, :counter_cache => true
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true
+  belongs_to :objective, :inverse_of => :indicators, :counter_cache => true, :null => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :null => false
   
-  belongs_to :area, :inverse_of => :indicators, :counter_cache => true
+  belongs_to :area, :inverse_of => :indicators, :counter_cache => true, :null => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
   
   acts_as_list :scope => :area, :column => "ind_pos"

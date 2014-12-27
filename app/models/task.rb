@@ -17,17 +17,20 @@ class Task < ActiveRecord::Base
   index [:deadline, :status]
   index [:area_id, :status]
   
+  validates_presence_of :objective
+  
+  
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id
 
   belongs_to :creator, :class_name => "User", :creator => true
   
-  belongs_to :company
+  belongs_to :company, :null => false
   
   
-  belongs_to :objective, :inverse_of => :tasks, :counter_cache => false
-  belongs_to :area, :inverse_of => :tasks, :counter_cache => false
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false
+  belongs_to :objective, :inverse_of => :tasks, :counter_cache => false, :null => false
+  belongs_to :area, :inverse_of => :tasks, :counter_cache => false, :null => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :null => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"

@@ -24,8 +24,8 @@ class Area < ActiveRecord::Base
   has_many :indicators, -> { order :ind_pos }, :inverse_of => :area, :accessible => true
   has_many :tasks, -> { where(Task.visible.where_values).order('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')}, :inverse_of => :area, :accessible => true
 
-  belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true
-  belongs_to :company, :inverse_of => :areas
+  belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false
+  belongs_to :company, :inverse_of => :areas, :null => false
   
   acts_as_list :scope => :hoshin
   
