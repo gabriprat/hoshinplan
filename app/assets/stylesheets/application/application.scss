@@ -512,17 +512,19 @@ span.tpc {
 }
 
 span.arrow {
-	font-size: 1.4em;
+	font-size: 1em;
 	font-weight: bolder;
 	line-height: 0.5em;
+	display: inline-block;
+	width: .5em;
 }
 
 span.arrow.positive:after {
-	content: "\002191";
+	content: "\f0d8";
 }
 
 span.arrow.negative:after {
-	content: "\002193";
+	content: "\f0d7";
 }
 
 span.arrow.equal:after {
@@ -753,8 +755,8 @@ div.table .table-row div.column[data-label="Responsible"] {
 	width: 2em;
 }
 
-
-div.table .table-row div.column[data-label="Actions"] {
+div.table div.column[data-label="Actions"],
+div.table div.column[data-label="Tpc"] {
 	text-align: right;
 }
 

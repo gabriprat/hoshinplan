@@ -10,7 +10,7 @@
 		<ul class="table-head">
 			<li class="table-row">
 				<div class="column ordering" if="&sortable"></div>
-				<div class="column" data-label="#{this}" repeat="&columns"><t key="rtable.column.#{this}">#{this}</t></div>
+				<div class="column" data-label="#{this.gsub('%','Tpc').gsub('#','Id')}" repeat="&columns"><t key="rtable.column.#{this}">#{this}</t></div>
 			</li>
 		</ul>		
 		<call-tag with="&items" tag="&tag" merge-attrs merge-params class="table-body">
