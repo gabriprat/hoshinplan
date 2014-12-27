@@ -346,6 +346,14 @@ body.hoshin .collection.areas {
 	table-layout: fixed;
 }
 
+body.hoshin .collection.areas1 {
+	width: 50%;
+}
+
+body.hoshin .collection.areas2 {
+	width: 75%;
+}
+
 body.hoshin
 .collection.areas > .item {
 	display: table-cell; 
@@ -512,19 +520,17 @@ span.tpc {
 }
 
 span.arrow {
-	font-size: 1em;
+	font-size: 1.4em;
 	font-weight: bolder;
 	line-height: 0.5em;
-	display: inline-block;
-	width: .5em;
 }
 
 span.arrow.positive:after {
-	content: "\f0d8";
+	content: "\002191";
 }
 
 span.arrow.negative:after {
-	content: "\f0d7";
+	content: "\002193";
 }
 
 span.arrow.equal:after {
