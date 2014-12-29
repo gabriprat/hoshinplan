@@ -88,6 +88,7 @@
 				style="position: relative;"
 				xLabels="day"
 				xLabelFormat="dateFormatDefault"
+				if="&this.indicator_histories.select('day, value, goal, id')"
 	    		/>
 		        </div>
 	    	</section>

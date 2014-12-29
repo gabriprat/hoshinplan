@@ -422,7 +422,7 @@ body .modal .form-horizontal {
 
 body.hoshin form.inline-form input,  body.hoshin .in-place-form input{
 	border: 0;
-	background: rgba(255,255,255,0.8);
+	background: #fff;
 	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
@@ -467,6 +467,7 @@ body.hoshin form.inline-form div.input-append {
 	margin: 0;
 	padding: 0;
 	vertical-align: bottom;
+	font-size: inherit;
 }
 
 input.date[readonly] {
@@ -1495,6 +1496,18 @@ form.indicator-value {
 
 form.indicator-value input[type=radio] {
 	margin-top: 4px;
+}
+
+.column[data-label=Value] .autosubmit .input-append {
+	position: relative;
+} 
+.autosubmit form input.indicator-value {
+	width: 100px;
+	position: absolute;
+	right: 33px;
+	top: 2px;
+	text-align: right;
+	padding-right: 5px;
 }
 
 .health {
