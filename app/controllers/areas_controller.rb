@@ -12,7 +12,7 @@ class AreasController < ApplicationController
   
   def charts
     @this = Area.includes(:indicators, {:indicators => :indicator_histories})
-      .where(:id => params[:id], :indicators => {:show_on_charts => true}).first
+      .where(:id => params[:id], :indicators => {:show_on_charts => true}).order('indicators.ind_pos').references(:indicators).first
     hobo_show
   end
   
