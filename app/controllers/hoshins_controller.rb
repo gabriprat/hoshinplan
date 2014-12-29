@@ -6,7 +6,7 @@ class HoshinsController < ApplicationController
   
   auto_actions_for :company, [:new, :create]
   
-  show_action :health, :kanban
+  show_action :health, :kanban, :charts
   
   web_method :kanban_update
   
@@ -45,6 +45,10 @@ class HoshinsController < ApplicationController
   end
   
   def health
+    hobo_show
+  end
+  
+  def charts
     hobo_show
   end
   

@@ -15,7 +15,8 @@ class Indicator < ActiveRecord::Base
     goal        :decimal, :default => 100.0
     worst_value :decimal, :default => 0.0, :null => false
     reminder    :boolean, :default => true, :null => false
-    show_on_parent    :boolean, :default => false, :null => false
+    show_on_parent  :boolean, :default => false, :null => false
+    show_on_charts  :boolean, :default => true, :null => false
     timestamps
   end
   
@@ -23,7 +24,7 @@ class Indicator < ActiveRecord::Base
   
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
-   :creator_id, :last_update, :last_missing_value, :hoshin, :hoshin_id
+   :creator_id, :last_update, :last_missing_value, :hoshin, :hoshin_id, :show_on_charts
 
   belongs_to :creator, :class_name => "User", :creator => true
   

@@ -15,16 +15,6 @@
 		<append-body: >
 			<%= raw "<"+"/span>" %>
 			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="& Rails.application.config.action_controller.perform_caching"/>
-			<script type="text/javascript">
-				(function() {
-					var sep="#{t 'number.format.separator'}";
-					var del="#{t 'number.format.delimiter'}";
-					var df="#{date_format_default}";
-					document.documentElement.setAttribute("data-sep", sep);
-					document.documentElement.setAttribute("data-del", del);
-					document.documentElement.setAttribute("data-df", df);
-				})();
-			</script>
 		</append-body:>
 	  	<app-name:><a class="brand" href="/"><strong>Hoshin</strong><span>plan</span></a></app-name:>
 		<footer: class="fixed-x">
@@ -38,5 +28,6 @@
 		      <li><a href="mailto:hello@hoshinplan.com">Contact us</a></li>
 		    </ul>
 		</footer:>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}"/>
 	 </old-page>
 </extend>

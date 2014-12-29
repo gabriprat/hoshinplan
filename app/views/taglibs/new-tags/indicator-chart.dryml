@@ -1,0 +1,26 @@
+<def tag="indicator-chart">
+	<section id="chart-panel#{this.id}" class="panel chart-panel" if="&this.indicator_histories" merge>
+	        <header class="panel-heading">
+			<name/>
+			<form ajax success="$('#chart-panel#{this.id}').hide()">
+				<hidden-field:show_on_charts value="false"/>
+				<button type="submit" class="close">&times;</button>
+			</form>
+		</header>
+		 <div class="panel-body">
+			<chart 
+				id="chart#{this.id}" 
+				type="line" 
+				data="&this.indicator_histories.select('day, value, goal, id')" 
+				xkey="day"
+			  	ykeys="value,goal"
+			  	labels="Value,Goal"
+				hideHover="true"
+				pointSize="0"
+				dateFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
+				xLabels="day"
+				xLabelFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
+			/>
+		 </div>
+	</section>
+</def>

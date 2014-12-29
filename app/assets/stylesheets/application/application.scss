@@ -1770,6 +1770,16 @@ form.indicator-value input[type=radio] {
 	text-align: center;
 }
 
+/* charts */
+
+.chart-panel {
+	width: 33%;
+	float: left;
+	form {
+		display: inline;
+	}
+}
+
 html {
   position: relative;
   min-height: 100%;

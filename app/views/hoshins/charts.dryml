@@ -1,0 +1,14 @@
+<show-page: >
+	<content-header: >
+      		<a>&laquo; <ht key="hoshin.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a>
+	        <h2>
+	        	<ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}"> Hoshin <name/></ht>
+		</h2>
+	</content-header:>
+	
+	<content-body:>
+		<repeat with="&this.indicators.where(show_on_charts: true)">
+			<indicator-chart />
+		</repeat>
+	</content-body:>
+</show-page:>

@@ -55,6 +55,7 @@ Hoshinplan::Application.routes.draw do
     member do
       get 'health'
       get 'kanban'
+      get 'charts'
       post 'kanban_update'
     end
   end

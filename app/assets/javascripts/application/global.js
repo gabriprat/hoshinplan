@@ -37,6 +37,22 @@ var validateDate = function(formElem) {
 	return true;
 }
 
+var dateFormat = function(format, d) {
+	if (typeof d === "undefined") { // partial
+        return function (d) {
+              return dateFormat.apply(this, [format, d]);
+        };
+    }
+	if (d instanceof Array) {
+		var date = new Date(d[0],d[1]-1,d[2]);
+	} else {
+		var date = new Date(d);
+	}
+
+	var ret = $.datepicker.formatDate(format, date);
+	return ret;
+}
+
 
 function updateTimer(percent) {
 	$("#health").popover('destroy');
