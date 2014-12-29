@@ -1,4 +1,5 @@
 es:
+  loading: Cargando...
   emails:
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'
