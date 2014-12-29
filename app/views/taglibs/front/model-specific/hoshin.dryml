@@ -68,15 +68,15 @@
 			<a href="#{hoshin_path this}/kanban" title="Kanban" class="title-action">
 	    	            <span class="fa fa-table"/>
 			</a>
+			<a href="#{hoshin_path this}/charts" title="&t 'hoshin_actions.charts'" class="title-action">
+	    	            <span class="fa fa-area-chart"/>
+			</a>
 			<form with="&current_user" id="preferred-view" class="inline-form" ajax>
 				<hidden-field:preferred_view />
 				<a onclick="$(body).toggleClass('compact').toggleClass('expanded'); $('#compact').toggleClass('fa-compress').toggleClass('fa-expand'); $('#user_preferred_view').val($('#user_preferred_view').val() == 'compact' ? 'expanded' : 'compact'); $('#preferred-view').submit(); equalHeightSections(); return false;" title="&t 'hoshin_actions.compact'" class="title-action" style="margin:0">
 		    	            <span id="compact" class="fa #{current_user.preferred_view == :compact ? 'fa-expand'  : 'fa-compress'}"/>
 				</a>
 			</form>
-			<a href="#{hoshin_path this}/charts" title="Charts" class="title-action">
-	    	            <span class="fa fa-area-chart"/>
-			</a>
 			<health/>
 			</do>
 			<if test="#{@pdf?'true':''}">
