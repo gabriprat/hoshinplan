@@ -1,7 +1,11 @@
 <def tag="indicator-chart">
 	<section id="chart-panel#{this.id}" class="panel chart-panel" if="&this.indicator_histories" merge>
 	        <header class="panel-heading">
-			<name/>
+			<color-tpc:tpc precision="1" style="display:inline;">
+				<default: replace>
+					<name with="&this_parent"/> (<default restore/>)
+				</default:>
+			</color-tpc:tpc>
 			<form ajax success="$('#chart-panel#{this.id}').hide()">
 				<hidden-field:show_on_charts value="false"/>
 				<button type="submit" class="close">&times;</button>
