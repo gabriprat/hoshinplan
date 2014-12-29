@@ -24,8 +24,5 @@
 					<a action="health"><t key="hoshin.see_detailed_health">See detailed health report</t></a>
 				</else>
 			</div>
-			<div class="tooltip right in inline-tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner">
-				<t key="hoshin.click_to_know">Click to know how to bring your Hoshinplan to a 100%</t>
-			</div></div>
 			</if>
 </def>
