@@ -23,6 +23,7 @@ en:
 #        email_address: We will never share your address with third parties
 
 en:
+  loading: Loading...
   emails:
     thank_you: 'Thank you,'
     claim: 'Make your business strategy work'

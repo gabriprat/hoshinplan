@@ -6,7 +6,7 @@
 			  var dest = $(e.target).attr('href');
 			  window.location.hash = this.hash;
 			  if ($(dest).html().trim() == "") {
-			  	  $(dest).html( "Loading..." );
+			  	  $(dest).html( "#{t 'loading'}" );
 				  $.get( url, function( data ) {
 				    $(dest).html( data );
 				    $(dest).hjq().init();
