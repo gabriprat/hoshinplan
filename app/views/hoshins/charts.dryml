@@ -1,4 +1,26 @@
 <show-page: >
+	<custom-javascript:>
+		$(document).ready(function () {
+			$('a[data-toggle="tab"]').on('shown', function (e) {
+			  var url = $(e.target).data('url');
+			  var dest = $(e.target).attr('href');
+			  window.location.hash = this.hash;
+			  if ($(dest).html().trim() == "") {
+			  	  $(dest).html( "Loading..." );
+				  $.get( url, function( data ) {
+				    $(dest).html( data );
+				    $(dest).hjq().init();
+				  }, "html");
+			  }
+			});
+			var active = window.location.hash;
+			if (!active) {
+			    $('.nav-tabs a').first().tab('show');
+			} else {
+			    $('.nav-tabs a[href='+active+']').tab('show');
+			}
+		});
+	</custom-javascript:>
 	<content-header: >
       		<a>&laquo; <ht key="hoshin.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a>
 	        <h2>
@@ -7,8 +29,11 @@
 	</content-header:>
 	
 	<content-body:>
-		<repeat with="&this.indicators.where(show_on_charts: true)">
-			<indicator-chart />
-		</repeat>
+		<bootstrap-tab-list:areas>
+			<a: data-url="#{object_url this}/charts" href="#area#{this.id}"><name/></a:>
+			<body: id="area#{this.id}">
+				
+			</body:>
+		</bootstrap-tab-list>
 	</content-body:>
 </show-page:>
