@@ -1783,13 +1783,14 @@ form.indicator-value input[type=radio] {
 	
 	.panel-body {
 		background: #fff;
+		padding: 0 3px 0 0;
 	}
 	.panel-heading {
 		padding: 5px 15px;
 		border-radius: 0;
 	}
 	.chart {
-		height: 300px;
+		height: 280px;
 	}
 	form {
 		display: inline;
