@@ -17,7 +17,7 @@
 	ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
 	morris_attrs, html_attrs = html_attrs.partition_hash(morris_attributes)
 	morris_attrs['element'] = id
-	['ykeys','labels','lineColors','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors'].each { |att| 
+	['ykeys','labels','lineColors','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors', 'lineWidth'].each { |att| 
 		if morris_attrs[att].is_a? String
 			morris_attrs[att] = morris_attrs[att].split(',')
 		end

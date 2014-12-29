@@ -21,6 +21,8 @@
 			  	labels="Value,Goal"
 				hideHover="true"
 				pointSize="0"
+				lineWidth="3,2"
+				lineColors="#0b62a4,#696"
 				dateFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
 				xLabels="day"
 				xLabelFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
