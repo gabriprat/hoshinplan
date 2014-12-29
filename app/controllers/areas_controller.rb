@@ -4,9 +4,16 @@ class AreasController < ApplicationController
 
   auto_actions :all, :except => [:new]
   
+  show_action :charts
+  
   include RestController
   
   cache_sweeper :areas_sweeper
   
+  def charts
+    @this = Area.includes(:indicators, {:indicators => :indicator_histories})
+      .where(:id => params[:id], :indicators => {:show_on_charts => true}).first
+    hobo_show
+  end
   
 end

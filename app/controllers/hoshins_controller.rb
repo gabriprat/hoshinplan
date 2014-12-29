@@ -49,6 +49,7 @@ class HoshinsController < ApplicationController
   end
   
   def charts
+    @this = Hoshin.where(id: params[:id]).includes(:areas).first
     hobo_show
   end
   

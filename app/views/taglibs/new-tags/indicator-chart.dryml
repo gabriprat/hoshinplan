@@ -11,7 +11,7 @@
 			<chart 
 				id="chart#{this.id}" 
 				type="line" 
-				data="&this.indicator_histories.select('day, value, goal, id')" 
+				data="&this.indicator_histories.map{|i| {id: i.id, day: i.day, value: i.value, goal: i.goal}}" 
 				xkey="day"
 			  	ykeys="value,goal"
 			  	labels="Value,Goal"
