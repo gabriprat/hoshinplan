@@ -4,80 +4,33 @@
 		<h2>#{this.name}</h2>
 	</content-header:>
 	<custom-javascript:>
+	var data;
+        var dateFormatDefault = function(d) {
+		return dateFormat("<%= date_format_default.gsub('yyyy','yy') %>", d);
+        }
+        var numberFormat = function(num) {
+	    	if (num == null) {
+	    		return '';
+	    	} else {
+	    		var parts = num.toString().split(".");
+	    	    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, "#{t 'number.format.delimiter'}");
+	    	    	return parts.join("#{t 'number.format.separator'}");
+	    	}
+        }
 	$(document).ready(function () {
-		var rtime = new Date(1, 1, 2000, 12,00,00);
-		var timeout = false;
-		var delta = 200;
-		var df = document.documentElement.getAttribute("data-df").replace("yyyy","yy");
-		var sep = document.documentElement.getAttribute("data-sep");
-		var del = document.documentElement.getAttribute("data-del");
-		var dateFormat = function(d) {
-			if (d instanceof Array) {
-				var date = new Date(d[0],d[1]-1,d[2]);
-			} else {
-				var date = new Date(d);
-			}
-			var ret = $.datepicker.formatDate(df, date);
-			return ret;
-		}
-		var numberFormat = function(num) {
-			if (num == null) {
-				return '';
-			} else {
-				var parts = num.toString().split(".");
-			    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, del);
-			    	return parts.join(sep);
-			}
-		}
-		var resizeend = function() {
-		    if (delta > new Date() - rtime) {
-		        setTimeout(resizeend, delta);
-		    } else {
-		        timeout = false;
-		        chart.redraw();
-		    }               
-		}
-		var data = [
-			<repeat:indicator_histories join=",">
-			  {date:"#{this.day.year}-#{this.day.month}-#{this.day.mday}",
-			   value:#{this.value ? this.value : "null"},goal:#{this.goal ? this.goal : "null"}, id:#{this.id}}
-			</repeat:indicator_histories>
-		];
-		
 		var txt = "";
+		data = $('#graph-line').data('chart').options.data;
 		for (var i = 0; data.length > i; i++) {
 			if (i>0) {
 				txt += "\\n";
 			}
-			var date = dateFormat(data[i].date.split("-"));
+			var date = dateFormatDefault(data[i].day.split("-"));
 			var value = numberFormat(data[i].value);
 			var goal = numberFormat(data[i].goal);
 			var fieldSep = sep == ',' ? ';' : ','; 
 			txt += date + fieldSep + value + fieldSep + goal;
 		}
 		$("#upload textarea").val(txt);
-		
-		var chart = Morris.Line({
-		  element: 'graph-line',
-		  data: data,
-		  xkey: 'date',
-		  ykeys: ['value','goal'],
-		  labels: ['Value','Goal'],
-		  dateFormat: dateFormat,
-		  xLabels: "day",
-		  xLabelFormat: dateFormat,
-		  hoverCallback: function (index, options, content) {
-		    var row = data[index];
-		    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + row.date + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
-		  }
-		});
-		$(window).resize(function() {
-			rtime = new Date();
-			if (timeout === false) {
-				timeout = true;
-				setTimeout(resizeend, delta);
-			}
-		});
 	});
 	</custom-javascript:>
 	<content-body:>
@@ -89,6 +42,11 @@
 				form.data("confirm", conf.replace("XXX", date));
 				form.submit();
 			}
+			var hover = function (index, options, content) {
+		    	    if (!data) return content;
+			    var row = data[index];
+			    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + dateFormatDefault(row.day) + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
+			  }
 		</script>
 		<section class="panel">
 		        <header class="panel-heading">
@@ -118,7 +76,19 @@
 		        </header>
 		        <div class="panel-body" style="display: block;">
 			    <error-messages />
-		            <div id="graph-line" style="position: relative;"></div>
+	    		<chart 
+	    			id="graph-line" 
+	    			type="line" 
+	    			data="&this.indicator_histories.select('day, value, goal, id')" 
+	    			xkey="day"
+	    		  	ykeys="value,goal"
+	    		  	labels="Value,Goal"
+				dateFormat="dateFormatDefault"
+				hoverCallback="hover"
+				style="position: relative;"
+				xLabels="day"
+				xLabelFormat="dateFormatDefault"
+	    		/>
 		        </div>
 	    	</section>
 		<form action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">

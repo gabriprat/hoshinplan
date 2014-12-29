@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141227113515) do
+ActiveRecord::Schema.define(version: 20141228232925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20141227113515) do
     t.string   "type"
     t.integer  "creator_id"
     t.integer  "hoshin_id",                      null: false
+    t.boolean  "show_on_charts", default: true,  null: false
   end
 
   add_index "indicators", ["area_id"], name: "index_indicators_on_area_id", using: :btree

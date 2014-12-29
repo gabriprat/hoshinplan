@@ -74,6 +74,9 @@
 		    	            <span id="compact" class="fa #{current_user.preferred_view == :compact ? 'fa-expand'  : 'fa-compress'}"/>
 				</a>
 			</form>
+			<a href="#{hoshin_path this}/charts" title="Charts" class="title-action">
+	    	            <span class="fa fa-area-chart"/>
+			</a>
 			<health/>
 			</do>
 			<if test="#{@pdf?'true':''}">

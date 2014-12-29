@@ -2,7 +2,7 @@
 			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal">
 				   <div class="modal-body">
 				   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
-		            <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder #{show_on_parent}">
+		            <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts #{show_on_parent}">
 			    	<description-view:>
 					<my-click-editor/>
 				</description-view:>

@@ -1,0 +1,28 @@
+<def attrs="message, id, type" tag="chart">
+<%
+	raise Hobo::Error, "The \"id\" attribute must be defined" if id.blank?
+	required_attributes = ['data', 'xkey', 'ykeys', 'labels']
+	morris_attributes = required_attributes + ['lineColors','lineWidth','pointSize','pointFillColors',
+		'pointStrokeColors','ymax','ymin','smooth','hideHover','hoverCallback','parseTime','units',
+		'postUnits','preUnits','dateFormat','xLabels','xLabelFormat','xLabelAngle','yLabelFormat',
+		'goals','goalStrokeWidth','goalLineColors','events','eventStrokeWidth','eventLineColors',
+		'continuousLine','axes','grid','gridTextColor','gridTextSize','gridTextFamily',
+		'gridTextWeight','fillOpacity','resize','barColors','stacked','behaveLikeLine']
+	required_attributes.each{ |att|
+		raise Hobo::Error, "The \"#{att}\" attribute must be defined" if attributes[att].blank?
+	}
+	valid_types = ['line','bar','area','donut']
+	raise Hobo::Error, "The \"type\" attribute \"#{type.to_s}\" must be one of #{valid_types.to_s} " if !valid_types.include? type
+	attributes['message'] ||= 'Loading...'
+	ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
+	morris_attrs, html_attrs = html_attrs.partition_hash(morris_attributes)
+	morris_attrs['element'] = id
+	['ykeys','labels','lineColors','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors'].each { |att| 
+		if morris_attrs[att].is_a? String
+			morris_attrs[att] = morris_attrs[att].split(',')
+		end
+	}
+	add_data_rapid!(html_attrs, "chart", :morris_attrs => morris_attrs, :ajax_attrs => ajax_attrs, :type=> type)
+%>
+	<div id="#{id.to_s}" class='chart' param='default' merge-attrs='&html_attrs'></div>
+</def>
