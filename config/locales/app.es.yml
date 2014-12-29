@@ -51,6 +51,7 @@ es:
   hoshin_actions:
     presentation: Presentación
     export_as_pdf: Exportar cómo PDF
+    charts: Gráficos de indicadores
     compact: Vista expandida o compacta
   no_oid_url: No existe un login corporativo para el email introducido
   errors:

@@ -1773,8 +1773,24 @@ form.indicator-value input[type=radio] {
 /* charts */
 
 .chart-panel {
-	width: 33%;
+	width: 33.33333333333%;
 	float: left;
+	border: 6px solid;
+	box-sizing: border-box;
+	border: 3px solid transparent;
+	background: transparent;
+	margin: 0;
+	
+	.panel-body {
+		background: #fff;
+	}
+	.panel-heading {
+		padding: 5px 15px;
+		border-radius: 0;
+	}
+	.chart {
+		height: 300px;
+	}
 	form {
 		display: inline;
 	}

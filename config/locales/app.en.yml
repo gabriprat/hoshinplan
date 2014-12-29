@@ -74,6 +74,7 @@ en:
   hoshin_actions:
     presentation: Presentation
     export_as_pdf: Export as PDF
+    charts: KPI charts
     compact: Expanded or compact view
   errors:
     row_invalid_length: 'The row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remind that %{sep} is expected to separate columns.'
