@@ -29,7 +29,7 @@
 	</content-header:>
 	
 	<content-body:>
-		<bootstrap-tab-list:areas>
+		<bootstrap-tab-list:areas class="charts-tabs">
 			<a: data-url="#{object_url this}/charts" href="#area#{this.id}"><name/></a:>
 			<body: id="area#{this.id}">
 				

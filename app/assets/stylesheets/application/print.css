@@ -6,6 +6,17 @@
 		box-shadow: none !important;
 	}
 	
+	body a.add-chart {
+		display: none;
+	}
+	
+	.charts-tabs li {
+		display:none;
+	}
+	.charts-tabs li.active {
+		display:list-item;
+	}
+	
 	h2 small {
 		display: inline;
 	}
