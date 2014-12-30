@@ -1,3 +1,23 @@
+<set hidden-indicators="&[]"/>
 <repeat:indicators>
-	<indicator-chart />
+	<if test="&this.show_on_charts">
+		<indicator-chart />
+	</if>
+	<else>
+		<% hidden_indicators = hidden_indicators << this %>
+	</else>
 </repeat>
+<a href="#add-chart-modal" data-toggle='modal' class="add-chart fa fa-plus-square-o" unless="&hidden_indicators.empty?"></a>
+<modal id="add-chart-modal">
+	<modal:>
+		<div class="modal-body">
+			<repeat with="&hidden_indicators">
+				<t key="charts.select_indicator_to_add" />
+				<form success="window.location.reload();" ajax>
+					<hidden-field:show_on_charts value="&true"/>
+					<button type="submit">#{this.name}</button>
+				</form>
+			</repeat>
+		</div>
+	</modal:>
+</modal>

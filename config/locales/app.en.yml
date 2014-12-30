@@ -24,6 +24,7 @@ en:
 
 en:
   loading: Loading...
+  new: NEW
   emails:
     thank_you: 'Thank you,'
     claim: 'Make your business strategy work'
@@ -123,6 +124,8 @@ en:
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   home: Home
+  charts:
+    select_indicator_to_add: Select the hidden chart you want to make visible
   area:
     no_xx_defined: There are no %{xx} in this %{model}
     child_tasks: Tasks from child hoshins

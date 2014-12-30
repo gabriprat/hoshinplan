@@ -1,5 +1,6 @@
 es:
   loading: Cargando...
+  new: Nuevo
   emails:
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'
@@ -259,6 +260,8 @@ es:
   health:
     health_for: Salud para %{name}
     top_users_with_pending: Ranking de usuarios con más acciones pendientes
+  charts:
+    select_indicator_to_add: Selecciona la gráfica oculta que desees hacer visible de nuevo
   company:
     manage_collaborators: Gestionar colaboradores
     add_collaborators: Añadir colaboradores
