@@ -1818,6 +1818,14 @@ form.indicator-value input[type=radio] {
 	form {
 		display: inline;
 	}
+	.indicator-name {
+		white-space: nowrap;
+		max-width: 77%;
+		display: inline-block;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		vertical-align: bottom;
+	}
 }
 
 a.add-chart {
