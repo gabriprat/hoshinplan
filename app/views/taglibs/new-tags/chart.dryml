@@ -7,7 +7,7 @@
 		'postUnits','preUnits','dateFormat','xLabels','xLabelFormat','xLabelAngle','yLabelFormat',
 		'goals','goalStrokeWidth','goalLineColors','events','eventStrokeWidth','eventLineColors',
 		'continuousLine','axes','grid','gridTextColor','gridTextSize','gridTextFamily',
-		'gridTextWeight','fillOpacity','resize','barColors','stacked','behaveLikeLine']
+		'gridTextWeight','fillOpacity','resize','barColors','stacked','behaveLikeLine', 'dashArrays']
 	required_attributes.each{ |att|
 		raise Hobo::Error, "The \"#{att}\" attribute must be defined" if attributes[att].blank?
 	}
@@ -17,7 +17,7 @@
 	ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
 	morris_attrs, html_attrs = html_attrs.partition_hash(morris_attributes)
 	morris_attrs['element'] = id
-	['ykeys','labels','lineColors','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors', 'lineWidth'].each { |att| 
+	['ykeys','labels','lineColors','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors', 'lineWidth','dashArrays'].each { |att| 
 		if morris_attrs[att].is_a? String
 			morris_attrs[att] = morris_attrs[att].split(',')
 		end

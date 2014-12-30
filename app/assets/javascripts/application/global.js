@@ -148,3 +148,16 @@ $(document).ready(function() {
 	var domain = document.location.hostname.replace(/[^\.]*\./,'');
 	document.cookie = "tz=" + tz+";domain="+domain+"; path=/";
 });
+
+Morris.Line.prototype.drawLinePath = function(path, lineColor, lineIndex) {
+  return this.raphael.path(path).attr('stroke', lineColor).attr('stroke-width', this.lineWidthForSeries(lineIndex)).attr('stroke-dasharray', this.dashArrayForSeries(lineIndex));
+};
+
+Morris.Line.prototype.dashArrayForSeries = function(index) {
+  if (this.options.dashArrays instanceof Array) {
+    return this.options.dashArrays[index % this.options.dashArrays.length];
+  } else {
+    if (!this.options.dashArrays) this.options.dashArrays = "";
+    return this.options.dashArrays;
+  }
+};
