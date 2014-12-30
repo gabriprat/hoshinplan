@@ -8,6 +8,7 @@ class IndicatorHistory < ActiveRecord::Base
     value :decimal
     goal  :decimal
     day   :date
+    last  :decimal
     timestamps
   end
   index [:indicator_id, :day], :unique => true
