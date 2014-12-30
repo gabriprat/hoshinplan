@@ -39,8 +39,8 @@ class IndicatorsController < ApplicationController
         idx = 0
         CSV.parse( params[:history_values], options) do |row|
           idx = idx + 1
-          if row.length != 3 
-            @this.errors.add(:indicator, t("errors.row_invalid_length", :row => idx, :expected => 3, :found => row.length, :sep => col_sep))
+          if row.length != 4 
+            @this.errors.add(:indicator, t("errors.row_invalid_length", :row => idx, :expected => 4, :found => row.length, :sep => col_sep))
             next
           end
           begin
@@ -61,10 +61,16 @@ class IndicatorsController < ApplicationController
           rescue
             @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
           end
+          begin
+            p = Float row[3].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.') unless row[3].nil?
+          rescue
+            @this.errors.add(:indicator, t("errors.last_format_error", :row => idx, :found => row[3]))
+          end
           if @this.errors.messages.length==0
             ih = @this.indicator_histories.find_or_initialize_by(day: d)
             ih.value = v
             ih.goal = g
+            ih.previous = p
             begin
             ih.save!
             rescue

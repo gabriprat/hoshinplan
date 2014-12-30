@@ -23,7 +23,7 @@ gem 'json'
   gem 'uglifier', '>= 1.3.0'
   #gem 'less'
   gem 'raphaeljs-rails'
-  gem 'morrisjs-rails', :git => 'git://github.com/gabriprat/morrisjs-rails'
+  gem 'morrisjs-rails'
   gem 'yui-compressor'
 #end
 

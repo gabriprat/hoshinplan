@@ -1,6 +1,7 @@
 es:
   loading: Cargando...
   new: Nuevo
+  value_goal_previous: 'Valor, Objetivo, Previo'
   emails:
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'
@@ -63,6 +64,7 @@ es:
     date_format_error: 'La fila %{row} contiene una fecha incorrecta. La fecha "%{found}" no estaba en el formato esperado "%{expected}".'
     value_format_error: 'La fila %{row} contiene un valor incorrecto "%{found}".'
     goal_format_error: 'La fila %{row} contiene un objetivo incorrecto "%{found}".'
+    last_format_error: 'La fila %{row} contiene un valor previo incorrecto "%{found}".'
     invalid_credentials: 'Las credenciales proporcionadas no son válidas.'
     provider_said: 'El mensaje del proveedor de autenticación fue: '
     unknown: 'Error desconocido.'
@@ -296,7 +298,7 @@ es:
     upload: Enviar
     upload_values: Añadir/reemplazar valores
     delete_values: Borrar todos los valores
-    upload_values_by: 'Carga valores en bloque escribiendo un valor por línea. Cada línea tiene que tener el formato: dd/mm/yyy;valor;objetivo. Por ejemplo: 21/4/2014;29,3;100'
+    upload_values_by: 'Carga valores en bloque escribiendo un valor por línea. Cada línea tiene que tener el formato: dd/mm/yyy;valor;objetivo;previo. Por ejemplo: 21/4/2014;29,3;100;31 <br/> Si no hay valor para alguno de los campos simplemente déjalo vacío. Por ejemplo, si no hay objetivo: 21/4/2014;29,3;;31'
     value_form:
       this_indicator_doesnt: Este indicador no necesita ser actualizado. ¿Qué quieres hacer?
       overwrite_the_value: Sobreescribir el valor de la última actualización 

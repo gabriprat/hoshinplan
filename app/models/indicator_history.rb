@@ -8,12 +8,12 @@ class IndicatorHistory < ActiveRecord::Base
     value :decimal
     goal  :decimal
     day   :date
-    last  :decimal
+    previous  :decimal
     timestamps
   end
   index [:indicator_id, :day], :unique => true
   
-  attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id
+  attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id, :previous
   
   belongs_to :creator, :class_name => "User", :creator => true
   
