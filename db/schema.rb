@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228232925) do
+ActiveRecord::Schema.define(version: 20141230165607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20141228232925) do
     t.integer  "creator_id"
     t.integer  "company_id",     null: false
     t.integer  "responsible_id"
+    t.decimal  "previous"
   end
 
   add_index "indicator_histories", ["company_id"], name: "index_indicator_histories_on_company_id", using: :btree

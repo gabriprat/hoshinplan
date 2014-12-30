@@ -25,6 +25,7 @@ en:
 en:
   loading: Loading...
   new: NEW
+  value_goal_previous: 'Value,Goal,Previous'
   emails:
     thank_you: 'Thank you,'
     claim: 'Make your business strategy work'
@@ -83,6 +84,7 @@ en:
     date_format_error: 'The row %{row} contains an invalid date. The date "%{found}" does not follow the expected format "%{expected}".'
     value_format_error: 'The row %{row} contains an incorrect value "%{found}".'
     goal_format_error: 'The row %{row} contains an incorrect objective "%{found}".'
+    last_format_error: 'The row %{row} contains an incorrect previous value "%{found}".'
     invalid_credentials: 'The credentials you used were not valid.'
     provider_said: 'The message from your authentication provider was: '
     unknown: 'Unknown error.'
