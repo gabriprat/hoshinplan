@@ -90,6 +90,7 @@
 				xLabels="day"
 				xLabelFormat="dateFormatDefault"
 				lineWidth="3,2,3"
+				pointSize="0"
 				lineColors="#008f00,#b1c978,#ff7c00"
 				dashArrays=",-,"
 				if="&this.indicator_histories"
