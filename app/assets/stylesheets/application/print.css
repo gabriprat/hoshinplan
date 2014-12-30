@@ -16,7 +16,9 @@
 	.charts-tabs li.active {
 		display:list-item;
 	}
-	
+	.chart-panel button.close {
+		display: none;
+	}
 	h2 small {
 		display: inline;
 	}
