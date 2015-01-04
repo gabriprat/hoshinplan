@@ -363,8 +363,11 @@ body.hoshin ul.collection.goals .goal {
 
 body.hoshin .collection.areas {
 	display: table; 
-	table-layout: fixed;
 	width: 100%;
+}
+
+body.hoshin.compact .collection.areas {
+	table-layout: fixed;
 }
 
 body.hoshin .collection.areas1 {
