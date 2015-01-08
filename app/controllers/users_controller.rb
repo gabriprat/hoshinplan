@@ -109,7 +109,7 @@ class UsersController < ApplicationController
    	  zone = Hoshinplan::Timezone.get(zone)
       self.this.timezone = zone.name unless zone.nil?
     end
-    if params[:user][:preferred_view]
+    if params[:user] && params[:user][:preferred_view]
       ajax = true
     end
     if params[:tutorial_step] 
