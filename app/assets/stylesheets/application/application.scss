@@ -758,10 +758,6 @@ body.presenting div.ordering-handle, body.presenting .column.ordering {
 	display: none;
 }
 
-body.compact .column[data-label=Goal] {
-	display:none;
-}
-
 .loading {
         background: image-url("ajax-loader.gif") no-repeat;
 	width: 16px;
