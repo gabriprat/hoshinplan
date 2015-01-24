@@ -1,3 +1,16 @@
+$primary-color: #2f4154;
+$secondary-color: #25a9e0;
+$secondary-color-darker: #00547b;
+$tertiary-color: #939daa;
+$inverse-primary-color: #f8faff;
+$inverse-secondary-color: #fff;
+$primary-font-stack: "Yanone Kaffeesatz", Arial, sans-serif;
+$secondary-font-stack: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$background-color: #f8faff;
+$secondary-background-color: #25a9e0;
+$inverse-background-color: #2f4154;
+
+
 @media all and (max-width: 979px) {
 	body {
 		padding: 0;
@@ -150,12 +163,12 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 
 html body {
 	font-size: 13px;
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #2f4154;
+	font-family: $secondary-font-stack;
+	color: $primary-color
 }
 
 html input {
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: $secondary-font-stack;
 	font-weight: 200;
 }
 
@@ -169,9 +182,9 @@ html body.presenting input {
 }
 
 body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong,  body .navbar a.brand span {
-	font-family: "Yanone Kaffeesatz", Arial, sans-serif;
+	font-family: $primary-font-stack;
 	font-size: 35px;
-	color: #f8faff;
+	color: $secondary-color-darker;
 	margin: 0;
 	text-shadow: none;
 	
@@ -182,7 +195,7 @@ body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong
 }
 
 body .navbar .brand:hover, body .navbar .brand:hover strong, body .navbar .brand:hover span {
-	color: #25A9E0;
+	color: $secondary-color-darker;
 }
 
 body.show-page, body.index-page {
@@ -192,11 +205,11 @@ body.show-page, body.index-page {
 }
 
 ul.input-many > li > div.buttons button {
-	color: #25A9E0;
+	color: $secondary-color-darker;
 }
 
 body h1, body h2, body h3, body h4, body h5 {
-	font-family: "Yanone Kaffeesatz", Arial, sans-serif;
+	font-family: $primary-font-stack;
 	font-weight: 300;
 }
 
@@ -233,10 +246,13 @@ body.compact h5 {
 
 body h2.heading {
        font-weight: 300;
-       font-family: "Yanone Kaffeesatz", Arial, sans-serif;
+       font-family: $primary-font-stack;
        line-height: 1em;
        font-size: 3.5em;
        margin: 0;
+       >a, >a:hover, >a:active, >a:visited {
+	       color: $secondary-color;
+       }
 }
 
 .health-page h2.heading {
@@ -276,7 +292,7 @@ h2.heading .title-action:hover {
 }
 
 .header.well {
-	border-top: 5px solid #25A9E0;
+	border-top: 5px solid $secondary-background-color;
 }
 
 #sec-actions .inline-tooltip {
@@ -319,7 +335,7 @@ body.compact {
 
 .area h4 {
 	font-weight: 200;
-	font-family: "Yanone Kaffeesatz", Arial, sans-serif;
+	font-family: $primary-font-stack;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	font-size: 3.5em;
@@ -339,7 +355,7 @@ body.hoshin .goals h3 {
 	font-size: 3em;
 	position: absolute;
 	left: -1.25em;
-	color: #fff;
+	color: $inverse-secondary-color;
 }
 
 body.hoshin.compact .goals h3 {
@@ -347,8 +363,8 @@ body.hoshin.compact .goals h3 {
 }
 
 body.hoshin div.goals {
-	background: #f8faff;
-	border-left: 5em solid #25A9E0;
+	background: $background-color;
+	border-left: 5em solid $secondary-background-color;
 	position: relative;
 }
 
@@ -357,7 +373,7 @@ body.hoshin ul.collection.goals {
 }
 
 body.hoshin ul.collection.goals .goal {
-	border: 1px solid #25A9E0;
+	border: 1px solid $secondary-background-color;
 	margin: 0;
 }
 
@@ -422,7 +438,7 @@ body.hoshin .content-body .user-image {
 	height: 29px;
 	max-width: 29px;
 	line-height: 29px;
-	color: #fff;
+	color: $inverse-secondary-color;
 }
 
 body.hoshin .form-horizontal {
@@ -565,7 +581,7 @@ span.arrow {
 
 a.tpc {
 	&, &:hover, &:visited, &:active {
-		color: #2f4154;
+		color: $primary-color
 	}
 }
 
@@ -601,7 +617,7 @@ body .well {
 	border-radius: 4px;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
-	background: #f8faff;
+	background: $background-color;
 	text-align: left;
 	border: 0;
 }
@@ -612,7 +628,7 @@ body.compact .well {
 
 body.compact .column {
 	padding-right: 5px;
-	font-size: 0.9em;
+	font-size: 0.95em;
 }
 
 body.compact button.btn.fa-check {
@@ -647,7 +663,7 @@ body .navbar-inner {
 	-moz-box-shadow: none;
 	-ms-box-shadow: none;
 	box-shadow: none;
-        background: #2f4154;
+        background: $inverse-background-color;
 	border: 0;
 }
 
@@ -692,8 +708,8 @@ body .form-search input:focus {
 }
 
 .areas .card.area .header {
-	background-color: #25A9E0;
-	color: #fff;
+	background-color: $secondary-background-color;
+	color: $inverse-secondary-color;
 	padding: 1em 1em 1em 1.7em;
 }
 
@@ -702,7 +718,7 @@ body .form-search input:focus {
 }
 
 .areas .card.area .header a {
-	color: #fff;
+	color: $inverse-secondary-color;
 }
 
 .areas .card.area .body {
@@ -716,7 +732,7 @@ body .form-search input:focus {
 
 .areas li .card.area {
 	margin-right: 1em;
-	border-top: 4px solid #25A9E0;
+	border-top: 4px solid $secondary-background-color;
 }
 
 .compact .areas li .card.area {
@@ -843,11 +859,11 @@ button.hoshin-tasks.link {
 }
 
 a, a:hover, a:active, a:visited {
-	color: #25A9E0;
+	color: $secondary-color-darker;
 }
 
 .btn {
-  color: #2f4154;
+  color: $primary-color;
   background-color: #f5f5f5;
   text-shadow: none;
   background-image: none;
@@ -862,7 +878,7 @@ a, a:hover, a:active, a:visited {
 .btn:active,
 .btn.active,
 .open .dropdown-toggle.btn {
-  color: #2f4154;
+  color: $primary-color;
   background-color: #fff;
   border-color: #f5f5f5;
 }
@@ -893,7 +909,7 @@ fieldset[disabled] .btn.active {
 
 .btn-primary, .btn-primary:link, .btn-primary:visited  {
   color: #ffffff;
-  background-color: #25A9E0;
+  background-color: $secondary-background-color;
 }
 
 .btn-primary:hover,
@@ -926,8 +942,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #25A9E0;
-  border-color: #25A9E0;
+  background-color: $secondary-background-color;
+  border-color: $secondary-background-color;
 }
 
 .btn-danger, .btn-danger:active, .btn-danger:hover, .btn-danger:visited, .btn-danger:focus {
@@ -957,7 +973,7 @@ fieldset[disabled] .btn-primary.active {
 	vertical-align: middle;
 	background-color: #e5f6fd;
 	border-radius: 5px;
-	box-shadow: 0px 0px 3px #25A9E0;
+	box-shadow: 0px 0px 3px $secondary-background-color;
 	padding: 1em;
 	width: 200px;
 	left: 1em;
@@ -1036,7 +1052,7 @@ form.hoshin textarea.hoshin-header {
 acronym.user-image {
 	height: 2em;
 	width: 2em;
-	color: #fff;
+	color: $inverse-secondary-color;
 	font-weight: 200;
 	text-align: center;
 	line-height: 2em;
@@ -1142,7 +1158,7 @@ form#delete-history, form#delete-history input {
 	font-size: 1.1em;
 	font-weight: 400;
 	text-shadow: none;
-	color: #939daa;
+	color: $tertiary-color;
 	padding: 10px 12px 10px;
 }
 
@@ -1150,32 +1166,32 @@ form#delete-history, form#delete-history input {
 .navbar .nav li.dropdown > a:visited .caret, 
 .navbar .nav li.dropdown > a:active .caret, 
 .navbar .nav li.dropdown > a:focus .caret {
-	border-top-color: #939daa;
-	border-bottom-color: #939daa;
+	border-top-color: $tertiary-color;
+	border-bottom-color: $tertiary-color;
 }
 
 .navbar .nav li.dropdown > a:hover .caret {
-	border-top-color: #25A9E0;
-	border-bottom-color: #25A9E0;
+	border-top-color: $secondary-color-darker;
+	border-bottom-color: $secondary-color-darker;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
-	border-top-color: #fff;
-	border-bottom-color: #fff;
+	border-top-color: $inverse-secondary-color;
+	border-bottom-color: $inverse-secondary-color;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-	background-color: #25A9E0;
+	background-color: $secondary-background-color;
 	color: #ffffff;
 }
 
 .navbar .nav > li > a:focus {
-	color: #939daa;
+	color: $tertiary-color;
 	outline: none;
 }
 
 .navbar .nav > li > a:hover {
-	color: #25A9E0;
+	color: $secondary-color-darker;
 	outline: none;
 }
 
@@ -1188,8 +1204,8 @@ form#delete-history, form#delete-history input {
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
-	background-color: #25A9E0;
-	color: #fff;
+	background-color: $secondary-background-color;
+	color: $inverse-secondary-color;
 	background-image: none;
 }
 
@@ -1200,7 +1216,7 @@ form#delete-history, form#delete-history input {
 }
 
 .dropdown-menu .divider {
-	background-color: #2f4154;
+	background-color: $inverse-background-color;
 	height: 2px;
 	margin-left: -4px;
 	margin-right: -4px;
@@ -1211,7 +1227,7 @@ form#delete-history, form#delete-history input {
 	content: "\f067";
 	margin-left: -0.7em;
 	font-size: .6em;
-	text-shadow: -1.5px -1.5px 0 #f8faff, 0.5px -1.5px 0 #f8faff, -1.5px 1.5px 0 #f8faff, 1.5px 1.5px 0 #f8faff;
+	text-shadow: -1.5px -1.5px 0 $inverse-primary-color, 0.5px -1.5px 0 $inverse-primary-color, -1.5px 1.5px 0 $inverse-primary-color, 1.5px 1.5px 0 $inverse-primary-color;
 }
 
 .hoshin-tasks span {
@@ -1264,7 +1280,7 @@ box-shadow: none;
 	border-color: #eff2f7;
 	font-size: 13px;
 	font-weight: 400;
-	background: #f8faff;
+	background: $background-color;
 	text-transform: uppercase;
 	padding: 15px;
 }
@@ -1338,7 +1354,7 @@ ul.timeline li.highlight {
   float: none;
   clear: both;
   width: auto;
-  border: 5px solid #fff;
+  border: 5px solid $inverse-secondary-color;
 }
 
 /* arrow */
@@ -1385,7 +1401,7 @@ ul.timeline li:after {
   left: -27px;
   width: 8px;
   height: 8px;
-  border: 3px solid #fff;
+  border: 3px solid $inverse-secondary-color;
   border-radius: 100%;
   background-color: #ccc;
   transition: .2s;
@@ -1470,11 +1486,11 @@ ul.timeline li.highlight:hover:after {
 	background: rgba(78,144,254,.7);
 	text-align: center;
 	width: 100%;
-	color: #fff;
+	color: $inverse-secondary-color;
 }
 
 .user .edit-image a {
-	color: #fff;
+	color: $inverse-secondary-color;
 }
 
 .user .edit-image .user-image img {
@@ -1539,7 +1555,7 @@ form.indicator-value input[type=radio] {
 .timer {
 	position: relative;
 	display: inline-block;
-	background: #f8faff;
+	background: $background-color;
 	font-size: 1.8em;
 	width: 1em;
 	height: 1em;
@@ -1698,7 +1714,7 @@ form.indicator-value input[type=radio] {
 
 .kb-color a {
 	font-size: 1.1em;
-	color: #2f4154;
+	color: $primary-color
 }
 
 .kb-frame .connected-sortable-wrapper {
@@ -1891,7 +1907,7 @@ body .center-block {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #2f4154;
+  background-color: $inverse-background-color;
 }
 
 .footer-links {
@@ -1902,11 +1918,11 @@ body .center-block {
 }
 
 .footer-links a, .footer-links a:hover, .footer-links a:visited, .footer-links a:link {
-	color: #f8faff;
+	color: $inverse-primary-color;
 }
 
 .footer-links a:active {
-	color: #fff;
+	color: $inverse-secondary-color;
 }
 
 .footer-links li {
