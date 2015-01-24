@@ -76,8 +76,8 @@ class Objective < ActiveRecord::Base
   
   after_update do |obj|
     if obj.area_id_changed?
-      obj.indicators.update_all(:area_id => area_id) unless obj.indicators.blank?
-      obj.tasks.update_all(:area_id => area_id) unless obj.tasks.blank?
+      Indicator.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.indicators.blank?
+      Task.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.tasks.blank?
     end
   end
   
