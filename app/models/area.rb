@@ -54,9 +54,9 @@ class Area < ActiveRecord::Base
   
   after_update do |area|
     if area.hoshin_id_changed?
-      area.objectives.update_all(:hoshin_id => hoshin_id)
-      area.indicators.update_all(:hoshin_id => hoshin_id)
-      area.tasks.update_all(:hoshin_id => hoshin_id)
+      Objective.update_all({:hoshin_id => hoshin_id}, {:area_id => id})
+      Indicator.update_all({:hoshin_id => hoshin_id}, {:area_id => id})
+      Task.update_all({:hoshin_id => hoshin_id}, {:area_id => id})
     end
   end
   
