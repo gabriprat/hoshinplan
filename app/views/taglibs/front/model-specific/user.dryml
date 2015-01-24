@@ -2,7 +2,7 @@
 	<% 
 	comp = Company.current_id ? Company.current_company : nil
 	if !this.nil?
-		value ||= this.name + " (" + this.email_address + ")" 
+		value ||= (this.name.nil? ? "" : this.name) + " (" + this.email_address + ")" 
 	else
 		value ||= ""
 	end
