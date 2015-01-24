@@ -184,7 +184,7 @@ html body.presenting input {
 body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong,  body .navbar a.brand span {
 	font-family: $primary-font-stack;
 	font-size: 35px;
-	color: $secondary-color;
+	color: $inverse-secondary-color;
 	margin: 0;
 	text-shadow: none;
 	
@@ -195,7 +195,7 @@ body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong
 }
 
 body .navbar .brand:hover, body .navbar .brand:hover strong, body .navbar .brand:hover span {
-	color: $secondary-color-darker;
+	color: $secondary-color;
 }
 
 body.show-page, body.index-page {
