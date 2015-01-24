@@ -1171,8 +1171,8 @@ form#delete-history, form#delete-history input {
 }
 
 .navbar .nav li.dropdown > a:hover .caret {
-	border-top-color: $secondary-color-darker;
-	border-bottom-color: $secondary-color-darker;
+	border-top-color: $inverse-secondary-color;
+	border-bottom-color: $inverse-secondary-color;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
@@ -1191,7 +1191,7 @@ form#delete-history, form#delete-history input {
 }
 
 .navbar .nav > li > a:hover {
-	color: $secondary-color-darker;
+	color: $inverse-secondary-color;
 	outline: none;
 }
 
