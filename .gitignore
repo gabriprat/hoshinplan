@@ -21,3 +21,8 @@ vendor
 
 backup_and_restore.sh
 *.dump
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
