@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.0.0", :engine => 'jruby', :engine_version => '1.7.18'
 
 gem 'rails', '4.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+gem 'activerecord-jdbcpostgresql-adapter'
 
 gem 'json'
 
@@ -36,7 +36,9 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
+gem 'puma'
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -82,12 +84,10 @@ gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
 gem 'murmurhash3'
 gem 'heroku-deflater', :group => :production
-gem 'rainbows'
-gem 'em-http-request'
+gem 'excon'
 gem "faraday"
 gem "protected_attributes"
 gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'font_assets'
-gem 'ruby-prof', :group => :development
 #gem 'dryml-firemarker', :require => 'dryml13-firemarker', :group => :development
