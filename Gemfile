@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby "2.0.0", :engine => 'jruby', :engine_version => '1.7.18'
+ruby "2.2.0"
 
 gem 'rails', '4.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'activerecord-jdbcpostgresql-adapter'
+gem 'pg'
 
 gem 'json'
 
