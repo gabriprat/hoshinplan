@@ -24,7 +24,7 @@ module CmsHelper
       logger.debug "==================calling cms: #{key}" 
       res = ""
       conn = Faraday.new 'http://doc.hoshinplan.com' do |con|
-          con.adapter :em_http
+          con.adapter :typhoeus
       end
       resp = conn.get '/' + key
       resp.on_complete {

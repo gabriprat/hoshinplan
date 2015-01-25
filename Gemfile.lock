@@ -26,6 +26,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     RedCloth (4.2.9)
+    RedCloth (4.2.9-java)
     actionmailer (4.0.10)
       actionpack (= 4.0.10)
       mail (~> 2.5, >= 2.5.4)
@@ -49,6 +50,11 @@ GEM
       activesupport (= 4.0.10)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-jdbc-adapter (1.3.13)
+      activerecord (>= 2.2)
+    activerecord-jdbcpostgresql-adapter (1.3.13)
+      activerecord-jdbc-adapter (~> 1.3.13)
+      jdbc-postgres (>= 9.1)
     activesupport (4.0.10)
       i18n (~> 0.6, >= 0.6.9)
       minitest (~> 4.2)
@@ -59,9 +65,9 @@ GEM
       activerecord (>= 3.0)
     addressable (2.3.6)
     arel (4.0.2)
-    aws-sdk (1.60.2)
-      aws-sdk-v1 (= 1.60.2)
-    aws-sdk-v1 (1.60.2)
+    aws-sdk (1.61.0)
+      aws-sdk-v1 (= 1.61.0)
+    aws-sdk-v1 (1.61.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bitmask_attributes (1.0.0)
@@ -85,7 +91,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    cookiejar (0.3.2)
     css_parser (1.3.5)
       addressable
     dalli (2.7.2)
@@ -101,18 +106,10 @@ GEM
     dryml (2.1.1)
       actionpack (~> 4.0.2)
       hobo_support (= 2.1.1)
-    em-http-request (1.1.2)
-      addressable (>= 2.3.4)
-      cookiejar
-      em-socksify (>= 0.3)
-      eventmachine (>= 1.0.3)
-      http_parser.rb (>= 0.6.0)
-    em-socksify (0.3.0)
-      eventmachine (>= 1.0.0.beta.4)
     erubis (2.7.0)
-    eventmachine (1.0.4)
+    excon (0.43.0)
     execjs (2.2.2)
-    faraday (0.9.0)
+    faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     font-awesome-sass (4.2.2)
       sass (~> 3.2)
@@ -151,25 +148,25 @@ GEM
     hobo_will_paginate-bootstrap (1.0.0)
       hobo_will_paginate
     htmlentities (4.3.3)
-    http_parser.rb (0.6.0)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    jdbc-postgres (9.3.1102)
     jquery-rails (2.3.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-themes (0.0.11)
       httparty
-    json (1.8.1)
-    jwt (1.2.0)
-    kgio (2.9.2)
+    json (1.8.2)
+    json (1.8.2-java)
+    jwt (1.2.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     memcache-client (1.8.5)
     memcachier (0.0.2)
     mime-types (2.4.3)
-    mini_portile (0.6.1)
+    mini_portile (0.6.2)
     minitest (4.7.5)
     morrisjs-rails (0.5.1)
       railties (> 3.1, < 5)
@@ -177,11 +174,13 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     murmurhash3 (0.1.6)
+    murmurhash3 (0.1.6-java)
     nested_has_many_through (0.0.2)
       rails (>= 3.0.0)
-    newrelic_rpm (3.9.8.273)
-    nokogiri (1.6.5)
+    newrelic_rpm (3.9.9.275)
+    nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    nokogiri (1.6.6.2-java)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -207,19 +206,22 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    pg (0.17.1)
     premailer (1.8.2)
       css_parser (>= 1.3.5)
       htmlentities (>= 4.0.0)
     protected_attributes (1.0.8)
       activemodel (>= 4.0.1, < 5.0)
+    puma (2.11.0)
+      rack (>= 1.1, < 2.0)
+    puma (2.11.0-java)
+      rack (>= 1.1, < 2.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-openid (1.3.1)
       rack (>= 1.1.0)
       ruby-openid (>= 2.1.8)
-    rack-test (0.6.2)
+    rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.0.10)
       actionmailer (= 4.0.10)
@@ -241,18 +243,12 @@ GEM
       activesupport (= 4.0.10)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rainbows (4.6.2)
-      kgio (~> 2.5)
-      rack (~> 1.1)
-      unicorn (~> 4.8)
-    raindrops (0.13.0)
     rake (10.4.2)
     raphaeljs-rails (2.1.2)
       railties
     request_store (1.1.0)
     ruby-openid (2.6.0)
-    ruby-prof (0.15.2)
-    sass (3.4.9)
+    sass (3.4.10)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -264,33 +260,32 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.2.2)
+    sprockets-rails (2.2.4)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     thor (0.19.1)
     thread_safe (0.3.4)
+    thread_safe (0.3.4-java)
     tilt (1.4.1)
     tzinfo (0.3.42)
-    uglifier (2.6.0)
+    uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.8.3)
-      kgio (~> 2.6)
-      rack
-      raindrops (~> 0.7)
     wicked_pdf (0.11.0)
       rails
     wkhtmltopdf-binary (0.9.9.3)
     yui-compressor (0.12.0)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
   RedCloth
   actionmailer_inline_css
   active_record_query_trace
+  activerecord-jdbcpostgresql-adapter
   acts_as_list
   aws-sdk
   bitmask_attributes
@@ -300,7 +295,7 @@ DEPENDENCIES
   delayed_job_active_record
   delocalize
   detect_timezone_rails
-  em-http-request
+  excon
   faraday
   font-awesome-sass
   font_assets
@@ -325,19 +320,16 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-openid
   paperclip
-  pg
   protected_attributes
+  puma
   quiet_assets
   rails (= 4.0.10)
   rails-observers
   rails_12factor
-  rainbows
   raphaeljs-rails
   request_store
-  ruby-prof
   sass-rails
   uglifier (>= 1.3.0)
-  unicorn
   wicked_pdf
   wkhtmltopdf-binary
   yui-compressor
