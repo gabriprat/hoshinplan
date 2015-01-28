@@ -73,11 +73,16 @@ class User < ActiveRecord::Base
   end
   
   before_save do |user| 
+    user.email_address.downcase!
     if user.color.nil? && !name.nil?
       user.color = hexFromString(name)
     end
   end
-      
+    
+  def self.find_by_email_address(email)
+    User.find(:all, :conditions => ["email_address = lower(?)", email]).first
+  end
+  
   default_scope lambda { 
     where(:id => UserCompany.select(:user_id)
       .where('company_id=?',  
