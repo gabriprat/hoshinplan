@@ -107,11 +107,11 @@ class Hoshin < ActiveRecord::Base
   after_update do |hoshin|
     if hoshin.company_id_changed?
       IndicatorHistory.joins(:indicator).where(:indicators => {:hoshin_id => id}).update_all(:company_id => company_id)
-      hoshin.indicators.update_all(:company_id => company_id)
-      hoshin.tasks.update_all(:company_id => company_id)
-      hoshin.objectives.update_all(:company_id => company_id)
-      hoshin.areas.update_all(:company_id => company_id)
-      hoshin.goals.update_all(:company_id => company_id)
+      Indicator.update_all({:company_id => company_id},{:hoshin_id => id})
+      hoshin.tasks.update_all({:company_id => company_id},{:hoshin_id => id})
+      hoshin.objectives.update_all({:company_id => company_id},{:hoshin_id => id})
+      hoshin.areas.update_all({:company_id => company_id},{:hoshin_id => id})
+      hoshin.goals.update_all({:company_id => company_id},{:hoshin_id => id})
     end
   end
   
