@@ -1073,6 +1073,10 @@ acronym.user-image {
 	min-width: 2em;
 }
 
+.compact .column[data-label=Goal] {
+	width: 3em;
+}
+
 .form-horizontal .simpleColorContainer, .horizontal .simpleColorContainer {
 	display: inline-block;
 }
