@@ -243,7 +243,7 @@ class FrontController < ApplicationController
   end
   
   def failure
-    msg = t("errors." + params[:message], :default => t("errors.unknown")) 
+    msg = t("errors." + params[:message].to_s, :default => t("errors.unknown")) 
     unless params[:error_reason].blank? 
       msg += " " + t("errors.provider_said", :default => "The message from your authentication provider was: ") + " " + params[:error_reason]
     end
