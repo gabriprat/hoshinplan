@@ -1,4 +1,4 @@
-<def tag="autosubmit" attrs="live, name">
+<def tag="autosubmit" attrs="live, name, debug">
 	<% 
 		attrs = attributes
 		attrs = add_classes(attrs, type_id.dasherize, type_and_field.dasherize) unless type_id.nil? || type_and_field.nil?

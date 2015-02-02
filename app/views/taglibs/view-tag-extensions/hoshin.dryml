@@ -2,5 +2,5 @@
 	<% 
 		hoshin = Company.current_company.all_hoshins[this.to_i] unless Company.current_company.nil?
 	%>
-	<a with="&hoshin"/>
+	<a with="&hoshin" title="&hoshin.name" merge/>
 </def>

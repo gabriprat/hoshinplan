@@ -5,8 +5,19 @@
    	</div>
  	<script type="text/javascript"> document.getElementById("task_#{this.id}").innerHTML=document.getElementById("objective_#{this.parent_objective_id}_position").innerHTML;</script>
   </div>
-  <div class="column" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal> (<hoshin-link:hoshin_id />) - <user-abbrev:responsible_id paren/></div>
-  <div class="column" data-label="Deadline">#{l this.deadline, format: :short}</div>
+  <div class="column" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal> <hoshin-link:hoshin_id><span class="fa fa-level-up"/></hoshin-link> - <user-abbrev:responsible_id paren/></div>
+  <div class="column nowrap" data-label="Deadline">
+	  	<if test="#{this.status=='active' || this.status == 'backlog' ?'true':''}">
+			<autosubmit:deadline class="inline-form wider" updates="#tutorial,#sec-actions" live debug/>
+		</if>
+		<else>
+			#{l this.deadline, format: :short}
+		</else>
+  </div>
   <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
 </scard>
+</def>
+
+<def tag="form" for="ChildTask">
+	<form with="&this.becomes(Task)" merge/>
 </def>

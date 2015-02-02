@@ -315,11 +315,11 @@ es:
   rtable:
     column:
       Id: ! '#'
-      Objective: Objetivo
+      Objective: Obj.
       KPI: Indicador
       Responsible: Resp.
       Value: Valor
-      Goal: Objetivo
+      Goal: Obj.
       Deadline: Venc.
       Dev: Des.
       Status: Acciones
