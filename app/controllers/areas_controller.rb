@@ -2,7 +2,7 @@ class AreasController < ApplicationController
 
   hobo_model_controller
 
-  auto_actions :all, :except => [:new]
+  auto_actions :all, :except => [:new, :index]
   
   show_action :charts
   

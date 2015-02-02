@@ -5,7 +5,7 @@
    	</div>
  	<script type="text/javascript"> document.getElementById("task_#{this.id}").innerHTML=document.getElementById("objective_#{this.parent_objective_id}_position").innerHTML;</script>
   </div>
-  <div class="column" data-label="Name"><name/> (<hoshin-link:hoshin_id />) - <user-abbrev:responsible_id paren/></div>
+  <div class="column" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal> (<hoshin-link:hoshin_id />) - <user-abbrev:responsible_id paren/></div>
   <div class="column" data-label="Deadline">#{l this.deadline, format: :short}</div>
   <div class="column #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
 </scard>

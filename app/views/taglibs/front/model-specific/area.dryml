@@ -63,8 +63,10 @@
 	<div class="modal hide" id="new-ind#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<rtable:indicators columns="#,KPI,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable if="&this.indicators"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
+	<div class="children" if="child_kpis">
 	<h6 if="child_kpis"><ht key="indicator.area.child_models" count="100">#{Indicator.model_name.human.pluralize} from children hoshin plans</ht></h6>
-	<rtable:child_kpis columns="#,KPI.,Value,Goal,%,Hoshin"/>
+	<rtable:child_kpis columns="#,KPI,Value,Goal,%"/>
+	</div>
 	</if>
 	</div>
 	<div class="tasks-wrapper">
@@ -74,8 +76,10 @@
 	<div class="modal hide" id="new-tsk#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();" if="&this.tasks"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
+	<div class="children" if="child_tasks">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
 	<rtable:child_tasks columns="#,Task,Deadline,Dev"/>
+	</div>
 	</if>
 	</div>
 	</swept-cache>

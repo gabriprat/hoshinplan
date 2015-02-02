@@ -143,6 +143,12 @@ html body .btn-big {
   margin: 0.25em 2em;
 }
 
+.compact .children {
+	h6, .table-head {
+		display: none;
+	}
+}
+
 .compact .navbar {
 	margin-bottom: 5px;
 }
