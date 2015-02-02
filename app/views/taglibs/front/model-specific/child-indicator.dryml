@@ -21,8 +21,7 @@
 	 </else>
   </div>
   <div class="column nowrap" data-label="Goal"><%= this.higher? ? "&ge;".html_safe : "&le;".html_safe %><view:goal human/></div>
-  <div class="column nowrap" data-label="Tpc"><span class="tpc"><color-tpc:tpc precision="1"/></span><span class="arrow #{this.trend} fa"></span>
-  </div>
+  <div class="column nowrap" data-label="Tpc"><a with="&this.becomes(Indicator)" action="history" class="tpc" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><color-tpc:tpc precision="0"/><span class="arrow #{this.trend} fa"></span></a></div>
 </scard>
 </def>
 

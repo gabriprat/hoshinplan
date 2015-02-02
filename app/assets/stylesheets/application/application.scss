@@ -557,12 +557,12 @@ body .span12 {
 
 .column span.tpc {
 	display: inline-block;
-	padding: 2px;
+	height: 100%;
 	width: 2.8em;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	vertical-align: middle;
+	vertical-align: bottom;
 	text-align: right;
 }
 
