@@ -73,7 +73,7 @@ class Area < ActiveRecord::Base
     tasks = Task
       .select("tasks.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
       .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true)
-      .where("status != 'deleted' and (status = 'active' or deadline>current_date-30)")
+      .where("status != 'deleted' and (status = 'active' or deadline>current_date-30)").reorder(:area_id, :tsk_pos)
     tasks.collect{ |t| t.becomes(ChildTask) }
   end
   
@@ -83,7 +83,7 @@ class Area < ActiveRecord::Base
     child_objectives = Objective.where(:parent_id => objectives.*.id)
     indicators = Indicator
       .select("indicators.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
-      .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true)
+      .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true).reorder(:area_id, :ind_pos)
     indicators.collect{ |t| t.becomes(ChildIndicator) }
   end
   
