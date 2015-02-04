@@ -1,7 +1,7 @@
 <set hidden-indicators="&[]"/>
 <repeat:indicators>
 	<if test="&this.show_on_charts">
-		<indicator-chart />
+		<indicator-chart-panel />
 	</if>
 	<else>
 		<% hidden_indicators = hidden_indicators << this %>
