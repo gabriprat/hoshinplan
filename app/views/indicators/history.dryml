@@ -5,18 +5,6 @@
 	</content-header:>
 	<custom-javascript:>
 	var data;
-        var dateFormatDefault = function(d) {
-		return dateFormat("<%= date_format_default.gsub('yyyy','yy') %>", d);
-        }
-        var numberFormat = function(num) {
-	    	if (num == null) {
-	    		return '';
-	    	} else {
-	    		var parts = num.toString().split(".");
-	    	    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, "#{t 'number.format.delimiter'}");
-	    	    	return parts.join("#{t 'number.format.separator'}");
-	    	}
-        }
 	$(document).ready(function () {
 		var txt = "";
 		data = $('#graph-line').data('chart').options.data;
@@ -80,19 +68,22 @@
 	    		<chart 
 	    			id="graph-line" 
 	    			type="line" 
-	    			data="&this.indicator_histories.select('day, value, goal, previous, id')" 
+	    			data="&this.indicator_histories.select('day, value, goal, previous, id, (value - previous) / previous * 100 as inc')" 
 	    			xkey="day"
-	    		  	ykeys="value,goal,previous"
+	    		  	ykeys="value,goal,previous,inc"
+				yaxes="y,y,y,y2"
 	    		  	labels="#{t 'value_goal_previous'}"
 				dateFormat="dateFormatDefault"
 				hoverCallback="hover"
 				style="position: relative;"
-				xLabels="day"
+				xLabels="month"
 				xLabelFormat="dateFormatDefault"
-				lineWidth="3,2,3"
+				lineWidth="3,2,3,1"
 				pointSize="0"
-				lineColors="#008f00,#b1c978,#ff7c00"
-				dashArrays=",-,"
+				lineColors="#008f00,#b1c978,#ff7c00,#999999"
+				trendLineColors="#008f00,#b1c978,#ff7c00,#999999"
+				yLabelFormat="ylabelformat"
+				dashArrays=",-,,-"
 				if="&this.indicator_histories"
 	    		/>
 		        </div>

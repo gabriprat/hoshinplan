@@ -149,15 +149,41 @@ $(document).ready(function() {
 	document.cookie = "tz=" + tz+";domain="+domain+"; path=/";
 });
 
-Morris.Line.prototype.drawLinePath = function(path, lineColor, lineIndex) {
-  return this.raphael.path(path).attr('stroke', lineColor).attr('stroke-width', this.lineWidthForSeries(lineIndex)).attr('stroke-dasharray', this.dashArrayForSeries(lineIndex));
+Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
+    var n = this,
+        decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+        decSeparator = decSeparator == undefined ? "." : decSeparator,
+        thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+        sign = n < 0 ? "-" : "",
+        i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+        j = (j = i.length) > 3 ? j % 3 : 0;
+    return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
 };
 
-Morris.Line.prototype.dashArrayForSeries = function(index) {
-  if (this.options.dashArrays instanceof Array) {
-    return this.options.dashArrays[index % this.options.dashArrays.length];
-  } else {
-    if (!this.options.dashArrays) this.options.dashArrays = "";
-    return this.options.dashArrays;
-  }
-};
+var numberFormat = function(num) {
+	var that = $(document);
+    	if (num == null) {
+    		return '';
+    	} else {
+    		var parts = num.toString().split(".");
+    	    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, "#{t 'number.format.delimiter'}");
+    	    	return parts.join(that.hjq('pageData').separator);
+    	}
+}
+
+var dateFormatDefault = function(d) {
+	var that = $(document);
+	return dateFormat(that.hjq('pageData').dateformat, d);
+}
+
+var ylabelformat = function(val, i) {
+	var ret = val;
+	var that = $(document);
+	if (ret == null) return ret;
+	if (i==3) {
+		ret  = numberFormat((ret.toFixed(2) * 1).toString()) + '%';
+	} else {
+		ret = ret.formatMoney(2, that.hjq('pageData').delimiter, that.hjq('pageData').separator);
+	}
+	return ret;
+}
