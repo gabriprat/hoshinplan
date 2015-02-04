@@ -23,6 +23,13 @@ GIT
       hobo (> 1.4.0.pre5)
 
 GIT
+  remote: git://github.com/ericallam/font_assets
+  revision: 457dcfddc4318e83679e9a0935612924b7717085
+  specs:
+    font_assets (0.1.11)
+      rack
+
+GIT
   remote: git://github.com/gabriprat/morrisjs-rails
   revision: 1801865eccbca0449a988c6cf8f776a9d9261f34
   specs:
@@ -121,8 +128,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-sass (4.3.1)
       sass (~> 3.2)
-    font_assets (0.1.11)
-      rack
     hashie (3.4.0)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
@@ -303,7 +308,7 @@ DEPENDENCIES
   excon
   faraday
   font-awesome-sass
-  font_assets
+  font_assets!
   heroku-deflater
   hobo
   hobo_bootstrap
