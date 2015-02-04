@@ -173,7 +173,7 @@ var numberFormat = function(num) {
 
 var dateFormatDefault = function(d) {
 	var that = $(document);
-	return dateFormat(that.hjq('pageData').dateformat, d);
+	return dateFormat(that.hjq('pageData').dateformat.replace('yyyy','yy'), d);
 }
 
 var ylabelformat = function(val, i) {
