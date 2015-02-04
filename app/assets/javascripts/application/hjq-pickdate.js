@@ -1,20 +1,20 @@
 /* pickdate */
 (function($) {
+    var languages = { 'es' : {
+	    monthsFull: [ 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre' ],
+	    monthsShort: [ 'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic' ],
+	    weekdaysFull: [ 'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
+	    weekdaysShort: [ 'dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb' ],
+	    today: 'hoy',
+	    clear: 'borrar',
+	    firstDay: 1
+    }, 'en' : {}};
     var methods = {
         init: function(annotations) {
 		var that=$(this);
 		var language = that.data("date-language");
 		var weekstart = that.data("date-week-start");
 		var format = that.data("date-format");
-		var languages = { 'es' : {
-		    monthsFull: [ 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre' ],
-		    monthsShort: [ 'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic' ],
-		    weekdaysFull: [ 'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
-		    weekdaysShort: [ 'dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb' ],
-		    today: 'hoy',
-		    clear: 'borrar',
-		    firstDay: 1
-		}, 'en' : {}};
 		var settings = languages[language];
 		var options = {
 			format: format.replace("/yyyy",""),
@@ -31,6 +31,9 @@
 	triggerChange: function(context) {
 		this.$node.trigger("changeDate");
 		console.log("Trigger changeDate");
+	},
+	languages: function() {
+		return languages;
 	}
     };
 
