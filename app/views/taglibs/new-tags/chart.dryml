@@ -17,9 +17,14 @@
 	ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
 	morris_attrs, html_attrs = html_attrs.partition_hash(morris_attributes)
 	morris_attrs['element'] = id
-	['ykeys','labels','lineColors','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors', 'lineWidth','dashArrays','yaxes','trendLineColors'].each { |att| 
+	['ykeys','labels','lineColors','pointSize','pointFillColors','pointStrokeColors','goals','goalLineColors','events','eventLineColors', 'lineWidth','dashArrays','yaxes','trendLineColors'].each { |att| 
 		if morris_attrs[att].is_a? String
 			morris_attrs[att] = morris_attrs[att].split(',')
+			if (['pointSize', 'lineWidth'].include?(att)) 
+				morris_attrs[att].each_with_index { |x, ind| 
+					morris_attrs[att][ind] = morris_attrs[att][ind].to_i unless morris_attrs[att][ind].nil?
+				}
+			end
 		end
 	}
 	add_data_rapid!(html_attrs, "chart", :morris_attrs => morris_attrs, :ajax_attrs => ajax_attrs, :type=> type)
