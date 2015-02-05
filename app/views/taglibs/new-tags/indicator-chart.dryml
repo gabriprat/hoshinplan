@@ -3,7 +3,7 @@
 	        <header class="panel-heading">
 			<color-tpc:tpc precision="1" style="display:inline;">
 				<default: replace>
-					<a action="history" with="&this_parent"/>(<default restore/>)
+					<a with="&this.becomes(Indicator)" action="history" with="&this_parent"/> (<default restore/>)
 				</default:>
 			</color-tpc:tpc>
 			<form ajax success="$('#chart-panel#{this.id}').hide()">
