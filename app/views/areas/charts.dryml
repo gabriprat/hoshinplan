@@ -7,6 +7,14 @@
 		<% hidden_indicators = hidden_indicators << this %>
 	</else>
 </repeat>
+<repeat:child_kpis>
+	<if test="&this.show_on_charts">
+		<indicator-chart-panel />
+	</if>
+	<else>
+		<% hidden_indicators = hidden_indicators << this %>
+	</else>
+</repeat>
 <a href="#add-chart-modal#{this.id}" data-toggle='modal' class="add-chart fa fa-plus-square-o" unless="&hidden_indicators.empty?"></a>
 <modal id="add-chart-modal#{this.id}">
 	<modal:>
