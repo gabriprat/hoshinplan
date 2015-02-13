@@ -18,7 +18,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def invite(user_company, company, key, invitor)
-    mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company), 
+    mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
           :to      => user_company.user.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
               format.html {    
@@ -30,12 +30,12 @@ class UserCompanyMailer < ActionMailer::Base
   end
  
   def transition(user, user2, company, email_key)
-    mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.empty? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
           :to      => user.email_address) do |format|
               format.html {    
                 render_email("transition", 
                   {:user => user, :app_name => @app_name, 
-                    :message => I18n.translate("emails." + email_key + ".message", :user => user.name.empty? ? user.email_address : user.name, :user2 => user2.name.empty? ? user2.email_address : user2.name, :company => company.name).html_safe})          
+                    :message => I18n.translate("emails." + email_key + ".message", :user => user.name.blank? ? user.email_address : user.name, :user2 => user2.name.blank? ? user2.email_address : user2.name, :company => company.name).html_safe})          
               }
     end
   end
@@ -66,7 +66,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def welcome(user)
-    mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.empty? ? user.email_address : user.name), 
+    mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
           :to      => user.email_address) do |format|
             format.html {
               render_email("welcome", 
