@@ -68,7 +68,8 @@
 	    		<chart 
 	    			id="graph-line" 
 	    			type="line" 
-	    			data="&this.indicator_histories.select('day, value, goal, previous, id, (value - previous) / previous * 100 as inc')" 
+				data="&this.indicator_histories.map{|i| {id: i.id, day: i.indicator.frequency == 'quarterly' ? i.day.beginning_of_quarter : i.indicator.frequency == 'monthly' ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}" 
+	    			
 	    			xkey="day"
 	    		  	ykeys="value,goal,previous,inc"
 				yaxes="y,y,y,y2"
