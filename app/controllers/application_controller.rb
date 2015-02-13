@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
-               ::NewRelic::Agent.add_custom_parameters({ user_id: Company.current_id }) unless Company.current_id.nil?
+               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                yield
                #rescue ActiveRecord::RecordInvalid => invalid
                 # fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
