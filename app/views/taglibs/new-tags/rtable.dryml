@@ -1,4 +1,4 @@
-<def tag="rtable" attrs="columns, sortable, limit, success">
+<def tag="rtable" attrs="columns, sortable, limit">
 	<% columns ||= "" ; columns = comma_split(columns) -%>
 	<% sortable ||= false %>
 	<% tag = sortable ? "sortable-collection" : "collection" %>
@@ -6,6 +6,7 @@
 	<% count = this.nil? ? 0 : this.size %>
 	<% items = params[:show_all] || limit == 0 ? this : this.first(limit); items.member_class = this.member_class %>
 	<% more = !params[:show_all] && limit > 0 && count > limit %>
+	<% body, html_attrs, ajax_attrs, form_attrs = form_helper(attributes, parameters) %>
 	<div class="table" merge-attrs merge-params if='&count > 0'>
 		<ul class="table-head">
 			<li class="table-row">
