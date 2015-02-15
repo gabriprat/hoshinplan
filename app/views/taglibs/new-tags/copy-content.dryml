@@ -1,0 +1,6 @@
+<def tag="copy-content" attrs="tag, source">
+   <% tag ||= "div" 
+      add_data_rapid!(attributes, "copy-content", :source => source)
+   %>
+    <call-tag tag="&tag" param="default" merge/>
+</def>
