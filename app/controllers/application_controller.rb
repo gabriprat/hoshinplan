@@ -119,7 +119,8 @@ class ApplicationController < ActionController::Base
   
   def set_locale
     begin
-      I18n.locale = params[:locale] || extract_locale_from_subdomain || I18n.default_locale
+      I18n.locale = params[:locale] || extract_locale_from_subdomain || User.current_user.locale || I18n.default_locale
+      logger.debug locale.to_yaml
     rescue I18n::InvalidLocale
       flash[:error] =  t("errors.invalid_locale", :default => "Invalid locale.")
     end

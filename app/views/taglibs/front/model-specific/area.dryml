@@ -6,7 +6,7 @@
     </header:>
     <body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}" class="area-part">
-	<swept-cache route-on suffix="view" path="&request.fullpath" area="#{this.id}" canview="&can_view?">
+	<swept-cache route-on suffix="view" path="&request.fullpath" locale="#{I18n.locale}" area="#{this.id}" canview="&can_view?">
 	<modal id="update-area-modal-#{this.id}">
 	<modal:>
 		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
