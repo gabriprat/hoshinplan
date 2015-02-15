@@ -1,27 +1,3 @@
-# Even if you only support one language, you can use this file to customise the names that appear in the UI
-# e.g.
-
-en:
-#  attributes:
-#    created_at: Created at
-#    updated_at: Updated at
-#
-#  activerecord:
-#    models:
-#      user:
-#        one: User
-#        other: Users
-#    attributes:
-#      user:
-#        name: Name
-#        password: Password
-#        current_password: Current Password
-#        password_confirmation: Password Confirmation
-#        email_address: Email Address
-#    attribute_help:
-#      user:
-#        email_address: We will never share your address with third parties
-
 en:
   loading: Loading...
   new: NEW
@@ -49,7 +25,7 @@ en:
       gabri_and_anna: Gabri and Anna
       founders: Founders
     invited_welcome:
-      subject: '%{name}, ¡Bienvenido a Hoshinplan!'
+      subject: '%{name}, ¡Welcome to Hoshinplan!'
       title: Welcome to Hoshinplan.com
       message: 'You have accepted an invitation and are ready to use Hosninplan. Once in the application you will see a "Tutorial" tab, there you have information on how to use the application. If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
       gabri_and_anna: Gabri and Anna
@@ -71,6 +47,7 @@ en:
     removed:
       subject: Collaboration canceled
       message: '%{user2} has canceled your collaboration to the Hoshinplan of  %{company}.'
+  show_all: Mostrar todo...
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Click to edit&gt;'
@@ -79,7 +56,10 @@ en:
     export_as_pdf: Export as PDF
     charts: KPI charts
     compact: Expanded or compact view
-  errors:
+  no_oid_url: No corporate login for the given email
+  errors: 
+    permission_denied: Permission denied
+    parent_hoshin_same_company: Parent hoshin must be from the same company
     row_invalid_length: 'The row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remind that %{sep} is expected to separate columns.'
     date_format_error: 'The row %{row} contains an invalid date. The date "%{found}" does not follow the expected format "%{expected}".'
     value_format_error: 'The row %{row} contains an incorrect value "%{found}".'
@@ -88,6 +68,37 @@ en:
     invalid_credentials: 'The credentials you used were not valid.'
     provider_said: 'The message from your authentication provider was: '
     unknown: 'Unknown error.'
+    invalid_locale: Invalid language.
+  hobo:
+    area:
+      child_models: '%{model} from children hoshin plans'
+    actions:
+      submit: Submit
+    dashboard:  
+      no_kpis: "You don't have any %{model} to update"
+      no_tasks: "You don't have any %{model} with a close due date"
+    hoshin:
+      neglected_objectives: You have %{neglected}/%{count} %{model} with low %{kpi} and no active %{task}.
+      blind_objectives: You have %{blind}/%{count} %{objective} without %{kpi}.
+      outdated_model: You have %{outdated}/%{count} outdated %{model}.
+    health:
+      blind_objectives: "%{model} wihtout %{kpi}"
+      neglected_objectives: "%{model} with %{kpi} under 100% and no active %{task}"
+      overdue_model: "Overdue %{model}"
+    accept:
+      heading: Accept invitation
+      body: By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}.
+  user_company:
+    that_operation_is: This operation is not allowed
+    the_invitation: The invitation you are trying to accept was sent to a different user. Please log with the user the invitation was sent to.
+    the_provided_key: The provided invitation is not valid. It can only be used once. Please ask the person that invited you to resend the invitation.
+    collection:
+      heading: Users
+      
+  attributes:
+    created_at: Created at
+    updated_at: Updated at
+
   activerecord:
     errors:
       models:
@@ -111,29 +122,212 @@ en:
           other: '%{count} errors prevented this #{model} to be saved'
         body: 'There have been problems with the following fields:'
     models:
+      user:
+        one: User
+        other: Users
+      company:
+        one: Company
+        other: Companies
+      area:
+        one: Area
+        other: Areas
+      objective:
+        one: Objective
+        other: Objectives
+      indicator:
+        one: Indicator
+        other: Indicators
+      task:
+        one: Task
+        other: Tasks
       goal:
         one: Long term goal
         other: Long term goals
-    attributes:
-      indicator:
-        goal: 100% value
-        worst_value: 0% value
+      client_application:
+        one: Client application
+        other: Client applications
       hoshin:
-        creator: Responsible
+        one: Hoshin
+        other: Hoshins
+    attributes:
+      user:
+        name: Name
+        password: Password
+        current_password: Current password
+        password_confirmation: Password confirmation
+        email_address: Email address
+        image: Image
+        state: Status
+        language: Language
+        timezone: Timezone
       user/languages:
         es: Español (España)
         en: English (US)
+      objective:
+        name: Name
+        description: Description
+        responsible: Responsible
+        parent: Parent
+      company:
+        name: Name
+        Company: Company
+        actions: Actions
+      hoshin:
+        name: Name
+        header: Header
+        parent: Parent
+        company: Company
+        creator: Responsible
+      goal:
+        name: Name
+      area:
+        name: Name
+        description: Description
+      indicator:
+        name: Name
+        description: Description
+        frequency: Frequency
+        next_update: Next update
+        responsible: Responsible
+        goal: 100% value
+        min_value: Minimum value
+        max_value: Maximum value
+        worst_value: 0% value
+        higher: Better if higher
+        value: Value
+        reminder: Reminder
+        objective: Objective
+      indicator/frequencys:
+        weekly: Weekly
+        monthly: Monthly
+        quarterly: Quarterly	      
+      task:
+        name: Name
+        description: Description
+        responsible: Responsible
+        deadline: DL
+        show_on_parent: Show on parent
+        reminder: Reminder
+        objective: Objective
+        lifecycle:
+          transitions:
+            discard: Discard
+            complete: Complete
+            start: Start
+            reactivate: Reactivate
+            delete: Delete
+      user_company:
+        user: User
+        state: Status
+        lifecycle:
+          transitions:
+            make_admin: Make admin
+            revoke_admin: Revoke admin
+            remove: Remove
+            resend_invite: Resend invite
+            cancel_invitation: Cancel invitation
+            accept: Accept
+      client_application:
+        ClientApplication: Client application
+        name: Name
+        description: Description
+        key: Key
+        secret: Secret
+        actions: Actions
+        user: USer
+  index:
+    title: Make your business strategy work
+  user:
+    my_dashboard: My dashboard
+    show_all: Show all
+    show_only_pending: Show only pending actions
+    dashboard_for: Dashboard for %{name}
+    pending_actions_for: Pending actions for %{name}
+    delete_account: Delete account
+    collaborating_with: Collaborating with
+    change: Change
+    messages:
+      end_collaboration_confirm: Are you sure you want to stop collaborating with this company?
+  hoshin:
+    how_to_improve: "How to improve my hoshinplan's health?"
+    finish_tutorial: Finish tutorial
+    full_health: Your hoshin has full health! Congratulations!!
+    objectives_health: "Objectives' health: %{health}%"
+    indicators_health: "Indicators' health: %{health}%"
+    tasks_health: "Tasks' health: %{health}%"
+    click_to_know: Click to know how to bring your Hoshinplan to 100%
+    see_detailed_health: Show detailed health report
+  health:
+    health_for: Health for %{name}
+    top_users_with_pending: Top users with pending actions
+  charts:
+    select_indicator_to_add: Select the hidden chart you want to show again
+  company:
+    manage_collaborators: Manage collaborators
+    add_collaborators: Add collaborators
+    send_invitations: Send collaboration invitations by pasting one email address per line in the textbox.
+  client_app:
+    sign_a_request: Sign a request to the API
+    requests_to_the_restful: Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters.
+    for_example: 'For example, if you enter:'
+    you_will_get: 'You will get something similar to'
+    sign: Sign
+    connect_your_apps: Connect your applications to our API
+    here_you_can: Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a %{rest_link}.
+    to_learn: To learn how to use it please visit our %{developers_link}.
+    developers_link: developers site
+    rest_link: REST API
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
+  invite_collaborators: Invite collaborators
+  pricing: Pricing
+  features: Features
+  use_your_corporate: Use your corporate credentials
+  use_your_user: Use your hoshinplan.com user
+  change_locale: Language
+  locale_en_US: English (US)
+  locale_es_ES: Español (España)
   home: Home
-  charts:
-    select_indicator_to_add: Select the hidden chart you want to make visible
+  choose_file: Choose file
   area:
     no_xx_defined: There are no %{xx} in this %{model}
-    child_tasks: Tasks from child hoshins
+  indicator:
+    show_chart: Show chart
+    upload: Upload
+    upload_values: Add/replace values
+    delete_values: Delete all values
+    upload_values_by: 'Upload values by putting one value per line. Each line must have the format: mm/dd/yyy,value,goal,previous. For example: 4/21/2014,29.3,100,21 <br/> If you have no value for some of the fields just leave it blank. For example, if you have no objective: 4/21/2014,29.3,,21'
+    value_form:
+      this_indicator_doesnt: This indicator doesn't need an update. What would you like to do?
+      overwrite_the_value: Overwrite the value from last update
+      set_a_value_for_today: Set a value for today
+      anticipate_the_value: Anticipate the value for next update
+      this_indicator_is_missing: This indicator is missing multiple values. What would you like to do?
+      set_the_first: Set the first missing value
+      set_the_last: Set the last missing value
+  history:
+    historic_values: Historical values
+    messages:
+      confirm_delete: Are you sure you want to delete the value for the date XXX?
+      confirm_delete_all: Are you sure you want to delete ALL value for this indicator?
   rtable:
-    columns:
+    column:
       Id: ! '#'
+      Objective: Obj.
+      KPI: Indicator
+      Responsible: Resp.
+      Value: Value
+      Goal: Obj.
+      Deadline: DL.
+      Dev: Dev.
+      Status: Actions
+      Task: Task
+      Company: Company
+      Area: Area
+      Name: Name
+      Email: Email
+      State: Status
+      Actions: Actions
   date:
     input:
       formats:
@@ -141,12 +335,12 @@ en:
         - :long
         - :short
     formats:
-      default: ! '%m/%d/%Y'
-      long: ! '%B %d, %Y'
       short: ! '%m/%d'
-  client_app:
-    here_you_can: Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a %{rest_link}.
-    to_learn: To learn how to use it please visit our %{developers_link}.
+      default: ! '%m/%d/%Y'
+  time:
+    formats:
+      long: ! '%m/%d/%Y %H:%M'
+      default: ! '%m/%d/%Y %H:%M'
   number:
     format:
       delimiter: ','
@@ -170,9 +364,3 @@ en:
         precision: 1
         significant: false
         strip_insignificant_zeros: true
-  user_company:
-    that_operation_is: This operation is not allowed
-    the_invitation: The invitation you are trying to accept was sent to a different user. Please log with the user the invitation was sent to.
-    the_provided_key: The provided invitation is not valid. It can only be used once. Please ask the person that invited you to resend the invitation.
-    collection:
-      heading: Users

@@ -901,7 +901,7 @@
 
 <def tag="index-for-objective-page" polymorphic/>
 <def tag="index-for-objective-page" for="Indicator">
-  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicator for']} #{name :with => @objective, :no_wrapper => true}">
+  <page merge title="#{ht 'indicator.index_for_owner.title', :count=>100, :default=>['Indicators for']} #{name :with => @objective, :no_wrapper => true}">
     <body: class="index-for-owner-page objective indicator" param/>
     <content-header: param>
       <div param="back-to">
@@ -1369,7 +1369,7 @@
 
 <def tag="index-for-objective-page" polymorphic/>
 <def tag="index-for-objective-page" for="Task">
-  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Task for']} #{name :with => @objective, :no_wrapper => true}">
+  <page merge title="#{ht 'task.index_for_owner.title', :count=>100, :default=>['Tasks for']} #{name :with => @objective, :no_wrapper => true}">
     <body: class="index-for-owner-page objective task" param/>
     <content-header: param>
       <div param="back-to">
