@@ -1,0 +1,11 @@
+<extend tag='select-one'>
+	<% 
+	required = !this_parent.class.validators.find_index { |v| 
+		v.is_a?(ActiveRecord::Validations::PresenceValidator) && 
+		v.attributes.include?(this_field_reflection.name) 
+		}.nil?
+	attributes[:required] = "required" if required
+	%>
+	<old-select-one merge>
+	</old-select-one>
+</extend>
