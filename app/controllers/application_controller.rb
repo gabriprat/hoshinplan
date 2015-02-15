@@ -117,10 +117,16 @@ class ApplicationController < ActionController::Base
     I18n.available_locales.include?(parsed_locale.to_sym) ? parsed_locale : nil if !parsed_locale.nil?
   end
   
+  # Extracts the locale from the accept language header, if found
+    def extract_locale_from_accept_language_header
+      locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first rescue I18n.default_locale
+    end
+  
   def set_locale
     begin
       user_locale = User.current_user.language if User.current_user.respond_to? :language
-      I18n.locale = params[:locale] || extract_locale_from_subdomain || user_locale || I18n.default_locale
+      header_locale = http_accept_language.compatible_language_from(I18n.available_locales)
+      I18n.locale = params[:locale] || extract_locale_from_subdomain || user_locale || header_locale || I18n.default_locale
       logger.debug locale.to_yaml
     rescue I18n::InvalidLocale
       flash[:error] =  t("errors.invalid_locale", :default => "Invalid locale.")

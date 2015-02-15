@@ -159,6 +159,7 @@ GEM
     hobo_will_paginate-bootstrap (1.0.0)
       hobo_will_paginate
     htmlentities (4.3.1)
+    http_accept_language (2.0.5)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -316,6 +317,7 @@ DEPENDENCIES
   hobo_paperclip!
   hobo_tokeninput!
   hobo_will_paginate
+  http_accept_language
   jquery-rails
   jquery-ui-themes
   json
