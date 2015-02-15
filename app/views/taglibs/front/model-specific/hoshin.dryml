@@ -9,7 +9,7 @@
 			</call-tag>
 		</prepend-main-content: >
 	
-		<body: class="fixed-headers #{current_user.preferred_view}"/>
+		<body: class="fixed-headers #{current_user.preferred_view if params['action']=='show'}"/>
 		<navbar: />
 		        
 		<collection-heading: replace />
