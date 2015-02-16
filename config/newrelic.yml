@@ -83,8 +83,8 @@ common: &default_settings
   browser_monitoring:
       # By default the agent automatically injects the monitoring JavaScript
       # into web pages. Set this attribute to false to turn off this behavior.
-      auto_instrument: true
-      capture_attributes: true
+      auto_instrument: false
+      capture_attributes: false
 
   # Proxy settings for connecting to the New Relic server.
   #
@@ -121,7 +121,7 @@ common: &default_settings
     # Transaction tracer is enabled by default. Set this to false to
     # turn it off. This feature is only available at the Professional
     # and above product levels.
-    enabled: true
+    enabled: false
 
     # Threshold in seconds for when to collect a transaction
     # trace. When the response time of a controller action exceeds

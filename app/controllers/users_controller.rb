@@ -165,7 +165,7 @@ class UsersController < ApplicationController
       current_user.timezone = zone.name unless zone.nil?
     end
     if current_user.language.nil?
-      current_user.language = header_locale || I18n.locale
+      current_user.language = I18n.locale
     end
     begin
       current_user.save!
