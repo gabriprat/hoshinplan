@@ -125,12 +125,15 @@ class ApplicationController < ActionController::Base
   def set_locale
     begin
       user_locale = User.current_user.language if User.current_user.respond_to? :language
-      header_locale = http_accept_language.compatible_language_from(I18n.available_locales)
       I18n.locale = params[:locale] || extract_locale_from_subdomain || user_locale || header_locale || I18n.default_locale
       logger.debug locale.to_yaml
     rescue I18n::InvalidLocale
       flash[:error] =  t("errors.invalid_locale", :default => "Invalid locale.")
     end
+  end
+  
+  def header_locale
+    http_accept_language.compatible_language_from(I18n.available_locales)
   end
   
   # We provide our own method to call the Hobo helper here, so we can check the 
