@@ -14,7 +14,7 @@ en:
       message: 'You can access all the KPIs and tasks you have to update at your <a href="%{url}">dashboard</a>. You should update:'
       update: Dashboard
     welcome:
-      subject: '%{name} welcome to Hoshinplan!'
+      subject: '%{name}, Welcome to Hoshinplan!'
       title: Welcome to Hoshinplan.com
       thank_you: Thank you for getting here. We love that you want to give live to your strategy.
       do_you_know_html: 'Do you know what a %{link} is? At the end of the day, it''s not very important. Hoshinplan.com exists because we know how difficult it is to connect a companiy''s long term strategy with day to day activities. Strategic plans in Powerpoints that no one looks at, projects that do not meet deadlines, dashboards that are not useful... ¿Rings a bell?'
@@ -25,7 +25,7 @@ en:
       gabri_and_anna: Gabri and Anna
       founders: Founders
     invited_welcome:
-      subject: '%{name}, ¡Welcome to Hoshinplan!'
+      subject: '%{name}, Welcome to Hoshinplan!'
       title: Welcome to Hoshinplan.com
       message: 'You have accepted an invitation and are ready to use Hosninplan. Once in the application you will see a "Tutorial" tab, there you have information on how to use the application. If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
       gabri_and_anna: Gabri and Anna
