@@ -251,21 +251,21 @@ en:
   hoshin:
     how_to_improve: "How to improve my hoshinplan's health?"
     finish_tutorial: Finish tutorial
-    full_health: Your hoshin has full health! Congratulations!!
+    full_health: Congratualtions! Your Hoshin is in perfect health!
     objectives_health: "Objectives' health: %{health}%"
     indicators_health: "Indicators' health: %{health}%"
     tasks_health: "Tasks' health: %{health}%"
-    click_to_know: Click to know how to bring your Hoshinplan to 100%
+    click_to_know: Click to find out how to bring your Hoshinplan to 100%
     see_detailed_health: Show detailed health report
   health:
     health_for: Health for %{name}
-    top_users_with_pending: Top users with pending actions
+    top_users_with_pending: Users with more pending actions in descending order
   charts:
     select_indicator_to_add: Select the hidden chart you want to show again
   company:
     manage_collaborators: Manage collaborators
     add_collaborators: Add collaborators
-    send_invitations: Send collaboration invitations by pasting one email address per line in the textbox.
+    send_invitations: Send invitations to collaborate by writing one email address per line in the text box.
   client_app:
     sign_a_request: Sign a request to the API
     requests_to_the_restful: Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters.
@@ -308,8 +308,8 @@ en:
   history:
     historic_values: Historical values
     messages:
-      confirm_delete: Are you sure you want to delete the value for the date XXX?
-      confirm_delete_all: Are you sure you want to delete ALL value for this indicator?
+      confirm_delete: Are you sure you want to delete the values for the date XXX?
+      confirm_delete_all: Are you sure you want to delete ALL values for this indicator?
   rtable:
     column:
       Id: ! '#'
