@@ -131,8 +131,7 @@ class ApplicationController < ActionController::Base
   end
   
   def user_locale
-    ret = current_user.language.to_s if (!current_user.nil? && current_user.respond_to?('language'))
-    ret
+    current_user.language.to_s if (!current_user.nil? && current_user.respond_to?('language'))
   end
   
   # We provide our own method to call the Hobo helper here, so we can check the 
