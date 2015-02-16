@@ -122,6 +122,7 @@ var equalHeightSections = function() {
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
 	equalHeights("div.kb-lane");
+	equalHeights(".area .header");
 	eh = false;
 }
 $(window).resize(equalHeightSections);
