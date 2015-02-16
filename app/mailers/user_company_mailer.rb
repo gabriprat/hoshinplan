@@ -78,7 +78,7 @@ class UserCompanyMailer < ActionMailer::Base
   
   def invited_welcome(user)
     @user, @message = user
-    mail( :subject => I18n.translate("emails.invited_welcome.subject"),
+    mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
             format.html {
               render_email("invited_welcome", 
