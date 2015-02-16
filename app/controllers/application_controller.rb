@@ -117,11 +117,6 @@ class ApplicationController < ActionController::Base
     I18n.available_locales.include?(parsed_locale.to_sym) ? parsed_locale : nil if !parsed_locale.nil?
   end
   
-  # Extracts the locale from the accept language header, if found
-    def extract_locale_from_accept_language_header
-      locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first rescue I18n.default_locale
-    end
-  
   def set_locale
     begin
       user_locale = User.current_user.language if User.current_user.respond_to? :language
