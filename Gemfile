@@ -92,5 +92,4 @@ gem "protected_attributes"
 gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'font_assets', :git => "git://github.com/ericallam/font_assets"
-gem 'http_accept_language'
 #gem 'dryml-firemarker', :require => 'dryml13-firemarker', :group => :development
