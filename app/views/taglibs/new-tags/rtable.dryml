@@ -13,8 +13,8 @@
 				<div class="column" data-label="#{this.gsub('%','Tpc').gsub('#','Id')}" repeat="&columns"><t key="rtable.column.#{this}">#{this}</t></div>
 			</li>
 		</ul>		
-		<call-tag with="&items" tag="&tag" merge-attrs merge-params class="table-body">
-			<item: class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''}"/>
+		<call-tag with="&items" tag="&tag" merge-attrs merge-params class="table-body" if="&items.count > 0">
+			<item: class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''}" />
 			<default: replace>
 				<scard param columns="&columns"/>
 			</default>
