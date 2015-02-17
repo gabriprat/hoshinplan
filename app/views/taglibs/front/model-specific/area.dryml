@@ -15,8 +15,8 @@
 		   <modal-form-footer-delete />
 		 </form>
 	</modal:>
-	</modal>
-	<swept-cache route-on suffix="view" path="&request.fullpath" locale="#{I18n.locale}" area="#{this.id}" canview="&can_view?">
+	</modal>	
+	<swept-cache route-on suffix="view" path="&request.fullpath" locale="#{I18n.locale}" area="#{this.id}" canview="&can_view?" unless="&params['action'] == 'destroy' && @this && this && (@this.id == this.id)">
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>
 	<a class="btn pull-right create-obj" onclick="$('#add-objective-modal-#{this.id}').modal('show'); $('#add-objective-modal-#{this.id} form').trigger('reset'); return false;">
