@@ -259,13 +259,13 @@ en:
     see_detailed_health: Show detailed health report
   health:
     health_for: Health for %{name}
-    top_users_with_pending: Users with more pending actions in descending order
+    top_users_with_pending: Users with pending actions in descending order
   charts:
     select_indicator_to_add: Select the hidden chart you want to show again
   company:
     manage_collaborators: Manage collaborators
     add_collaborators: Add collaborators
-    send_invitations: Send invitations to collaborate by writing one email address per line in the text box.
+    send_invitations: Send invitations to collaborators by writing one email address per line in the text box.
   client_app:
     sign_a_request: Sign a request to the API
     requests_to_the_restful: Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters.
