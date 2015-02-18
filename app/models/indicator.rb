@@ -13,7 +13,7 @@ class Indicator < ActiveRecord::Base
     last_update :date
     last_value  :decimal
     goal        :decimal, :default => 100.0
-    worst_value :decimal, :default => 0.0, :null => false
+    worst_value :decimal, :default => 0.0
     reminder    :boolean, :default => true, :null => false
     show_on_parent  :boolean, :default => false, :null => false
     show_on_charts  :boolean, :default => true, :null => false
@@ -162,7 +162,7 @@ class Indicator < ActiveRecord::Base
   end
     
   def higher?
-    goal.nil? ? true : worst_value < goal
+    goal.nil? || worst_value.nil? ? true : worst_value < goal
   end
   
   def tpc 

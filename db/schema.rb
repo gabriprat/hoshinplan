@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230165607) do
+ActiveRecord::Schema.define(version: 20150218181737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 20141230165607) do
     t.integer  "responsible_id"
     t.integer  "company_id",                     null: false
     t.boolean  "reminder",       default: true,  null: false
-    t.decimal  "worst_value",    default: 0.0,   null: false
+    t.decimal  "worst_value",    default: 0.0
     t.boolean  "show_on_parent", default: false, null: false
     t.string   "type"
     t.integer  "creator_id"
