@@ -23,6 +23,7 @@ class IndicatorsController < ApplicationController
     obj = params["indicator"]
     select_responsible(obj)
     hobo_create
+    log_event("Create indicator", {objid: @this.id, name: @this.name})
   end
   
   def update
@@ -107,7 +108,7 @@ class IndicatorsController < ApplicationController
           redirect_to this.objective.area.hoshin if valid? && !request.xhr?
         end
       end
-      
+      log_event("Update indicator", {objid: @this.id, name: @this.name})
     end
   end
   

@@ -191,4 +191,28 @@ end
     end
   end
   
+  def people_set
+    Mp.people_set(current_user, request.remote_ip)
+  end
+  
+  #Log a new Mixpanel event
+  #event: name of event
+  #opts: Properties defined for this event only.
+  def log_event(event, opts = {}, perma_opts = {})
+    Mp.log_event(event, current_user, request.remote_ip, opts)
+  end
+
+  #Log a new Mixpanel funnel step
+  #funnel_name: what it says on the tin
+  #step_number: 1, 2... etc.  Must be followed in order.  Mixpanel calls this "step".
+  #step_name: String describing what user did to advance to this step...
+  #           Mixpanel calls this "goal", for some reason.  Name must always be the
+  #           same for a particular funnel and step number.
+  #opts:      Properties defined for this event only.
+  def log_funnel(funnel_name, step_number, step_name, opts = {})
+   Mp.log_funnel(funnel_name, step_number, step_name, current_user, request.remote_ip, opts)
+  end
+
+  
+  
   

@@ -1909,7 +1909,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 
 body .center-block {
@@ -1924,8 +1924,12 @@ body .center-block {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 100px;
   background-color: $inverse-background-color;
+}
+
+#mixpanel {
+	text-align:center;
 }
 
 .footer-links {

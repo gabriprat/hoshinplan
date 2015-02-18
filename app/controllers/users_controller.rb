@@ -169,6 +169,7 @@ class UsersController < ApplicationController
     end
     begin
       current_user.save!
+      people_set
     rescue ActiveRecord::RecordInvalid => invalid
       fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml
     end

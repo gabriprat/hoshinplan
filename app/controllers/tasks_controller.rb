@@ -16,6 +16,7 @@ class TasksController < ApplicationController
     obj = params["task"]
     select_responsible(obj)
     hobo_create
+    log_event("Create task", {objid: @this.id, name: @this.name})
   end
   
   def update
@@ -29,6 +30,7 @@ class TasksController < ApplicationController
     hobo_update do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
     end
+    log_event("Update task", {objid: @this.id, name: @this.name})
   end
 
   def form

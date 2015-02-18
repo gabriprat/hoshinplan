@@ -18,6 +18,7 @@ class ObjectivesController < ApplicationController
     obj = params["objective"]
     select_responsible(obj)
     hobo_create
+    log_event("Create objective", {objid: @this.id, name: @this.name})
   end
   
   def update

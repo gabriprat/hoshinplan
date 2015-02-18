@@ -63,6 +63,7 @@ gem "omniauth-openid"
 gem "omniauth-google-oauth2"
 #gem 'gem_bench', :group => :console
 gem "clockwork"
+gem "protected_attributes"
 gem 'delayed_job_active_record'
 
 gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
@@ -88,9 +89,9 @@ gem 'murmurhash3'
 gem 'heroku-deflater', :group => :production
 gem 'excon'
 gem "faraday"
-gem "protected_attributes"
 gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'font_assets', :git => "git://github.com/ericallam/font_assets"
 gem 'http_accept_language'
+gem 'mixpanel-ruby'
 #gem 'dryml-firemarker', :require => 'dryml13-firemarker', :group => :development
