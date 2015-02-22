@@ -1,12 +1,6 @@
 module Jobs
-  class SendReminders
-  
-    def perform
-      self.do_it
-    end
-    
-    def self.do_it
-      hour = params[:hour] || 7 
+  class SendReminders < BaseJob
+    def self.do_it(hour = 7)
       @text = ll "Initiating send reminders job!"
       User.current_user = -1
       kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
@@ -29,9 +23,5 @@ module Jobs
       }
       @text += ll "End send reminders job!"
     end
-  
-    def say(text)
-       Delayed::Worker.logger.add(Logger::ERROR, text)
-     end
   end
 end

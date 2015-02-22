@@ -1,6 +1,5 @@
 module Jobs
-  class UpdateIndicators
-    
+  class UpdateIndicators < BaseJob
     def self.do_it
       User.current_user = User.administrator.first
       @text = ll " Initiating updateindicators job!"
@@ -34,16 +33,6 @@ module Jobs
         ind.save!({:validate => false})
       }
       @text += ll "End update indicators job!"
-    end
-    
-    def perform
-      say("Hello!!!!!!!")
-      say self.class.do_it
-    end
-    
-    def say(text)
-       Delayed::Worker.logger.add(Logger::DEBUG, text)
-     end
-  
+    end  
   end
 end
