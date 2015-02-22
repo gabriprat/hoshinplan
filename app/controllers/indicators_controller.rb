@@ -26,6 +26,11 @@ class IndicatorsController < ApplicationController
     log_event("Create indicator", {objid: @this.id, name: @this.name})
   end
   
+  def destroy
+    hobo_destroy
+    log_event("Delete indicator", {objid: @this.id, name: @this.name})
+  end
+  
   def update
     if params[:history_values]
       error = false

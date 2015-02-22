@@ -19,6 +19,11 @@ class TasksController < ApplicationController
     log_event("Create task", {objid: @this.id, name: @this.name})
   end
   
+  def destroy
+    hobo_destroy
+    log_event("Delete task", {objid: @this.id, name: @this.name})
+  end
+  
   def update
     self.this = find_instance
     if (params[:task] && params[:task][:status]) 

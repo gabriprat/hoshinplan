@@ -21,6 +21,11 @@ class ObjectivesController < ApplicationController
     log_event("Create objective", {objid: @this.id, name: @this.name})
   end
   
+  def destroy
+    hobo_destroy
+    log_event("Delete objective", {objid: @this.id, name: @this.name})
+  end
+  
   def update
     obj = params["objective"]
     select_responsible(obj)

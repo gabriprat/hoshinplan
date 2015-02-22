@@ -25,6 +25,11 @@ class HoshinsController < ApplicationController
     log_event("Create hoshin", {objid: @this.id, name: @this.name})
   end
   
+  def destroy
+    hobo_destroy
+    log_event("Delete hoshin", {objid: @this.id, name: @this.name})
+  end
+  
   def create_for_company
     hobo_create
     log_event("Create hoshin", {objid: @this.id, name: @this.name})

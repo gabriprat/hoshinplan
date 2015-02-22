@@ -15,6 +15,11 @@ class AreasController < ApplicationController
     log_event("Create area", {objid: @this.id, name: @this.name})
   end
   
+  def destroy
+    hobo_destroy
+    log_event("Delete area", {objid: @this.id, name: @this.name})
+  end
+  
   def charts
     @this = Area.includes(:indicators, {:indicators => :indicator_histories})
       .where(:id => params[:id]).order('indicators.ind_pos').references(:indicators).first
