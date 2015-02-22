@@ -18,7 +18,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def invite(user_company, company, key, invitor)
-    delay.mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
+    mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
           :to      => user_company.user.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
               format.html {    
@@ -30,7 +30,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
  
   def transition(user, user2, company, email_key)
-    delay.mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
           :to      => user.email_address) do |format|
               format.html {    
                 render_email("transition", 
@@ -52,7 +52,7 @@ class UserCompanyMailer < ActionMailer::Base
   def reminder(user, kpis, tasks)
     @user = user
     if @user.state == "active" 
-      delay.mail( :subject => I18n.translate("emails.reminder.subject"),
+      mail( :subject => I18n.translate("emails.reminder.subject"),
             :to      => @user.email_address,
             :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
               format.html {    
@@ -66,7 +66,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def welcome(user)
-    delay.mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
+    mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
           :to      => user.email_address) do |format|
             format.html {
               render_email("welcome", 
@@ -78,7 +78,7 @@ class UserCompanyMailer < ActionMailer::Base
   
   def invited_welcome(user)
     @user, @message = user
-    delay.mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
             format.html {
               render_email("invited_welcome", 
