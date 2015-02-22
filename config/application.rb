@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'wicked_pdf'
 
+require File.expand_path('config/jobs/base_job.rb')
 Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
 
 Bundler.require(:default, Rails.env)
