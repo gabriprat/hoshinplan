@@ -62,7 +62,6 @@ class ApplicationController < ActionController::Base
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  User.current_user = current_user
-                 Rails.logger.debug "Last seen at :" + current_user.respond_to?('last_seen_at').to_s + '-' + current_user.last_seen_at.nil?.to_s  + '_' + current_user.last_seen_at.to_s 
                  if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
                    current_user.last_seen_at = Date.today
                    people_set

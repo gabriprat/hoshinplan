@@ -3,20 +3,20 @@ class UserMailer < ActionMailer::Base
   
   def forgot_password(user, key)
     @user, @key = user, key
-    mail( :subject => "#{app_name} -- forgotten password",
+    delay.mail( :subject => "#{app_name} -- forgotten password",
           :to      => user.email_address )
   end
 
 
   def activation(user, key)
     @user, @key = user, key
-    mail( :subject => "#{app_name} -- activate",
+    delay.mail( :subject => "#{app_name} -- activate",
           :to      => user.email_address )
   end
   
   def reminder(user, kpis, key)
     @user, @kpis, @key = user, kpis, key
-    mail( :subject => "#{app_name} -- reminder",
+    delay.mail( :subject => "#{app_name} -- reminder",
           :to      => user.email_address )
   end
 
