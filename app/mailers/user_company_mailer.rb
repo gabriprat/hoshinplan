@@ -3,7 +3,7 @@ class UserCompanyMailer < ActionMailer::Base
   
   default :from => "Hoshinplan Team <hello@hoshinplan.com>"
   
-  def render_edelay.mail(name, params)
+  def render_email(name, params)
     user = params[:user]
     pars = {:unsubscribe_url => unsubscribe_user_url(user, :host => get_host_port(user))}
     pars = pars.merge(params)
@@ -22,7 +22,7 @@ class UserCompanyMailer < ActionMailer::Base
           :to      => user_company.user.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
               format.html {    
-                render_edelay.mail("invite", 
+                render_email("invite", 
                   {:user => user_company.user, :app_name => @app_name, :company => user_company.company.name,
                     :accept_url => accept_from_email_url(:id => user_company, :key => key), :invitor => invitor})          
               }
@@ -33,7 +33,7 @@ class UserCompanyMailer < ActionMailer::Base
     delay.mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
           :to      => user.email_address) do |format|
               format.html {    
-                render_edelay.mail("transition", 
+                render_email("transition", 
                   {:user => user, :app_name => @app_name, 
                     :message => I18n.translate("emails." + email_key + ".message", :user => user.name.blank? ? user.email_address : user.name, :user2 => user2.name.blank? ? user2.email_address : user2.name, :company => company.name).html_safe})          
               }
@@ -56,7 +56,7 @@ class UserCompanyMailer < ActionMailer::Base
             :to      => @user.email_address,
             :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
               format.html {    
-                render_edelay.mail("reminder", 
+                render_email("reminder", 
                   {:user => @user, :app_name => @app_name, 
                     :url => pending_user_url(@user, :host => get_host_port(user)),
                     :kpis => kpis, :tasks => tasks})          
@@ -69,7 +69,7 @@ class UserCompanyMailer < ActionMailer::Base
     delay.mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
           :to      => user.email_address) do |format|
             format.html {
-              render_edelay.mail("welcome", 
+              render_email("welcome", 
                 {:user => user, :app_name => @app_name}          
               )
             }
@@ -81,7 +81,7 @@ class UserCompanyMailer < ActionMailer::Base
     delay.mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
             format.html {
-              render_edelay.mail("invited_welcome", 
+              render_email("invited_welcome", 
                 {:user => user, :app_name => @app_name}          
               )
             }
