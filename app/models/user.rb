@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     timezone      HoboFields::Types::Timezone
     timestamps
     language      HoboFields::Types::EnumString.for(:es, :en)
+    last_seen_at  :date
     last_login_at :datetime
     login_count   :integer
     preferred_view HoboFields::Types::EnumString.for(:compact, :expanded), :required, :default=> :expanded

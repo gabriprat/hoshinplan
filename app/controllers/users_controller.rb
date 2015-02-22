@@ -98,6 +98,7 @@ class UsersController < ApplicationController
         redirect_to home_page
       end
     end
+    people_set
   end
   
   def update
@@ -136,6 +137,7 @@ class UsersController < ApplicationController
         redirect_to current_user, :dgv => Time.now.to_i if valid?
       end
     end
+    people_set
   end
   
   def update_data

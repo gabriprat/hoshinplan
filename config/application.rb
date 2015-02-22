@@ -3,8 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'wicked_pdf'
 
-
-require File.expand_path('../../config/jobs/reminders', __FILE__)
+Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
 
 Bundler.require(:default, Rails.env)
 
@@ -78,5 +77,9 @@ module Hoshinplan
     config.font_assets.origin = '*'
     
   end
+end
+
+def ll(text)
+  "#{DateTime.now.to_s} #{text}\n"
 end
 

@@ -51,33 +51,8 @@ class FrontController < ApplicationController
     end
   end
   
-  def ll(text)
-    "#{DateTime.now.to_s} #{text}\n"
-  end
-  
   def sendreminders   
-    hour = params[:hour] || 7 
-    @text = ll "Initiating send reminders job!"
-    User.current_user = -1
-    kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
-    tasks = User.at_hour(hour).includes(:tasks, {:tasks => :hoshin}, {:tasks => :company}).joins(:tasks).merge(Task.unscoped.due('5 day')).order("tasks.company_id, tasks.hoshin_id")
-    comb = {}
-    kpis.each {|user|
-      com = comb[user.id] || {:user => user}
-      com[:kpis] = user.indicators
-      comb[user.id] = com
-    }
-    tasks.each {|user|
-      com = comb[user.id] || {:user => user}
-      com[:tasks] = user.tasks
-      comb[user.id] = com
-    }
-    comb.values.each { |com|
-      user = com[:user]
-      @text +=  ll " ==== User: #{user.email_address}" 
-      UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver
-    }
-    @text += ll "End send reminders job!"
+    @text = Jobs::SendReminders.do_it
     render :text => @text, :content_type => Mime::TEXT
   end
   
@@ -88,39 +63,7 @@ class FrontController < ApplicationController
   end
   
   def updateindicators
-    self.current_user = User.administrator.first
-    User.current_user = self.current_user
-    @text = ll " Initiating updateindicators job!"
-    ihs = IndicatorHistory.joins(:indicator).includes({:indicator => :responsible}, {:indicator => :hoshin})
-      .where("day = #{User::TODAY_SQL}  and (
-          indicator_histories.goal != indicators.goal
-          or indicators.goal is null and indicator_histories.goal is not null 
-          or indicator_histories.value != indicators.value
-          or indicators.value is null and indicator_histories.value is not null 
-          or last_update != day
-          or last_update is null
-          )").references(:indicator)
-    ihs.each { |ih| 
-      ind = ih.indicator
-      line = ind.id.to_s + " " + (ind.name.nil? ? 'N/A' : ind.name)   + ": "
-      if (!ih.goal.nil? && (ind.goal.nil? || ind.goal != ih.goal))
-        line += "goal #{ind.goal} => #{ih.goal}"
-        ind.goal = ih.goal
-      end
-      updated = false
-      if (!ih.value.nil? && (ind.value.nil? || ind.value != ih.value))
-        line += " value #{ind.value} => #{ih.value} last_update #{ind.last_update} => #{ih.day}"
-        ind.value = ih.value
-        updated = true
-      end
-      if (updated && (ind.last_update.nil? || ind.last_update < ih.day))
-        line += " last_update #{ind.last_update} => #{ih.day}"
-        ind.last_update = ih.day
-      end
-      @text += ll line
-      ind.save!({:validate => false})
-    }
-    @text += ll "End update indicators job!"
+    @text = Jobs::UpdateIndicators.do_it
     render :text => @text, :content_type => Mime::TEXT
   end
   
