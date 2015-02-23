@@ -17,11 +17,11 @@ class User < ActiveRecord::Base
     tutorial_step :integer
     timezone      HoboFields::Types::Timezone
     timestamps
-    language      HoboFields::Types::EnumString.for(:es, :en)
+    language      EnumLanguage
     last_seen_at  :date
     last_login_at :datetime
     login_count   :integer
-    preferred_view HoboFields::Types::EnumString.for(:compact, :expanded), :required, :default=> :expanded
+    preferred_view EnumView, :required, :default=> :expanded
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -139,7 +139,8 @@ class User < ActiveRecord::Base
       if (domain == "infojobs.net" || domain == "lectiva.com")
         self.companies = [Company.unscoped.find(1)]
       else
-        UserCompanyMailer.welcome(self).deliver
+        Rails.logger.debug "------- Welcome email!"
+        UserCompanyMailer.delay.welcome(self)
       end
     end
 
@@ -154,30 +155,30 @@ class User < ActiveRecord::Base
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation],
       :become => :inactive, :new_key => true  do
-      UserMailer.activation(self, lifecycle.key).deliver
+      UserMailer.delay.activation(self, lifecycle.key)
     end
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
       current_user = acting_user
-      UserCompanyMailer.welcome(self).deliver
+      UserCompanyMailer.delay.welcome(self)
     end
 
     transition :activate, { :invited => :active } do
       acting_user = self
       @subject = "#{self.name} welcome to Hoshinplan!"
-      UserCompanyMailer.invited_welcome(self).deliver
+      UserCompanyMailer.delay.invited_welcome(self)
     end
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
-      UserMailer.activation(self, lifecycle.key).deliver
+      UserMailer.delay.activation(self, lifecycle.key)
     end
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
-      UserMailer.forgot_password(self, lifecycle.key).deliver
+      UserMailer.delay.forgot_password(self, lifecycle.key)
     end
 
     transition :request_password_reset, { :invited => :invited }, :new_key => true do
-      UserMailer.forgot_password(self, lifecycle.key).deliver
+      UserMailer.delay.forgot_password(self, lifecycle.key)
     end
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,

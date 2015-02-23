@@ -28,7 +28,7 @@
 	%>
 	<do with="&user" unless="&user.nil?">
 		<% begin %>
-		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(:thumb)" title="#{this.name}">
+		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(size)" title="#{this.name}">
 			<image src="#{this.img_url(size)}" class="#{'no-image' unless this.img_url(size)}" size="&size_num"/>
 		</span>
 		<% rescue SocketError 

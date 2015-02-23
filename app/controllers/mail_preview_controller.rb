@@ -1,3 +1,5 @@
+require 'hobo_fields/types/enum_string'
+
 class MailPreviewController < ApplicationController
   
   hobo_controller
@@ -18,7 +20,7 @@ class MailPreviewController < ApplicationController
   
   def send_welcome()
     @user = current_user
-    UserCompanyMailer.welcome(@user).deliver
+    UserCompanyMailer.delay.welcome(@user)
     render :json => {to: @user.email_address }
   end
   
@@ -27,7 +29,7 @@ class MailPreviewController < ApplicationController
   end
   
   def send_invited_welcome()
-   UserCompanyMailer.invited_welcome(current_user).deliver  
+   UserCompanyMailer.delay.invited_welcome(current_user)  
   end
   
   def preview_invite()
@@ -41,7 +43,7 @@ class MailPreviewController < ApplicationController
     user = current_user
     user_company = user.user_companies.first
     company = user_company.company
-    UserCompanyMailer.invite(user_company, company.name, 'fake_key', user).deliver
+    UserCompanyMailer.delay.invite(user_company, company.name, 'fake_key', user)
     render :json => { to: user_company.user.email_address }
   end
 
@@ -51,7 +53,7 @@ class MailPreviewController < ApplicationController
   
   def send_reminder
     @user = current_user
-    UserCompanyMailer.reminder(@user).deliver
+    UserCompanyMailer.delay.reminder(@user)
     render :json => {to: @user.email_address }
   end
   
@@ -61,7 +63,7 @@ class MailPreviewController < ApplicationController
   
   def send_accept
     @user = current_user
-    UserCompanyMailer.transition(current_user, current_user, current_user.companies.first,'accept').deliver
+    UserCompanyMailer.delay.transition(current_user, current_user, current_user.companies.first,'accept')
     render :json => {to: current_user.email_address }
   end
   
@@ -71,7 +73,7 @@ class MailPreviewController < ApplicationController
   
   def send_admin
     @user = current_user
-    UserCompanyMailer.transition(current_user,current_user, current_user.companies.first, 'admin').deliver
+    UserCompanyMailer.delay.transition(current_user,current_user, current_user.companies.first, 'admin')
     render :json => {to: current_user.email_address }
   end
   
@@ -81,7 +83,7 @@ class MailPreviewController < ApplicationController
   
   def send_no_admin
     @user = current_user
-    UserCompanyMailer.transition(current_user, current_user, current_user.companies.first,'no_admin').deliver
+    UserCompanyMailer.delay.transition(current_user, current_user, current_user.companies.first,'no_admin')
     render :json => {to: current_user.email_address }
   end
   
@@ -91,7 +93,7 @@ class MailPreviewController < ApplicationController
   
   def send_removed
     @user = current_user
-    UserCompanyMailer.transition(current_user, current_user, current_user.companies.first,'removed').deliver
+    UserCompanyMailer.delay.transition(current_user, current_user, current_user.companies.first,'removed')
     render :json => {to: current_user.email_address }
   end
 

@@ -63,7 +63,7 @@ class UserCompany < ActiveRecord::Base
 
      create :invite, :params => [ :company, :user ], :become => :invited,
                       :available_to => "User", :new_key => true do
-         UserCompanyMailer.invite(self, company, lifecycle.key, acting_user).deliver
+         UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user)
      end
      
      create :activate_ij, :params => [ :company, :user ], :become => :active, :available_to => :activate_ij_available
@@ -71,7 +71,7 @@ class UserCompany < ActiveRecord::Base
      transition :revoke_admin, {:invited => :active}, :available_to => :activate_ij_available
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
-       UserCompanyMailer.invite(self, company, lifecycle.key, acting_user).deliver
+       UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user)
      end
      
      create :new_company, :params => [ :company, :user ], :become => :admin
@@ -81,7 +81,7 @@ class UserCompany < ActiveRecord::Base
        #user.lifecycle.activate!(user)
        #user.save!(:validate => false)
        company.user_companies.where(:state => :admin).each do |admin| 
-         UserCompanyMailer.transition(admin.user, user, company, 'accept').deliver
+         UserCompanyMailer.delay.transition(admin.user, user, company, 'accept')
        end
      end
      
@@ -89,16 +89,16 @@ class UserCompany < ActiveRecord::Base
 
      transition :make_admin, { :active => :admin }, :available_to => :company_admin_available do
        self.save!
-       UserCompanyMailer.transition(user, user, company, "admin").deliver
+       UserCompanyMailer.delay.transition(user, user, company, "admin")
      end
      
      transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
        self.save!
-       UserCompanyMailer.transition(user, acting_user, company, "no_admin").deliver
+       UserCompanyMailer.delay.transition(user, acting_user, company, "no_admin")
      end
  
      transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do 
-       UserCompanyMailer.transition(User.find(self.user_id), acting_user, company, "removed").deliver
+       UserCompanyMailer.delay.transition(User.find(self.user_id), acting_user, company, "removed")
        Objective.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
        Indicator.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
        Task.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)

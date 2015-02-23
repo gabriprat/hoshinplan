@@ -46,6 +46,7 @@ gem 'puma'
 # gem 'ruby-debug'
 
 gem "hobo"
+gem "hobo_fields"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
 gem "active_record_query_trace", :group => :development

@@ -65,7 +65,11 @@ class ApplicationController < ActionController::Base
                  if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
                    current_user.last_seen_at = Date.today
                    people_set
+                   begin
                    current_user.save!
+                   rescue ActiveRecord::RecordInvalid => invalid
+                      fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
+                    end
                  end
                end
                Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"

@@ -313,6 +313,7 @@ DEPENDENCIES
   hobo
   hobo_bootstrap
   hobo_bootstrap_ui
+  hobo_fields
   hobo_jquery_ui
   hobo_omniauth!
   hobo_paperclip!

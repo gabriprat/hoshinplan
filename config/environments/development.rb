@@ -11,7 +11,7 @@ Hoshinplan::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
   
-  config.eager_load = false
+  config.eager_load = true
   
   #config.hobo.show_translation_keys = true 
 
@@ -43,13 +43,17 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
   # Expands the lines which load the assets
   config.assets.debug = true
   config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => ENV['S3_BUCKET_NAME'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-    }
+    #:storage => :s3,
+    #:s3_host_name => 's3-eu-west-1.amazonaws.com',
+    #:path => '/:class/:attachment/:id_partition/:style/:filename',
+    #:url => ':s3_domain_url',
+    #:s3_credentials => {
+    #  :bucket => ENV['S3_BUCKET_NAME'],
+    #  :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    #  :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    #}
   }
   
   config.session_store :cookie_store, :key => '_hoshinplan_session', :domain => :all
+    
 end
