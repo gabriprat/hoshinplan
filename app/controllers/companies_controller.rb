@@ -74,11 +74,12 @@ class CompaniesController < ApplicationController
             end
           end
         end
-        redirect_to Company.find(params[:id]), :action => :collaborators unless error
+        @this = find_instance
+        redirect_to @this, :action => :collaborators unless error
+        log_event("Invite collaborators", {objid: @this.id, name: @this.name}) unless error
         #rescue Exception => e
         #redirect_to Company.find(params[:id]), {:action => :edit, :error => e }
       end
-      log_event("Invite collaborators", {objid: @this.id, name: @this.name})
     else
       hobo_update
       log_event("Update company", {objid: @this.id, name: @this.name})
