@@ -32,11 +32,17 @@ class CompaniesController < ApplicationController
           .order_by(parse_sort_param(:state, :user => "name || email_address"))
           .paginate(:page => params[:page], :per_page => 15).load
   end
+  
+  def create
+    hobo_create
+    log_event("Create company", {objid: @this.id, name: @this.name})
+  end
 
   def destroy
     hobo_destroy do
       redirect_to "/" if valid? && !request.xhr?
     end
+    log_event("Delete company", {objid: @this.id, name: @this.name})
   end
   
   def update
@@ -72,8 +78,11 @@ class CompaniesController < ApplicationController
         #rescue Exception => e
         #redirect_to Company.find(params[:id]), {:action => :edit, :error => e }
       end
+      log_event("Invite collaborators", {objid: @this.id, name: @this.name})
     else
       hobo_update
+      log_event("Update company", {objid: @this.id, name: @this.name})
+      
     end
   end
   

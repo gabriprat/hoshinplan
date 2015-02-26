@@ -35,6 +35,11 @@ class HoshinsController < ApplicationController
     log_event("Create hoshin", {objid: @this.id, name: @this.name})
   end
   
+  def update
+    hobo_update
+    log_event("Update hoshin", {objid: @this.id, name: @this.name})
+  end
+  
   def show
     if request.xhr?
       hobo_ajax_response
