@@ -91,11 +91,14 @@ class IndicatorsController < ApplicationController
       end
       redirect_to @this, :action => :history if valid?
       render :history unless valid?
+      log_event("Upload indicator values", {objid: @this.id, name: @this.name})
     else
+      old_value = nil
       obj = params[:indicator]
       select_responsible(obj)
       if params[:indicator] && params[:indicator][:value]
         i = find_instance
+        old_value = i.value
         i.value = params[:indicator][:value]
         i.value_will_change!
         attributes = {:value => i.value}
@@ -113,7 +116,7 @@ class IndicatorsController < ApplicationController
           redirect_to this.objective.area.hoshin if valid? && !request.xhr?
         end
       end
-      log_event("Update indicator", {objid: @this.id, name: @this.name})
+      log_event("Update indicator", {objid: @this.id, name: @this.name, value: @this.value, old_value: old_value.nil? ? @this.value : old_value})
     end
   end
   
