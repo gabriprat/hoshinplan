@@ -197,7 +197,9 @@ class User < ActiveRecord::Base
   end
   
   def abbrev
-    name.split.map{|x| x[0,1]}.join() unless name.nil?
+    name.split.map{|x| 
+      x[0,1].upcase.tr('^A-Z','')
+    }.join() unless name.nil?
   end
   
   def all_companies
