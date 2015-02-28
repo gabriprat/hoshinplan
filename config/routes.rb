@@ -66,7 +66,7 @@ Hoshinplan::Application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
   
-  match '/fail', to: 'front#fail', via: :all
+  match '/fail', to: 'front#test_fail', via: :all
   
   #post "/auth/:provider/callback" => "users#omniauth_callback"
   
