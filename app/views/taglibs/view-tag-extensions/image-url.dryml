@@ -4,7 +4,7 @@
 
 <def tag="view" for="Paperclip::Attachment" attrs='size'>
   <% begin %>
-  <image param src="#{this.url(:thumb)}" class="#{'no-image' unless this.exists?}" size="&size" merge-attrs if="&this_parent.img_url(:thumb)"/>
+  <image param src="#{this.url(:thumb)}" srcset="#{this.url(:thumb)} 1x, #{this.url(:thumb2x)} 2x, #{this.url(:thumb3x)} 3x, #{this.url(:thumb4x)} 4x" class="#{'no-image' unless this.exists?}" size="&size" merge-attrs if="&this_parent.img_url(:thumb)"/>
   <else>
   <image src="/assets/default.jpg" class="no-image" merge-attrs/>
   </else>
