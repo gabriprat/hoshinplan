@@ -22,8 +22,7 @@ class Hoshin < ActiveRecord::Base
   end
   index [:company_id, :parent_id]
   
-  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header
-  attr_accessible :areas, :children, :children_ids, :creator_id, :creator
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :children, :children_ids, :creator_id, :creator
   
   belongs_to :creator, :class_name => "User", :creator => true, :inverse_of => :my_hoshins
 
@@ -211,6 +210,12 @@ class Hoshin < ActiveRecord::Base
   end
   
   # --- Permissions --- #
+  
+  # We need this method because update_permitted? is dependant on the value
+  # of company so it would be marked as not editable
+  def company_edit_permitted?
+    acting_user.administrator? || same_company
+  end
   
   def parent_same_company
     User.current_user.administrator? || parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
