@@ -17,6 +17,10 @@ class FrontController < ApplicationController
        redirect_to current_user
     end
   end
+  
+  def fail
+    fail "Test fail!"
+  end
  
   def first
     

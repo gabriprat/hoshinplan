@@ -1984,3 +1984,18 @@ body .center-block {
 		margin-top: -30px;
 	}
 }
+
+
+#error-actions {
+	width: 100%;
+	text-align: center;
+	div.fa {
+		font-size: 4em;
+	}
+	a {
+		margin: 3em 1em 0 1em;
+		width: 200px;
+		display: inline-block;
+		text-align: center;
+	}
+}

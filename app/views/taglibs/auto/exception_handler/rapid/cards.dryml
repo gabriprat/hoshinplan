@@ -4,10 +4,11 @@
 <def tag="card" for="Area">
   <card class="area" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:description param="description"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -15,34 +16,43 @@
 <def tag="card" for="ChildIndicator">
   <card class="child-indicator" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
   </card>
 </def>
 
 <def tag="card" for="ChildTask">
   <card class="child-task" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
   </card>
 </def>
 
 <def tag="card" for="ClientApplication">
   <card class="client-application" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
   </card>
 </def>
 
 <def tag="card" for="Company">
   <card class="company" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
       <ht key="hoshin.collection.count" count="&this.hoshins.size">
          <count:hoshins param/>
       </ht>
@@ -53,10 +63,10 @@
 <def tag="card" for="Goal">
   <card class="goal" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -64,10 +74,10 @@
 <def tag="card" for="Hoshin">
   <card class="hoshin" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
       <ht key="area.collection.count" count="&this.areas.size">
          <count:areas param/>
       </ht>
@@ -78,21 +88,19 @@
 <def tag="card" for="Indicator">
   <card class="indicator" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:description param="description"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
 
 <def tag="card" for="IndicatorHistory">
   <card class="indicator-history" param="default" merge>
-    <header: param>
-      <h4 param="heading"><a><name/></a></h4>
-    </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -100,7 +108,7 @@
 <def tag="card" for="Milestone">
   <card class="milestone" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -108,10 +116,11 @@
 <def tag="card" for="Objective">
   <card class="objective" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:description param="description"/>
+      <view:creator param="creator"/>
       <ht key="indicator.collection.count" count="&this.indicators.size">
          <count:indicators param/>
       </ht>
@@ -130,10 +139,11 @@
 <def tag="card" for="Task">
   <card class="task" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:description param="description"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -141,7 +151,7 @@
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -149,7 +159,7 @@
 <def tag="card" for="UserCompany">
   <card class="user-company" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>

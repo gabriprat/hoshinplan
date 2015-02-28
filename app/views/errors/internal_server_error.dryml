@@ -1,0 +1,12 @@
+<page>
+
+	<content:>
+		<div class="hero-unit"><h1>500</h1>
+		<t key="errors.internal_server_error" />
+		<div id="error-actions">
+		<a class="btn" href="/"><div class="fa fa-home"></div><p><t key="errors.error_home"/></p></a>
+		<a class="btn" href="mailto:hello@hoshinplan.com"><div class="fa fa-envelope"></div><p><t key="errors.error_contact"/></p></a>
+		</div>
+		</div>
+	</content:>
+</page>

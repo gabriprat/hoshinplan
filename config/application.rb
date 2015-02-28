@@ -78,6 +78,8 @@ module Hoshinplan
     
     config.font_assets.origin = '*'
     
+    config.exceptions_app = self.routes
+    
   end
 end
 

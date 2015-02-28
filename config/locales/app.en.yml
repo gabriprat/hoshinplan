@@ -58,6 +58,10 @@ en:
     compact: Expanded or compact view
   no_oid_url: No corporate login for the given email
   errors: 
+    internal_server_error: 'Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately.'
+    not_found: 'The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us.'
+    error_home: Return to the home page
+    error_contact: Get in contact with us
     permission_denied: Permission denied
     parent_hoshin_same_company: Parent hoshin must be from the same company
     row_invalid_length: 'The row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remind that %{sep} is expected to separate columns.'
