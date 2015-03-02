@@ -84,14 +84,19 @@ class Hoshin < ActiveRecord::Base
     tasks.overdue
   end
   
+  def needs_health_update?
+    # I assume that health computed within one second is updated
+    self.health_updated_at.nil? || self.updated_at.nil? || self.updated_at - self.health_updated_at < 1
+  end
+  
   def sync_health_update!
     Rails.logger.debug "==== Health update!"
     if self.readonly?
       logger.debug "====== Not updating read-only hoshin"
       return
     end
-    # I assume that health computed within one second is updated
-    if self.updated_at - self.health_updated_at < 1
+    
+    unless needs_health_update?
       logger.debug "====== END: Health update! Not updating an already updated hoshin"
       return      
     end
@@ -121,7 +126,7 @@ class Hoshin < ActiveRecord::Base
       Area.update_all({:company_id => company_id},{:hoshin_id => id})
       Goal.update_all({:company_id => company_id},{:hoshin_id => id})
     end
-    if hoshin.updated_at > hoshin.health_updated_at 
+    if needs_health_update?
       Delayed::Job.enqueue(Jobs::HealthUpdate.new(id))
     end
   end
@@ -169,7 +174,7 @@ class Hoshin < ActiveRecord::Base
     ret = incomplete_health
     return ret if ret[:value] < 100 && ret[:action] != 'none'
     
-    if health_updated_at < updated_at
+    if needs_health_update?
       sync_health_update!
     end
     
