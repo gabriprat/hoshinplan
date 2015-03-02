@@ -57,12 +57,13 @@
 		</if>
 		</prepend-content-header:>
 		
-		<append-heading:>
+		<heading:>
+		        <a action="edit"><ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">Hoshin <name/></ht></a>
 			<do part="sec-actions" id="sec-actions">
 			<a href="#{hoshin_path this}.pdf" title="&t 'hoshin_actions.export_as_pdf'" class="title-action">
 	    	            <span class="fa fa-download"/>
 			</a>
-			<a onclick="startPresentation(); return false;" title="&t 'hoshin_actions.presentation'" class="title-action">
+			<a href="#" onclick="startPresentation(); return false;" title="&t 'hoshin_actions.presentation'" class="title-action">
 	    	            <span class="fa fa-desktop"/>
 			</a>
 			<a href="#{hoshin_path this}/kanban" title="Kanban" class="title-action">
@@ -82,8 +83,7 @@
 			<if test="#{@pdf?'true':''}">
 				<small><%= l Time.now, :format => :long %></small>
 			</if>
-			
-		</append-heading:>
+		</heading:>
 		
 		<edit-link: replace/>
 		

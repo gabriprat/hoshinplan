@@ -1,9 +1,14 @@
 <extend tag="show-page">
 	<old-show-page merge>
 	<heading:>
-		<a action="edit">
-		<param-content for="heading"/>
-		</a>
+	  <if test="&this.is_a? Hoshin">
+	  	<param-content for="heading"/>
+	  </if>
+	  <else>
+	  	<a action="edit">
+	  		<param-content for="heading"/>
+	  	</a>
+	  </else>
 	</heading:>
 	<edit-link: replace/>
 	<creator-link: replace/>
