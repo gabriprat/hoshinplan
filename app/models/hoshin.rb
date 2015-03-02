@@ -89,14 +89,14 @@ class Hoshin < ActiveRecord::Base
     self.health_updated_at.nil? || self.updated_at.nil? || self.updated_at - self.health_updated_at > 1
   end
   
-  def sync_health_update!
+  def sync_health_update!(force = false)
     Rails.logger.debug "==== Health update!"
     if self.readonly?
       logger.debug "====== Not updating read-only hoshin"
       return
     end
     
-    unless needs_health_update?
+    unless force || needs_health_update?
       logger.debug "====== END: Health update! Not updating an already updated hoshin"
       return      
     end

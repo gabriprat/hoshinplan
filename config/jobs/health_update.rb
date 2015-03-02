@@ -4,7 +4,7 @@ module Jobs
       @text = ll "Initiating healthupdate job!"    
       if hoshin_id.nil?
         Hoshin.unscoped.all.each{|hoshin|
-          perform_one(hoshin)
+           perform_one(hoshin)
         }
       else
         begin
@@ -27,10 +27,11 @@ module Jobs
           User.current_id = User.current_user.id
           acting_user = User.current_user
         else
-          Delayed::Worker.logger.add(Logger::INFO, "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}")
+          @text += ll "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}"
           return 
         end
-        hoshin.sync_health_update!
+        hoshin.sync_health_update!(force=true)
+        @text += ll "Updated hoshin widh id=#{hoshin.id} (#{hoshin.name})"
       ensure
         User.current_user = nil
         User.current_id = nil
