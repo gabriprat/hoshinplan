@@ -52,7 +52,7 @@
 <def tag="form" for="Hoshin">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, header, health_updated_at, company, creator, indicators, objectives, parent, tasks" param/>
+    <field-list fields="name, header, company, creator, indicators, objectives, parent, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'hoshin.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
