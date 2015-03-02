@@ -27,7 +27,7 @@ class Objective < ActiveRecord::Base
 
   belongs_to :parent, :class_name => "Objective"
   belongs_to :area, :inverse_of => :objectives, :counter_cache => true, :null => false
-  belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => true, :null => false
+  belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => true, :null => false, :touch => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
   
   acts_as_list :scope => :area, :column => "obj_pos"
@@ -61,8 +61,7 @@ class Objective < ActiveRecord::Base
       .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists).references(:responsible)
   }
   
-  after_save "hoshin.health_update!"
-  after_destroy "hoshin.health_update!"
+  after_destroy 'hoshin.touch'
         
   before_create do |objective|
       objective.company_id = objective.area.company_id

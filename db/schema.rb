@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222201342) do
+ActiveRecord::Schema.define(version: 20150302192956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20150222201342) do
     t.integer  "blind_objectives_count",     default: 0,      null: false
     t.integer  "neglected_objectives_count", default: 0,      null: false
     t.integer  "hoshins_count",              default: 0,      null: false
+    t.datetime "health_updated_at"
   end
 
   add_index "hoshins", ["company_id", "parent_id"], name: "index_hoshins_on_company_id_and_parent_id", using: :btree
@@ -295,6 +296,7 @@ ActiveRecord::Schema.define(version: 20150222201342) do
     t.date     "last_seen_at"
   end
 
+  add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
   add_index "users", ["state"], name: "index_users_on_state", using: :btree
 
 end

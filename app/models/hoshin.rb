@@ -18,6 +18,7 @@ class Hoshin < ActiveRecord::Base
     objectives_count :integer, :default => 0, :null => false
     hoshins_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
+    health_updated_at :datetime
     timestamps
   end
   index [:company_id, :parent_id]
@@ -83,10 +84,16 @@ class Hoshin < ActiveRecord::Base
     tasks.overdue
   end
   
-  def health_update!
+  def sync_health_update!
+    Rails.logger.debug "==== Health update!"
     if self.readonly?
       logger.debug "====== Not updating read-only hoshin"
       return
+    end
+    # I assume that health computed within one second is updated
+    if self.updated_at - self.health_updated_at < 1
+      logger.debug "====== END: Health update! Not updating an already updated hoshin"
+      return      
     end
     neglected = Objective.unscoped.where(hoshin_id: id).neglected.count(:id)
     self.neglected_objectives_count = neglected
@@ -100,7 +107,9 @@ class Hoshin < ActiveRecord::Base
     blind = Objective.unscoped.where(hoshin_id: id).blind.count(:id)
     self.blind_objectives_count = blind  
   
+    self.touch(:health_updated_at)
     self.save!
+    Rails.logger.debug "==== END: Health update!"
   end
   
   after_update do |hoshin|
@@ -111,6 +120,9 @@ class Hoshin < ActiveRecord::Base
       Objective.update_all({:company_id => company_id},{:hoshin_id => id})
       Area.update_all({:company_id => company_id},{:hoshin_id => id})
       Goal.update_all({:company_id => company_id},{:hoshin_id => id})
+    end
+    if hoshin.updated_at > hoshin.health_updated_at 
+      Delayed::Job.enqueue(Jobs::HealthUpdate.new(id))
     end
   end
   
@@ -156,6 +168,10 @@ class Hoshin < ActiveRecord::Base
   def health
     ret = incomplete_health
     return ret if ret[:value] < 100 && ret[:action] != 'none'
+    
+    if health_updated_at < updated_at
+      sync_health_update!
+    end
     
     obj = objectives_health
     ind = indicators_health

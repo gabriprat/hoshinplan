@@ -27,7 +27,7 @@
 					<rmodal class="value" url="#{indicator_path this}/value_form" target-id="update-kpi-value-modal-#{this.id}"><view human with="&this.value.nil? ? 'N/A' : this.value"/></rmodal>
 			</if>
 			<else>
-				<autosubmit:value human updates="#neglected">
+				<autosubmit:value human updates="#neglected,#sec-actions">
 					<div class="input-append">
 						<input />
 						<button class="btn fa fa-check" type="submit"></button>

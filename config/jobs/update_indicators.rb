@@ -1,6 +1,6 @@
 module Jobs
-  class UpdateIndicators < BaseJob
-    def self.do_it
+  class UpdateIndicators
+    def perform
       User.current_user = User.administrator.first
       @text = ll " Initiating updateindicators job!"
       ihs = IndicatorHistory.joins(:indicator).includes({:indicator => :responsible}, {:indicator => :hoshin})

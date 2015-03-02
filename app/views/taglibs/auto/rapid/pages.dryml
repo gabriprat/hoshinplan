@@ -602,7 +602,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="header, parent" param/>
+      <field-list fields="header, health_updated_at, parent" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="area.collection.heading" count="&this.areas.count" >
@@ -2037,7 +2037,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="color, email_address, tutorial_step, timezone, language, last_login_at, preferred_view, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
+      <field-list fields="color, email_address, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
     </content-body:>
 
   </page>

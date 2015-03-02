@@ -33,7 +33,7 @@ class Indicator < ActiveRecord::Base
   belongs_to :company, :null => false
 
   belongs_to :objective, :inverse_of => :indicators, :counter_cache => true, :null => false
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :null => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => true, :null => false, :touch => true
   
   belongs_to :area, :inverse_of => :indicators, :counter_cache => true, :null => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
@@ -86,9 +86,7 @@ class Indicator < ActiveRecord::Base
     user.save!
   end
   
-  #Weird way of doing this because it is called from a batch process and no current user exists
-  after_save "Hoshin.unscoped.find(hoshin_id).health_update!"
-  after_destroy "hoshin.health_update!"
+  after_destroy 'hoshin.touch'
   
   before_update do |indicator|
     if (!indicator.value.nil? && indicator.value_changed? && !indicator.last_update_changed? && (indicator.next_update.nil? || indicator.next_update <= Date.today))
@@ -131,6 +129,7 @@ class Indicator < ActiveRecord::Base
       ind.update_columns(value: latest.value) unless ind.value == latest.value
       ind.update_columns(goal: latest.goal) unless latest.goal.nil? || ind.goal == latest.goal
       ind.update_columns(last_update: latest.day) unless ind.last_update == latest.day
+      ind.touch
     end
     
   end

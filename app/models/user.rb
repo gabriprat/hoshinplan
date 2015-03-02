@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   fields do
     name          :string, :required
     color         Color
-    email_address :email_address, :login => true
+    email_address :email_address, :login => true, :index => true, :unique => true
     administrator :boolean, :default => false
     tutorial_step :integer
     timezone      HoboFields::Types::Timezone
@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
     },
     :default_url => "/assets/default.jpg"
   }
+  
+  validates :email_address, uniqueness: { case_sensitive: false }
   
   #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   #validates_attachment_size :image, :less_than => 10.megabytes   

@@ -30,7 +30,7 @@ class Task < ActiveRecord::Base
   
   belongs_to :objective, :inverse_of => :tasks, :counter_cache => false, :null => false
   belongs_to :area, :inverse_of => :tasks, :counter_cache => false, :null => false
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :null => false
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :null => false, :touch => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
   acts_as_list :scope => :area, :column => "tsk_pos"
@@ -76,8 +76,7 @@ class Task < ActiveRecord::Base
     task.hoshin = task.objective.hoshin
   end
 
-  after_save "hoshin.health_update!"
-  after_destroy "hoshin.health_update!"
+  after_destroy 'hoshin.touch'
 
   after_save :update_counter_cache
   after_destroy :update_counter_cache
