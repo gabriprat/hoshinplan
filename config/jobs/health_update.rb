@@ -27,7 +27,8 @@ module Jobs
           User.current_id = User.current_user.id
           acting_user = User.current_user
         else
-          fail "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}"
+          Delayed::Worker.logger.add(Logger::INFO, "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}")
+          return 
         end
         hoshin.sync_health_update!
       ensure

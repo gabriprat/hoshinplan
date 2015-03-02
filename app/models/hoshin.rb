@@ -86,7 +86,7 @@ class Hoshin < ActiveRecord::Base
   
   def needs_health_update?
     # I assume that health computed within one second is updated
-    self.health_updated_at.nil? || self.updated_at.nil? || self.updated_at - self.health_updated_at < 1
+    self.health_updated_at.nil? || self.updated_at.nil? || self.updated_at - self.health_updated_at > 1
   end
   
   def sync_health_update!
