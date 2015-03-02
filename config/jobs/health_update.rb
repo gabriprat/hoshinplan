@@ -7,8 +7,12 @@ module Jobs
           perform_one(hoshin)
         }
       else
-        hoshin = Hoshin.unscoped.find(hoshin_id)
-        perform_one(hoshin)
+        begin
+          hoshin = Hoshin.unscoped.find(hoshin_id)
+          perform_one(hoshin)
+        rescue ActiveRecord::RecordNotFound
+          #Avoid errors when deleting hoshins
+        end
       end
       @text += ll "End healthupdate job!"
     end
