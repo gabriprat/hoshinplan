@@ -16,6 +16,10 @@ ul.icons li {
 	display: inline-block;
 }
 
+.compact ul.icons li {
+	margin: -0.2em;
+}
+
 ul.icons input[type=image], ul.icons img {
 	filter: opacity(0.4);
 	-o-filter: opacity(0.4);

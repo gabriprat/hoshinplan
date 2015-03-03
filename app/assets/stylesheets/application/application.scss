@@ -663,6 +663,10 @@ body.compact .column {
 	font-size: 0.95em;
 }
 
+body.compact .column:last-of-type {
+	padding-right:0;
+}
+
 body.compact button.btn.fa-check {
 	font-size: 11px;
 }
@@ -853,12 +857,13 @@ div.table .table-row div.column[data-label="Responsible"] {
 }
 
 div.table div.column[data-label="Actions"],
-div.table div.column[data-label="Tpc"] {
+div.table div.column[data-label="Tpc"],
+div.table div.column[data-label="Status"] {
 	text-align: right;
 }
 
 .compact div.table.indicators .table-row div.column[data-label="Actions"],
-.compact div.table.indicators .table-row div.column[data-label="Status"] {
+.compact div.table .table-row div.column[data-label="Status"] {
 	display: none;
 }
 
@@ -1282,6 +1287,10 @@ form#delete-history, form#delete-history input {
 
 .hoshin-tasks:hover span {
 	color: #000;
+}
+
+.compact .icons .hoshin-tasks span {
+	font-size: 1.2em;
 }
 
 .link, .link:focus, .link:active {
