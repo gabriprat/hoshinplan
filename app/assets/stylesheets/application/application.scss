@@ -857,8 +857,8 @@ div.table div.column[data-label="Tpc"] {
 	text-align: right;
 }
 
-.compact div.table .table-row div.column[data-label="Actions"],
-.compact div.table .table-row div.column[data-label="Status"] {
+.compact div.table.indicators .table-row div.column[data-label="Actions"],
+.compact div.table.indicators .table-row div.column[data-label="Status"] {
 	display: none;
 }
 
