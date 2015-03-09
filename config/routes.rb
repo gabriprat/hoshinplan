@@ -68,7 +68,9 @@ Hoshinplan::Application.routes.draw do
   
   match '/fail', to: 'front#test_fail', via: :all
   
-  match "/auth/:provider/callback" => "users#omniauth_callback", via: :all
+  match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
+  
+  SamlDynamicRouter.load
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
