@@ -15,7 +15,7 @@ Hoshinplan::Application.configure do
   
   #config.hobo.show_translation_keys = true 
 
-  Rails.application.routes.default_url_options[:host] = 'es.hoshinplandev.com:5000'
+  Rails.application.routes.default_url_options[:host] = 'www.hoshinplandev.com:5000'
   
 
   # Show full error reports and disable caching

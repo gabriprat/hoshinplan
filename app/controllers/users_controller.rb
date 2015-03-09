@@ -187,12 +187,18 @@ class UsersController < ApplicationController
   def sign_user_in(user, password=nil)
     params[:remember_me] = true
     if (password.nil?)
-      super(user)
+      super(user) {remember(user)}
     else
-      super(user, password)
+      super(user, password) {remember(user)}
     end
+  end
+  
+  def remember(user)
     current_user.remember_me if logged_in?
     create_auth_cookie if logged_in?
+  end
+  
+  def omniauth
   end
   
 end

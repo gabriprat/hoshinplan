@@ -43,7 +43,11 @@ gem 'puma'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+gem 'byebug'
+
+gem "omniauth-openid"
+gem "omniauth-saml"
+gem "omniauth-google-oauth2"
 
 gem "hobo"
 gem "hobo_fields"
@@ -60,8 +64,6 @@ gem "acts_as_list"
 gem "ruby-hmac"
 gem "ruby-openid", :git => "git://github.com/mattconnolly/ruby-openid.git"
 gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
-gem "omniauth-openid"
-gem "omniauth-google-oauth2"
 #gem 'gem_bench', :group => :console
 gem "clockwork"
 gem "protected_attributes"

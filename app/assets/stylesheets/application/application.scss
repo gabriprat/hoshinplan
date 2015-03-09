@@ -1293,6 +1293,10 @@ form#delete-history, form#delete-history input {
 	font-size: 1.2em;
 }
 
+.compact .tasks ul.icons li {
+	margin: -0.2em;
+}
+
 .link, .link:focus, .link:active {
 	background: none;
 	border: 0;

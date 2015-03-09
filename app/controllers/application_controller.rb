@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   
   TIMESTAMP_MAX_AGE_SEC = 300.freeze
   
-  protect_from_forgery
+  protect_from_forgery except: :omniauth_callback
   
   respond_to :html, :json, :xml
     

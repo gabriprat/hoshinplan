@@ -68,7 +68,7 @@ Hoshinplan::Application.routes.draw do
   
   match '/fail', to: 'front#test_fail', via: :all
   
-  #post "/auth/:provider/callback" => "users#omniauth_callback"
+  match "/auth/:provider/callback" => "users#omniauth_callback", via: :all
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

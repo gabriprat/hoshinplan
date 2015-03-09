@@ -3,6 +3,7 @@
   <navigation class="main-nav" if="&logged_in?">
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
   </if>
   <else>

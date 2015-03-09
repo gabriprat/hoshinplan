@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302192956) do
+ActiveRecord::Schema.define(version: 20150309201214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20150302192956) do
   add_index "areas", ["company_id"], name: "index_areas_on_company_id", using: :btree
   add_index "areas", ["creator_id"], name: "index_areas_on_creator_id", using: :btree
   add_index "areas", ["hoshin_id"], name: "index_areas_on_hoshin_id", using: :btree
+
+  create_table "auth_providers", force: true do |t|
+    t.string   "email_domain", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.string   "openid_url"
+    t.string   "issuer"
+    t.string   "sso_url"
+    t.text     "cert"
+    t.string   "fingerprint"
+    t.string   "id_format"
+  end
+
+  add_index "auth_providers", ["email_domain", "type"], name: "index_auth_providers_on_email_domain_and_type", unique: true, using: :btree
+  add_index "auth_providers", ["type"], name: "index_auth_providers_on_type", using: :btree
 
   create_table "authorizations", force: true do |t|
     t.string   "provider",      null: false

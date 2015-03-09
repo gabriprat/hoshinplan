@@ -1,7 +1,11 @@
 <extend tag="index-page">
 	<old-index-page merge>
 		<collection: replace>
-			<table-plus fields="id, created_at, name, color, email_address, administrator, tutorial_step, timezone, state">
+			<% 
+				fields = model.accessible_attributes.*.to_s.join(",") 
+				fields = "id, created_at, name, color, email_address, administrator, tutorial_step, timezone, state" if model == User
+			%>
+			<table-plus fields="&fields">
 			       <append-controls: >
 			       <if test="&User.eql?(this.class)">
 				<%=     button_to("Supplant", object_url(this, "supplant", :method => :post)) %>

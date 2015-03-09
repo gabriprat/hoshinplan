@@ -238,6 +238,10 @@ Hoshinplan::Application.routes.draw do
     resources :openid_providers
 
 
+    # Resource routes for controller admin/saml_providers
+    resources :saml_providers
+
+
     # Resource routes for controller admin/users
     resources :users, :only => [:index, :edit, :show, :update, :destroy] do
       collection do

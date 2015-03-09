@@ -6,7 +6,9 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&AuthProvider"><ht key="auth_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -94,7 +96,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="email_domain, openid_url" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -113,6 +115,118 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'openid_provider.actions.delete', :default=>['Remove This Openid provider']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== SamlProvider Pages ====== -->
+
+<def tag="index-page" for="SamlProvider">
+  <page merge title="#{ht 'saml_provider.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page saml-provider" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="saml_provider.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="saml_provider.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="saml_provider.actions.new">New Saml provider</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="SamlProvider">
+  <page merge title="#{ht 'saml_provider.new.title', :default=>[' New Saml provider'] }">
+    <body: class="new-page saml-provider" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="saml_provider.new.heading">
+          New Saml provider
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'saml_provider.actions.create', :default=>['Create Saml provider']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="SamlProvider">
+  <page merge title="#{ht 'saml_provider.show.title', :default=>['Saml provider'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page saml-provider" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="saml_provider.show.heading" name="#{name(:no_wrapper => true)}">
+          Saml provider <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="saml_provider.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Saml provider
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="SamlProvider">
+  <page merge title="#{ht 'saml_provider.edit.title', :default=>['Edit Saml provider'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page saml-provider" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="saml_provider.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Saml provider
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'saml_provider.actions.delete', :default=>['Remove This Saml provider']}" param/>
     </content-header:>
 
     <content-body: param>
