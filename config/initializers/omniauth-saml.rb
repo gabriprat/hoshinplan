@@ -17,7 +17,7 @@ class SamlDynamicRouter
   def self.load
     Hoshinplan::Application.routes.draw do
       SamlProvider.all.each do |prov|
-        puts "Routing #{prov.email_domain}"
+        Rails.logger.debug "Routing #{prov.email_domain}"
         get "/#{prov.email_domain}", :to => redirect('/auth/saml_' + prov.email_domain)
       end
     end
