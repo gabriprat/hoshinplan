@@ -52,7 +52,7 @@ Hoshinplan::Application.routes.draw do
   
   get  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
   
-  get  'oid_login' => 'front#oid_login', :as => 'oid_login'
+  get  'sso_login' => 'front#sso_login', :as => 'sso_login'
   
   get "/auth/failure" => "front#failure"
   

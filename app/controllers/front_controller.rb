@@ -37,20 +37,27 @@ class FrontController < ApplicationController
     flash[:notice] = nil
   end
   
-  def oid_login
+  def sso_login
     if params["email"].nil?
       flash[:error] = t("errors.invalid_credentials")
       render "index"
     else
       user, domain = params["email"].split("@")
-      oiprov = OpenidProvider.where(:email_domain => domain).first
-      if oiprov.nil?
+      prov = AuthProvider.where(:email_domain => domain).first
+      if prov.nil?
         flash[:error] = t("no_oid_url", :default => "No corporate login for the given email")
         render "index"
       else
-        oi = oiprov.openid_url
-        url = oi.gsub('{user}', user)
-        redirect_to "/auth/openid?openid_url=" + url
+        if prov.type == 'OpenidProvider' 
+          oi = prov.openid_url
+          url = oi.gsub('{user}', user)
+          redirect_to "/auth/openid?openid_url=" + url
+        elsif prov.type == 'SamlProvider'
+          redirect_to "/auth/saml_" + prov.email_domain
+        else
+          flash[:error] = "Unknown provider: " + prov.type.to_s
+          render "index"
+        end
       end
     end
   end
