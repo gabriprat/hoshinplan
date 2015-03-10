@@ -208,6 +208,7 @@ end
   #event: name of event
   #opts: Properties defined for this event only.
   def log_event(event, opts = {}, perma_opts = {})
+    opts[:url] =  url_for @this.hoshin if @this.respond_to? 'hoshin'
     Mp.log_event(event, current_user, request.remote_ip, opts)
   end
 
