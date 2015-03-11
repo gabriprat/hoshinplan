@@ -23,7 +23,7 @@ class IndicatorsController < ApplicationController
     obj = params["indicator"]
     select_responsible(obj)
     hobo_create
-    log_event_obj("Create indicator", {objid: @this.id, name: @this.name})
+    log_event("Create indicator", {objid: @this.id, name: @this.name})
   end
   
   def destroy
