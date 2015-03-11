@@ -18,10 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from Timeout::Error, :backtrace => true do |exception|
-    NewRelic::Agent.instance.error_collector.notice_error exception,
-      uri: request.path,
-      referer: request.referer,
-      request_params: request.params
+    track_exception(exception, request)
       
       error = {message:exception.message}
       error[:type] = exception.class.name.split('::').last || ''
@@ -223,6 +220,11 @@ end
    Mp.log_funnel(funnel_name, step_number, step_name, current_user, request.remote_ip, opts)
   end
 
-  
+  def track_exception(exception, request)
+    NewRelic::Agent.instance.error_collector.notice_error exception,
+      uri: request.path,
+      referer: request.referer,
+      request_params: request.params
+  end
   
   
