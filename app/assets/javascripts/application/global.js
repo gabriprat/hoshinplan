@@ -190,3 +190,18 @@ var ylabelformat = function(val, i) {
 	}
 	return ret;
 }
+$(document).ready(function() {
+	$("#sso-login").submit(function () {
+		var val = $("#sso-login input[name=email]").val();
+		var domain = document.domain.replace(/^.+?\./, '.');
+		alert(domain);
+		$.cookie("ssoemail", val, {domain: domain, path: '/', expires: 600});
+	});
+
+	$("#login.modal").on('shown', function() {
+		var email = $.cookie("ssoemail");
+		if (email != null) {
+			$("#sso-login input[name=email]").val(email).focus();
+		}
+	});
+});

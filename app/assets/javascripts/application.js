@@ -6,6 +6,7 @@
 // appear at the bottom of the the compiled file.
 //
 //= require jquery
+//= require jquery.cookie
 //= require jquery_ujs
 //= require jquery-ui
 //= require raphael

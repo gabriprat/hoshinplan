@@ -6,7 +6,7 @@
 			</a>
 			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
 			<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
-			<form action="/sso_login" method="get">
+			<form action="/sso_login" method="get" id="sso-login">
 				<input type="email" name="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
 				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
 			</form>
