@@ -116,6 +116,38 @@ a.external:after {
 	font-weight: 400;
 }
 
+#login .modal-body {
+	max-height: 100vh;
+}
+
+#hoshinplan-login a:before {
+	-webkit-transition: .4s ease-in-out;
+	-moz-transition: .4s ease-in-out;
+	-o-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+	display: inline-block;
+	margin-right: .5em;
+}
+
+#hoshinplan-login a.collapsed:before {
+	-ms-transform: rotate(-90deg); /* IE 9 */
+	-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+	-moz-transform: rotate(-90deg); /* Firefox */
+	transform: rotate(-90deg);
+}
+
+#hoshinplan-login a.toggle {
+	&, &:hover, &:active, &:visited {
+		text-decoration: none;
+	}
+}
+
+#hoshinplan-login form .actions {
+	padding-left: 0;
+}
+
+
+
 .sep, .line.sep {
 	margin: 1em auto;
 	width: 100%;

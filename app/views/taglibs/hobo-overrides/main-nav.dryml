@@ -70,9 +70,9 @@
   </navigation>
   </else>
   </else>
-  <modal id="login">
+  <modal id="login" unless="&logged_in?">
 <modal:>
-	<modal-header><h1><ht key="hoshin.actions.login">Login</ht></h1></modal-header>
+	<modal-header><ht key="hoshin.actions.login">Login</ht></modal-header>
 	<div class="modal-body">
 		<login-form />
 	</div>

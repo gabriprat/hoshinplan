@@ -11,15 +11,20 @@
 				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
 			</form>
 			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
-			<p class="sep"><t key="use_your_user">Use your hoshinplan user</t></p>			
-			<form merge class='login' action='/login'>
-			    <input type="email" name="login" id="login" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
-			   <input name='password' class='string input-block-level' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}"/>  
-			    <div param='actions'>
-			      <submit label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/><if class='nav-item' test='&signup_url'>
-			      <t key="hobo.support.or">or</t> <a href='&signup_url' param='signup'><t key="hobo.login.signup">Sign up</t></a></if>
-			      <if test="&forgot_password_url"><t key='hobo.support.or'>or</t> <a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
-			    </div>
-			  </form>
+			<div  id="hoshinplan-login">
+				<p class="sep"><a class="toggle fa fa-chevron-down collapsed" data-toggle="collapse" data-parent="#hoshinplan-login" href="#collapseLogin"><t key="use_your_user">Use your hoshinplan user</t></a></p>
+				<div class="collapse" id="collapseLogin">
+					<br/>
+					<form merge class='login' action='/login'>
+					    <input type="email" name="login" id="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
+					   <input name='password' class='string input-block-level' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}"/>  
+					    <div param='actions'>
+					      <submit label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/><if class='nav-item' test='&signup_url'>
+					      <t key="hobo.support.or">or</t> <a href='&signup_url' param='signup'><t key="hobo.login.signup">Sign up</t></a></if>
+					      <if test="&forgot_password_url"><t key='hobo.support.or'>or</t> <a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
+					    </div>
+					</form>
+				</div>
+			</div>
 		</div>
 </def>
