@@ -194,7 +194,6 @@ $(document).ready(function() {
 	$("#sso-login").submit(function () {
 		var val = $("#sso-login input[name=email]").val();
 		var domain = document.domain.replace(/^.+?\./, '.');
-		alert(domain);
 		$.cookie("ssoemail", val, {domain: domain, path: '/', expires: 600});
 	});
 
