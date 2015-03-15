@@ -19,15 +19,19 @@ class ErrorsController < ApplicationController
 
    	#Show
     def file_not_found
-      respond_with status: @status
+      render status: @status
     end
 
     def unprocessable
-      respond_with status: @status
+      render status: @status
     end
 
     def internal_server_error
-      respond_with status: @status
+      render status: @status
+    end
+    
+    def service_unavailable
+      render status: :service_unavailable
     end
 
      ####################

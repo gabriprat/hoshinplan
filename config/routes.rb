@@ -2,6 +2,8 @@ Hoshinplan::Application.routes.draw do
   get "errors/file_not_found"
   get "errors/unprocessable"
   get "errors/internal_server_error"
+  get "errors/service_unavailable"
+
   get ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
 
   root :to => 'front#index'

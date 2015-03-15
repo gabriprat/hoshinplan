@@ -7,6 +7,7 @@ namespace :app do
         'errors/file_not_found' => '404.html',
         'errors/unprocessable' => '422.html',
         'errors/internal_server_error' => '500.html'
+        'errors/service_unavailable' => '503.html'
     }
     app = ActionDispatch::Integration::Session.new(Rails.application)
 

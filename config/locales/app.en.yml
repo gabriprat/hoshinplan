@@ -60,6 +60,7 @@ en:
   errors: 
     internal_server_error: 'Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately.'
     not_found: 'The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us.'
+    service_unavailable: 'Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again.'
     error_home: Return to the home page
     error_contact: Get in contact with us
     permission_denied: Permission denied
