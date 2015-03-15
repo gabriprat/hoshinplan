@@ -62,10 +62,6 @@ Hoshinplan::Application.routes.draw do
   
   get "/pitch" => "front#pitch"
   
-  match '/404', to: 'errors#file_not_found', via: :all
-  match '/422', to: 'errors#unprocessable', via: :all
-  match '/500', to: 'errors#internal_server_error', via: :all
-  
   match '/fail', to: 'front#test_fail', via: :all
   
   match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
