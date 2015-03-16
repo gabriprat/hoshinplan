@@ -44,7 +44,7 @@ gem 'puma'
 # gem 'capistrano'
 
 # To use debugger
-gem 'byebug'
+gem 'byebug', :group => :development
 
 gem "omniauth-openid"
 gem "omniauth-saml"
@@ -85,7 +85,7 @@ gem 'memcachier'
 gem 'dalli'
 gem 'memcache-client'
 gem 'request_store'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', :group => :production
 gem 'RedCloth'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
@@ -97,4 +97,6 @@ gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'font_assets', :git => "git://github.com/ericallam/font_assets"
 gem 'http_accept_language'
-gem 'mixpanel-ruby'
+gem 'mixpanel-ruby', :group => :production
+gem 'rake', group: :test
+
