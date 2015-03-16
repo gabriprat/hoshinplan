@@ -1,1 +1,5 @@
 #Empty on purpose
+
+test:
+  adapter: postgresql
+  database: hoshinplan_test

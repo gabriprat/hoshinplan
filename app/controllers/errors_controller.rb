@@ -19,19 +19,19 @@ class ErrorsController < ApplicationController
 
    	#Show
     def file_not_found
-      render status: @status
+      render status: 404
     end
 
     def unprocessable
-      render status: @status
+      render status: 422
     end
 
     def internal_server_error
-      render status: @status
+      render status: 500
     end
     
     def service_unavailable
-      render status: :service_unavailable
+      render status: 503
     end
 
      ####################
@@ -41,6 +41,7 @@ class ErrorsController < ApplicationController
   protected
   
       def store
+        return unless defined?(NewRelic)
         options = {
           :uri => request.url,
           :referrer => request.referrer,

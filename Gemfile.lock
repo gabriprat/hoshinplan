@@ -79,6 +79,7 @@ GEM
     acts_as_list (0.6.0)
       activerecord (>= 3.0)
     addressable (2.3.7)
+    ansi (1.5.0)
     arel (4.0.2)
     aws-sdk-v1 (1.63.0)
       json (~> 1.4)
@@ -295,6 +296,9 @@ GEM
     thread_safe (0.3.5)
     thread_safe (0.3.5-java)
     tilt (1.4.1)
+    turn (0.9.7)
+      ansi
+      minitest (~> 4)
     tzinfo (0.3.43)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
@@ -345,6 +349,7 @@ DEPENDENCIES
   json
   memcache-client
   memcachier
+  minitest
   mixpanel-ruby
   morrisjs-rails!
   murmurhash3
@@ -367,6 +372,7 @@ DEPENDENCIES
   ruby-hmac
   ruby-openid!
   sass-rails
+  turn
   uglifier (>= 1.3.0)
   wicked_pdf
   wkhtmltopdf-binary
