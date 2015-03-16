@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user,  :except => [:activate_from_email, :activate]
 
              def scope_current_user
-               ::NewRelic::Agent.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
+               ::NewRelic::Agent.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil? || !defined?(NewRelic)
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  User.current_user = current_user
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
-               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
+               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil? || !defined?(NewRelic)
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                end               
@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
-               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
+               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil? || !defined?(NewRelic)
                yield
                #rescue ActiveRecord::RecordInvalid => invalid
                 # fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
@@ -221,6 +221,7 @@ end
   end
 
   def track_exception(exception, request)
+    return unless defined?(NewRelic)
     NewRelic::Agent.instance.error_collector.notice_error exception,
       uri: request.path,
       referer: request.referer,
