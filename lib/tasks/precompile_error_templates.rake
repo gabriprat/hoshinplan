@@ -16,7 +16,7 @@ namespace :app do
         outpath = File.join ([Rails.root, 'public', output])
         Hoshinplan::Application.config.secret_key_base = 'sadf'
         resp = app.get(route)
-        if resp == 200
+        if resp == output.to_i
             File.delete(outpath) unless not File.exists?(outpath)
             File.open(outpath, 'w') do |f|
                 f.write(app.response.body)
