@@ -4,8 +4,9 @@
 	<% tag = sortable ? "sortable-collection" : "collection" %>
 	<% limit = limit.to_i %>
 	<% count = this.nil? ? 0 : this.size %>
-	<% items = params[:show_all] || limit == 0 ? this : this.first(limit); items.member_class = this.member_class %>
-	<% more = !params[:show_all] && limit > 0 && count > limit %>
+	<% show_all = request.xhr? || params[:show_all] %>
+	<% items = show_all || limit == 0 ? this : this.first(limit); items.member_class = this.member_class %>
+	<% more = !show_all && limit > 0 && count > limit %>
 	<div class="table" merge-attrs merge-params if='&count > 0'>
 		<ul class="table-head">
 			<li class="table-row">
