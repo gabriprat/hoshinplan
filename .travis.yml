@@ -2,5 +2,3 @@ language: ruby
 rvm:
   - "2.2.0p0"
 bundler_args: --without production
-env:
-  - "SECRET_KEY_BASE=a1c8efc276bcd4bf6e3eab881780f54266d3c1078bb56d2af17715d3bfdeaf3dde3b2395a2309d860a9e3960479872ccc86ff063a09ae306b7ebf128d57e63ed"
