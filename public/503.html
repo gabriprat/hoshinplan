@@ -35,7 +35,7 @@
     <form action="/sso_login" class="form-horizontal" id="sso-login" method="get"><div class="hidden-fields"></div><input class="input-block-level" name="email" placeholder="E-mail" type="email"><input class="btn btn-primary button submit-button btn-big" type="submit" value="Login"></form>
 			<p class="line sep">or</p>
 <div  id="hoshinplan-login">				<p class="sep"><a class="toggle fa fa-chevron-down collapsed" data-parent="#hoshinplan-login" data-toggle="collapse" href="#collapseLogin">Use your hoshinplan.com user</a></p>
-<div class="collapse" id="collapseLogin"><br>    <form action="/login" class="form-horizontal login" method="post"><div class="hidden-fields"><input id="page_path" name="page_path" type="hidden" value="/errors/internal_server_error"><input name="authenticity_token" type="hidden" value="Xa0+EjRyJFMHPtoaYMT20bb6Ja88/2aiITqMYaqpSZE="></div><input class="input-block-level" id="email" name="login" placeholder="E-mail" type="email"><input class="string input-block-level password-input" id="password" name="password" placeholder="Password" style="margin-top: 10px" type="password"><div class="actions">					      <input class="btn btn-primary button submit-button" type="submit" value="Login">
+<div class="collapse" id="collapseLogin"><br>    <form action="/login" class="form-horizontal login" method="post"><div class="hidden-fields"><input id="page_path" name="page_path" type="hidden" value="/errors/service_unavailable"><input name="authenticity_token" type="hidden" value="Xa0+EjRyJFMHPtoaYMT20bb6Ja88/2aiITqMYaqpSZE="></div><input class="input-block-level" id="email" name="login" placeholder="E-mail" type="email"><input class="string input-block-level password-input" id="password" name="password" placeholder="Password" style="margin-top: 10px" type="password"><div class="actions">					      <input class="btn btn-primary button submit-button" type="submit" value="Login">
 					      or <a class="signup" href="/users/signup">Signup</a>
 					      or <a class="forgot-password" href="/forgot_password">Forgotten password?</a>
 </div></form>
@@ -46,11 +46,11 @@
         
 
 <li class='nav-item dropdown'>	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language <b class="caret"></b></a>
-<ul class="dropdown-menu">			                        <li><a href="http://en.hoshinplan.com/errors/internal_server_error">English (US)</a></li>
-			                        <li><a href="http://es.hoshinplan.com/errors/internal_server_error">Español (España)</a></li>
+<ul class="dropdown-menu">			                        <li><a href="http://en.hoshinplan.com/errors/service_unavailable">English (US)</a></li>
+			                        <li><a href="http://es.hoshinplan.com/errors/service_unavailable">Español (España)</a></li>
 </ul></li></ul></div></div>
-</div></div><div class="container bootstrap-content"><div class="row main-row"><div class="span12 main-column"><div class="section with-flash content">    		<div class="hero-unit"><h1>500</h1>
-Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately.<div id="error-actions">		<a class="btn" href="/"><div class="fa fa-home"></div><p>Return to the home page</p></a>
+</div></div><div class="container bootstrap-content"><div class="row main-row"><div class="span12 main-column"><div class="section with-flash content">    		<div class="hero-unit"><h1>503</h1>
+Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again.<div id="error-actions">		<a class="btn" href="/"><div class="fa fa-home"></div><p>Return to the home page</p></a>
 		<a class="btn" href="mailto:hello@hoshinplan.com"><div class="fa fa-envelope"></div><p>Get in contact with us</p></a>
 </div></div>	
 </div></div></div></div>
