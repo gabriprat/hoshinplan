@@ -77,9 +77,7 @@ module Hoshinplan
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     
     config.font_assets.origin = '*'
-    
-    config.exceptions_app = self.routes
-    
+        
   end
 end
 
