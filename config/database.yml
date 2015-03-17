@@ -1,5 +1,8 @@
-#Empty on purpose
 
+development:
+  adapter: postgresql
+  database: hoshinplan_dev
+  
 test:
   adapter: postgresql
   database: hoshinplan_test

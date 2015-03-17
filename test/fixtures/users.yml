@@ -11,3 +11,4 @@ one:
   administrator: true
   tutorial_step: 0
   preferred_view: expanded
+  state: active

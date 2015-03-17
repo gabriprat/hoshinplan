@@ -88,14 +88,14 @@ class Mp
   end
 
   def people_set_access_api
-    return if ENV['MIXPANEL_DISABLE']
+    return if ENV['MIXPANEL_DISABLE'] || !defined?(Mixpanel)
     tracker = Mixpanel::Tracker.new(TOKEN)
     Delayed::Worker.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options}, #{@user}" 
     tracker.people.set(@options['distinct_id'], @people, @options[:ip])
   end
 
   def track_access_api
-    return if ENV['MIXPANEL_DISABLE']
+    return if ENV['MIXPANEL_DISABLE'] || !defined?(Mixpanel)
     tracker = Mixpanel::Tracker.new(TOKEN)
     Delayed::Worker.logger.debug "Mixpanel track: #{@options['distinct_id']}, #{@options}, #{@event}"
     tracker.track(@options['distinct_id'], @event, @options, @options[:ip])
