@@ -41,13 +41,7 @@ class ErrorsController < ApplicationController
   protected
   
       def store
-        return unless defined?(NewRelic)
-        options = {
-          :uri => request.url,
-          :referrer => request.referrer,
-          :request_params => request.params
-        }
-        NewRelic::Agent.notice_error(@exception, options)
+        Nr.track_exception(@exception, request)
       end
 
       #Info

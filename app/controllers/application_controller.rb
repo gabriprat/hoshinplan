@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
          around_filter :scope_current_user,  :except => [:activate_from_email, :activate]
 
              def scope_current_user
-               ::NewRelic::Agent.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil? || !defined?(NewRelic)
+               Nr.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  User.current_user = current_user
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
-               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil? || !defined?(NewRelic)
+               Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                end               
@@ -88,8 +88,7 @@ class ApplicationController < ActionController::Base
                    Company.current_company = inst
                  end
                end
-               Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
-               ::NewRelic::Agent.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil? || !defined?(NewRelic)
+               Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                yield
                #rescue ActiveRecord::RecordInvalid => invalid
                 # fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
@@ -220,12 +219,8 @@ end
    Mp.log_funnel(funnel_name, step_number, step_name, current_user, request.remote_ip, opts)
   end
 
-  def track_exception(exception, request)
-    return unless defined?(NewRelic)
-    NewRelic::Agent.instance.error_collector.notice_error exception,
-      uri: request.path,
-      referer: request.referer,
-      request_params: request.params
+  def track_exception(exception, request=nil)
+    Nr.track_exception(exception, request)
   end
   
   
