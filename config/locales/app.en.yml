@@ -250,6 +250,7 @@ en:
     pending_actions_for: Pending actions for %{name}
     delete_account: Delete account
     collaborating_with: Collaborating with
+    end_collaboration: End collaboration
     change: Change
     messages:
       end_collaboration_confirm: Are you sure you want to stop collaborating with this company?

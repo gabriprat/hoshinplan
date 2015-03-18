@@ -1027,12 +1027,14 @@ fieldset[disabled] .btn-primary.active {
 	float: left;
 }
 
-input[type=submit].delete-button {
-	background-color: darkred;
-	background-image: none;
-	color: white;
-	text-shadow: none;
-	font-weight: 100;
+.modal-footer-delete, .edit-page {
+	input[type=submit].delete-button {
+		background-color: darkred;
+		background-image: none;
+		color: white;
+		text-shadow: none;
+		font-weight: 100;
+	}
 }
 
 .history-actions {

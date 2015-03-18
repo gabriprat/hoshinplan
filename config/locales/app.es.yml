@@ -251,6 +251,7 @@ es:
     delete_account: Eliminar cuenta
     collaborating_with: Colaborando con
     change: Cambiar
+    end_collaboration: Cancelar colaboración
     messages:
       end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
   hoshin:

@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   
   def show
     begin
-      self.this = User.includes({:user_companies => {:company => :hoshins}}).where(:id => params[:id]).first 
+      self.this = User.includes({:user_companies => {:company => :hoshins}}).user_find(current_user, params[:id])
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
       @page_title = I18n.translate('user.dashboard_for', :name => name, 

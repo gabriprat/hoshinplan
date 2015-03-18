@@ -88,7 +88,7 @@
 				<header>
 			          <h4>
 				  <a:company><name/></a>
-				  <delete-button action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')" if="&this.user == current_user"/>
+				  <delete-button title="&t('user.end_collaboration')" action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')" if="&this.user_id == current_user.id"/>
 				  </h4>
 			        </header>
 				<do:company>

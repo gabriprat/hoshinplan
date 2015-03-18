@@ -16,6 +16,7 @@ class Task < ActiveRecord::Base
   end
   index [:deadline, :status]
   index [:area_id, :status]
+  index [:hoshin_id, :status]
   
   validates_presence_of :objective
   
