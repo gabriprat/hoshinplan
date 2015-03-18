@@ -64,7 +64,7 @@ private
       Rails.logger.debug "=========== Fecth or store 1: #{ret}"      
       if ret.nil?
             ret = controller.write_fragment(cache_key, yield(cache_key), {expires: expires})
-            logger.debug "=========== Fecth or store 2: #{ret}"      
+            Rails.logger.debug "=========== Fecth or store 2: #{ret}"      
             
       end
       Rails.logger.debug "=========== Fecth or store 3: #{ret}"
