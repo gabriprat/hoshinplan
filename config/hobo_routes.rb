@@ -12,6 +12,7 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       get 'charts'
+      post 'form'
     end
   end
 

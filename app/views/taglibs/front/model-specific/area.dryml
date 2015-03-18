@@ -2,20 +2,11 @@
   <old-card merge class="slide-page">
     <creator-link: replace />
     <header:>
-    	 <h4 param="heading"><a onclick="$('#update-area-modal-#{this.id}').modal('show'); $('#update-area-modal-#{this.id} form').trigger('reset'); return false;"><name/></a></h4>
+    	 <h4 param="heading"><rmodal title="#{ht key='area.actions.update'}" url="#{area_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-area-modal-#{this.id}"><name/></rmodal></h4>
     </header:>
     <body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}" class="area-part">
-	<modal id="update-area-modal-#{this.id}">
-	<modal:>
-		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
-		   <div class="modal-body">
-		    <field-list: fields="name, hoshin"/>
-		   </div>
-		   <modal-form-footer-delete />
-		 </form>
-	</modal:>
-	</modal>	
+	<div class="modal hide" id="update-area-modal-#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<swept-cache route-on suffix="view" path="&request.fullpath" locale="#{I18n.locale}" area="#{this.id}" canview="&can_view?" unless="&params['action'] == 'destroy' && @this && this && (@this.id == this.id)">
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>

@@ -217,15 +217,19 @@ class User < ActiveRecord::Base
   end
   
   def all_companies
-    Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id)
-    .where('user_id = ?', self.id))
-    .order(:name)
+    return @all_companies unless @all_companies.nil?
+    @all_companies =
+      Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id)
+      .where('user_id = ?', self.id))
+      .order(:name) if @all_companies.nil?
   end
   
   def all_hoshins
-    Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company)
-    .where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
-    .order(:company_id, :name)
+    return @all_hoshins unless @all_hoshins.nil?
+    @all_hoshins = 
+      Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company)
+      .where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
+      .order(:company_id, :name) if @all_hoshins.nil?
   end
 
   def signed_up?

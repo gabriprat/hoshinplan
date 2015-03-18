@@ -7,6 +7,8 @@
 	    <a href="#" onclick="$('#login').modal('show'); return false;"><ht key="hoshin.actions.login"/></a>
     </log-in:>
     
+    <dev-user-changer: replace/>
+    
    <append-ul: >
    <li class='nav-item dropdown'>
 	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><t key="change_locale">Language</t> <b class="caret"></b></a>

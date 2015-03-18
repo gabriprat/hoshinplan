@@ -5,6 +5,8 @@ class AreasController < ApplicationController
   auto_actions :all, :except => [:new, :index]
   
   show_action :charts
+  web_method :form
+  
   
   include RestController
   
@@ -24,6 +26,10 @@ class AreasController < ApplicationController
     @this = Area.includes(:indicators, {:indicators => :indicator_histories})
       .where(:id => params[:id]).order('indicators.ind_pos').references(:indicators).first
     hobo_show
+  end
+  
+  def form
+    @this = find_instance
   end
   
 end

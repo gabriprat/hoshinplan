@@ -76,13 +76,13 @@ class ApplicationController < ActionController::Base
                end               
                if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
                  inst = User.current_user if self.is_a?(UsersController)
-                 inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?    
+                 inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
+                 self.this = inst
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
                  inst = Hoshin.find(params[:area][:hoshin_id]) unless inst
                  Rails.logger.debug inst.to_yaml
                  if inst.respond_to?(:company_id)
                    Company.current_id = inst.company_id
-                   Company.current_company = Company.find(inst.company_id)
                  elsif inst.is_a? Company
                    Company.current_id = inst.id
                    Company.current_company = inst

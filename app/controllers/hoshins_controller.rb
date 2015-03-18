@@ -48,8 +48,11 @@ class HoshinsController < ApplicationController
             format.json { hobo_show }
             format.xml { hobo_show }
             format.html {
+              current_user.all_companies.load
+              current_user.all_hoshins.load
               self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators, :tasks]}, :goals])
-                .user_find(current_user, params[:id]) 
+                .user_find(current_user, params[:id])
+              Company.current_company = self.this.company
               hobo_show
             }
       end
