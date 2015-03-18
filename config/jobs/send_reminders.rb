@@ -2,7 +2,8 @@ module Jobs
   class SendReminders < Struct.new(:hour)  
     
     def perform
-      hour ||= 7
+      self.hour ||= 7
+      self.hour = self.hour.to_i
       @text = ll "Initiating send reminders job!"
       User.current_user = -1
       kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
@@ -20,8 +21,14 @@ module Jobs
       }
       comb.values.each { |com|
         user = com[:user]
-        @text +=  ll " ==== User: #{user.email_address}" 
-        UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver
+        old_locale = I18n.locale
+        begin
+          I18n.locale = user.language.to_s
+          @text +=  ll " ==== User: #{user.email_address}" 
+          UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver if user.email_address = 'gabriel.prat@infojobs.net'
+        ensure
+          I18n.locale = old_locale
+        end
       }
       @text += ll "End send reminders job!"
     end
