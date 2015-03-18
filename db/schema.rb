@@ -11,23 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309201214) do
+ActiveRecord::Schema.define(version: 20150318142518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "areas", force: true do |t|
-    t.string   "name",                         null: false
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hoshin_id",                    null: false
+    t.integer  "hoshin_id",   null: false
     t.integer  "position"
-    t.integer  "company_id",                   null: false
+    t.integer  "company_id",  null: false
     t.integer  "creator_id"
-    t.integer  "objectives_count", default: 0, null: false
-    t.integer  "indicators_count", default: 0, null: false
-    t.integer  "tasks_count",      default: 0, null: false
     t.string   "color"
   end
 
@@ -212,16 +209,14 @@ ActiveRecord::Schema.define(version: 20150309201214) do
   create_table "objectives", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "indicators_count", default: 0, null: false
-    t.integer  "tasks_count",      default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "area_id",                      null: false
-    t.integer  "hoshin_id",                    null: false
+    t.integer  "area_id",        null: false
+    t.integer  "hoshin_id",      null: false
     t.integer  "obj_pos"
     t.integer  "parent_id"
     t.integer  "responsible_id"
-    t.integer  "company_id",                   null: false
+    t.integer  "company_id",     null: false
     t.integer  "creator_id"
   end
 

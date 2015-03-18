@@ -10,9 +10,6 @@ class Area < ActiveRecord::Base
     name        :string, :null => false
     description :text
     color       Color
-    objectives_count :integer, :default => 0, :null => false
-    indicators_count :integer, :default => 0, :null => false
-    tasks_count :integer, :default => 0, :null => false
     timestamps
   end
 

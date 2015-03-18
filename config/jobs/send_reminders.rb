@@ -23,9 +23,9 @@ module Jobs
         user = com[:user]
         old_locale = I18n.locale
         begin
-          I18n.locale = user.language.to_s
+          I18n.locale = user.language.to_s || I18n.default_locale
           @text +=  ll " ==== User: #{user.email_address}" 
-          UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver if user.email_address = 'gabriel.prat@infojobs.net'
+          UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver 
         ensure
           I18n.locale = old_locale
         end

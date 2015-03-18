@@ -140,10 +140,6 @@ class Task < ActiveRecord::Base
   
 
   def update_counter_cache
-    self.objective.tasks_count = Task.where(:status => [:active, :backlog], :objective_id => self.objective_id).count(:id)
-    self.objective.save!
-    self.area.tasks_count = Task.where(:status => [:active, :backlog], :area_id => self.area_id).count(:id)
-    self.area.save!
     self.hoshin.tasks_count = Task.where(:status => [:active, :backlog], :hoshin_id => self.hoshin_id).count(:id)
     self.hoshin.save!
   end
