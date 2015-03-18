@@ -1024,12 +1024,15 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .modal-footer-delete input[type=submit].delete-button {
+	float: left;
+}
+
+input[type=submit].delete-button {
 	background-color: darkred;
 	background-image: none;
 	color: white;
 	text-shadow: none;
 	font-weight: 100;
-	float: left;
 }
 
 .history-actions {

@@ -23,13 +23,13 @@ es:
       title: "%{model}"
       heading: "%{model} %{name}"
       back_link: "Atrás"
-      edit_link: "Actualizar %{model}"
+      edit_link: "Editar %{model}"
       new_link: "Nuevo registro %{model}"
       add_form_heading: "Añadir %{model}"
 
     edit:
-      title: "Actualización %{model}"
-      heading: "Actualización %{model}"
+      title: "Editar %{model}"
+      heading: "Editar %{model}"
 
     index_for_owner:
       title: "%{model} para"
@@ -97,8 +97,8 @@ es:
       delete: "Borrar %{model}"
       save: "Guardar %{model}"
       cancel: "Cancelar"
-      edit: "Actualizar %{model}"
-      edit_control: "Actualizar"
+      edit: "Editar %{model}"
+      edit_control: "Editar"
       back: "Volver a"
       back_to_parent: "Volver a %{parent} %{name}"
       send: "Enviar"

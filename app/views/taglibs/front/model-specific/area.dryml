@@ -2,7 +2,7 @@
   <old-card merge class="slide-page">
     <creator-link: replace />
     <header:>
-    	 <h4 param="heading"><rmodal title="#{ht key='area.actions.update'}" url="#{area_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-area-modal-#{this.id}"><name/></rmodal></h4>
+    	 <h4 param="heading"><rmodal title="#{ht key='area.actions.edit'}" url="#{area_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-area-modal-#{this.id}"><name/></rmodal></h4>
     </header:>
     <body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}" class="area-part">

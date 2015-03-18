@@ -56,11 +56,7 @@ class HoshinsController < ApplicationController
               hobo_show
             }
       end
-    end 
-    
-    #if we were sure no caches would be hit we could use the above statement and avoid 9 queries!!
-    #self.this = Hoshin.includes([:areas, :goals]).user_find(current_user, params[:id])
-    
+    end
   end
   
   def health
