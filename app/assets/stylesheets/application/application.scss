@@ -380,15 +380,19 @@ body.compact {
 	}
 	
 	.timer {
-		font-size: 1.4em;
+		font-size: 1.2em;
 		background: transparent;
 		border: none;
-		> .percent {
-			position: initial;
-			margin-left: 1em;
-		}
+		margin-left: 0.1em;
 		.slice, .bg {
-			display: none;
+			margin-top:0.05em;
+			//display: none;
+		}
+		.percent {
+			font-size: .4em;
+			width:100%;
+			margin-left: -0.2em;
+			text-align: center;
 		}
 	}
 	

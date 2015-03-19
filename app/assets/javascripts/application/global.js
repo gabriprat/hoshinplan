@@ -204,3 +204,7 @@ $(document).ready(function() {
 		}
 	});
 });
+
+$(document).ready(function() {
+	//$('#update-health').submit();
+});

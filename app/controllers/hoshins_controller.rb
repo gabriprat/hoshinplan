@@ -36,7 +36,11 @@ class HoshinsController < ApplicationController
   end
   
   def update
-    hobo_update
+    begin
+      hobo_update
+    rescue RuntimeError
+      #ignore "No update specified in params" errors
+    end
     log_event("Update hoshin", {objid: @this.id, name: @this.name})
   end
   
@@ -60,7 +64,11 @@ class HoshinsController < ApplicationController
   end
   
   def health
-    hobo_show
+    respond_to do |format|
+      format.json { render json: this.health }
+      format.xml { render xml: this.health }
+      format.html { hobo_show }
+    end
   end
   
   def charts
