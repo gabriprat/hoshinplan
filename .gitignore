@@ -30,4 +30,4 @@ backup_and_restore.sh
 
 Procfile.dev
 migrate_prod.sh
-push_heroku.sh
+pushheroku.sh

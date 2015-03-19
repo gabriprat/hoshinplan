@@ -172,7 +172,7 @@ class Hoshin < ActiveRecord::Base
   
   def health
     ret = incomplete_health
-    return ret if ret[:value] < 100 && ret[:action] != 'none'
+    #return ret if ret[:value] < 100 && ret[:action] != 'none'
     
     if needs_health_update?
       sync_health_update!
@@ -219,6 +219,10 @@ class Hoshin < ActiveRecord::Base
     end
     ret = ret || {:action => "none"}
     ret[:value] = value
+    if ret[:action] == "goal" && ret[:value] > 80
+      ret[:action] = "none"
+      ret[:value] = 100
+    end
     return ret
   end
   
