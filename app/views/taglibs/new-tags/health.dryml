@@ -2,7 +2,7 @@
 
 
 <def tag="health" for="Hoshin">
-		<ajax-load>
+		<ajax-load id="health-counter" updates="#sec-actions">
 			<content:>
 			<% health = this.health %>	
 			<if test="&health[:action]=='none'">

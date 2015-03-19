@@ -64,10 +64,10 @@ class HoshinsController < ApplicationController
   end
   
   def health
-    respond_to do |format|
-      format.json { render json: this.health }
-      format.xml { render xml: this.health }
-      format.html { hobo_show }
+    if request.xhr?
+      hobo_ajax_response
+    else
+      hobo_show
     end
   end
   

@@ -1,7 +1,6 @@
 <def tag="ajax-load" attrs="id, updates">
 		<unless test="&params[:ajax_load]">
-			<do part-id="&id"></do>
-			<a href="?ajax_load=true" updates="#{updates}" id="update-#{id}s" ajax data-rapid='{"ajax-load":{}}' no-spinner></a>
+			<a href="?ajax_load=true" action="show" updates="#{updates}" id="update-#{id}" ajax data-rapid='{"ajax-load":{}}' no-spinner></a>
 		</unless>
 		<else>
 			<do param="content"/>
