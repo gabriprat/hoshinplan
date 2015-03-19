@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318142518) do
+ActiveRecord::Schema.define(version: 20150319003048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,7 @@ ActiveRecord::Schema.define(version: 20150318142518) do
   add_index "tasks", ["company_id"], name: "index_tasks_on_company_id", using: :btree
   add_index "tasks", ["creator_id"], name: "index_tasks_on_creator_id", using: :btree
   add_index "tasks", ["deadline", "status"], name: "index_tasks_on_deadline_and_status", using: :btree
+  add_index "tasks", ["hoshin_id", "status"], name: "index_tasks_on_hoshin_id_and_status", using: :btree
   add_index "tasks", ["hoshin_id"], name: "index_tasks_on_hoshin_id", using: :btree
   add_index "tasks", ["objective_id"], name: "index_tasks_on_objective_id", using: :btree
   add_index "tasks", ["responsible_id"], name: "index_tasks_on_responsible_id", using: :btree

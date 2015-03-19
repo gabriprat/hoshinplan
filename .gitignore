@@ -29,3 +29,5 @@ backup_and_restore.sh
 !.elasticbeanstalk/*.global.yml
 
 Procfile.dev
+migrate_prod.sh
+push_heroku.sh
