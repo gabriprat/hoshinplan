@@ -49,6 +49,7 @@ gem 'byebug', :group => :development
 gem "omniauth-openid"
 gem "omniauth-saml"
 gem "omniauth-google-oauth2"
+gem "ruby-saml", '~> 0.9.1'
 
 gem "hobo"
 gem "hobo_fields"

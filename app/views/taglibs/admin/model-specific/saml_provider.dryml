@@ -1,0 +1,9 @@
+<extend tag="form" for="SamlProvider">
+	<old-form: multipart merge>
+		<field-list: fields="email_domain, issuer, sso_url, cert, fingerprint, id_format, metadata_xml">
+		<metadata-xml-view: ><input type="file" name="metadata_xml"/></metadata-xml-view:>
+		</field-list:>
+	</old-form:>
+</extend>
+
+
