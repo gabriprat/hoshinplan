@@ -2003,13 +2003,13 @@ body .center-block {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 100px;
   background-color: $inverse-background-color;
 }
 
 #mixpanel {
 	text-align:center;
+	margin-bottom: 1em;
+	height: 36px;
 }
 
 .footer-links {

@@ -30,7 +30,7 @@
 		      <li><a href="http://github.com/gabriprat/hoshinplan/issues">Issues</a></li>
 		      <li><a href="mailto:hello@hoshinplan.com">Contact us</a></li>
 		    </ul>
-		   <div id="mixpanel"><a href="https://mixpanel.com/f/partner"><img alt="Mobile Analytics" src="http://cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a></div>
+		   <div id="mixpanel"><a href="https://mixpanel.com/f/partner"><img width="114" height="36" alt="Mobile Analytics" src="http://cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a></div>
 		</footer:>
 		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}"/>
 	 </old-page>

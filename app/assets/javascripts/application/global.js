@@ -205,6 +205,11 @@ $(document).ready(function() {
 	});
 });
 
-$(document).ready(function() {
-	//$('#update-health').submit();
-});
+(function() {
+	var footer = function() {
+		var fh = $(".footer").first().height();
+		$("body").css("margin-bottom", fh);
+	}
+	$(window).resize(footer);
+	$(document).ready(footer);
+})();
