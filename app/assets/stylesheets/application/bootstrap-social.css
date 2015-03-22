@@ -32,7 +32,7 @@ html body .btn-social {
 	overflow: hidden;
 	text-overflow: ellipsis
 }
-html body .btn-social :first-child {
+html body .btn-social i {
 	position: absolute;
 	left: 0;
 	top: 0;
