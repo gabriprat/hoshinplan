@@ -1,7 +1,7 @@
 <def attrs='user-model' tag='login-form'>
 	<% user_model ||= User -%>
 		<div class="social-login">
-			<a class="btn" style="position: relative;" href="/auth/google_oauth2">
+			<a class="btn" style="position: relative;padding-left: 44px;text-align: left;  white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="/auth/google_oauth2">
 			            <i class="fa fa-google-plus"></i> <t key="log_in_with" provider="Google"/>
 			</a>
 		</div>
