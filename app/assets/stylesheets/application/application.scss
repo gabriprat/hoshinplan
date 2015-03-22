@@ -105,6 +105,10 @@ a.external:after {
 
 .social-login, .corporate-login, .local-login {
 	text-align: center;
+	.btn {
+		float: none;
+		display: inline-block;
+	}
 }
 
 .modal {
@@ -120,7 +124,7 @@ a.external:after {
 	max-height: 100vh;
 }
 
-#hoshinplan-login a:before {
+.local-login a i {
 	-webkit-transition: .4s ease-in-out;
 	-moz-transition: .4s ease-in-out;
 	-o-transition: .4s ease-in-out;
@@ -129,20 +133,20 @@ a.external:after {
 	margin-right: .5em;
 }
 
-#hoshinplan-login a.collapsed:before {
+.local-login a.collapsed i {
 	-ms-transform: rotate(-90deg); /* IE 9 */
 	-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
 	-moz-transform: rotate(-90deg); /* Firefox */
 	transform: rotate(-90deg);
 }
 
-#hoshinplan-login a.toggle {
+.local-login a.toggle {
 	&, &:hover, &:active, &:visited {
 		text-decoration: none;
 	}
 }
 
-#hoshinplan-login form .actions {
+.local-login form .actions {
 	padding-left: 0;
 }
 
