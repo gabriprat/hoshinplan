@@ -4,12 +4,16 @@
 			<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
 			            <i class="fa fa-google-plus"></i> <t key="log_in_with" provider="Google"/>
 			</a>
+		</div>
+		<div class="corporate-login">
 			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
 			<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
 			<form action="/sso_login" method="get" id="sso-login">
 				<input type="email" name="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
 				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
 			</form>
+		</div>
+		<div class="local-login">
 			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
 			<div  id="hoshinplan-login">
 				<p class="sep"><a class="toggle fa fa-chevron-down collapsed" data-toggle="collapse" data-parent="#hoshinplan-login" href="#collapseLogin"><t key="use_your_user">Use your hoshinplan user</t></a></p>
