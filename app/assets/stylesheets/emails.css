@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 body {
 	margin: 0;
 	padding: 0;
@@ -163,7 +162,7 @@ table.wrapper {
 	.wrapper .footer .twitter,
 	.wrapper .footer .facebook,
 	.wrapper .footer .forward {
-		font-family: Montserrat, Avenir, sans-serif !important;
+		font-family: Avenir, Arial, sans-serif !important;
 	}
 
 }
