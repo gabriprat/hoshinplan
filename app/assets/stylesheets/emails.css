@@ -616,24 +616,26 @@ hr {
 	padding-bottom: 55px;
 }
 .footer .cols {
-	width: 600px;
+	max-width: 600px;
+	text-align: center;
 }
 .footer .left,
 .footer .right {
+	text-align: left;
+	display: inline-block;
 	color: #8e959c;
 	font-family: sans-serif;
 	font-size: 12px;
 	line-height: 20px;
 	padding-bottom: 22px;
 	padding: 0 5px;
+	min-width: 280px;
 }
 .footer .left {
-	text-align: left;
-	width: 53%;
+	width: 45%;
 	padding-right: 5px;
 }
 .footer .right {
-	text-align: right;
 	width: 47%;
 	padding-left: 5px;
 }
