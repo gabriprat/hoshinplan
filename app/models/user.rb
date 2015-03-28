@@ -95,7 +95,11 @@ class User < ActiveRecord::Base
   end
     
   def self.find_by_email_address(email)
-    User.find_by email_address: email.map{ |s| s.downcase }
+    if email.kind_of?(Array)
+      User.find_by email_address: email.map{ |s| s.downcase }
+    else
+      User.find_by email_address: email.downcase
+    end
   end
   
   default_scope lambda { 
