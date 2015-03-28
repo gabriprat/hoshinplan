@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   end
     
   def self.find_by_email_address(email)
-    User.find(:all, :conditions => ["email_address = lower(?)", email]).first
+    User.find_by email_address: email.map{ |s| s.downcase }
   end
   
   default_scope lambda { 
