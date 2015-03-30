@@ -28,7 +28,7 @@
 					<autosubmit:deadline class="inline-form wider" updates="#tutorial,#sec-actions" success="equalHeightSections();" live/>
 				</if>
 				<else>
-					#{l this.deadline, format: :short}
+					#{l this.deadline, format: :short unless this.deadline.nil?}
 				</else>
 		  </div>	
 	</if>

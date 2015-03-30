@@ -9,7 +9,7 @@
 		</if>
 		<if test="&column == 'Objective'">
 			<div class="column" data-label="Name">
-				<rmodal url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}"><name/> </rmodal> (<user-abbrev:responsible_id />)	
+				<rmodal url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}"><name/> </rmodal> <user-abbrev:responsible_id paren/>	
 			</div>
 		</if>
 		<if test="&column == 'Resp.' || column == 'Responsible'">
