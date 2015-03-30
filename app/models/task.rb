@@ -69,7 +69,7 @@ class Task < ActiveRecord::Base
   }
   
   scope :visible, -> {
-    where("status != 'deleted' and (status = 'active' or status = 'backlog' or coalesce(deadline, created_at)>current_date-110)")
+    where("status != 'deleted' and (status = 'active' or status = 'backlog' or coalesce(deadline, tasks.created_at)>current_date-110)")
   }  
  
   before_create do |task|
