@@ -4,12 +4,14 @@
  * directory will be included.
  *
  *= require_self
- *= require application
  *= require hobo_rapid
  *= require hobo_jquery
  *= require hobo_bootstrap
  *= require hobo_jquery_ui
  *= require hobo_bootstrap_ui
- *= require jquery-ui/flick
+ *= require jquery-ui/redmond
+ *= require hobo_omniauth
+ *= require hobo_tokeninput
+ *= require application
  *= require_tree ./admin
 */
