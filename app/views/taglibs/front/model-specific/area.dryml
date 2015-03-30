@@ -65,7 +65,7 @@
 	<rmodal title="#{ht key='task.actions.new'}" url="#{task_path Task.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.id}" class="btn pull-right create-obj area-link" target-id="new-tsk#{this.id}"><view with="#{ht key='task.actions.new'}" /></rmodal>
 	</h5>
 	<div class="modal hide" id="new-tsk#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
-	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();" if="&this.tasks"/>
+	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();" show-all="#{@pdf}" if="&this.tasks"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<div class="children" if="child_tasks">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
