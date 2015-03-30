@@ -269,7 +269,7 @@ class User < ActiveRecord::Base
 
   def create_permitted?
     # Only the initial admin user can be created
-    self.class.count == 0
+    self.class.count == 0 || acting_user.administrator?
   end
 
   def update_permitted?     

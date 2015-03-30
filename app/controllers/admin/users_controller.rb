@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminSiteController
 
   hobo_user_controller
   
-  auto_actions :index, :edit, :destroy, :update, :show
+  auto_actions :index, :edit, :destroy, :update, :show, :new, :create
   
   index_action :suplist
   

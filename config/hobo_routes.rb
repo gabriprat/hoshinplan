@@ -244,7 +244,7 @@ Hoshinplan::Application.routes.draw do
 
 
     # Resource routes for controller admin/users
-    resources :users, :only => [:index, :edit, :show, :update, :destroy] do
+    resources :users do
       collection do
         get 'suplist'
       end
