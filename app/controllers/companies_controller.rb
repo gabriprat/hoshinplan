@@ -20,6 +20,13 @@ class CompaniesController < ApplicationController
     hobo_new
   end
   
+  def show
+    current_user.all_companies.load
+    current_user.all_hoshins.load
+    self.this = Company.includes(:hoshins).user_find(current_user, params[:id])
+    hobo_show
+  end
+  
   def collaborators
     @this = find_instance
     
