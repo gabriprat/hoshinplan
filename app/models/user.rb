@@ -298,4 +298,44 @@ class User < ActiveRecord::Base
     # permit password fields to avoid the reset password page to fail
     field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
   end
+  
+  def update_data_from_authorization(provider, uid, email, remote_ip)
+    authorization = Authorization.find_by_provider_and_uid(provider, uid)
+    authorization ||= Authorization.find_by_email_address(email)
+    atts = authorization.attributes.slice(*User.accessible_attributes.to_a)
+    atts['image'].sub!('sz=50', 'sz=416') if atts['image']
+    # PATCH: InfoJobs Open Id returns only the family name as the name and the full name in nickname... Strange...
+    domain = authorization.email_address.split("@").last
+    if (domain == "infojobs.net" || domain == "lectiva.com" || domain == "scmspain.com")
+      atts['name'] = authorization['nickname']
+    end
+    atts.each { |k, v| 
+      atts.delete(k) if !self.attributes[k].blank? || v.nil?
+    }
+    begin
+      self.attributes = atts
+    rescue
+      self.attributes = atts.delete('photo')
+    end
+    if self.lifecycle.state.name == :invited
+      self.lifecycle.activate!(self)
+    end
+    if self.timezone.nil? && !cookies[:tz].nil?
+   	  zone = cookies[:tz]
+   	  zone = Hoshinplan::Timezone.get(zone)
+      self.timezone = zone.name unless zone.nil?
+    end
+    if self.language.nil?
+      self.language = header_locale || I18n.locale
+    end
+    begin
+      self.save!
+      people_set(self, remote_ip)
+    rescue ActiveRecord::RecordInvalid => invalid
+      fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml if invalid.record.errors
+      fail ActiveRecord::RecordInvalid, invalid.record.to_yaml if invalid.record
+      fail ActiveRecord::RecordInvalid, invalid.to_yaml
+    end
+  end
+  
 end

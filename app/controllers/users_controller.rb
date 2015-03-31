@@ -142,43 +142,12 @@ class UsersController < ApplicationController
   
   def update_data
     auth = request.env["omniauth.auth"]
-    authorization = Authorization.find_by_provider_and_uid(auth['provider'], auth['uid'])
-    authorization ||= Authorization.find_by_email_address(auth['info']['email'])
-    atts = authorization.attributes.slice(*model.accessible_attributes.to_a)
-    atts['image'].sub!('sz=50', 'sz=416') if atts['image']
-    # PATCH: InfoJobs Open Id returns only the family name as the name and the full name in nickname... Strange...
-    domain = authorization.email_address.split("@").last
-    if (domain == "infojobs.net" || domain == "lectiva.com" || domain == "scmspain.com")
-      atts['name'] = authorization['nickname']
-    end
-    atts.each { |k, v| 
-      atts.delete(k) if !current_user.attributes[k].blank? || v.nil?
-    }
-    begin
-      current_user.attributes = atts
-    rescue
-      current_user.attributes = atts.delete('photo')
-    end
-    if current_user.lifecycle.state.name == :invited
-      current_user.lifecycle.activate!(current_user)
-    end
-    if current_user.timezone.nil? && !cookies[:tz].nil?
-   	  zone = cookies[:tz]
-   	  zone = Hoshinplan::Timezone.get(zone)
-      current_user.timezone = zone.name unless zone.nil?
-    end
-    if current_user.language.nil?
-      current_user.language = header_locale || I18n.locale
-    end
-    begin
-      current_user.save!
-      people_set
-    rescue ActiveRecord::RecordInvalid => invalid
-      fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml if invalid.record.errors
-      fail ActiveRecord::RecordInvalid, invalid.record.to_yaml if invalid.record
-      fail ActiveRecord::RecordInvalid, invalid.to_yaml
-    end
+    provider = auth['provider']
+    uid = auth['uid']
+    email = auth['info']['email']
+    current_user.delay.update_data_from_authorization(provider, uid, email, request.remote_ip)
   end
+  
   
   def sign_in(user) 
     sign_user_in(user)

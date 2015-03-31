@@ -196,8 +196,8 @@ end
     end
   end
   
-  def people_set
-    Mp.people_set(current_user, request.remote_ip)
+  def people_set(user = current_user, remote_ip = request.remote_ip)
+    Mp.people_set(user, remote_ip)
   end
   
   #Log a new Mixpanel event
