@@ -20,17 +20,6 @@
   </card>
 </def>
 
-<def tag="card" for="Authorization">
-  <card class="authorization" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-    <body: param>
-      <view:description param="description"/>
-    </body:>
-  </card>
-</def>
-
 <def tag="card" for="ChildIndicator">
   <card class="child-indicator" param="default" merge>
     <header: param>
@@ -140,6 +129,14 @@
 
 <def tag="card" for="OpenidProvider">
   <card class="openid-provider" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Payment">
+  <card class="payment" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

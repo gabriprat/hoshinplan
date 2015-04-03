@@ -129,6 +129,10 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller payments
+  resources :payments, :only => []
+
+
   # Resource routes for controller tasks
   resources :tasks, :only => [:edit, :show, :create, :update, :destroy] do
     collection do

@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   has_many :user_companies, :dependent => :destroy 
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
+  has_many :payments, :dependent => :destroy
   
   has_many :my_companies, :class_name => "Company", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_hoshins, :class_name => "Hoshin", :inverse_of => :creator, :foreign_key => :creator_id

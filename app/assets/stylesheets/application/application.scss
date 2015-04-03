@@ -1,14 +1,4 @@
-$primary-color: #2f4154;
-$secondary-color: #25a9e0;
-$secondary-color-darker: #00547b;
-$tertiary-color: #939daa;
-$inverse-primary-color: #f8faff;
-$inverse-secondary-color: #fff;
-$primary-font-stack: "Yanone Kaffeesatz", Arial, sans-serif;
-$secondary-font-stack: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$background-color: #f8faff;
-$secondary-background-color: #25a9e0;
-$inverse-background-color: #2f4154;
+@import "colors.scss";
 
 
 @media all and (max-width: 979px) {

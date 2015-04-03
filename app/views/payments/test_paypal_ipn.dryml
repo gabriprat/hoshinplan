@@ -1,0 +1,45 @@
+<page>
+	<content:>
+		<form action="paypal-ipn">
+			<input type="submit"/>
+			<input type="hidden" name="residence_country" value="US"/>
+			<input type="hidden" name="invoice" value="abc1234"/>
+			<input type="hidden" name="first_name" value="John"/>
+			<input type="hidden" name="address_city" value="San+Jose"/>
+			<input type="hidden" name="payer_id" value="TESTBUYERID01"/>
+			<input type="hidden" name="mc_fee" value="0.44"/>
+			<input type="hidden" name="txn_id" value="421462822"/>
+			<input type="hidden" name="receiver_email" value="seller%40paypalsandbox.com"/>
+			<input type="hidden" name="custom" value="xyz123+CUSTOMHASH"/>
+			<input type="hidden" name="payment_date" value="12%3A40%3A25+27+Aug+2013+PDT"/>
+			<input type="hidden" name="address_country_code" value="US"/>
+			<input type="hidden" name="address_zip" value="95131"/>
+			<input type="hidden" name="item_name1" value="something"/>
+			<input type="hidden" name="mc_handling" value="2.06"/>
+			<input type="hidden" name="mc_handling1" value="1.67"/>
+			<input type="hidden" name="tax" value="2.02"/>
+			<input type="hidden" name="address_name" value="John+Smith"/>
+			<input type="hidden" name="last_name" value="Smith"/>
+			<input type="hidden" name="receiver_id" value="seller%40paypalsandbox.com"/>
+			<input type="hidden" name="verify_sign" value="AFcWxV21C7fd0v3bYYYRCpSSRl31AgAAjEU7A5rthY2aP4j1jOIrjuGx"/>
+			<input type="hidden" name="address_country" value="United+States"/>
+			<input type="hidden" name="payment_status" value="Completed"/>
+			<input type="hidden" name="address_status" value="confirmed"/>
+			<input type="hidden" name="business" value="seller%40paypalsandbox.com"/>
+			<input type="hidden" name="payer_email" value="buyer%40paypalsandbox.com"/>
+			<input type="hidden" name="notify_version" value="2.4"/>
+			<input type="hidden" name="txn_type" value="cart"/>
+			<input type="hidden" name="test_ipn" value="1"/>
+			<input type="hidden" name="payer_status" value="unverified"/>
+			<input type="hidden" name="mc_currency" value="USD"/>
+			<input type="hidden" name="mc_gross" value="12.34"/>
+			<input type="hidden" name="mc_shipping" value="3.02"/>
+			<input type="hidden" name="mc_shipping1" value="1.02"/>
+			<input type="hidden" name="item_number1" value="AK-1234"/>
+			<input type="hidden" name="address_state" value="CA"/>
+			<input type="hidden" name="mc_gross1" value="9.34"/>
+			<input type="hidden" name="payment_type" value="instant"/>
+			<input type="hidden" name="address_street" value="123%2C+any+street"/>
+		</form>
+	</content>
+</page>

@@ -68,6 +68,13 @@ Hoshinplan::Application.routes.draw do
   
   match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
   
+  get "/payments/test-paypal-ipn" => "payments#test_paypal_ipn"
+  
+  post "/payments/paypal-ipn" => "payments#paypal_ipn"
+  
+  get "/payments/cancel" => "payments#cancel"
+  get "/payments/correct" => "payments#correct"
+  
   SamlDynamicRouter.load
   
   # The priority is based upon order of creation:

@@ -1,4 +1,5 @@
 <page>
+<body: class="index-page" />
 <content:>
 <cms key="#{@key}_#{locale}"/>
 </content:>
