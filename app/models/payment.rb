@@ -4,6 +4,7 @@ class Payment < ActiveRecord::Base
 
   fields do
     raw_post :text
+    txn_id   :string, :required, :index => true, :unique => true
     timestamps
   end
   attr_accessible :user, :user_id, :raw_response

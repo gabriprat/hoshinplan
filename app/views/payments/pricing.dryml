@@ -1,0 +1,100 @@
+<page>
+<body: class="index-page" />
+<content:>
+<div class="promos">  
+    <div class="promo first">
+        <h4>Basic</h4>
+        <ul class="features">
+            <li class="brief">Try it for free</li>
+            <li class="price">Free!</li>
+            <li>Single user</li>
+            <li>Email notifications</li>
+            <li>Unlimited hoshinplans</li>
+            <li class="buy">
+	    
+	    </li>   
+        </ul>
+    </div>
+    <div class="promo second scale">
+        <h4>Startup</h4>
+        <ul class="features">
+            <li class="brief">Startup membership</li>
+            <li class="price">$20/month</li>
+            <li>20 users</li>
+            <li>Email notifications</li>
+            <li>5 hoshinplans</li>
+            <li>PDF export</li>
+            <li>Charts view</li>
+            <li>Kanban view</li>
+            <li class="buy">	
+	    	    <if test="&Rails.env.development?">
+			    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			    <input type="hidden" name="cmd" value="_s-xclick"/>
+			    <input type="hidden" name="hosted_button_id" value="XKJMMKC2SB73J"/>
+			    <input type="hidden" name="user" value="#{current_user.id}"/>
+			    <button type="submit">Purchase</button>
+			    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
+			    </form>
+		    </if>
+		    <else>
+			    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			    <input type="hidden" name="cmd" value="_s-xclick"/>
+			    <input type="hidden" name="hosted_button_id" value="UR4MJ5LQFDBQY"/>
+			    <input type="hidden" name="user" value="#{current_user.id}"/>
+			    <button type="submit">Purchase</button>
+			    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
+			    </form>
+		    </else>
+	    </li>  
+        </ul>
+    </div>
+    <div class="promo third">
+        <h4>Enterprise</h4>
+        <ul class="features">
+            <li class="brief">For companies of all sizes</li>
+            <li class="price">$150/month</li>
+            <li>500 users</li>
+            <li>Email notifications</li>
+            <li>Unlimited hoshinplans</li>
+            <li>PDF export</li>
+            <li>Charts view</li>
+            <li>Kanban view</li> 
+            <li class="buy">
+    	    <if test="&Rails.env.development?">
+		    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		    <input type="hidden" name="cmd" value="_s-xclick"/>
+		    <input type="hidden" name="user" value="#{current_user.id}"/>
+		    <input type="hidden" name="hosted_button_id" value="NS3YE5JL77ZW6"/>
+		    <button type="submit">Purchase</button>
+		    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
+		    </form>
+	    </if>
+	    <else>
+		    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		    <input type="hidden" name="cmd" value="_s-xclick"/>
+		    <input type="hidden" name="user" value="#{current_user.id}"/>
+		    <input type="hidden" name="hosted_button_id" value="CXRPGVFFX4Q4E"/>
+		    <button type="submit">Purchase</button>
+		    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
+		    </form>
+	    </else>   
+	    </li> 
+        </ul>
+    </div>  
+    <div class="promo fourth last">
+        <h4>Assisted</h4>
+        <ul class="features">
+            <li class="brief">We help you build your hoshinplan</li>
+            <li class="price">Contact us</li>
+            <li>Unlimited users</li>
+	    <li>all of the enterprise features</li>
+	    <li>8/5 email and Skpye assistance</li>
+	    <li>Two days presential workshop to build the hoshinplan and train the team</li>
+            <li class="buy"><button><a href="mailto:hello@hoshinplan.com">Contact us</a></button></li> 
+        </ul>
+    </div>
+</div>
+
+
+</content:>
+</page>

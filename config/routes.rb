@@ -24,8 +24,6 @@ Hoshinplan::Application.routes.draw do
 
   get 'features' => 'cms#page', :as => 'cms_features', :key => :features
 
-  get 'pricing' => 'cms#page', :as => 'cms_pricing', :key => :pricing
-
   get 'invitation-accepted' => 'front#invitation_accepted', :as => 'front_invitation_accepted'
 
   get 'reprocessphotos' => 'front#reprocess_photos', :as => 'reprocess_photos'
@@ -67,6 +65,8 @@ Hoshinplan::Application.routes.draw do
   match '/fail', to: 'front#test_fail', via: :all
   
   match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
+  
+  get 'pricing' => 'payments#pricing'
   
   get "/payments/test-paypal-ipn" => "payments#test_paypal_ipn"
   

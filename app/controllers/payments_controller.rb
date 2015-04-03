@@ -6,13 +6,19 @@ class PaymentsController < ApplicationController
       
   
   def paypal_ipn
+    if Payment.where(txn_id: params[:txn_id]).exists?
+      fail "Transaction already processed #{params[:txn_id]}"
+    end
     rp = request.raw_post
     response = validate_IPN_notification(rp)
     case response
     when "VERIFIED"
-      # check that paymentStatus=Completed
-      # check that txnId has not been previously processed
-      # check that receiverEmail is your Primary PayPal email
+      if params[:payment_status] != "Completed"
+        fail "payment_status not Completed: #{params[:payment_status]}."
+      end
+      if params[:receiver_email] != ENV['PAYPAL_RECEIVER_EMAIL']
+        fail "receiver_email not #{ENV['PAYPAL_RECEIVER_EMAIL']}: #{params[:receiver_email]}."
+      end
       # check that paymentAmount/paymentCurrency are correct
       # process payment
     when "INVALID"
@@ -20,9 +26,11 @@ class PaymentsController < ApplicationController
     else
       # error
     end
-    self.this = Payment.user_new(current_user)
-    self.this.user = current_user
-    self.this.raw_post = rp
+    payment = Payment.user_new(current_user)
+    payment.user = current_user
+    payment.txn_id = params[:txn_id]
+    payment.raw_post = rp
+    self.this = payment
     hobo_create {
       render :nothing => true
     }
@@ -35,6 +43,9 @@ class PaymentsController < ApplicationController
   end
   
   def correct
+  end
+  
+  def pricing
   end
 
   protected 
