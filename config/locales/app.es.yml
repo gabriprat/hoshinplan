@@ -295,7 +295,7 @@ es:
     single_user: Un usuario
     email_notifications: Avisos por email
     unlimited_hoshinplans: Hoshinplans ilimitados
-    pdf_export: Exprtación a PDF
+    pdf_export: Exportación a PDF
     charts_view: Vista de gráficos
     kanban_view: Vista Kanban
     users: '%{value} usuarios'
