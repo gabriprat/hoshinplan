@@ -19,9 +19,10 @@ class PaymentsController < ApplicationController
     payment.user = User.unscoped.find(params[:custom]) if params[:custom]
     payment.txn_id = params[:txn_id]
     payment.raw_post = rp
-    #response = validate_IPN_notification(rp, test=params[:test])
+    response = validate_IPN_notification(rp, test=params[:test])
     case response
     when "VERIFIED"
+      payment.status = "VERIFIED"
       if params[:payment_status] != "Completed"
         fail "payment_status not Completed: #{params[:payment_status]}."
       end
@@ -33,16 +34,19 @@ class PaymentsController < ApplicationController
       if params[:mc_currency] != "USD"
         fail "mc_currency not USD: #{params[:mc_currency]}."
       end      
-      case params[:mc_gross]
+      case params[:mc_gross].to_f
       when 20
+        payment.product = "STARTUP"
       when 150
+        payment.product = "ENTERPRISE"
       else
         fail "mc_gross not 20 or 150: #{params[:mc_gross]}."
       end
     when "INVALID"
-      # log for investigation
+      payment.status = "INVALID"
     else
-      # error
+      payment.status = "Unexpected response: #{response}"
+      fail "Unexpected response" #Fail so Paypal retries
     end
     # process payment
     self.this = payment

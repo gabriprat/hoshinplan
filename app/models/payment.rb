@@ -5,9 +5,11 @@ class Payment < ActiveRecord::Base
   fields do
     raw_post :text
     txn_id   :string, :required, :index => true, :unique => true
+    status   :string
+    product  :string
     timestamps
   end
-  attr_accessible :user, :user_id, :raw_response
+  attr_accessible :user, :user_id, :raw_post, :status, :txn_id, :product
   
   belongs_to :user, :inverse_of => :payments
 
