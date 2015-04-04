@@ -3,6 +3,7 @@
 		<form action="paypal-ipn">
 			<input type="submit"/>
 			<input type="hidden" name="residence_country" value="US"/>
+			<input type="hidden" name="custom" value="3"/>
 			<input type="hidden" name="invoice" value="abc1234"/>
 			<input type="hidden" name="first_name" value="John"/>
 			<input type="hidden" name="address_city" value="San+Jose"/>
@@ -10,7 +11,6 @@
 			<input type="hidden" name="mc_fee" value="0.44"/>
 			<input type="hidden" name="txn_id" value="421462822"/>
 			<input type="hidden" name="receiver_email" value="seller%40paypalsandbox.com"/>
-			<input type="hidden" name="custom" value="xyz123+CUSTOMHASH"/>
 			<input type="hidden" name="payment_date" value="12%3A40%3A25+27+Aug+2013+PDT"/>
 			<input type="hidden" name="address_country_code" value="US"/>
 			<input type="hidden" name="address_zip" value="95131"/>
@@ -28,7 +28,7 @@
 			<input type="hidden" name="business" value="seller%40paypalsandbox.com"/>
 			<input type="hidden" name="payer_email" value="buyer%40paypalsandbox.com"/>
 			<input type="hidden" name="notify_version" value="2.4"/>
-			<input type="hidden" name="txn_type" value="cart"/>
+			<input type="hidden" name="txn_type" value="subscr_payment"/>
 			<input type="hidden" name="test_ipn" value="1"/>
 			<input type="hidden" name="payer_status" value="unverified"/>
 			<input type="hidden" name="mc_currency" value="USD"/>

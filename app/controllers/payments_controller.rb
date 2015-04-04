@@ -14,7 +14,12 @@ class PaymentsController < ApplicationController
       fail "Transaction already processed #{params[:txn_id]}"
     end
     rp = request.raw_post
-    response = validate_IPN_notification(rp, test=params[:test])
+    payment = Payment.new
+    payment = Payment.new
+    payment.user = User.unscoped.find(params[:custom]) if params[:custom]
+    payment.txn_id = params[:txn_id]
+    payment.raw_post = rp
+    #response = validate_IPN_notification(rp, test=params[:test])
     case response
     when "VERIFIED"
       if params[:payment_status] != "Completed"
@@ -27,30 +32,23 @@ class PaymentsController < ApplicationController
       
       if params[:mc_currency] != "USD"
         fail "mc_currency not USD: #{params[:mc_currency]}."
-      end
-      payment = Payment.new
-      payment.user = User.unscoped.find(params[:custom]) if params[:custom]
-      payment.txn_id = params[:txn_id]
-      payment.raw_post = rp
-      
+      end      
       case params[:mc_gross]
       when 20
       when 150
       else
         fail "mc_gross not 20 or 150: #{params[:mc_gross]}."
       end
-      
-      # process payment
-      self.this = payment
-      hobo_create {
-        render :nothing => true
-      }
     when "INVALID"
       # log for investigation
     else
       # error
     end
-    
+    # process payment
+    self.this = payment
+    hobo_create {
+      render :nothing => true
+    }
   end
   
   def test_paypal_ipn
