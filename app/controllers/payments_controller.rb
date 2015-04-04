@@ -45,6 +45,7 @@ class PaymentsController < ApplicationController
       end
     when "INVALID"
       payment.status = "INVALID"
+      fail rp.to_s if Rails.env.development?
     else
       payment.status = "Unexpected response: #{response}"
       fail "Unexpected response" #Fail so Paypal retries
@@ -83,8 +84,7 @@ class PaymentsController < ApplicationController
     response = http.post(uri.request_uri, raw,
                          'Content-Length' => "#{raw.size}",
                          'User-Agent' => "My custom user agent"
-                       )
-                       fail response.to_yaml
+                       ).body
                        
   end
 end

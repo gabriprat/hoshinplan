@@ -1,20 +1,20 @@
 <page>
 	<content:>
-		<form action="paypal-ipn" hidden-fields="">
-			<button type="submit"/>
+		<form action="paypal-ipn" hidden-fields="&false" onsubmit="$('.hidden-fields').remove()">
+			<button type="submit">submit</button>
 			<input type="hidden" name="mc_gross" value="20.00"/>
 			<input type="hidden" name="protection_eligibility" value="Eligible"/>
 			<input type="hidden" name="address_status" value="unconfirmed"/>
 			<input type="hidden" name="payer_id" value="2GAFCQLD8MFJU"/>
-			<input type="hidden" name="address_street" value="calle+Vilamar%C3%AD+76993-+17469"/>
-			<input type="hidden" name="payment_date" value="17%3A38%3A14+Apr+03%2C+2015+PDT"/>
+			<input type="hidden" name="address_street" value="calle Vilamarí 76993- 17469"/>
+			<input type="hidden" name="payment_date" value="17:38:14 Apr 03, 2015 PDT"/>
 			<input type="hidden" name="payment_status" value="Completed"/>
 			<input type="hidden" name="charset" value="windows-1252"/>
 			<input type="hidden" name="address_zip" value="02001"/>
 			<input type="hidden" name="first_name" value="test"/>
 			<input type="hidden" name="mc_fee" value="0.98"/>
 			<input type="hidden" name="address_country_code" value="ES"/>
-			<input type="hidden" name="address_name" value="test+buyer"/>
+			<input type="hidden" name="address_name" value="test buyer"/>
 			<input type="hidden" name="notify_version" value="3.8"/>
 			<input type="hidden" name="subscr_id" value="I-LTW6A7DFTWM0"/>
 			<input type="hidden" name="custom" value="25"/>
@@ -32,11 +32,11 @@
 			<input type="hidden" name="payment_fee" value="0.98"/>
 			<input type="hidden" name="receiver_id" value="3EF3WWWWCE43E"/>
 			<input type="hidden" name="txn_type" value="subscr_payment"/>
-			<input type="hidden" name="item_name" value="Startup+plan+-+test"/>
+			<input type="hidden" name="item_name" value="Startup plan - test"/>
 			<input type="hidden" name="mc_currency" value="USD"/>
 			<input type="hidden" name="residence_country" value="ES"/>
 			<input type="hidden" name="test_ipn" value="1"/>
-			<input type="hidden" name="transaction_subject" value="Startup+plan+-+test"/>
+			<input type="hidden" name="transaction_subject" value="Startup plan - test"/>
 			<input type="hidden" name="payment_gross" value="20.00"/>
 			<input type="hidden" name="ipn_track_id" value="da0799fe57517"/>
 		</form>
