@@ -155,6 +155,9 @@ en:
       hoshin:
         one: Hoshin
         other: Hoshins
+      payment:
+        one: Subscription
+        other: Subscriptions
     attributes:
       user:
         name: Name
@@ -316,9 +319,13 @@ en:
       heading: The purchase has been canceled
       description: If you think this is an error please contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Now you can %{link} to the page you initiated the purchase.
       return: go back
+    index:
+      header: Subscription %{product} for %{company}. %{ammount} / month.
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators
+  tutorial: Tutorial
+  subscriptions: Subscriptions
   pricing: Pricing
   features: Features
   use_your_corporate: Use your corporate credentials

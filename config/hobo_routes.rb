@@ -132,6 +132,15 @@ Hoshinplan::Application.routes.draw do
   # Resource routes for controller payments
   resources :payments, :only => [:new, :create]
 
+  # Owner routes for controller payments
+  resources :users, :as => :user, :only => [] do
+    resources :payments, :only => [] do
+      collection do
+        get '/', :action => 'index_for_user'
+      end
+    end
+  end
+
 
   # Resource routes for controller tasks
   resources :tasks, :only => [:edit, :show, :create, :update, :destroy] do

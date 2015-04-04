@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404114802) do
+ActiveRecord::Schema.define(version: 20150404174450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,13 +228,6 @@ ActiveRecord::Schema.define(version: 20150404114802) do
   add_index "objectives", ["parent_id"], name: "index_objectives_on_parent_id", using: :btree
   add_index "objectives", ["responsible_id"], name: "index_objectives_on_responsible_id", using: :btree
 
-  create_table "openid_providers", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email_domain"
-    t.string   "openid_url"
-  end
-
   create_table "payments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -244,8 +237,11 @@ ActiveRecord::Schema.define(version: 20150404114802) do
     t.string   "status"
     t.string   "product"
     t.boolean  "sandbox"
+    t.integer  "company_id"
+    t.decimal  "gross",      precision: 8, scale: 2
   end
 
+  add_index "payments", ["company_id"], name: "index_payments_on_company_id", using: :btree
   add_index "payments", ["txn_id"], name: "index_payments_on_txn_id", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
@@ -331,6 +327,7 @@ ActiveRecord::Schema.define(version: 20150404114802) do
     t.integer  "login_count"
     t.string   "preferred_view",                       default: "expanded"
     t.date     "last_seen_at"
+    t.integer  "payments_count",                       default: 0,          null: false
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

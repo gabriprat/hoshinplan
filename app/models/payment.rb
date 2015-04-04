@@ -8,11 +8,13 @@ class Payment < ActiveRecord::Base
     status   :string
     product  :string
     sandbox  :boolean
+    gross    :decimal, :precision => 8, :scale => 2
     timestamps
   end
   attr_accessible :user, :user_id, :raw_post, :status, :txn_id, :product
   
-  belongs_to :user, :inverse_of => :payments
+  belongs_to :user, :inverse_of => :payments, :counter_cache => true
+  belongs_to :company, :inverse_of => :payments
 
   # --- Permissions --- #
 

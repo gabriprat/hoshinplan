@@ -24,6 +24,8 @@ class Company < ActiveRecord::Base
   has_many :users, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy
   
+  has_many :payments, :dependent => :destroy
+  
   children :hoshins
   
   before_create do |company|

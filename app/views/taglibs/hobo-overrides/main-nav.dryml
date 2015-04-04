@@ -57,6 +57,9 @@
     <nav-item with="&current_user" action="tutorial" id="nav-tutorial">
     	<t key="tutorial">Tutorial</t>
     </nav-item>
+    <nav-item with="&current_user.payments" action="index" id="nav-subscriptions" if="&logged_in? && current_user.payments_count &gt; 0">
+    	<t key="subscriptions">Subscriptions</t>
+    </nav-item>
     
   </navigation>
   <else>

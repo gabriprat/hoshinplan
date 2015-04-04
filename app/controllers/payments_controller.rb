@@ -4,9 +4,20 @@ class PaymentsController < ApplicationController
 
   auto_actions :new
   
+  auto_actions_for :user, [:index]
+  
   protect_from_forgery :except => [:paypal_ipn] #Otherwise the request from PayPal wouldn't make it to the controller
         
   def paypal_ipn
+    user_id, company_id = params[:custom].split(',')
+    if params[:txn_type] == "subscr_cancel"
+      company = Company.find(company_id)
+      company.plan = 'basic'
+      payment = Payment.where(company_id: company_id)
+      Payment.delete(payment.id)
+      render :nothing => true
+      return
+    end
     if params[:txn_type] != "subscr_payment"
       render :nothing => true
       return
@@ -19,7 +30,9 @@ class PaymentsController < ApplicationController
     rp = request.raw_post
     payment = Payment.new
     payment = Payment.new
-    payment.user = User.unscoped.find(params[:custom]) if params[:custom]
+    payment.user = User.unscoped.find(user_id) if user_id
+    payment.company = Company.unscoped.find(company_id) if company_id
+    payment.gross = params[:mc_gross].to_f
     payment.txn_id = params[:txn_id]
     payment.raw_post = rp
     payment.sandbox = params[:test_ipn]=='1'
@@ -47,7 +60,7 @@ class PaymentsController < ApplicationController
       else
         fail "mc_gross not 20 or 150: #{params[:mc_gross]}."
       end
-      company = Company.unscoped.find(params[:custom])
+      company = payment.company
       company.plan = payment.product
       company.save!
       #log_event("Paypal payment", {objid: payment.id, product: payment.product})
