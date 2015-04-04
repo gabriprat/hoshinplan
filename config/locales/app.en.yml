@@ -307,6 +307,15 @@ en:
     two_days_workshop: Two days workshop to create the hoshinplans and train the team
   paypal:
     purchase: Purchase
+  payments:
+    correct:
+      heading: The purchase has been made successfully
+      description: Now you can %{link} to the page you initiated the purchase.
+      return: go back
+    canceled:
+      heading: The purchase has been canceled
+      description: If you think this is an error please contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Now you can %{link} to the page you initiated the purchase.
+      return: go back
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators

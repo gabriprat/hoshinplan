@@ -1,7 +1,9 @@
-<page>
-	<content:>
-		La compra se ha cancelado
-		<%= params.to_yaml %>
-		<a href="&session[:payment_return_to]">Volver</a>
-	</content>
+<page class="message">
+	<content-header:>
+        	<h2><t key="payments.canceled.heading"/></h2>
+	</content-header:>
+	<content-body:>
+		<t key="payments.canceled.description" link="&link_to t('payments.canceled.return'), session[:payment_return_to]"/>
+		<a class="btn btn-primary action" href="&session[:payment_return_to]"><t key="payments.canceled.return"/></a>
+	</content-body:>
 </page>
