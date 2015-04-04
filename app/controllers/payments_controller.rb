@@ -66,8 +66,12 @@ class PaymentsController < ApplicationController
   end
 
   protected 
-  def validate_IPN_notification(raw)
-    uri = URI.parse('https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate')
+  def validate_IPN_notification(raw, test=false)
+    if (test)
+      uri = URI.parse('https://sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate')
+    else
+      uri = URI.parse('https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate')
+    end
     http = Net::HTTP.new(uri.host, uri.port)
     http.open_timeout = 60
     http.read_timeout = 60
