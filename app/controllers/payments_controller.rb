@@ -79,7 +79,7 @@ class PaymentsController < ApplicationController
   
   def create
     fail "Missing company" if params[:company].blank?
-    sandbox = Rails.env.development?
+    sandbox = Rails.env.development? || EVN['PAYPAL_SANDBOX'] == "1"
     product = params[:product]
     @host = sandbox ? 'www.sandbox.paypal.com' : 'www.paypal.com'
     button = PaypalButton.where(product: product).first
