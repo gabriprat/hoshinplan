@@ -17,7 +17,7 @@
 			<input type="hidden" name="address_name" value="test buyer"/>
 			<input type="hidden" name="notify_version" value="3.8"/>
 			<input type="hidden" name="subscr_id" value="I-LTW6A7DFTWM0"/>
-			<input type="hidden" name="custom" value="25"/>
+			<input type="text" name="custom" value=""/>
 			<input type="hidden" name="payer_status" value="verified"/>
 			<input type="hidden" name="business" value="jo-facilitator@gabriel.prat.name"/>
 			<input type="hidden" name="address_country" value="Spain"/>

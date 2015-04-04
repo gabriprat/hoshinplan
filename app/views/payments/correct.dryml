@@ -1,0 +1,7 @@
+<page>
+	<content:>
+		La compra se ha generado correctamente
+		<%= params.to_yaml %>
+		<a href="&session[:payment_return_to]">Volver</a>
+	</content>
+</page>

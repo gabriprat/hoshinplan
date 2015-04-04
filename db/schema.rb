@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404012950) do
+ActiveRecord::Schema.define(version: 20150404114802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,10 +83,11 @@ ActiveRecord::Schema.define(version: 20150404012950) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
-    t.integer  "hoshins_count", default: 0, null: false
+    t.integer  "hoshins_count", default: 0,       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
+    t.string   "plan",          default: "basic"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
@@ -247,6 +248,16 @@ ActiveRecord::Schema.define(version: 20150404012950) do
 
   add_index "payments", ["txn_id"], name: "index_payments_on_txn_id", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
+  create_table "paypal_buttons", force: true do |t|
+    t.string   "product"
+    t.string   "id_paypal"
+    t.string   "id_paypal_sandbox"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "name"

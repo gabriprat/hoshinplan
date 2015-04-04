@@ -1,0 +1,7 @@
+<page>
+	<content:>
+		La compra se ha cancelado
+		<%= params.to_yaml %>
+		<a href="&session[:payment_return_to]">Volver</a>
+	</content>
+</page>

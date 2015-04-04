@@ -2,16 +2,19 @@ class PaymentsController < ApplicationController
 
   hobo_model_controller
 
-  protect_from_forgery :except => [:paypal_ipn] #Otherwise the request from PayPal wouldn't make it to the controller
-      
+  auto_actions :new
   
+  protect_from_forgery :except => [:paypal_ipn] #Otherwise the request from PayPal wouldn't make it to the controller
+        
   def paypal_ipn
     if params[:txn_type] != "subscr_payment"
       render :nothing => true
       return
     end
-    if Payment.where(txn_id: params[:txn_id]).exists?
+    payment = Payment.where(txn_id: params[:txn_id]).first
+    if payment
       fail "Transaction already processed #{params[:txn_id]}" unless Rails.env.development?
+      Payment.delete(payment.id) if Rails.env.development?
     end
     rp = request.raw_post
     payment = Payment.new
@@ -20,7 +23,8 @@ class PaymentsController < ApplicationController
     payment.txn_id = params[:txn_id]
     payment.raw_post = rp
     payment.sandbox = params[:test_ipn]=='1'
-    response = validate_IPN_notification(rp, test=payment.sandbox)
+    response = "VERIFIED" if  Rails.env.development?
+    response ||= validate_IPN_notification(rp, test=payment.sandbox) 
     case response
     when "VERIFIED"
       payment.status = "VERIFIED"
@@ -43,12 +47,16 @@ class PaymentsController < ApplicationController
       else
         fail "mc_gross not 20 or 150: #{params[:mc_gross]}."
       end
+      company = Company.find(params[:custom])
+      company.plan = payment.product
+      company.save!
+      log_event("Paypal payment", {objid: payment.id, product: payment.product})
     when "INVALID"
       payment.status = "INVALID"
-      fail rp.to_s if Rails.env.development?
+      track_exception "Status INVALID: " + rp.to_s 
     else
       payment.status = "Unexpected response: #{response}"
-      fail "Unexpected response" #Fail so Paypal retries
+      fail "Unexpected status #{response}: " + rp.to_s  #Fail so Paypal retries
     end
     # process payment
     self.this = payment
@@ -67,6 +75,21 @@ class PaymentsController < ApplicationController
   end
   
   def pricing
+  end
+  
+  def create
+    fail "Missing company" if params[:company].blank?
+    sandbox = Rails.env.development?
+    product = params[:product]
+    @host = sandbox ? 'www.sandbox.paypal.com' : 'www.paypal.com'
+    button = PaypalButton.where(product: product).first
+    @id = sandbox ? button.id_paypal_sandbox : button.id_paypal
+    @company_id = params[:company]
+    company = Company.find(params[:company])
+    company.plan = "PENDING"
+    company.save!
+    log_event("Paypal redirection", {product: product})
+    track_exception "test track: " + button.to_s 
   end
 
   protected 

@@ -74,6 +74,7 @@ en:
     provider_said: 'The message from your authentication provider was: '
     unknown: 'Unknown error.'
     invalid_locale: Invalid language.
+    user_limit_reached: You have reached the maximum number of collaborators for your current plan. Please upgrade your plan or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>
   hobo:
     area:
       child_models: '%{model} from children hoshin plans'
@@ -271,6 +272,7 @@ en:
   company:
     manage_collaborators: Manage collaborators
     add_collaborators: Add collaborators
+    upgrade_to_invite: Upgrade your plan to invite more collaborators
     send_invitations: Send invitations to collaborators by writing one email address per line in the text box.
   client_app:
     sign_a_request: Sign a request to the API
@@ -283,6 +285,28 @@ en:
     to_learn: To learn how to use it please visit our %{developers_link}.
     developers_link: developers site
     rest_link: REST API
+  pricing_plans: 
+    pending: 'Your plan''s activation is pending PayPal''s confirmation, please try again in a minute or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Sorry for the inconvenience.'
+    try_it: Try it for free
+    free: 'Free!'
+    single_user: Single user
+    email_notifications: Email notifications
+    unlimited_hoshinplans: Unlimited Hoshinplans
+    pdf_export: PDF export
+    charts_view: Charts view
+    kanban_view: Kanban view
+    users: '%{value} users'
+    price: '$%{value} / month'
+    for_companies: For companies of all sizes
+    for_startups: For startups
+    we_help_you: We help you build your hoshinplan
+    contact_us: Contact us
+    unlimited_users: Unlimited users
+    all_enterprise_features: Everithing in the enterprise version
+    support_assistance: 8/5 email o Skpe support
+    two_days_workshop: Two days workshop to create the hoshinplans and train the team
+  paypal:
+    purchase: Purchase
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators

@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&AuthProvider"><ht key="auth_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&PaypalButton"><ht key="paypal_button.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -96,7 +97,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
+      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
     </content-body:>
 
   </page>
@@ -115,6 +116,118 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'openid_provider.actions.delete', :default=>['Remove This Openid provider']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== PaypalButton Pages ====== -->
+
+<def tag="index-page" for="PaypalButton">
+  <page merge title="#{ht 'paypal_button.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page paypal-button" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="paypal_button.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="paypal_button.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="paypal_button.actions.new">New Paypal button</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="PaypalButton">
+  <page merge title="#{ht 'paypal_button.new.title', :default=>[' New Paypal button'] }">
+    <body: class="new-page paypal-button" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="paypal_button.new.heading">
+          New Paypal button
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'paypal_button.actions.create', :default=>['Create Paypal button']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="PaypalButton">
+  <page merge title="#{ht 'paypal_button.show.title', :default=>['Paypal button'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page paypal-button" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="paypal_button.show.heading" name="#{name(:no_wrapper => true)}">
+          Paypal button <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="paypal_button.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Paypal button
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="product, id_paypal, id_paypal_sandbox" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="PaypalButton">
+  <page merge title="#{ht 'paypal_button.edit.title', :default=>['Edit Paypal button'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page paypal-button" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="paypal_button.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Paypal button
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'paypal_button.actions.delete', :default=>['Remove This Paypal button']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -208,7 +321,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
+      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
     </content-body:>
 
   </page>

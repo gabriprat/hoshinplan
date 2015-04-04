@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   hobo_model_controller
 
   auto_actions :all
-  
+    
   autocomplete :users do
     ret = []
     users = find_instance.users.each { |user| 
@@ -29,7 +29,15 @@ class CompaniesController < ApplicationController
   
   def collaborators
     @this = find_instance
-    
+    if @this.plan == 'PENDING'
+      flash[:warning] = t("pricing_plans.pending").html_safe 
+    else
+      flash[:info] = t("errors.user_limit_reached").html_safe if @this.collaborator_limits_reached?
+    end
+    if (@this.plan == 'basic' || @this.plan.blank?) 
+      session[:payment_return_to] = request.url
+      render template: 'payments/pricing'
+    end
     @collaborators = cols
   end
   
@@ -74,10 +82,16 @@ class CompaniesController < ApplicationController
           uc = UserCompany.where(:company_id => params[:id], :user_id => user.id).first
           if uc.nil? 
             company = Company.find(params[:id])
-            if (domain == "infojobs.net" || domain == "lectiva.com")
-              UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
-            else
-              UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+            begin
+              if (domain == "infojobs.net" || domain == "lectiva.com")
+                UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
+              else
+                UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+              end
+            rescue Hobo::PermissionDeniedError => e
+              flash[:error] = t("errors.user_limit_reached").html_safe
+              redirect_to @this, :action => :collaborators
+              return
             end
           end
         end

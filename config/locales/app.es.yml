@@ -74,6 +74,7 @@ es:
     provider_said: 'El mensaje del proveedor de autenticación fue: '
     unknown: 'Error desconocido.'
     invalid_locale: Idioma no soportado.
+    user_limit_reached: 'Has llegado al límite de colaboradores de tu plan actual. Por favor, mejora tu plan o contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>'
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'
@@ -271,6 +272,7 @@ es:
   company:
     manage_collaborators: Gestionar colaboradores
     add_collaborators: Añadir colaboradores
+    upgrade_to_invite: Mejora tu plan para invitar más colaboradores
     send_invitations: Envía invitaciones de colaboración escribiendo una dirección de email por lína en la caja de texto.
   client_app:
     sign_a_request: Firma una petición al API
@@ -283,6 +285,28 @@ es:
     to_learn: Para aprender cómo usarla visita nuestro %{developers_link}.
     developers_link: site para desarrolladores
     rest_link: API REST
+  pricing_plans:
+    pending: 'La activación de tu plan está pendiente de confirmación por parte de PayPal, por favor reinténtalo en un minuto o contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Disculpa las molestias.'
+    try_it: Pruébalo gratis
+    free: '¡Gratis!'
+    single_user: Un usuario
+    email_notifications: Avisos por email
+    unlimited_hoshinplans: Hoshinplans ilimitados
+    pdf_export: Exprtación a PDF
+    charts_view: Vista de gráficos
+    kanban_view: Vista Kanban
+    users: '%{value} usuarios'
+    price: '$%{value} / mes'
+    for_companies: Para empresas de cualquier tamaño
+    for_startups: Para startups
+    we_help_you: Te ayudamos a construir tu hoshinplan
+    contact_us: Contáctanos
+    unlimited_users: Usuarios ilimitados
+    all_enterprise_features: Todo lo incluido en la versión enterprise
+    support_assistance: Soporte 8/5 vía email o Skpe
+    two_days_workshop: Workshop de dos días para crear los hoshinplan necesarios y formar al equipo
+  paypal:
+    purchase: Comprar
   log_in_with: Accede con %{provider}
   new_child_for_parent: Nuevo %{child} para %{parent}
   invite_collaborators: Invitar colaboradores

@@ -7,6 +7,7 @@ class Company < ActiveRecord::Base
   fields do
     name :string
     hoshins_count :integer, :default => 0, :null => false
+    plan  :string, :default => 'basic'
     timestamps
   end
   attr_accessible :name, :creator_id
@@ -24,6 +25,12 @@ class Company < ActiveRecord::Base
   has_many :user_companies, :dependent => :destroy
   
   children :hoshins
+  
+  before_create do |company|
+    if User.current_user.created_at < Date.new(2015,4,4)
+      company.plan = 'UNLIMITED'
+    end 
+  end
   
   after_create do |company|
     user = User.current_user
@@ -86,6 +93,24 @@ class Company < ActiveRecord::Base
       RequestStore.store[:company_hoshins] = ret
     end
     ret
+  end
+  
+  def collaborator_limits_reached?
+    count = user_companies.count
+    ret = true
+    case plan
+    when 'UNLIMITED'
+      ret = false
+    when 'ENTERPRISE'
+      if count<500
+        ret = false
+      end
+    when 'STARTUP'
+      if count<2
+        ret = false
+      end
+    end
+    return ret
   end
 
   # --- Permissions --- #

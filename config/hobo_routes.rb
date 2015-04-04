@@ -130,7 +130,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller payments
-  resources :payments, :only => []
+  resources :payments, :only => [:new, :create]
 
 
   # Resource routes for controller tasks
@@ -241,6 +241,10 @@ Hoshinplan::Application.routes.draw do
 
     # Resource routes for controller admin/openid_providers
     resources :openid_providers
+
+
+    # Resource routes for controller admin/paypal_buttons
+    resources :paypal_buttons
 
 
     # Resource routes for controller admin/saml_providers

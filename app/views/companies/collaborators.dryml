@@ -14,7 +14,16 @@
     
     
     <content-body: class="well">
-		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.add_collaborators">Add collaborators"</t></a>
+    		<if test="&Company.current_company.collaborator_limits_reached?">
+			<if test="&Company.current_company && Company.current_company.plan != 'PENDING'">
+			<a class="toggle collapsed btn btn-primary pull-right" data-toggle="collapse" href="#collapsed-pricing" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
+			<div id="collapsed-pricing" class="collapse">
+			<pricing/>
+			</div>
+			</if>
+		</if>
+		<else>
+		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.add_collaborators">Add collaborators</t></a>
 		<form id="add-collaborators">
 			<textarea name="collaborators"></textarea>
 			<p class="bubble">
@@ -30,6 +39,7 @@
 			</div>
 			
 		</form>	
+		</else>
 		<table-plus with="&@collaborators" fields="user, state" part="users" id="users" part-id="users" if="&@collaborators">
 			<user-view: >
 				<a action="show" if="&can_view?">#{this.name} (#{this.email_address})</a>

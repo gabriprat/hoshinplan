@@ -28,7 +28,7 @@
 <def tag="form" for="Company">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, creator, users" param/>
+    <field-list fields="name, plan, creator, users" param/>
     <div param="actions">
       <submit label="#{ht 'company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -112,7 +112,7 @@
 <def tag="form" for="Payment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="raw_post, status, product, user" param/>
+    <field-list fields="raw_post, status, product, sandbox, user" param/>
     <div param="actions">
       <submit label="#{ht 'payment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

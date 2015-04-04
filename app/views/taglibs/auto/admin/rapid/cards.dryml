@@ -21,6 +21,17 @@
   </card>
 </def>
 
+<def tag="card" for="Authorization">
+  <card class="authorization" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="ChildIndicator">
   <card class="child-indicator" param="default" merge>
     <header: param>
@@ -148,6 +159,14 @@
   <card class="payment" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="PaypalButton">
+  <card class="paypal-button" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
   </card>
 </def>

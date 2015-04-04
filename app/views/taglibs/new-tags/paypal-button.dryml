@@ -1,0 +1,7 @@
+<def tag="paypal-button" attrs="product">
+	<form action="/payments" if="&Company.current_id">
+		<input type="hidden" name="product" value="#{product}"/>
+		<input type="hidden" name="company" value="#{Company.current_id}"/>
+		<button type="submit"><t key="paypal.purchase"/></button>
+	</form>
+</def>

@@ -52,17 +52,21 @@ class UserCompany < ActiveRecord::Base
   end
   
   def activate_ij_available
+    ret = create_available
     domain = self.user.email_address.split("@").last 
-    return acting_user if (domain == "infojobs.net" || domain == "lectiva.com")
+    return ret if (domain == "infojobs.net" || domain == "lectiva.com")
   end
   
+  def create_available
+    return acting_user if create_permitted?
+  end
   
   lifecycle do
 
      state :invited, :active, :admin
 
      create :invite, :params => [ :company, :user ], :become => :invited,
-                      :available_to => "User", :new_key => true do
+                      :available_to => :create_available, :new_key => true do
          UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user)
      end
      
@@ -109,7 +113,8 @@ class UserCompany < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    true
+    company = Company.find(company_id)
+    !company.collaborator_limits_reached?
   end
 
   def update_permitted?

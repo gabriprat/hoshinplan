@@ -34,15 +34,21 @@ $body-color: $tertiary-color;
 $body-color-secondary: $inverse-background-color-highlight;
 $accent-color: $secondary-color;
 
-*,
-*:before,
-*:after {
-    @include box-sizing(border-box);
-    @include transition(color .3s ease-in-out, background .3s ease-in-out);
+#collapsed-pricing.in {
+	width: 100%;
+}
+
+.promos {
+	*,
+	*:before,
+	*:after {
+	    @include box-sizing(border-box);
+	    @include transition(color .3s ease-in-out, background .3s ease-in-out);
+	}
 }
 .promos {
     max-width: 1140px;
-    margin: 3em auto;
+    margin: 2em auto 4em auto;
 }
 .promo {
     margin: 1em .5em 1.625em;
@@ -79,7 +85,10 @@ $accent-color: $secondary-color;
         color: $body-color;
     }
     li {
-        padding: .25em 0;
+        padding: .25em 1em;
+    }
+    li.price{
+	    padding: .25em 0;
     }
     .brief { 
         color: $header-color;
