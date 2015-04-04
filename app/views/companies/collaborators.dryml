@@ -15,12 +15,10 @@
     
     <content-body: class="well">
     		<if test="&Company.current_company.collaborator_limits_reached?">
-			<if test="&Company.current_company && Company.current_company.plan != 'PENDING'">
 			<a class="toggle collapsed btn btn-primary pull-right" data-toggle="collapse" href="#collapsed-pricing" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
 			<div id="collapsed-pricing" class="collapse">
 			<pricing/>
 			</div>
-			</if>
 		</if>
 		<else>
 		<a href="#" onclick="$('#add-collaborators').toggle()" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.add_collaborators">Add collaborators</t></a>
