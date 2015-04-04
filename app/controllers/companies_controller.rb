@@ -30,9 +30,9 @@ class CompaniesController < ApplicationController
   def collaborators
     @this = find_instance
     if @this.plan == 'PENDING'
-      flash[:warning] = t("pricing_plans.pending").html_safe 
+      flash.now[:warning] = t("pricing_plans.pending").html_safe 
     else
-      flash[:info] = t("errors.user_limit_reached").html_safe if @this.collaborator_limits_reached?
+      flash.now[:info] = t("errors.user_limit_reached").html_safe if @this.collaborator_limits_reached?
     end
     if (@this.plan == 'basic' || @this.plan.blank?) 
       session[:payment_return_to] = request.url
