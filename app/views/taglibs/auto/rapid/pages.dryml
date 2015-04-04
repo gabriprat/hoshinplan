@@ -584,7 +584,7 @@
     <body: class="show-page hoshin" param/>
 
     <content-header: param>
-      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a:company>
+      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Empresa" name="&this">Back to <name/></ht></a:company>
       <h2 param="heading">
         <ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">
           Hoshin <name/>
@@ -852,7 +852,7 @@
     <body: class="show-page indicator" param/>
 
     <content-header: param>
-      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objective" name="&this">Back to <name/></ht></a:objective>
+      <a:objective param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Objetivo" name="&this">Back to <name/></ht></a:objective>
       <h2 param="heading">
         <ht key="indicator.show.heading" name="#{name(:no_wrapper => true)}">
           Indicator <name/>

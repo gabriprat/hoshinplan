@@ -50,7 +50,7 @@ class PaymentsController < ApplicationController
       company = Company.unscoped.find(params[:custom])
       company.plan = payment.product
       company.save!
-      log_event("Paypal payment", {objid: payment.id, product: payment.product})
+      #log_event("Paypal payment", {objid: payment.id, product: payment.product})
     when "INVALID"
       payment.status = "INVALID"
       track_exception "Status INVALID: " + rp.to_s 
