@@ -209,6 +209,7 @@
     </content-header:>
 
     <content-body: param>
+      <field-list fields="product, id_paypal, id_paypal_sandbox" param/>
     </content-body:>
 
   </page>

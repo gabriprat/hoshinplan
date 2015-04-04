@@ -16,7 +16,7 @@
 <def tag="form" for="PaypalButton">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="product, id_paypal, id_paypal_sandbox" param/>
     <div param="actions">
       <submit label="#{ht 'paypal_button.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

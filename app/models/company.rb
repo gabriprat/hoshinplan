@@ -27,7 +27,9 @@ class Company < ActiveRecord::Base
   children :hoshins
   
   before_create do |company|
-    if User.current_user.created_at < Date.new(2015,4,4)
+    cu = User.current_user
+    domain = cu.email_address.split("@").last
+    if cu.created_at < Date.new(2015,4,4) || domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com' |
       company.plan = 'UNLIMITED'
     end 
   end
