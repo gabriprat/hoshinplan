@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404011605) do
+ActiveRecord::Schema.define(version: 20150404012950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20150404011605) do
     t.string   "txn_id"
     t.string   "status"
     t.string   "product"
+    t.boolean  "sandbox"
   end
 
   add_index "payments", ["txn_id"], name: "index_payments_on_txn_id", unique: true, using: :btree

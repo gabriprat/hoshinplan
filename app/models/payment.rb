@@ -7,6 +7,7 @@ class Payment < ActiveRecord::Base
     txn_id   :string, :required, :index => true, :unique => true
     status   :string
     product  :string
+    sandbox  :boolean
     timestamps
   end
   attr_accessible :user, :user_id, :raw_post, :status, :txn_id, :product

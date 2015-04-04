@@ -1323,7 +1323,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="raw_post, user" param/>
+      <field-list fields="raw_post, status, product, user" param/>
     </content-body:>
 
   </page>

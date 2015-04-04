@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
       return
     end
     if Payment.where(txn_id: params[:txn_id]).exists?
-      fail "Transaction already processed #{params[:txn_id]}"
+      fail "Transaction already processed #{params[:txn_id]}" unless Rails.env.development?
     end
     rp = request.raw_post
     payment = Payment.new
@@ -19,14 +19,15 @@ class PaymentsController < ApplicationController
     payment.user = User.unscoped.find(params[:custom]) if params[:custom]
     payment.txn_id = params[:txn_id]
     payment.raw_post = rp
-    response = validate_IPN_notification(rp, test=params[:test])
+    payment.sandbox = params[:test_ipn]=='1'
+    response = validate_IPN_notification(rp, test=payment.sandbox)
     case response
     when "VERIFIED"
       payment.status = "VERIFIED"
       if params[:payment_status] != "Completed"
         fail "payment_status not Completed: #{params[:payment_status]}."
       end
-      if params[:receiver_email] != ENV['PAYPAL_RECEIVER_EMAIL']
+      if params[:receiver_email] != ENV['PAYPAL_RECEIVER_EMAIL'] && params[:receiver_email] != "jo-facilitator@gabriel.prat.name"
         fail "receiver_email not #{ENV['PAYPAL_RECEIVER_EMAIL']}: #{params[:receiver_email]}."
       end
       # check that paymentAmount/paymentCurrency are correct
@@ -82,6 +83,8 @@ class PaymentsController < ApplicationController
     response = http.post(uri.request_uri, raw,
                          'Content-Length' => "#{raw.size}",
                          'User-Agent' => "My custom user agent"
-                       ).body
+                       )
+                       fail response.to_yaml
+                       
   end
 end
