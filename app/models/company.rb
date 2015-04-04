@@ -108,7 +108,7 @@ class Company < ActiveRecord::Base
         ret = false
       end
     when 'STARTUP'
-      if count<2
+      if count<20
         ret = false
       end
     end
