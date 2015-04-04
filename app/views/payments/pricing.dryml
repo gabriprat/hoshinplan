@@ -31,7 +31,7 @@
 			    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 			    <input type="hidden" name="cmd" value="_s-xclick"/>
 			    <input type="hidden" name="hosted_button_id" value="XKJMMKC2SB73J"/>
-			    <input type="hidden" name="user" value="#{current_user.id}"/>
+			    <input type="hidden" name="custom" value="#{current_user.id}"/>
 			    <button type="submit">Purchase</button>
 			    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
 			    </form>
@@ -40,7 +40,7 @@
 			    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 			    <input type="hidden" name="cmd" value="_s-xclick"/>
 			    <input type="hidden" name="hosted_button_id" value="UR4MJ5LQFDBQY"/>
-			    <input type="hidden" name="user" value="#{current_user.id}"/>
+			    <input type="hidden" name="custom" value="#{current_user.id}"/>
 			    <button type="submit">Purchase</button>
 			    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
 			    </form>
@@ -66,7 +66,7 @@
     	    <if test="&Rails.env.development?">
 		    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		    <input type="hidden" name="cmd" value="_s-xclick"/>
-		    <input type="hidden" name="user" value="#{current_user.id}"/>
+		    <input type="hidden" name="custom" value="#{current_user.id}"/>
 		    <input type="hidden" name="hosted_button_id" value="NS3YE5JL77ZW6"/>
 		    <button type="submit">Purchase</button>
 		    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>
@@ -75,7 +75,7 @@
 	    <else>
 		    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		    <input type="hidden" name="cmd" value="_s-xclick"/>
-		    <input type="hidden" name="user" value="#{current_user.id}"/>
+		    <input type="hidden" name="custom" value="#{current_user.id}"/>
 		    <input type="hidden" name="hosted_button_id" value="CXRPGVFFX4Q4E"/>
 		    <button type="submit">Purchase</button>
 		    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1"/>

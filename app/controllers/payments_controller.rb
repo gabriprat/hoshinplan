@@ -6,6 +6,10 @@ class PaymentsController < ApplicationController
       
   
   def paypal_ipn
+    if params[:txn_type] != "subscr_payment"
+      render :nothing => true
+      return
+    end
     if Payment.where(txn_id: params[:txn_id]).exists?
       fail "Transaction already processed #{params[:txn_id]}"
     end
@@ -20,20 +24,33 @@ class PaymentsController < ApplicationController
         fail "receiver_email not #{ENV['PAYPAL_RECEIVER_EMAIL']}: #{params[:receiver_email]}."
       end
       # check that paymentAmount/paymentCurrency are correct
+      
+      if params[:mc_currency] != "USD"
+        fail "mc_currency not USD: #{params[:mc_currency]}."
+      end
+      payment = Payment.new
+      payment.user = User.unscoped.find(params[:user]) if params[:user]
+      payment.txn_id = params[:txn_id]
+      payment.raw_post = rp
+      
+      case params[:mc_gross]
+      when 20
+      when 150
+      else
+        fail "mc_gross not 20 or 150: #{params[:mc_gross]}."
+      end
+      
       # process payment
+      self.this = payment
+      hobo_create {
+        render :nothing => true
+      }
     when "INVALID"
       # log for investigation
     else
       # error
     end
-    payment = Payment.user_new(current_user)
-    payment.user = current_user
-    payment.txn_id = params[:txn_id]
-    payment.raw_post = rp
-    self.this = payment
-    hobo_create {
-      render :nothing => true
-    }
+    
   end
   
   def test_paypal_ipn
