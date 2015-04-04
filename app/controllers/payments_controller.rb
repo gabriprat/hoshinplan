@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
       fail "Transaction already processed #{params[:txn_id]}"
     end
     rp = request.raw_post
-    response = validate_IPN_notification(rp)
+    response = validate_IPN_notification(rp, test=params[:test])
     case response
     when "VERIFIED"
       if params[:payment_status] != "Completed"
@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
         fail "mc_currency not USD: #{params[:mc_currency]}."
       end
       payment = Payment.new
-      payment.user = User.unscoped.find(params[:user]) if params[:user]
+      payment.user = User.unscoped.find(params[:custom]) if params[:custom]
       payment.txn_id = params[:txn_id]
       payment.raw_post = rp
       
