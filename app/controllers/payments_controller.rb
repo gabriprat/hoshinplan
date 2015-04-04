@@ -47,7 +47,7 @@ class PaymentsController < ApplicationController
       else
         fail "mc_gross not 20 or 150: #{params[:mc_gross]}."
       end
-      company = Company.find(params[:custom])
+      company = Company.unscoped.find(params[:custom])
       company.plan = payment.product
       company.save!
       log_event("Paypal payment", {objid: payment.id, product: payment.product})
@@ -89,7 +89,6 @@ class PaymentsController < ApplicationController
     company.plan = "PENDING"
     company.save!
     log_event("Paypal redirection", {product: product})
-    track_exception "test track: " + button.to_s 
   end
 
   protected 
