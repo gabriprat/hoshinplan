@@ -25,7 +25,7 @@
 		      <li>&copy; 2014 Hoshinplan</li>
 		      <li><a href="http://github.com/gabriprat/hoshinplan">GitHub</a></li>
 		      <li><a href="/about/">About</a></li>
-		      <li><a href="http://hoshinplan#{locale=='en'?'':locale}.wordpress.com">Blog</a></li>
+		      <li><a href="http://hoshinplan#{locale.to_s=='en'?'':locale}.wordpress.com">Blog</a></li>
 		      <li><a with="&ClientApplication" subsite="">Developers</a></li>
 		      <li><a href="http://github.com/gabriprat/hoshinplan/issues">Issues</a></li>
 		      <li><a href="mailto:hello@hoshinplan.com">Contact us</a></li>

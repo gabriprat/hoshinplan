@@ -26,7 +26,6 @@
 	display: inline-block;
 	text-align: center;
 	width: 100%;
-	margin-top: 4em;
 }
 
 #cms #enum ol {
@@ -65,14 +64,6 @@
 	font-size: 150px;
 	top: 7px;
 	opacity: 0.3;
-        -webkit-transition: .5s ease-out;
-        -moz-transition: .5s ease-out;
-        -o-transition: .5s ease-out;
-        transition: .5s ease-out;
-}
-
-#cms #enum li:hover:before {
-	opacity: 1;
 }
 
 #cms #enum a {
@@ -82,13 +73,6 @@
 
 #cms .quotes {
 	text-align: center;
-}
-
-#cms img {
-	width: 49%;
-	vertical-align: top;
-	margin-top: 5em;
-	margin-bottom: 4em;
 }
 
 .claim {
@@ -187,6 +171,19 @@
 	display: inline-block;
 	border: 0;
 	margin-bottom: 60px;
+}
+#cms .product-pitch {
+  margin: 4em -20px 0 -20px;
+  padding: 4em 0;
+  background: #eee url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTUvMzIvNzA2L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
+}
+#cms .pitch #slide3.team {
+	padding: 0;
+	margin-bottom: 2em;
+	background: transparent;
+}
+#cms .pitch .slide.team h2 {
+	font-family: "Yanone Kaffeesatz", Arial, sans-serif;
 }
 @media all and (max-width: 640px) {
 	
