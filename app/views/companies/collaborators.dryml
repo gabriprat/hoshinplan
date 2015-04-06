@@ -9,6 +9,7 @@
           Company <name/>
         </ht> - 
 	<t key="company.manage_collaborators">Manage collaborators</t>
+	<t key="company.maximum_collaborators" value="#{this.user_limit}"/>
       </h2>
     </content-header:>
     
@@ -17,7 +18,7 @@
     		<if test="&Company.current_company.collaborator_limits_reached?">
 			<a class="toggle collapsed btn btn-primary pull-right" data-toggle="collapse" href="#collapsed-pricing" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
 			<div id="collapsed-pricing" class="collapse">
-			<pricing/>
+			<pricing with="&@billing_plans"/>
 			</div>
 		</if>
 		<else>

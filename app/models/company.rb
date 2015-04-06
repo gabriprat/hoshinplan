@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
   fields do
     name :string
     hoshins_count :integer, :default => 0, :null => false
-    plan  :string, :default => 'basic'
+    unlimited :boolean, :default => false, :null => false
     timestamps
   end
   attr_accessible :name, :creator_id
@@ -31,9 +31,6 @@ class Company < ActiveRecord::Base
   before_create do |company|
     cu = User.current_user
     domain = cu.email_address.split("@").last
-    if cu.created_at < Date.new(2015,4,4) || domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com' |
-      company.plan = 'UNLIMITED'
-    end 
   end
   
   after_create do |company|
@@ -42,7 +39,17 @@ class Company < ActiveRecord::Base
     user.save!
     company.user_companies = [UserCompany::Lifecycle.new_company([company, user], {:user => user, :company => company})]
   end
-
+  
+  before_create do |company|
+    cu = User.current_user
+    domain = cu.email_address.split("@").last
+    if cu.created_at < Date.new(2015,4,4) || domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com'
+      unlimited = true
+    else
+      unlimited = false
+    end
+  end
+  
   default_scope lambda { 
     where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless User.current_user.nil? || User.current_user == -1 || User.current_user.administrator? }
   
@@ -101,21 +108,23 @@ class Company < ActiveRecord::Base
   
   def collaborator_limits_reached?
     count = user_companies.count
-    ret = true
-    case plan
-    when 'UNLIMITED'
-      ret = false
-    when 'ENTERPRISE'
-      if count<500
-        ret = false
-      end
-    when 'STARTUP'
-      if count<20
-        ret = false
-      end
-    end
-    return ret
+    return user_limit < count
   end
+  
+  def user_limit
+    users = 1
+    if unlimited
+      users = 1000000
+    else
+      payments.includes(:billing_plan).where(status: 'Active').each { |payment|
+        if !users || users < payment.billing_plan.users
+          users = payment.billing_plan.users
+        end
+      }
+    end
+    return users 
+  end
+  
 
   # --- Permissions --- #
 

@@ -1,11 +1,11 @@
-<extend tag="card" for="Payment">
-	<old-card merge>
-	<header:>
-		<t key="payments.index.header" product="#{this.product}" company="&link_to(this.company.name, url_for(this.company))" ammount="&number_to_currency(this.gross, :unit => '$')"/>
-	</header:>
-	<body:>
-		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=CJUG8N7CBPQUY" unless="&Rails.env.development?">Cancelar suscripciones</a>	
-		<a href="https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=3EF3WWWWCE43E" if="&Rails.env.development?">Cancelar suscripciones</a>
-	</body:>
-	</old-card>
+<extend tag="index-for-user-page" for="Payment">
+	<old-index-for-user-page merge>
+		<collection: replace>
+			<table-plus fields="company, billing_plan.name, id_paypal">
+			       <controls: >
+			       	<delete-button label="#{t 'payments.index.cancel_subscription'}"/>
+			       </controls:>
+			   </table-plus>
+		</collection:>
+	</old-index-for-user-page>
 </extend>

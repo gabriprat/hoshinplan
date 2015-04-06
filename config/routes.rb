@@ -66,7 +66,7 @@ Hoshinplan::Application.routes.draw do
   
   match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
   
-  get 'pricing' => 'payments#pricing'
+  get 'pricing' => 'billing_plans#index'
   
   get "/payments/test-paypal-ipn" => "payments#test_paypal_ipn"
   
@@ -75,7 +75,7 @@ Hoshinplan::Application.routes.draw do
   get "/payments/cancel" => "payments#cancel"
   get "/payments/correct" => "payments#correct"
   
-  SamlDynamicRouter.load
+  SamlDynamicRouter.load unless Rails.env.development?
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

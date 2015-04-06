@@ -98,6 +98,7 @@ gem 'rails_12factor', group: :production
 gem 'font_assets', :git => "git://github.com/ericallam/font_assets"
 gem 'http_accept_language'
 gem 'mixpanel-ruby', :group => :production
+gem 'paypal-sdk-rest'
 group :test do
   gem 'rake'
   # Pretty printed test output

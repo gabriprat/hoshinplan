@@ -31,6 +31,17 @@
   </card>
 </def>
 
+<def tag="card" for="BillingPlan">
+  <card class="billing-plan" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="ChildIndicator">
   <card class="child-indicator" param="default" merge>
     <header: param>
@@ -150,6 +161,9 @@
   <card class="payment" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
     </header:>
   </card>
 </def>

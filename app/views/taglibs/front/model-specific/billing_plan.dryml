@@ -1,0 +1,8 @@
+<extend tag="index-page" for="BillingPlan">
+	<old-index-page merge>
+		<content-header: replace/>
+		<content-body:>
+			<pricing/>
+		</content-body:>
+	</old-index-page>
+</extend>

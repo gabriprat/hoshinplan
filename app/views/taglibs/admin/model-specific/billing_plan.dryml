@@ -1,0 +1,74 @@
+<extend tag="edit-page" for="BillingPlan">
+	<old-edit-page merge>
+		<append-content-header:>
+			<form web-method="sync_paypal" method="post" style="margin-top: 32px">
+			<fieldset>
+			<submit class="pull-right" value="Sync PayPal"/>
+			</fieldset>
+			</form>
+		</append-content-header:>
+	</old-edit-page>
+</extend>
+
+<extend tag="index-page" for="BillingPlan">
+	<old-index-page merge>
+		<append-content-header:>
+			<a action="from_paypal">From PayPal</a>
+		</append-content-header:>
+	</old-index-page>
+</extend>
+
+
+<def tag="card" for="PayPal::SDK::REST::DataTypes::Plan">
+	<div class='card well' param='default' merge-attrs>
+	    <header param>
+	    	<%=this.name%>
+	    </header>
+	    <div param='body'>
+	    	<%=this.id%>
+		<form action="#{this.id}/update_from_paypal" method="post">
+			<select name="status">
+					<%=
+						ret = ""
+						["CREATED", "ACTIVE", "INACTIVE", "DELETED"].each { |status|
+							ret += "<option value='"+status+"'"+ (@status == status ? "selected='selected'":'')+">"+status+"</option>"
+						}
+						ret.html_safe
+					%>
+			</select>
+			<input type="submit"/>
+		</form>
+	    </div>
+	</div>
+</def>
+
+
+  <def tag="index-page" for="PayPal::SDK::Core::API::DataTypes::ArrayWithBlock">
+    <page>
+    <body: class="index-page billing-plan"/>
+
+    <content-header: >
+      <h2>
+      	Billing Plans
+	<select onchange="window.location.href='?status=' + this.options[this.selectedIndex].value">
+		<%=
+			ret = ""
+			["CREATED", "ACTIVE", "INACTIVE", "DELETED"].each { |status|
+				ret += "<option value='"+status+"'"+ (@status == status ? "selected='selected'":'')+">"+status+"</option>"
+			}
+			ret.html_safe
+		%>
+	</select>
+		
+      </h2>
+
+      
+    </content-header:>
+
+    <content-body: >
+
+      <collection if/>
+      
+    </content-body:>
+    </page>
+  </def>

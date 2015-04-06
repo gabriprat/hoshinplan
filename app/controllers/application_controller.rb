@@ -75,11 +75,15 @@ class ApplicationController < ActionController::Base
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
                end               
                if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
-                 inst = model.find(params[:id]) if !params[:id].nil?
+                 begin
+                   inst = model.find(params[:id]) if !params[:id].nil?
+                 rescue ActiveRecord::RecordNotFound => e
+                   # Let the specific controller deal with this
+                 end
                  inst = User.current_user if self.is_a?(UsersController) and inst.nil?
                  self.this = inst
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
-                 inst = Hoshin.find(params[:area][:hoshin_id]) unless inst
+                 inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
                  Rails.logger.debug inst.to_yaml
                  if inst.respond_to?(:company_id)
                    Company.current_id = inst.company_id

@@ -1,67 +1,37 @@
 <def tag="pricing">
-<div class="promos clearfix">  
-    <div class="promo first">
-        <h4>Basic</h4>
-        <ul class="features">
-            <li class="brief"><t key="pricing_plans.try_it"/></li>
-            <li class="price"><t key="pricing_plans.free"/></li>
-            <li><t key="pricing_plans.single_user"/></li>
-            <li><t key="pricing_plans.email_notifications"/></li>
-            <li><t key="pricing_plans.unlimited_hoshinplans"/></li>
-            <li class="buy">
-	    	<button><a href="/login"><ht key="user.actions.signup"/></a></button>
-	    </li>   
-        </ul>
-    </div>
-    <div class="promo second scale">
-        <h4>Startup</h4>
-        <ul class="features">
-            <li class="brief"><t key="pricing_plans.for_startups"/></li>
-            <li class="price"><t key="pricing_plans.price" value="20"/></li>
-            <li><t key="pricing_plans.users" value="20"/></li>
-            <li><t key="pricing_plans.email_notifications"/></li>
-            <li><t key="pricing_plans.unlimited_hoshinplans"/></li>
-            <li><t key="pricing_plans.pdf_export"/></li>
-            <li><t key="pricing_plans.charts_view"/></li>
-            <li><t key="pricing_plans.kanban_view"/></li>
-	    <li class="buy">
-	    <paypal-button product="startup"/>
-	    <else>
-	    	<button><a href="/login"><ht key="user.actions.signup"/></a></button>
-	    </else>
-	    </li>
-        </ul>
-    </div>
-    <div class="promo third">
-        <h4>Enterprise</h4>
-        <ul class="features">
-            <li class="brief"><t key="pricing_plans.for_companies"/></li>
-            <li class="price"><t key="pricing_plans.price" value="150"/></li>
-            <li><t key="pricing_plans.users" value="500"/></li>
-            <li><t key="pricing_plans.email_notifications"/></li>
-            <li><t key="pricing_plans.unlimited_hoshinplans"/></li>
-            <li><t key="pricing_plans.pdf_export"/></li>
-            <li><t key="pricing_plans.charts_view"/></li>
-            <li><t key="pricing_plans.kanban_view"/></li>
-	    <li class="buy">
-	    <paypal-button product="enterprise"/>
-	    <else>
-	    	<button><a href="/login"><ht key="user.actions.signup"/></a></button>
-	    </else>
-	    </li>
-        </ul>
-    </div>  
-    <div class="promo fourth last">
-        <h4>Assisted</h4>
-        <ul class="features">
-            <li class="brief"><t key="pricing_plans.we_help_you"/></li>
-            <li class="price"><t key="pricing_plans.contact_us"/></li>
-            <li><t key="pricing_plans.unlimited_users"/></li>
-	    <li><t key="pricing_plans.all_enterprise_features"/></li>
-	    <li><t key="pricing_plans.support_assistance"/></li>
-	    <li><t key="pricing_plans.two_days_workshop"/></li>
-            <li class="buy"><button><a href="mailto:hello@hoshinplan.com"><t key="pricing_plans.contact_us"/></a></button></li> 
-        </ul>
-    </div>
+<div class="promos clearfix">
+    <collection/>
 </div>
+</def>
+
+<def tag="card" for="BillingPlan">
+    <div class="promo #{this.css_class}">
+        <h4><view:name/></h4>
+        <ul class="features">
+            <li class="brief"><t key="#{this.brief}"/></li>
+            <li class="price">
+	    	<t key="pricing_plans.contact_us" unless="amount_value"/>
+		<else>
+			<t key="pricing_plans.free" if="amount_value==0"/>
+			<else>
+				<t key="pricing_plans.price"  value="#{number_to_currency(this.amount_value, unit: get_unit(this.amount_currency))}"/>
+			</else>
+		</else>
+	    </li>
+	    <% this.features.split(/\r?\n/).each { |feature| %>
+            <li><t key="#{feature.chomp.strip}" users="#{this.users}" /></li>
+	    <% } %>
+	    <li class="buy" unless="amount_value">
+	    	<button><a href="mailto:hello@hoshinplan.com"><t key="pricing_plans.contact_us"/></a></button>
+	    </li>
+	    <else>
+		    <paypal-button product="#{this.id_paypal}"/>
+		    <else>
+		            <li class="buy">
+			    	<button><a href="/login"><ht key="user.actions.signup"/></a></button>
+			    </li>   
+		    </else>
+	    </else>
+        </ul>
+    </div>
 </def>

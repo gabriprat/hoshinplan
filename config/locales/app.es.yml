@@ -94,6 +94,9 @@ es:
     accept:
       heading: Aceptar la invitación
       body: Clicando el botón Aceptar podrás ver y contribuir a los Hoshinplans de %{company}.
+    table_plus:
+      clear_label: Borrar filtro
+      submit_label: Buscar
   user_company:
     that_operation_is: Esta operación no está permitida
     the_invitation: La invitación que estás intentando aceptar se envió a otro usuario. Por favor inicia sesión con el usuario al que se envió la invitación.
@@ -244,6 +247,10 @@ es:
         secret: Secreto
         actions: Acciones
         user: Usuario
+      payment:
+        company: Empresa
+        billing_plan_name: Plan
+        id_paypal: Identificador en PayPal
   index:
     title: Haz que tu estrategia de negocio funcione
   user:
@@ -274,6 +281,7 @@ es:
     select_indicator_to_add: Selecciona la gráfica oculta que desees hacer visible de nuevo
   company:
     manage_collaborators: Gestionar colaboradores
+    maximum_collaborators: '(Máximo: %{value})'
     add_collaborators: Añadir colaboradores
     upgrade_to_invite: Mejora tu plan para invitar más colaboradores
     send_invitations: Envía invitaciones de colaboración escribiendo una dirección de email por lína en la caja de texto.
@@ -298,8 +306,8 @@ es:
     pdf_export: Exportación a PDF
     charts_view: Vista de gráficos
     kanban_view: Vista Kanban
-    users: '%{value} usuarios'
-    price: '$%{value} / mes'
+    users: '%{users} usuarios'
+    price: '%{value} / mes'
     for_companies: Para empresas de cualquier tamaño
     for_startups: Para startups
     we_help_you: Te ayudamos a construir tu hoshinplan
@@ -320,7 +328,7 @@ es:
       description: Si crees que es un error por favor contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Ahora puedes %{link} a la página dónde te encontrabas antes de hacer la compra.
       return: volver
     index:
-      header: Subcripción %{product} para %{company}. %{ammount} / mes.
+      cancel_subscription: Cancelar la suscripción
   log_in_with: Accede con %{provider}
   new_child_for_parent: Nuevo %{child} para %{parent}
   invite_collaborators: Invitar colaboradores
@@ -394,6 +402,15 @@ es:
       separator: ','
       significant: false
       strip_insignificant_zeros: true
+    currency:
+      format:
+        delimiter: .
+        format: "%n%u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
     human:
       decimal_units:
         format: "%n%u"

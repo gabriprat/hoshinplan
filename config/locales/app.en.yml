@@ -94,6 +94,9 @@ en:
     accept:
       heading: Accept invitation
       body: By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}.
+    table_plus:
+      clear_label: Clear
+      submit_label: Search
   user_company:
     that_operation_is: This operation is not allowed
     the_invitation: The invitation you are trying to accept was sent to a different user. Please log with the user the invitation was sent to.
@@ -243,7 +246,11 @@ en:
         key: Key
         secret: Secret
         actions: Actions
-        user: USer
+        user: User
+      payment:
+        company: Company
+        billing_plan_name: Plan
+        id_paypal: PayPal ID
   index:
     title: Make your business strategy work
   user:
@@ -274,6 +281,7 @@ en:
     select_indicator_to_add: Select the hidden chart you want to show again
   company:
     manage_collaborators: Manage collaborators
+    maximum_collaborators: '(Maximum: %{value})'
     add_collaborators: Add collaborators
     upgrade_to_invite: Upgrade your plan to invite more collaborators
     send_invitations: Send invitations to collaborators by writing one email address per line in the text box.
@@ -298,8 +306,8 @@ en:
     pdf_export: PDF export
     charts_view: Charts view
     kanban_view: Kanban view
-    users: '%{value} users'
-    price: '$%{value} / month'
+    users: '%{users} users'
+    price: '%{value} / month'
     for_companies: For companies of all sizes
     for_startups: For startups
     we_help_you: We help you build your hoshinplan
@@ -320,7 +328,7 @@ en:
       description: If you think this is an error please contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Now you can %{link} to the page you initiated the purchase.
       return: go back
     index:
-      header: Subscription %{product} for %{company}. %{ammount} / month.
+      cancel_subscription: Cancel subscription
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators
@@ -394,6 +402,15 @@ en:
       separator: .
       significant: false
       strip_insignificant_zeros: true
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
     human:
       decimal_units:
         format: "%n%u"

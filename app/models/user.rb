@@ -301,7 +301,7 @@ class User < ActiveRecord::Base
     field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
   end
   
-  def update_data_from_authorization(provider, uid, email, remote_ip)
+  def update_data_from_authorization(provider, uid, email, remote_ip, tz)
     authorization = Authorization.find_by_provider_and_uid(provider, uid)
     authorization ||= Authorization.find_by_email_address(email)
     atts = authorization.attributes.slice(*User.accessible_attributes.to_a)
@@ -322,8 +322,8 @@ class User < ActiveRecord::Base
     if self.lifecycle.state.name == :invited
       self.lifecycle.activate!(self)
     end
-    if self.timezone.nil? && !cookies[:tz].nil?
-   	  zone = cookies[:tz]
+    if self.timezone.nil? && !tz.nil?
+   	  zone = tz
    	  zone = Hoshinplan::Timezone.get(zone)
       self.timezone = zone.name unless zone.nil?
     end

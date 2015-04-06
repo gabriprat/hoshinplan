@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404174450) do
+ActiveRecord::Schema.define(version: 20150406194258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,24 @@ ActiveRecord::Schema.define(version: 20150404174450) do
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
+  create_table "billing_plans", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "features"
+    t.string   "frequency"
+    t.integer  "interval"
+    t.string   "amount_currency"
+    t.decimal  "amount_value",    precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "id_paypal"
+    t.string   "status_paypal"
+    t.string   "brief"
+    t.string   "css_class"
+    t.integer  "position"
+    t.integer  "users"
+  end
+
   create_table "client_applications", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -83,11 +101,11 @@ ActiveRecord::Schema.define(version: 20150404174450) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
-    t.integer  "hoshins_count", default: 0,       null: false
+    t.integer  "hoshins_count", default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
-    t.string   "plan",          default: "basic"
+    t.boolean  "unlimited",     default: false, null: false
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
@@ -232,17 +250,19 @@ ActiveRecord::Schema.define(version: 20150404174450) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.text     "raw_post"
-    t.string   "txn_id"
+    t.string   "token"
     t.string   "status"
-    t.string   "product"
     t.boolean  "sandbox"
     t.integer  "company_id"
-    t.decimal  "gross",      precision: 8, scale: 2
+    t.decimal  "amount_value",    precision: 8, scale: 2
+    t.string   "amount_currency"
+    t.integer  "billing_plan_id"
+    t.string   "id_paypal"
   end
 
+  add_index "payments", ["billing_plan_id"], name: "index_payments_on_billing_plan_id", using: :btree
   add_index "payments", ["company_id"], name: "index_payments_on_company_id", using: :btree
-  add_index "payments", ["txn_id"], name: "index_payments_on_txn_id", unique: true, using: :btree
+  add_index "payments", ["token"], name: "index_payments_on_token", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "paypal_buttons", force: true do |t|

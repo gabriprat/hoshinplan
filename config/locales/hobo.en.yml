@@ -166,7 +166,7 @@ en:
 
     table_plus:
       search: "Search"
-      submit_label: "Go"
+      submit_label: "Search"
 
     live_search:
       label: "Search"

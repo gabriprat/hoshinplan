@@ -17,6 +17,10 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller billing_plans
+  resources :billing_plans, :only => [:index]
+
+
   # Resource routes for controller client_applications
   resources :client_applications do
     member do
@@ -130,7 +134,7 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller payments
-  resources :payments, :only => [:new, :create]
+  resources :payments, :only => [:new, :create, :destroy]
 
   # Owner routes for controller payments
   resources :users, :as => :user, :only => [] do
@@ -246,6 +250,19 @@ Hoshinplan::Application.routes.draw do
   post 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password_post'
 
   namespace :admin do
+
+
+    # Resource routes for controller admin/billing_plans
+    resources :billing_plans do
+      collection do
+        get 'from_paypal'
+        post 'reorder'
+      end
+      member do
+        post 'update_from_paypal'
+        post 'sync_paypal'
+      end
+    end
 
 
     # Resource routes for controller admin/openid_providers

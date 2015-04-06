@@ -1031,6 +1031,14 @@ fieldset[disabled] .btn-primary.active {
 	}
 }
 
+input[type=submit].delete-button.delete-payment-button {
+	background-color: darkred;
+	background-image: none;
+	color: white;
+	text-shadow: none;
+	font-weight: 100;
+}
+
 .history-actions {
 	float: right;
 }
@@ -1149,23 +1157,25 @@ form#delete-history, form#delete-history input {
 }
 
 .dropdown-menu {
+	display: block;
 	background-color: #34495e;
 	color: #e1e4e7;
 	border: none;
-	display: block;
 	margin-top: 8px;
 	opacity: 0;
 	padding: 0;
-	visibility: hidden;
+	height: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	-webkit-transition: 0.25s;
 	-moz-transition: 0.25s;
 	transition: 0.25s;
 	padding: 3px 4px;
+	overflow: hidden;
 }
 
 .datepicker.dropdown-menu, .typeahead.dropdown-menu {
+	height:auto;
 	visibility: visible;
 	opacity: 1;
 	-webkit-transition: none;
@@ -1183,16 +1193,17 @@ form#delete-history, form#delete-history input {
 }
 
 .open > .dropdown-menu {
+  height: auto;
   margin-top: 18px !important;
   opacity: 1;
   visibility: visible;
+  overflow: visible;
 }
 @media (max-width: 767px) {
 	.navbar-nav > li > .dropdown-menu {
 		-webkit-transition: all 0s;
 		-moz-transition: all 0s;
 		transition: all 0s;
-		display: none;
 	}
 }
 @media (max-width: 767px) {

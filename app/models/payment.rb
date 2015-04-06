@@ -3,18 +3,19 @@ class Payment < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    raw_post :text
-    txn_id   :string, :required, :index => true, :unique => true
-    status   :string
-    product  :string
-    sandbox  :boolean
-    gross    :decimal, :precision => 8, :scale => 2
+    token           :string, :required, :index => true, :unique => true
+    id_paypal       :string
+    status          :string
+    sandbox         :boolean
+    amount_value    :decimal, :precision => 8, :scale => 2
+    amount_currency :string
     timestamps
   end
-  attr_accessible :user, :user_id, :raw_post, :status, :txn_id, :product
+  attr_accessible :user, :user_id, :status, :token, :sandbox, :amount_value, :amount_currency, :billing_plan, :company, :billing_plan_id, :company_id
   
   belongs_to :user, :inverse_of => :payments, :counter_cache => true
   belongs_to :company, :inverse_of => :payments
+  belongs_to :billing_plan, :inverse_of => :payments
 
   # --- Permissions --- #
 
