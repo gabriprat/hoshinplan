@@ -157,11 +157,7 @@
 
     <content-body: param>
 
-      <page-nav param="top-page-nav"/>
-
-      <collection param/>
-
-      <page-nav param="bottom-page-nav"/>
+      <sortable-collection param="collection"/>
 
 
     </content-body:>
@@ -207,6 +203,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="brief, users, features, frequency, interval, amount_currency, amount_value, id_paypal, status_paypal, css_class, position" param/>
     </content-body:>
 
   </page>
@@ -421,7 +418,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="unlimited" param/>
 
       <a:creator param="creator-link"/>
 
@@ -1430,7 +1427,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="status, billing_plan, company, user" param/>
+      <field-list fields="token, id_paypal, status, amount_value, amount_currency, billing_plan, company, user" param/>
     </content-body:>
 
   </page>

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   include HoboOmniauth::MultiAuth
   
   fields do
-    name          :string, :required
+    name          :string
     color         Color
     email_address :email_address, :login => true, :index => true, :unique => true
     administrator :boolean, :default => false
@@ -301,7 +301,7 @@ class User < ActiveRecord::Base
     field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
   end
   
-  def update_data_from_authorization(provider, uid, email, remote_ip, tz)
+  def update_data_from_authorization(provider, uid, email, remote_ip, tz, header_locale)
     authorization = Authorization.find_by_provider_and_uid(provider, uid)
     authorization ||= Authorization.find_by_email_address(email)
     atts = authorization.attributes.slice(*User.accessible_attributes.to_a)

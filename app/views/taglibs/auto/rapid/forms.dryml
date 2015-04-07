@@ -16,7 +16,7 @@
 <def tag="form" for="BillingPlan">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="name, description, brief, users, features, frequency, interval, amount_currency, amount_value, id_paypal, status_paypal, css_class, position" param/>
     <div param="actions">
       <submit label="#{ht 'billing_plan.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -40,7 +40,7 @@
 <def tag="form" for="Company">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, creator, users" param/>
+    <field-list fields="name, unlimited, creator, users" param/>
     <div param="actions">
       <submit label="#{ht 'company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -124,7 +124,7 @@
 <def tag="form" for="Payment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="status, sandbox, billing_plan, company, user" param/>
+    <field-list fields="token, id_paypal, status, sandbox, amount_value, amount_currency, billing_plan, company, user" param/>
     <div param="actions">
       <submit label="#{ht 'payment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

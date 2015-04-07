@@ -43,11 +43,7 @@
         <ht key="billing_plan.actions.new">New Billing plan</ht>
       </a>
 
-      <page-nav param="top-page-nav"/>
-
-      <collection param/>
-
-      <page-nav param="bottom-page-nav"/>
+      <sortable-collection param="collection"/>
 
 
     </content-body:>
@@ -99,6 +95,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="brief, users, features, frequency, interval, amount_currency, amount_value, id_paypal, status_paypal, css_class, position" param/>
     </content-body:>
 
   </page>
