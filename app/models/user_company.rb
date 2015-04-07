@@ -113,6 +113,7 @@ class UserCompany < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
+    return true unless company_id
     company = Company.find(company_id)
     !company.collaborator_limits_reached?
   end

@@ -94,8 +94,8 @@ class ApplicationController < ActionController::Base
                end
                Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                yield
-               #rescue ActiveRecord::RecordInvalid => invalid
-                # fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
+             rescue ActiveRecord::RecordInvalid => invalid
+                 fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
              ensure
                  #avoids issues when an exception is raised, to clear the current_id
                  User.current_id = nil   
@@ -140,7 +140,7 @@ class ApplicationController < ActionController::Base
   end
   
   def user_locale
-    current_user.language.to_s if (!current_user.nil? && current_user.respond_to?('language'))
+    current_user.language.to_s if (!current_user.nil? && current_user.respond_to?('language') && !current_user.language.blank?)
   end
   
   # We provide our own method to call the Hobo helper here, so we can check the 

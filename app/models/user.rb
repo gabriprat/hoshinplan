@@ -54,6 +54,13 @@ class User < ActiveRecord::Base
     :default_url => "/assets/default.jpg"
   }
   
+  before_save do |user|
+    if user.name.blank?
+      n = user.email_address.split('@')[0]
+      user.name = n.split(".").join(" ").titleize
+    end
+  end
+  
   validates :email_address, uniqueness: { case_sensitive: false }
   
   #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
