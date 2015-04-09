@@ -9,6 +9,8 @@
  *= require ./application/print.css
  *= require_tree ./front
 */
+@import "font-awesome-sprockets";
+@import "font-awesome";
 div.table div.column[data-label="Actions"] {
 	display: none;
 }
