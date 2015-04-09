@@ -24,7 +24,7 @@
 	</if>
 	<if test="&column == 'Deadline'">
 		  <div class="column nowrap" data-label="Deadline">
-			  	<if test="#{this.status=='active' || this.status == 'backlog' ?'true':''}">
+			  	<if test="#{!@pdf && this.status=='active' || this.status == 'backlog' ?'true':''}">
 					<autosubmit:deadline class="inline-form wider" updates="#tutorial,#sec-actions" success="equalHeightSections();" live/>
 				</if>
 				<else>
