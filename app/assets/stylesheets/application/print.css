@@ -4,7 +4,6 @@
 		-webkit-box-shadow: none !important;
 		-moz-box-shadow: none !important;
 		box-shadow: none !important;
-		border: none !important;
 	}
 	
 	div.table div.column[data-label="Actions"] {
