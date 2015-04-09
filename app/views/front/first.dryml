@@ -2,6 +2,10 @@
 
   <body: class="front-page"/>
   
+  <content-body:>
+	<cms key="custom_fragments/front_first_#{locale}"/>
+  </content-body:>
+  
   <main-nav: replace />
   
 </page>

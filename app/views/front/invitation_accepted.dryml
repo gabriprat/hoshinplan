@@ -1,3 +1,7 @@
 <page>
   <body: class="invitation-accepted-page"/>
+  
+  <content-body:>
+	<cms key="custom_fragments/front_invitation_accepted_#{locale}"/>
+  </content-body:>
 </page>
