@@ -7,7 +7,7 @@
 			<else>
 				<stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
 			</else>
-			<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400%7CRoboto:400,700%7CReenie+Beanie:400;", :media => 'all' %>
+			<%= stylesheet_link_tag "#{request.protocol}fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400%7CRoboto:400,700%7CReenie+Beanie:400;", :media => 'all' %>
 		</stylesheets:>
 		<append-custom-scripts:>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
@@ -23,11 +23,11 @@
 		<footer: class="fixed-x">
 		   <ul class="footer-links">
 		      <li>&copy; 2014 Hoshinplan</li>
-		      <li><a href="//github.com/gabriprat/hoshinplan">GitHub</a></li>
+		      <li><a href="#{request.protocol}github.com/gabriprat/hoshinplan">GitHub</a></li>
 		      <li><a href="/about/">About</a></li>
-		      <li><a href="//hoshinplan#{locale.to_s=='en'?'':locale}.wordpress.com">Blog</a></li>
+		      <li><a href="#{request.protocol}hoshinplan#{locale.to_s=='en'?'':locale}.wordpress.com">Blog</a></li>
 		      <li><a with="&ClientApplication" subsite="">Developers</a></li>
-		      <li><a href="//github.com/gabriprat/hoshinplan/issues">Issues</a></li>
+		      <li><a href="#{request.protocol}github.com/gabriprat/hoshinplan/issues">Issues</a></li>
 		      <li><a href="mailto:hello@hoshinplan.com">Contact us</a></li>
 		    </ul>
 		   <div id="mixpanel"><a href="//mixpanel.com/f/partner"><img width="114" height="36" alt="Mobile Analytics" src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a></div>

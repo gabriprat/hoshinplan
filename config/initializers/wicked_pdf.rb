@@ -4,3 +4,5 @@ WickedPdf.config = {
   :orientation => 'Landscape',
   :show_as_html => true
 }
+
+WickedPdf.config[:exe_path] = '/usr/local/bin/wkhtmltopdf' unless Rails.env.production?

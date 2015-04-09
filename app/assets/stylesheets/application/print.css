@@ -4,6 +4,11 @@
 		-webkit-box-shadow: none !important;
 		-moz-box-shadow: none !important;
 		box-shadow: none !important;
+		border: none !important;
+	}
+	
+	.picker {
+		display: none !important;
 	}
 	
 	body a.add-chart {
@@ -51,8 +56,22 @@
 	body a, body a:visited {
 		color: #000;
 	}
-	.input {
+	textarea:hover, 
+	input:hover, 
+	textarea:active, 
+	input:active, 
+	textarea:focus, 
+	input:focus,
+	button:focus,
+	button:active,
+	button:hover {
 		border: 0 !important;
+		border-style: none !important;
+		box-shadow: none !important;
+		-webkit-box-shadow: none !important;
+		-moz-box-shadow: none !important;
+		outline:0px !important;
+		-webkit-appearance:none;
 	}
 	.overdue input {
 		color: red;
