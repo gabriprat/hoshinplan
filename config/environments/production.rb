@@ -48,7 +48,7 @@ Hoshinplan::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -85,6 +85,7 @@ Hoshinplan::Application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
+    :s3_protocol => :https,
     :s3_host_name => 's3-eu-west-1.amazonaws.com',
     :path => '/:class/:attachment/:id_partition/:style/:filename',
     :url => ':s3_domain_url',
