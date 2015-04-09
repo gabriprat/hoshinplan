@@ -9,6 +9,9 @@
  *= require ./application/print.css
  *= require_tree ./front
 */
+div.table div.column[data-label="Actions"] {
+	display: none;
+}
 
 body .table {
 	display:table;	/* Defines a Table */

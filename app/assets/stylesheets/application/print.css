@@ -7,6 +7,10 @@
 		border: none !important;
 	}
 	
+	div.table div.column[data-label="Actions"] {
+		display: none;
+	}
+	
 	.picker {
 		display: none !important;
 	}
