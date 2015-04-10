@@ -483,6 +483,27 @@ body.hoshin .collection.areas {
 body.hoshin.compact .collection.areas {
 	table-layout: fixed;
 }
+
+body.hoshin .carousel {
+	display: none;
+}
+}
+
+body.hoshin .carousel .carousel-indicators {
+	top: 5px;
+}
+
+body.hoshin .carousel li {
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	border-radius: 15px;
+	text-indent: 6px;
+	color: rgba(255,255,255,0.5);
+}
+
+body.hoshin .carousel li.active {
+	color: rgba(0,0,0,0.3);
 }
 
 body.hoshin .collection.areas1 {

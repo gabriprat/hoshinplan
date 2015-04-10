@@ -95,8 +95,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="carousel">
+				<ol class="carousel-indicators">
+					<% this.areas.each_with_index { |item,index| %>
+					<li data-index="#{index}">#{index+1}</li>
+					<% } %>
+				</ol>
+			</div>
 			<sortable-collection:areas part="areas" id="areas" hoshin="&this" class="center-block areas#{this.areas_count}">
-				<item: style="width: #{100/this.hoshin.areas_count}%" />
+				<item: style="width: #{100/this.hoshin.areas_count}%" id="view-area-#{this.id}"/>
 			</sortable-collection>
 			<%# /swept-cache %>
 			<div id="health-popover"></div>
