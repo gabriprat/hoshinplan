@@ -1835,8 +1835,6 @@ form.indicator-value input[type=radio] {
 
 .kb-color {
 	display: inline-block;
-	width: 15%;
-	height: 2em;
 	margin-right: 3em;
 	line-height: 2em;
 }
@@ -1844,6 +1842,10 @@ form.indicator-value input[type=radio] {
 .kb-color a {
 	font-size: 1.1em;
 	color: $primary-color
+}
+
+.kb-color .area-name {
+	margin-right: 1em;
 }
 
 .kb-frame .connected-sortable-wrapper {
