@@ -1,5 +1,5 @@
 <def tag="bootstrap-switch" attrs="id, switch-change">
-	<div class="bootstrap-switch-input">
+	<div class="bootstrap-switch-input no-print">
 		<label for="#{id}" param="label"/>
 		<input id="#{id}" type="checkbox" data-rapid="&data_rapid('bootstrap_switch', options:{}, events: {change: switch_change})" merge-attrs/>
 	</div>

@@ -1,3 +1,8 @@
+@media screen {
+	.only-print {
+		display: none;
+	}
+}
 @media print {
 	* {
 		background-image: none !important;
@@ -37,9 +42,10 @@
 		-webkit-border-radius: 0 !important;
 	}
 
-	.navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action, .footer {
+	.no-print, .navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action, .footer {
 		display: none;
 	}
+	
 	div.ordering-handle, .column.ordering {
 		display: none;
 	}

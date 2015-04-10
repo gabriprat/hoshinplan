@@ -2,8 +2,7 @@
 	<parent-link:>
 		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
 	</parent-link:>
-	<heading: replace>
-	</heading:>
+	<heading: class="only-print"/>
 	<content-body:>
 		<script type="text/javascript">
 			$(document).ready(loadKanban);

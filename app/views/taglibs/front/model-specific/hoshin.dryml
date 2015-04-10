@@ -80,9 +80,7 @@
 			</form>
 			<health/>
 			</do>
-			<if test="#{@pdf?'true':''}">
-				<small><%= l Time.now, :format => :long %></small>
-			</if>
+			<small class="only-print"><%= l Time.now, :format => :long %></small>
 		</heading:>
 		
 		<edit-link: replace/>
