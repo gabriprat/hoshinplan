@@ -28,7 +28,7 @@
 				</modal-open-button>
 			</repeat>
 			<bootstrap-switch id="show-mine" data-user="#{current_user.id}" switch-change="filterPostits">
-				<label:>Show only mine</label:>
+				<label:><t key="kanban.show_only_my_tasks"/></label:>
 			</bootstrap-switch>
 		</div>
 		<div class="kb-frame">

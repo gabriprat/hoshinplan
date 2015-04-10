@@ -277,6 +277,8 @@ en:
   health:
     health_for: Health for %{name}
     top_users_with_pending: Users with pending actions in descending order
+  kanban:
+    show_only_my_tasks: Show only my tasks
   charts:
     select_indicator_to_add: Select the hidden chart you want to show again
   company:
