@@ -203,13 +203,14 @@ html body .btn-big {
 		display: none;
 	}
 }
-
+@media (min-width:640px) {
 .compact .hoshin-link .fa-level-up {
 	font-size: 75%;
 }
 
 .compact .navbar {
 	margin-bottom: 5px;
+}
 }
 
 .navbar-inner {
@@ -305,11 +306,11 @@ body h5 {
 	margin-top: 1.4em;
 	font-weight: 400;
 }
-
+@media (min-width:640px) {
 body.compact h5 {
 	margin: 0.2em 0;
 }
-
+}
 .area h5 {
 	background-color: rgba(37,169,224,.1);
 	padding: 5px 5px 6px 5px;
@@ -389,7 +390,7 @@ h2.heading .title-action:hover {
 	display:inline-block;
 	vertical-align: middle;
 }
-
+@media (min-width: 640px) {
 body.compact {
 	.parent-link {
 		display: none;
@@ -425,6 +426,7 @@ body.compact {
 		font-size: 3em;
 	}
 }
+}
 
 .area h4 {
 	font-weight: 200;
@@ -451,8 +453,10 @@ body.hoshin .goals h3 {
 	color: $inverse-secondary-color;
 }
 
+@media (min-width:640px) {
 body.hoshin.compact .goals h3 {
 	top: -0.2em;
+}
 }
 
 body.hoshin div.goals {
@@ -475,8 +479,10 @@ body.hoshin .collection.areas {
 	width: 100%;
 }
 
+@media (min-width:640px) {
 body.hoshin.compact .collection.areas {
 	table-layout: fixed;
+}
 }
 
 body.hoshin .collection.areas1 {
@@ -493,13 +499,13 @@ body.hoshin
 	min-width: 270px;
 	width: 100%;
 }
-
+@media (min-width:640px) {
 body.hoshin.compact
 .collection.areas > .item {
 	display: table-cell;
 	overflow: hidden;
 }
-
+}
 ul.collection.sortable li.item {
 	outline: 1px solid transparent;
 }
@@ -715,7 +721,7 @@ body .well {
 	text-align: left;
 	border: 0;
 }
-
+@media (min-width:640px) {
 body.compact .well {
 	border-radius: 0;
 }
@@ -740,7 +746,7 @@ body.compact input {
 body.compact .table-row {
 	line-height: 1.5em;
 }
-
+}
 .areas .card.area {
 	padding: 0;
 	-webkit-box-sizing: border-box;
@@ -832,11 +838,11 @@ body .form-search input:focus {
 	margin-right: 1em;
 	border-top: 4px solid $secondary-background-color;
 }
-
+@media (min-width:640px) {
 .compact .areas li .card.area {
 	margin-right: 1px;
 }
-
+}
 .ordering-handle br {
 	display: none;
 }
@@ -900,9 +906,10 @@ div.table .table-row div.column[data-label="Hoshin"] {
 div.table .table-row div.column[data-label="Name"] {
 	width: 54%;
 }
-
+@media (min-width:640px) {
 .compact div.table .table-row div.column[data-label="Name"] {
 	width: auto;
+}
 }
 
 @media all and (min-width: 1200px) {
@@ -923,12 +930,12 @@ div.table div.column[data-label="Tpc"],
 div.table div.column[data-label="Status"] {
 	text-align: right;
 }
-
+@media (min-width:640px) {
 .compact div.table.indicators .table-row div.column[data-label="Actions"],
 .compact div.table .table-row div.column[data-label="Status"] {
 	display: none;
 }
-
+}
 button.hoshin-tasks.link {
 	margin: 0;
 	padding: 0;
@@ -1191,11 +1198,11 @@ acronym.user-image {
 .column[data-label=Deviation] {
 	min-width: 2em;
 }
-
+@media (min-width:640px) {
 .compact .column[data-label=Goal] {
 	width: 3em;
 }
-
+}
 .form-horizontal .simpleColorContainer, .horizontal .simpleColorContainer {
 	display: inline-block;
 }
@@ -1379,13 +1386,14 @@ form#delete-history, form#delete-history input {
 .hoshin-tasks:hover span {
 	color: #000;
 }
-
+@media (min-width:640px) {
 .compact .icons .hoshin-tasks span {
 	font-size: 1.2em;
 }
 
 .compact .tasks ul.icons li {
 	margin: -0.2em;
+}
 }
 
 .link, .link:focus, .link:active {

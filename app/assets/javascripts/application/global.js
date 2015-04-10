@@ -195,7 +195,6 @@ $(window).load(equalHeightSections);
 
 var equalHeights = function(elements) {
 	$(elements).height("auto");
-	if (window.matchMedia('(max-width: 640px)').matches) return;
 	var maxHeight = 0;
 	//$(elements).css({border: "1px solid red"});
 	$(elements).each(function(){
