@@ -5,6 +5,10 @@
 	<heading: replace>
 	</heading:>
 	<content-body:>
+		<script type="text/javascript">
+			$(document).ready(loadKanban);
+			$(window).on("popstate", loadKanban);
+		</script>
 		<div class="kb-colors">
 			<repeat:areas part="colors">
 				<modal id="update-area-modal-#{this.id}">
@@ -20,9 +24,12 @@
 				</modal>
 				<modal-open-button class="kb-color" data-color-id="#{this.id}" style="background-color:#{this.color}" modal="update-area-modal-#{this.id}">
 				<view:name/>
-				<span onclick="$('.kb-color-#{this.id}, .col-tog-#{this.id}').toggle(); event.stopPropagation(); return false;" class="edit hoshin-tasks pull-right"><span class="fa fa-eye col-tog-#{this.id}"></span><span class="fa fa-eye-slash col-tog-#{this.id}" style="display:none"></span></span>
+				<span onclick="filterPostits(event); return false;" class="edit hoshin-tasks pull-right"><span class="fa fa-eye col-tog col-tog-#{this.id} filter-color" data-color="#{this.id}"></span><span class="fa fa-eye-slash col-tog col-tog-#{this.id}" style="display:none" data-color="#{this.id}"></span></span>
 				</modal-open-button>
 			</repeat>
+			<bootstrap-switch id="show-mine" data-user="#{current_user.id}" switch-change="filterPostits">
+				<label:>Show only mine</label:>
+			</bootstrap-switch>
 		</div>
 		<div class="kb-frame">
 			<kanban-lane:backlog_tasks lane="backlog"/>

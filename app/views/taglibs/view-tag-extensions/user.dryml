@@ -28,7 +28,7 @@
 	%>
 	<do with="&user" unless="&user.nil?">
 		<% begin %>
-		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(size)" title="#{this.name}">
+		<span class="view user-image" data-default="#{this.abbrev}" if="&this.img_url(size)" title="#{this.name}" merge-attrs>
 			<image src="#{this.img_url(size)}" srcset="#{this.img_url(size)} 1x, #{this.img_url(size + '2x')} 2x, #{this.img_url(size + '3x')} 3x, #{this.img_url(size + '4x')} 4x" class="#{'no-image' unless this.img_url(size)}" size="&size_num"/>
 		</span>
 		<% rescue SocketError 

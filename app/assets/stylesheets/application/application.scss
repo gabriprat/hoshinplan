@@ -1631,6 +1631,34 @@ form.indicator-value input[type=radio] {
 	padding-right: 5px;
 }
 
+.bootstrap-switch.bootstrap-switch-mini {
+	min-width: 64px;
+}
+
+.bootstrap-switch-input {
+	display: inline;
+	vertical-align: middle;
+	
+	label,.bootstrap-switch {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 1em 0 0;
+	}
+}
+.bootstrap-switch.bootstrap-switch-focused {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	outline: none;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default, 
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default,
+.bootstrap-switch .bootstrap-switch-label {
+	background-image: none;
+}
+
 .health {
 	position: relative;
 	font-size: 1.3em;
@@ -1797,6 +1825,12 @@ form.indicator-value input[type=radio] {
 }
 .kb-colors {
 	text-align: center;
+	margin-bottom: 1em;
+}
+
+.kb-colors #colors {
+	display: inline;
+	vertical-align: middle;
 }
 
 .kb-color {
@@ -1805,7 +1839,6 @@ form.indicator-value input[type=radio] {
 	height: 2em;
 	margin-right: 3em;
 	line-height: 2em;
-	margin-bottom: 1em;
 }
 
 .kb-color a {

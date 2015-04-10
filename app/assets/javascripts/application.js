@@ -13,4 +13,5 @@
 //= require morris
 //= require detect_timezone
 //= require jquery.detect_timezone
+//= require bootstrap-switch
 //= require_tree ./application

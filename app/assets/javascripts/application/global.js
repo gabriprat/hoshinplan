@@ -37,6 +37,69 @@ var validateDate = function(formElem) {
 	return true;
 }
 
+var loadKanban = function() {
+	try {
+		var showMine = false;
+		var colors = [];
+		if (window.location.hash.length > 1) {
+			var h = window.location.hash.substring(1).split(";");
+			if (h.length==2) {
+				showMine = h[1]=="true";
+				colors = h[0].split(",");
+			}
+		}
+		$(".fa-eye").show();
+		$(".fa-eye-slash").hide();
+		for (i=0; i<colors.length; i++) {
+			$('.col-tog-' + colors[i]).toggle();
+		}
+		if (showMine != $("#show-mine").bootstrapSwitch("state")) {
+			$("#show-mine").bootstrapSwitch("toggleState");
+		}
+		doFilterPostits(colors, showMine);
+	} catch(err) {
+		window.location.hash = "";
+	}
+}
+
+var doFilterPostits = function(colors, showMine) {
+	var selector = "";
+	for (var i=0; i<colors.length; i++) {
+		if (selector.length>0) {
+			selector += ", ";
+		}
+		selector +=  ".kb-color-" + colors[i];
+	}
+	$(".postit").show();
+	$(selector).hide();
+	if (showMine) {
+		var sm = $("#show-mine");
+		var user = sm.data("user");
+		$(".postit:not(:has(.user-" + user + "))").hide();
+	}
+	equalHeightSections();
+}
+
+var filterPostits = function(event) {
+	event.stopPropagation();
+	var clickedColor = $(event.target).data("color");
+	if (clickedColor) {
+		$('.col-tog-' + clickedColor).toggle();
+	}
+	var sm = $("#show-mine");
+	var showMine = sm.bootstrapSwitch("state");
+	var selector = "";
+	var hiddenColors = [];
+	$(".filter-color").each(function() {
+		if ($(this).is(":hidden")) {
+			var col = $(this).data("color");
+			hiddenColors.push(col);
+		}
+	});
+	window.location.hash = hiddenColors.join(",") + ";" + showMine
+	return false;
+}
+
 var dateFormat = function(format, d) {
 	if (typeof d === "undefined") { // partial
         return function (d) {
