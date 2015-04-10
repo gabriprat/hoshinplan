@@ -18,6 +18,25 @@ body {
 	padding: 0;
 }
 
+.container {
+	overflow-x: hidden;
+	width: 100vw;
+}
+
+html body .row {
+	padding: 0;
+}
+
+html body .well {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+html body .form-search input {
+	width: auto;
+}
+
 body h1 {
 	font-size: 3em;
 }
@@ -26,11 +45,21 @@ body.hoshin a:after
 content: none;
 }
 
-body.hoshin .container .collection.areas > .item {
+html body.hoshin .collection.areas {
 	display: block;
-	width: 100%;
+	overflow-x: scroll;
+	white-space: nowrap;
 }
-.ordering-handle {
+
+body.hoshin .container .collection.areas > .item {
+	display: inline-block;
+	width: 100vw !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: top;
+	white-space: normal;
+}
+.ordering-handle, .column.ordering {
 	display: none;
 }
 
@@ -200,7 +229,7 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 html body {
 	font-size: 13px;
 	font-family: $secondary-font-stack;
-	color: $primary-color
+	color: $primary-color;
 }
 
 html input {
@@ -215,6 +244,12 @@ html body.presenting, html body.presenting input {
 html body.presenting input {
 	height: auto;
 	line-height: normal;
+}
+
+.table-bordered th, .table-bordered td {
+	max-width: 30vw;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 body .navbar a.brand, body .navbar a.brand:visited,  body .navbar a.brand strong,  body .navbar a.brand span {
@@ -1081,12 +1116,25 @@ input[type=submit].delete-button.delete-payment-button {
 
 form#add-collaborators {
 	display: none;
-	margin-top: 1em;
+	float:left;
+}
+
+.collaborators .btn-primary {
+	margin: 0 0 1em 1em;
 }
 
 form#add-collaborators textarea {
-	width: 30em;
+	width: 20em;
 	height: 10em;
+	max-width: 70vw;
+	margin: 1em 0;
+}
+@media all and (max-width: 600px) {
+	body.collaborators .bubble:after {
+		box-shadow: -1px -1px 1px 0 rgba( 37, 169, 224, 0.4 );
+		left: 50%;
+		top: -5px;
+	}
 }
 
 form.hoshin textarea.hoshin-header {
@@ -1637,7 +1685,8 @@ form.indicator-value input[type=radio] {
 
 .bootstrap-switch-input {
 	display: inline;
-	vertical-align: middle;
+	vertical-align: text-bottom;
+	white-space: nowrap;
 	
 	label,.bootstrap-switch {
 		display: inline-block;
@@ -1825,12 +1874,12 @@ form.indicator-value input[type=radio] {
 }
 .kb-colors {
 	text-align: center;
-	margin-bottom: 1em;
+	line-height: 3em;
 }
 
 .kb-colors #colors {
 	display: inline;
-	vertical-align: middle;
+	vertical-align: text-bottom;
 }
 
 .kb-color {
@@ -1865,6 +1914,21 @@ form.indicator-value input[type=radio] {
 	margin: .5%;
 	display: table;
 	height: 600;
+}
+@media all and (max-width:767px) {
+.kb-frame {
+	display: block;
+	width: 90vw;
+	white-space: nowrap;
+	overflow-x: scroll;
+	
+	.connected-sortable-wrapper {
+		display: inline-block;
+		width: 90vw;
+		vertical-align: top;
+		white-space: normal;
+	}
+}
 }
 
 .kb-lane {

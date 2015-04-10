@@ -160,6 +160,7 @@ $(document).ready(updateColors);
 
 function fixedHorizontal() {
 	if ($("html.pdf").length > 0) { return; }
+	if ($( window ).width() <= 640) { return; }
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"margin-left": "0"}); 
 		$(this).css({"width": "auto"});
