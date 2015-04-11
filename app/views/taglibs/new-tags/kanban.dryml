@@ -29,7 +29,7 @@
 			<else>
 			<br/><br/>
 			</else>
-			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-kb-lane">
+			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-kb-lane" message=".">
 				<hidden-fields fields="lane_pos, status"/>
 			</formlet>
 		</li>
