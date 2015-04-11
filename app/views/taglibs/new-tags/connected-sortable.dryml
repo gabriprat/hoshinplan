@@ -1,9 +1,13 @@
-<def tag="connected-sortable" attrs="connect-with, title, list-id, list-tag">
-	<% list_tag ||= 'ul' %>
+<def tag="connected-sortable" attrs="title, list-tag, connect-with, list-id">
+	<% list_tag ||= 'ul'
+	   options, attrs = attributes.partition_hash(['disabled', 'appendTo', 'axis', 'cancel', 'connectWith', 'containment', 'cursor', 'cursorAt', 'delay', 'distance', 'dropOnEmpty', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'handle', 'helper', 'items', 'opacity', 'placeholder', 'revert', 'scroll', 'scrollSensitivity', 'scrollSpeed', 'tolerance', 'zIndex'])
+	   options["connectWith"] = "." + connect_with
+	   events, html_attrs = attrs.partition_hash(['create', 'start', 'sort', 'change', 'beforeStop', 'stop', 'update', 'receive', 'remove', 'over', 'out', 'activate', 'deactivate'])
+	 %>
 	<div class="connected-sortable-wrapper">
 	<div param="title"><h2><view with="&title"/>(<div part="cs-size" class="cs-size-#{connect_with}" id="cs-size-#{connect_with}-#{list_id}">#{this.count}</div>)</h2></div>
-	<section param="body" class="#{connect_with} connected-sortable" data-rapid="&data_rapid('connectedsortable', {connect_with: '.'+connect_with, list_id: list_id})" merge-attrs>
-	<set-scoped connect-with='&connect_with' list-id='&list_id' items='&this'>
+	<section param="body" class="#{connect_with} connected-sortable" data-rapid="&data_rapid('connectedsortable', :options => options, :events => events)" data-list-id="#{list_id}" merge-attrs='&amp;html_attrs'>
+	<set-scoped items='&this' list-id="&list_id">
 	<call-tag tag="&list_tag">
 		<li repeat="&scope.items" data-rapid-context='&typed_id' data-id="&this.id" param="item">
 			<do param='default'><card param/></do>

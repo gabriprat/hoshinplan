@@ -1,5 +1,5 @@
 <def tag="kanban-lane" attrs="lane">
-<connected-sortable connect-with="kb-lane" title="#{lane}" list-id="#{lane}" class="panel panel-default">
+<connected-sortable connect-with="kb-lane" title="#{lane}" list-id="#{lane}" class="panel panel-default" placeholder="sortable-placeholder kanban-card postit" stop="postitDrop" items="li:not(.not-draggable)">
 	<title: class="panel-heading"/>
 	<body: class="panel-body"/>
 	<item: replace>

@@ -1967,6 +1967,7 @@ form.indicator-value input[type=radio] {
 	border-right: 1px solid lightgray;
 	box-sizing: border-box;
 	min-height: 200px;
+	padding-bottom: 8em;
 }
 
 .kb-lane ul {
@@ -1981,13 +1982,18 @@ form.indicator-value input[type=radio] {
 .postit {    
 	width: 100%;
 	margin: .4em 0;
-	min-height: 5em;
+	min-height: 7em;
 	padding: 1em 0.4em 0 0.4em;
 	position: relative;
 	border: 1px solid #E8E8E8;
 	border-bottom-right-radius: 6em .5em;
 	display: inline-block;
 	box-sizing: border-box;   
+}
+
+.postit.sortable-placeholder {
+	background-color: #f6f6f6;
+	border: 3px dashed #e8e8e8;
 }
 
 .postit .in-place-edit.task-name {

@@ -2,21 +2,8 @@
 (function($) {
     var methods = {
         init: function(annotations) {
-		var that = $(this);
-		var annotations=that.data('rapid')['connectedsortable'];
-		that.sortable({
-		  connectWith: annotations.connect_with,
-		  items: "li:not(.not-draggable)",
-		  stop: function (event, ui) {
-		      var that = ui.item.closest(".connected-sortable");
-		      var annotations = that.data('rapid')['connectedsortable'];
-		      $form = ui.item.find(".csupdate.formlet");
-		      $form.find("input[name='task[status]']").val(annotations.list_id);
-		      $form.find("input[name='task[lane_pos]']").val(ui.item.index());
-		      $form.data('rapid').formlet.form_attrs.action = "/tasks/" + ui.item.data("id");
-		      $form.hjq_formlet("submit");
-		  }
-		}).disableSelection();
+		var options=this.hjq('getOptions', annotations);
+		this.sortable(options).disableSelection();
 		
         }
     };

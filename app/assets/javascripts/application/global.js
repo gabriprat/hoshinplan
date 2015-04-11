@@ -100,6 +100,17 @@ var filterPostits = function(event) {
 	return false;
 }
 
+var postitDrop = function (event, ui) {
+	var that = ui.item.closest(".connected-sortable");
+	var annotations = that.data('rapid')['connectedsortable'];
+	$form = ui.item.find(".csupdate.formlet");
+	$form.find("input[name='task[status]']").val(that.data("list-id"));
+	$form.find("input[name='task[lane_pos]']").val(ui.item.index());
+	$form.data('rapid').formlet.form_attrs.action = "/tasks/" + ui.item.data("id");
+	$form.hjq_formlet("submit");
+	equalHeightSections();
+}
+
 var dateFormat = function(format, d) {
 	if (typeof d === "undefined") { // partial
         return function (d) {
