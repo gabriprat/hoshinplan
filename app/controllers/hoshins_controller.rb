@@ -89,6 +89,9 @@ class HoshinsController < ApplicationController
   def kanban
     @this = find_instance
     @lanes = Task::Lifecycle.states.keys
+    if request.xhr?
+      hobo_ajax_response
+    end
   end
 
 end

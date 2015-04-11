@@ -22,6 +22,7 @@ vendor
 
 backup_and_restore.sh
 *.dump
+*.sql
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

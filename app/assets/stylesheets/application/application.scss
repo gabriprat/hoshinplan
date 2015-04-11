@@ -1903,18 +1903,23 @@ form.indicator-value input[type=radio] {
 }
 .kb-colors {
 	text-align: center;
-	line-height: 3em;
 }
 
 .kb-colors #colors {
 	display: inline;
-	vertical-align: text-bottom;
+	vertical-align: middle;
 }
 
 .kb-color {
 	display: inline-block;
 	margin-right: 3em;
 	line-height: 2em;
+	padding-right: 3.5em;
+	vertical-align: middle;
+}
+
+.col-tog {
+	vertical-align: middle;
 }
 
 .kb-color a {
@@ -1924,6 +1929,25 @@ form.indicator-value input[type=radio] {
 
 .kb-color .area-name {
 	margin-right: 1em;
+	vertical-align: middle;
+}
+
+.kb-colors .add-task {
+	margin-left: -7em;
+	margin-right: 4em;
+	vertical-align: text-bottom;
+	span {
+		vertical-align: middle;
+	}
+}
+
+.kb-colors .filter-color-wrapper {
+	margin-left: -7.5em;
+	margin-right: 7.5em;
+	vertical-align: text-bottom;
+	span {
+		vertical-align: middle;
+	}
 }
 
 .kb-frame .connected-sortable-wrapper {
@@ -1932,6 +1956,7 @@ form.indicator-value input[type=radio] {
 }
 
 .kb-frame .panel-heading {
+	position: relative;
 	border-right: 1px solid lightgray;
 }
 
