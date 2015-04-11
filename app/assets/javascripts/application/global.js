@@ -108,6 +108,7 @@ var postitDrop = function (event, ui) {
 	$form.data('rapid').formlet.form_attrs.action = "/tasks/" + ui.item.data("id");
 	$form.hjq_formlet("submit");
 	var annotations=that.data('rapid')['sortable-collection'];
+	annotations.ajax_attrs["no_spinner"] = true
 	var roptions = that.hjq('buildRequest', {type: 'post',
 	                                     attrs: annotations.ajax_attrs
 	                                    });
