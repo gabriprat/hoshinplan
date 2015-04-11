@@ -1,0 +1,10 @@
+<def attrs='list-tag, show-empty' tag='collection'>
+  <% list_tag ||= 'ul' %>
+  <call-tag class='collection #{collection_name :dasherize => true}' tag='&list_tag' merge-attrs unless='empty? && !show_empty'>
+    <li class='#{scope.even_odd}' param='item' repeat='&select_viewable' data-rapid-context='&typed_id'>
+      <do param='default'><card param/></do>
+    </li>
+  </call-tag>
+  <empty-collection-message param='empty-message'/>
+  <if/><%# set last-if so <else/> works %>
+</def>

@@ -57,6 +57,8 @@ Hoshinplan::Application.routes.draw do
   get "/auth/failure" => "front#failure"
   
   post "/tasks/form" => "tasks#form", :as => 'task_form'
+  
+  post "/tasks/reorder_lane/:key/:task_id" => "tasks#reorder_lane"
 
   post "/indicators/form" => "indicators#form", :as => 'indicators_form'
   

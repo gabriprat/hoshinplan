@@ -1,7 +1,9 @@
 <def tag="kanban-lane" attrs="lane">
-<connected-sortable connect-with="kb-lane" title="#{lane}" list-id="#{lane}" class="panel panel-default" placeholder="sortable-placeholder kanban-card postit" stop="postitDrop" items="li:not(.not-draggable)">
-	<title: class="panel-heading"/>
-	<body: class="panel-body"/>
+
+	<div class="connected-sortable-wrapper panel panel-default">
+	<div class="panel-heading"><h2><view with="&lane"/>(<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.count}</div>)</h2></div>
+<sortable-collection connectWith=".kb-lane" title="#{lane}" class="kb-lane panel-body" show-empty="true" placeholder="sortable-placeholder kanban-card postit" stop="postitDrop" update="" items="li:not(.not-draggable)" data-list-id="#{lane}">
+	<empty-message: replace/>
 	<item: replace>
 		<li class="kanban-card postit kb-color-#{this.area_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
 			<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="fa fa-cog"/></rmodal>
@@ -27,10 +29,11 @@
 			<else>
 			<br/><br/>
 			</else>
-			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-#{scope.connect_with}">
+			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-kb-lane">
 				<hidden-fields fields="lane_pos, status"/>
 			</formlet>
 		</li>
 	</item:>
-</connected-sortable>
+</sortable-collection>
+</div>
 </def>

@@ -1960,6 +1960,10 @@ form.indicator-value input[type=radio] {
 }
 }
 
+.kb-frame .panel {
+	border: 0;
+}
+
 .kb-lane {
 	-moz-border-radius: 0px 0px 5px 5px;
 	border-radius: 0px 0px 5px 5px;
@@ -1968,9 +1972,6 @@ form.indicator-value input[type=radio] {
 	box-sizing: border-box;
 	min-height: 200px;
 	padding-bottom: 8em;
-}
-
-.kb-lane ul {
 	margin: 0;
 }
 

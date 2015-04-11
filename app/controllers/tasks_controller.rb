@@ -12,6 +12,20 @@ class TasksController < ApplicationController
   
   include RestController
   
+  def reorder_lane
+    con  = ActiveRecord::Base.connection.raw_connection
+    values = [params[:task_ordering].join(",")].concat(params[:task_ordering])
+    bind = ""
+    params[:task_ordering].each_with_index {|item,index|
+      bind += "," unless bind.blank?
+      bind += "$" + (index+2).to_s
+    }
+    sql = "UPDATE tasks set lane_pos = new_pos from (SELECT id, row_number() over (ORDER BY position(id::text in $1)) - 1 as new_pos FROM tasks where id in (#{bind})) as tsk where tasks.id = tsk.id"
+    ret = con.exec(sql, values)
+    Rails.logger.debug "==============" + sql + "\n" + values.to_s + ret.to_yaml
+    render :js => 'true'
+  end
+  
   def create
     obj = params["task"]
     select_responsible(obj)

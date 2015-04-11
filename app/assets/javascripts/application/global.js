@@ -101,13 +101,24 @@ var filterPostits = function(event) {
 }
 
 var postitDrop = function (event, ui) {
-	var that = ui.item.closest(".connected-sortable");
-	var annotations = that.data('rapid')['connectedsortable'];
+	var that = ui.item.closest(".sortable-collection");
+	var lane = that.data("list-id");
 	$form = ui.item.find(".csupdate.formlet");
-	$form.find("input[name='task[status]']").val(that.data("list-id"));
-	$form.find("input[name='task[lane_pos]']").val(ui.item.index());
+	$form.find("input[name='task[status]']").val(lane);
 	$form.data('rapid').formlet.form_attrs.action = "/tasks/" + ui.item.data("id");
 	$form.hjq_formlet("submit");
+	var annotations=that.data('rapid')['sortable-collection'];
+	var roptions = that.hjq('buildRequest', {type: 'post',
+	                                     attrs: annotations.ajax_attrs
+	                                    });
+	roptions.data['authenticity_token']=that.hjq('pageData').form_auth_token.value;
+	roptions.data=$.param(roptions.data);
+	that.children("*[data-rapid-context]").each(function(i) {
+	roptions.data = roptions.data+"&"+annotations.reorder_parameter+"[]="+$(this).hjq('contextId');
+	});
+
+	$.ajax("/tasks/reorder_lane/" + lane + "/" + ui.item.hjq('contextId'), roptions);
+	return that;
 	equalHeightSections();
 }
 
@@ -220,7 +231,7 @@ var equalHeightSections = function() {
 	equalHeights("div.objectives-wrapper");
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
-	equalHeights("div.kb-lane");
+	equalHeights(".kb-lane");
 	equalHeights(".area .header");
 	eh = false;
 }

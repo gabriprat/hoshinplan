@@ -82,8 +82,8 @@ class Task < ActiveRecord::Base
   after_save :update_counter_cache
   after_destroy :update_counter_cache
   
-  after_update :update_lane_positions
-  after_destroy :decrement_lane_positions_on_lower_items
+  #after_update :update_lane_positions
+  #after_destroy :decrement_lane_positions_on_lower_items
   before_create :add_to_lane_list_bottom
   
   def decrement_lane_positions_on_lower_items(position=nil)
@@ -102,6 +102,20 @@ class Task < ActiveRecord::Base
     self.lane_pos = bottom_lane_item
     self.lane_pos ||= 0
   end
+  
+  def reorder_lanes
+    ordering = params["#{model.name.underscore}_ordering"]
+    if ordering
+      ordering.each_with_index do |id, position|
+        object = model.find(id)
+        object.user_update_attributes!(current_user, object.position_column => position+1)
+      end
+      hobo_ajax_response || render(:nothing => true)
+    else
+      render :nothing => true
+    end
+  end
+  
   
   def update_lane_positions
       old_position = lane_pos_was
