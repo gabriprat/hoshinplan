@@ -35,7 +35,7 @@
 		end
 		%>
 		<else>
-			<user-abbrev class="user-image" style="background-color:#{this.color}"/>
+			<user-abbrev class="user-image" style="background-color:#{this.color}" merge-attrs/>
 		</else>
 	</do>
 </def>
