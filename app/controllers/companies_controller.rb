@@ -63,6 +63,7 @@ class CompaniesController < ApplicationController
   def update
     if params[:collaborators]
       error = false
+      invite_sent = false
       begin
         params[:collaborators].each_line do |email|
           email.squish! 
@@ -74,8 +75,10 @@ class CompaniesController < ApplicationController
               user.email_address = email
               user.save!(:validate => false)
             else
-              user = User::Lifecycle.invite(:email_address => email)
+              user = User::Lifecycle.invite(current_user, {:email_address => email})
+              invite_sent = true
               user.email_address = email
+              user.language = current_user.language
               user.save!(:validate => false)
             end
           end
@@ -86,7 +89,11 @@ class CompaniesController < ApplicationController
               if (domain == "infojobs.net" || domain == "lectiva.com")
                 UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
               else
-                UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+                if invite_sent
+                  UserCompany::Lifecycle.invite_without_email(current_user, {:user => user, :company => company})
+                else
+                  UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+                end
               end
             rescue Hobo::PermissionDeniedError => e
               flash[:error] = t("errors.user_limit_reached").html_safe

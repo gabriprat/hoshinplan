@@ -33,7 +33,12 @@ es:
     invite:
       subject: Únete al Hoshin plan de %{company}
       title: '¡Hola! %{name} quiere que te unas a Hoshinplan.com'
-      message: Si aceptas esta invitación podrás colaborar junto con %{name} en el plan estratégico de %{company}. Sólo faltas tú!
+      message: Si aceptas esta invitación podrás colaborar junto con %{name} en el plan estratégico de %{company}. ¡Sólo faltas tú!
+      call_to_action: Aceptar
+    new_invite:
+      subject: '%{name} te invita a unirte a Hoshinplan'
+      title: '¡Hola! %{name} quiere que te unas a Hoshinplan.com'
+      message: 'Hoshin es la manera más efectiva de construir tu estrategia, monitorizar el rendimiento y enfocarse inexorablemente en la ejecución. Si aceptas esta invitación podrás colaborar con los planes estratégicos de %{name}. Sólo faltas tú!'
       call_to_action: Aceptar
     accept:
       subject: Invitación aceptada
@@ -94,6 +99,9 @@ es:
     accept:
       heading: Aceptar la invitación
       body: Clicando el botón Aceptar podrás ver y contribuir a los Hoshinplans de %{company}.
+    accept_invitation:
+      heading: Aceptar la invitación
+      body: Introduce tu nombre y contraseña y estarás listo para empezar a usar Hoshinplan.com
     table_plus:
       clear_label: Borrar filtro
       submit_label: Buscar
@@ -172,6 +180,9 @@ es:
         state: Estado
         language: Idioma
         timezone: Zona horaria
+        lifecycle:
+          transitions:
+            accept_invitation: Aceptar la invitación		
       user/languages:
         es: Español (España)
         en: English (US)

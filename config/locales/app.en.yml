@@ -35,6 +35,11 @@ en:
       title: '%{name} invites you to collaborate to Hoshinplan'
       message: By accepting this invitation you will start collaborating to the Hoshinplan of %{company}.
       call_to_action: Aceptar
+    new_invite:
+      subject: '%{name} invites you to join Hoshinplan'
+      title: '%{name} invites you to join Hoshinplan'
+      message: 'Hoshin is the easiest and most effective way to build your strategy, monitor performance and relentlessly focus on execution. By accepting this invitation you will start collaborating to the Hoshinplan''s of %{name}.'
+      call_to_action: Aceptar
     accept:
       subject: Invitation accepted
       message: '%{user2} is now a collaborator of the Hoshinplan of %{company}'

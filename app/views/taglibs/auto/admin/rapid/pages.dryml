@@ -594,6 +594,27 @@
   </page>
 </def>
 
+<def tag="accept-invitation-page" polymorphic/>
+<def tag="accept-invitation-page" for="User">
+  <page title="#{ht 'user.accept_invitation.title', :default=>['Accept Invitation']}" merge>
+
+    <body: class="lifecycle-transition-page accept-invitation-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.accept_invitation.heading">
+          Accept Invitation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <accept-invitation-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
 <def tag="activate-page" polymorphic/>
 <def tag="activate-page" for="User">
   <page title="#{ht 'user.activate.title', :default=>['Activate']}" merge>

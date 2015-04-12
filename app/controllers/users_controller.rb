@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   
   hobo_user_controller  
   
+  auto_actions :all, :lifecycle, :except => :index
+  
   show_action :dashboard, :tutorial, :pending, :unsubscribe
   
   # Allow only the omniauth_callback action to skip the condition that
@@ -9,9 +11,7 @@ class UsersController < ApplicationController
   skip_before_filter :my_login_required, :only => :omniauth_callback
   
   after_filter :update_data, :only => :omniauth_callback
-  
-  auto_actions :all, :except => [ :index, :new, :create ]
-    
+      
   include HoboOmniauth::Controller
   
   include RestController

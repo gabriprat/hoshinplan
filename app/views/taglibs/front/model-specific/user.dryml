@@ -145,3 +145,22 @@
   </content-body:>
 </old-show-page>
 </extend>
+
+<extend tag="accept-invitation-page" for="User">
+  <old-accept-invitation-page title="#{ht 'user.accept_invitation.heading'}" merge>
+
+    <content-header: param>
+      <h3 param="heading">
+        <ht key="user.accept_invitation.heading">
+          Accept the invitation
+        </ht>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <p><ht key="user.accept_invitation.body">Just type your name and password and you will be ready to start using hoshinplan.com</ht></p>
+      <accept-invitation-form param="form"/>
+    </content-body:>
+
+  </old-accept-invitation-page>
+</extend>

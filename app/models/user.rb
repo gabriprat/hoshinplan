@@ -153,6 +153,10 @@ class User < ActiveRecord::Base
     ret = next_tutorial.empty?
   end
   
+  def available_logged_in
+    acting_user unless acting_user.guest?
+  end
+  
   # --- Signup lifecycle --- #
 
   lifecycle do
@@ -171,9 +175,11 @@ class User < ActiveRecord::Base
       end
     end
 
-    create :invite,
-      :params => [:name, :email_address, :password, :password_confirmation],
-      :become => :invited
+    create :invite, :new_key => true, :params => [:email_address], :become => :invited do
+      self.email_address = email_address
+        Rails.logger.debug("=========================" + self.to_yaml)
+        UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s)
+    end
       
     create :activate_ij,
         :params => [:name, :email_address, :password, :password_confirmation],
@@ -184,6 +190,9 @@ class User < ActiveRecord::Base
       :become => :inactive, :new_key => true  do
       UserMailer.delay.activation(self, lifecycle.key)
     end
+    
+    transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
+          :params => [:name, :password, :password_confirmation]
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
       current_user = acting_user
@@ -210,6 +219,9 @@ class User < ActiveRecord::Base
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,
                :params => [ :password, :password_confirmation ]
+               
+    transition :reset_password, { :invited => :invited }, :available_to => :key_holder,
+              :params => [ :password, :password_confirmation ]
 
   end
   
@@ -305,7 +317,12 @@ class User < ActiveRecord::Base
 
   def view_permitted?(field)
     # permit password fields to avoid the reset password page to fail
-    field == :password || field == :password_confirmation || acting_user.administrator? || self.new_record? || self.guest? || same_company
+    field == :password || 
+    field == :password_confirmation || 
+    acting_user.administrator? || 
+    self.new_record? || 
+    self.guest? || 
+    same_company
   end
   
   def update_data_from_authorization(provider, uid, email, remote_ip, tz, header_locale)

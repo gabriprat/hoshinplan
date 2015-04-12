@@ -67,15 +67,22 @@ class UserCompany < ActiveRecord::Base
 
      create :invite, :params => [ :company, :user ], :become => :invited,
                       :available_to => :create_available, :new_key => true do
-         UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user)
+         UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user, acting_user.language.to_s)
      end
+     
+     create :invite_without_email, :params => [ :company, :user ], :become => :invited,
+                      :available_to => :create_available, :new_key => true
      
      create :activate_ij, :params => [ :company, :user ], :become => :active, :available_to => :activate_ij_available
 
      transition :revoke_admin, {:invited => :active}, :available_to => :activate_ij_available
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
-       UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user)
+       if self.user.state == "invited"
+         UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self.user, acting_user.language.to_s)
+       else
+         UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user, acting_user.language.to_s)
+       end
      end
      
      create :new_company, :params => [ :company, :user ], :become => :admin

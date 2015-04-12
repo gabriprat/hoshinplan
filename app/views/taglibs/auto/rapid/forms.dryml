@@ -286,6 +286,16 @@
     </div>
   </form>
 </def>
+<def tag="invite-without-email-form" polymorphic/>
+<def tag="invite-without-email-form" for="UserCompany">
+  <form lifecycle="invite_without_email" merge param="default">
+    <error-messages param/>
+    <field-list fields="company, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'user_company.actions.invite_without_email', :default=>['Invite Without Email']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="activate-ij-form" polymorphic/>
 <def tag="activate-ij-form" for="UserCompany">
   <form lifecycle="activate_ij" merge param="default">
@@ -385,6 +395,17 @@
   </form>
 </def>
 
+<def tag="accept-invitation-form" polymorphic/>
+<def tag="accept-invitation-form" for="User">
+  <form lifecycle="accept_invitation" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="name, password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.accept_invitation', :default=>['Accept Invitation']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="activate-form" polymorphic/>
 <def tag="activate-form" for="User">
   <form lifecycle="activate" merge param="default">

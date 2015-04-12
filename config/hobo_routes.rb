@@ -201,6 +201,8 @@ Hoshinplan::Application.routes.draw do
     collection do
       post 'invite', :action => 'do_invite'
       get 'invite'
+      post 'invite_without_email', :action => 'do_invite_without_email'
+      get 'invite_without_email'
       post 'activate_ij', :action => 'do_activate_ij'
       get 'activate_ij'
     end
@@ -224,19 +226,23 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller users
-  resources :users, :only => [:edit, :show, :create, :update, :destroy] do
+  resources :users, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do
       post 'signup', :action => 'do_signup'
       get 'signup'
     end
     member do
+      get 'account'
       get 'dashboard'
       get 'tutorial'
       get 'pending'
       get 'unsubscribe'
-      get 'account'
+      put 'accept_invitation', :action => 'do_accept_invitation'
+      get 'accept_invitation'
       put 'activate', :action => 'do_activate'
       get 'activate'
+      put 'reset_password', :action => 'do_reset_password'
+      get 'reset_password'
       put 'reset_password', :action => 'do_reset_password'
       get 'reset_password'
     end
