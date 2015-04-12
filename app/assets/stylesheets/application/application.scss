@@ -1,7 +1,7 @@
 @import "colors.scss";
 
 
-@media all and (max-width: 979px) {
+@media screen and (max-width: 979px) {
 	body {
 		padding: 0;
 	}
@@ -13,7 +13,7 @@
 	}
 }
 
-@media all and (max-width: 640px) {
+@media screen and (max-width: 640px) {
 body {
 	padding: 0;
 }
@@ -933,7 +933,7 @@ div.table .table-row div.column[data-label="Name"] {
 }
 }
 
-@media all and (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
 	div.table .table-row div.column[data-label="Name"] {
 		min-width: 220px;
 	}
@@ -1157,7 +1157,7 @@ form#add-collaborators textarea {
 	max-width: 70vw;
 	margin: 1em 0;
 }
-@media all and (max-width: 600px) {
+@media screen and (max-width: 600px) {
 	body.collaborators .bubble:after {
 		box-shadow: -1px -1px 1px 0 rgba( 37, 169, 224, 0.4 );
 		left: 50%;
@@ -1969,7 +1969,7 @@ form.indicator-value input[type=radio] {
 	display: table;
 	height: 600;
 }
-@media all and (max-width:767px) {
+@media screen and (max-width:767px) {
 .kb-frame {
 	display: block;
 	width: 100vw;
@@ -2195,7 +2195,7 @@ body .center-block {
 	margin: 0 0.5em;
 }
 
-@media all and (min-width: 979px) {
+@media screen and (min-width: 979px) {
 	:not(.health-page) #sec-actions {
 		margin-top: -30px;
 	}
