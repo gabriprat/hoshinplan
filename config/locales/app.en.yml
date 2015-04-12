@@ -34,12 +34,12 @@ en:
       subject: '%{name} has invited you to Hoshinplan'
       title: '%{name} invites you to collaborate to Hoshinplan'
       message: By accepting this invitation you will start collaborating to the Hoshinplan of %{company}.
-      call_to_action: Aceptar
+      call_to_action: Accept
     new_invite:
       subject: '%{name} invites you to join Hoshinplan'
       title: '%{name} invites you to join Hoshinplan'
       message: 'Hoshin is the easiest and most effective way to build your strategy, monitor performance and relentlessly focus on execution. By accepting this invitation you will start collaborating to the Hoshinplan''s of %{name}.'
-      call_to_action: Aceptar
+      call_to_action: Accept
     accept:
       subject: Invitation accepted
       message: '%{user2} is now a collaborator of the Hoshinplan of %{company}'
@@ -52,7 +52,7 @@ en:
     removed:
       subject: Collaboration canceled
       message: '%{user2} has canceled your collaboration to the Hoshinplan of  %{company}.'
-  show_all: Mostrar todo...
+  show_all: Show all...
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
   click_to_edit: '&lt;Click to edit&gt;'
@@ -99,6 +99,9 @@ en:
     accept:
       heading: Accept invitation
       body: By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}.
+    accept_invitation:
+      heading: Accept invitation
+      body: Fill in your name and password and you will be ready to start using Hoshinplan.com
     table_plus:
       clear_label: Clear
       submit_label: Search
