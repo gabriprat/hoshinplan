@@ -21,6 +21,13 @@ class UsersController < ApplicationController
                                    :expires => current_user.remember_token_expires_at, :domain => :all }
   end
   
+  def do_accept_invitation
+    do_transition_action :accept_invitation do
+      self.current_user = model.find(params[:id])
+      redirect_to home_page
+    end
+  end
+  
   def do_activate
     do_transition_action :activate do
       self.current_user = model.find(params[:id])

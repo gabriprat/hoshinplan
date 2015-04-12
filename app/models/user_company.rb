@@ -79,7 +79,7 @@ class UserCompany < ActiveRecord::Base
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
        if self.user.state == "invited"
-         UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self.user, acting_user.language.to_s)
+         self.user.lifecycle.resend_invite!(acting_user)
        else
          UserCompanyMailer.delay.invite(self, company, lifecycle.key, acting_user, acting_user.language.to_s)
        end

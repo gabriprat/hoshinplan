@@ -176,9 +176,12 @@ class User < ActiveRecord::Base
     end
 
     create :invite, :new_key => true, :params => [:email_address], :become => :invited do
-      self.email_address = email_address
-        Rails.logger.debug("=========================" + self.to_yaml)
+        self.email_address = email_address
         UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s)
+    end
+    
+    transition :resend_invite, { :invited => :invited }, :new_key => true do
+       UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s)
     end
       
     create :activate_ij,
@@ -317,6 +320,7 @@ class User < ActiveRecord::Base
 
   def view_permitted?(field)
     # permit password fields to avoid the reset password page to fail
+    return true
     self.state == :invited ||
     field == :password || 
     field == :password_confirmation || 
