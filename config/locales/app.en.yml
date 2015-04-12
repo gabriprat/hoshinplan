@@ -224,8 +224,8 @@ en:
         value: Value
         reminder: Reminder
         objective: Objective
-        show_on_charts: Mostrar en vista gráficos
-        show_on_parent: Subir indicador
+        show_on_charts: Show on charts
+        show_on_parent: Show on parent
       indicator/frequencys:
         weekly: Weekly
         monthly: Monthly
