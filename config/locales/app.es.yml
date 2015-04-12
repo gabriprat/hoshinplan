@@ -297,7 +297,7 @@ es:
     maximum_collaborators: '(Máximo: %{value})'
     add_collaborators: Añadir colaboradores
     upgrade_to_invite: Mejora tu plan para invitar más colaboradores
-    send_invitations: Envía invitaciones de colaboración escribiendo una dirección de email por lína en la caja de texto.
+    send_invitations: Envía invitaciones de colaboración escribiendo una dirección de email por línea en la caja de texto.
   client_app:
     sign_a_request: Firma una petición al API
     requests_to_the_restful: Las peticiones al API RESTful tienen que estar firmadas con el campo secreto de la Aplicación Cliente. Este formulario te permitirá firmar una petición. Tienes que entrar la ruta de la petición que quieres firmar sin los parámetros "timestamp" ni "signature". Al clicar en el botón "Firmar" te devolverá la URL con estos parámetros.
