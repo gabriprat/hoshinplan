@@ -317,6 +317,7 @@ class User < ActiveRecord::Base
 
   def view_permitted?(field)
     # permit password fields to avoid the reset password page to fail
+    self.state == :invited ||
     field == :password || 
     field == :password_confirmation || 
     acting_user.administrator? || 
