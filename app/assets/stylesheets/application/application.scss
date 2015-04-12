@@ -1972,13 +1972,13 @@ form.indicator-value input[type=radio] {
 @media all and (max-width:767px) {
 .kb-frame {
 	display: block;
-	width: 90vw;
+	width: 100vw;
 	white-space: nowrap;
 	overflow-x: scroll;
 	
 	.connected-sortable-wrapper {
 		display: inline-block;
-		width: 90vw;
+		width: 100vw;
 		vertical-align: top;
 		white-space: normal;
 	}
