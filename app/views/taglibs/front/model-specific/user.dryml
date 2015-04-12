@@ -164,3 +164,21 @@
 
   </old-accept-invitation-page>
 </extend>
+
+
+<extend tag="activate-page" for="User">
+  <old-activate-page title="#{ht 'user.activate.heading'}" merge>
+
+    <content-header: param>
+      <h3 param="heading">
+        <ht key="user.activate.heading"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <p><ht key="user.activate.body"/></p>
+      <activate-form param="form"/>
+    </content-body:>
+
+  </old-activate-page>
+</extend>

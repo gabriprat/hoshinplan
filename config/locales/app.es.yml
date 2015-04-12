@@ -102,6 +102,9 @@ es:
     accept_invitation:
       heading: Aceptar la invitación
       body: Introduce tu nombre y contraseña y estarás listo para empezar a usar Hoshinplan.com
+    activate:
+      heading: Activar cuenta
+      body: ¡Estás a sólo un click de activar tu cuenta! Por favor, confírmalo pulsado el botón más abajo.
     table_plus:
       clear_label: Borrar filtro
       submit_label: Buscar
@@ -183,6 +186,7 @@ es:
         lifecycle:
           transitions:
             accept_invitation: Aceptar la invitación		
+            activate: Activar cuenta		
       user/languages:
         es: Español (España)
         en: English (US)
