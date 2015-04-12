@@ -224,6 +224,8 @@ en:
         value: Value
         reminder: Reminder
         objective: Objective
+        show_on_charts: Mostrar en vista gráficos
+        show_on_parent: Mostrar en Hoshin padre
       indicator/frequencys:
         weekly: Weekly
         monthly: Monthly
