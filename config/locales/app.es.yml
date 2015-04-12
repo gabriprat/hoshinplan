@@ -38,7 +38,7 @@ es:
     new_invite:
       subject: '%{name} te invita a unirte a Hoshinplan'
       title: '¡Hola! %{name} quiere que te unas a Hoshinplan.com'
-      message: 'Hoshin es la manera más efectiva de construir tu estrategia, monitorizar el rendimiento y enfocarse inexorablemente en la ejecución. Si aceptas esta invitación podrás colaborar con los planes estratégicos de %{name}. Sólo faltas tú!'
+      message: 'Hoshin es la manera más efectiva de construir tu estrategia, monitorizar el rendimiento y enfocarse inexorablemente en la ejecución. Si aceptas esta invitación podrás colaborar con los planes estratégicos de %{name}. ¡Sólo faltas tú!'
       call_to_action: Aceptar
     accept:
       subject: Invitación aceptada
