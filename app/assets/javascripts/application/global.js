@@ -226,6 +226,7 @@ var eh = false;
 
 var equalHeightSections = function() {
 	if (typeof presenting != "undefined" && presenting) return;
+	if ($("html.pdf").length > 0) { return; }
 	if (eh) return;
 	eh = true;
 	fixedHorizontal();
