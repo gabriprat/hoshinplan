@@ -15,7 +15,7 @@
 		<% hidden_indicators = hidden_indicators << this %>
 	</else>
 </repeat>
-<a href="#add-chart-modal#{this.id}" data-toggle='modal' class="add-chart fa fa-plus-square-o" unless="&hidden_indicators.empty?"></a>
+<a href="#add-chart-modal#{this.id}" data-toggle='modal' class="add-chart ic-plus-square-o" unless="&hidden_indicators.empty?"></a>
 <modal id="add-chart-modal#{this.id}">
 	<modal:>
 		<div class="modal-body">

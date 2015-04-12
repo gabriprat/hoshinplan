@@ -61,21 +61,21 @@
 		        <a action="edit"><ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">Hoshin <name/></ht></a>
 			<do part="sec-actions" id="sec-actions">
 			<a href="#{hoshin_path this}.pdf?show_all=true&v=#{this.updated_at.to_i}" title="&t 'hoshin_actions.export_as_pdf'" class="title-action">
-	    	            <span class="fa fa-download"/>
+	    	            <span class="ic-download"/>
 			</a>
 			<a href="#" onclick="startPresentation(); return false;" title="&t 'hoshin_actions.presentation'" class="title-action">
-	    	            <span class="fa fa-desktop"/>
+	    	            <span class="ic-desktop"/>
 			</a>
 			<a href="#{hoshin_path this}/kanban" title="Kanban" class="title-action">
-	    	            <span class="fa fa-table"/>
+	    	            <span class="ic-table"/>
 			</a>
 			<a href="#{hoshin_path this}/charts" title="&t 'hoshin_actions.charts'" class="title-action">
-	    	            <span class="fa fa-area-chart"/>
+	    	            <span class="ic-area-chart"/>
 			</a>
 			<form with="&current_user" id="preferred-view" class="inline-form" ajax>
 				<hidden-field:preferred_view />
-				<a onclick="$(body).toggleClass('compact').toggleClass('expanded'); $('#compact').toggleClass('fa-compress').toggleClass('fa-expand'); $('#user_preferred_view').val($('#user_preferred_view').val() == 'compact' ? 'expanded' : 'compact'); $('#preferred-view').submit(); equalHeightSections(); return false;" title="&t 'hoshin_actions.compact'" class="title-action" style="margin:0">
-		    	            <span id="compact" class="fa #{current_user.preferred_view == :compact ? 'fa-expand'  : 'fa-compress'}"/>
+				<a onclick="$(body).toggleClass('compact').toggleClass('expanded'); $('#compact').toggleClass('ic-compress').toggleClass('ic-expand'); $('#user_preferred_view').val($('#user_preferred_view').val() == 'compact' ? 'expanded' : 'compact'); $('#preferred-view').submit(); equalHeightSections(); return false;" title="&t 'hoshin_actions.compact'" class="title-action" style="margin:0">
+		    	            <span id="compact" class="fa #{current_user.preferred_view == :compact ? 'ic-expand'  : 'ic-compress'}"/>
 				</a>
 			</form>
 			<health/>
@@ -90,7 +90,7 @@
 			<div class="fixed-x">
 				<div id="goals" part="goals">
 					<div class="goals well slide-page" if="&this.goals">
-						<h3 title="#{Goal.model_name.human(:count => 100).to_s}" class="fa fa-bullseye"></h3>
+						<h3 title="#{Goal.model_name.human(:count => 100).to_s}" class="ic-bullseye"></h3>
 						<sortable-collection:goals />
 					</div>
 				</div>

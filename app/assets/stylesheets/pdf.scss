@@ -9,8 +9,6 @@
  *= require ./application/print.css
  *= require_tree ./front
 */
-@import "font-awesome-sprockets";
-@import "font-awesome";
 div.table div.column[data-label="Actions"] {
 	display: none;
 }
@@ -2499,8 +2497,8 @@ table th[class*="span"],
 }
 
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="ic-"],
+[class*=" ic-"] {
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -2515,726 +2513,726 @@ table th[class*="span"],
 
 
 
-.icon-white,
-.nav-pills > .active > a > [class^="icon-"],
-.nav-pills > .active > a > [class*=" icon-"],
-.nav-list > .active > a > [class^="icon-"],
-.nav-list > .active > a > [class*=" icon-"],
-.navbar-inverse .nav > .active > a > [class^="icon-"],
-.navbar-inverse .nav > .active > a > [class*=" icon-"],
-.dropdown-menu > li > a:hover > [class^="icon-"],
-.dropdown-menu > li > a:focus > [class^="icon-"],
-.dropdown-menu > li > a:hover > [class*=" icon-"],
-.dropdown-menu > li > a:focus > [class*=" icon-"],
-.dropdown-menu > .active > a > [class^="icon-"],
-.dropdown-menu > .active > a > [class*=" icon-"],
-.dropdown-submenu:hover > a > [class^="icon-"],
-.dropdown-submenu:focus > a > [class^="icon-"],
-.dropdown-submenu:hover > a > [class*=" icon-"],
-.dropdown-submenu:focus > a > [class*=" icon-"] {
+.ic-white,
+.nav-pills > .active > a > [class^="ic-"],
+.nav-pills > .active > a > [class*=" ic-"],
+.nav-list > .active > a > [class^="ic-"],
+.nav-list > .active > a > [class*=" ic-"],
+.navbar-inverse .nav > .active > a > [class^="ic-"],
+.navbar-inverse .nav > .active > a > [class*=" ic-"],
+.dropdown-menu > li > a:hover > [class^="ic-"],
+.dropdown-menu > li > a:focus > [class^="ic-"],
+.dropdown-menu > li > a:hover > [class*=" ic-"],
+.dropdown-menu > li > a:focus > [class*=" ic-"],
+.dropdown-menu > .active > a > [class^="ic-"],
+.dropdown-menu > .active > a > [class*=" ic-"],
+.dropdown-submenu:hover > a > [class^="ic-"],
+.dropdown-submenu:focus > a > [class^="ic-"],
+.dropdown-submenu:hover > a > [class*=" ic-"],
+.dropdown-submenu:focus > a > [class*=" ic-"] {
   background-image: image-url("glyphicons-halflings-white.png");
 }
 
 
-.icon-glass {
+.ic-glass {
   background-position: 0      0;
 }
 
 
-.icon-music {
+.ic-music {
   background-position: -24px  0;
 }
 
 
-.icon-search {
+.ic-search {
   background-position: -48px  0;
 }
 
 
-.icon-envelope {
+.ic-envelope {
   background-position: -72px  0;
 }
 
 
-.icon-heart {
+.ic-heart {
   background-position: -96px  0;
 }
 
 
-.icon-star {
+.ic-star {
   background-position: -120px 0;
 }
 
 
-.icon-star-empty {
+.ic-star-empty {
   background-position: -144px 0;
 }
 
 
-.icon-user {
+.ic-user {
   background-position: -168px 0;
 }
 
 
-.icon-film {
+.ic-film {
   background-position: -192px 0;
 }
 
 
-.icon-th-large {
+.ic-th-large {
   background-position: -216px 0;
 }
 
 
-.icon-th {
+.ic-th {
   background-position: -240px 0;
 }
 
 
-.icon-th-list {
+.ic-th-list {
   background-position: -264px 0;
 }
 
 
-.icon-ok {
+.ic-ok {
   background-position: -288px 0;
 }
 
 
-.icon-remove {
+.ic-remove {
   background-position: -312px 0;
 }
 
 
-.icon-zoom-in {
+.ic-zoom-in {
   background-position: -336px 0;
 }
 
 
-.icon-zoom-out {
+.ic-zoom-out {
   background-position: -360px 0;
 }
 
 
-.icon-off {
+.ic-off {
   background-position: -384px 0;
 }
 
 
-.icon-signal {
+.ic-signal {
   background-position: -408px 0;
 }
 
 
-.icon-cog {
+.ic-cog {
   background-position: -432px 0;
 }
 
 
-.icon-trash {
+.ic-trash {
   background-position: -456px 0;
 }
 
 
-.icon-home {
+.ic-home {
   background-position: 0      -24px;
 }
 
 
-.icon-file {
+.ic-file {
   background-position: -24px  -24px;
 }
 
 
-.icon-time {
+.ic-time {
   background-position: -48px  -24px;
 }
 
 
-.icon-road {
+.ic-road {
   background-position: -72px  -24px;
 }
 
 
-.icon-download-alt {
+.ic-download-alt {
   background-position: -96px  -24px;
 }
 
 
-.icon-download {
+.ic-download {
   background-position: -120px -24px;
 }
 
 
-.icon-upload {
+.ic-upload {
   background-position: -144px -24px;
 }
 
 
-.icon-inbox {
+.ic-inbox {
   background-position: -168px -24px;
 }
 
 
-.icon-play-circle {
+.ic-play-circle {
   background-position: -192px -24px;
 }
 
 
-.icon-repeat {
+.ic-repeat {
   background-position: -216px -24px;
 }
 
 
-.icon-refresh {
+.ic-refresh {
   background-position: -240px -24px;
 }
 
 
-.icon-list-alt {
+.ic-list-alt {
   background-position: -264px -24px;
 }
 
 
-.icon-lock {
+.ic-lock {
   background-position: -287px -24px;
 }
 
 
-.icon-flag {
+.ic-flag {
   background-position: -312px -24px;
 }
 
 
-.icon-headphones {
+.ic-headphones {
   background-position: -336px -24px;
 }
 
 
-.icon-volume-off {
+.ic-volume-off {
   background-position: -360px -24px;
 }
 
 
-.icon-volume-down {
+.ic-volume-down {
   background-position: -384px -24px;
 }
 
 
-.icon-volume-up {
+.ic-volume-up {
   background-position: -408px -24px;
 }
 
 
-.icon-qrcode {
+.ic-qrcode {
   background-position: -432px -24px;
 }
 
 
-.icon-barcode {
+.ic-barcode {
   background-position: -456px -24px;
 }
 
 
-.icon-tag {
+.ic-tag {
   background-position: 0      -48px;
 }
 
 
-.icon-tags {
+.ic-tags {
   background-position: -25px  -48px;
 }
 
 
-.icon-book {
+.ic-book {
   background-position: -48px  -48px;
 }
 
 
-.icon-bookmark {
+.ic-bookmark {
   background-position: -72px  -48px;
 }
 
 
-.icon-print {
+.ic-print {
   background-position: -96px  -48px;
 }
 
 
-.icon-camera {
+.ic-camera {
   background-position: -120px -48px;
 }
 
 
-.icon-font {
+.ic-font {
   background-position: -144px -48px;
 }
 
 
-.icon-bold {
+.ic-bold {
   background-position: -167px -48px;
 }
 
 
-.icon-italic {
+.ic-italic {
   background-position: -192px -48px;
 }
 
 
-.icon-text-height {
+.ic-text-height {
   background-position: -216px -48px;
 }
 
 
-.icon-text-width {
+.ic-text-width {
   background-position: -240px -48px;
 }
 
 
-.icon-align-left {
+.ic-align-left {
   background-position: -264px -48px;
 }
 
 
-.icon-align-center {
+.ic-align-center {
   background-position: -288px -48px;
 }
 
 
-.icon-align-right {
+.ic-align-right {
   background-position: -312px -48px;
 }
 
 
-.icon-align-justify {
+.ic-align-justify {
   background-position: -336px -48px;
 }
 
 
-.icon-list {
+.ic-list {
   background-position: -360px -48px;
 }
 
 
-.icon-indent-left {
+.ic-indent-left {
   background-position: -384px -48px;
 }
 
 
-.icon-indent-right {
+.ic-indent-right {
   background-position: -408px -48px;
 }
 
 
-.icon-facetime-video {
+.ic-facetime-video {
   background-position: -432px -48px;
 }
 
 
-.icon-picture {
+.ic-picture {
   background-position: -456px -48px;
 }
 
 
-.icon-pencil {
+.ic-pencil {
   background-position: 0      -72px;
 }
 
 
-.icon-map-marker {
+.ic-map-marker {
   background-position: -24px  -72px;
 }
 
 
-.icon-adjust {
+.ic-adjust {
   background-position: -48px  -72px;
 }
 
 
-.icon-tint {
+.ic-tint {
   background-position: -72px  -72px;
 }
 
 
-.icon-edit {
+.ic-edit {
   background-position: -96px  -72px;
 }
 
 
-.icon-share {
+.ic-share {
   background-position: -120px -72px;
 }
 
 
-.icon-check {
+.ic-check {
   background-position: -144px -72px;
 }
 
 
-.icon-move {
+.ic-move {
   background-position: -168px -72px;
 }
 
 
-.icon-step-backward {
+.ic-step-backward {
   background-position: -192px -72px;
 }
 
 
-.icon-fast-backward {
+.ic-fast-backward {
   background-position: -216px -72px;
 }
 
 
-.icon-backward {
+.ic-backward {
   background-position: -240px -72px;
 }
 
 
-.icon-play {
+.ic-play {
   background-position: -264px -72px;
 }
 
 
-.icon-pause {
+.ic-pause {
   background-position: -288px -72px;
 }
 
 
-.icon-stop {
+.ic-stop {
   background-position: -312px -72px;
 }
 
 
-.icon-forward {
+.ic-forward {
   background-position: -336px -72px;
 }
 
 
-.icon-fast-forward {
+.ic-fast-forward {
   background-position: -360px -72px;
 }
 
 
-.icon-step-forward {
+.ic-step-forward {
   background-position: -384px -72px;
 }
 
 
-.icon-eject {
+.ic-eject {
   background-position: -408px -72px;
 }
 
 
-.icon-chevron-left {
+.ic-chevron-left {
   background-position: -432px -72px;
 }
 
 
-.icon-chevron-right {
+.ic-chevron-right {
   background-position: -456px -72px;
 }
 
 
-.icon-plus-sign {
+.ic-plus-sign {
   background-position: 0      -96px;
 }
 
 
-.icon-minus-sign {
+.ic-minus-sign {
   background-position: -24px  -96px;
 }
 
 
-.icon-remove-sign {
+.ic-remove-sign {
   background-position: -48px  -96px;
 }
 
 
-.icon-ok-sign {
+.ic-ok-sign {
   background-position: -72px  -96px;
 }
 
 
-.icon-question-sign {
+.ic-question-sign {
   background-position: -96px  -96px;
 }
 
 
-.icon-info-sign {
+.ic-info-sign {
   background-position: -120px -96px;
 }
 
 
-.icon-screenshot {
+.ic-screenshot {
   background-position: -144px -96px;
 }
 
 
-.icon-remove-circle {
+.ic-remove-circle {
   background-position: -168px -96px;
 }
 
 
-.icon-ok-circle {
+.ic-ok-circle {
   background-position: -192px -96px;
 }
 
 
-.icon-ban-circle {
+.ic-ban-circle {
   background-position: -216px -96px;
 }
 
 
-.icon-arrow-left {
+.ic-arrow-left {
   background-position: -240px -96px;
 }
 
 
-.icon-arrow-right {
+.ic-arrow-right {
   background-position: -264px -96px;
 }
 
 
-.icon-arrow-up {
+.ic-arrow-up {
   background-position: -289px -96px;
 }
 
 
-.icon-arrow-down {
+.ic-arrow-down {
   background-position: -312px -96px;
 }
 
 
-.icon-share-alt {
+.ic-share-alt {
   background-position: -336px -96px;
 }
 
 
-.icon-resize-full {
+.ic-resize-full {
   background-position: -360px -96px;
 }
 
 
-.icon-resize-small {
+.ic-resize-small {
   background-position: -384px -96px;
 }
 
 
-.icon-plus {
+.ic-plus {
   background-position: -408px -96px;
 }
 
 
-.icon-minus {
+.ic-minus {
   background-position: -433px -96px;
 }
 
 
-.icon-asterisk {
+.ic-asterisk {
   background-position: -456px -96px;
 }
 
 
-.icon-exclamation-sign {
+.ic-exclamation-sign {
   background-position: 0      -120px;
 }
 
 
-.icon-gift {
+.ic-gift {
   background-position: -24px  -120px;
 }
 
 
-.icon-leaf {
+.ic-leaf {
   background-position: -48px  -120px;
 }
 
 
-.icon-fire {
+.ic-fire {
   background-position: -72px  -120px;
 }
 
 
-.icon-eye-open {
+.ic-eye-open {
   background-position: -96px  -120px;
 }
 
 
-.icon-eye-close {
+.ic-eye-close {
   background-position: -120px -120px;
 }
 
 
-.icon-warning-sign {
+.ic-warning-sign {
   background-position: -144px -120px;
 }
 
 
-.icon-plane {
+.ic-plane {
   background-position: -168px -120px;
 }
 
 
-.icon-calendar {
+.ic-calendar {
   background-position: -192px -120px;
 }
 
 
-.icon-random {
+.ic-random {
   background-position: -216px -120px;
   width: 16px;
 }
 
 
-.icon-comment {
+.ic-comment {
   background-position: -240px -120px;
 }
 
 
-.icon-magnet {
+.ic-magnet {
   background-position: -264px -120px;
 }
 
 
-.icon-chevron-up {
+.ic-chevron-up {
   background-position: -288px -120px;
 }
 
 
-.icon-chevron-down {
+.ic-chevron-down {
   background-position: -313px -119px;
 }
 
 
-.icon-retweet {
+.ic-retweet {
   background-position: -336px -120px;
 }
 
 
-.icon-shopping-cart {
+.ic-shopping-cart {
   background-position: -360px -120px;
 }
 
 
-.icon-folder-close {
+.ic-folder-close {
   background-position: -384px -120px;
   width: 16px;
 }
 
 
-.icon-folder-open {
+.ic-folder-open {
   background-position: -408px -120px;
   width: 16px;
 }
 
 
-.icon-resize-vertical {
+.ic-resize-vertical {
   background-position: -432px -119px;
 }
 
 
-.icon-resize-horizontal {
+.ic-resize-horizontal {
   background-position: -456px -118px;
 }
 
 
-.icon-hdd {
+.ic-hdd {
   background-position: 0      -144px;
 }
 
 
-.icon-bullhorn {
+.ic-bullhorn {
   background-position: -24px  -144px;
 }
 
 
-.icon-bell {
+.ic-bell {
   background-position: -48px  -144px;
 }
 
 
-.icon-certificate {
+.ic-certificate {
   background-position: -72px  -144px;
 }
 
 
-.icon-thumbs-up {
+.ic-thumbs-up {
   background-position: -96px  -144px;
 }
 
 
-.icon-thumbs-down {
+.ic-thumbs-down {
   background-position: -120px -144px;
 }
 
 
-.icon-hand-right {
+.ic-hand-right {
   background-position: -144px -144px;
 }
 
 
-.icon-hand-left {
+.ic-hand-left {
   background-position: -168px -144px;
 }
 
 
-.icon-hand-up {
+.ic-hand-up {
   background-position: -192px -144px;
 }
 
 
-.icon-hand-down {
+.ic-hand-down {
   background-position: -216px -144px;
 }
 
 
-.icon-circle-arrow-right {
+.ic-circle-arrow-right {
   background-position: -240px -144px;
 }
 
 
-.icon-circle-arrow-left {
+.ic-circle-arrow-left {
   background-position: -264px -144px;
 }
 
 
-.icon-circle-arrow-up {
+.ic-circle-arrow-up {
   background-position: -288px -144px;
 }
 
 
-.icon-circle-arrow-down {
+.ic-circle-arrow-down {
   background-position: -312px -144px;
 }
 
 
-.icon-globe {
+.ic-globe {
   background-position: -336px -144px;
 }
 
 
-.icon-wrench {
+.ic-wrench {
   background-position: -360px -144px;
 }
 
 
-.icon-tasks {
+.ic-tasks {
   background-position: -384px -144px;
 }
 
 
-.icon-filter {
+.ic-filter {
   background-position: -408px -144px;
 }
 
 
-.icon-briefcase {
+.ic-briefcase {
   background-position: -432px -144px;
 }
 
 
-.icon-fullscreen {
+.ic-fullscreen {
   background-position: -456px -144px;
 }
 
@@ -3688,8 +3686,8 @@ button.close {
 }
 
 
-.btn-large [class^="icon-"],
-.btn-large [class*=" icon-"] {
+.btn-large [class^="ic-"],
+.btn-large [class*=" ic-"] {
   margin-top: 4px;
 }
 
@@ -3703,14 +3701,14 @@ button.close {
 }
 
 
-.btn-small [class^="icon-"],
-.btn-small [class*=" icon-"] {
+.btn-small [class^="ic-"],
+.btn-small [class*=" ic-"] {
   margin-top: 0;
 }
 
 
-.btn-mini [class^="icon-"],
-.btn-mini [class*=" icon-"] {
+.btn-mini [class^="ic-"],
+.btn-mini [class*=" ic-"] {
   margin-top: -1px;
 }
 
@@ -4453,8 +4451,8 @@ ul.input-many > li > div.buttons .btn-group > button.active {
 }
 
 
-.nav-list [class^="icon-"],
-.nav-list [class*=" icon-"] {
+.nav-list [class^="ic-"],
+.nav-list [class*=" ic-"] {
   margin-right: 2px;
 }
 
@@ -5197,7 +5195,7 @@ ul.input-many > li > div.buttons .navbar-form button {
 }
 
 
-.navbar .btn-navbar .icon-bar {
+.navbar .btn-navbar .ic-bar {
   display: block;
   width: 18px;
   height: 2px;
@@ -5211,7 +5209,7 @@ ul.input-many > li > div.buttons .navbar-form button {
 }
 
 
-.btn-navbar .icon-bar + .icon-bar {
+.btn-navbar .ic-bar + .ic-bar {
   margin-top: 3px;
 }
 
@@ -7021,12 +7019,12 @@ ul.collection {
 
 
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="ic-"], [class*=" ic-"] {
   background-image: image-url("glyphicons-halflings.png");
 }
 
 
-.icon-white {
+.ic-white {
   background-image: image-url("glyphicons-halflings-white.png");
 }
 

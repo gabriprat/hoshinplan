@@ -34,7 +34,7 @@
 					<autosubmit:value human updates="#neglected,#sec-actions">
 						<div class="input-append">
 							<input />
-							<button class="btn fa fa-check" type="submit"></button>
+							<button class="btn ic-check" type="submit"></button>
 						</div>
 					</autosubmit>
 				 </else>
@@ -53,7 +53,7 @@
   <div class="column nowrap" data-label="Actions"> 
 	  <ul class="icons">
 	  	<li>
-  			<a action="history" class="hoshin-tasks" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><span class="fa fa-bar-chart-o fa-fw"></span></a>
+  			<a action="history" class="hoshin-tasks" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><span class="ic-bar-chart-o ic-fw"></span></a>
 		</li>
 	</ul>
   </div>

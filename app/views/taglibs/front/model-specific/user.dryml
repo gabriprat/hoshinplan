@@ -46,7 +46,7 @@
   	<div class="panel">
 		<div class="panel-heading clearfix">
 			<span class="tools pull-right hoshin-tasks" style="margin-left: -20px;">
-		            <a action="edit" if="&this == current_user"><span class="fa fa-cog"/></a>
+		            <a action="edit" if="&this == current_user"><span class="ic-cog"/></a>
 			</span>
 			<div class="inline edit-image">
 			<view:image size="104x104"/>
@@ -88,7 +88,7 @@
 				<header>
 			          <h4>
 				  <a:company><name/></a>
-				  <delete-button title="&t('user.end_collaboration')" action="destroy" class="pull-right fa fa-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')" if="&this.user_id == current_user.id"/>
+				  <delete-button title="&t('user.end_collaboration')" action="destroy" class="pull-right ic-unlink link" value="&#xf127;" success="window.location.reload(true);" confirm="&t('user.messages.end_collaboration_confirm', :default=>'Are you sure you want to stop collaborating with this company?')" if="&this.user_id == current_user.id"/>
 				  </h4>
 			        </header>
 				<do:company>

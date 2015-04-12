@@ -1,5 +1,13 @@
 @import "colors.scss";
 
+.ic-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+	display: inline-block;
+}
 
 @media screen and (max-width: 979px) {
 	body {
@@ -204,7 +212,7 @@ html body .btn-big {
 	}
 }
 @media (min-width:640px) {
-.compact .hoshin-link .fa-level-up {
+.compact .hoshin-link .ic-level-up {
 	font-size: 75%;
 }
 
@@ -756,7 +764,7 @@ body.compact .column:last-of-type {
 	padding-right:0;
 }
 
-body.compact button.btn.fa-check {
+body.compact button.btn.ic-check {
 	font-size: 11px;
 }
 
@@ -1387,7 +1395,7 @@ form#delete-history, form#delete-history input {
 	border: 0;
 }
 
-.fa-plus-small:after {
+.ic-plus-small:after {
 	content: "\f067";
 	margin-left: -0.7em;
 	font-size: .6em;
@@ -2205,7 +2213,7 @@ body .center-block {
 #error-actions {
 	width: 100%;
 	text-align: center;
-	div.fa {
+	div.ic {
 		font-size: 4em;
 	}
 	a {

@@ -48,8 +48,8 @@ var loadKanban = function() {
 				colors = h[0].split(",");
 			}
 		}
-		$(".fa-eye").show();
-		$(".fa-eye-slash").hide();
+		$(".ic-eye").show();
+		$(".ic-eye-slash").hide();
 		for (i=0; i<colors.length; i++) {
 			$('.col-tog-' + colors[i]).toggle();
 		}
