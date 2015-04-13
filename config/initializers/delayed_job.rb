@@ -1,6 +1,6 @@
 Delayed::Worker.logger = Logger.new(File.join(Rails.root, 'log', 'dj.log'))
 Delayed::Worker.destroy_failed_jobs = false
-Delayed::Worker.sleep_delay = Rails.env.development? ? 1 : 60
+Delayed::Worker.sleep_delay = Rails.env.development? ? 1 : 10
 Delayed::Worker.max_attempts = 3
 Delayed::Worker.max_run_time = 5.minutes
 Delayed::Worker.read_ahead = 10
