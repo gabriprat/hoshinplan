@@ -1,7 +1,7 @@
 <def tag="kanban-lane" attrs="lane">
 
 	<div class="connected-sortable-wrapper panel panel-default lane" id="lane-#{lane}" part="lane" part-locals="lane">
-	<div class="panel-heading"><h2><view with="&lane"/>(<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.count}</div>)</h2></div>
+	<div class="panel-heading"><h2><view with="#{t 'kanban.lanes.' + lane}"/> (<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.count}</div>)</h2></div>
 <sortable-collection connectWith=".kb-lane" title="#{lane}" class="kb-lane panel-body" show-empty="true" placeholder="sortable-placeholder kanban-card postit" stop="postitDrop" update="" items="li:not(.not-draggable)" data-list-id="#{lane}" id="lane-#{lane}">
 	<empty-message: replace/>
 	<item: replace>

@@ -997,11 +997,9 @@ body.presenting div.ordering-handle, body.presenting .column.ordering {
 	display: none;
 }
 
-.loading {
-        background: image-url("ajax-loader.gif") no-repeat;
-	width: 16px;
-	height: 16px;
-	margin: auto;
+.ajax-progress {
+	background: rgba(0, 0, 0, 0.2);
+	padding: 5px 12px;
 }
 
 .help-block.description-help {
@@ -2414,4 +2412,46 @@ body .center-block {
 	display: block;
 	margin: 2em auto;
 	width: 200px;
+}
+
+.ic-spin {
+  -webkit-animation: ic-spin 2s infinite linear;
+  animation: ic-spin 2s infinite linear;
+}
+.ic-pulse {
+  -webkit-animation: ic-spin 1s infinite steps(8);
+  animation: ic-spin 1s infinite steps(8);
+}
+@-webkit-keyframes ic-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes ic-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.ic-center {
+	display: block;
+	margin: auto;
+	width: 1em;
+	height: 1em;
+}
+
+@for $i from 1 through 5 {
+.ic-#{$i}x {
+	font-size: #{$i}em;
+}
 }

@@ -1,5 +1,13 @@
 <extend tag="page">
 	<old-page merge class="#{@pdf?'pdf':''}" lang="#{locale}">
+		<ajax-progress: replace>
+			<div id="ajax-progress-wrapper">
+				<div class="ajax-progress" id="ajax-progress">
+					<i class="ic-spinner ic-pulse"></i>
+					<span id="ajax-progress-text"></span>
+				</div>
+			</div>
+		</ajax-progress:>
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">
 				<stylesheet name='pdf' param='app-stylesheet'/>
@@ -33,6 +41,6 @@
 		    </ul>
 		   <div id="mixpanel"><a href="//mixpanel.com/f/partner"><img width="114" height="36" alt="Mobile Analytics" src="#{request.protocol}cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a></div>
 		</footer:>
-		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}"/>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}"/>
 	 </old-page>
 </extend>

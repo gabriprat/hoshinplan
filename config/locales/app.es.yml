@@ -1,5 +1,6 @@
 es:
   loading: Cargando...
+  saving: Guardando...
   new: Nuevo
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
   insert_box_link: Insertar enlace a Box
@@ -297,6 +298,11 @@ es:
     top_users_with_pending: Ranking de usuarios con más acciones pendientes
   kanban:
     show_only_my_tasks: Ver sólo mis tareas
+    lanes:
+      backlog: En cola
+      active: Activas
+      completed: Completadas
+      discarded: Descartadas
   charts:
     select_indicator_to_add: Selecciona la gráfica oculta que desees hacer visible de nuevo
   company:
