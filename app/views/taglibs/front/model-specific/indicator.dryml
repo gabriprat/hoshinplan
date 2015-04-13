@@ -46,7 +46,7 @@
 	</if>
 	<if test="&column == '%'">
 		  <div class="column nowrap" data-label="Tpc">
-		  <a action="history" class="tpc" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><color-tpc:tpc precision="0"/><span class="arrow #{this.trend} fa"></span></a>
+		  <a action="history" class="tpc" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><color-tpc:tpc precision="0" if="tpc.to_i &lt; 1000"/><else><span class="tpc" title="#{number_with_precision this.tpc}%"><span class="indicator-tpc view">###</span>% </span> </else><span class="arrow #{this.trend} fa"></span></a>
 		  </div>
  	</if>
   <% end %>
