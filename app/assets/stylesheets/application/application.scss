@@ -135,6 +135,7 @@ a.external:after {
 }
 
 @media (min-width:767px) {
+.collection.table-body, .kb-frame .postit {
 .modal {
 	text-align: left;
 	margin: 0;
@@ -143,7 +144,7 @@ a.external:after {
 	top: 5vh;
 }
 
-body .modal-body {
+.modal-body {
 	max-height: -moz-calc(80vh - 53px);
 	max-height: -webkit-calc(80vh - 53px);
 	max-height: -o-calc(80vh - 53px);
@@ -173,6 +174,7 @@ body .modal-body {
 	box-shadow: -1px 1px 1px 0 rgba(37, 169, 224, 0.4);
 	top: 50%;
 	left: -5px;
+}
 }
 }
 

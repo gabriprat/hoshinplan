@@ -18,7 +18,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def invite(user_company, company, key, invitor, language)
-    I18n.locale = language || I18n.default_locale
+    I18n.locale = language.blank? ? I18n.default_locale : language
     mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
           :to      => user_company.user.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
@@ -31,7 +31,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def new_invite(key, invitor, invitee, language)
-    I18n.locale = language || I18n.default_locale
+    I18n.locale = language.blank? ? I18n.default_locale : language
     mail( :subject => I18n.translate("emails.new_invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name), 
           :to      => invitee.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
@@ -65,7 +65,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def reminder(user, kpis, tasks)
-    I18n.locale = user.language || I18n.default_locale
+    I18n.locale = user.language.blank? ? I18n.default_locale : language
     @user = user
     if @user.state == "active" 
       mail( :subject => I18n.translate("emails.reminder.subject"),
@@ -82,7 +82,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def welcome(user)
-    I18n.locale = user.language || I18n.default_locale
+    I18n.locale = user.language.blank? ? I18n.default_locale : language
     mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
           :to      => user.email_address) do |format|
             format.html {
@@ -94,7 +94,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def invited_welcome(user)
-    I18n.locale = user.language || I18n.default_locale
+    I18n.locale = user.language.blank? ? I18n.default_locale : language
     @user, @message = user
     mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
