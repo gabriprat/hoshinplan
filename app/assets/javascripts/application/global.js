@@ -178,7 +178,7 @@ function updateColors() {
 		var colId = $(this).data('color-id');
 		$(".kb-color-" + colId).css('background',col);
 		var col_tr = col.replace(")",",0)").replace("rgb","rgba")
-		$(".kb-color-" + colId + " .more").css('background','linear-gradient(to bottom, ' + col_tr + ', ' + col + ' 50%)');
+		$(".kb-color-" + colId + " .more").css('background','linear-gradient(to bottom, ' + col_tr + ', ' + col + ' 100%)');
 	});
 }
 $(document).ready(updateColors);

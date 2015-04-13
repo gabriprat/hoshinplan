@@ -2042,6 +2042,10 @@ form.indicator-value input[type=radio] {
 	text-align: center;
 }
 
+.kb-colors .modal {
+	text-align: left;
+}
+
 .kb-colors #colors {
 	display: inline;
 	vertical-align: middle;
@@ -2180,7 +2184,13 @@ form.indicator-value input[type=radio] {
 }
 
 .postit .in-place-edit.task-description {
-	font-size:1.1em;
+	margin-bottom: 1.5em;
+}
+
+.postit textarea {
+	width: 95%;
+	height: 9em;
+	margin-bottom: 2em;
 }
 
 .postit-description {
@@ -2190,8 +2200,10 @@ form.indicator-value input[type=radio] {
 	-moz-transition: 1s ease-in-out;
 	-o-transition: 1s ease-in-out;
 	transition: 1s ease-in-out;
-	max-height: 6em;
+	max-height: 7.5em;
 	position: relative;
+	font-size: 1.1em;
+	line-height: 20px;
 }
 
 .postit-description span.blank-view {
@@ -2205,7 +2217,7 @@ form.indicator-value input[type=radio] {
   bottom: 0;
   right: 0;
   width: 100%;
-  height: 1.2em;
+  height: 1.6em;
 }
 
 .postit-description.show-all {
