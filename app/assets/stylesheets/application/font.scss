@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'hoshinplan';
-	src:font-url('/assets/hoshinplan.eot?-pn33on');
-	src:font-url('/assets/hoshinplan.eot?#iefix-pn33on') format('embedded-opentype'),
-		font-url('/assets/hoshinplan.woff?-pn33on') format('woff'),
-		font-url('/assets/hoshinplan.ttf?-pn33on') format('truetype'),
-		font-url('/assets/hoshinplan.svg?-pn33on#hoshinplan') format('svg');
+	src:url(asset-path('hoshinplan.eot?-bn33on'));
+	src:url(font-path('hoshinplan.eot?#iefix-bn33on')) format('embedded-opentype'),
+		url(font-path('hoshinplan.woff?-bn33on')) format('woff'),
+		url(font-path('hoshinplan.ttf?-bn33on')) format('truetype'),
+		url(font-path('hoshinplan.svg?-bn33on#hoshinplan')) format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

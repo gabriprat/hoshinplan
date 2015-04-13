@@ -23,6 +23,7 @@ namespace :app do
             end
         else
             puts "Error generating #{output}!"
+	    puts resp.to_yaml
         end
     end
   end
