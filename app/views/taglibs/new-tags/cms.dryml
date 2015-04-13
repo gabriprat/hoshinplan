@@ -3,7 +3,7 @@
      	expires ||= 1.month 
 	async ||= false
     	cache_key = request.host + '/cms/' + key 
-     	controller.expire_fragment(controller.fragment_cache_key(cache_key)) if params["clear_cache"] 
+     	controller.expire_fragment(cache_key) if params["clear_cache"] 
 	
      	if async %>
    		<div id="cms" merge><%= raw ERB.new(cmsAsyncGet(key, cache_key, expires)).result(binding).force_encoding("UTF-8") %></div>
