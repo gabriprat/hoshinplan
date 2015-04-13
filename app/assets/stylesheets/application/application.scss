@@ -691,8 +691,11 @@ body.hoshin form.inline-form input[type=image] {
 	vertical-align: bottom;
 }
 
-body.hoshin form.inline-form input.date {
+body.hoshin .column form.inline-form input.date {
 	width: 3em;
+}
+
+body.hoshin .column.nowrap[data-label=Deadline] {
 	font-size: 0.9em;
 }
 
