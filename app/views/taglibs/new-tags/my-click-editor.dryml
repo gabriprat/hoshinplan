@@ -7,7 +7,7 @@
 		<input class="in-place-input hide"/>
 		<a href="#" onclick="launchBoxSelect($(this).prevUntil('.in-place-edit')); return false;" class="btn btn-box in-place-btn hide">
 			<span class="ic-box"/>
-			Add link to box
+			<span><t key="insert_box_link"/></span>
 		</a>
 	</div>
 </def>

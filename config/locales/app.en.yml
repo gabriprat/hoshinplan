@@ -2,6 +2,7 @@ en:
   loading: Loading...
   new: NEW
   value_goal_previous: 'Value,Goal,Previous'
+  insert_box_link: Insert Box link
   emails:
     thank_you: 'Thank you,'
     claim: 'Make your business strategy work'

@@ -2,6 +2,7 @@ es:
   loading: Cargando...
   new: Nuevo
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
+  insert_box_link: Insertar enlace a Box
   emails:
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'
