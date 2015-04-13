@@ -763,11 +763,23 @@ body .span12 {
 	display: inline-block;
 	height: 100%;
 	width: 2.8em;
+	min-width: 2.8em;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	vertical-align: top;
 	text-align: right;
+}
+
+a.tpc:hover {
+	text-decoration: none;
+}
+
+div.table div.column[data-label="Tpc"] {
+	width: 2.8em;
+}
+.column span.tpc:hover {
+	width: auto;
 }
 
 span.arrow {
