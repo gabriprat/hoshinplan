@@ -2336,7 +2336,7 @@ body .center-block {
 #error-actions {
 	width: 100%;
 	text-align: center;
-	div.ic {
+	div[class^="ic-"], div[class*=" ic-"] {
 		font-size: 4em;
 	}
 	a {
