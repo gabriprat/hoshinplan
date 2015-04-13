@@ -363,7 +363,7 @@ class User < ActiveRecord::Base
       self.save!
       people_set(self, remote_ip)
     rescue ActiveRecord::RecordInvalid => invalid
-      fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml if invalid.record.errors
+      fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml if invalid.record && invalid.record.respond_to?('errors')
       fail ActiveRecord::RecordInvalid, invalid.record.to_yaml if invalid.record
       fail ActiveRecord::RecordInvalid, invalid.to_yaml
     end
