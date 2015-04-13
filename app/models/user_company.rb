@@ -42,7 +42,7 @@ class UserCompany < ActiveRecord::Base
     acting_user if company_admin
   end
   
-  def accept_available
+  def accept_available 
     return false unless self.lifecycle.valid_key?
     return self.user
   end
