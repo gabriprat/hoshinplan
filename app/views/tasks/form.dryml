@@ -4,7 +4,7 @@
 			
 	      		   <div class="modal-body">
 	      			    <field-list: fields="name, objective, description, responsible, deadline, reminder #{show_on_parent}">
-    			    	<description-view:>
+    			    	<description-view: >
 					<my-click-editor/>
     				</description-view:>
 				<description-help: class="bubble bubble-top">
@@ -22,3 +22,4 @@
 	      		    </div>
 	      		    <modal-form-footer-delete/>
 	      		</form>
+			

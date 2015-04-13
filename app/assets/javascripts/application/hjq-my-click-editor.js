@@ -5,7 +5,7 @@
 		var that = $(this);
 		that.click(function () {
 			that.toggle();
-			that.next('.in-place-input').toggle();
+			that.next('.in-place-input').toggle().next('.in-place-btn').toggleClass('hide');
 		});
 		
         }

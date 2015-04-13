@@ -11,6 +11,7 @@
 		</stylesheets:>
 		<append-custom-scripts:>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
+		        <script type="text/javascript" src="https://app.box.com/js/static/select.js" async></script>
 		</append-custom-scripts:>
 		<append-body: >
 			<%= raw "<"+"/span>" %>

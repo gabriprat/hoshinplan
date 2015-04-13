@@ -208,7 +208,6 @@ $(document).ready( function() {
 	$(window).resize(computeOneAreaWidth);
 	
 	var updateCarouselInd = function() {
-		console.log(this);
 			var num = Math.floor($(this).scrollLeft() / oneAreaWidth);
 			$(".carousel-indicators li").removeClass("active");
 			$(".carousel-indicators li").eq(num).addClass("active");
@@ -324,3 +323,41 @@ $(document).ready(function() {
 	$(window).resize(footer);
 	$(document).ready(footer);
 })();
+
+var launchBoxSelect = function(elem) {
+	var boxSelect = new BoxSelect({
+	    clientId: 'xp2amwwyx7pmz2zhkco6pe351datue23',
+	    linkType: 'shared',
+	    multiselect: 'false'
+	});
+	boxSelect.success(function(response) {
+		var val = '"'+response[0].name+'":'+response[0].url;
+		elem.insertAtCaret(val);
+	});
+	boxSelect.launchPopup();
+}
+
+$.fn.extend({
+    insertAtCaret: function(myValue) {
+	var elem = this.get(0);
+        if (document.selection) {
+                elem.focus();
+                sel = document.selection.createRange();
+                sel.text = myValue;
+                elem.focus();
+        }
+        else if (elem.selectionStart || elem.selectionStart == '0') {
+            var startPos = elem.selectionStart;
+            var endPos = elem.selectionEnd;
+            var scrollTop = elem.scrollTop;
+            elem.value = elem.value.substring(0, startPos)+myValue+elem.value.substring(endPos,elem.value.length);
+            elem.focus();
+            elem.selectionStart = startPos + myValue.length;
+            elem.selectionEnd = startPos + myValue.length;
+            elem.scrollTop = scrollTop;
+        } else {
+            elem.value += myValue;
+            elem.focus();
+        }
+    }
+});

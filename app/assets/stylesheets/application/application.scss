@@ -122,7 +122,7 @@ body div.table .table-row div.column[data-label="Actions"] {
 
 a.external:after {
 	content: "\00A0\00A0\f08e";
-	font-family: FontAwesome;
+	font-family: 'hoshinplan';
 	font-weight: normal;
 	font-style: normal;
 	font-size: 0.8em;
@@ -134,8 +134,46 @@ a.external:after {
 	text-align: center;
 }
 
+@media (min-width:767px) {
 .modal {
 	text-align: left;
+	margin: 0;
+	width: 80vw;
+	left: 10vw;
+	top: 5vh;
+}
+
+body .modal-body {
+	max-height: -moz-calc(80vh - 53px);
+	max-height: -webkit-calc(80vh - 53px);
+	max-height: -o-calc(80vh - 53px);
+	max-height: calc(80vh - 53px);
+	.row {
+		padding: 0;
+	}
+	.span12 {
+		width: 100%;
+	}
+}
+
+.modal .my-click-editor {
+	width: 45vw;
+	display: inline-block;
+	margin-right: 2em;
+}
+.modal textarea {
+	width: 45vw;
+	height: 30vh;
+	margin-bottom: .5em;
+}
+.modal .bubble-top {
+	vertical-align: top;
+}
+.modal .bubble.bubble-top:after {
+	box-shadow: -1px 1px 1px 0 rgba(37, 169, 224, 0.4);
+	top: 50%;
+	left: -5px;
+}
 }
 
 .modal h1 {
@@ -191,6 +229,50 @@ html body .btn-big {
 	padding: 5px 12px;
 	border: 0;
 	width: 100%;
+}
+
+body {
+.btn-box, .btn-box:hover, .btn-box:active, .btn-box:visited, .btn-box:focus {
+	-moz-box-shadow:inset 0px 0px 1px 1px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 1px 1px #ffffff;
+	box-shadow:inset 0px 0px 1px 1px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #ffffff 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #ffffff 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #ffffff 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #ffffff 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #ffffff 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0);
+	background-color:#ffffff;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid rgba(0,0,0,0.2);
+	display:inline-block;
+	cursor:pointer;
+	color:#006caf;
+	.ic-box {
+		color: #1a74ba;
+		font-size: 1.4em;
+		vertical-align: middle;
+	}
+}
+}
+
+body .btn-box:focus, body .btn-box:hover {
+	border:1px solid rgba(0,0,0,0.4);
+}
+
+body .btn-box:active {
+	position:relative;
+	top:1px;
+	box-shadow:inset 0px 2px 3px 0px rgba(0,0,0,0.4);
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #ededed 5%, #d8d8d8 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #d8d8d8 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #d8d8d8 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #d8d8d8 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #d8d8d8 100%);
 }
 
 .line {
@@ -635,10 +717,6 @@ input.date[readonly] {
 
 body.hoshin form.inline-form label {
 	display: none;
-}
-
-body.hoshin form.modal div.span12 {
-	width: 90%;
 }
 
 .icons {
@@ -1258,7 +1336,48 @@ form#delete-history, form#delete-history input {
 	padding: 3px 4px;
 	overflow: hidden;
 }
+@media (max-width: 979px) {
+	.dropdown-menu {
+		position: static;
+		top: auto;
+		left: auto;
+		float: none;
+		display: none;
+		max-width: none;
+		margin: 0 15px;
+		padding: 0;
+		background-color: transparent;
+		border: none;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+	.dropdown.open {
+		width: 100vw;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.dropdown.open > .dropdown-menu {
+		display: block;
+	}
 
+	body .navbar .nav > li > .dropdown-menu:before, .dropdown-menu:before,
+	body .navbar .nav > li > .dropdown-menu:after, .dropdown-menu:after {
+		display: none;
+	}
+	.dropdown-menu .divider {
+		display: none;
+	}
+	.nav > li > .dropdown-menu {
+		&:before,
+		&:after {
+			display: none;
+		}
+	}
+}
 .datepicker.dropdown-menu, .typeahead.dropdown-menu {
 	height:auto;
 	visibility: visible;
@@ -1895,7 +2014,7 @@ form.indicator-value input[type=radio] {
 }
 
 .timeline.checked li.done:before {
-	font-family: FontAwesome;
+	font-family: 'hoshinplan';
 	content: "\f00c";
 	color: green;
 	font-size: 1.5em;

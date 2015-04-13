@@ -1,16 +1,16 @@
 @font-face {
-	font-family: 'icomoon';
-	src:font-url('/assets/icomoon.eot?-dkassu');
-	src:font-url('/assets/icomoon.eot?#iefix-dkassu') format('embedded-opentype'),
-		font-url('/assets/icomoon.woff?-dkassu') format('woff'),
-		font-url('/assets/icomoon.ttf?-dkassu') format('truetype'),
-		font-url('/assets/icomoon.svg?-dkassu#icomoon') format('svg');
+	font-family: 'hoshinplan';
+	src:font-url('/assets/hoshinplan.eot?-pn33on');
+	src:font-url('/assets/hoshinplan.eot?#iefix-pn33on') format('embedded-opentype'),
+		font-url('/assets/hoshinplan.woff?-pn33on') format('woff'),
+		font-url('/assets/hoshinplan.ttf?-pn33on') format('truetype'),
+		font-url('/assets/hoshinplan.svg?-pn33on#hoshinplan') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 [class^="ic-"], [class*=" ic-"] {
-	font-family: 'icomoon';
+	font-family: 'hoshinplan';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -23,19 +23,8 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.ic-box .path1:before {
+.ic-box:before {
 	content: "\e600";
-	color: rgb(0, 117, 200);
-}
-.ic-box .path2:before {
-	content: "\e601";
-	margin-left: -0.97265625em;
-	color: rgb(255, 255, 255);
-}
-.ic-box .path3:before {
-	content: "\e602";
-	margin-left: -0.97265625em;
-	color: rgb(255, 255, 255);
 }
 
 .ic-glass:before {

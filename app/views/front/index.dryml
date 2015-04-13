@@ -2,22 +2,7 @@
 
   <body: class="front-page"/>
 
-  <content:> 
-  <script type="text/javascript" src="https://app.box.com/js/static/select.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-      var boxSelect = new BoxSelect();
-      // Register a success callback handler
-      boxSelect.success(function(response) {
-          console.log(response);
-      });
-      // Register a cancel callback handler
-      boxSelect.cancel(function() {
-          console.log("The user clicked cancel or closed the popup");
-      });
-  });
-  </script>
-  	<div id="box-select" data-link-type="shared" data-multiselect="false" data-client-id="xp2amwwyx7pmz2zhkco6pe351datue23"></div>
+  <content:>
     <if test='&logged_in?'>
     <header class="content-header hero-unit"> 
       <h1><strong>Hoshin</strong>plan</h1>
