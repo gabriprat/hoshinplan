@@ -2162,8 +2162,12 @@ form.indicator-value input[type=radio] {
 }
 
 .postit .in-place-edit.task-name {
-        font-size:1.2em;
-	font-weight: 400;
+        font-size: 1.2em;
+        font-weight: 700;
+        border-bottom: 1px dashed;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 1em;
 }
 
 .postit a.edit {
@@ -2179,6 +2183,57 @@ form.indicator-value input[type=radio] {
 
 .postit .in-place-edit.task-description {
 	font-size:1.1em;
+}
+
+.postit-description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+	max-height: 6em;
+	position: relative;
+}
+
+.postit-description span.blank-view {
+  margin-bottom: 1em;
+  display: inline-block;
+}
+
+.postit-description .more {
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1.2em;
+}
+
+.postit-description.show-all {
+	max-height: 200vh;
+}
+
+.postit a.show-all {
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+	display: initial;
+	position: absolute;
+	bottom: 0.5em;
+	right: 50%;
+	text-decoration: none;
+	&:hover, &:active, &:focus, &:visited {
+		text-decoration: none;
+	}
+}
+
+.postit a.show-all.open {
+	-ms-transform: rotate(180deg); /* IE 9 */
+	-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+	-moz-transform: rotate(180deg); /* Firefox */
+	transform: rotate(180deg);
 }
 
 .postit div.deadline {

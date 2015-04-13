@@ -8,7 +8,7 @@
 		<li class="kanban-card postit kb-color-#{this.area_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
 			<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="ic-cog"/></rmodal>
 			<div><click-editor-innards:name/></div>
-			<div><click-editor-innards:description/></div>
+			<div class="postit-description"><click-editor-innards:description/><span class="more"/></div>
 			<if test="&this.original_deadline != this.deadline">
 			<div class="original-deadline">
 				<%= l this.original_deadline, format: :short %>
@@ -32,6 +32,7 @@
 			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-kb-lane">
 				<hidden-fields fields="lane_pos, status"/>
 			</formlet>
+			<a class="show-all ic-chevron-down" href="#" onclick="openPostit(this); return false;"></a>
 		</li>
 	</item:>
 </sortable-collection>

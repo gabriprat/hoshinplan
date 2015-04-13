@@ -177,6 +177,8 @@ function updateColors() {
 		var col = $(this).css('background-color');
 		var colId = $(this).data('color-id');
 		$(".kb-color-" + colId).css('background',col);
+		var col_tr = col.replace(")",",0)").replace("rgb","rgba")
+		$(".kb-color-" + colId + " .more").css('background','linear-gradient(to bottom, ' + col_tr + ', ' + col + ' 50%)');
 	});
 }
 $(document).ready(updateColors);
@@ -361,3 +363,8 @@ $.fn.extend({
         }
     }
 });
+
+var openPostit = function(elem) {
+	$(elem).prevAll('.postit-description').toggleClass('show-all'); 
+	$(elem).toggleClass('open');
+}
