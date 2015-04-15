@@ -93,6 +93,7 @@ class ApplicationController < ActionController::Base
                  end
                end
                Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
+               Nr.add_custom_parameters({ referrer: request.referrer }) unless !request || request.referrer.nil?
                yield
              rescue ActiveRecord::RecordInvalid => invalid
                  fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
