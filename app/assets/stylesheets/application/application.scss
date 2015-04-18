@@ -1304,6 +1304,10 @@ form#delete-history, form#delete-history input {
 		-moz-transition: all 0s;
 		transition: all 0s;
 	}
+	
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	    color: inherit;
+	}
 }
 @media (max-width: 767px) {
   .navbar-nav > li.open > .dropdown-menu {
