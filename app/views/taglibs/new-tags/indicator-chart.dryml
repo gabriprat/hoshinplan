@@ -7,7 +7,6 @@
 					<hidden-field:show_on_charts value="false"/>
 					<button type="submit" class="close">&times;</button>
 				</form>
-				sdf
 			</default:>
 		</color-tpc:tpc>
 		 <div class="panel-body">
