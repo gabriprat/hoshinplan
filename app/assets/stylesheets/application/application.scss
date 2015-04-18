@@ -606,12 +606,6 @@ body.hoshin .goals h3 {
 	color: $inverse-secondary-color;
 }
 
-@media (min-width:640px) {
-body.hoshin.compact .goals h3 {
-	top: -0.5em;
-}
-}
-
 body.hoshin div.goals {
 	background: $background-color;
 	border-left: 5em solid $secondary-background-color;
