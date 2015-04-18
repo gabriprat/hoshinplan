@@ -8,7 +8,7 @@
   </navigation>
   </if>
   <else>
-  <navigation class="main-nav" merge-attrs param="default" if="&logged_in?">
+  <navigation class="main-nav" param="default" if="&logged_in?">
     <li class='nav-item dropdown'>
     	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<if test="&Company.current_id.nil?">
@@ -61,6 +61,7 @@
     <nav-item with="&current_user.payments" action="index" id="nav-subscriptions" if="&logged_in? && current_user.payments_count &gt; 0">
     	<t key="subscriptions">Subscriptions</t>
     </nav-item>
+    <nav-item href="#{base_url}/admin" if="&current_user.administrator?">Admin</nav-item>
     
   </navigation>
   <else>

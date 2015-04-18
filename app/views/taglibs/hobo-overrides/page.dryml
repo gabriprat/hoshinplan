@@ -1,4 +1,4 @@
-<extend tag="page">
+<extend tag="page" attrs="title">
 	<old-page merge class="#{@pdf?'pdf':''}" lang="#{locale}">
 		<ajax-progress: replace>
 			<div id="ajax-progress-wrapper">
@@ -8,16 +8,21 @@
 				</div>
 			</div>
 		</ajax-progress:>
-		<header:>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<div>
-				<a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a>
+		<navbar:>
+			<header class='navbar-header header'>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<div param='app-name'>
+					<a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a>
+				</div>
+			</header>
+			<div class="navbar-collapse collapse">
+			<main-nav class="main-nav" current="&title"/>
+			<account-nav/>
 			</div>
-		</header:>
-		<account-nav: id="account-nav"/>
+		</navbar:>
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">
 				<stylesheet name='pdf' param='app-stylesheet'/>

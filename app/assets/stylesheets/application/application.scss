@@ -387,6 +387,10 @@ ul.navbar-nav {
   vertical-align: text-top;
 }
 
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: #939daa;
+}
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #939daa;
 	background-color: rgba(0,0,0,.2);
@@ -1382,9 +1386,16 @@ form#delete-history, form#delete-history input {
 	}
 	
 	.navbar-nav {
-		padding: 0 15px;
+		padding: 0;
 		margin-left: 0;
 		margin-right: 0;
+	}
+	
+	body .navbar-collapse {
+		padding: 0;
+		li {
+			display: block;
+		}
 	}
 	
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
