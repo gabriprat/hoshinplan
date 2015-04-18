@@ -2444,6 +2444,13 @@ form.modal {
 	box-shadow: none;
 	background-color: transparent;
 }
+
+.btn:active, ul.input-many > li > div.buttons button:active, .btn.active, ul.input-many > li > div.buttons button.active {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
 .btn-primary, .btn-primary:link, .btn-primary:visited {
 	color: $secondary-color;
 }

@@ -203,8 +203,22 @@ $(window).scroll(function () {
 
 $(document).ready( function() {
 	
-	$("ul.collection.areas").hammer().bind("swipe", function(event) {
-		alert(event.type);
+	$("ul.collection.areas").hammer().bind("swipeleft", function(event) {
+		var cur = $(".carousel-indicators li.active");
+		if (!cur) return;
+		var it = cur.next("li");
+		if (it) {
+			it.click();
+		}
+	});
+	
+	$("ul.collection.areas").hammer().bind("swiperight", function(event) {
+		var cur = $(".carousel-indicators li.active");
+		if (!cur) return;
+		var it = cur.prev("li");
+		if (it) {
+			it.click();
+		}
 	});
 	
 	var computeOneAreaWidth = function() {
@@ -220,6 +234,7 @@ $(document).ready( function() {
 			$(".carousel-indicators li").eq(num).addClass("active");
 	}
 	$("ul.collection.areas").on("scroll", updateCarouselInd);
+	updateCarouselInd();
 	$(".carousel li").click(function() {
 		$("ul.collection.areas").animate({
 			scrollLeft: $(this).data("index") * oneAreaWidth,
