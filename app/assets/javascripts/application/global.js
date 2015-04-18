@@ -203,8 +203,8 @@ $(window).scroll(function () {
 
 $(document).ready( function() {
 	
-	$("ul.collection.areas").hammer().bind("swipe", function() {
-		console.log("sdf");
+	$("ul.collection.areas").hammer().bind("swipe", function(event) {
+		alert(event.type);
 	});
 	
 	var computeOneAreaWidth = function() {
