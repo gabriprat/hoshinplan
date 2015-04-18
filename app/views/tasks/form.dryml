@@ -1,5 +1,5 @@
 	      		 <% update = @this.new_record? ? "#lane-#{this.status},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#lane-#{this.status},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
-			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();" class="modal">
+			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();">
 		   	   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
 			
 	      		   <div class="modal-body">

@@ -184,14 +184,9 @@ function updateColors() {
 $(document).ready(updateColors);
 
 function fixedHorizontal() {
-	if ($("html.pdf").length > 0) { return; }
+	if ($("html.pdf").length > 0 || $(window).width() < 640) { return; }
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
-		$(this).css({"margin-left": "0"}); 
-		$(this).css({"width": "auto"});
-		if ($(window).width() > 640) {
-			$(this).css({"width": $(this).width()});
-			$(this).css({"margin-left": $(window).scrollLeft()}); 
-		}
+		$(this).css({"transform": "translateX(" + $(window).scrollLeft() + "px)"}); 
 	});
 }
 

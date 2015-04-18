@@ -7,7 +7,6 @@
  *= require_self
  *= require hobo_rapid
  *= require hobo_jquery
- *= require hobo_bootstrap
  *= require hobo_jquery_ui
  *= require hobo_bootstrap_ui
  *= require jquery-ui/redmond
@@ -16,3 +15,7 @@
  *= require application
  *= require_tree ./front
 */
+@import "./_colors";
+@import "./bootswatch/paper/_variables";
+@import "hobo_bootstrap";
+@import "./bootswatch/paper/_bootswatch";

@@ -6,6 +6,6 @@
 		}.nil?
 	attributes[:required] = "required" if required
 	%>
-	<old-select-one merge>
+	<old-select-one class="form-control" merge>
 	</old-select-one>
 </extend>

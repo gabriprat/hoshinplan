@@ -12,10 +12,10 @@
 		var target = $('#' + id);
 		if (target.length==0 || target.children().length == 0) {
 			if (target.length==0) {
-				that.after('<div class="modal hide" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-body"><div class="ic-spinner ic-pulse ic-3x ic-center"></div></div></div>')
+				$('body').append('<div class="modal" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="ic-spinner ic-pulse ic-3x ic-center"></div></div></div></div></div>')
 				target = $('#' + id);
 			}
-			target.load(url, {'page_path':window.location.pathname}, function() {
+			target.find(".modal-content").load(url, {'page_path':window.location.pathname}, function() {
 				var that = $(this);
 				that.hjq('init');
 				that.trigger('rapid:ajax:success', [that]);

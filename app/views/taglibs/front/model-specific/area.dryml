@@ -6,7 +6,7 @@
     </header:>
     <body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}" class="area-part">
-	<div class="modal hide" id="update-area-modal-#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
+	<div class="modal" id="update-area-modal-#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<swept-cache route-on suffix="view" path="&request.fullpath" locale="#{I18n.locale}" area="#{this.id}" canview="&can_view?" unless="&params['action'] == 'destroy' && @this && this && (@this.id == this.id)">
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>
@@ -30,7 +30,7 @@
 		<set hid="#{this.hoshin_id}"/>
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
-		<form with="&Objective.new" updates="#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal">
+		<form with="&Objective.new" updates="#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />
@@ -51,7 +51,6 @@
 	<h5><model-name-human model="&Indicator" count="100"/>
 	<rmodal title="#{ht key='indicator.actions.new'}" url="#{indicator_path Indicator.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.id}" class="btn pull-right create-obj area-link" target-id="new-ind#{this.id}"><view with="#{ht key='indicator.actions.new'}" /></rmodal>
 	</h5>
-	<div class="modal hide" id="new-ind#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<rtable:indicators columns="#,KPI,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable if="&this.indicators"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<div class="children" if="child_kpis">
@@ -64,7 +63,7 @@
 	<h5><model-name-human model="&Task" count="100"/>
 	<rmodal title="#{ht key='task.actions.new'}" url="#{task_path Task.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.id}" class="btn pull-right create-obj area-link" target-id="new-tsk#{this.id}"><view with="#{ht key='task.actions.new'}" /></rmodal>
 	</h5>
-	<div class="modal hide" id="new-tsk#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
+	<div class="modal" id="new-tsk#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<rtable:tasks columns="#,Task,Deadline,Dev,Status" part="tasks" id="tasks-#{this.id}" class="tasks" sortable limit="10" success="equalHeightSections();" if="&this.tasks"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<div class="children" if="child_tasks">

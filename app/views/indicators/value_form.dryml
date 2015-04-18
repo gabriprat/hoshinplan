@@ -1,5 +1,5 @@
 <% update = @this.new_record? ? "#tutorial,#sec-actions,#neglected,indicators-" + this.area.id.to_s : "#tutorial,#sec-actions,#neglected" %>
-<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal indicator-value">
+<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="indicator-value">
 	<div class="modal-body">
 		<field-list: fields="value,last_update">
 			<last-update-field:>

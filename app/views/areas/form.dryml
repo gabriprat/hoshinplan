@@ -1,4 +1,4 @@
-		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" class="modal" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
+		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
 		   <div class="modal-body">
 		    <field-list: fields="name, hoshin"/>
 		   </div>
