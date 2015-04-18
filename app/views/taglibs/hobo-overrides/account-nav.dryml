@@ -13,8 +13,8 @@
    <li class='nav-item dropdown'>
 	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><t key="change_locale">Language</t> <b class="caret"></b></a>
 			    <ul class="dropdown-menu">
-			                        <li><a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath"><t key="locale_en_US">English (US)</t></a></li>
-			                        <li><a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath"><t key="locale_es_ES">Español (España)</t></a></li>
+			                        <li><a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath" onclick="event.cancelBubble()"><t key="locale_en_US">English (US)</t></a></li>
+			                        <li><a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath" onclick="event.cancelBubble()"><t key="locale_es_ES">Español (España)</t></a></li>
 			                      </ul>
    </li>
    </append-ul: >

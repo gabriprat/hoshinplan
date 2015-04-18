@@ -202,6 +202,11 @@ $(window).scroll(function () {
 });
 
 $(document).ready( function() {
+	
+	$("ul.collection.areas").hammer().bind("swipe", function() {
+		console.log("sdf");
+	});
+	
 	var computeOneAreaWidth = function() {
 		oneAreaWidth = $("ul.collection.areas").first().width();
 		return oneAreaWidth;

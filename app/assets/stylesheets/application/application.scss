@@ -57,7 +57,7 @@ content: none;
 
 html body.hoshin .collection.areas {
 	display: block;
-	overflow-x: scroll;
+	overflow-x: hidden;
 	white-space: nowrap;
 }
 
@@ -635,6 +635,10 @@ body.hoshin .carousel {
 
 body.hoshin .carousel .carousel-indicators {
 	top: 5px;
+	right: 10px;
+	width: auto;
+	bottom: initial;
+	left: initial;
 }
 
 body.hoshin .carousel li {
@@ -642,8 +646,9 @@ body.hoshin .carousel li {
 	width: 20px;
 	height: 20px;
 	border-radius: 15px;
-	text-indent: 6px;
 	color: rgba(255,255,255,0.5);
+	line-height: 1.5em;
+	text-indent: 0;
 }
 
 body.hoshin .carousel li.active {
@@ -1367,6 +1372,7 @@ form#delete-history, form#delete-history input {
 	color: #e1e4e7;
 }
 @media (max-width: 767px) {
+	
 	.navbar-nav > li > .dropdown-menu {
 		-webkit-transition: all 0s;
 		-moz-transition: all 0s;
@@ -1375,6 +1381,8 @@ form#delete-history, form#delete-history input {
 	
 	.navbar-nav {
 		padding: 0 15px;
+		margin-left: 0;
+		margin-right: 0;
 	}
 	
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
