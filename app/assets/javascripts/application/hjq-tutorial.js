@@ -7,7 +7,7 @@
 			var off = $("#nav-tutorial a").offset();
 			var cms = $("#cms");
 			cms.css({position:"absolute", overflow: "hidden", top: cms.offset().top, left: cms.offset().left})
-				.animate({top:off.top + 30, width:0, height: 0, left: off.left}, 
+				.animate({top:off.top - 60, width:0, height: 0, left: off.left}, 
 					{duration: 1500, easing: "easeOutExpo"});
 		});
 		methods.update.call(this);

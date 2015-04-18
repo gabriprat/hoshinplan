@@ -65,6 +65,7 @@ var startPresentation = function() {
 	$('.slide-page').width("100%");
 	$('.slide-page').css({position:'absolute', left:0, top:0, outline: '1px solid transparent'});
 	showSlide(currentSlide);
+	equalHeightSections();
 }
 
 var endPresentation = function() {
@@ -74,7 +75,7 @@ var endPresentation = function() {
 	$('body').removeClass('presenting');
 	$('.slide-page').removeAttr('style');
 	presenting = false;
-	equalHeightSections();
+	setTimeout(equalHeightSections,500);
 }
 
 /**

@@ -41,13 +41,13 @@
 		        <header class="panel-heading">
 		            <p class="inline"><t key="history.historic_values">Historic values and goals</t></p>
     			<div class="history-actions">
-			<button style="text-transform: none;" onclick="$('#upload').toggle()" class="btn btn-primary inline"><t key="indicator.upload_values">Add/update values</t></button>
+			<button onclick="$('#upload').toggle()" class="btn btn-primary inline"><t key="indicator.upload_values">Add/update values</t></button>
 			<form id="delete-history" action="delete_history" method="post" class="inline" data-confirm="&t(:key=>'history.messages.confirm_delete_all', :default => 'Are you sure you want to delete ALL value for this indicator?')">
-				<submit style="text-transform: none;" class="btn btn-danger inline" label="&t(:key=>'indicator.delete_values', :default=>'Delete all values')"/>
+				<submit class="btn btn-danger inline" label="&t(:key=>'indicator.delete_values', :default=>'Delete all values')"/>
 			</form>
 			</div>
 			<div style="text-transform: none;">
-    			<form id="upload" class="hide">
+    			<form id="upload" style="display:none;">
     				<textarea name="history_values" style="width: 20em; height: 10em;"></textarea>
     				<p class="bubble">
     					<t key="indicator.upload_values_by">

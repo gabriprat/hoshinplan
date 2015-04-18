@@ -1,7 +1,7 @@
 <show-page: >
 	<custom-javascript:>
 		$(document).ready(function () {
-			$('a[data-toggle="tab"]').on('shown', function (e) {
+			$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 			  var url = $(e.target).data('url');
 			  var dest = $(e.target).attr('href');
 			  window.location.hash = this.hash;
@@ -29,7 +29,7 @@
 	</content-header:>
 	
 	<content-body:>
-		<bootstrap-tab-list:areas class="charts-tabs">
+		<bootstrap-tab-list:areas class="charts-tabs clearfix">
 			<a: data-url="#{object_url this}/charts" href="#area#{this.id}"><name/></a:>
 			<body: id="area#{this.id}">
 				

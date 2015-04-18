@@ -1,5 +1,5 @@
 		        <% update = @this.new_record? ? "#tutorial,#sec-actions,#blind,#hindicators,#indicators-" + this.area.id.to_s : "#tutorial,#sec-actions,#blind,#neglected" %>
-			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();">
+			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();">
 				   <div class="modal-body">
 				   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
 		            <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts #{show_on_parent}">

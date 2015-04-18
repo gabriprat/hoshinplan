@@ -31,7 +31,7 @@ $.fn.timer = function(percent, href){
 	        '-o-transition': 'transform '+d1+'s linear 2s, width 0s linear 2s',
 	        'transition': 'transform '+d1+'s linear 2s, width 0s linear 2s'});
 		$(this).find('.slice .pie.fill').css({	
-		'width':'0.8em',    
+		'width':'1em',    
 		'-moz-transform':'rotate('+deg+'deg)',
 		'-webkit-transform':'rotate('+deg+'deg)',
 		'-o-transform':'rotate('+deg+'deg)',

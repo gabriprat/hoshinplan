@@ -13,7 +13,7 @@
 				<modal id="update-area-modal-#{this.id}">
 				<modal:>
 					<div class="modal-dialog">
-					<formlet ajax success="updateColors(); $('#update-area-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal-content" id="upd-area-#{this.id}">
+					<formlet ajax success="updateColors(); $('#update-area-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" class="modal-content" id="upd-area-#{this.id}">
 					    <modal-header><view:name/></modal-header>
 					    <div class="modal-body">
 					    <feckless-fieldset class="horizontal" fields="color"/>

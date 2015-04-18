@@ -184,9 +184,14 @@ function updateColors() {
 $(document).ready(updateColors);
 
 function fixedHorizontal() {
-	if ($("html.pdf").length > 0 || $(window).width() < 640) { return; }
+	if ($("html.pdf").length > 0) { return; }
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
-		$(this).css({"transform": "translateX(" + $(window).scrollLeft() + "px)"}); 
+		$(this).css({"margin-left": "0"}); 
+		$(this).css({"width": "auto"});
+		if ($(window).width() > 640) {
+			$(this).css({"width": $(this).width()});
+			$(this).css({"margin-left": $(window).scrollLeft()}); 
+		}
 	});
 }
 
@@ -221,7 +226,6 @@ $(document).ready( function() {
 var eh = false;
 
 var equalHeightSections = function() {
-	if (typeof presenting != "undefined" && presenting) return;
 	if ($("html.pdf").length > 0) { return; }
 	if (eh) return;
 	eh = true;
@@ -239,6 +243,7 @@ $(window).load(equalHeightSections);
 
 var equalHeights = function(elements) {
 	$(elements).height("auto");
+	if (typeof presenting != "undefined" && presenting) return;
 	var maxHeight = 0;
 	//$(elements).css({border: "1px solid red"});
 	$(elements).each(function(){
@@ -250,7 +255,6 @@ var equalHeights = function(elements) {
 	$(elements).height(maxHeight);
 	//$(elements).height("auto");
 	//$("body").append("MH: " + maxHeight + "<br/>");
-	
 }
 
 $(document).ready(function() {
@@ -363,3 +367,10 @@ var openPostit = function(elem) {
 	$(elem).prevAll('.postit-description').toggleClass('show-all'); 
 	$(elem).toggleClass('open');
 }
+
+
+$(document).ready(function() {
+	$('.modal').on('hidden.bs.modal', function (e) {
+		$('body').removeClass("modal-open");
+	});
+});

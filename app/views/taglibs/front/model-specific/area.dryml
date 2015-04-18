@@ -30,7 +30,8 @@
 		<set hid="#{this.hoshin_id}"/>
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
-		<form with="&Objective.new" updates="#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();">
+		<div class="modal-dialog">
+		<form class="modal-content" with="&Objective.new" updates="#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); $('body').removeClass('modal-open'); equalHeightSections();">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />
@@ -44,6 +45,7 @@
 			</div>
 			<modal-form-footer/>
 		</form>
+		</div>
 		</modal:>
 	</modal>
 	</div>
@@ -51,6 +53,7 @@
 	<h5><model-name-human model="&Indicator" count="100"/>
 	<rmodal title="#{ht key='indicator.actions.new'}" url="#{indicator_path Indicator.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.id}" class="btn pull-right create-obj area-link" target-id="new-ind#{this.id}"><view with="#{ht key='indicator.actions.new'}" /></rmodal>
 	</h5>
+	<div class="modal hide" id="new-ind#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<rtable:indicators columns="#,KPI,Value,Goal,%" part="indicators" id="indicators-#{this.id}" class="indicators" sortable if="&this.indicators"/>
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<div class="children" if="child_kpis">

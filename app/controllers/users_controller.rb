@@ -139,6 +139,7 @@ class UsersController < ApplicationController
     end
     hobo_update do
       if ajax
+        flash[:notice] = nil
         hobo_ajax_response
       else
         redirect_to current_user, :dgv => Time.now.to_i if valid?

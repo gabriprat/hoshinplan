@@ -6,6 +6,7 @@
 		that.click(function () {
 			that.toggle();
 			that.next('.in-place-input').toggle().next('.in-place-btn').toggleClass('hide');
+			that.next('textarea,input').first().focus();
 		});
 		
         }

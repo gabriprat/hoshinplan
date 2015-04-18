@@ -12,8 +12,11 @@
 		var target = $('#' + id);
 		if (target.length==0 || target.children().length == 0) {
 			if (target.length==0) {
-				$('body').append('<div class="modal" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="ic-spinner ic-pulse ic-3x ic-center"></div></div></div></div></div>')
+				that.after('<div class="modal" data-rapid="{&quot;modal&quot;:{}}" id="'+id+'" role="dialog" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="ic-spinner ic-pulse ic-3x ic-center"></div></div></div></div></div>')
 				target = $('#' + id);
+			}
+			if (target.find(".modal-content").length==0) {
+				target.html('<div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="ic-spinner ic-pulse ic-3x ic-center"></div></div></div></div>');
 			}
 			target.find(".modal-content").load(url, {'page_path':window.location.pathname}, function() {
 				var that = $(this);
@@ -23,6 +26,10 @@
 			}); 
 		}
 		target.modal('show'); 
+		target.on('hide', function (e) {
+			alert(1);
+			$('body').removeClass("modal-open");
+		});
 		return false;
 	}
     };

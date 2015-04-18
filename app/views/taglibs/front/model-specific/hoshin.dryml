@@ -86,7 +86,7 @@
 				<set hid="#{this.id}"/>
 			<set compid="&this.company_id"/>
 				<div class="modal-dialog">
-				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('.modal-backdrop').remove();" updates="#goals,#tutorial,#tutorial,#sec-actions" class="modal-content">
+				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" updates="#goals,#tutorial,#tutorial,#sec-actions" class="modal-content">
 					<div class="modal-body">
 						<field-list: fields="name" />
 						<hidden-field:hoshin_id value="#{hid}"/>
@@ -101,7 +101,7 @@
 				<modal:>
 				<set hid="#{this.id}"/>
 				<div class="modal-dialog">
-				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('.modal-backdrop').remove(); equalHeightSections();" updates="#areas,#tutorial,#tutorial,#sec-actions" class="modal-content">
+				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" updates="#areas,#tutorial,#tutorial,#sec-actions" class="modal-content">
 					<div class="modal-body">
 						<field-list: fields="name, description" />
 						<hidden-field:hoshin_id value="#{hid}"/>

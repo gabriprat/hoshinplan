@@ -8,6 +8,16 @@
 				</div>
 			</div>
 		</ajax-progress:>
+		<header:>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<div>
+				<a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a>
+			</div>
+		</header:>
+		<account-nav: id="account-nav"/>
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">
 				<stylesheet name='pdf' param='app-stylesheet'/>
@@ -28,7 +38,6 @@
 		<prepend-head:>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		</prepend-head:>
-	  	<app-name:><a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a></app-name:>
 		<footer: class="fixed-x">
 		   <ul class="footer-links">
 		      <li>&copy; 2014 Hoshinplan</li>
@@ -41,6 +50,6 @@
 		    </ul>
 		   <div id="mixpanel"><a href="//mixpanel.com/f/partner"><img width="114" height="36" alt="Mobile Analytics" src="#{request.protocol}cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a></div>
 		</footer:>
-		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}"/>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" spinner-at="body"/>
 	 </old-page>
 </extend>

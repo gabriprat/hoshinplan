@@ -1,4 +1,5 @@
-<def tag="color-tpc">
-	<span data-rapid='#{data_rapid("color_tpc", :options => {:tpc => this.to_s})}' class="tpc"><do param="default"><view merge/>%</do></span>
+<def tag="color-tpc" attrs="tag">
+	<% tag ||= 'span' %>
+	<call-tag tag="&tag" data-rapid="&data_rapid('color_tpc', :options => {:tpc => this.to_s})" class="tpc" merge><do param="default"><view merge/>%</do></call-tag>
 </def>
 

@@ -43,7 +43,7 @@
   <aside:/>
   
   <aside-column:>
-  	<div class="panel panel-default">
+  	<div class="panel">
 		<div class="panel-heading clearfix">
 			<span class="tools pull-right hoshin-tasks" style="margin-left: -20px;">
 		            <a action="edit" if="&this == current_user"><span class="ic-cog"/></a>
@@ -56,8 +56,6 @@
 			<strong><view:name /></strong>
 			<br/>
 			<span class="lower">#{this.email_address.to_s}</span>
-			<br/><br/>
-			<delete-button value="#{t 'user.delete_account', :default => 'Delete account'}"/>
 			</div>
 		</div>
 		<modal id="edit-img">
@@ -107,7 +105,7 @@
   <content-body:>
     <div class="content-body">
 
-    <div class="panel panel-default">
+    <div class="panel">
     
 	    <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
 	    <div class="panel-body">
@@ -125,7 +123,7 @@
 		</else>
 	    </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel">
 	    <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
 	    <div class="panel-body">
 		    <if test="&attributes[:pending]">

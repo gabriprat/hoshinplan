@@ -1,16 +1,15 @@
 <def tag="indicator-chart-panel">
 	<section id="chart-panel#{this.id}" class="panel chart-panel" if="&this.indicator_histories" merge>
-	        <header class="panel-heading">
-			<color-tpc:tpc precision="1" style="display:inline;">
-				<default: replace>
-					<a with="&this_parent.becomes(Indicator)" action="history"/> (<default restore/>)
-				</default:>
-			</color-tpc:tpc>
-			<form ajax success="$('#chart-panel#{this.id}').hide()">
-				<hidden-field:show_on_charts value="false"/>
-				<button type="submit" class="close">&times;</button>
-			</form>
-		</header>
+	        <color-tpc:tpc tag="div" precision="1" class="header panel-heading">
+			<default: replace>
+				<a with="&this_parent.becomes(Indicator)" action="history"/> <span>(#{number_with_precision this}%)</span>
+				<form with="&this_parent" ajax success="$('#chart-panel#{this_parent.id}').hide()">
+					<hidden-field:show_on_charts value="false"/>
+					<button type="submit" class="close">&times;</button>
+				</form>
+				sdf
+			</default:>
+		</color-tpc:tpc>
 		 <div class="panel-body">
 			<indicator-chart/>
 		 </div>

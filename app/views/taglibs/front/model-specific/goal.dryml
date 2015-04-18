@@ -7,7 +7,7 @@
 			<modal id="update-goal-modal-#{this.id}">
 				<modal:>
 				<div class="modal-dialog">
-				<form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove();" class="modal-content" id="upd-goal-#{this.id}" updates="#goals,#tutorial,#sec-actions">
+				<form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" class="modal-content" id="upd-goal-#{this.id}" updates="#goals,#tutorial,#sec-actions">
 				   <div class="modal-body">
 				    <field-list: fields="name"/>
 				   </div>

@@ -7,5 +7,5 @@
 	 	zone = zones.name
 	 end
 	%>
-	<%= time_zone_select( param_name_for_this_parent, this_field, nil, :default => zone, :model => Hoshinplan::Timezone ) %>
+	<%= time_zone_select( param_name_for_this_parent, this_field, nil, :html_options => {"class":"form-control"}, :default => zone, :model => Hoshinplan::Timezone ) %>
 </def>
