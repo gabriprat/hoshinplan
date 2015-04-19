@@ -18,16 +18,18 @@
 		</parent-link:>
 		<prepend-content-header: >
 		<if test="&params['action']=='show'">
-		<a onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right">
+		<span id="create-buttons">
+		<a href="javascript:$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
             <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
               Add new area
             </ht>
 		</a>
-	    <a onclick="$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right">
+	    <a href="javascript:$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
 	            <ht key="goal.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new goal
 	            </ht>
 			</a>
+		</span>
 		</if>
 		</prepend-content-header:>
 		

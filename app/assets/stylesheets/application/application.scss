@@ -511,10 +511,10 @@ h2.heading .title-action {
 
 h2.heading .title-action .label {
 	position: absolute;
-	font-size: 8px;
+	font-size: 10px;
 	line-height: 1em;
-	top: -10px;
-	right: 7px;
+	top: -1em;
+	right: -1.5em;
 }
 
 h2.heading .title-action:hover {
@@ -657,13 +657,14 @@ body.hoshin .carousel li {
 body.hoshin .carousel li.active {
 	color: rgba(0,0,0,0.3);
 }
-
+@media (min-width:767px) {
 body.hoshin .collection.areas1 {
 	width: 50%;
 }
 
 body.hoshin .collection.areas2 {
 	width: 75%;
+}
 }
 
 body.hoshin
@@ -1383,6 +1384,28 @@ form#delete-history, form#delete-history input {
 }
 @media (max-width: 767px) {
 	
+	.content-header {
+		position: relative;
+	}
+	
+	.content-header #sec-actions {
+		float: none;
+		display: block;
+		padding-bottom: 1em;
+	}
+	
+	.content-header a.hoshin-link {
+		float: none;
+		display: block;
+		width: 100%;
+	}
+	
+	.content-header #create-buttons {
+		position: absolute;
+		bottom: 5px;
+		left: 0;
+	}
+	
 	.navbar-nav > li > .dropdown-menu {
 		-webkit-transition: all 0s;
 		-moz-transition: all 0s;
@@ -1898,6 +1921,11 @@ form.indicator-value input[type=radio] {
 	color: #333;
 }
 
+.health-badge {
+	font-family: $secondary-font-stack;
+	font-size: .3em;
+}
+
 .health .tpc {
 	position: absolute;
 	color: #f33;
@@ -2031,14 +2059,22 @@ form.indicator-value input[type=radio] {
 	vertical-align: text-bottom;
 }
 
+#health-popover .popover-title {
+	font-size: 27px;
+}
+
 #health-popover .popover {
-	max-width: 620px;
+	max-width: 95vw;
 	margin-bottom: 2em;
 }
 
 #health-popover .popover-content {	
 	max-height: 340px;
 	overflow: scroll;
+}
+
+#health-popover ul {
+	list-style-position: inside;
 }
 
 .timeline.checked li.done:before {
@@ -2717,4 +2753,9 @@ ul {
       -ms-transform: translateX(-.06em) translateY(-.03em) rotate(45deg);
           transform: translateX(-.06em) translateY(-.03em) rotate(45deg);
 }
+
+.label-as-badge {
+	border-radius: 1em;
+}
+
 
