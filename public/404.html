@@ -2,7 +2,7 @@
     <head><meta content="text/html; charset=utf-8" http-equiv="Content-Type">		<meta charset="utf-8"><meta content="IE=edge" http-equiv="X-UA-Compatible">
       <title> : Hoshinplan</title>
 
-   <link class="app-stylesheet" href="https://static.hoshinplan.com/assets/front-b6af5555fce0855d787927dce2464808bcf5ea0fb4c4ca3a6f908a4fe62b1f5b.css" media="all" rel="stylesheet">
+   <link class="app-stylesheet" href="https://static.hoshinplan.com/assets/front-9f7989a50fd96f33ca4fc559195cdf04e68889d927c3b101ec8b5b9a5a4f3e00.css" media="all" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400%7CRoboto:200,400,700;" media="all" rel="stylesheet">
 		
       <script src="https://static.hoshinplan.com/assets/front-676e7c1bd929dc240ca7aaba98428e64ee8cfd331e1327a701c5761d307c1fd2.js"></script>
@@ -24,16 +24,16 @@
 		        <script type="text/javascript" src="https://app.box.com/js/static/select.js" async></script>
 		
 <meta content="width=device-width, initial-scale=1.0" name="viewport">      <meta content="authenticity_token" name="csrf-param">
-<meta content="4JHIKCwm/JonnNgEcosdBwlApo1QyEvYO8wZBEBNECM=" name="csrf-token">
+<meta content="VZBn6APzBsycwlZjvEKFTQ52dSpcL4hUfX1flXUVu6k=" name="csrf-token">
 </head>
 <body><div id="ajax-progress-wrapper"><div class="ajax-progress" id="ajax-progress">					<i class="ic-spinner ic-pulse"></i>
 					<span id="ajax-progress-text"></span>
 </div></div>
-<div class="navbar navbar-default">  <div class="header navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+<div class="navbar navbar-default">  <div class="header navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidenav" aria-expanded="false" aria-controls="sidenav">					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span>
 </button><div class="app-name">					<a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a>
 </div></div>
-<div class="navbar-collapse collapse"><div class="modal fade bs-example-modal-lg" data-rapid="{&quot;modal&quot;:{}}" id="login" role="dialog" tabindex="-1"><div class="modal-dialog"><div class="modal-content">	<div class="modal-header"><button class="close close-button" data-dismiss="modal" type="button">      <span>&times;</span>
+<div id="sidenav" class="navbar-collapse collapse"><div class="modal fade bs-example-modal-lg" data-rapid="{&quot;modal&quot;:{}}" id="login" role="dialog" tabindex="-1"><div class="modal-dialog"><div class="modal-content">	<div class="modal-header"><button class="close close-button" data-dismiss="modal" type="button">      <span>&times;</span>
       <span class="sr-only">Close</span>
 </button><h4>Login</h4></div>
 <div class="modal-body"><div class="social-login"><a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">			            <i class="ic-google-plus"></i> Log in with Google
@@ -42,18 +42,20 @@
     <form action="/sso_login" class="form-horizontal" id="sso-login" method="get"><div class="hidden-fields"></div><input class="input-block-level" name="email" placeholder="E-mail" type="email"><input class="btn btn-primary button submit-button btn-big" type="submit" value="Login"></form>
 </div><div class="local-login">			<p class="line sep">or</p>
 			<p class="sep"><a class="toggle collapsed" data-parent="#hoshinplan-login" data-toggle="collapse" href="#collapseLogin"><i class="ic-chevron-down"></i>Use your hoshinplan.com user</a></p>
-<div class="collapse" id="collapseLogin"><br>    <form action="/login" class="form-horizontal login" method="post"><div class="hidden-fields"><input id="page_path" name="page_path" type="hidden" value="/errors/file_not_found"><input name="authenticity_token" type="hidden" value="4JHIKCwm/JonnNgEcosdBwlApo1QyEvYO8wZBEBNECM="></div><input class="input-block-level" id="email" name="login" placeholder="E-mail" type="email"><input class="string input-block-level password-input" id="password" name="password" placeholder="Password" style="margin-top: 10px" type="password"><div class="actions">				      <input class="btn btn-primary button submit-button" type="submit" value="Login">
+<div class="collapse" id="collapseLogin"><br>    <form action="/login" class="form-horizontal login" method="post"><div class="hidden-fields"><input id="page_path" name="page_path" type="hidden" value="/errors/file_not_found"><input name="authenticity_token" type="hidden" value="VZBn6APzBsycwlZjvEKFTQ52dSpcL4hUfX1flXUVu6k="></div><input class="input-block-level" id="email" name="login" placeholder="E-mail" type="email"><input class="string input-block-level password-input" id="password" name="password" placeholder="Password" style="margin-top: 10px" type="password"><div class="actions">				      <input class="btn btn-primary button submit-button" type="submit" value="Login">
 				      or <a class="signup" href="/users/signup">Signup</a>
 				      or <a class="forgot-password" href="/forgot_password">Forgotten password?</a>
 </div></form>
-</div></div></div></div></div></div><div class="collapse navbar-collapse"><ul class="navigation account-nav nav navbar-nav navbar-right">
+</div></div></div></div></div></div>
+<ul class="navigation account-nav nav navbar-nav navbar-right">	  <li class="divider"></li>
+	  
 
-<li class="nav-item log-in">	    <a href="#" onclick="$('#login').modal('show'); return false;">Login</a>
-    </li>
-<li class='nav-item dropdown'>	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language <b class="caret"></b></a>
-<ul class="dropdown-menu">			                        <li><a href="https://en.hoshinplan.com/errors/file_not_found" onclick="event.cancelBubble()">English (US)</a></li>
-			                        <li><a href="https://es.hoshinplan.com/errors/file_not_found" onclick="event.cancelBubble()">Español (España)</a></li>
-</ul></li></ul></div></div></div>
+<li class="nav-item log-in">              <a href="#" onclick="$('#login').modal('show'); return false;">Login</a>
+</li><li class="nav-item sign-up"><a href="/users/signup">                Signup
+</a></li><li class='nav-item dropdown'>       	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language <b class="caret"></b></a>
+<ul class="dropdown-menu">       			                        <li><a href="https://en.hoshinplan.com/errors/file_not_found" onclick="event.cancelBubble()">English (US)</a></li>
+       			                        <li><a href="https://es.hoshinplan.com/errors/file_not_found" onclick="event.cancelBubble()">Español (España)</a></li>
+</ul></li></ul></div></div>
 <div class="container bootstrap-content"><div class="row main-row"><div class="col-md-12 main-column"><div class="section with-flash content">    		<div class="hero-unit"><h1>404</h1>
 The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us.<div id="error-actions">		<a class="btn" href="/"><div class="ic-home"></div><p>Return to the home page</p></a>
 		<a class="btn" href="mailto:hello@hoshinplan.com"><div class="ic-envelope"></div><p>Get in contact with us</p></a>
@@ -69,7 +71,7 @@ The page you were looking for does not exist. <br/>Check the URL. If you think t
 		      <li><a href="mailto:hello@hoshinplan.com">Contact us</a></li>
 </ul>		   <div id="mixpanel"><a href="//mixpanel.com/f/partner"><img alt="Mobile Analytics" height="36" src="https://cdn.mxpnl.com/site_media/images/partner/badge_light.png" width="114"></a></div>
 </div>
-    <span data-rapid-page-data="{&quot;form_auth_token&quot;:{&quot;name&quot;:&quot;authenticity_token&quot;,&quot;value&quot;:&quot;4JHIKCwm/JonnNgEcosdBwlApo1QyEvYO8wZBEBNECM=&quot;},&quot;hobo_parts&quot;:{},&quot;separator&quot;:&quot;.&quot;,&quot;delimiter&quot;:&quot;,&quot;,&quot;dateformat&quot;:&quot;mm/dd/yyyy&quot;,&quot;message&quot;:&quot;Saving...&quot;,&quot;spinner-at&quot;:&quot;body&quot;}" style="display: none;">
+    <span data-rapid-page-data="{&quot;form_auth_token&quot;:{&quot;name&quot;:&quot;authenticity_token&quot;,&quot;value&quot;:&quot;VZBn6APzBsycwlZjvEKFTQ52dSpcL4hUfX1flXUVu6k=&quot;},&quot;hobo_parts&quot;:{},&quot;separator&quot;:&quot;.&quot;,&quot;delimiter&quot;:&quot;,&quot;,&quot;dateformat&quot;:&quot;mm/dd/yyyy&quot;,&quot;message&quot;:&quot;Saving...&quot;,&quot;spinner-at&quot;:&quot;body&quot;}" style="display: none;">
 
 
 			</span>
