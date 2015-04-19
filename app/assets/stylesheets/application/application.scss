@@ -1467,11 +1467,11 @@ form#delete-history, form#delete-history input {
 }
 
 .navbar .nav li.dropdown.open > a .caret {
-	-moz-transform:rotate(180deg);
-	-webkit-transform:rotate(180deg);
-	-ms-transform:rotate(180deg);
-	-o-transform:rotate(180deg);
-	transform:rotate(180deg);
+	-moz-transform:scaleY(-1);
+	-webkit-transform:scaleY(-1);
+	-ms-transform:scaleY(-1);
+	-o-transform:scaleY(-1);
+	transform:scaleY(-1);
 }
 
 .navbar .nav li.dropdown > a:link .caret, 
