@@ -1389,7 +1389,8 @@ form#delete-history, form#delete-history input {
 		transition: all 0s;
 	}
 	
-	.navbar-toggle {
+	.navbar-toggle.hamburger {
+		display: block;
 		margin: 5px 15px 5px 0;
 	}
 	
@@ -1410,7 +1411,7 @@ form#delete-history, form#delete-history input {
 		top: 42px;
 		right: -100%;
 		background: $inverse-background-color;
-		z-index: 1099;
+		z-index: 1030;
 		width: 100%;
 		-webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
@@ -1444,9 +1445,18 @@ form#delete-history, form#delete-history input {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
 		color: #939daa;
 	}
-	.account-nav {
-		border-top: 1px solid transparent;
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	.navbar-right {
+		display: none;
+	}
+	.navbar-right.account-nav {
+		display: block;
+	}
+	.navbar-nav {
+		border-bottom: 1px solid transparent;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+	}
+	.navbar-nav.account-nav {
+		box-shadow: none;
 	}
 }
 @media (max-width: 767px) {
@@ -2607,38 +2617,104 @@ ul {
 	margin-top: 2em;
 }
 
-button.navbar-toggle, button.navbar-toggle .icon-bar {
-	-webkit-transition: .4s ease-in-out;
-	-moz-transition: .4s ease-in-out;
-	-o-transition: .4s ease-in-out;
-	transition: .4s ease-in-out;
-	transform: rotate(-180deg);
-	margin-top: 0;
-}
-button.navbar-toggle.collapsed {
-	transform: rotate(0deg);
-	margin-top: 8px;
-}
-button.navbar-toggle .icon-bar:nth-child(1) {
-  	transform: rotate(-45deg);
-        margin: 0 -13%;
-        width: 75%;
-}
-button.navbar-toggle .icon-bar:nth-child(3) {
-	transform: rotate(45deg);
-        margin: 4px -13%;
-        width: 75%;
+.hamburger {
+  display: none;
+  position: relative;
+  overflow: hidden;
+  margin: 8px 20px 0 0;
+  padding: 0;
+  width: 1.08em;
+  height: .96em;
+  font-size: 30px;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background 0.4s;
+          transition: background 0.4s;
 }
 
-button.navbar-toggle.collapsed .icon-bar:nth-child(1) {
-  	transform: rotate(0);
-        margin: -4px 0 0 0;
-        width: 100%;
+.hamburger:focus {
+  outline: none;
 }
 
-button.navbar-toggle.collapsed .icon-bar:nth-child(3) {
-	transform: rotate(0);
-        margin: 4px 0 0 0;
-        width: 100%;
+.hamburger span {
+  display: block;
+  position: absolute;
+  top: .41em;
+  left: .18em;
+  right: .18em;
+  height: .06em;
+  background: #c1c6cb;
+}
+
+.hamburger span::before,
+.hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: .06em;
+  background: #c1c6cb;
+  content: "";
+}
+
+.hamburger span::before {
+  top: -.2em;
+}
+
+.hamburger span::after {
+  bottom: -.2em;
+}
+
+.hamburger span {
+  -webkit-transition: -webkit-transform 0.4s;
+          transition: transform 0.4s;
+}
+
+.hamburger span::before {
+  -webkit-transform-origin: top left;
+      -ms-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transition: -webkit-transform 0.4s, width 0.4s, top 0.4s;
+          transition: transform 0.4, width 0.4s, top 0.4s;
+}
+
+.hamburger span::after {
+  -webkit-transform-origin: bottom left;
+      -ms-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-transition: -webkit-transform 0.4s, width 0.4s, bottom 0.4s;
+          transition: transform 0.4s, width 0.4s, bottom 0.4s;
+}
+
+/* active state, i.e. menu open */
+.hamburger[aria-expanded=true] span {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.hamburger[aria-expanded=true] span::before,
+.hamburger[aria-expanded=true] span::after {
+  width: 50%;
+}
+
+.hamburger[aria-expanded=true] span::before {
+  top: 0;
+  -webkit-transform: translateX(-.06em) translateY(.03em) rotate(-45deg);
+      -ms-transform: translateX(-.06em) translateY(.03em) rotate(-45deg);
+          transform: translateX(-.06em) translateY(.03em) rotate(-45deg);
+}
+
+.hamburger[aria-expanded=true] span::after {
+  bottom: 0;
+  -webkit-transform: translateX(-.06em) translateY(-.03em) rotate(45deg);
+      -ms-transform: translateX(-.06em) translateY(-.03em) rotate(45deg);
+          transform: translateX(-.06em) translateY(-.03em) rotate(45deg);
 }
 
