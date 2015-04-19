@@ -22,6 +22,18 @@
 			<main-nav class="main-nav" current="&title"/>
 			<account-nav/>
 			</div>
+			<modal id="login" unless="&logged_in?">
+			<modal:>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<modal-header><ht key="hoshin.actions.login">Login</ht></modal-header>
+						<div class="modal-body">
+							<login-form />
+						</div>
+					</div>
+				</div>
+			</modal:>
+			</modal>
 		</navbar:>
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">

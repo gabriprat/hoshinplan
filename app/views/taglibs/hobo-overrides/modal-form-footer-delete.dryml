@@ -1,7 +1,7 @@
 <def tag="modal-form-footer-delete" >
     <div class='modal-footer modal-footer-delete' param='default'>
        <submit label='&t(&apos;hobo.actions.submit&apos;, :default => &apos;Submit&apos;)' param onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
-       <input class='btn' aria-hidden='true' param='cancel' type='button' value='&t(&apos;hobo.actions.cancel&apos;, :default => &apos;Cancel&apos;)' data-dismiss='modal'/>
- 	  <input class="btn button delete-button" onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');" type="submit" value="&t('hobo.actions.remove', :default=>'Remove')" if="&can_delete? && !this.new_record?"/>
+       <input class='btn btn-default' aria-hidden='true' param='cancel' type='button' value='&t(&apos;hobo.actions.cancel&apos;, :default => &apos;Cancel&apos;)' data-dismiss='modal'/>
+ 	  <input class="btn btn-danger button delete-button" onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');" type="submit" value="&t('hobo.actions.remove', :default=>'Remove')" if="&can_delete? && !this.new_record?"/>
 	</div>
 </def>

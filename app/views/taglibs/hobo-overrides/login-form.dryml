@@ -10,7 +10,8 @@
 			<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
 			<form action="/sso_login" method="get" id="sso-login">
 				<input type="email" name="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
-				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-big"/>
+				<br/>
+				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-raised"/>
 			</form>
 		</div>
 		<div class="local-login">
@@ -19,12 +20,15 @@
 			<div class="collapse" id="collapseLogin">
 				<br/>
 				<form merge class='login' action='/login'>
-				    <input type="email" name="login" id="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
-				   <input name='password' class='string input-block-level' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}"/>  
+				    <input type="email" name="login" id="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level form-control"/>
+				   <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}"/>  
+				    <br/>
 				    <div param='actions'>
-				      <submit label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/><if class='nav-item' test='&signup_url'>
-				      <t key="hobo.support.or">or</t> <a href='&signup_url' param='signup'><t key="hobo.login.signup">Sign up</t></a></if>
-				      <if test="&forgot_password_url"><t key='hobo.support.or'>or</t> <a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
+				      <submit class="btn-raised" label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/> &nbsp;
+				      <if test="&forgot_password_url"><a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
+		      		      <p class="sep"></p>
+		      		      <span><t key="dont_have_an_account"/></span> <a href='&signup_url' param='signup'><t key="login_signup"/></a>
+				      
 				    </div>
 				</form>
 			</div>
