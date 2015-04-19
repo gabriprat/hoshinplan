@@ -387,10 +387,6 @@ ul.navbar-nav {
   vertical-align: text-top;
 }
 
-.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-	color: #939daa;
-}
-
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #939daa;
 	background-color: rgba(0,0,0,.2);
@@ -1401,9 +1397,48 @@ form#delete-history, form#delete-history input {
 			display: block;
 		}
 	}
+	#sidenav {
+		position: absolute;
+		top: 42px;
+		right: -100%;
+		background: $inverse-background-color;
+		z-index: 1099;
+		width: 100%;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		-ms-transition: all 0.3s;
+		-o-transition: all 0.3s;
+		transition: all 0.3s;
+	}
+	#sidenav.in {
+		right: 0;
+	}
 	
+	#sidenav, #sidenav .navbar-collapse {
+		height: auto !important;
+	}
+	.navbar .dropdown-menu {
+		display: block;
+		height: 0;
+		overflow: hidden;
+	}
+	.navbar .nav-item.dropdown.open {
+		width: auto;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu {
+		height: auto;
+		width: auto;
+	}
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
 	    color: inherit;
+	}
+	
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #939daa;
+	}
+	.account-nav {
+		border-top: 1px solid transparent;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	}
 }
 @media (max-width: 767px) {
@@ -1423,6 +1458,20 @@ form#delete-history, form#delete-history input {
 
 .navbar-nav > li > .dropdown-menu {
 	border-radius: 0;
+}
+
+.navbar .nav li.dropdown > a .caret {
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	transition: 0.3s;
+}
+
+.navbar .nav li.dropdown.open > a .caret {
+	-moz-transform:rotate(180deg);
+	-webkit-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform:rotate(180deg);
 }
 
 .navbar .nav li.dropdown > a:link .caret, 
@@ -2575,3 +2624,39 @@ ul {
 .form-group .actions {
 	margin-top: 2em;
 }
+
+button.navbar-toggle, button.navbar-toggle .icon-bar {
+	-webkit-transition: .4s ease-in-out;
+	-moz-transition: .4s ease-in-out;
+	-o-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+	transform: rotate(-180deg);
+	margin-top: 0;
+}
+button.navbar-toggle.collapsed {
+	transform: rotate(0deg);
+	margin-top: 8px;
+}
+button.navbar-toggle .icon-bar:nth-child(1) {
+  	transform: rotate(-45deg);
+        margin: 0 -13%;
+        width: 75%;
+}
+button.navbar-toggle .icon-bar:nth-child(3) {
+	transform: rotate(45deg);
+        margin: 4px -13%;
+        width: 75%;
+}
+
+button.navbar-toggle.collapsed .icon-bar:nth-child(1) {
+  	transform: rotate(0);
+        margin: -4px 0 0 0;
+        width: 100%;
+}
+
+button.navbar-toggle.collapsed .icon-bar:nth-child(3) {
+	transform: rotate(0);
+        margin: 4px 0 0 0;
+        width: 100%;
+}
+

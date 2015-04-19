@@ -10,15 +10,15 @@
 		</ajax-progress:>
 		<navbar:>
 			<header class='navbar-header header'>
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidenav" aria-expanded="false" aria-controls="sidenav">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span>
 				</button>
 				<div param='app-name'>
 					<a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a>
 				</div>
 			</header>
-			<div class="navbar-collapse collapse">
+			<div id="sidenav" class="navbar-collapse collapse">
 			<main-nav class="main-nav" current="&title"/>
 			<account-nav/>
 			</div>
