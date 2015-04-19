@@ -943,7 +943,11 @@ body.compact .table-row {
 body .navbar-default {
         background: $inverse-background-color;
 	border-radius: 0;
-	min-height: 2em;
+	min-height: 3.5em;
+}
+
+.front-page .navbar-default {
+	margin: 0;
 }
 
 .front-page .row {

@@ -46,7 +46,7 @@
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	display: inline-block;
-	width: 20em;
+	width: 24em;
 }
 
 #cms #enum li h3 {
@@ -55,7 +55,7 @@
 }
 
 #cms #enum li p {
-	font-size: 1.5em;
+	font-size: 1.3em;
 	color: #939daa;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .claim {
-	margin: -20px -20px 0 -20px;
+	margin: 0 -50px 0 -50px;
 	text-align: center;
 	color: #fff;
 	background: image-url("hoshin-back.jpg") no-repeat center center fixed;
@@ -90,6 +90,8 @@
 	font-size: 2em;
 	line-height: 1.5em;
 	margin-top: 1em;
+	background: #25a9e0;
+	color: #fff;
 }
 
 .inner-bg {
@@ -115,7 +117,7 @@
 }
 
 #cms .quotes {
-	margin: 0 -20px 0 -20px;
+	margin: 0 -50px 0 -50px;
 	background: #f8faff asset-url("bg-shadow.png") repeat-x 0 0;
 	padding: 40px 0;
 }
@@ -126,8 +128,7 @@
 
 #cms blockquote p {
 	position: relative;
-	width: 240px;
-	height: 100px;
+	width: 260px;
 	padding: 0px;
 	background: #fff;
 	-webkit-border-radius: 10px;
@@ -140,7 +141,7 @@
         -webkit-transition: .5s ease-out;
         -moz-transition: .5s ease-out;
         -o-transition: .5s ease-out;
-	font-size: 1.3em;
+	font-size: .9em;
 	padding-top: 2em;	
 }
 
@@ -173,7 +174,7 @@
 	margin-bottom: 60px;
 }
 #cms .product-pitch {
-  margin: 4em -20px 0 -20px;
+  margin: 4em -50px 0 -50px;
   padding: 4em 0;
   background: #eee url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTUvMzIvNzA2L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
 }
@@ -191,8 +192,12 @@
 		margin: 0;
 	}
 	
-	#cms .claim {
-		margin: -20px 0 0 0;
+	#cms .claim, #cms .product-pitch, #cms .quotes {
+		margin: 0 -15px;
+	}
+	
+	#cms .product-pitch {
+		padding: 0 10px;
 	}
 
 	#cms .inner-bg {
