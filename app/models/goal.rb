@@ -5,9 +5,11 @@ class Goal < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name :string
+    name :string, :null => false
     timestamps
   end
+  validates_presence_of :name
+  
   attr_accessible :name, :hoshin, :hoshin_id, :company_id, :creator_id
   
   belongs_to :creator, :class_name => "User", :creator => true

@@ -6,10 +6,11 @@ class Objective < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name        :string
+    name        :string, :null => false
     description HoboFields::Types::TextileString
     timestamps
   end
+  validates_presence_of :name
   
   attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id, 
     :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id, :creator_id

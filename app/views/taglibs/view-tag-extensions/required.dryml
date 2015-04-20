@@ -1,0 +1,10 @@
+<extend tag="input" for="String">
+	<% required = this_parent.class.validators_on(this_field.to_s).map(&:class).include?(
+         ActiveRecord::Validations::PresenceValidator) %>
+	<if test="&required">
+		<old-input merge required/>
+	</if>
+	<else>
+		<old-input merge/>
+	</else>
+</extend>

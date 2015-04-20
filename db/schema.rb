@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406194258) do
+ActiveRecord::Schema.define(version: 20150420233623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20150406194258) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "goals", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "hoshin_id",  null: false
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 20150406194258) do
   add_index "indicator_histories", ["responsible_id"], name: "index_indicator_histories_on_responsible_id", using: :btree
 
   create_table "indicators", force: true do |t|
-    t.string   "name"
+    t.string   "name",                           null: false
     t.decimal  "value"
     t.text     "description"
     t.string   "frequency"
@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(version: 20150406194258) do
   end
 
   create_table "objectives", force: true do |t|
-    t.string   "name"
+    t.string   "name",           null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 20150406194258) do
   add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
-    t.string   "name"
+    t.string   "name",                                  null: false
     t.text     "description"
     t.date     "deadline"
     t.date     "original_deadline"
@@ -345,7 +345,7 @@ ActiveRecord::Schema.define(version: 20150406194258) do
     t.string   "language"
     t.datetime "last_login_at"
     t.integer  "login_count"
-    t.string   "preferred_view",                       default: "expanded"
+    t.string   "preferred_view",                       default: "compact"
     t.date     "last_seen_at"
     t.integer  "payments_count",                       default: 0,          null: false
   end

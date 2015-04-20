@@ -12,6 +12,8 @@ class Area < ActiveRecord::Base
     color       Color
     timestamps
   end
+  
+  validates_presence_of :name
 
   attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator, :creator_id, :color
   

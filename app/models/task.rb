@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name              :string
+    name              :string, :null => false
     description       HoboFields::Types::TextileString
     deadline          :date
     original_deadline :date
@@ -18,7 +18,7 @@ class Task < ActiveRecord::Base
   index [:area_id, :status]
   index [:hoshin_id, :status]
   
-  validates_presence_of :objective
+  validates_presence_of :objective, :name
   
   
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,

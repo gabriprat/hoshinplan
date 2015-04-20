@@ -5,7 +5,7 @@ class Indicator < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name        :string
+    name        :string, :null => false
     value       :decimal
     description HoboFields::Types::TextileString
     frequency   HoboFields::Types::EnumString.for(:weekly, :monthly, :quarterly)
@@ -20,7 +20,7 @@ class Indicator < ActiveRecord::Base
     timestamps
   end
   
-  validates_presence_of :objective
+  validates_presence_of :objective, :name
   
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
