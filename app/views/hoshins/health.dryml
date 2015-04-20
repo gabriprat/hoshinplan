@@ -10,27 +10,28 @@
 	<content-body:>
 		<div class="well">
 			<h3>
-			
 			<ht key="objective.health.blind_objectives" kpi="&Indicator.model_name.human(:count => 100)" count="100"><model-name-human model="&Objective" count="100"/> with no <model-name-human model="&Indicator" count="100"/></ht>
-			
 			</h3>
 			<rtable:objectives.blind part="blind" columns="Objective,Resp.,Area" class="objectives" />
-
-			<h3>
+			<else><ht key="objective.health.everything_updated"/></else>
 			
+			<h3>
 			<ht key="objective.health.neglected_objectives" kpi="&Indicator.model_name.human(:count => 100)" task="&Task.model_name.human(:count => 100)" count="100"><model-name-human model="&Objective" count="100"/> with <model-name-human model="&Indicator" count="100"/> under 100% and no active <model-name-human model="&Task" count="100"/></ht>
 			</h3>
 			<rtable:objectives.neglected part="neglected" columns="Objective,Resp.,Area" class="objectives" />
-
-			<h3>
-			<ht key="task.health.overdue_model" count="100">Overdue <model-name-human model="&Task" count="100"/></ht>
-			</h3>
-			<rtable:tasks.overdue columns="Task,Resp.,Area,Deadline,Dev,Status" part="htasks" class="tasks"/>
-
+			<else><ht key="objective.health.everything_updated"/></else>
+			
 			<h3>
 			<ht key="indicator.health.overdue_model" count="100">Overdue <model-name-human model="&Indicator" count="100"/></ht>
 			</h3>
 			<rtable:indicators.overdue columns="KPI,Resp.,Area,Value,Goal,%" part="hindicators" class="indicators"/>
+			<else><ht key="indicator.health.everything_updated"/></else>
+			
+			<h3>
+			<ht key="task.health.overdue_model" count="100">Overdue <model-name-human model="&Task" count="100"/></ht>
+			</h3>
+			<rtable:tasks.overdue columns="Task,Resp.,Area,Deadline,Dev,Status" part="htasks" class="tasks"/>
+			<else><ht key="task.health.everything_updated"/></else>
 		</div>
 	</content-body:>
 	

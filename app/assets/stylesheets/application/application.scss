@@ -2070,6 +2070,20 @@ form.indicator-value input[type=radio] {
 	vertical-align: text-bottom;
 }
 
+#health-popover h3 {
+	margin: 0;
+	.tpc {
+		border-radius: 1em;
+		display: inline-block;
+		height: 1.8em;
+		padding-top: .25em;
+		min-width: 1.8em;
+		text-align: center;
+		margin-bottom: -1em;
+		padding: .4em 1px 0 5px;
+	}
+}
+
 #health-popover .popover-title {
 	font-size: 27px;
 }
@@ -2079,13 +2093,9 @@ form.indicator-value input[type=radio] {
 	margin-bottom: 2em;
 }
 
-#health-popover .popover-content {	
-	max-height: 340px;
-	overflow: scroll;
-}
-
-#health-popover ul {
-	list-style-position: inside;
+#health-popover li {
+	list-style-type: none;
+	text-indent: 1em;
 }
 
 .timeline.checked li.done:before {

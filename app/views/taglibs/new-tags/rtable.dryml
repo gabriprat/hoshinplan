@@ -22,4 +22,5 @@
 		</call-tag>
 	</div>
 	<a href="?show_all=true" if="&more" ajax merge-attrs="success"><t key="show_all">Show all...</t></a>
+	<if test="&count > 0"/> <!-- Set Dryml.last_if -->
 </def>

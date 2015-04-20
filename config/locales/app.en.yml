@@ -92,13 +92,14 @@ en:
       no_kpis: "You don't have any %{model} to update"
       no_tasks: "You don't have any %{model} with a close due date"
     hoshin:
-      neglected_objectives: You have %{neglected}/%{count} %{model} with low %{kpi} and no active %{task}.
-      blind_objectives: You have %{blind}/%{count} %{objective} without %{kpi}.
-      outdated_model: You have %{outdated}/%{count} outdated %{model}.
+      neglected_objectives: '%{neglected}/%{count} %{model} with low %{kpi} and no active %{task}.'
+      blind_objectives: '%{blind}/%{count} %{objective} without %{kpi}.'
+      outdated_model: '%{outdated}/%{count} outdated %{model}.'
     health:
       blind_objectives: "%{model} wihtout %{kpi}"
       neglected_objectives: "%{model} with %{kpi} under 100% and no active %{task}"
       overdue_model: "Overdue %{model}"
+      everything_updated: No %{model} to update.
     accept:
       heading: Accept invitation
       body: By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}.
@@ -289,6 +290,7 @@ en:
     how_to_improve: "How to improve my hoshinplan's health?"
     finish_tutorial: Finish tutorial
     full_health: Congratualtions! Your Hoshin is in perfect health!
+    global_health: "Global health:"
     objectives_health: "Objectives' health: %{health}%"
     indicators_health: "Indicators' health: %{health}%"
     tasks_health: "Tasks' health: %{health}%"
