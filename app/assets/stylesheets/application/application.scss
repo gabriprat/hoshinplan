@@ -2820,3 +2820,9 @@ form#upload {
 		width: 300px;
 	}
 }
+
+@media (max-width:400px) {
+	body form#delete-history {
+		margin: .5em 0 1em 0;
+	}
+}

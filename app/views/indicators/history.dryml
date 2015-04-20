@@ -39,7 +39,7 @@
 			  }
 		</script>
 		<section class="panel">
-		        <header class="panel-heading">
+		        <header class="panel-heading clearfix">
 		            <p class="inline"><t key="history.historic_values">Historic values and goals</t></p>
     			<div class="history-actions">
 			<button onclick="$('#upload').toggle()" class="btn btn-primary inline"><t key="indicator.upload_values">Add/update values</t></button>
