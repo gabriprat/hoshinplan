@@ -619,6 +619,10 @@ body.hoshin ul.collection.goals {
 body.hoshin ul.collection.goals .goal {
 	border: 1px solid $secondary-background-color;
 	margin: 0;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
 }
 
 body.hoshin .collection.areas {
@@ -935,10 +939,9 @@ body.compact .table-row {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-box-shadow: inset 0 1px #333,0 1px 2px #c8cfe6;
-	-moz-box-shadow: inset 0 1px #333,0 1px 2px #c8cfe6;
-	box-shadow: inset 0 1px #333,0 1px 2px #c8cfe6;
-	/*min-width: 350px;*/
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+        -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
 }
 
 body .navbar-default {
