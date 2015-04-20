@@ -84,7 +84,7 @@
 			</sortable-collection>
 			<%# /swept-cache %>
 			<div id="health-popover"></div>
-			<modal id="goal-modal">
+			<modal id="add-goal-modal">
 				<modal:>
 				<set hid="#{this.id}"/>
 			<set compid="&this.company_id"/>

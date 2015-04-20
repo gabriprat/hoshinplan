@@ -2827,3 +2827,13 @@ form#upload {
 		margin: .5em 0 1em 0;
 	}
 }
+
+body .delete-button.delete-user-company-button {
+	color: #2f4154;
+	background: transparent;
+	&:hover, &:active, &:visited, &:focus, &:link {
+		color: #666;
+		background: transparent;
+		outline: none;
+	} 
+}
