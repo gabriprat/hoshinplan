@@ -393,7 +393,14 @@ $(document).ready(function() {
 	$('.modal').on('hidden.bs.modal', function (e) {
 		$('body').removeClass("modal-open");
 	});
+	$(".alert").toggle().fadeIn(1000);
+	window.setTimeout(function() {
+	    $(".alert").fadeTo(1500, 0).slideUp(500, function(){
+	        $(this).remove(); 
+	    });
+	}, 5000);
 });
+
 var _urq = _urq || []; 
 $(document).ready(function() {
 	var language = document.documentElement.lang;
@@ -404,3 +411,4 @@ $(document).ready(function() {
 	_urq.push(['setGACode', 'UA-47284244-1']); 
 	_urq.push(['initSite', site]);
 });
+

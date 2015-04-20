@@ -198,6 +198,17 @@ a.external:after {
 	max-height: 100vh;
 }
 
+#login input[type=email], #login input[type=text], #login input[type=password] {
+	width: 50%;
+	margin: auto;
+	border: 1px solid #999;
+	padding-left: 1em;
+	border-radius: 3px;
+	&:focus, &:active {
+		outline: none;
+	}
+}
+
 .local-login a i {
 	-webkit-transition: .4s ease-in-out;
 	-moz-transition: .4s ease-in-out;
@@ -949,6 +960,17 @@ body .navbar-default {
         background: $inverse-background-color;
 	border-radius: 0;
 	min-height: 3.5em;
+}
+
+body button.close {
+	line-height: 14px;
+	padding-bottom: .2em;
+}
+
+.front-page .alert {
+	position: fixed;
+	right: 2em;
+	top: 4em;
 }
 
 .front-page .navbar-default {
@@ -2844,7 +2866,7 @@ form#upload {
 	}
 }
 
-body .delete-button.delete-user-company-button {
+body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 	color: #2f4154;
 	background: transparent;
 	&:hover, &:active, &:visited, &:focus, &:link {
@@ -2852,4 +2874,19 @@ body .delete-button.delete-user-company-button {
 		background: transparent;
 		outline: none;
 	} 
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #666;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #666;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #666;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #666;
 }
