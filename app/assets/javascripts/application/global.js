@@ -394,3 +394,13 @@ $(document).ready(function() {
 		$('body').removeClass("modal-open");
 	});
 });
+var _urq = _urq || []; 
+$(document).ready(function() {
+	var language = document.documentElement.lang;
+	var site = "c990b744-a088-4aaa-8414-51217a5cfa9a";
+	if (language == "es") {
+		site = "64daf682-b7c5-40ba-8fe3-aeb24ec7f4c2";
+	}
+	_urq.push(['setGACode', 'UA-47284244-1']); 
+	_urq.push(['initSite', site]);
+});

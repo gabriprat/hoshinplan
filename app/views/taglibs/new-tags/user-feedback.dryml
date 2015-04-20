@@ -1,13 +1,3 @@
   <def tag="user-feedback">
-<script type="text/javascript"> 
-var _urq = _urq || []; 
-_urq.push(['setGACode', 'UA-47284244-1']); 
-_urq.push(['initSite', '#{ I18n.locale == :es ? "64daf682-b7c5-40ba-8fe3-aeb24ec7f4c2" : "c990b744-a088-4aaa-8414-51217a5cfa9a"}']); 
-
-(function() { 
-var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true; 
-ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js'); 
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s); 
-})(); 
-</script> 
+	<script type="text/javascript" src="https://cdn.userreport.com/userreport.js" async="false"></script>
   </def>
