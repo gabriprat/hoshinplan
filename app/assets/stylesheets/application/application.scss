@@ -2331,6 +2331,11 @@ form.indicator-value input[type=radio] {
 	transform: rotate(180deg);
 }
 
+.postit .task-deadline {
+	font-size: 1em;
+	font-weight: 400;
+}
+
 .postit div.deadline {
 	position: absolute;
 	bottom: 0.1em;
@@ -2342,9 +2347,10 @@ form.indicator-value input[type=radio] {
 	position: absolute;
 	bottom: 1.6em;
 	left: 0;
-	margin-left: 0.5em;
+	margin-left: 0.55em;
 	text-decoration: line-through;
 	color: #999;
+	font-size: .95em;
 }
 
 .postit .user-image {
