@@ -39,7 +39,7 @@
 			<a href="#{hoshin_path this}.pdf?show_all=true&v=#{this.updated_at.to_i}" title="&t 'hoshin_actions.export_as_pdf'" class="title-action">
 	    	            <span class="ic-download"/>
 			</a>
-			<a href="#" onclick="startPresentation(); return false;" title="&t 'hoshin_actions.presentation'" class="title-action">
+			<a href="#" id="btn-present" onclick="startPresentation(); return false;" title="&t 'hoshin_actions.presentation'" class="title-action">
 	    	            <span class="ic-desktop"/>
 			</a>
 			<a href="#{hoshin_path this}/kanban" title="Kanban" class="title-action">

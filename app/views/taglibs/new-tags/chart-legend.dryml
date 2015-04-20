@@ -8,7 +8,7 @@
 	<div class="chart-legend-wrapper">
 		<div class="chart-legend">
 			<% elements.each { |label,color| %>
-				<span class="legend-color" style="background-color: #{color}"></span><span class="legend-label">#{label}</span>
+				<span class="legent-element"><span class="legend-color" style="background-color: #{color}"></span><span class="legend-label">#{label}</span></span>
 			<% } %>
 		</div>
 	</div>

@@ -1387,6 +1387,10 @@ form#delete-history, form#delete-history input {
 }
 @media (max-width: 767px) {
 	
+	#btn-present {
+		display:none;
+	}
+	
 	.content-header {
 		position: relative;
 	}
@@ -1394,7 +1398,7 @@ form#delete-history, form#delete-history input {
 	.content-header #sec-actions {
 		float: none;
 		display: block;
-		padding-bottom: 1em;
+		margin: .5em 0 1em 0;
 	}
 	
 	.content-header a.hoshin-link {
@@ -1407,6 +1411,9 @@ form#delete-history, form#delete-history input {
 		position: absolute;
 		bottom: 5px;
 		left: 0;
+		a {
+			font-size: .9em;
+		}
 	}
 	
 	.navbar-nav > li > .dropdown-menu {
@@ -1417,7 +1424,7 @@ form#delete-history, form#delete-history input {
 	
 	.navbar-toggle.hamburger {
 		display: block;
-		margin: 5px 15px 5px 0;
+		margin: 9px 15px 15px 0;
 	}
 	
 	.navbar-nav {
@@ -2796,4 +2803,20 @@ span.legend-color {
 span.legend-label {
   vertical-align: middle;
   margin: 0 1em 0 0.25em;
+}
+
+span.legent-element {
+  white-space: nowrap;
+}
+
+
+form#upload {
+	textarea {
+		height: 16em;
+		width: 300px;
+		display: inline-block;
+	}
+	.bubble {
+		width: 300px;
+	}
 }

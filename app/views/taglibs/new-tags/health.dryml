@@ -6,7 +6,7 @@
 			<content:>
 			<% health = this.health %>	
 			<if test="&health[:action]=='none'">
-			<a href="#health-report" id="health" data-toggle="popover" class="title-action" data-title="#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}"><span class="ic-heartbeat"></span><span class="health-badge label label-danger label-as-badge">#{this.neglected_objectives_count + this.blind_objectives_count + this.outdated_indicators_count + this.outdated_tasks_count}</span></a>
+			<a href="javascript:void(0);" id="health" data-toggle="popover" class="title-action" data-title="#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}"><span class="ic-heartbeat"></span><span class="health-badge label label-danger label-as-badge">#{this.neglected_objectives_count + this.blind_objectives_count + this.outdated_indicators_count + this.outdated_tasks_count}</span></a>
 			<div class="hide" id="health-report">
 				<p if="&health[:value]==100">
 					<t key="hoshin.full_health">Your hoshin has full health! Congratulations!!</t>

@@ -49,7 +49,7 @@
 			</div>
 			<div style="text-transform: none;">
     			<form id="upload" style="display:none;">
-    				<textarea name="history_values" style="width: 20em; height: 10em;"></textarea>
+    				<textarea name="history_values" clas="form-control"></textarea>
     				<p class="bubble">
     					<t key="indicator.upload_values_by">
     					Upload values by putting one value per line. Each line must have the format: mm/dd/yyy,value,goal,previous. For example: 4/21/2014,29.3,100,21
