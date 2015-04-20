@@ -10,9 +10,7 @@
 	  	</a>
 	  </else>
 	</heading:>
-        <after-footer: class="front-page">
-        <user-feedback/>
-        </after-footer:>
+
 	<edit-link: replace/>
 	<creator-link: replace/>
 	</old-show-page>
