@@ -2,7 +2,8 @@ en:
   loading: Loading...
   saving: Saving...
   new: NEW
-  value_goal_previous: 'Value,Goal,Previous'
+  value_goal_previous: 'Value,Goal,Previous,Increment'
+  value_goal_previous_long: 'Current value,Goal,Previous value,Increment over previous value (%)'
   insert_box_link: Insert Box link
   emails:
     thank_you: 'Thank you,'

@@ -3,6 +3,7 @@ es:
   saving: Guardando...
   new: Nuevo
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
+  value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
   insert_box_link: Insertar enlace a Box
   emails:
     thank_you: 'Gracias,'

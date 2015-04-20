@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/gabriprat/morrisjs-rails
-  revision: 1801865eccbca0449a988c6cf8f776a9d9261f34
+  revision: ff94045cb0a370a3ee29a525ca8f3ed4726dd553
   specs:
     morrisjs-rails (0.5.1)
       railties (> 3.1, < 5)

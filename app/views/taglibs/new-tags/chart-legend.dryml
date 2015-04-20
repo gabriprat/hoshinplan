@@ -1,0 +1,15 @@
+<def tag="chart-legend" attrs="labels,colors">
+<%
+	labels = labels.split(/, ?/) if labels.is_a? String
+	colors = colors.split(/, ?/) if colors.is_a? String
+	fail "Labels and colors should have the same length" unless labels.size == colors.size
+	elements = Hash[labels.zip colors]
+%>
+	<div class="chart-legend-wrapper">
+		<div class="chart-legend">
+			<% elements.each { |label,color| %>
+				<span class="legend-color" style="background-color: #{color}"></span><span class="legend-label">#{label}</span>
+			<% } %>
+		</div>
+	</div>
+</def>
