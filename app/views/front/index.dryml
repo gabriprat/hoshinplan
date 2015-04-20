@@ -1,5 +1,9 @@
 <page title="Home">
 
+  <after-footer: class="front-page">
+  <user-feedback/>
+  </after-footer:>
+  
   <body: class="front-page"/>
 
   <content:>

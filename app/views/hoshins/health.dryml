@@ -4,7 +4,7 @@
 		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
 	</parent-link:>
 	<heading:>
-		<p><t key="health.health_for" name="#{this.name}">Health for <name/></t></p>
+		<span><t key="health.health_for" name="#{this.name}">Health for <name/></t></span>
 		<health part="sec-actions"/>
 	</heading:>
 	<content-body:>

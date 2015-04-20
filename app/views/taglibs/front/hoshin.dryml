@@ -1,5 +1,6 @@
 <extend tag="show-page" for="Hoshin">
 	<old-show-page merge>
+	
 		<prepend-main-content: >
 			<form with="&current_user" ajax id="finish-tutorial">
 				<input name="tutorial_step" type="hidden" value="2"/>
