@@ -1,6 +1,6 @@
-<def tag="ajax-load" attrs="id, updates">
-		<unless test="&params[:ajax_load]">
-			<a href="?ajax_load=true" action="show" updates="#{updates}" id="update-#{id}" ajax data-rapid='{"ajax-load":{}}' no-spinner></a>
+<def tag="ajax-load" attrs="id, updates,href,inline">
+		<unless test="&params[:ajax_load] || inline">
+			<a href="#{hoshin_path this}?ajax_load=true" action="show" updates="#{updates}" id="update-#{id}" ajax data-rapid='{"ajax-load":{}}' no-spinner></a>
 		</unless>
 		<else>
 			<do param="content"/>

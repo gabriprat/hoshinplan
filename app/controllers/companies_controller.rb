@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
   def show
     current_user.all_companies.load
     current_user.all_hoshins.load
-    self.this = Company.includes(:hoshins).user_find(current_user, params[:id])
+    self.this = Company.includes(hoshins: :creator).references(:user_companies).user_find(current_user, params[:id])
     hobo_show
   end
   

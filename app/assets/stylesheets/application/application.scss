@@ -520,7 +520,14 @@ h2.heading .title-action {
 	position: relative;
 }
 
-h2.heading .title-action .label {
+.health-indicator .title-action {
+	margin: 0 15px;
+	color: #aaa;
+	position: relative;
+	float: right;
+}
+
+h2.heading .title-action .label, .health-indicator .title-action .label {
 	position: absolute;
 	font-size: 10px;
 	line-height: 1em;
@@ -2874,6 +2881,12 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 		background: transparent;
 		outline: none;
 	} 
+}
+
+.collection.hoshins li {
+	display: inline-block;
+	width: 30%;
+	margin: 0 1em;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */

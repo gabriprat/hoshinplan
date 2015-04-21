@@ -143,9 +143,9 @@ var dateFormat = function(format, d) {
 
 
 function updateTimer(percent) {
-	$("#health").popover('destroy');
+	$(".health-popover-toggle").popover('destroy');
 	$("#health-popover").html("");
-	$('#health').popover({
+	$('.health-popover-toggle').popover({
 	    container: '#health-popover',
 	    html: true,
 	    placement: 'bottom',
@@ -157,17 +157,17 @@ function updateTimer(percent) {
 	        return $(this).next().html();
 	    }
 	});
-	$( "#health" ).click(function( event ) {
+	$( ".health-popover-toggle" ).click(function( event ) {
 	  event.stopPropagation();
 	  $("#health-popover .popover").addClass("fixed-x");
 	});
 	$("#tutorial").hjq_tutorial("update");
 	$('body').on('keyup.dismiss.healthPopover', function (e) {
-		e.which == 27 && $('#health').popover('hide');
+		e.which == 27 && $('.health-popover-toggle').popover('hide');
 	});
 	$('body').on('click.dismiss.healthPopover', function (e) {
 		if ($('#health-popover div.popover:visible').length){
-			$('#health').popover('hide');
+			$('.health-popover-toggle').popover('hide');
 		}
 	});
 }
@@ -393,7 +393,7 @@ $(document).ready(function() {
 	$('.modal').on('hidden.bs.modal', function (e) {
 		$('body').removeClass("modal-open");
 	});
-	$(".alert").toggle().fadeIn(1000);
+	$(".alert").toggle(0).fadeIn(1000);
 	window.setTimeout(function() {
 	    $(".alert").fadeTo(1500, 0).slideUp(500, function(){
 	        $(this).remove(); 

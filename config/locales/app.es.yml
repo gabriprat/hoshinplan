@@ -5,6 +5,7 @@ es:
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
   value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
   insert_box_link: Insertar enlace a Box
+  created_by: Creado por
   emails:
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'

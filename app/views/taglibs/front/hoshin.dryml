@@ -119,6 +119,21 @@
 	 </old-show-page>
 </extend>
 
+<extend tag="card" for="Hoshin">
+  <old-card merge>
+    <append-heading:>
+        <div part="health" id="health-#{this.id}" class="health-indicator">
+		<health suffix="-#{this.id}" inline="true"/>
+        </div>
+    </append-heading:>
+    <body:>
+      <div><t key="created_by"/> <a:creator param="creator-link"/></div>
+      <ht key="area.collection.count" count="&this.areas.size"/>
+    </body:>
+  </old-card>
+</extend>
+
+
 <extend tag="form" for="Hoshin">
 	<set parent="&this.company.hoshins.size > 0 ? ', parent' : ''" if="&this.company"/>
 	<old-form merge>

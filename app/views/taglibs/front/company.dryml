@@ -1,5 +1,9 @@
 <extend tag="show-page" for="Company">
 	<old-show-page merge>
+	
+	        <collection-heading:>
+	            <human-collection-name collection="hoshins" your/>
+	        </collection-heading:>
 		<prepend-main-content: >
 			<div id="tutorial">
 			<form with="&current_user" ajax id="finish-tutorial">
@@ -9,6 +13,7 @@
 			<cms key="tutorial/index_#{locale}" />
 			</call-tag>	
 			</div>		
+			<div id="health-popover"></div>
 		</prepend-main-content: >
 		<prepend-content-header: >
 			<% new_hoshin_url = object_url @this.hoshins, :action => :new %>
