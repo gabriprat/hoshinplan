@@ -148,7 +148,7 @@ function updateTimer(percent) {
 	$('.health-popover-toggle').popover({
 	    container: '#health-popover',
 	    html: true,
-	    placement: 'bottom',
+	    placement: 'right auto',
 	    title: function () {
 		    var close = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(\'#health\').popover(\'hide\');$.undim();">&times;</button>';
 		    return $(this).data("title") + close;
@@ -158,6 +158,7 @@ function updateTimer(percent) {
 	    }
 	});
 	$( ".health-popover-toggle" ).click(function( event ) {
+	  $('.health-popover-toggle').not(this).popover('hide');
 	  event.stopPropagation();
 	  $("#health-popover .popover").addClass("fixed-x");
 	});
