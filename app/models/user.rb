@@ -191,7 +191,7 @@ class User < ActiveRecord::Base
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation],
       :become => :inactive, :new_key => true  do
-      UserMailer.delay.activation(self, lifecycle.key)
+      UserCompanyMailer.delay.activation(self, lifecycle.key)
     end
     
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
@@ -209,15 +209,15 @@ class User < ActiveRecord::Base
     end
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
-      UserMailer.delay.activation(self, lifecycle.key)
+      UserCompanyMailer.delay.activation(self, lifecycle.key)
     end
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
-      UserMailer.delay.forgot_password(self, lifecycle.key)
+      UserCompanyMailer.delay.forgot_password(self, lifecycle.key)
     end
 
     transition :request_password_reset, { :invited => :invited }, :new_key => true do
-      UserMailer.delay.forgot_password(self, lifecycle.key)
+      UserCompanyMailer.delay.forgot_password(self, lifecycle.key)
     end
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,

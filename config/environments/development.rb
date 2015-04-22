@@ -32,8 +32,8 @@ config.action_mailer.delivery_method = :sendmail
 #   :arguments => '-i -t'
 # }
 config.action_mailer.raise_delivery_errors = true
-config.action_mailer.asset_host = 'http://localhost:5000'
-config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: false }
+config.action_mailer.asset_host = 'http://www.hoshinplandev.com:5000'
+config.action_mailer.default_url_options = { host: 'www.hoshinplandev.com:5000', only_path: false }
 
 
 
@@ -55,5 +55,10 @@ config.action_mailer.default_url_options = { host: 'localhost:5000', only_path: 
   }
   
   config.session_store :cookie_store, :key => '_hoshinplan_session', :domain => :all
+  
+  
+    config.after_initialize do
+      Rails.application.routes.default_url_options[:host] = 'www.hoshinplandev.com:5000'
+    end
     
 end

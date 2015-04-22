@@ -56,6 +56,12 @@ es:
     removed:
       subject: Colaboración cancelada
       message: '%{user2} ha cancelado tu colaboración y ya no tendrás acceso al Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle.'
+    forgot_password:
+      subject: 'Restablecer tu contraseña de Hoshinplan'
+      message: Para cambiar tu contraseña de Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas.
+    activation:
+      subject: Valida tu dirección de email en Hoshinplan
+      message: Ya casi has terminado tu registro en Hoshinplan. Para validar tu email en Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas.
   show_all: Mostrar todo...
   you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
   textile: Textile
@@ -112,6 +118,8 @@ es:
     activate:
       heading: Activar cuenta
       body: ¡Estás a sólo un click de activar tu cuenta! Por favor, confírmalo pulsado el botón más abajo.
+    reset_password:
+      heading: Restablecer contraseña
     table_plus:
       clear_label: Borrar filtro
       submit_label: Buscar
@@ -196,7 +204,8 @@ es:
         lifecycle:
           transitions:
             accept_invitation: Aceptar la invitación		
-            activate: Activar cuenta		
+            activate: Activar cuenta
+            reset_password: Restablecer contraseña
       user/languages:
         es: Español (España)
         en: English (US)

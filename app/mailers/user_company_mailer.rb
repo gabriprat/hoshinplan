@@ -106,4 +106,35 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
   
+  def forgot_password(user, key)
+    I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
+    @user, @message = user, @key = key
+    mail( :subject => I18n.translate("emails.forgot_password.subject", :name => user.name.blank? ? user.email_address : user.name),
+          :to      => @user.email_address) do |format|
+            format.html {
+              render_email("forgot_password", {
+                  :user => user, :app_name => @app_name,
+                  :url => reset_password_from_email_url(:id => @user, :key => @key)
+                }          
+              )
+            }
+    end
+  end
+
+
+  def activation(user, key)
+    I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
+    @user, @message = user, @key = key
+    mail( :subject => I18n.translate("emails.activation.subject", :name => user.name.blank? ? user.email_address : user.name),
+          :to      => @user.email_address) do |format|
+            format.html {
+              render_email("activation", {
+                :user => user, :app_name => @app_name,
+                :url =>  activate_from_email_url(:id => @user, :key => @key)
+                }          
+              )
+            }
+    end
+  end
+  
 end

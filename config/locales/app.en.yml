@@ -56,6 +56,12 @@ en:
     removed:
       subject: Collaboration canceled
       message: '%{user2} has canceled your collaboration to the Hoshinplan of  %{company}.'
+    forgot_password:
+      subject: 'Reset your Hoshinplan password'
+      message: In order to reset your Hoshinplan password you only need to use the following link during the next 24 hours.
+    activation:
+      subject: Confirm your email address at Hoshinplan
+      message: You are almost done signing up at Hoshinplan. In order to validate your email address at Hoshinplan you only need to use the following link during the next 24 hours.
   show_all: Show all...
   you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
   textile: Textile
@@ -112,6 +118,8 @@ en:
     activate:
       heading: Activate account
       body: Just one click away from your activation! Please confirm by pushing the button below.
+    reset_password:
+      heading: Restablecer contraseña
     table_plus:
       clear_label: Clear
       submit_label: Search
@@ -197,6 +205,7 @@ en:
           transitions:
             accept_invitation: Accept invitation
             activate: Activate account
+            reset_password: Reset password
       user/languages:
         es: Español (España)
         en: English (US)
