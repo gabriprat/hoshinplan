@@ -996,15 +996,19 @@ body button.close {
 	padding: 0;
 }
 
-body .hero-unit {
+body .jumbotron {
 	border-radius: 0;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	-ms-border-radius: 0;
-	margin: -21px -20px 0 -20px;
+	margin: 0 -50px;
+	ol,ul {
+	        font-size: 20px;
+	        font-weight: 200;
+	}
 }
 
-body .hero-unit h1, body #cms .hero-unit h1 {
+body .jumbotron h1, body #cms .jumbotron h1 {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 500;
 	margin-bottom: 0.5em;
@@ -2903,6 +2907,20 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 	}
 }
 
+.alert {
+	margin-top: 1em;
+	h2.heading {
+		font-family: $secondary-font-stack;
+		font-size: 1.5em;
+	}
+	ul {
+		list-style-position: inside;
+	}
+}
+
+.btn-large {
+	font-size: 1em;
+}
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #666;
 }

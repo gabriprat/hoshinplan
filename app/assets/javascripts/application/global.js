@@ -404,12 +404,12 @@ $(document).ready(function() {
 	$('.modal').on('hidden.bs.modal', function (e) {
 		$('body').removeClass("modal-open");
 	});
-	$(".alert").toggle(0).fadeIn(1000);
+	$(".alert").css("display", "none").fadeIn(1000);
 	window.setTimeout(function() {
-	    $(".alert").fadeTo(1500, 0).slideUp(500, function(){
+	    $(".alert.alert-info,.alert.alert-success").fadeTo(1500, 0).slideUp(500, function(){
 	        $(this).remove(); 
 	    });
-	}, 5000);
+	}, 8000);
 });
 
 var _urq = _urq || []; 

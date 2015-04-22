@@ -67,6 +67,8 @@ es:
     compact: Vista expandida o compacta
   no_oid_url: No existe un login corporativo para el email introducido
   errors:
+    messages:
+      invalid: es inválido
     internal_server_error: '¡Oh no! Ha habido algún problema técnico en tu última operación. <br/>Hemos recibido el error y nos pondremos a trabajar inmediatamente para resolverlo.'
     not_found: 'La página que estás buscando no existe. <br/>Comprueba la URL. Si crees que es un error puedes ponerte en contacto con nosotros.'
     service_unavailable: '¡Lo sentimos! Estamos en mantenimiento.  <br/>Estamos trabajando duro para hacer mejoras en nuestra aplicación y para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar.'
@@ -137,14 +139,17 @@ es:
               blank: Tienes que seleccionar un objetivo al que pertenece esta tarea
         user:
           attributes:
+            password_confirmation:
+              confirmation: no coincide con la Contraseña
             email_address:
-              taken: La dirección de email ya pertenece a otro usuario.
+              taken: La dirección de email ya pertenece a otro usuario
+              too_short: es demasiado corto
       messages:
         record_invalid: Registro incorrecto
       template:
         header:
           one: Un error ha impedido que este %{model} se guardara
-          other: '%{count} errores han impedido que este #{model} se guardara'
+          other: '%{count} errores han impedido que este %{model} se guardara'
         body: 'Ha habido problemas con los siguientes campos:'
     models:
       user:

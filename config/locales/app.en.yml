@@ -67,6 +67,8 @@ en:
     compact: Expanded or compact view
   no_oid_url: No corporate login for the given email
   errors: 
+    messages:
+      invalid: is invalid
     internal_server_error: 'Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately.'
     not_found: 'The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us.'
     service_unavailable: 'Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again.'
@@ -136,15 +138,18 @@ en:
             objective:
               blank: You have to select the objective which this task belongs
         user:
+          password_confirmation:
+              confirmation: Password confirmation doesn't match Password
           attributes:
             email_address:
               taken: The email address is already taken
+              too_short: es demasiado corto
       messages:
         record_invalid: Invalid record
       template:
         header:
           one: An error prevented this %{model} to be saved
-          other: '%{count} errors prevented this #{model} to be saved'
+          other: '%{count} errors prevented this %{model} to be saved'
         body: 'There have been problems with the following fields:'
     models:
       user:
