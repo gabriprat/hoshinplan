@@ -145,17 +145,27 @@ var dateFormat = function(format, d) {
 function updateTimer(percent) {
 	$(".health-popover-toggle").popover('destroy');
 	$("#health-popover").html("");
-	$('.health-popover-toggle').popover({
-	    container: '#health-popover',
-	    html: true,
-	    placement: 'right auto',
-	    title: function () {
-		    var close = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(\'#health\').popover(\'hide\');$.undim();">&times;</button>';
-		    return $(this).data("title") + close;
-	    },
-	    content: function () {
-	        return $(this).next().html();
-	    }
+	$('.health-popover-toggle').each( function() {
+		$(this).popover({
+		    container: '#health-popover',
+		    html: true,
+		    placement: function() {return $( window ).width() < 767 ? 'bottom' : 'right auto'},
+			title: function () {
+			    var close = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(\'#health\').popover(\'hide\');$.undim();">&times;</button>';
+			    return $(this).data("title") + close;
+		    },
+		    viewport: function(elem) {  
+			    	var sel = null;
+			    	var cl = elem.closest('.section').attr('class');
+				if (cl) {
+					sel = "." + cl.trim().replace(/\s/gi, ".");
+				} 
+				return {"selector": sel, "padding": "0"};
+			}($(this)),
+		    content: function () {
+		        return $(this).next().html();
+		    }
+		});
 	});
 	$( ".health-popover-toggle" ).click(function( event ) {
 	  $('.health-popover-toggle').not(this).popover('hide');

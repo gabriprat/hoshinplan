@@ -527,6 +527,13 @@ h2.heading .title-action {
 	float: right;
 }
 
+@media (max-width: 767px) { 
+	.health-indicator .title-action {
+		margin-right: 6em;
+	}
+	
+}
+
 h2.heading .title-action .label, .health-indicator .title-action .label {
 	position: absolute;
 	font-size: 10px;
@@ -2887,6 +2894,13 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 	display: inline-block;
 	width: 30%;
 	margin: 0 1em;
+}
+
+@media (max-width:767px) {
+	.show-page.company .collection.hoshins li {
+		display: block;
+		width: 100%;
+	}
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
