@@ -119,7 +119,7 @@ en:
       heading: Activate account
       body: Just one click away from your activation! Please confirm by pushing the button below.
     reset_password:
-      heading: Restablecer contraseña
+      heading: Reset password
     table_plus:
       clear_label: Clear
       submit_label: Search
