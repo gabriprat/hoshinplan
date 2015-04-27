@@ -8,7 +8,7 @@
 		</if>
 		<if test="&column == 'Objective'">
 			<div class="column name" data-label="Name" part="obj-name" id="obj-name-#{this.id}">
-				<rmodal title="#{ht('objective.health.' + this.status + '_objectives', kpi: Indicator.model_name.human(:count => 100), task: Task.model_name.human(:count => 100)) if this.status}" url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}" class="#{this.status}"><name/> </rmodal> <user-abbrev:responsible_id paren/>	
+				<rmodal title="#{ht('objective.health.' + this.status + '_objectives', kpi: Indicator.model_name.human(:count => 100), task: Task.model_name.human(:count => 100)) unless this.status.blank?}" url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}" class="#{this.status}"><name/> </rmodal> <user-abbrev:responsible_id paren/>	
 			</div>
 		</if>
 		<if test="&column == 'Resp.' || column == 'Responsible'">

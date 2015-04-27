@@ -58,9 +58,13 @@ class Objective < ActiveRecord::Base
   scope :neglected, -> { 
     task = Task.arel_table
     objective = Objective.arel_table
-    tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].in([:active]))
+    obj2 = arel_table.create_table_alias(objective, :obj2)
+    subq_where = obj2[:parent_id].eq(objective[:id]).or(obj2[:id].eq(objective[:id]))
+    subq = objective.from(obj2).where(subq_where).project(obj2[:id])
+    
+    tasks_cond = task[:objective_id].in(subq).and(task[:status].in([:active]))
     indicator = Indicator.arel_table
-    ind_cond = indicator[:objective_id].eq(objective[:id])
+    ind_cond = indicator[:objective_id].in(subq)
     includes([:area, :responsible])
     .where(Task.unscoped.where(tasks_cond).exists.not)
       .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists).references(:responsible)
