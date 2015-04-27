@@ -60,16 +60,16 @@ class Hoshin < ActiveRecord::Base
   end
   
   def backlog_tasks
-    tasks.backlog.order(:lane_pos)
+    tasks.backlog.reorder(:lane_pos)
   end
   def active_tasks
-    tasks.active.order(:lane_pos)
+    tasks.active.reorder(:lane_pos)
   end
   def completed_tasks
-    tasks.completed.visible.order(:lane_pos)
+    tasks.completed.visible.reorder(:lane_pos)
   end
   def discarded_tasks
-    tasks.discarded.visible.order(:lane_pos)
+    tasks.discarded.visible.reorder(:lane_pos)
   end
   def outdated_tasks
     tasks.overdue
