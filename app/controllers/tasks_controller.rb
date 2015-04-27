@@ -14,9 +14,9 @@ class TasksController < ApplicationController
   
   def reorder_lane
     con  = ActiveRecord::Base.connection.raw_connection
-    values = [params[:task_ordering].join(",")].concat(params[:task_ordering])
+    values = [params[:task_ordering]].concat(params[:task_ordering].split(","))
     bind = ""
-    params[:task_ordering].each_with_index {|item,index|
+    params[:task_ordering].split(",").each_with_index {|item,index|
       bind += "," unless bind.blank?
       bind += "$" + (index+2).to_s
     }

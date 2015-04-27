@@ -114,8 +114,9 @@ var postitDrop = function (event, ui) {
 	                                    });
 	roptions.data['authenticity_token']=that.hjq('pageData').form_auth_token.value;
 	roptions.data=$.param(roptions.data);
+	roptions.data = roptions.data+"&task_ordering=-1"
 	that.children("*[data-rapid-context]").each(function(i) {
-	roptions.data = roptions.data+"&"+annotations.reorder_parameter+"[]="+$(this).hjq('contextId');
+	roptions.data = roptions.data + "," + $(this).hjq('contextId') ;
 	});
 
 	$.ajax("/tasks/reorder_lane/" + lane + "/" + ui.item.hjq('contextId'), roptions);
