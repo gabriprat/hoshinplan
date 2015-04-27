@@ -25,7 +25,7 @@
 	<if test="&column == 'Deadline'">
 		  <div class="column nowrap" data-label="Deadline">
 			  	<if test="&!@pdf && (this.status=='active' || this.status == 'backlog' ?'true':'')">
-					<autosubmit:deadline class="inline-form wider" updates="#tutorial,#sec-actions" success="equalHeightSections();" live/>
+					<autosubmit:deadline class="inline-form wider" updates="#obj-name-#{this.objective_id},#tutorial,#sec-actions" success="equalHeightSections();" live/>
 				</if>
 				<else>
 					#{l this.deadline, format: :short unless this.deadline.nil?}
@@ -40,14 +40,14 @@
 	      	<ul class="icons">
 	      	  <if test="#{this.status=='active'?'true':''}">
 	      		  <li class="complete">
-	      		  <form ajax updates="tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="discard" class="inline-form">
+	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="discard" class="inline-form">
 					<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.discard', :default => 'Discard'}">
 						<span class="ic-times-circle ic-fw"></span>
 					</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="discard">
-	      		  <form ajax updates="tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="complete" class="inline-form">
+	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="complete" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.complete', :default => 'Complete'}">
 					<span class="ic-check-circle ic-fw"></span>
 				</button>
@@ -58,14 +58,14 @@
 	      		  <li class="reactivate">
 			  <set trans="&this.status=='backlog' ? 'start' : 'reactivate'"/>
 			  <set icon="&this.status=='backlog' ? 'ic-play-circle' : 'ic-recycle'"/>
-	      		  <form ajax updates="tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="#{trans}" class="inline-form">
+	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="#{trans}" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.' + trans, :default => trans.capitalize}">
 					<span class="fa #{icon} ic-fw"></span>
 				</button>
 	      		  </form>
 	      	  	  </li>
 	      		  <li class="delete">
-	      		  <form ajax updates="tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="delete" class="inline-form">
+	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="delete" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.delete', :default => 'Delete'}">
 					<span class="ic-trash-o ic-fw"></span>
 				</button>

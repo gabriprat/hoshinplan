@@ -908,9 +908,13 @@ body .multioverdue, body .overdue {
 			color: red;
 		} 
 	}
-	.autosubmit.overdue input {
+	.autosubmit.overdue input,.autosubmit.multioverdue input,.autosubmit.neglected input,.autosubmit.blind input {
 		color: red;
 	}
+}
+
+.column.name a.blind, .column.name a.neglected {
+		color: red;
 }
 
 .completed, .completed .overdue, .completed .multioverdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {
@@ -1025,6 +1029,16 @@ body .form-search input {
 	    box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
 }
 
+body .modal .modal-body.update-kpi-modal {
+	h5 {
+		padding-left: 3em;
+	}
+	.last-update-field label {
+		display: block;
+		width: 35em;
+		margin: 1em auto;
+	}
+}
 body .form-search i {
 	margin-left: 155px;
 }

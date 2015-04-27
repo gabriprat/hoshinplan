@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420233623) do
+ActiveRecord::Schema.define(version: 20150427182135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,17 +226,19 @@ ActiveRecord::Schema.define(version: 20150420233623) do
   end
 
   create_table "objectives", force: true do |t|
-    t.string   "name",           null: false
+    t.string   "name",                           null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "area_id",        null: false
-    t.integer  "hoshin_id",      null: false
+    t.integer  "area_id",                        null: false
+    t.integer  "hoshin_id",                      null: false
     t.integer  "obj_pos"
     t.integer  "parent_id"
     t.integer  "responsible_id"
-    t.integer  "company_id",     null: false
+    t.integer  "company_id",                     null: false
     t.integer  "creator_id"
+    t.boolean  "neglected",      default: false
+    t.boolean  "blind",          default: true
   end
 
   add_index "objectives", ["area_id"], name: "index_objectives_on_area_id", using: :btree

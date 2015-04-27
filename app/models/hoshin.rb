@@ -100,20 +100,26 @@ class Hoshin < ActiveRecord::Base
       logger.debug "====== END: Health update! Not updating an already updated hoshin"
       return      
     end
-    neglected = Objective.unscoped.where(hoshin_id: id).neglected.count(:id)
-    self.neglected_objectives_count = neglected
-    
-    outdated_ind = Indicator.unscoped.where(hoshin_id: id).overdue.count(:id)
-    self.outdated_indicators_count = outdated_ind
-
-    outdated_tsk = Task.unscoped.where(hoshin_id: id).overdue.count(:id)
-    self.outdated_tasks_count = outdated_tsk
-    
-    blind = Objective.unscoped.where(hoshin_id: id).blind.count(:id)
-    self.blind_objectives_count = blind  
+    Objective.transaction do
+      objectives = Objective.unscoped.where(hoshin_id: id)
+      objectives.update_all(neglected: false, blind: false)
+      neglected = objectives.neglected
+      neglected.update_all(neglected: true)
+      self.neglected_objectives_count = neglected.count(:id)
   
-    self.touch(:health_updated_at)
-    self.save!
+      outdated_ind = Indicator.unscoped.where(hoshin_id: id).overdue.count(:id)
+      self.outdated_indicators_count = outdated_ind
+
+      outdated_tsk = Task.unscoped.where(hoshin_id: id).overdue.count(:id)
+      self.outdated_tasks_count = outdated_tsk
+  
+      blind = Objective.unscoped.where(hoshin_id: id).blind
+      blind.where(blind: false).update_all(blind: true)
+      self.blind_objectives_count = blind.count(:id)
+
+      self.touch(:health_updated_at)
+      self.save!
+    end
     Rails.logger.debug "==== END: Health update!"
   end
   

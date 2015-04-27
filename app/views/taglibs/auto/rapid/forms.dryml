@@ -112,7 +112,7 @@
 <def tag="form" for="Objective">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, obj_pos, area, company, creator, hoshin, parent, responsible" param/>
+    <field-list fields="name, description, neglected, blind, obj_pos, area, company, creator, hoshin, parent, responsible" param/>
     <div param="actions">
       <submit label="#{ht 'objective.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -31,7 +31,7 @@
 		<set aid="#{this.id}"/>
 		<set compid="&this.company_id"/>
 		<div class="modal-dialog">
-		<form class="modal-content" with="&Objective.new" updates="#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); $('body').removeClass('modal-open'); equalHeightSections();">
+		<form class="modal-content" with="&Objective.new" updates="#objectives-#{aid},#area-#{aid},#tutorial,#sec-actions" success="$('#add-objective-modal-#{this.id}').modal('hide'); $('.modal-backdrop').remove(); $('body').removeClass('modal-open'); equalHeightSections();">
 			<div class="modal-body">
 				<field-list: fields="name, description, responsible, parent">
 					<parent-tag: options="&options" />

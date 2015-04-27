@@ -1257,7 +1257,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="neglected, blind" param/>
 
       <a:creator param="creator-link"/>
 

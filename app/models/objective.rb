@@ -8,6 +8,8 @@ class Objective < ActiveRecord::Base
   fields do
     name        :string, :null => false
     description HoboFields::Types::TextileString
+    neglected    :boolean, :default => false, :required => true
+    blind       :boolean, :default => true, :required => true
     timestamps
   end
   validates_presence_of :name
@@ -43,16 +45,20 @@ class Objective < ActiveRecord::Base
   scope :blind, -> {
     indicator = Indicator.arel_table
     objective = Objective.arel_table
+    obj2 = arel_table.create_table_alias(objective, :obj2)
+    subq_where = obj2[:parent_id].eq(objective[:id]).or(obj2[:id].eq(objective[:id]))
+    subq = objective.from(obj2).where(subq_where).project(obj2[:id])
+
     indicator_cond = includes([:area, :responsible])
     .where(Indicator.unscoped
-        .where(indicator[:objective_id].eq(objective[:id]))
+        .where(indicator[:objective_id].in(subq))
         .exists.not).references(:responsible)
   }
   
   scope :neglected, -> { 
     task = Task.arel_table
     objective = Objective.arel_table
-    tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].eq(:active))
+    tasks_cond = task[:objective_id].eq(objective[:id]).and(task[:status].in([:active]))
     indicator = Indicator.arel_table
     ind_cond = indicator[:objective_id].eq(objective[:id])
     includes([:area, :responsible])
@@ -77,6 +83,12 @@ class Objective < ActiveRecord::Base
       Indicator.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.indicators.blank?
       Task.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.tasks.blank?
     end
+  end
+  
+  def status
+    ret = :neglected.to_s if neglected
+    ret = :blind.to_s if blind
+    ret ||= ""
   end
   
   def position

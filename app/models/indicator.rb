@@ -51,7 +51,6 @@ class Indicator < ActiveRecord::Base
       reorder('ind_pos')
     end
   }
-        
   
   scope :due, lambda { |*interval|
     joins(:responsible)
