@@ -36,14 +36,14 @@ class Task < ActiveRecord::Base
   
   acts_as_list :scope => :area, :column => "tsk_pos"
   
-  set_default_order [:status, :tsk_pos]
+  set_default_order 'CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos'
   
   validate :validate_company
   
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id)).reorder([:status, :tsk_pos]) unless User.current_user == -1 }
+        User.current_id)).reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos') unless User.current_user == -1 }
   
   scope :lane, lambda {|*status|
     visible.where(:status => status).order(:status)
