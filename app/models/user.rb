@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   
   fields do
     name          :string
+    firstName     :string
+    lastName      :string
     color         Color
     email_address :email_address, :login => true, :index => true, :unique => true
     administrator :boolean, :default => false
@@ -67,7 +69,7 @@ class User < ActiveRecord::Base
   #validates_attachment_size :image, :less_than => 10.megabytes   
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] } 
     
-  attr_accessible :name, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at, :language
+  attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at, :language
   
   has_many :hoshins, :through => :companies
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
@@ -330,16 +332,21 @@ class User < ActiveRecord::Base
     same_company
   end
   
-  def update_data_from_authorization(provider, uid, email, remote_ip, tz, header_locale)
+  def name
+    ret = firstName
+    unless lastName.blank?
+      ret += " " unless ret.blank? 
+      ret += lastName
+    end
+    ret.blank? ? super : ret
+  end
+  
+  def update_data_from_authorization(provider, uid, email, firstName, lastName, remote_ip, tz, header_locale)
     authorization = Authorization.find_by_provider_and_uid(provider, uid)
     authorization ||= Authorization.find_by_email_address(email)
     atts = authorization.attributes.slice(*User.accessible_attributes.to_a)
     atts['image'].sub!('sz=50', 'sz=416') if atts['image']
-    # PATCH: InfoJobs Open Id returns only the family name as the name and the full name in nickname... Strange...
-    domain = authorization.email_address.split("@").last
-    if (domain == "infojobs.net" || domain == "lectiva.com" || domain == "scmspain.com")
-      atts['name'] = authorization['nickname']
-    end
+    domain = authorization.email_address.split("@").last  
     atts.each { |k, v| 
       atts.delete(k) if !self.attributes[k].blank? || v.nil?
     }
@@ -348,6 +355,8 @@ class User < ActiveRecord::Base
     rescue
       self.attributes = atts.delete('photo')
     end
+    self.firstName ||= firstName
+    self.lastName ||= lastName
     if self.lifecycle.state.name == :invited
       self.lifecycle.activate!(self)
     end

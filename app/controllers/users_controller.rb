@@ -153,7 +153,11 @@ class UsersController < ApplicationController
     provider = auth['provider']
     uid = auth['uid']
     email = auth['info']['email']
-    current_user.delay.update_data_from_authorization(provider, uid, email, request.remote_ip, cookies[:tz], header_locale)
+    firstName = auth['info']['firstName']
+    lastName = auth['info']['lastName']
+    firstName ||= auth['info']['first_name']
+    lastName ||= auth['info']['last_name']
+    current_user.update_data_from_authorization(provider, uid, email, firstName, lastName, request.remote_ip, cookies[:tz], header_locale)
   end
   
   
