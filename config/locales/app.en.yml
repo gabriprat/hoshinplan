@@ -104,6 +104,9 @@ en:
       neglected_objectives: '%{neglected}/%{count} %{model} with low %{kpi} and no active %{task}.'
       blind_objectives: '%{blind}/%{count} %{objective} without %{kpi}.'
       outdated_model: '%{outdated}/%{count} outdated %{model}.'
+    company:
+      active_hoshins: Active %{model}
+      archived_hoshins: Archived %{model}
     health:
       blind_objectives: "%{model} wihtout %{kpi}"
       neglected_objectives: "%{model} with %{kpi} under 100% and no active %{task}"
@@ -226,6 +229,10 @@ en:
         parent: Parent
         company: Company
         creator: Responsible
+        lifecycle:
+          transitions:
+            activate: Activate hoshin
+            archive: Archive hoshin
       goal:
         name: Name
       area:
@@ -289,6 +296,12 @@ en:
         company: Company
         billing_plan_name: Plan
         id_paypal: PayPal ID
+    attribute_help:
+      hoshin:
+        lifecycle:
+          transitions:
+            activate: Activate hoshin
+            archive: Archive hoshin
   index:
     title: Make your business strategy work
   user:

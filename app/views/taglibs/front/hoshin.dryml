@@ -133,6 +133,12 @@
   </old-card>
 </extend>
 
+<extend tag="edit-page" for="Hoshin">
+	<old-edit-page merge>
+		<append-content-header:><transition-buttons class="form-horizontal pull-right"/></append-content-header:>
+	</old-edit-page>
+</extend>
+
 
 <extend tag="form" for="Hoshin">
 	<set parent="&this.company.hoshins.size > 0 ? ', parent' : ''" if="&this.company"/>

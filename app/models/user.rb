@@ -257,7 +257,7 @@ class User < ActiveRecord::Base
   def all_hoshins
     return @all_hoshins unless @all_hoshins.nil?
     @all_hoshins = 
-      Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company)
+      Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company).where(state: :active)
       .where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
       .order(:company_id, :name) if @all_hoshins.nil?
   end
@@ -338,7 +338,7 @@ class User < ActiveRecord::Base
       ret += " " unless ret.blank? 
       ret += lastName
     end
-    ret.blank? ? super : ret
+    ret = ret.blank? ? super : ret
   end
   
   def update_data_from_authorization(provider, uid, email, firstName, lastName, remote_ip, tz, header_locale)

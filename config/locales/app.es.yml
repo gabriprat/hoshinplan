@@ -104,6 +104,9 @@ es:
       neglected_objectives: '%{neglected}/%{count} %{model} con %{kpi} con valores bajos y sin %{task} activas.'
       blind_objectives:  '%{blind}/%{count} %{objective} sin %{kpi}.'
       outdated_model:  '%{outdated}/%{count} %{model} por actualizar.'
+    company:
+      active_hoshins: '%{model} activos'
+      archived_hoshins: '%{model} archivados'
     health:
       blind_objectives: "%{model} sin %{kpi}"
       neglected_objectives: "%{model} con %{kpi} por debajo del 100% y sin %{task} activas"
@@ -226,6 +229,10 @@ es:
         parent: Padre
         company: Empresa
         creator: Responsable
+        lifecycle:
+          transitions:
+            activate: Activar hoshin
+            archive: Archivar hoshin
       goal:
         name: Nombre
       area:
@@ -289,6 +296,12 @@ es:
         company: Empresa
         billing_plan_name: Plan
         id_paypal: Identificador en PayPal
+    attribute_help:
+      hoshin:
+        lifecycle:
+          transitions:
+            activate: Activar hoshin
+            archive: Archivar hoshin
   index:
     title: Haz que tu estrategia de negocio funcione
   user:

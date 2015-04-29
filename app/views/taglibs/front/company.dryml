@@ -23,6 +23,18 @@
 		          </ht>
 		        </a>
 		</prepend-content-header: >
+		<collection-heading: replace>
+			<h3 class="collection-heading">
+			    <ht key="hoshin.company.active_hoshins" count="100"/>
+			</h3>
+		</collection-heading:>
+		<collection: replace>
+			<collection:hoshins.active/>
+			<h3 class="collection-heading">
+			    <ht key="hoshin.company.archived_hoshins" count="100"/>
+			</h3>
+			<collection:hoshins.archived/>
+		</collection:>
 		<new-link: replace/>
 	</old-show-page>
 </extend>

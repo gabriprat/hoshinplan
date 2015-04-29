@@ -41,6 +41,21 @@ class Hoshin < ActiveRecord::Base
   
   validate :validate_company
   
+
+  lifecycle do
+
+    state :active, :default => true
+    state :archived
+    
+    create :create, :become => :active
+    transition :activate, { :archived => :active }, :available_to => :transition_available
+    transition :archive, { :active => :archived }, :available_to => :transition_available
+  end  
+  
+  def transition_available
+    return acting_user if acting_user == self.creator
+  end
+  
   default_scope lambda {
     if Company.current_id
       where(:company_id => Company.current_id)

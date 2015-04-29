@@ -65,6 +65,10 @@ Hoshinplan::Application.routes.draw do
       get 'kanban'
       get 'charts'
       post 'kanban_update'
+      put 'activate', :action => 'do_activate'
+      get 'activate'
+      put 'archive', :action => 'do_archive'
+      get 'archive'
     end
   end
 

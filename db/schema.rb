@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428234334) do
+ActiveRecord::Schema.define(version: 20150429170723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,30 +141,33 @@ ActiveRecord::Schema.define(version: 20150428234334) do
   add_index "goals", ["hoshin_id"], name: "index_goals_on_hoshin_id", using: :btree
 
   create_table "hoshins", force: true do |t|
-    t.string   "name",                       default: "plan", null: false
-    t.integer  "areas_count",                default: 0,      null: false
+    t.string   "name",                       default: "plan",   null: false
+    t.integer  "areas_count",                default: 0,        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "parent_id"
     t.text     "header"
     t.integer  "creator_id"
-    t.integer  "objectives_count",           default: 0,      null: false
-    t.integer  "goals_count",                default: 0,      null: false
-    t.integer  "indicators_count",           default: 0,      null: false
-    t.integer  "tasks_count",                default: 0,      null: false
-    t.integer  "outdated_indicators_count",  default: 0,      null: false
-    t.integer  "outdated_tasks_count",       default: 0,      null: false
-    t.integer  "blind_objectives_count",     default: 0,      null: false
-    t.integer  "neglected_objectives_count", default: 0,      null: false
-    t.integer  "hoshins_count",              default: 0,      null: false
+    t.integer  "objectives_count",           default: 0,        null: false
+    t.integer  "goals_count",                default: 0,        null: false
+    t.integer  "indicators_count",           default: 0,        null: false
+    t.integer  "tasks_count",                default: 0,        null: false
+    t.integer  "outdated_indicators_count",  default: 0,        null: false
+    t.integer  "outdated_tasks_count",       default: 0,        null: false
+    t.integer  "blind_objectives_count",     default: 0,        null: false
+    t.integer  "neglected_objectives_count", default: 0,        null: false
+    t.integer  "hoshins_count",              default: 0,        null: false
     t.datetime "health_updated_at"
+    t.string   "state",                      default: "active"
+    t.datetime "key_timestamp"
   end
 
   add_index "hoshins", ["company_id", "parent_id"], name: "index_hoshins_on_company_id_and_parent_id", using: :btree
   add_index "hoshins", ["company_id"], name: "index_hoshins_on_company_id", using: :btree
   add_index "hoshins", ["creator_id"], name: "index_hoshins_on_creator_id", using: :btree
   add_index "hoshins", ["parent_id"], name: "index_hoshins_on_parent_id", using: :btree
+  add_index "hoshins", ["state"], name: "index_hoshins_on_state", using: :btree
 
   create_table "indicator_histories", force: true do |t|
     t.decimal  "value"
