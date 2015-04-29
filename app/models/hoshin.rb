@@ -53,7 +53,7 @@ class Hoshin < ActiveRecord::Base
   end  
   
   def transition_available
-    return acting_user if acting_user == self.creator
+    return acting_user if same_creator || same_company_admin
   end
   
   default_scope lambda {
