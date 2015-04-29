@@ -193,6 +193,8 @@ es:
     attributes:
       user:
         name: Nombre
+        firstName: Nombre
+        lastName: Apellidos
         password: Contraseña
         current_password: Contraseña Actual
         password_confirmation: Confirmación Contraseña

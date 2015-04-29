@@ -193,6 +193,8 @@ en:
     attributes:
       user:
         name: Name
+        firstName: First Name
+        lastName: Last Name
         password: Password
         current_password: Current password
         password_confirmation: Password confirmation
