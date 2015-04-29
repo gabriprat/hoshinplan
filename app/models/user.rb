@@ -125,24 +125,25 @@ class User < ActiveRecord::Base
   }
   
   def pending_tasks
-    Task.includes([:responsible, {:area => :hoshin}, :company])
+    Task.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
     .where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id)
     .reorder(:deadline).references(:responsible)
   end
   
   def dashboard_tasks
-    Task.includes([:responsible, {:area => :hoshin}, :company]).where(:status => [:active, :backlog], :responsible_id => id)
+    Task.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
+    .where(:status => [:active, :backlog], :responsible_id => id)
     .reorder(:deadline).references(:responsible)
   end
   
   def pending_indicators
-    Indicator.includes([:responsible, {:area => :hoshin}, :company])
+    Indicator.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
     .where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
     .reorder(:next_update).references(:responsible)
   end
   
   def dashboard_indicators
-    Indicator.includes([:responsible, {:area => :hoshin}, :company])
+    Indicator.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
     .where(:responsible_id => id).reorder(:next_update).references(:responsible)
   end
   
