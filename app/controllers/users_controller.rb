@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   
   def show
     begin
-      self.this = User.includes({:user_companies => {:company => :hoshins}}).user_find(current_user, params[:id])
+      self.this = User.includes({:user_companies => {:company => :hoshins}}).merge(Hoshin.active).user_find(current_user, params[:id])
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
       @page_title = I18n.translate('user.dashboard_for', :name => name, 
