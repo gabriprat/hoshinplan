@@ -45,7 +45,8 @@ class UsersController < ApplicationController
   
   def show
     begin
-      self.this = User.includes({:user_companies => {:company => :active_hoshins}}).order('lower(companies.name) asc, lower(hoshins.name) asc')
+      self.this = User.includes({:user_companies => {:company => :active_hoshins}})
+        .order('lower(companies.name) asc, lower(hoshins.name) asc').references(:company, :hoshin)
         .user_find(current_user, params[:id])
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
