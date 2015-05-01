@@ -205,7 +205,7 @@ class Task < ActiveRecord::Base
     if task.original_deadline.nil? && !task.deadline.nil?
       task.original_deadline = task.deadline
     end
-    if task.show_on_parent
+    if task.show_on_parent && task.objective.parent_id
       task.parent_area_id = task.objective.parent.area_id
       task.parent_objective_id = task.objective.parent_id
     else
