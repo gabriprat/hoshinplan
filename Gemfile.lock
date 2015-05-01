@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/gabriprat/morrisjs-rails
-  revision: ff94045cb0a370a3ee29a525ca8f3ed4726dd553
+  revision: 7b3fd14fc43e5bb3b6b16a08c20e170075d52575
   specs:
     morrisjs-rails (0.5.1)
       railties (> 3.1, < 5)
@@ -97,12 +97,12 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    acts_as_list (0.6.0)
+    acts_as_list (0.7.0)
       activerecord (>= 3.0)
     addressable (2.3.8)
     ansi (1.5.0)
     arel (4.0.2)
-    autoprefixer-rails (5.1.10)
+    autoprefixer-rails (5.1.11)
       execjs
       json
     aws-sdk-v1 (1.64.0)
@@ -150,7 +150,7 @@ GEM
       actionpack (~> 4.0.2)
       hobo_support (= 2.1.1)
     erubis (2.7.0)
-    excon (0.45.2)
+    excon (0.45.3)
     execjs (2.5.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -200,7 +200,7 @@ GEM
       mime-types (>= 1.16, < 3)
     memcache-client (1.8.5)
     memcachier (0.0.2)
-    mime-types (2.4.3)
+    mime-types (2.5)
     mini_portile (0.6.2)
     minitest (4.7.5)
     mixpanel-ruby (2.1.0)
@@ -227,9 +227,7 @@ GEM
     omniauth-google-oauth2 (0.2.6)
       omniauth (> 1.0)
       omniauth-oauth2 (~> 1.1)
-    omniauth-oauth2 (1.2.0)
-      faraday (>= 0.8, < 0.10)
-      multi_json (~> 1.3)
+    omniauth-oauth2 (1.3.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     omniauth-openid (1.0.1)
@@ -300,7 +298,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
-    sprockets (3.0.1)
+    sprockets (3.0.3)
       rack (~> 1.0)
     sprockets-rails (2.2.4)
       actionpack (>= 3.0)
@@ -314,7 +312,7 @@ GEM
     turn (0.9.7)
       ansi
       minitest (~> 4)
-    tzinfo (0.3.43)
+    tzinfo (0.3.44)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
