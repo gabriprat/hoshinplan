@@ -38,6 +38,10 @@ class Indicator < ActiveRecord::Base
   belongs_to :area, :inverse_of => :indicators, :null => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators
   
+  belongs_to :parent_objective, :inverse_of => :child_indicators, :class_name => 'Objective'
+  belongs_to :parent_area, :inverse_of => :child_indicators, :class_name => 'Area'
+  
+  
   acts_as_list :scope => :area, :column => "ind_pos"
   
   validate :validate_company
@@ -73,6 +77,16 @@ class Indicator < ActiveRecord::Base
   }
   
   scope :due_today, -> { due('0 hour') }
+  
+  before_save do |indicator|
+    if indicator.show_on_parent
+      indicator.parent_area_id = indicator.objective.parent.area_id
+      indicator.parent_objective_id = indicator.objective.parent_id
+    else
+      indicator.parent_area_id = nil
+      indicator.parent_objective_id = nil
+    end
+  end
  
   before_create do |indicator|
     indicator.company = indicator.objective.company

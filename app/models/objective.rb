@@ -20,7 +20,10 @@ class Objective < ActiveRecord::Base
   belongs_to :creator, :class_name => "User", :creator => true  
 
   has_many :indicators, :dependent => :destroy, :inverse_of => :objective
+  has_many :child_indicators, :inverse_of => :parent_objective, :class_name => 'Indicator'
+  
   has_many :tasks, -> { order :tsk_pos }, :dependent => :destroy, :inverse_of => :objective
+  has_many :child_tasks, :inverse_of => :parent_objective, :class_name => 'Task'
 
   children :indicators, :tasks
 
@@ -86,6 +89,9 @@ class Objective < ActiveRecord::Base
     if obj.area_id_changed?
       Indicator.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.indicators.blank?
       Task.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.tasks.blank?
+    end
+    if obj.parent_changed?
+      Task.update_all({:parent_area_id => obj.parent.area_id, :parent_objective_id => obj.parent_id}, {:objective_id => id, :show_on_parent => true})
     end
   end
   

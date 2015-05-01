@@ -21,7 +21,19 @@ class Area < ActiveRecord::Base
   
   has_many :objectives,  -> { order :obj_pos }, :dependent => :destroy, :inverse_of => :area
   has_many :indicators, -> { order :ind_pos }, :inverse_of => :area, :accessible => true
-  has_many :tasks, -> { where(Task.visible.where_values).except(:order).reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')}, :inverse_of => :area, :accessible => true
+  has_many :child_indicators, :inverse_of => :parent_area, :accessible => true, :class_name => 'Indicator', :foreign_key => :parent_area_id
+  
+  has_many :tasks, -> { 
+      where(Task.visible.where_values)
+        .except(:order)
+        .reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')},
+       :inverse_of => :area, 
+       :accessible => true
+  has_many :child_tasks, -> { 
+      where(Task.visible.where_values)
+        .except(:order)
+        .reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')},
+      :inverse_of => :parent_area, :accessible => true, :class_name => 'Task', :foreign_key => :parent_area_id
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false
   belongs_to :company, :inverse_of => :areas, :null => false
@@ -63,27 +75,6 @@ class Area < ActiveRecord::Base
     str = "area+" + (name.nil? ? rand(1000000000).to_s(16) : name)
     res = hexFromString(str, 0.95 - (position.nil? ? 1 : position)/30.0)  
     return res
-  end
-  
-  def child_tasks 
-    child_hoshins = hoshin.children.*.id
-    return nil unless child_hoshins
-    child_objectives = Objective.where(:parent_id => objectives.*.id)
-    tasks = Task
-      .select("tasks.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
-      .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true)
-      .where("status != 'deleted' and (status = 'active' or deadline>current_date-30)").reorder(:area_id, :tsk_pos)
-    tasks.collect{ |t| t.becomes(ChildTask) }
-  end
-  
-  def child_kpis
-    child_hoshins = hoshin.children.*.id
-    return nil unless child_hoshins
-    child_objectives = Objective.where(:parent_id => objectives.*.id)
-    indicators = Indicator
-      .select("indicators.*, objectives.parent_id as parent_objective_id, objectives.hoshin_id")
-      .joins(:objective).where(:objective_id => child_objectives, :show_on_parent => true).reorder(:area_id, :ind_pos)
-    indicators.collect{ |t| t.becomes(ChildIndicator) }
   end
   
   def parent_hoshin

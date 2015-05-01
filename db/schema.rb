@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429170723) do
+ActiveRecord::Schema.define(version: 20150501124154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,28 +189,30 @@ ActiveRecord::Schema.define(version: 20150429170723) do
   add_index "indicator_histories", ["responsible_id"], name: "index_indicator_histories_on_responsible_id", using: :btree
 
   create_table "indicators", force: true do |t|
-    t.string   "name",                           null: false
+    t.string   "name",                                null: false
     t.decimal  "value"
     t.text     "description"
     t.string   "frequency"
     t.date     "next_update"
-    t.decimal  "goal",           default: 100.0
+    t.decimal  "goal",                default: 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id",                   null: false
-    t.integer  "area_id",                        null: false
+    t.integer  "objective_id",                        null: false
+    t.integer  "area_id",                             null: false
     t.integer  "ind_pos"
     t.date     "last_update"
     t.decimal  "last_value"
     t.integer  "responsible_id"
-    t.integer  "company_id",                     null: false
-    t.boolean  "reminder",       default: true,  null: false
-    t.decimal  "worst_value",    default: 0.0
-    t.boolean  "show_on_parent", default: false, null: false
+    t.integer  "company_id",                          null: false
+    t.boolean  "reminder",            default: true,  null: false
+    t.decimal  "worst_value",         default: 0.0
+    t.boolean  "show_on_parent",      default: false, null: false
     t.string   "type"
     t.integer  "creator_id"
-    t.integer  "hoshin_id",                      null: false
-    t.boolean  "show_on_charts", default: true,  null: false
+    t.integer  "hoshin_id",                           null: false
+    t.boolean  "show_on_charts",      default: true,  null: false
+    t.integer  "parent_area_id"
+    t.integer  "parent_objective_id"
   end
 
   add_index "indicators", ["area_id"], name: "index_indicators_on_area_id", using: :btree
@@ -218,6 +220,8 @@ ActiveRecord::Schema.define(version: 20150429170723) do
   add_index "indicators", ["creator_id"], name: "index_indicators_on_creator_id", using: :btree
   add_index "indicators", ["hoshin_id"], name: "index_indicators_on_hoshin_id", using: :btree
   add_index "indicators", ["objective_id"], name: "index_indicators_on_objective_id", using: :btree
+  add_index "indicators", ["parent_area_id"], name: "index_indicators_on_parent_area_id", using: :btree
+  add_index "indicators", ["parent_objective_id"], name: "index_indicators_on_parent_objective_id", using: :btree
   add_index "indicators", ["responsible_id"], name: "index_indicators_on_responsible_id", using: :btree
   add_index "indicators", ["type"], name: "index_indicators_on_type", using: :btree
 
@@ -281,25 +285,27 @@ ActiveRecord::Schema.define(version: 20150429170723) do
   add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
 
   create_table "tasks", force: true do |t|
-    t.string   "name",                                  null: false
+    t.string   "name",                                    null: false
     t.text     "description"
     t.date     "deadline"
     t.date     "original_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id",                          null: false
-    t.string   "status",            default: "backlog"
+    t.integer  "objective_id",                            null: false
+    t.string   "status",              default: "backlog"
     t.datetime "key_timestamp"
     t.integer  "tsk_pos"
-    t.integer  "area_id",                               null: false
+    t.integer  "area_id",                                 null: false
     t.boolean  "show_on_parent"
     t.string   "type"
     t.integer  "responsible_id"
-    t.integer  "company_id",                            null: false
-    t.boolean  "reminder",          default: true
+    t.integer  "company_id",                              null: false
+    t.boolean  "reminder",            default: true
     t.integer  "creator_id"
-    t.integer  "hoshin_id",                             null: false
-    t.integer  "lane_pos",          default: 0,         null: false
+    t.integer  "hoshin_id",                               null: false
+    t.integer  "lane_pos",            default: 0,         null: false
+    t.integer  "parent_area_id"
+    t.integer  "parent_objective_id"
   end
 
   add_index "tasks", ["area_id", "status"], name: "index_tasks_on_area_id_and_status", using: :btree
@@ -310,6 +316,8 @@ ActiveRecord::Schema.define(version: 20150429170723) do
   add_index "tasks", ["hoshin_id", "status"], name: "index_tasks_on_hoshin_id_and_status", using: :btree
   add_index "tasks", ["hoshin_id"], name: "index_tasks_on_hoshin_id", using: :btree
   add_index "tasks", ["objective_id"], name: "index_tasks_on_objective_id", using: :btree
+  add_index "tasks", ["parent_area_id"], name: "index_tasks_on_parent_area_id", using: :btree
+  add_index "tasks", ["parent_objective_id"], name: "index_tasks_on_parent_objective_id", using: :btree
   add_index "tasks", ["responsible_id"], name: "index_tasks_on_responsible_id", using: :btree
   add_index "tasks", ["status"], name: "index_tasks_on_status", using: :btree
   add_index "tasks", ["type"], name: "index_tasks_on_type", using: :btree

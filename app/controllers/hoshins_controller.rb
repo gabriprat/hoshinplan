@@ -54,7 +54,7 @@ class HoshinsController < ApplicationController
             format.html {
               current_user.all_companies.load
               current_user.all_hoshins.load
-              self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators, :tasks]}, :goals])
+              self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals])
                 .user_find(current_user, params[:id])
               Company.current_company = self.this.company
               hobo_show

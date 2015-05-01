@@ -4,7 +4,8 @@
 <scard class="indicator table-row" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
-		  <copy-content class="column" data-label="Id" id="kpi_#{this.id}" source="#objective_#{this.objective_id}_position"/>
+		  <% obj_id = (attributes[:parent_object] && attributes[:parent_object].hoshin_id != this.hoshin_id) ? this.parent_objective_id : this.objective_id %>
+		  <copy-content class="column" data-label="Id" id="kpi_#{this.id}" source="#objective_#{obj_id}_position"/>
 	</if>
 	<if test="&column == 'Company'">
 		<div class="column" data-label="Company"><view:company/></div>

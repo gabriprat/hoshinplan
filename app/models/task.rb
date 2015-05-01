@@ -34,6 +34,10 @@ class Task < ActiveRecord::Base
   belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :null => false, :touch => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :tasks
   
+  belongs_to :parent_area, :inverse_of => :child_tasks, :class_name => 'Area'
+  belongs_to :parent_objective, :inverse_of => :child_tasks, :class_name => 'Objective'
+  
+  
   acts_as_list :scope => :area, :column => "tsk_pos"
   
   set_default_order 'CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos'
@@ -196,9 +200,16 @@ class Task < ActiveRecord::Base
       
   end
   
-  before_save do |task|
+  before_save do |task|    
     if task.original_deadline.nil? && !task.deadline.nil?
       task.original_deadline = task.deadline
+    end
+    if task.show_on_parent
+      task.parent_area_id = task.objective.parent.area_id
+      task.parent_objective_id = task.objective.parent_id
+    else
+      task.parent_area_id = nil
+      task.parent_objective_id = nil
     end
   end
   
