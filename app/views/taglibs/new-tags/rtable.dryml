@@ -9,7 +9,7 @@
 	<% items = show_all || limit == 0 ? this : this.first(limit); items.member_class = this.member_class; %>
 	<% more = !show_all && limit > 0 && count > limit && (!@pdf || @pdf.to_s != 'true')%>
 	<div class="table" merge-attrs merge-params if='&count > 0'>
-		<ul class="table-head">
+		<ul class="table-head" param="table-head">
 			<li class="table-row">
 				<div class="column ordering" if="&sortable"></div>
 				<div class="column" data-label="#{this.gsub('%','Tpc').gsub('#','Id')}" repeat="&columns"><t key="rtable.column.#{this}">#{this}</t></div>

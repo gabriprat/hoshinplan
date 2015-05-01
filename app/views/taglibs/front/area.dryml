@@ -58,7 +58,7 @@
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<div class="children" if="child_indicators">
 	<h6 if="child_indicators"><ht key="indicator.area.child_models" count="100">#{Indicator.model_name.human.pluralize} from children hoshin plans</ht></h6>
-	<rtable:child_indicators columns="#,KPI,Value,Goal,%"/>
+	<rtable:child_indicators class="indicators" columns="#,KPI,Value,Goal,%"/>
 	</div>
 	</if>
 	</div>
@@ -71,7 +71,7 @@
 	<if test="&this.hoshin.hoshins_count >0 ? true : ''">
 	<div class="children" if="child_tasks">
 	<h6 if="child_tasks"><ht key="task.area.child_models" count="100">#{Task.model_name.human.pluralize} from children hoshin plans</ht></h6>
-	<rtable:child_tasks columns="#,Task,Deadline,Dev"/>
+	<rtable:child_tasks class="tasks" columns="#,Task,Deadline,Dev,Status"/>
 	</div>
 	</if>
 	</div>
