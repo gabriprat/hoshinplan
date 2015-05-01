@@ -1098,7 +1098,7 @@ body .form-search input:focus {
 	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
 	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
 	transition: border linear 0.2s, box-shadow linear 0.2s;
-	padding: 0 0 0 1em;
+	padding: 0;
 }
 
 .postit .autosubmit-toggle {
@@ -1362,6 +1362,99 @@ acronym.user-image {
 .column[data-label=Deviation] {
 	min-width: 2em;
 }
+
+.column.feeling {
+	padding-right: 0;
+	margin-right: 5px;
+	text-align: center;
+	width: 1em;
+	&.smile {
+		color: rgb(0, 139, 0);
+		background-color: rgb(206, 250, 151);
+		background: -webkit-linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
+		background: -o-linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
+		background: -moz-linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
+		background: linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
+	}
+	&.wondering {
+		color: rgb(255, 100, 0);
+		background-color: rgb(251, 202, 106);
+		background: -webkit-linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
+		background: -o-linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
+		background: -moz-linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
+		background: linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
+	}
+	&.sad {
+		color: rgb(139, 0, 0);
+		background-color: rgb(242, 136, 115);
+		background: -webkit-linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
+		background: -o-linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
+		background: -moz-linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
+		background: linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
+	}
+}
+
+.kanban-card .task-feeling {
+	span {
+		padding: .3em;
+		border-radius: 1em;
+	}
+	.ic-smile {
+		background-color: rgb(206, 250, 151);
+		color: rgb(0, 139, 0);
+	}
+	.ic-wondering {
+		background-color: rgb(251, 202, 106);
+		color: rgb(255, 100, 0);
+	}
+	.ic-sad {
+		background-color: rgb(242, 136, 115);
+		color: rgb(139, 0, 0);
+	}
+}
+
+.feeling-field {
+	input[type=radio] {
+		visibility: hidden;
+	}
+	input[type="radio"]+label {
+		display: inline-block;
+		position: relative;
+		padding-bottom: 3px;
+	        cursor: pointer;
+	        width: 3em;
+	        text-align: center;
+	}
+	input[type="radio"]+label:after {
+		content: '';
+		display: block;
+		margin: auto;
+		height: 3px;
+		width: 0px;
+		background: transparent;
+		transition: width .5s ease, background-color .5s ease;
+	}
+	input[type="radio"]:checked+label:after {
+		width: 100%;
+		background: $secondary-color;
+	}
+	label span {
+		padding: .5em;
+	}
+	label span.ic-smile {
+		background-color: rgb(206, 250, 151)
+	}
+	label span.ic-wondering {
+		background-color: rgb(251, 202, 106);
+	}
+	label span.ic-sad {
+		background-color: rgb(242, 136, 115);
+	}
+	.feeling-option-label {
+		display: none;
+	}
+}
+
 @media (min-width:640px) {
 .compact .column[data-label=Goal] {
 	width: 3em;
@@ -2301,13 +2394,16 @@ form.indicator-value input[type=radio] {
 	border: 3px dashed #e8e8e8;
 }
 
+.postit .task-header {
+        margin-bottom: 1em;
+	border-bottom: 1px dashed;
+	position: relative;
+}
+
 .postit .in-place-edit.task-name {
         font-size: 1.2em;
         font-weight: 700;
-        border-bottom: 1px dashed;
-        display: inline-block;
-        width: 100%;
-        margin-bottom: 1em;
+        display: inline;
 }
 
 .postit a.edit {

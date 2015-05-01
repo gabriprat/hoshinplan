@@ -12,6 +12,7 @@ class Task < ActiveRecord::Base
     show_on_parent    :boolean
     reminder          :boolean, :default => true
     lane_pos          :integer, :default => 0, :null => false
+    feeling           EnumFeeling, :default => :smile, :null => false
     timestamps
   end
   index [:deadline, :status]
@@ -22,7 +23,7 @@ class Task < ActiveRecord::Base
   
   
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
-    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id
+    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id, :feeling
 
   belongs_to :creator, :class_name => "User", :creator => true
   

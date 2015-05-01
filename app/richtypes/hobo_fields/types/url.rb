@@ -19,7 +19,6 @@ module HoboFields
 
       def to_html(xmldoctype = true)
         "<a href='#{'http://' unless self.slice(/https?:\/\//)}#{self}'>#{self}</a>" unless self.blank?
-        "o"
       end
       
       HoboFields.register_type(:url, self)

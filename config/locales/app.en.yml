@@ -263,6 +263,7 @@ en:
         description: Description
         responsible: Responsible
         deadline: DL
+        feeling: Feeling
         show_on_parent: Show on parent
         reminder: Reminder
         objective: Objective
@@ -435,6 +436,7 @@ en:
       Goal: Obj.
       Deadline: DL.
       Dev: Dev.
+      Feeling: Feel
       Status: Actions
       Task: Task
       Company: Company

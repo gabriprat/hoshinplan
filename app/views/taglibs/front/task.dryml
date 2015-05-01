@@ -36,6 +36,9 @@
 	<if test="&column == 'Dev'">
 		 <div class="column nowrap #{this.deviation > 0 ? 'overdue' : ''}" data-label="Deviation"><view:deviation /></div>
 	</if>
+	<if test="&column == 'Feeling'">
+		 <div class="column nowrap feeling #{this.feeling}" data-label="Feeling"><view:feeling /></div>
+	</if>
 	<if test="&column == 'Status'">
 	        <div class="column nowrap" data-label="Actions">
 	      	<ul class="icons">

@@ -263,6 +263,7 @@ es:
         description: Descripción
         responsible: Responsable
         deadline: Venc.
+        feeling: Sensación
         show_on_parent: Subir tarea
         reminder: Recordatorio
         objective: Objetivo
@@ -435,6 +436,7 @@ es:
       Goal: Obj.
       Deadline: Venc.
       Dev: Des.
+      Feeling: Sen.
       Status: Acciones
       Task: Tarea
       Company: Empresa

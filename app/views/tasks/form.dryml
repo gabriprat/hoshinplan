@@ -3,7 +3,7 @@
 		   	   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
 			
 	      		   <div class="modal-body">
-	      			    <field-list: fields="name, objective, description, responsible, deadline, reminder #{show_on_parent}">
+	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, reminder #{show_on_parent}">
     			    	<description-view: >
 					<my-click-editor/>
     				</description-view:>

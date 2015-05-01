@@ -1,0 +1,19 @@
+<def tag="radio-button" attrs="option" polymorphic> 
+   <%= radio_button_tag(param_name_for_this, option, (option==this), 
+attributes) %> 
+</def> 
+
+<def tag="radio-button-item" attrs="option, id" polymorphic> 
+   <radio-button option="&option" id="&id" param /> 
+   <label for="&id" param/> 
+</def> 
+
+<def tag="radio-group" attrs="options, labels" polymorphic> 
+   <% labels ||= [] %> 
+   <% options.each_with_index do |option, index| -%> 
+   <radio-button-item option="&option" 
+id="#{param_name_for_this}[#{index}]" param> 
+     <label: param><%= labels[index] || option %></label:> 
+   </radio-button-item> 
+   <% end %>
+</def> 
