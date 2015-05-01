@@ -3,7 +3,7 @@
 <scard class="task table-row" id="task-#{this.id}" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
-		<% obj_id = (attributes[:parent_object] && attributes[:parent_object].hoshin_id != this.hoshin_id) ? this.parent_objective_id : this.objective_id %>
+		<% obj_id = (attributes[:parent_object] && attributes[:parent_object].respond_to?(:hoshin_id) && attributes[:parent_object].hoshin_id != this.hoshin_id) ? this.parent_objective_id : this.objective_id %>
 	        <copy-content class="column" data-label="Id" id="task_#{this.id}" source="#objective_#{obj_id}_position" />
   	</if>
 	<if test="&column == 'Company'">
@@ -18,7 +18,7 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'Task'">
-		<div class="column name" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal> <if test="&@this.class != User"><user-abbrev:responsible_id paren /></if> <hoshin-link:hoshin_id if="&attributes[:parent_object] && attributes[:parent_object].hoshin_id != this.hoshin_id"><span class="ic-level-up"/></hoshin-link></div>
+		<div class="column name" data-label="Name"><rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}"><name/></rmodal> <if test="&@this.class != User"><user-abbrev:responsible_id paren /></if> <hoshin-link:hoshin_id if="&attributes[:parent_object] && attributes[:parent_object].respond_to?(:hoshin_id) && attributes[:parent_object].hoshin_id != this.hoshin_id"><span class="ic-level-up"/></hoshin-link></div>
 	</if>
 	<if test="&column == 'Resp.'">
 	        <div class="column" data-label="Responsible"><user-abbrev:responsible_id /></div>
