@@ -424,3 +424,14 @@ $(document).ready(function() {
 	_urq.push(['initSite', site]);
 });
 
+var areas = {};
+$(document).ready(function() {
+	$(".area.card .hoshin-link").each(function() {
+		var elem = $(this).closest(".area.card").find("h4.heading");
+		var link = elem.find("a[href='" + this.href + "']");
+		if (link.length < 1) {
+			elem.append(' <a href="'+this.href+'" title="'+this.title +'" class="child-hoshin-link"><span class="ic-child"></span></a>');
+		}
+	});
+	
+});
