@@ -252,7 +252,7 @@ class User < ActiveRecord::Base
     @all_companies =
       Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id)
       .where('user_id = ?', self.id))
-      .order(:name) if @all_companies.nil?
+      .order('lower(name)') if @all_companies.nil?
   end
   
   def all_hoshins
@@ -260,7 +260,7 @@ class User < ActiveRecord::Base
     @all_hoshins = 
       Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company).where(state: :active)
       .where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
-      .order(:company_id, :name) if @all_hoshins.nil?
+      .order('lower(companies.name), lower(hoshins.name)') if @all_hoshins.nil?
   end
 
   def signed_up?
