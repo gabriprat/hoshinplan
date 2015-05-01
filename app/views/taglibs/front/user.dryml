@@ -93,7 +93,7 @@
 				  </h4>
 			        </header>
 				<do:company>
-				<collection:hoshins class="timeline">
+				<collection:active_hoshins class="timeline">
 					<view/>
 				</collection>
 				</do>
