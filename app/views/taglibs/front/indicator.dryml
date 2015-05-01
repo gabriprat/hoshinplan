@@ -18,7 +18,7 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column name" data-label="Name"><rmodal url="#{indicator_path this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal> <if test="&@this.class == Hoshin"><user-abbrev:responsible_id paren /></if></div>
+		  <div class="column name" data-label="Name"><rmodal url="#{indicator_path this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal> <if test="&@this.class != User"><user-abbrev:responsible_id paren /></if></div>
   	</if>
 	<if test="&column == 'Value'">
 		  <div class="column nowrap" data-label="Value">
