@@ -1,11 +1,11 @@
 <page>
 
 	<content:>
-		<div class="hero-unit"><h1>422</h1>
-		<t key="errors.internal_server_error" />
+		<div class="jumbotron"><h1>422</h1>
+		<p><t key="errors.internal_server_error" /></p>
 		<div id="error-actions">
-		<a class="btn" href="/"><div class="ic-home"></div><p><t key="errors.error_home"/></p></a>
-		<a class="btn" href="mailto:hello@hoshinplan.com"><div class="ic-envelope"></div><p><t key="errors.error_contact"/></p></a>
+		<a class="btn" href="/"><div class="ic-home"></div><div><t key="errors.error_home"/></div></a>
+		<a class="btn" href="mailto:hello@hoshinplan.com"><div class="ic-envelope"></div><div><t key="errors.error_contact"/></div></a>
 		</div>
 		</div>
 	</content:>
