@@ -2752,6 +2752,10 @@ form.modal {
 	color: $secondary-color;
 }
 
+.btn-primary:hover, .btn-primary:focus {
+	color: $inverse-secondary-color;
+}
+
 
 button,
 input,

@@ -28,8 +28,10 @@ class CompaniesController < ApplicationController
   end
   
   def collaborators
-    @this = find_instance
+    @this = Company.user_find(current_user, params[:id])
+    @limit_reached = false
     if @this.collaborator_limits_reached?
+      @limit_reached = true
       flash.now[:info] = t("errors.user_limit_reached").html_safe 
       @billing_plans = BillingPlan.all
     end
@@ -42,7 +44,7 @@ class CompaniesController < ApplicationController
   end
   
   def cols
-    find_instance.user_companies.joins(:user)
+    find_instance.user_companies.includes(:user).references(:user)
           .where("email_address like ? or name like ?", "%"+params[:search].to_s+"%", "%"+params[:search].to_s+"%")
           .order_by(parse_sort_param(:state, :user => "name || email_address"))
           .paginate(:page => params[:page], :per_page => 15).load
