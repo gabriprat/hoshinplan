@@ -7,7 +7,7 @@
 		<% hidden_indicators = hidden_indicators << this %>
 	</else>
 </repeat>
-<repeat:child_kpis>
+<repeat:child_indicators>
 	<if test="&this.show_on_charts">
 		<indicator-chart-panel />
 	</if>
