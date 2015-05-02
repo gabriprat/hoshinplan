@@ -34,17 +34,19 @@ class UserCompany < ActiveRecord::Base
   end
   
   def company_admin
+    user = acting_user ? acting_user : User.current_user
     ret = RequestStore.store[rs_key]
     if ret.nil?
       ret = self.company_id.nil? || #!self.company_changed? ||
-        acting_user.user_companies.company_id_is(self.company_id).state_is(:admin).exists?
+        user.user_companies.company_id_is(self.company_id).state_is(:admin).exists?
       RequestStore.store[rs_key] = ret
     end
     ret
   end
   
   def rs_key
-    "company_admin-" + acting_user.id.to_s + "-" + self.company_id.to_s
+    user = acting_user ? acting_user : User.current_user
+    "company_admin-" + user.id.to_s + "-" + self.company_id.to_s
   end
   
   def company_admin_available

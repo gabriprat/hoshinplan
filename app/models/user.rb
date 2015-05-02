@@ -311,12 +311,12 @@ class User < ActiveRecord::Base
     acting_user == self || acting_user.administrator?
   end
   
-  def same_company 
+  def _same_company(cid=nil)
     return false unless self.signed_up?
     acting_user == self || acting_user.user_companies.where(:company_id => self.user_companies.*.company_id).present?
   end
   
-  def same_company_admin
+  def _same_company_admin(cid=nil)
     return false unless self.signed_up?
     acting_user.user_companies.where(:state => :admin, :company_id => self.user_companies.*.company_id).present?
   end

@@ -23,12 +23,18 @@ class CompaniesController < ApplicationController
   def show
     current_user.all_companies.load
     current_user.all_hoshins.load
-    self.this = Company.includes(hoshins: :creator).references(:user_companies).user_find(current_user, params[:id])
+    self.this = Company.includes(:hoshins, hoshins: :creator).references(:user_companies).user_find(current_user, params[:id])
+    self.this.same_company_admin # load request variable to aviod queries in the template
+    @active = self.this.hoshins.active.includes(:creator).load
+    @archived = self.this.hoshins.archived.includes(:creator).load
     hobo_show
   end
   
   def collaborators
+    current_user.all_companies.load
+    current_user.all_hoshins.load
     @this = Company.user_find(current_user, params[:id])
+    @this.same_company_admin # load request variable to aviod queries in the template
     @limit_reached = false
     if @this.collaborator_limits_reached?
       @limit_reached = true
@@ -41,12 +47,13 @@ class CompaniesController < ApplicationController
       render template: 'payments/pricing'
     end
     @collaborators = cols
+    @collaborators[0].company_admin if @collaborators.size > 0 # load request variable to aviod queries in the template
   end
   
   def cols
     find_instance.user_companies.includes(:user).references(:user)
           .where("email_address like ? or name like ?", "%"+params[:search].to_s+"%", "%"+params[:search].to_s+"%")
-          .order_by(parse_sort_param(:state, :user => "name || email_address"))
+          .order_by(parse_sort_param(:state => "user_companies.state", :user => "lower(users.\"firstName\" || '-' || users.\"lastName\" || '-' || email_address)"))
           .paginate(:page => params[:page], :per_page => 15).load
   end
   

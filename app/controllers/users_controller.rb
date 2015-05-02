@@ -45,10 +45,14 @@ class UsersController < ApplicationController
   
   def show
     begin
+      current_user.all_companies.load
+      current_user.all_hoshins.load
       self.this = User.includes({:user_companies => {:company => :active_hoshins}})
         .order('lower(companies.name) asc, lower(hoshins.name) asc').references(:company, :hoshin)
         .user_find(current_user, params[:id])
       raise Hobo::PermissionDeniedError if self.this.nil?
+      @tasks = self.this.dashboard_tasks.load
+      @indicators = self.this.dashboard_indicators.load
       name = self.this.name.nil? ? self.this.email_address : self.this.name
       @page_title = I18n.translate('user.dashboard_for', :name => name, 
         :default => 'Dashboard for ' + name)     
@@ -74,7 +78,13 @@ class UsersController < ApplicationController
   
   def pending
     begin
-      self.this = User.includes({:user_companies => {:company => :hoshins}}).where(:id => params[:id]).first 
+      current_user.all_companies.load
+      current_user.all_hoshins.load
+      self.this = User.includes({:user_companies => {:company => :active_hoshins}})
+        .order('lower(companies.name) asc, lower(hoshins.name) asc').references(:company, :hoshin)
+        .user_find(current_user, params[:id])
+      @tasks = self.this.pending_tasks.load
+      @indicators = self.this.pending_indicators.load
       @page_title = I18n.translate('user.pending_actions_for', :name => self.this.name, 
         :default => 'Pending actions for ' + self.this.name)      
     rescue Hobo::PermissionDeniedError => e

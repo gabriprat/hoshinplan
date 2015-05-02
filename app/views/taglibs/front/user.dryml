@@ -110,35 +110,19 @@
     
 	    <div class="panel-heading"><h2><model-name-human with="&Indicator" count="100" /></h2></div>
 	    <div class="panel-body">
-	        <if test="&attributes[:pending]">
-			<rtable:pending_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="pending-indicators" />
-			<else>
-			    <ht key="indicator.collection.empty_message"/>
-			</else>
-	        </if>
+		<rtable with="&@indicators" columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="pending-indicators" />
 		<else>
-			<rtable:dashboard_indicators columns="Company,Hoshin,Area,KPI,Value,Goal,%" id="indicators" class="indicators" part="dashboard-indicators" />
-			<else>
-			    <ht key="indicator.collection.empty_message"/>
-			</else>
+		    <ht key="indicator.collection.empty_message"/>
 		</else>
 	    </div>
     </div>
     <div class="panel">
 	    <div class="panel-heading"><h2><model-name-human with="&Task" count="100" /></h2></div>
 	    <div class="panel-body">
-		    <if test="&attributes[:pending]">
-		    	<rtable:pending_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="pending-tasks" />
-		    	<else>
-		    		<ht key="indicator.collection.empty_message"/>
-		    	</else>
-		    </if>
-		    <else>
-		    	<rtable:dashboard_tasks columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="dashboard-tasks" />
-		    	<else>
-		    		<ht key="indicator.collection.empty_message"/>
-		    	</else>
-		    </else>
+	    	<rtable with="&@tasks" columns="Company,Hoshin,Area,Task,Status,Deadline,Dev" id="tasks" class="tasks" part="pending-tasks" />
+	    	<else>
+	    		<ht key="indicator.collection.empty_message"/>
+	    	</else>
 	    </div>
     </div>
     

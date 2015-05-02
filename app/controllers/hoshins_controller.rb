@@ -56,6 +56,9 @@ class HoshinsController < ApplicationController
               current_user.all_hoshins.load
               self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals])
                 .user_find(current_user, params[:id])
+              self.this.same_company_admin # load request variable to aviod queries in the template
+              self.this.company.comp_users # load request variable to aviod queries in the template
+              self.this.company.all_hoshins # load request variable to aviod queries in the template
               Company.current_company = self.this.company
               hobo_show
             }

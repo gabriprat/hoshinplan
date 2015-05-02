@@ -16,7 +16,21 @@ module ModelBase
     RequestStore.store[:admin_user_companies]
   end  
   
+  def rs_key(prefix, cid)
+    user = acting_user ? acting_user : User.current_user
+    prefix.to_s + user.id.to_s + "-" + cid.to_s
+  end
+  
   def same_company(cid=nil)
+    ret = RequestStore.store[rs_key :sc, cid]
+    if ret.nil?
+      ret = _same_company(cid)
+      RequestStore.store[rs_key :sc, cid] = ret
+    end
+    ret
+  end
+  
+  def _same_company(cid=nil)
     user = acting_user ? acting_user : User.current_user
     return true if user.administrator?
      
@@ -46,7 +60,16 @@ module ModelBase
   end
   
   def same_company_admin(cid=nil)
-    user = acting_user ? acting_user : User.find(User.current_id)
+    ret = RequestStore.store[rs_key :sca, cid]
+    if ret.nil?
+      ret = _same_company_admin(cid)
+      RequestStore.store[rs_key :sca, cid] = ret
+    end
+    ret
+  end
+  
+  def _same_company_admin(cid=nil)
+    user = acting_user ? acting_user : User.current_user
     return true if user.administrator?
     if respond_to?("creator_id") && (user.id == creator_id)
       return true
