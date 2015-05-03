@@ -21,7 +21,7 @@ class Area < ActiveRecord::Base
   
   has_many :objectives,  -> { order :obj_pos }, :dependent => :destroy, :inverse_of => :area
   has_many :indicators, -> { order :ind_pos }, :inverse_of => :area, :accessible => true
-  has_many :child_indicators, :inverse_of => :parent_area, :accessible => true, :class_name => 'Indicator', :foreign_key => :parent_area_id
+  has_many :child_indicators, -> { order :ind_pos }, :inverse_of => :parent_area, :accessible => true, :class_name => 'Indicator', :foreign_key => :parent_area_id
   
   has_many :tasks, -> { 
       where(Task.visible.where_values)

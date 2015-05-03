@@ -48,7 +48,7 @@ class Task < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id)).reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos') unless User.current_user == -1 }
+        User.current_id)).reorder('') unless User.current_user == -1 }
   
   scope :lane, lambda {|*status|
     visible.where(:status => status).order(:status)
@@ -61,15 +61,23 @@ class Task < ActiveRecord::Base
       and #{User::TODAY_SQL} and status in (?)", interval, [:active, :backlog])
   }
   
+  scope :active, lambda {
+    where(:status => [:active, :backlog]).reorder(:deadline)
+  }
+  
+  scope :order_hoshin, lambda {
+    order('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')
+  }
+  
   scope :overdue, lambda {
     includes([:area, :responsible])
-    .where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog]).references(:responsible)
+    .where("deadline < #{User::TODAY_SQL}").merge(Task.active).references(:responsible)
   }
   
   scope :due_today, -> { due('0 hour') }
   
   scope :pending, lambda {
-    where("deadline < #{User::TODAY_SQL} and status in (?)", [:active, :backlog])
+    where("deadline < #{User::TODAY_SQL}").merge(Task.active)
     .reorder('tasks.deadline').references(:responsible)
   }
   

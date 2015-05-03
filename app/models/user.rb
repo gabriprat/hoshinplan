@@ -76,6 +76,24 @@ class User < ActiveRecord::Base
   has_many :indicators, -> { order :next_update }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :indicator_histories, :through => :indicators
   has_many :tasks,  -> { order :deadline }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
+  has_many :dashboard_tasks, -> { includes([:responsible, {:area => :hoshin}, :company])
+    .merge(Task.unscoped.active)
+    .merge(Hoshin.unscoped.active)
+    .order(:deadline).references(:hoshin, :responsible, {area: :hoshin}, :task) }, :class_name => "Task", foreign_key: :responsible_id
+  
+  has_many :pending_tasks, -> { pending.includes([:responsible, {:area => :hoshin}, :company])
+    .merge(Hoshin.unscoped.active)
+    .order(:deadline).references(:hoshin, :responsible) }, :class_name => "Task", foreign_key: :responsible_id
+  
+  has_many :dashboard_indicators, -> { includes([:responsible, {:area => :hoshin}, :company])
+    .merge(Hoshin.unscoped.active)
+    .order(:next_update).references(:responsible, :hoshin) }, :class_name => "Indicator", foreign_key: :responsible_id
+  
+  has_many :pending_indicators, -> { pending.includes([:responsible, {:area => :hoshin}, :company])
+    .merge(Hoshin.unscoped.active)
+    .order(:next_update).references(:hoshin, :responsible) }, :class_name => "Indicator", foreign_key: :responsible_id
+  
+  
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
   has_many :authorizations, :dependent => :destroy
@@ -123,29 +141,6 @@ class User < ActiveRecord::Base
   scope :at_hour, lambda { |*hour|
     where("date_part('hour',now() at time zone coalesce(users.timezone, 'Europe/Berlin')) = ?", hour) 
   }
-  
-  def pending_tasks
-    Task.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
-    .where("deadline <= #{User::TODAY_SQL} and status in (?,?) and responsible_id = ?", :active, :backlog, id)
-    .reorder(:deadline).references(:responsible)
-  end
-  
-  def dashboard_tasks
-    Task.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
-    .where(:status => [:active, :backlog], :responsible_id => id)
-    .reorder(:deadline).references(:responsible)
-  end
-  
-  def pending_indicators
-    Indicator.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
-    .where("next_update <= #{User::TODAY_SQL} and responsible_id = ?", id)
-    .reorder(:next_update).references(:responsible)
-  end
-  
-  def dashboard_indicators
-    Indicator.includes([:responsible, {:area => :hoshin}, :company]).merge(Hoshin.unscoped.active)
-    .where(:responsible_id => id).reorder(:next_update).references(:responsible)
-  end
   
   def next_tutorial
     ret = (User.values_for_tutorial_step - tutorial_step).first

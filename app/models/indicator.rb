@@ -46,14 +46,20 @@ class Indicator < ActiveRecord::Base
   
   validate :validate_company
   
+  set_default_order 'ind_pos'
+  
   default_scope lambda { 
     if User.current_id && User.current_id != -1
       where(:company_id => UserCompany.select(:company_id)
         .where('user_id=?',  
-          User.current_id) ).reorder('ind_pos') 
+          User.current_id) ).reorder('') 
     else
-      reorder('ind_pos')
+      reorder('')
     end
+  }
+  
+  scope :order_hoshin, lambda {
+    order('ind_pos')
   }
   
   scope :due, lambda { |*interval|
