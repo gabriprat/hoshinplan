@@ -19,18 +19,22 @@ class ErrorsController < ApplicationController
 
    	#Show
     def file_not_found
+      Rails.logger.error("ErrorsController: File Not Found for URL " + request.url)
       render status: 404
     end
 
     def unprocessable
+      Rails.logger.error("ErrorsController: Unprocessable for URL " + request.url)
       render status: 422
     end
 
     def internal_server_error
+      Rails.logger.error("ErrorsController: Internal Server Error for URL " + request.url)
       render status: 500
     end
     
     def service_unavailable
+      Rails.logger.error("ErrorsController: Service Unavailable Error for URL " + request.url)
       render status: 503
     end
 
