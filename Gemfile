@@ -85,7 +85,7 @@ gem 'memcachier'
 gem 'dalli'
 gem 'memcache-client'
 gem 'request_store'
-gem 'newrelic_rpm', :group => :production
+#gem 'newrelic_rpm', :group => :production
 gem 'oboe-heroku', :group => :production
 gem 'RedCloth'
 gem 'bitmask_attributes'
