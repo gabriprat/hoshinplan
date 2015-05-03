@@ -85,8 +85,8 @@ gem 'memcachier'
 gem 'dalli'
 gem 'memcache-client'
 gem 'request_store'
-#gem 'newrelic_rpm', :group => :production
-gem 'oboe-heroku', :group => :production
+gem 'newrelic_rpm', :group => :production
+#gem 'oboe-heroku'
 gem 'RedCloth'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'

@@ -211,6 +211,7 @@ GEM
     murmurhash3 (0.1.6-java)
     nested_has_many_through (0.0.2)
       rails (>= 3.0.0)
+    newrelic_rpm (3.11.2.286)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     nokogiri (1.6.6.2-java)
@@ -220,12 +221,6 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    oboe (2.7.16.1)
-      json
-    oboe (2.7.16.1-java)
-      json
-    oboe-heroku (0.9.18.1)
-      oboe (>= 2.7.14.1)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -374,7 +369,7 @@ DEPENDENCIES
   morrisjs-rails!
   murmurhash3
   nested_has_many_through
-  oboe-heroku
+  newrelic_rpm
   omniauth-google-oauth2
   omniauth-openid
   omniauth-saml
