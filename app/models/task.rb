@@ -61,7 +61,7 @@ class Task < ActiveRecord::Base
       and #{User::TODAY_SQL} and status in (?)", interval, [:active, :backlog])
   }
   
-  scope :active, lambda {
+  scope :active_backlog, lambda {
     where(:status => [:active, :backlog]).reorder(:deadline)
   }
   
@@ -71,13 +71,13 @@ class Task < ActiveRecord::Base
   
   scope :overdue, lambda {
     includes([:area, :responsible])
-    .where("deadline < #{User::TODAY_SQL}").merge(Task.active).references(:responsible)
+    .where("deadline < #{User::TODAY_SQL}").merge(Task.active_backlog).references(:responsible)
   }
   
   scope :due_today, -> { due('0 hour') }
   
   scope :pending, lambda {
-    where("deadline < #{User::TODAY_SQL}").merge(Task.active)
+    where("deadline < #{User::TODAY_SQL}").merge(Task.active_backlog)
     .reorder('tasks.deadline').references(:responsible)
   }
   
