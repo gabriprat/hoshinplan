@@ -3,7 +3,7 @@
 </def>
 
 <def tag="input" for="EnumFeeling">
-	<radio-group options="&EnumFeeling.values"/>
+	<radio-group options="&EnumFeeling.values" id="#{this_parent.id}"/>
 </def>
 
 <def tag="radio-button-item" attrs="option, id" for="EnumFeeling">

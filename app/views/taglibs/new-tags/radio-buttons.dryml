@@ -12,7 +12,7 @@ attributes) %>
    <% labels ||= [] %> 
    <% options.each_with_index do |option, index| -%> 
    <radio-button-item option="&option" 
-id="#{param_name_for_this}[#{index}]" param> 
+id="#{attributes[:id]}#{param_name_for_this}[#{index}]" param> 
      <label: param><%= labels[index] || option %></label:> 
    </radio-button-item> 
    <% end %>
