@@ -35,7 +35,14 @@ class ObjectivesController < ApplicationController
   end
   
   def form
-    @this = find_instance
+    if (params[:id]) 
+      @this = find_instance
+    else
+      @this = Objective.new
+      @this.company_id = params[:company_id]
+      @this.hoshin_id = params[:hoshin_id]
+      @this.area_id = params[:area_id]
+    end
   end
 
 end

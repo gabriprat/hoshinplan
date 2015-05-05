@@ -122,8 +122,12 @@ class Objective < ActiveRecord::Base
     if parent_hoshin.nil? || parent_hoshin < 1 
       result = []
     else
-      result = Objective.find_all_by_hoshin_id(parent_hoshin) unless parent_hoshin < 1
+      result = Objective.includes(:area).references(:area).where(hoshin_id: parent_hoshin).reorder('areas.name, objectives.name') unless parent_hoshin < 1
     end
+  end
+  
+  def name_with_area
+    area.name + " - " + name
   end
   
   # --- Permissions --- #

@@ -54,8 +54,14 @@ class HoshinsController < ApplicationController
             format.html {
               current_user.all_companies.load
               current_user.all_hoshins.load
-              self.this = Hoshin.includes([:company, {:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals])
-                .user_find(current_user, params[:id])
+              self.this = find_instance
+              if this.hoshins_count > 0
+                ActiveRecord::Associations::Preloader.new(self.this, 
+                [:company, {:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals]).run
+              else
+                ActiveRecord::Associations::Preloader.new(self.this, 
+                [:company, {:areas => [:objectives, :indicators, :tasks]}, :goals]).run
+              end
               Company.current_company = self.this.company
               hobo_show
             }

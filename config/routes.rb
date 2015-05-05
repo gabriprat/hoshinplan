@@ -62,6 +62,8 @@ Hoshinplan::Application.routes.draw do
 
   post "/indicators/form" => "indicators#form", :as => 'indicators_form'
   
+  post "/objectives/form" => "objectives#form", :as => 'objectives_form'
+  
   get "/pitch" => "front#pitch"
   
   match '/fail', to: 'front#test_fail', via: :all

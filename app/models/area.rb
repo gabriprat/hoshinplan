@@ -83,7 +83,7 @@ class Area < ActiveRecord::Base
   end
 
   def parent_objectives
-    result = Objective.find_all_by_hoshin_id(parent_hoshin)
+    result = Objective.includes(:area).where(hoshin_id: parent_hoshin)
   end
   
   # --- Permissions --- #
