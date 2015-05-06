@@ -20,6 +20,10 @@ class CompaniesController < ApplicationController
     hobo_new
   end
   
+  def index
+    redirect_to "/"
+  end
+  
   def show
     current_user.all_companies.load
     current_user.all_hoshins.load
