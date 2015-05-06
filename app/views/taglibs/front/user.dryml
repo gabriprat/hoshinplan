@@ -84,7 +84,7 @@
 		<div class="panel-body">
 			<h4><t key="user.collaborating_with">Collaborating with</t></h4>
 			<hr/>
-			<collection:user_companies part="companies" id="companies">
+			<collection:active_user_companies_and_hoshins part="companies" id="companies">
 			        <if test="&this.company">
 				<header>
 			          <h4>
@@ -93,7 +93,7 @@
 				  </h4>
 			        </header>
 				<do:company>
-				<collection:active_hoshins class="timeline">
+				<collection:hoshins class="timeline">
 					<view/>
 				</collection>
 				</do>

@@ -42,7 +42,7 @@ class Company < ActiveRecord::Base
     if cu.created_at < Date.new(2015,4,4) || domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com'
       self.unlimited = true
     end
-  end
+  end  
   
   default_scope lambda { 
     where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless User.current_user.nil? || User.current_user == -1 || User.current_user.administrator? }

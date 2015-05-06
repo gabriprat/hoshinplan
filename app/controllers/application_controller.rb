@@ -73,10 +73,11 @@ class ApplicationController < ActionController::Base
                Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
-               end               
+               end       
                if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
                  begin
-                   inst = model.find(params[:id]) if !params[:id].nil?
+                   inst = current_user if self.is_a?(UsersController) && params[:id] && params[:id].to_i == current_user.id
+                   inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
                  rescue ActiveRecord::RecordNotFound => e
                    # Let the specific controller deal with this
                  end

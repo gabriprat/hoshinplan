@@ -22,7 +22,9 @@
 	</a>
     	<ul class="dropdown-menu">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_companies'>
-		<a/>
+		<a>
+			<view:name force/>
+		</a>
 		</li>
 		<li class="divider"></li>
 		<li><a with="&Company" action="new">+ <ht key="company.actions.create"/></a></li>
@@ -35,7 +37,7 @@
 	</a>
     	<ul class="dropdown-menu">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
-			<a><view:name/> (<view:company_name />)</a>
+			<a><view:name force/> (<view:company.name force/>)</a>
 		</li>
 		<li class="divider"></li>
 		<li if="&Company.current_id">

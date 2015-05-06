@@ -70,6 +70,14 @@ class Hoshin < ActiveRecord::Base
     user.save!
   end
   
+  def company_name=(name)
+    @company_name = name
+  end
+  
+  def company_name
+    @company_name
+  end
+  
   def taks_by_status(status)
     tasks.where(:status => status)
   end

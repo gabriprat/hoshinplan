@@ -45,11 +45,14 @@ class UsersController < ApplicationController
   
   def show
     begin
-      current_user.all_companies.load
-      current_user.all_hoshins.load
-      self.this = User.includes({:user_companies => {:company => :active_hoshins}}).preload(:dashboard_tasks, :dashboard_indicators)
-        .order('lower(companies.name) asc, lower(hoshins.name) asc').references(:company, :hoshin)
-        .user_find(current_user, params[:id])
+      if self.current_user.id = self.this.id
+        ActiveRecord::Associations::Preloader.new(self.current_user, 
+          [:active_user_companies_and_hoshins, :dashboard_tasks, :dashboard_indicators]).run
+        self.this = self.current_user
+      else 
+        self.this = User.preload(:active_user_companies_and_hoshins, :dashboard_tasks, :dashboard_indicators)
+          .user_find(current_user, params[:id])
+      end
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
       @page_title = I18n.translate('user.dashboard_for', :name => name, 

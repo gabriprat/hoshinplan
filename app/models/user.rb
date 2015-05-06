@@ -96,6 +96,7 @@ class User < ActiveRecord::Base
   
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
+  has_many :active_user_companies_and_hoshins, -> {includes(company: :hoshins).references(:hoshins).where(:hoshins => {state: :active})}, :class_name => "UserCompany"
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
   has_many :payments, :dependent => :destroy
@@ -244,18 +245,21 @@ class User < ActiveRecord::Base
   
   def all_companies
     return @all_companies unless @all_companies.nil?
-    @all_companies =
-      Company.unscoped.where(:id => UserCompany.unscoped.select(:company_id)
-      .where('user_id = ?', self.id))
-      .order('lower(name)') if @all_companies.nil?
+    @all_companies = active_user_companies_and_hoshins.map { |c|
+      c.company
+    }
   end
   
   def all_hoshins
     return @all_hoshins unless @all_hoshins.nil?
-    @all_hoshins = 
-      Hoshin.unscoped.select("hoshins.*, companies.name as company_name").joins(:company).where(state: :active)
-      .where(:company_id => UserCompany.unscoped.select(:company_id).where('user_id = ?', self.id))
-      .order('lower(companies.name), lower(hoshins.name)') if @all_hoshins.nil?
+    @all_hoshins = []
+    all_companies.each { |c|
+      c.hoshins.each { |h|
+        h.company_name = c.name
+        @all_hoshins.push(h)        
+      }
+    }
+    @all_hoshins
   end
 
   def signed_up?
