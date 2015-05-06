@@ -52,8 +52,7 @@ class HoshinsController < ApplicationController
             format.json { hobo_show }
             format.xml { hobo_show }
             format.html {
-              current_user.all_companies.load
-              current_user.all_hoshins.load
+              current_user.all_companies
               self.this = find_instance
               if this.hoshins_count > 0
                 ActiveRecord::Associations::Preloader.new(self.this, 

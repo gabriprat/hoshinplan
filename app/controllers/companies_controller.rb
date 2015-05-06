@@ -34,8 +34,7 @@ class CompaniesController < ApplicationController
   end
   
   def collaborators
-    current_user.all_companies.load
-    current_user.all_hoshins.load
+    current_user.all_companies
     @this = Company.user_find(current_user, params[:id])
     @this.same_company_admin # load request variable to aviod queries in the template
     @limit_reached = false

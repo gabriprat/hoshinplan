@@ -79,8 +79,7 @@ class UsersController < ApplicationController
   
   def pending
     begin
-      current_user.all_companies.load
-      current_user.all_hoshins.load
+      current_user.all_companies
       self.this = User.includes({:user_companies => {:company => :active_hoshins}}).preload([:pending_tasks, :pending_indicators])
         .order('lower(companies.name) asc, lower(hoshins.name) asc').references(:company, :hoshin)
         .user_find(current_user, params[:id])
