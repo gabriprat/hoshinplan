@@ -1,8 +1,9 @@
 class UserCompanyMailer < ActionMailer::Base
   include Rails.application.routes.url_helpers
   
-  default :from => "Hoshinplan Team <hello@hoshinplan.com>"
-  
+  default :from => "Hoshinplan Team <hello@hoshinplan.com>",
+          'X-SMTPAPI' => '{"filters": { "subscriptiontrack": { "settings": {"replace": "[unsubscribe_url]", "enable": 1} } } }'
+          
   def render_email(name, params)
     user = params[:user]
     pars = {:unsubscribe_url => unsubscribe_user_url(user, :host => get_host_port(user))}
