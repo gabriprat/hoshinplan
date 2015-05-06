@@ -81,7 +81,6 @@ class ApplicationController < ActionController::Base
                  rescue ActiveRecord::RecordNotFound => e
                    # Let the specific controller deal with this
                  end
-                 inst = User.current_user if self.is_a?(UsersController) and inst.nil?
                  self.this = inst
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
                  inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
