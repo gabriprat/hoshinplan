@@ -25,9 +25,8 @@ class CompaniesController < ApplicationController
   end
   
   def show
-    current_user.all_companies.load
-    current_user.all_hoshins.load
-    self.this = Company.includes(:hoshins, hoshins: :creator).references(:user_companies).user_find(current_user, params[:id])
+    current_user.all_companies
+    self.this = find_instance
     self.this.same_company_admin # load request variable to aviod queries in the template
     @active = self.this.hoshins.active.includes(:creator).load
     @archived = self.this.hoshins.archived.includes(:creator).load
