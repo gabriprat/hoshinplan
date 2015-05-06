@@ -1,4 +1,4 @@
-<email user="&user" app-name="#{app_name}"  unsubscribe-url="#{unsubscribe_url}">
+<email user="&user" app-name="#{app_name}">
 	<h2><%= I18n.translate "emails.new_invite.title", :name => invitor.name.empty? ? invitor.email_address : invitor.name %></h2>
 	<p><%= I18n.translate "emails.new_invite.message", :name => invitor.name.empty? ? invitor.email_address : invitor.name %></p>
 	 <div class="btn"><a href="#{accept_url}">

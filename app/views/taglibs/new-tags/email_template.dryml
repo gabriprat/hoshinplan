@@ -1,4 +1,4 @@
-<def tag="email" attrs="message, url, user, app-name, unsubscribe-url">
+<def tag="email" attrs="message, url, user, app-name">
 <html>
 <head>
 <!-- If you delete this meta tag, Half Life 3 will never be released. -->

@@ -1,4 +1,4 @@
-<email user="&user" app-name="#{app_name}" unsubscribe-url="#{unsubscribe_url}">
+<email user="&user" app-name="#{app_name}">
 							<h2>#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h2>
 							<p><%= I18n.translate('emails.reminder.message', :url => url).html_safe %></p>
 							<div if="&kpis">
