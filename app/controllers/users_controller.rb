@@ -44,10 +44,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    begin
-      if self.current_user.id == self.this.id
-        self.this = self.current_user
-      end      
+    begin   
       ActiveRecord::Associations::Preloader.new(self.this, 
         [:active_user_companies_and_hoshins, :dashboard_tasks, :dashboard_indicators]).run
       raise Hobo::PermissionDeniedError if self.this.nil?

@@ -53,7 +53,6 @@ class HoshinsController < ApplicationController
             format.xml { hobo_show }
             format.html {
               current_user.all_companies
-              self.this = find_instance
               if this.hoshins_count > 0
                 ActiveRecord::Associations::Preloader.new(self.this, 
                 [:company, {:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals]).run
