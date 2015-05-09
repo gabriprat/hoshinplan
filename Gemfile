@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby "2.2.0"
+ruby "2.2.2"
 
-gem 'rails', '4.0.10'
+gem 'rails', '4.0.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -86,7 +86,6 @@ gem 'dalli'
 gem 'memcache-client'
 gem 'request_store'
 gem 'newrelic_rpm', :group => :production
-#gem 'oboe-heroku'
 gem 'RedCloth'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
