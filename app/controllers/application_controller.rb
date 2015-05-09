@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
                end       
                if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
                  begin
-                   inst = current_user if self.is_a?(UsersController) && params[:id] && params[:id].to_i == current_user.id
+                   inst = current_user if self.is_a?(UsersController) && params[:id] && logged_in? && params[:id].to_i == current_user.id
                    inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
                  rescue ActiveRecord::RecordNotFound => e
                    # Let the specific controller deal with this
