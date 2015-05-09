@@ -3,8 +3,10 @@
 </def>
 
 <def tag="view" for="Paperclip::Attachment" attrs='size'>
-  <% begin %>
-  <image param src="#{this.url(:thumb)}" srcset="#{this.url(:thumb)} 1x, #{this.url(:thumb2x)} 2x, #{this.url(:thumb3x)} 3x, #{this.url(:thumb4x)} 4x" class="#{'no-image' unless this.exists?}" size="&size" merge-attrs if="&this_parent.img_url(:thumb)"/>
+  <% begin 
+  	size_attr = (size == 'mini') ? '29x29' : '104x104'
+  %>
+  <image param src="#{this.url(size)}" srcset="#{this.url(size)} 1x, #{this.url(size + '2x')} 2x" size="&size_attr" merge-attrs if="&this.file?"/>
   <else>
   <image src="/assets/default.jpg" class="no-image" merge-attrs/>
   </else>

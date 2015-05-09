@@ -50,7 +50,7 @@
 		            <a action="edit" if="&this == current_user"><span class="ic-cog"/></a>
 			</span>
 			<div class="inline edit-image">
-			<view:image size="104x104"/>
+			<view:image size="thumb"/>
 			<div if="&this == current_user"><a data-toggle="modal" href="#edit-img"><t key="user.change">Change</t></a></div>
 			</div>
 			<div class="inline">
@@ -70,7 +70,7 @@
 					<input class="hide"/>
 					<a class="btn" href="#" onclick="$(this).prev('input').click()" ><t key="choose_file">Choose file</t></a>
 					<div class="preview" style="max-height: 104px; max-width: 104px;">
-						<view no-wrapper size="104x104"/>
+						<view no-wrapper size="thumb"/>
 					</div>
 					</div>
 				</image-view:>
