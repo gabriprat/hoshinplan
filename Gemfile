@@ -65,7 +65,7 @@ gem "bootstrap-switch-rails"
 gem "jquery-ui-themes"
 gem "acts_as_list"
 gem "ruby-hmac"
-gem "ruby-openid", :git => "git://github.com/mattconnolly/ruby-openid.git"
+gem "ruby-openid"
 gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
 #gem 'gem_bench', :group => :console
 gem "clockwork"
