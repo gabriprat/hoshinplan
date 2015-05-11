@@ -37,7 +37,7 @@
 	</a>
     	<ul class="dropdown-menu">
 		<li class='#{scope.even_odd}' param='item' repeat='&current_user.all_hoshins'>
-			<a><view:name force/> (<view:company.name force/>)</a>
+			<a><view:name force/> (<view:company_name force/>)</a>
 		</li>
 		<li class="divider"></li>
 		<li if="&Company.current_id">

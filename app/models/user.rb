@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
-  has_many :active_user_companies_and_hoshins, -> {includes(company: :hoshins).references(:hoshins).where(:hoshins => {state: :active})}, :class_name => "UserCompany"
+  has_many :active_user_companies_and_hoshins, -> {includes(company: :active_hoshins)}, :class_name => "UserCompany", unscoped: true
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
   has_many :payments, :dependent => :destroy
@@ -254,7 +254,7 @@ class User < ActiveRecord::Base
     return @all_hoshins unless @all_hoshins.nil?
     @all_hoshins = []
     all_companies.each { |c|
-      c.hoshins.each { |h|
+      c.active_hoshins.each { |h|
         h.company_name = c.name
         @all_hoshins.push(h)        
       }

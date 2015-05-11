@@ -106,4 +106,5 @@ group :test do
   gem 'minitest'
 end
 gem 'tunemygc'
+gem 'unscoped_associations'
 
