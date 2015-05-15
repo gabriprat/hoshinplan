@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby "2.2.2"
+ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
 
 gem 'rails', '4.0.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+gem 'activerecord-jdbcpostgresql-adapter'
 
 gem 'json'
 
@@ -44,7 +44,7 @@ gem 'puma'
 # gem 'capistrano'
 
 # To use debugger
-gem 'byebug', :group => :development
+#gem 'byebug', :group => :development
 
 gem "omniauth-openid"
 gem "omniauth-saml"
@@ -105,6 +105,5 @@ group :test do
   gem 'turn', require: false
   gem 'minitest'
 end
-gem 'tunemygc'
 gem 'unscoped_associations'
 

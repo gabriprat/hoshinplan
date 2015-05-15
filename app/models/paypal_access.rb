@@ -46,11 +46,11 @@ class PaypalAccess
               }
           ],
           merchant_preferences: {
-              "cancel_url": "https://#{Rails.application.routes.default_url_options[:host]}/payments/cancel",
-              "return_url": "https://#{Rails.application.routes.default_url_options[:host]}/payments/correct",
-              "max_fail_attempts": "3",
-              "auto_bill_amount": "YES",
-              "initial_fail_amount_action": "CANCEL"
+              cancel_url: "https://#{Rails.application.routes.default_url_options[:host]}/payments/cancel",
+              return_url: "https://#{Rails.application.routes.default_url_options[:host]}/payments/correct",
+              max_fail_attempts: "3",
+              auto_bill_amount: "YES",
+              initial_fail_amount_action: "CANCEL"
           }
       })
       if plan.create
@@ -67,12 +67,12 @@ class PaypalAccess
     agreement = PayPal::SDK::REST::Agreement.new({
           name: plan.name,
           description: plan.description,
-          "start_date": sd,
-          "plan": {
-              "id": plan.id_paypal
+          start_date: sd,
+          plan: {
+              id: plan.id_paypal
           },
-          "payer": {
-              "payment_method": "paypal"
+          payer: {
+              payment_method: "paypal"
           }
     })
     if agreement.create
