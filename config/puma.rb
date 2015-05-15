@@ -1,5 +1,7 @@
 threads_count = Integer(ENV['MAX_THREADS'] || 5)
+workers_count = Integer(ENV['WORKERS'] || 1)
 threads threads_count, threads_count
+workers workers_count
 
 preload_app!
 

@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
+ruby '2.2.2'
 
 gem 'rails', '4.0.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'activerecord-jdbcpostgresql-adapter'
+gem 'pg'
 
 gem 'json'
 
@@ -97,7 +97,7 @@ gem 'rails-observers'
 gem 'rails_12factor', group: :production
 gem 'font_assets', :git => "git://github.com/ericallam/font_assets"
 gem 'http_accept_language'
-gem 'mixpanel-ruby', '~> 1.4.0', group: :production 
+gem 'mixpanel-ruby', group: :production 
 gem 'paypal-sdk-rest'
 group :test do
   gem 'rake'
