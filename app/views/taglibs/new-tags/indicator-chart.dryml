@@ -44,8 +44,7 @@
 		yLabelFormat="ylabelformat"
 		dashArrays=",-,,-"
 		dateFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
-		xLabels="month"
-		xLabelFormat="dateFormat('M')"
+		xLabelFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
 		xLabelAngle="60"
 	/>
 </def>
