@@ -19,7 +19,7 @@
 	<%
 		 data = {}
 		 this.indicator_histories.each{ |i|
-		 	ii = {id: i.id, day: i.indicator.frequency == 'quarterly' ? i.day.beginning_of_quarter : i.indicator.frequency == 'monthly' ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}
+		 	ii = {id: i.id, day: i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}
 			if data[ii[:day]].nil?
 				data[ii[:day]] = ii
 			else
