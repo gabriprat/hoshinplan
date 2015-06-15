@@ -20,10 +20,6 @@ class CompaniesController < ApplicationController
     hobo_new
   end
   
-  def index
-    redirect_to "/"
-  end
-  
   def show
     current_user.all_companies
     self.this = find_instance
