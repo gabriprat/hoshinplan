@@ -55,6 +55,7 @@ gem "hobo_fields"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
 gem "active_record_query_trace", :group => :development
+gem 'derailed', group: :development
 # Hobo's version of will_paginate is required.
 gem "hobo_will_paginate"
 gem 'bootstrap-sass', '~> 3.3.4'
