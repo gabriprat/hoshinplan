@@ -15,7 +15,7 @@ class Company < ActiveRecord::Base
   belongs_to :creator, :class_name => "User", :creator => true
   
   has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company
-  has_many :active_hoshins, -> { active.order :name }, :class_name => "Hoshin", unscoped: true
+  has_many :active_hoshins, -> { active.order :name }, :class_name => "Hoshin"
   
   has_many :areas, -> { order :name },:dependent => :destroy, :inverse_of => :company
   has_many :objectives, -> { order :name },:dependent => :destroy, :inverse_of => :company

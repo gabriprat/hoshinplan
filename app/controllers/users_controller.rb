@@ -46,7 +46,8 @@ class UsersController < ApplicationController
   def show
     begin   
       ActiveRecord::Associations::Preloader.new(self.this, 
-        [:active_user_companies_and_hoshins, :dashboard_tasks, :dashboard_indicators]).run 
+        [:dashboard_tasks, :dashboard_indicators]).run 
+      self.this.all_active_user_companies_and_hoshins
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
       @page_title = I18n.translate('user.dashboard_for', :name => name, 
