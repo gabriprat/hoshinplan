@@ -228,4 +228,8 @@ end
     Nr.track_exception(exception, request)
   end
   
+  def show_mixpanel_logo
+    request.cookies['nmpl'].nil?
+  end
+  
   
