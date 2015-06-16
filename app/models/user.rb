@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     last_login_at :datetime
     login_count   :integer
     payments_count :integer, :default => 0, :null => false
-    preferred_view EnumView, :required, :default=> :compact
+    preferred_view EnumView, :required, :default=> :expanded
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
