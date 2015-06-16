@@ -65,6 +65,7 @@
 		<content-body: >
 		        <%# swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?" %>
 			<div class="fixed-x">
+				<view:header class="well slide-page" unless="&this.header.empty?"/>
 				<div id="goals" part="goals">
 					<div class="goals well slide-page" if="&this.goals">
 						<h3 title="#{Goal.model_name.human(:count => 100).to_s}" class="ic-bullseye"></h3>
