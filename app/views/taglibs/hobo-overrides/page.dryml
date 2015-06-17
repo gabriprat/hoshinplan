@@ -34,19 +34,27 @@
 			</modal:>
 			</modal>
 		</navbar:>
+		<scripts: replace>
+			<if test="#{@pdf?'true':''}">
+				<%= wicked_pdf_javascript_include_tag "front" %>
+			</if>
+			<else>
+				<scripts restore/>
+			</else>
+		</scripts:>
 		<stylesheets:>
 			<if test="#{@pdf?'true':''}">
-				<stylesheet name='pdf' param='app-stylesheet'/>
+				<%= wicked_pdf_stylesheet_link_tag "pdf" %>
 			</if>
 			<else>
 				<stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
+				<%= stylesheet_link_tag "#{request.protocol}fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400%7CRoboto:200,400,700;", :media => 'all' %>
 			</else>
-			<%= stylesheet_link_tag "#{request.protocol}fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400%7CRoboto:200,400,700;", :media => 'all' %>
 		</stylesheets:>
 		<append-custom-scripts:>
-			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' />
-		        <script type="text/javascript" src="https://app.box.com/js/static/select.js" async></script>
-			<script data-cfasync="false" src="https://cdn.userreport.com/userreport.js" async></script>
+			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' unless="&@pdf"/>
+		        <script type="text/javascript" src="https://app.box.com/js/static/select.js" async unless="&@pdf"></script>
+			<script data-cfasync="false" src="https://cdn.userreport.com/userreport.js" async unless="&@pdf"></script>
 		</append-custom-scripts:>
 		<append-body: >
 			<%= raw "<"+"/span>" %>

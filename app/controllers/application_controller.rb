@@ -229,7 +229,7 @@ end
   end
   
   def show_mixpanel_logo
-    request.cookies['nmpl'].nil?
+    request.cookies['nmpl'].nil? && @pdf.nil?
   end
   
   

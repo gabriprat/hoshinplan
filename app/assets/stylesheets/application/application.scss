@@ -882,13 +882,24 @@ span.arrow {
 	line-height: 0.5em;
 	display: inline-block;
 	width: .1em;
-	font-family: 'hoshinplan';
 	
 	&.positive:after {
-		content: "\f0d8";
+		display: inline-block;
+		content: "\25B2";
+		transform: scale(1,.7); /* W3C */
+		-webkit-transform:scale(1,.7); /* Safari and Chrome */
+		-moz-transform:scale(1,.7); /* Firefox */
+		-ms-transform:scale(1,.7); /* IE 9 */
+		-o-transform:scale(1,.7); /* Opera */
 	}
 	&.negative:after {
-		content: "\f0d7";
+		display: inline-block;
+		content: "\25BC";
+		transform: scale(1,.7); /* W3C */
+		-webkit-transform:scale(1,.7); /* Safari and Chrome */
+		-moz-transform:scale(1,.7); /* Firefox */
+		-ms-transform:scale(1,.7); /* IE 9 */
+		-o-transform:scale(1,.7); /* Opera */
 	}
 	&.equal:after {
 		content: "=";

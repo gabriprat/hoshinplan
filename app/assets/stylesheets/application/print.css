@@ -4,6 +4,23 @@
 	}
 }
 @media print {
+	body {
+		background: white !important;
+	}
+	body .table.tasks * {
+		border: 0 !important;
+	}
+	.modal {
+		display: none !important;
+	}
+	.content-header {
+		margin: 0 !important;
+	}
+	h2 * {display: inline !important;}
+	h2 #sec-actions {display: none !important;}
+	.carousel {
+		display: none;
+	}
 	* {
 		background-image: none !important;
 		-webkit-box-shadow: none !important;
@@ -15,6 +32,20 @@
 		display: none;
 	}
 	
+	.ic-smile:before {
+		content: "\263a";
+		font-size: 1.5em;
+	}
+	
+	.ic-wondering:before {
+		content: "\2687";
+		font-size: 1.5em;
+	}
+	
+	.ic-sad:before {
+		content: "\2639";
+	        font-size: 1.2em;
+	}
 	.picker {
 		display: none !important;
 	}
