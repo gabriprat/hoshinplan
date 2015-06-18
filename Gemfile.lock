@@ -202,10 +202,13 @@ GEM
     memcache-client (1.8.5)
     memcachier (0.0.2)
     memory_profiler (0.9.4)
+    metaclass (0.0.4)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (4.7.5)
     mixpanel-ruby (2.1.0)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     multi_json (1.11.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -371,6 +374,7 @@ DEPENDENCIES
   memcachier
   minitest
   mixpanel-ruby
+  mocha
   morrisjs-rails!
   murmurhash3
   nested_has_many_through

@@ -109,31 +109,45 @@ class Indicator < ActiveRecord::Base
   after_destroy 'hoshin.touch'
   
   before_update do |indicator|
-    if (!indicator.value.nil? && indicator.value_changed? && !indicator.last_update_changed? && (indicator.next_update.nil? || indicator.next_update <= Date.today))
-        if indicator.next_update.nil?
-          indicator.last_update = Date.today
-        else
-          indicator.last_update = indicator.next_update 
-        end 
-        indicator.last_update_will_change!
-    end
-    if indicator.value_changed? && indicator.last_update_changed?
-      if indicator.last_update.nil? || indicator.last_update_changed?
-        #only update trends once per day
-        indicator.last_value = indicator.value_was
-        indicator.next_update = compute_next_update(indicator)
-      end
-    end
-    update_date = indicator.last_update
+    #If we are changing the value we have to compute the date we are setting a value for
+    indicator.compute_last_update!
+    #Save the old value and compute next update date
+    indicator.do_value_update!
+    #Store value history
+    indicator.update_history
+    fail indicator.to_yaml
+  end
+  
+  def update_history
+    update_date = self.last_update
     unless update_date.nil?
-      ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => indicator.id).first
+      #only update trends once per day
+      ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => self.id).first
       if ih.nil?
-        ih = IndicatorHistory.create(:day => update_date, :indicator_id => indicator.id, :goal => indicator.goal)
+        ih = IndicatorHistory.create(:day => update_date, :indicator_id => self.id, :goal => self.goal)
       end
-      ih.value = indicator.value
-      ih.goal = indicator.goal
+      ih.value = self.value
+      ih.goal = self.goal
       ih.save!
     end
+  end
+  
+  def do_value_update!
+    #This method only makes sense if the value and the update_date are changed
+    return unless self.value_changed? && self.last_update_changed?
+    self.last_value = self.value_was
+    self.next_update = self.compute_next_update
+  end
+  
+  def compute_last_update!
+    return unless self.value_changed? #This method only makes sense if the value is changed
+    return if self.last_update_changed? #If the user sets the value we should respect it    
+    if self.next_update.nil?
+      self.last_update = Date.today
+    else
+      self.last_update = self.next_update 
+    end 
+    self.last_update_will_change!
   end
   
   def update_from_history!(destroy=false, ih=nil)
@@ -203,29 +217,34 @@ class Indicator < ActiveRecord::Base
     p
   end
   
-  def compute_next_update(indicator)
-    next_update_after(indicator.last_update, indicator.frequency)
+  def compute_next_update
+    next_update_after(self.last_update, self.frequency)
   end
   
   def next_update_after(d, freq)
     return nil if d.nil?
-    n = d
-    l = d
-    while (l >= n || Date.today >= n)
-      n += increment(freq)
-    end
-    n
+    d + increment(freq)
   end
   
   def increment(freq)
-    case freq
+    valid = validate_frequency(freq)
+    raise ArgumentError.new(valid) unless valid.nil?
+    case freq.to_s
     when "weekly"
       1.week
     when "monthly"
       1.month
     when "quarterly"
       3.month
+    else
+      #That should never happen since we validated it above
+      raise ArgumentError.new("Unexpected frequency")
     end
+  end
+  
+  def validate_frequency(freq)
+    klass = Indicator.attr_type :frequency
+    klass.new(freq).validate
   end
   
   # --- Permissions --- #

@@ -105,6 +105,7 @@ group :test do
   # Pretty printed test output
   gem 'turn', require: false
   gem 'minitest'
+  gem 'mocha'
 end
 gem 'unscoped_associations'
 
