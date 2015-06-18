@@ -115,7 +115,6 @@ class Indicator < ActiveRecord::Base
     indicator.do_value_update!
     #Store value history
     indicator.update_history
-    fail indicator.to_yaml
   end
   
   def update_history
