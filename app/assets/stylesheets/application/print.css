@@ -4,6 +4,11 @@
 	}
 }
 @media print {
+	
+	.table .table-row {
+		page-break-inside: avoid;
+	}
+	
 	body {
 		background: white !important;
 	}
@@ -28,23 +33,34 @@
 		box-shadow: none !important;
 	}
 	
-	div.table div.column[data-label="Actions"] {
+	div.table div.column[data-label="Feeling"] {
+		text-align: center;
+		width: 1em;
+	}
+	
+	div.table div.column[data-label="Actions"], div.table div.column[data-label="Status"] {
 		display: none;
 	}
 	
 	.ic-smile:before {
+		font-family: "Courier New", Courier, Fixed, monospace;
+		display: inline-block;
 		content: "\263a";
-		font-size: 1.5em;
+		font-size: 1.7em;
 	}
 	
 	.ic-wondering:before {
+		font-family: "Courier New", Courier, Fixed, monospace;
+		display: inline-block;
 		content: "\2687";
-		font-size: 1.5em;
+		font-size: 1.9em;
 	}
 	
 	.ic-sad:before {
+		font-family: "Courier New", Courier, Fixed, monospace;
+		display: inline-block;
 		content: "\2639";
-	        font-size: 1.2em;
+	        font-size: 1.4em;
 	}
 	.picker {
 		display: none !important;

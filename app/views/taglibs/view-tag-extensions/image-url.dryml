@@ -3,7 +3,7 @@
 </def>
 
 <def tag="view" for="Paperclip::Attachment" attrs='size'>
-  <if test="&@pdf.nil?">
+  <unless test="&@pdf">
   <% begin 
   	size_attr = (size == 'mini') ? '29x29' : '104x104'
   %>
@@ -14,5 +14,5 @@
   <% rescue SocketError => e %>
   <image src="/assets/default.jpg" class="no-image" merge-attrs/>
   <% end %>
-  </if>
+  </unless>
 </def>

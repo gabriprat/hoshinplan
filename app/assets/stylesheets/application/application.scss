@@ -877,13 +877,16 @@ a.tpc:hover {
 }
 
 span.arrow {
+	font-family: "Courier New", Courier, Fixed, monospace;
 	font-size: 1em;
 	font-weight: bolder;
 	line-height: 0.5em;
 	display: inline-block;
 	width: .1em;
+	text-align: center;
 	
 	&.positive:after {
+		color: #008b00;
 		display: inline-block;
 		content: "\25B2";
 		transform: scale(1,.7); /* W3C */
@@ -893,6 +896,7 @@ span.arrow {
 		-o-transform:scale(1,.7); /* Opera */
 	}
 	&.negative:after {
+		color: #AA0000;
 		display: inline-block;
 		content: "\25BC";
 		transform: scale(1,.7); /* W3C */
@@ -902,6 +906,7 @@ span.arrow {
 		-o-transform:scale(1,.7); /* Opera */
 	}
 	&.equal:after {
+		color: #000;
 		content: "=";
 	}
 	
