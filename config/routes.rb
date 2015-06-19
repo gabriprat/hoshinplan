@@ -49,6 +49,8 @@ Hoshinplan::Application.routes.draw do
   get  'cms/:key/expire' => 'cms#expire', :constraints => {:key => /.*/}
   
   get  'cms/:key' => 'cms#show', :constraints => {:key => /.*/}
+
+  get  'c/:key' => 'cms#page', :constraints => {:key => /.*/}
   
   get  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
   
