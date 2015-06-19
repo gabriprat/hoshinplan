@@ -228,8 +228,8 @@ end
     Nr.track_exception(exception, request)
   end
   
-  def show_mixpanel_logo
-    request.cookies['nmpl'].nil? && @pdf.nil?
+  def show_footer_logos
+    request.cookies['nmpl'].nil? && !@pdf
   end
   
   
