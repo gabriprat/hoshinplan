@@ -6,6 +6,10 @@ es:
   value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
   insert_box_link: Insertar enlace a Box
   created_by: Creado por
+  legal:
+    legal_documents: Documentos legales
+    terms_of_use: Términos de Uso
+    privacy: Política de privacidad
   footer:
     github: GitHub
     about: Nosotros

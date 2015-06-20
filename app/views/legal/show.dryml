@@ -1,0 +1,27 @@
+<page aside-location="left">
+<body: class="show-page"/>
+<aside:/>
+<aside-column:>
+	<div class="panel">
+		<div class="panel-heading">
+			<h4><t key="legal.legal_documents"/></h4>
+		</div>
+		<div class="panel-body">
+			<ul class="left-nav">
+				<li><a href="/terms-of-use"><t key="legal.terms_of_use"/></a></li>
+				<li><a href="/privacy"><t key="legal.privacy"/></a></li>
+			</ul>
+		</div>
+	</div>
+</aside-column>
+<content-body:>
+	<div class="panel">
+		<div class="panel-heading">
+			<h1><t key="legal.#{params[:id].parameterize.underscore}"/></h1>
+		</div>
+		<div class="panel-body">
+			<cms key="#{params[:id]}_#{locale}"/>
+		</div>
+	</div>			
+</content-body:>
+</page>

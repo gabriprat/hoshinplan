@@ -1735,6 +1735,13 @@ form#delete-history, form#delete-history input {
 .navbar .nav .form-search {
 	padding: 8px 15px;
 }
+.left-nav li {
+	padding: 8px 0;
+	list-style: none;
+	& + li {
+		border-top: 1px solid #ddd;
+	}
+}
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
 	background-color: $secondary-background-color;
