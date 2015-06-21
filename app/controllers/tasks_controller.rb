@@ -29,7 +29,16 @@ class TasksController < ApplicationController
   def create
     obj = params["task"]
     select_responsible(obj)
-    hobo_create
+    hobo_create do
+      redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+    end
+    log_event("Create task", {objid: @this.id, name: @this.name})
+  end
+  
+  def create_for_objective
+    hobo_create_for :objective do
+      redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+    end
     log_event("Create task", {objid: @this.id, name: @this.name})
   end
   

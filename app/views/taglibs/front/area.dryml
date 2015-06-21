@@ -2,7 +2,7 @@
   <old-card merge class="slide-page">
     <creator-link: replace />
     <header:>
-    	 <h4 param="heading"><rmodal title="#{ht key='area.actions.edit'}" url="#{area_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-area-modal-#{this.id}"><name/></rmodal></h4>
+    	 <h4 param="heading"><rmodal title="#{ht key='area.actions.edit'}" href-url="#{area_path this}/edit" url="#{area_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-area-modal-#{this.id}"><name/></rmodal></h4>
     </header:>
     <body: >
 	<div part="area" part-id="area-#{this.id}" id="area-#{this.id}" class="area-part">
@@ -10,7 +10,7 @@
 	<swept-cache route-on suffix="view" path="&request.fullpath" locale="#{I18n.locale}" area="#{this.id}" canview="&can_view?" unless="&params['action'] == 'destroy' && @this && this && (@this.id == this.id)">
 	<div class="objectives-wrapper">
 	<h5><model-name-human model="&Objective" count="100"/>
-	<rmodal title="#{ht key='objective.actions.new'}" url="#{objective_path Objective.new}form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.id}" class="btn pull-right create-obj area-link" target-id="new-obj#{this.id}"><view with="#{ht key='objective.actions.new'}" /></rmodal></h5>
+	<rmodal title="#{ht key='objective.actions.new'}" href-url="#{area_path this}/objectives/new" url="#{objective_path Objective.new}form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.id}" class="btn pull-right create-obj area-link" target-id="new-obj#{this.id}"><view with="#{ht key='objective.actions.new'}" /></rmodal></h5>
 	<div class="modal" id="new-obj#{this.id}" role="dialog" tabindex="-1" aria-hidden="true"></div>
 	<form id="reorder-#{this.id}" ajax="true" update="area-#{this.id}" class="hidden" success="equalHeightSections();">
 		<field-list: fields="name" />

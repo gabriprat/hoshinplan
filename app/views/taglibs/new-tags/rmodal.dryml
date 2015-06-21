@@ -1,3 +1,4 @@
-<def tag="rmodal" attrs="url,target-id">
-	<a data-rapid="#{data_rapid('rmodal', {url: url, target_id: target_id})}" href="#{url}" merge/>
+<def tag="rmodal" attrs="url,target-id, href-url">
+	<% href_url ||= url %>
+	<a data-rapid="#{data_rapid('rmodal', {url: url, target_id: target_id})}" href="#{href_url}" merge/>
 </def>

@@ -10,6 +10,18 @@ class GoalsController < ApplicationController
 
   include RestController
   
+  def create
+    hobo_create do
+      redirect_to this.hoshin if valid? && !request.xhr?
+    end
+  end
+  
+  def update
+    hobo_update do
+      redirect_to this.hoshin if valid? && !request.xhr?
+    end
+  end
+  
   def create_for_hoshin
     hobo_create_for :hoshin do
       redirect_to this.hoshin if valid? && !request.xhr?

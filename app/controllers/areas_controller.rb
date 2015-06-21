@@ -15,7 +15,9 @@ class AreasController < ApplicationController
   cache_sweeper :areas_sweeper
   
   def create
-    hobo_create 
+    hobo_create do
+      redirect_to this.hoshin if valid? && !request.xhr?
+    end
     log_event("Create area", {objid: @this.id, name: @this.name})
   end
   
@@ -24,6 +26,12 @@ class AreasController < ApplicationController
       redirect_to this.hoshin if valid? && !request.xhr?
     end
     log_event("Create area", {objid: @this.id, name: @this.name})
+  end
+  
+  def update
+    hobo_update do
+      redirect_to this.hoshin if valid? && !request.xhr?
+    end
   end
   
   def destroy

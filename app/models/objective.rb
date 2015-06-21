@@ -76,7 +76,8 @@ class Objective < ActiveRecord::Base
   after_destroy 'hoshin.touch'
         
   before_create do |objective|
-      objective.company_id = objective.area.company_id
+    objective.hoshin_id = objective.area.hoshin_id
+    objective.company_id = objective.area.company_id
   end
   
   before_create do |obj|

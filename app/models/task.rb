@@ -86,6 +86,7 @@ class Task < ActiveRecord::Base
   }  
  
   before_create do |task|
+    task.area = task.objective.area
     task.company = task.objective.company
     task.hoshin = task.objective.hoshin
   end

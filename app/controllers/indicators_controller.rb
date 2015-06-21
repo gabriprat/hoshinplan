@@ -22,7 +22,16 @@ class IndicatorsController < ApplicationController
   def create
     obj = params["indicator"]
     select_responsible(obj)
-    hobo_create
+    hobo_create do
+      redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+    end
+    log_event("Create indicator", {objid: @this.id, name: @this.name})
+  end
+  
+  def create_for_objective
+    hobo_create_for :objective do
+      redirect_to this.objective.area.hoshin if valid? && !request.xhr?
+    end
     log_event("Create indicator", {objid: @this.id, name: @this.name})
   end
   

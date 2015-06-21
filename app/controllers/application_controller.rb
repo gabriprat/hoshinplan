@@ -73,15 +73,17 @@ class ApplicationController < ActionController::Base
                Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
                    params[:company_id] ||= params[model.model_name.singular]["company_id"] 
-               end       
-               if self.respond_to?("model") && (!params[:id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
+               end
+               if self.respond_to?("model") && (!params[:id].nil? || !params[:area_id].nil? || !params[:objective_id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
                  begin
                    inst = current_user if self.is_a?(UsersController) && params[:id] && logged_in? && params[:id].to_i == current_user.id
-                   inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
+                   inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?                   
                  rescue ActiveRecord::RecordNotFound => e
                    # Let the specific controller deal with this
                  end
                  self.this = inst
+                 inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
+                 inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
                  inst = Company.find(params[:company_id]) unless (inst || params[:company_id].nil?)
                  inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
                  Rails.logger.debug inst.to_yaml

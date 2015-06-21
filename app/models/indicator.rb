@@ -96,6 +96,7 @@ class Indicator < ActiveRecord::Base
   end
  
   before_create do |indicator|
+    indicator.area = indicator.objective.area
     indicator.company = indicator.objective.company
     indicator.hoshin = indicator.objective.hoshin
   end

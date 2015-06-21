@@ -17,7 +17,16 @@ class ObjectivesController < ApplicationController
   def create
     obj = params["objective"]
     select_responsible(obj)
-    hobo_create
+    hobo_create do
+      redirect_to this.area.hoshin if valid? && !request.xhr?
+    end
+    log_event("Create objective", {objid: @this.id, name: @this.name})
+  end
+  
+  def create_for_area
+    hobo_create_for :area do
+      redirect_to this.area.hoshin if valid? && !request.xhr?
+    end
     log_event("Create objective", {objid: @this.id, name: @this.name})
   end
   
