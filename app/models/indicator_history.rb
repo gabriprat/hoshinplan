@@ -32,8 +32,15 @@ class IndicatorHistory < ActiveRecord::Base
 
   before_destroy do |ih|
     ind = Indicator.find(ih.indicator_id)
-    ind.update_from_history!(destroy=true, ih=ih)
+    ind.destroyed_history!(ih=ih)
   end
+  
+  scope :latest, proc { |indicator_id, max_day=nil, ih=nil|
+    max_day ||= Date.today
+    ret = where("indicator_id = ? and day <= ?", indicator_id, max_day)
+    ret = ret.where("id != ?", ih.id) unless ih.nil?
+    ret.first(order: "day desc")
+  }
 
   # --- Permissions --- #
 

@@ -87,7 +87,7 @@ class IndicatorsController < ApplicationController
         if @this.errors.messages.length>0
           raise ActiveRecord::Rollback
         end
-        @this.update_from_history!
+        @this.update_from_latest_history!
       end
       redirect_to @this, :action => :history if valid?
       render :history unless valid?

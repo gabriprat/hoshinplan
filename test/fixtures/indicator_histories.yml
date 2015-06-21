@@ -9,7 +9,7 @@ one:
   indicator_id: 1
   value: 1
   goal: 2
-  previous: 3
+  previous: 
   day: 2015-01-09
   company_id: 1
 two: 
@@ -17,6 +17,62 @@ two:
   indicator_id: 1
   value: 3
   goal: 2
-  previous: 3
+  previous: 1
   day: 2015-01-10
+  company_id: 1
+three: 
+  id: 3
+  indicator_id: 1
+  value: 5
+  goal: 7
+  previous: 3
+  day: 2015-01-30
+  company_id: 1
+four: 
+  id: 4
+  indicator_id: 2
+  value: 3
+  goal: 2
+  previous: 3
+  day: 2015-01-15
+  company_id: 1
+five: 
+  id: 5
+  indicator_id: 3
+  value: 4
+  goal: 5
+  previous: 3
+  day: 2015-01-20
+  company_id: 1
+six: 
+  id: 6
+  indicator_id: 3
+  value: 3
+  goal: 2
+  previous: 3
+  day: 2015-01-15
+  company_id: 1
+seven: 
+  id: 7
+  indicator_id: 4
+  value: 4
+  goal: 5
+  previous: 3
+  day: 2015-01-20
+  company_id: 1
+eight: 
+  id: 8
+  indicator_id: 4
+  value: 3
+  goal: 2
+  previous: 3
+  day: 2015-01-15
+  company_id: 1
+nine: 
+  id: 9
+  indicator_id: 4
+  value: 10
+  goal: 11
+  previous: 3
+  day: 2015-01-24
   company_id: 1

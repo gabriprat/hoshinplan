@@ -7,6 +7,7 @@
 one: 
   id: 1
   name: indicator-1
+  frequency: weekly
   objective_id: 1
   company_id: 1
   hoshin_id: 1
@@ -14,6 +15,31 @@ one:
 two: 
   id: 2
   name: indicator-2
+  frequency: weekly
+  objective_id: 2
+  company_id: 1
+  hoshin_id: 1
+  area_id: 1
+three: 
+  id: 3
+  name: indicator-3
+  value: 4
+  goal: 5
+  frequency: weekly
+  last_update: 2015-01-20
+  next_update: 2015-01-27
+  objective_id: 2
+  company_id: 1
+  hoshin_id: 1
+  area_id: 1
+four: 
+  id: 4
+  name: indicator-4
+  value: 4
+  goal: 5
+  frequency: weekly
+  last_update: 2015-01-20
+  next_update: 2015-01-27
   objective_id: 2
   company_id: 1
   hoshin_id: 1

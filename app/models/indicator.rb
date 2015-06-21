@@ -20,7 +20,7 @@ class Indicator < ActiveRecord::Base
     timestamps
   end
   
-  validates_presence_of :objective, :name
+  validates_presence_of :objective_id, :name
   
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,
@@ -149,22 +149,37 @@ class Indicator < ActiveRecord::Base
     self.last_update_will_change!
   end
   
-  def update_from_history!(destroy=false, ih=nil)
+  def destroyed_history!(ih)
     ind = self
-    latest = IndicatorHistory.where("indicator_id = ? and day <= ? and id != ?", 
-                                    ind.id, Date.today, destroy ? ih.id : -1).order("day desc").first
-                                    
-    if (!latest.nil? && (
-          ind.value.nil? || 
-          (destroy && !ind.last_update.nil? && ind.last_update == ih.day)  || 
-          (!ind.last_update.nil? && ind.last_update <= latest.day)
-      ))
-      ind.update_columns(value: latest.value) unless ind.value == latest.value
-      ind.update_columns(goal: latest.goal) unless latest.goal.nil? || ind.goal == latest.goal
-      ind.update_columns(last_update: latest.day) unless ind.last_update == latest.day
-      ind.touch
+    day = ind.next_update.nil? ? Date.today : ind.next_update
+    latest = IndicatorHistory.latest(ind.id, ind.next_update, ih)
+    if !ind.last_update.nil? && ind.last_update == ih.day
+      update_from_history!(latest)
+    end  
+  end
+  
+  def update_from_latest_history!
+    ind = self
+    day = ind.next_update.nil? ? Date.today : ind.next_update
+    latest = IndicatorHistory.latest(ind.id, ind.next_update)   
+    #Update the indicator value if we had no value or previous update or the 
+    if (ind.value.nil? || ind.last_update.nil? || ind.last_update <= latest.day)
+      update_from_history!(latest)
     end
-    
+  end
+  
+  def update_from_history!(ih)
+    return if ih.nil?
+    ind = self
+    ind.update_columns(last_value: ind.value) unless ind.value == ih.value
+    ind.update_columns(value: ih.value) unless ind.value == ih.value
+    ind.update_columns(goal: ih.goal) unless ih.goal.nil? || ind.goal == ih.goal
+    unless ind.last_update == ih.day 
+      ind.update_columns(last_update: ih.day) 
+      ind.update_columns(next_update: ind.compute_next_update)
+    end
+    ind.value_will_change!
+    ind.touch
   end
   
   def status 
