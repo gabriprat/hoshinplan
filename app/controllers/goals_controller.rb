@@ -9,5 +9,11 @@ class GoalsController < ApplicationController
   cache_sweeper :goals_sweeper
 
   include RestController
+  
+  def create_for_hoshin
+    hobo_create_for :hoshin do
+      redirect_to this.hoshin if valid? && !request.xhr?
+    end
+  end
 
 end

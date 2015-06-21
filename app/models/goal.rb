@@ -11,6 +11,7 @@ class Goal < ActiveRecord::Base
   validates_presence_of :name
   
   attr_accessible :name, :hoshin, :hoshin_id, :company_id, :creator_id
+  never_show :position
   
   belongs_to :creator, :class_name => "User", :creator => true
   

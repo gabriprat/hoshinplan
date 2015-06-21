@@ -4,6 +4,8 @@ class AreasController < ApplicationController
 
   auto_actions :all, :except => [:new, :index]
   
+  auto_actions_for :hoshin, [:new, :create]
+  
   show_action :charts
   web_method :form
   
@@ -13,7 +15,14 @@ class AreasController < ApplicationController
   cache_sweeper :areas_sweeper
   
   def create
-    hobo_create
+    hobo_create 
+    log_event("Create area", {objid: @this.id, name: @this.name})
+  end
+  
+  def create_for_hoshin
+    hobo_create_for :hoshin do
+      redirect_to this.hoshin if valid? && !request.xhr?
+    end
     log_event("Create area", {objid: @this.id, name: @this.name})
   end
   

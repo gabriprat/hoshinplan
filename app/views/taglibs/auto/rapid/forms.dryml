@@ -4,7 +4,7 @@
 <def tag="form" for="Area">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, color, position, child_indicators, child_tasks, company, creator, hoshin, indicators, tasks" param/>
+    <field-list fields="name, description, color, child_indicators, child_tasks, company, creator, hoshin, indicators, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'area.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -52,7 +52,7 @@
 <def tag="form" for="Goal">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, position, company, creator, hoshin" param/>
+    <field-list fields="name, company, creator, hoshin" param/>
     <div param="actions">
       <submit label="#{ht 'goal.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

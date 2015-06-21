@@ -49,3 +49,9 @@
     </body:>
   </old-card>
 </extend>
+
+<extend tag="form" for="Area">
+	<old-form merge>
+            <field-list: fields="name, description" />
+	</old-form>
+</extend>

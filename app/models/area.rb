@@ -16,6 +16,7 @@ class Area < ActiveRecord::Base
   validates_presence_of :name
 
   attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator, :creator_id, :color
+  never_show :position
   
   belongs_to :creator, :class_name => "User", :creator => true
   

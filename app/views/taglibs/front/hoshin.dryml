@@ -20,12 +20,12 @@
 		<prepend-content-header: >
 		<if test="&params['action']=='show'">
 		<span id="create-buttons">
-		<a href="javascript:$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset');" class="btn pull-right btn-default">
+		<a href="#{hoshin_path this}/areas/new" onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
             <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
               Add new area
             </ht>
 		</a>
-	    <a href="javascript:$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset');" class="btn pull-right btn-default">
+	    <a href="#{hoshin_path this}/goals/new" onclick="$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
 	            <ht key="goal.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new goal
 	            </ht>

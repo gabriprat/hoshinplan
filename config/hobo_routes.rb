@@ -16,6 +16,16 @@ Hoshinplan::Application.routes.draw do
     end
   end
 
+  # Owner routes for controller areas
+  resources :hoshins, :as => :hoshin, :only => [] do
+    resources :areas, :only => [] do
+      get '/', :on => :new, :action => 'new_for_hoshin'
+      collection do
+        post '/', :action => 'create_for_hoshin'
+      end
+    end
+  end
+
 
   # Resource routes for controller billing_plans
   resources :billing_plans, :only => [:index]
