@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
-  has_many :active_user_companies_and_hoshins, -> {includes(company: :active_hoshins)}, :class_name => "UserCompany", unscoped: true
+  has_many :active_user_companies_and_hoshins, -> {includes(company: :active_hoshins).references(:hoshins)}, :class_name => "UserCompany", unscoped: true
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
   has_many :payments, :dependent => :destroy
