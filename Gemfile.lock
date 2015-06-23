@@ -402,3 +402,6 @@ DEPENDENCIES
   unscoped_associations
   wicked_pdf
   yui-compressor
+
+BUNDLED WITH
+   1.10.4
