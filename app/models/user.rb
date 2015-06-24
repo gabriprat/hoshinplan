@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   has_many :indicator_histories, :through => :indicators
   has_many :tasks,  -> { order :deadline }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :dashboard_tasks, -> { includes([:responsible, {:area => :hoshin}, :company])
-    .merge(Task.unscoped.active)
+    .merge(Task.unscoped.active_backlog)
     .merge(Hoshin.unscoped.active)
     .order(:deadline).references(:hoshin, :responsible, {area: :hoshin}, :task) }, :class_name => "Task", foreign_key: :responsible_id
   
