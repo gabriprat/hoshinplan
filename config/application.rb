@@ -77,6 +77,8 @@ module Hoshinplan
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     
     config.font_assets.origin = '*'
+    
+    config.cms_auto_calls = !ENV['CMS_AUTO_CALLS'].blank? && YAML.load(ENV['CMS_AUTO_CALLS'])
         
   end
 end

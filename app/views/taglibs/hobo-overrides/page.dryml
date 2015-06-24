@@ -58,7 +58,7 @@
 		</append-custom-scripts:>
 		<append-body: >
 			<%= raw "<"+"/span>" %>
-			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="& Rails.application.config.action_controller.perform_caching"/>
+			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="&Rails.configuration.cms_auto_calls"/>
 		</append-body:>
 		<prepend-head:>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
