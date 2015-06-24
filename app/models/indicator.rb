@@ -107,7 +107,7 @@ class Indicator < ActiveRecord::Base
     user.save!
   end
   
-  after_destroy 'hoshin.touch'
+  after_destroy do |indicator| indicator.hoshin.touch end
   
   before_update do |indicator|
     #If we are changing the value we have to compute the date we are setting a value for

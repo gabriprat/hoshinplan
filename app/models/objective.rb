@@ -73,7 +73,7 @@ class Objective < ActiveRecord::Base
       .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists).references(:responsible)
   }
   
-  after_destroy 'hoshin.touch'
+  after_destroy do |objective| objective.hoshin.touch end
         
   before_create do |objective|
     objective.hoshin_id = objective.area.hoshin_id
