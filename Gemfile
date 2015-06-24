@@ -108,4 +108,3 @@ group :test do
   gem 'mocha'
 end
 gem 'unscoped_associations'
-gem 'tunemygc'
