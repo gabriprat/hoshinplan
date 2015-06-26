@@ -145,6 +145,7 @@ class UserCompany < ActiveRecord::Base
   end
 
   def destroy_permitted?
+    return false if user_id == 557
     user_id = acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
   end
 
