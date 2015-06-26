@@ -260,8 +260,9 @@ class User < ActiveRecord::Base
     ret = []
       all_active_user_companies_and_hoshins.each { |uc|
           c = uc.company
+          next if c.nil? #Should never happen but I see erorrs at New Relic
           c.active_hoshins.each { |h|
-            h.company_name = uc.company.name
+            h.company_name = c.name
             ret.push(h)       
         }
       }
