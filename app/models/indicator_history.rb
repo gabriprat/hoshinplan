@@ -32,7 +32,7 @@ class IndicatorHistory < ActiveRecord::Base
 
   before_destroy do |ih|
     ind = Indicator.find(ih.indicator_id)
-    ind.destroyed_history!(ih=ih)
+    ind.destroyed_history!(ih=ih) unless ind.destroyed?
   end
   
   scope :latest, proc { |indicator_id, max_day=nil, ih=nil|

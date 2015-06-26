@@ -28,7 +28,9 @@ class Indicator < ActiveRecord::Base
 
   belongs_to :creator, :class_name => "User", :creator => true
   
-  has_many :indicator_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :indicator
+  #Next line has a delete_all instead of destroy to prevent this object value 
+  #from being updated just before being destroyed and creating errors
+  has_many :indicator_histories, -> { order :day }, :dependent => :delete_all, :inverse_of => :indicator
   
   belongs_to :company, :null => false
 

@@ -32,9 +32,9 @@ class Hoshin < ActiveRecord::Base
   has_many :children, :inverse_of => :parent, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
   
   has_many :areas, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
-  has_many :objectives, :through => :areas, :inverse_of => :hoshin, :accessible => true
-  has_many :indicators, :through => :objectives, :inverse_of => :hoshin, :accessible => true
-  has_many :tasks, :through => :objectives, :accessible => true
+  has_many :objectives, -> { readonly }, :through => :areas, :inverse_of => :hoshin, :accessible => true
+  has_many :indicators, -> { readonly }, :through => :objectives, :inverse_of => :hoshin, :accessible => true
+  has_many :tasks, -> { readonly }, :through => :objectives, :accessible => true
   has_many :goals, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
   
   children :areas
