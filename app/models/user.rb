@@ -63,6 +63,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  before_destroy do |user|
+    if user.id = 557 || user.id = 3
+      fail "Protected user"
+    end
+  end
+  
   validates :email_address, uniqueness: { case_sensitive: false }
   
   #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
