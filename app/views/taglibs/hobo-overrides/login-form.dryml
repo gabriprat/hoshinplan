@@ -16,12 +16,13 @@
 		</div>
 		<div class="local-login">
 			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
-			<p class="sep"><a class="toggle collapsed" data-toggle="collapse" data-parent="#hoshinplan-login" href="#collapseLogin"><i class="ic-chevron-down"></i><t key="use_your_user">Use your hoshinplan user</t></a></p>
-			<div class="collapse" id="collapseLogin">
+			<% @numLoginForm ||= 0; @numLoginForm += 1 %> 
+			<p class="sep"><a class="toggle collapsed" data-toggle="collapse" href="#collapseLogin#{@numLoginForm}"><i class="ic-chevron-down"></i><t key="use_your_user">Use your hoshinplan user</t></a></p>
+			<div class="collapse" id="collapseLogin#{@numLoginForm}">
 				<br/>
 				<form merge class='login' action='/login'>
 				    <input type="email" name="login" id="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level form-control"/>
-				   <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}"/>  
+				   <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}" autocomplete="off"/>  
 				    <br/>
 				    <div param='actions'>
 				      <submit class="btn-raised" label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/> &nbsp;
