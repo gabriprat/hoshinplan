@@ -51,11 +51,13 @@ module ModelBase
   
   def hoshin_creator
     user = acting_user ? acting_user : User.find(User.current_id)
+    return false if user.id = 557
     return self.respond_to?("hoshin") && self.hoshin && self.hoshin.creator_id == user.id
   end
   
   def same_creator
     user = acting_user ? acting_user : User.find(User.current_id)
+    return false if user.id = 557
     return self.respond_to?("creator") && self.creator_id == user.id
   end
   
@@ -70,6 +72,7 @@ module ModelBase
   
   def _same_company_admin(cid=nil)
     user = acting_user ? acting_user : User.current_user
+    return false if user.id = 557
     return true if user.administrator?
     if respond_to?("creator_id") && (user.id == creator_id)
       return true
