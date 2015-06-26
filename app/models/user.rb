@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
   
   before_destroy do |user|
-    if user.id = 557 || user.id = 3
+    if user.id == 557 || user.id == 3
       fail "Protected user"
     end
   end
