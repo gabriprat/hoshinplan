@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   
   has_many :companies, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy 
-  has_many :active_user_companies_and_hoshins, -> {includes(company: :active_hoshins)}, :class_name => "UserCompany", unscoped: true
+  has_many :active_user_companies_and_hoshins, -> {by_cname}, :class_name => "UserCompany", unscoped: true
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
   has_many :payments, :dependent => :destroy
@@ -252,6 +252,9 @@ class User < ActiveRecord::Base
   def all_active_user_companies_and_hoshins
     return @all_active_user_companies_and_hoshins unless @all_active_user_companies_and_hoshins.nil?
     @all_active_user_companies_and_hoshins = self.active_user_companies_and_hoshins
+    ActiveRecord::Associations::Preloader.new(@all_active_user_companies_and_hoshins, 
+      [company: :active_hoshins]).run 
+    @all_active_user_companies_and_hoshins
   end
   
   def all_companies

@@ -44,6 +44,8 @@ class Company < ActiveRecord::Base
     end
   end  
   
+  set_default_order :name
+  
   default_scope lambda { 
     where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless User.current_user.nil? || User.current_user == -1 || User.current_user.administrator? }
   
