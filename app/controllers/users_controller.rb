@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    Resque.enqueue(UserUpdateDataFromAuthorization, current_user.id, 1, 1, 'dsf', 'firstName', 'lastName', request.remote_ip, cookies[:tz], header_locale)
     begin   
       ActiveRecord::Associations::Preloader.new(self.this, 
         [:dashboard_tasks, :dashboard_indicators]).run 
