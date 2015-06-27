@@ -87,14 +87,4 @@ module ModelBase
     end
     self.admin_user_companies.include? cid
   end
-  
-  def self.perform(id, method, *args)
-      find(id).send(method, *args)
-    end
-
-  # We can pass this any Repository instance method that we want to
-  # run later.
-  def delay(method, *args)
-    Resque.enqueue(Repository, id, method, *args)
-  end
 end
