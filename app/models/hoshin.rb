@@ -155,9 +155,9 @@ class Hoshin < ActiveRecord::Base
       Area.update_all({:company_id => company_id},{:hoshin_id => id})
       Goal.update_all({:company_id => company_id},{:hoshin_id => id})
     end
-    if needs_health_update?
-      Resque.enqueue(Jobs::HealthUpdate, id)
-    end
+    #if needs_health_update?
+    #  Resque.enqueue(Jobs::HealthUpdate, id)
+    #end
   end
   
   
