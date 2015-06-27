@@ -4,6 +4,9 @@
 
 #cms ul {
 	padding: 40px;
+	&.timeline {
+		padding: 0;
+	}
 }
 
 #cms h2 {
@@ -178,7 +181,7 @@
 #cms .product-pitch {
   margin: 4em -50px 0 -50px;
   padding: 4em 0;
-  background: #eee url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTUvMzIvNzA2L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
+  background: #eee asset-url("bg-shadow.png") repeat-x 0 0;
 }
 #cms .pitch #slide3.team {
 	padding: 0;
@@ -188,6 +191,11 @@
 #cms .pitch .slide.team h2 {
 	font-family: "Yanone Kaffeesatz", Arial, sans-serif;
 }
+
+body.tutorial #tutorial-close {
+	display: none;
+}
+
 @media all and (max-width: 640px) {
 	
 	#cms .quotes {
