@@ -1,4 +1,4 @@
-require 'resque/status_server'
+require 'resque/server'
 
 unless Rails.env.development?
   Resque::Server.use Rack::Auth::Basic do |user, password|
