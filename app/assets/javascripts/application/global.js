@@ -398,6 +398,7 @@ $.fn.extend({
 var openPostit = function(elem) {
 	$(elem).prevAll('.postit-description').toggleClass('show-all'); 
 	$(elem).toggleClass('open');
+	window.setTimeout(equalHeightSections, 1100);
 }
 
 
