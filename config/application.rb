@@ -79,6 +79,8 @@ module Hoshinplan
     config.font_assets.origin = '*'
     
     config.cms_auto_calls = !ENV['CMS_AUTO_CALLS'].blank? && YAML.load(ENV['CMS_AUTO_CALLS'])
+    config.new_relic_disable = !ENV['NEW_RELIC_DISABLE'].blank? && YAML.load(ENV['NEW_RELIC_DISABLE'])
+    config.mixpanel_disable = !ENV['MIXPANEL_DISABLE'].blank? && YAML.load(ENV['MIXPANEL_DISABLE'])
         
   end
 end
