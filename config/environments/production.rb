@@ -60,7 +60,8 @@ Hoshinplan::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, nil, { :expires_in => 8.day, :compress => true }
+  #config.cache_store = :dalli_store, nil, { :expires_in => 8.day, :compress => true }
+  config.cache_store = :redis_store, { :expires_in => 8.day }
   #config.cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280', { :expires_in => 5.days }
   #config.hobo.stable_cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280'
 

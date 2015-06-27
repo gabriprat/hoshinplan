@@ -82,9 +82,8 @@ gem 'delocalize'
 gem 'aws-sdk-v1'
 gem 'paperclip'
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
-gem 'memcachier'
-gem 'dalli'
-gem 'memcache-client'
+gem 'redis-rails'
+gem 'redis-store'
 gem 'request_store'
 gem 'newrelic_rpm', :group => :production
 gem 'RedCloth'

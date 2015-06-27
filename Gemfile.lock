@@ -128,7 +128,6 @@ GEM
     coffee-script-source (1.9.1.1)
     css_parser (1.3.6)
       addressable
-    dalli (2.7.4)
     delayed_job (4.0.6)
       activesupport (>= 3.0, < 5.0)
     delayed_job_active_record (4.0.3)
@@ -199,8 +198,6 @@ GEM
       systemu (~> 2.6.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    memcache-client (1.8.5)
-    memcachier (0.0.2)
     memory_profiler (0.9.4)
     metaclass (0.0.4)
     mime-types (2.6.1)
@@ -293,6 +290,23 @@ GEM
     rake (10.4.2)
     raphaeljs-rails (2.1.2)
       railties
+    redis (3.2.1)
+    redis-actionpack (4.0.0)
+      actionpack (~> 4)
+      redis-rack (~> 1.5.0)
+      redis-store (~> 1.1.0)
+    redis-activesupport (4.0.0)
+      activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-rack (1.5.0)
+      rack (~> 1.5)
+      redis-store (~> 1.1.0)
+    redis-rails (4.0.0)
+      redis-actionpack (~> 4)
+      redis-activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-store (1.1.5)
+      redis (>= 2.2)
     request_store (1.1.0)
     ruby-hmac (0.4.0)
     ruby-openid (2.7.0)
@@ -349,7 +363,6 @@ DEPENDENCIES
   bootstrap-switch-rails
   clockwork
   coffee-rails
-  dalli
   delayed_job_active_record
   delocalize
   derailed
@@ -372,8 +385,6 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-themes
   json
-  memcache-client
-  memcachier
   minitest
   mixpanel-ruby
   mocha
@@ -395,6 +406,8 @@ DEPENDENCIES
   rails_12factor
   rake
   raphaeljs-rails
+  redis-rails
+  redis-store
   request_store
   ruby-hmac
   ruby-openid

@@ -1,4 +1,3 @@
-if ENV["REDISCLOUD_URL"]
-    uri = URI.parse(ENV["REDISCLOUD_URL"])
-    $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+if ENV["REDIS_URL"]
+    $redis = Redis.new(url: ENV["REDIS_URL"])
 end
