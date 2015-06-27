@@ -156,7 +156,7 @@ class Hoshin < ActiveRecord::Base
       Goal.update_all({:company_id => company_id},{:hoshin_id => id})
     end
     if needs_health_update?
-      Delayed::Job.enqueue(Jobs::HealthUpdate.new(id))
+      Resque.enqueue(Jobs::HealthUpdate, id)
     end
   end
   

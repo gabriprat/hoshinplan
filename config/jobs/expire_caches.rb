@@ -1,6 +1,6 @@
 module Jobs
   class ExpireCaches
-    def perform
+    def self.perform
       @text = ll "Initiating expirecaches job!"
       if Rails.configuration.action_controller.perform_caching
         kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(0))

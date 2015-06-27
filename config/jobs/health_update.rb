@@ -1,6 +1,6 @@
 module Jobs
-  class HealthUpdate < Struct.new(:hoshin_id)  
-    def perform
+  class HealthUpdate
+    def self.perform(hoshin_id=nil)
       @text = ll "Initiating healthupdate job!"    
       if hoshin_id.nil?
         Hoshin.unscoped.all.each{|hoshin|
@@ -17,7 +17,7 @@ module Jobs
       @text += ll "End healthupdate job!"
     end
     
-    def perform_one(hoshin)
+    def self.perform_one(hoshin)
       begin
         hoshin.all_user_companies = nil
         uc_ids = UserCompany.unscoped.select(:user_id).where(:company_id => hoshin.company_id)

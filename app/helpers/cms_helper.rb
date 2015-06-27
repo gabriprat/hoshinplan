@@ -12,7 +12,7 @@ module CmsHelper
     logger.debug "=========== CMS Async Get 1: #{ret}"
     if ret.nil?
       logger.debug "=========== CMS Async Get Enqueuing job!!!!!"
-      Delayed::Job.enqueue CmsJob.new(key, cache_key, expires)
+      Resque.enqueue CmsJob, key, cache_key, expires
       ret = ""
     end
     Rails.logger.debug "=========== CMS Async Get 2: #{ret}"
@@ -20,10 +20,11 @@ module CmsHelper
   end
   
 private
-  
-  CmsJob = Struct.new(:key, :cache_key, :expires) do
+
+class CmsJob    
+    @queue = :cms
     
-    def cmsGet
+    def self.cmsGet
       begin
         url = URI.parse('http://doc.hoshinplan.com/' + key)
         req = Net::HTTP::Get.new(url.path)
@@ -49,15 +50,15 @@ private
       end
     end
     
-    def perform
+    def self.perform(key, cache_key, expires)
       Rails.logger.debug "=========== CMS Job #{cache_key}"
       controller = ActionController::Base.new
       _fetch_or_store(cache_key, controller, expires) do |cache_key|
-        cmsGet
+        cmsGet(key, cache_key, expires)
       end
     end
     
-    def _fetch_or_store(cache_key, controller, expires)
+    def self._fetch_or_store(cache_key, controller, expires)
       fail "No block given" unless block_given?
       Rails.logger.debug "=========== Fecth or store #{cache_key}"
       ret = controller.read_fragment(cache_key) 

@@ -1,7 +1,7 @@
 module Jobs
   class SendReminders < Struct.new(:hour)  
     
-    def perform
+    def self.perform
       self.hour ||= 7
       self.hour = self.hour.to_i
       @text = ll "Initiating send reminders job!"

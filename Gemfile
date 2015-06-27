@@ -71,7 +71,6 @@ gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
 #gem 'gem_bench', :group => :console
 gem "clockwork"
 gem "protected_attributes"
-gem 'delayed_job_active_record'
 
 gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "nested_has_many_through"
@@ -107,3 +106,5 @@ group :test do
   gem 'mocha'
 end
 gem 'unscoped_associations'
+gem 'resque'
+gem 'resque-delay'
