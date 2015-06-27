@@ -44,7 +44,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    Resque.enqueue(UserUpdateDataFromAuthorization, current_user.id, 1, 1, 'dsf', 'firstName', 'lastName', request.remote_ip, cookies[:tz], header_locale)
     begin   
       ActiveRecord::Associations::Preloader.new(self.this, 
         [:dashboard_tasks, :dashboard_indicators]).run 
@@ -164,7 +163,7 @@ class UsersController < ApplicationController
     lastName = auth['info']['lastName']
     firstName ||= auth['info']['first_name']
     lastName ||= auth['info']['last_name']
-    current_user.delay.update_data_from_authorization(provider, uid, email, firstName, lastName, request.remote_ip, cookies[:tz], header_locale)
+    Resque.enqueue(UserUpdateDataFromAuthorization, current_user.id, provider, uid, email, firstName, lastName, request.remote_ip, cookies[:tz], header_locale)    
   end
   
   
