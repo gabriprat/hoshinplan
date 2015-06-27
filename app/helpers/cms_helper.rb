@@ -1,7 +1,7 @@
 module CmsHelper
   def cmsGet(key) 
     Rails.logger.debug "=========== CMS Get #{key}"
-    ret = CmsJob.new(key).cmsGet
+    ret = CmsJob.cmsGet(key)
     Rails.logger.debug "=========== CMS Get result: #{ret}"
     ret
   end
@@ -24,7 +24,7 @@ private
 class CmsJob    
     @queue = :cms
     
-    def self.cmsGet
+    def self.cmsGet(key)
       begin
         url = URI.parse('http://doc.hoshinplan.com/' + key)
         req = Net::HTTP::Get.new(url.path)
@@ -54,7 +54,7 @@ class CmsJob
       Rails.logger.debug "=========== CMS Job #{cache_key}"
       controller = ActionController::Base.new
       _fetch_or_store(cache_key, controller, expires) do |cache_key|
-        cmsGet(key, cache_key, expires)
+        cmsGet(key)
       end
     end
     
