@@ -3,19 +3,9 @@
   <body: class="front-page"/>
 
   <content:>
-    <if test='&logged_in?'>
-    <header class="content-header hero-unit"> 
-      <h1><strong>Hoshin</strong>plan</h1>
-      <section class="welcome-message">
-        <h3><t key="index.title">Make your business strategy work</t></h3>
-      </section>
-    </header>
-    </if>
-    <else>    	
-    	<cms key="custom_fragments/home_no_logged_#{locale}" />
-    </else>
-    <section class="content-body">
-    </section>
+    
+  <cms key="custom_fragments/home_no_logged_#{locale}" />
+    
   </content:>
 
 </page>
