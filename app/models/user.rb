@@ -30,24 +30,16 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, {
     :styles => {
-      :thumb4x => "416x416#",
-      :thumb3x => "312x312#",
       :thumb2x => "208x208#",
       :thumb => "104x104#",
-      :mini4x => "116x116#",
-      :mini3x => "87x87#",
       :mini2x => "58x58#",
       :mini => "29x29#"
     },
     :convert_options => {
       :mini => "-quality 80 -interlace Plane",
       :mini2x => "-quality 80 -interlace Plane",
-      :mini3x => "-quality 80 -interlace Plane",
-      :mini4x => "-quality 80 -interlace Plane",
       :thumb => "-quality 80 -interlace Plane",
-      :thumb2x => "-quality 80 -interlace Plane",
-      :thumb3x => "-quality 80 -interlace Plane",
-      :thumb4x => "-quality 80 -interlace Plane"
+      :thumb2x => "-quality 80 -interlace Plane"
     },
     :s3_headers => { 
       'Cache-Control' => 'public, max-age=315576000', 
