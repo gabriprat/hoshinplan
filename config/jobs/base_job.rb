@@ -1,5 +1,5 @@
 module Jobs
-    def say(text)
+    def self.say(text)
        Resque.logger.add(Logger::INFO, text)
     end
 end

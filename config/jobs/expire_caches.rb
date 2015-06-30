@@ -1,23 +1,34 @@
 module Jobs
   class ExpireCaches
-    def perform
-      @text = ll "Initiating expirecaches job!"
+    @queue = :jobs
+    
+    def self.perform(hour = 0)
+      begin
+      Jobs::say "Initiating expirecaches job (at #{hour})!"
       if Rails.configuration.action_controller.perform_caching
-        kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(0))
+        kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(hour))
         kpis.each { |indicator| 
-          @text +=  ll " KPI: #{indicator.name}"
+          Jobs::say " KPI: #{indicator.name}"
           #expire_swept_caches_for(indicator)
           #Error: NoMethodError: undefined method `expire_swept_caches_for' for #<Jobs::ExpireCaches:0x007f2dd4f88e10>
-          indicator.area.touch
+          area = Area.unscoped.find(indicator.area_id)
+          area.touch
+          area.save!(validate: false)
         }
-        tasks = Task.unscoped.due_today.merge(User.at_hour(0))
+        tasks = Task.unscoped.due_today.merge(User.at_hour(hour))
         tasks.each { |task| 
-          @text +=  ll "Task: #{task.name}"
+          Jobs::say "Task: #{task.name}"
           #expire_swept_caches_for(task)
-          task.area.touch
+          area = Area.unscoped.find(task.area_id)
+          area.touch
+          area.save!(validate: false)
         }
       end
-      @text += ll "End expirecaches job!"
+      Jobs::say "End expirecaches job!"
+      rescue 
+        Jobs::say $!.inspect
+        Jobs::say $@
+      end
     end
   end
 end

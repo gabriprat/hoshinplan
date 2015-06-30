@@ -1,7 +1,9 @@
 module Jobs
   class HealthUpdate
-    def perform(hoshin_id=nil)
-      @text = ll "Initiating healthupdate job!"    
+    @queue = :jobs
+    
+    def self.perform(hoshin_id=nil)
+      Jobs::say "Initiating healthupdate job!"    
       if hoshin_id.nil?
         Hoshin.unscoped.all.each{|hoshin|
            perform_one(hoshin)
@@ -14,10 +16,10 @@ module Jobs
           #Avoid errors when deleting hoshins
         end
       end
-      @text += ll "End healthupdate job!"
+      Jobs::say "End healthupdate job!"
     end
     
-    def perform_one(hoshin)
+    def self.perform_one(hoshin)
       begin
         hoshin.all_user_companies = nil
         uc_ids = UserCompany.unscoped.select(:user_id).where(:company_id => hoshin.company_id)
@@ -27,11 +29,11 @@ module Jobs
           User.current_id = User.current_user.id
           acting_user = User.current_user
         else
-          @text += ll "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}"
+          Jobs::say "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}"
           return 
         end
         hoshin.sync_health_update!(force=true)
-        @text += ll "Updated hoshin widh id=#{hoshin.id} (#{hoshin.name})"
+        Jobs::say "Updated hoshin widh id=#{hoshin.id} (#{hoshin.name})"
       ensure
         User.current_user = nil
         User.current_id = nil

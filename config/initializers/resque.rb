@@ -5,3 +5,5 @@ unless Rails.env.development?
     user == 'login' && password == 'password'
   end
 end
+Resque.logger = Logger.new 'log/resque.log'
+Resque.logger.level = Logger::DEBUG

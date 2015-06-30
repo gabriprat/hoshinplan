@@ -1,8 +1,10 @@
 module Jobs
   class UpdateIndicators
-    def perform
+    @queue = :jobs 
+    
+    def self.perform
       User.current_user = User.administrator.first
-      @text = ll " Initiating updateindicators job!"
+      Jobs::say " Initiating updateindicators job!"
       ihs = IndicatorHistory.joins(:indicator).includes({:indicator => :responsible}, {:indicator => :hoshin})
         .where("day = #{User::TODAY_SQL}  and (
             indicator_histories.goal != indicators.goal
@@ -29,10 +31,10 @@ module Jobs
           line += " last_update #{ind.last_update} => #{ih.day}"
           ind.last_update = ih.day
         end
-        @text += ll line
+        Jobs::say line
         ind.save!({:validate => false})
       }
-      @text += ll "End update indicators job!"
+      Jobs::say "End update indicators job!"
     end  
   end
 end
