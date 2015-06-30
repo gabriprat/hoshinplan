@@ -20,7 +20,8 @@ Hoshinplan::Application.configure do
             :authentication => :plain,
             :user_name      => ENV['SENDGRID_USERNAME'],
             :password       => ENV['SENDGRID_PASSWORD'],
-            :domain         => 'heroku.com'
+            :domain         => 'hoshinplan.com',
+            :enable_starttls_auto => true
     }
   config.action_mailer.asset_host = 'http://static.hoshinplan.com'
   config.action_mailer.default_url_options = { host: 'www.hoshinplan.com', only_path: false }
