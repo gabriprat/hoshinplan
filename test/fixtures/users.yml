@@ -7,7 +7,7 @@
 one:
   id: 1
   name: user-name
-  email_address: test@hoshinplan.com
+  email_address: hello@hoshinplan.com
   administrator: true
   tutorial_step: 0
   preferred_view: expanded
