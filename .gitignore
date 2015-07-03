@@ -37,3 +37,4 @@ Procfile.dev
 migrate_prod.sh
 pushheroku.sh
 hoshinplan-taskdef.json
+assets.sh
