@@ -387,10 +387,3 @@ class User < ActiveRecord::Base
   end
   
 end
-
-class UserUpdateDataFromAuthorization
-  @queue = :update_data
-  def self.perform(user_id, provider, uid, email, firstName, lastName, remote_ip, tz, header_locale)
-    User.find(user_id).update_data_from_authorization(provider, uid, email, firstName, lastName, remote_ip, tz, header_locale)
-  end
-end

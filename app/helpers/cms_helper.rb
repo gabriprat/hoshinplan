@@ -1,76 +1,68 @@
-module CmsHelper
-  def cmsGet(key) 
-    Rails.logger.debug "=========== CMS Get #{key}"
-    ret = CmsJob.cmsGet(key)
-    Rails.logger.debug "=========== CMS Get result: #{ret}"
+module CmsHelper  
+  def cmsCachedGet(key, expires, async, cache_key, clear)
+    controller.expire_fragment(cache_key) if clear
+    Rails.logger.debug "=========== CMS Get #{key} async=#{async}"
+    ret = CmsGetter.fetch_or_store(key, cache_key, expires, async)
+    Rails.logger.debug "=========== CMS Get result present=#{ret.present?}"
     ret
-  end
+  end    
+end
+
+class CmsGetter
   
-  def cmsAsyncGet(key, cache_key, expires)
-    Rails.logger.debug "=========== CMS Async Get #{cache_key}"
-    ret = controller.read_fragment(cache_key)
-    logger.debug "=========== CMS Async Get 1: #{ret}"
-    if ret.nil?
-      logger.debug "=========== CMS Async Get Enqueuing job!!!!!"
-      Resque.enqueue CmsJob, key, cache_key, expires
-      ret = ""
+  def self.fetch_or_store(key, cache_key, expires, async)
+    Rails.logger.debug "========"
+    _fetch_or_store(cache_key, expires) do 
+      if async
+        self.delay._cmsGet(key)
+        ""
+      else
+        _cmsGet(key)
+      end
     end
-    Rails.logger.debug "=========== CMS Async Get 2: #{ret}"
-    ret
   end
   
 private
 
-class CmsJob    
-    @queue = :cms
-    
-    def self.cmsGet(key)
-      begin
-        url = URI.parse('http://doc.hoshinplan.com/' + key)
-        req = Net::HTTP::Get.new(url.path)
-        res = Net::HTTP.start(url.host, url.port) {|http|
-          http.read_timeout = 10 #Default is 60 seconds
-          http.request(req)
-        }
-        if (res.code.to_i < 300) 
-          res.body
-        else
-          ""
-        end
-      rescue SocketError => e
-        fail e unless Rails.env.development?
+  def self._cmsGet(key)
+    begin
+      url = URI.parse('http://doc.hoshinplan.com/' + key)
+      req = Net::HTTP::Get.new(url.path)
+      res = Net::HTTP.start(url.host, url.port) {|http|
+        http.read_timeout = 10 #Default is 60 seconds
+        http.request(req)
+      }
+      if (res.code.to_i < 300) 
+        res.body
+      else
+        ""
+      end
+    rescue SocketError => e
+      fail e unless Rails.env.development?
+      "cmsGet failed: " + e.to_s
+    rescue Net::ReadTimeout => e  
+      unless Rails.env.development?
+        track_exception(e)
+        ""
+      else
         "cmsGet failed: " + e.to_s
-      rescue Net::ReadTimeout => e  
-        unless Rails.env.development?
-          track_exception(e)
-          ""
-        else
-          "cmsGet failed: " + e.to_s
-        end
       end
-    end
-    
-    def self.perform(key, cache_key, expires)
-      Rails.logger.debug "=========== CMS Job #{cache_key}"
-      controller = ActionController::Base.new
-      _fetch_or_store(cache_key, controller, expires) do |cache_key|
-        cmsGet(key)
-      end
-    end
-    
-    def self._fetch_or_store(cache_key, controller, expires)
-      fail "No block given" unless block_given?
-      Rails.logger.debug "=========== Fecth or store #{cache_key}"
-      ret = controller.read_fragment(cache_key) 
-      Rails.logger.debug "=========== Fecth or store 1: #{ret}"      
-      if ret.nil?
-            ret = controller.write_fragment(cache_key, yield(cache_key), {expires: expires})
-            Rails.logger.debug "=========== Fecth or store 2: #{ret}"      
-            
-      end
-      Rails.logger.debug "=========== Fecth or store 3: #{ret}"
-      ret
     end
   end
-    
+
+  def self._fetch_or_store(cache_key, expires)
+    fail "No block given" unless block_given?
+    Rails.logger.debug "=========== Fecth or store #{cache_key}"
+    cont = ActionController::Base.new
+    ret = cont.read_fragment(cache_key) 
+    Rails.logger.debug "=========== Fecth or store: cached=#{!ret.nil?}"      
+    if ret.nil?
+          ret = yield
+          ret = cont.write_fragment(cache_key, ret, {expires: expires}) unless ret.nil?
+          Rails.logger.debug "=========== Fecth or store retrieved from cms"      
+    end
+    Rails.logger.debug "=========== Fecth or store END present=#{ret.present?}"
+    ret
+  end
 end
+

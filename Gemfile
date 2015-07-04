@@ -107,4 +107,4 @@ group :test do
 end
 gem 'unscoped_associations'
 gem 'resque'
-gem 'resque-delay', :git => "git://github.com/puddle/resque-delay.git"
+gem 'resque-delay', :git => "git://github.com/rykov/resque-delay.git"

@@ -90,14 +90,14 @@ class Mp
   def people_set_access_api
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     tracker = Mixpanel::Tracker.new(TOKEN)
-    Resque.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options}, #{@user}" 
+    Rails.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options}, #{@user}" 
     tracker.people.set(@options['distinct_id'], @people, @options[:ip])
   end
 
   def track_access_api
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     tracker = Mixpanel::Tracker.new(TOKEN)
-    Resque.logger.debug "Mixpanel track: #{@options['distinct_id']}, #{@options}, #{@event}"
+    Rails.logger.debug "Mixpanel track: #{@options['distinct_id']}, #{@options}, #{@event}"
     tracker.track(@options['distinct_id'], @event, @options, @options[:ip])
   end
 end
