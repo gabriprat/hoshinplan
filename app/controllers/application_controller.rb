@@ -50,6 +50,17 @@ class ApplicationController < ActionController::Base
          :do_activate, :do_signup, :forgot_password, :reset_password,
          :do_reset_password, :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, :accept_invitation, :do_accept_invitation]
         
+  if (!Rails.env.development?)
+    before_filter :force_ssl
+  end
+
+  # Force logged in users to use SSL
+  def force_ssl
+    if current_user && request.protocol != "https://"
+      redirect_to :protocol => "https://"
+    end
+  end
+  
   around_filter :set_user_time_zone,  :except => [:activate_from_email, :activate]
          
          around_filter :scope_current_user,  :except => [:activate_from_email, :activate]
