@@ -13,7 +13,7 @@ class CmsGetter
   def self.fetch_or_store(key, cache_key, expires, async)
     Rails.logger.debug "========"
     _fetch_or_store(cache_key, expires) do 
-      if async
+      if async && Rails.configuration.action_controller.perform_caching
         self.delay._cmsGet(key)
         ""
       else
@@ -52,6 +52,7 @@ private
 
   def self._fetch_or_store(cache_key, expires)
     fail "No block given" unless block_given?
+    return yield unless Rails.configuration.action_controller.perform_caching
     Rails.logger.debug "=========== Fecth or store #{cache_key}"
     cont = ActionController::Base.new
     ret = cont.read_fragment(cache_key) 
