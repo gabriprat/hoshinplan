@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
          :do_reset_password, :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, :accept_invitation, :do_accept_invitation]
         
   if (!Rails.env.development?)
-    before_filter :force_ssl
+    before_filter :force_ssl if logged_in?
   end
 
   # Force logged in users to use SSL
