@@ -127,10 +127,18 @@ $accent-color: $secondary-color;
     }
 
     @include breakpoint(40em) {
-        transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform:scaleY(1.2);
+	-o-transform:scaleY(1.2);
+	transform: scale(1.2);
         box-shadow: 0 0 4px 1px rgba(20, 20, 20, 0.8);
         .price {
             color: $accent-color;
         }
     }
+}
+.invoice-frequency {
+	text-align: center;
+	margin-bottom: 3em;
 }

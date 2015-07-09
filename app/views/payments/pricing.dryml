@@ -1,9 +1,7 @@
 <page>
 <body: class="index-page" />
 <content:>
-	<div class="col-md-12">
-	<div class="col-md-4 col-md-offset-4"><t key="pricing_plans.invoicing_frequency"/> <a href="?feq=MONTH" class="btn #{@freq!=:YEAR ? 'btn-default' : ''}"><t key="pricing_plans.monthly"/></a> <t key="hobo.support.or"/> <a href="?freq=YEAR" class="btn #{@freq==:YEAR ? 'btn-default' : ''}"><t key="pricing_plans.annual"/></a></div>
-	</div>
+	<div class="invoice-frequency"><t key="pricing_plans.invoicing_frequency"/> <a href="?feq=MONTH" class="btn #{@freq!=:YEAR ? 'btn-default' : ''}"><t key="pricing_plans.monthly"/></a> <t key="hobo.support.or"/> <a href="?freq=YEAR" class="btn #{@freq==:YEAR ? 'btn-default' : ''}"><t key="pricing_plans.annual"/></a></div>
 	<pricing/>
 </content:>
 </page>
