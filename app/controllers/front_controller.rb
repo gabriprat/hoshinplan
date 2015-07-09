@@ -34,6 +34,8 @@ class FrontController < ApplicationController
   end
   
   def pricing
+    @freq = params[:freq]
+    @freq ||= :MONTH
   end
   
   def invitation_accepted

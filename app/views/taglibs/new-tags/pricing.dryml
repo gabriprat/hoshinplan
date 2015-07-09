@@ -14,7 +14,7 @@
 		<else>
 			<t key="pricing_plans.free" if="amount_value==0"/>
 			<else>
-				<t key="pricing_plans.price"  value="#{number_to_currency(this.amount_value, unit: get_unit(this.amount_currency))}"/>
+				<t key="pricing_plans.price_#{this.frequency}"  value="#{number_to_currency(this.amount_value, unit: get_unit(this.amount_currency))}"/>
 			</else>
 		</else>
 	    </li>

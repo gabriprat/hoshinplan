@@ -379,7 +379,8 @@ es:
     charts_view: Vista de gráficos
     kanban_view: Vista Kanban
     users: '%{users} usuarios'
-    price: '%{value} / mes'
+    price_MONTH: '%{value} / mes'
+    price_YEAR: '%{value} / año'
     for_companies: Para empresas de cualquier tamaño
     for_startups: Para startups
     we_help_you: Te ayudamos a construir tu hoshinplan
@@ -388,6 +389,9 @@ es:
     all_enterprise_features: Todo lo incluido en la versión enterprise
     support_assistance: Soporte 8/5 vía email o Skpe
     two_days_workshop: Workshop de dos días para crear los hoshinplan necesarios y formar al equipo
+    invoicing_frequency: Periodo de facturación
+    monthly: Mensual
+    annual: Anual
   paypal:
     purchase: Comprar
   payments:

@@ -22,12 +22,6 @@ class PaypalAccess
     end
   end
   
-  def self.activate_plans
-    ["P-9Y854540V66583901RLPMZQY","P-67J789623K7513512RK474DQ" ].each { |plan_id|
-      set_state(plan_id, "ACTIVE")
-    }
-  end
-  
   def self.create_plan(plan)
     plan = PayPal::SDK::REST::Plan.new({
           name: plan.name,
