@@ -141,12 +141,12 @@ class UserCompany < ActiveRecord::Base
   end
 
   def update_permitted?
-    user_id = acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
+    user_id == acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
   end
 
   def destroy_permitted?
-    return false if user_id == 557
-    user_id = acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
+    return false if user_id == 557 && !acting_user.administrator?
+    user_id == acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
   end
 
   def view_permitted?(field)
