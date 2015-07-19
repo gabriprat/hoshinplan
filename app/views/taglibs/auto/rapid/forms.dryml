@@ -410,13 +410,24 @@
 <def tag="signup-form" for="User">
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <field-list fields="name, email_address, password, password_confirmation, language, timezone" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
 
+<def tag="resend-activation-form" polymorphic/>
+<def tag="resend-activation-form" for="User">
+  <form lifecycle="resend_activation" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.resend_activation', :default=>['Resend Activation']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="accept-invitation-form" polymorphic/>
 <def tag="accept-invitation-form" for="User">
   <form lifecycle="accept_invitation" merge param="default">

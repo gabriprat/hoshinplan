@@ -560,6 +560,32 @@ h2.heading .title-action:hover {
 	display:inline-block;
 	vertical-align: middle;
 }
+
+.simple-message .main-column {
+	display: flex;
+        flex-direction: column;
+        justify-content: center;
+	align-items: center;
+	min-height: 65vh;
+}
+
+.simple-message .main-column .content {
+	max-width: 500px;
+	resize: vertical;
+	margin: auto;
+	
+	.content-header {
+		margin-bottom: 2em;
+	}
+	
+	form {
+		margin-top: 2em;
+		input.btn {
+			margin: auto;
+		}
+	}
+}
+
 @media (min-width: 640px) {
 body.compact {
 	.parent-link {
@@ -2770,7 +2796,7 @@ form.modal {
 	overflow-x: hidden;
 }
 
-.btn {
+.btn, .btn[disabled] {
 	border: 0;
 	box-shadow: none;
 	background-color: transparent;
@@ -2782,7 +2808,7 @@ form.modal {
 	  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.btn-primary, .btn-primary:link, .btn-primary:visited {
+.btn-primary, .btn-primary:link, .btn-primary:visited, .btn-primary[disabled] {
 	color: $secondary-color;
 }
 

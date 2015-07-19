@@ -186,8 +186,12 @@ class User < ActiveRecord::Base
         :become => :active
     
     create :signup, :available_to => "Guest",
-      :params => [:name, :email_address, :password, :password_confirmation],
+      :params => [:name, :email_address, :password, :password_confirmation, :language, :timezone],
       :become => :inactive, :new_key => true  do
+      UserCompanyMailer.delay.activation(self, lifecycle.key)
+    end
+    
+    transition :resend_activation, {:inactive => :inactive}, :available_to => :all, :new_key => true do
       UserCompanyMailer.delay.activation(self, lifecycle.key)
     end
     

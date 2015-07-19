@@ -78,7 +78,7 @@ es:
     account_disabled_page:
       title: "Cuenta desactivada"
       heading: "Cuenta desactivada"
-      text: "Su cuenta está desactivada en este momento. Recuerde que debe activarla haciendo clic en el enlace que ha recibido por email."
+      text: "Puedes activarla haciendo clic en el enlace que recibiste por email al darte de alta. Si no tienes el email puedes generar otro clicando en el botón más abajo."
 
     account_page:
       title: "Tu perfil"

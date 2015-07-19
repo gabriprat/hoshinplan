@@ -16,7 +16,7 @@
 <def tag="form" for="OpenidProvider">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="email_domain, openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+    <field-list fields="email_domain, issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     <div param="actions">
       <submit label="#{ht 'openid_provider.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -40,7 +40,7 @@
 <def tag="form" for="SamlProvider">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="email_domain, openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+    <field-list fields="email_domain, issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     <div param="actions">
       <submit label="#{ht 'saml_provider.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -63,13 +63,24 @@
 <def tag="signup-form" for="User">
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <field-list fields="name, email_address, password, password_confirmation, language, timezone" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
 
+<def tag="resend-activation-form" polymorphic/>
+<def tag="resend-activation-form" for="User">
+  <form lifecycle="resend_activation" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.resend_activation', :default=>['Resend Activation']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="accept-invitation-form" polymorphic/>
 <def tag="accept-invitation-form" for="User">
   <form lifecycle="accept_invitation" merge param="default">

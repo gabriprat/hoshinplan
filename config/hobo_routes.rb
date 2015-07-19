@@ -251,6 +251,8 @@ Hoshinplan::Application.routes.draw do
       get 'tutorial'
       get 'pending'
       get 'unsubscribe'
+      put 'resend_activation', :action => 'do_resend_activation'
+      get 'resend_activation'
       put 'accept_invitation', :action => 'do_accept_invitation'
       get 'accept_invitation'
       put 'activate', :action => 'do_activate'

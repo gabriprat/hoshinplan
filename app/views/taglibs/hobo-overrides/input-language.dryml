@@ -1,0 +1,17 @@
+<def attrs='labels, titleize, first-option, first-value' tag='input' for='EnumLanguage'><%
+  labels ||= {}
+  labels = HashWithIndifferentAccess.new(labels)
+  titleize = true if titleize.nil? && labels.empty?
+  options = this_type.values.map {|v|
+    default = labels[v] || v
+    default = default.titleize if titleize
+    [I18n.t("activerecord.attributes.#{this_parent.class.to_s.downcase}/#{this_field}s.#{v}",
+      :default => default),
+    v]
+  }
+  %>
+  <select name='#{param_name_for_this}' merge-attrs>
+    <option value='#{first_value}' unless='&first_option.nil?'><first-option/></option>
+    <%= options_for_select(options, this || I18n.locale) %>
+  </select>
+</def>

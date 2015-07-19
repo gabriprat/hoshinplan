@@ -1,0 +1,14 @@
+<extend tag='account-disabled-page'>
+  <old-account-disabled-page class="simple-message" merge>
+  	<prepend-main-column:>
+		<do part="resend-activation"> 
+			<flash-messages/>
+		</do>
+	</prepend-main-column:>
+	<content: with-flash-messages="&false"/>
+	<append-content-body:> 
+			<% sent = t('user.activation_sent_button') %>
+			<transition-button with="&model.find_by_email_address(params[:login].to_s.downcase)" transition="resend_activation" update="resend-activation" success="var e = $('.content-body .btn'); e.val('#{sent}'); e[0].disabled=true"/> 
+	</append-content-body:>
+  </old-account-disabled-page>
+</extend>

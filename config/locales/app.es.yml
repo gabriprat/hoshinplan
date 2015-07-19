@@ -223,6 +223,7 @@ es:
             accept_invitation: Aceptar la invitación		
             activate: Activar cuenta
             reset_password: Restablecer contraseña
+            resend_activation: Reenviar email de activación
       user/languages:
         es: Español (España)
         en: English (US)
@@ -315,6 +316,10 @@ es:
           transitions:
             activate: Activar hoshin
             archive: Archivar hoshin
+      user:
+        lifecycle:
+          transitions:
+            resend_activation: Reenviar email de activación de usuario
   index:
     title: Haz que tu estrategia de negocio funcione
   user:
@@ -327,8 +332,10 @@ es:
     collaborating_with: Colaborando con
     change: Cambiar
     end_collaboration: Cancelar colaboración
+    activation_sent_button: Ya enviado
     messages:
       end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
+      activation_mail_resent: El email de activación ha sido reenviado.
   hoshin:
     how_to_improve: ¿Cómo mejorar la salud de mi hoshinplan?
     finish_tutorial: Finalizar el tutorial

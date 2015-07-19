@@ -207,7 +207,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -431,7 +431,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -589,6 +589,27 @@
 
     <content-body: param>
       <signup-form param="form"/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="resend-activation-page" polymorphic/>
+<def tag="resend-activation-page" for="User">
+  <page title="#{ht 'user.resend_activation.title', :default=>['Resend Activation']}" merge>
+
+    <body: class="lifecycle-transition-page resend-activation-page" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.resend_activation.heading">
+          Resend Activation
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <resend-activation-form param="form"/>
     </content-body:>
 
   </page>

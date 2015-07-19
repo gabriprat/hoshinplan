@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   auto_actions :all, :lifecycle, :except => :index
   
   show_action :dashboard, :tutorial, :pending, :unsubscribe
-  
+    
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
   skip_before_filter :my_login_required, :only => :omniauth_callback
@@ -32,6 +32,13 @@ class UsersController < ApplicationController
     do_transition_action :activate do
       self.current_user = model.find(params[:id])
       redirect_to home_page
+    end
+  end
+  
+  def do_resend_activation
+    do_transition_action :resend_activation do
+      flash.now[:notice] = I18n.translate('user.messages.activation_mail_resent')
+      hobo_ajax_response
     end
   end
   
@@ -181,8 +188,9 @@ class UsersController < ApplicationController
   end
   
   def remember(user)
-    current_user.remember_me if logged_in?
-    create_auth_cookie if logged_in?
+    current_user.remember_me if user.account_active?
+    create_auth_cookie if user.account_active?
+    true
   end
   
   def omniauth
