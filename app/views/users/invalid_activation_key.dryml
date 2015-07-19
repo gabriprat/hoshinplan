@@ -1,0 +1,20 @@
+<simple-page class="simple-message" title='#{t &apos;invalid_activation_key_page.title&apos;}'>
+	<body: class='invalid-activation-key-page'/>
+	<prepend-main-column:>
+		<do part="resend-activation"> 
+			<flash-messages/>
+		</do>
+	</prepend-main-column:>
+	
+	<content: with-flash-messages="&false">
+		<header>
+			<h2><t key='invalid_activation_key_page.heading'/></h2>
+		</header>
+
+		<section class="content-body">
+			<p><t key='invalid_activation_key_page.text'/></p>
+			<% sent = t('user.activation_sent_button') %>
+			<transition-button with="&model.find(params[:id])" transition="resend_activation" update="resend-activation" success="var e = $('.content-body .btn'); e.val('#{sent}'); e[0].disabled=true"/>
+		</section>
+	</content:>
+</simple-page>

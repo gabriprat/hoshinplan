@@ -412,6 +412,10 @@ en:
       return: go back
     index:
       cancel_subscription: Cancel subscription
+  invalid_activation_key_page:
+    title: Invalid activation link
+    heading: Invalid activation link
+    text: Either the link you used is expired (they expire in 24h) or another one has been generated after it. If you don't have the last activation email you can generate a new one by clicking at the button below.'
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators

@@ -412,6 +412,10 @@ es:
       return: volver
     index:
       cancel_subscription: Cancelar la suscripción
+  invalid_activation_key_page:
+    title: Link de activación inválido
+    heading: Link de activación inválido
+    text: Puede ser que el link que has usado esté caducado (caducan a las 24h) o que se haya generado otro posteriormente. Si no tienes el último mail de activación puedes generar otro clicando el botón más abajo.'
   log_in_with: Accede con %{provider}
   new_child_for_parent: Nuevo %{child} para %{parent}
   invite_collaborators: Invitar colaboradores

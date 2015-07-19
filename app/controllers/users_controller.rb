@@ -42,6 +42,18 @@ class UsersController < ApplicationController
     end
   end
   
+  def activate
+    begin
+      transition_page_action :activate 
+    rescue Hobo::PermissionDeniedError => e
+      unless request.xhr? || this.lifecycle.valid_key? 
+        render template: 'users/invalid_activation_key'  
+      else
+        fail e
+      end
+    end
+  end
+  
   def admin_only
       render :text => "Permission Denied", :status => 403 unless current_user.administrator?
   end
