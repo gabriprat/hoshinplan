@@ -1,22 +1,3 @@
-<def tag="name-one-user">
-	<% 
-	comp = Company.current_id ? Company.current_company : nil
-	if !this.nil?
-		value ||= (this.name.nil? ? "" : this.name) + " (" + this.email_address + ")" 
-	else
-		value ||= ""
-	end
-	if (comp.nil? && !this_parent.nil? && this_parent.respond_to?("company"))
-		comp = this_parent.company
-	end
-	
-	 fail "nil" if (comp.nil?)
-	%>
-	<div style="position:relative">
-	<name-one completer="users" value="#{value}" complete-target="&comp" autocomplete='off' class="form-control" merge/>
-	</div>
-</def>
-
 <extend tag="form" for="User">
   <old-form merge multipart>
     <field-list: fields="firstName, lastName, email_address, timezone, language"/>

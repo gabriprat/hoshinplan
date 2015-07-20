@@ -15,5 +15,8 @@
 //= require hobo_bootstrap_ui
 //= require hobo_omniauth
 //= require hobo_tokeninput
+//= require bootbox
+//= require textile-editor
+//= require ./textile-editor-config
 //= require_tree ./hobo_simple_color
 //= require_tree ./front

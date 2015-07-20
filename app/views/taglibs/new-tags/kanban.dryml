@@ -8,7 +8,12 @@
 		<li class="kanban-card postit kb-color-#{this.area_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
 			<div class="task-header"> <view:feeling/> <click-editor-innards:name/></div>
 			<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="ic-cog"/></rmodal>
-			<div class="postit-description"><click-editor-innards:description/><span class="more"/></div>
+			<div class="postit-description">
+				<click-editor-innards:description>
+					<input: replace><input field='description' no-editor="true"/></input:>
+				</click-editor-innards>
+				<span class="more"/>
+			</div>
 			<if test="&this.original_deadline != this.deadline">
 			<div class="original-deadline">
 				<%= l this.original_deadline, format: :short %>

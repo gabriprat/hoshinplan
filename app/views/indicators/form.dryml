@@ -4,13 +4,8 @@
 				   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
 		            <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts #{show_on_parent}">
 			    	<description-view:>
-					<my-click-editor/>
+					<my-click-editor id="indicator-description-#{this_parent.id}"/>
 				</description-view:>
-				<description-help: class="bubble bubble-top">
-			                <t key="you_can_use_textile" textile="&link_to(t('textile', :default => 'Textile'), t('textle_href', :default => 'http://en.wikipedia.org/wiki/Textile_(markup_language)'))">
-					You can use Textile markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
-					</t>
-				</description-help:>
 			    	<objective-view:>
 					<select-one options="&this_parent.area.objectives" />
 				</objective-view:>

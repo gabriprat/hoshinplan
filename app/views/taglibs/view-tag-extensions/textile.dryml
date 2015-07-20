@@ -1,0 +1,4 @@
+<def tag="input" for="HoboFields::Types::TextileString" attrs="no-editor">
+	<% no_editor ||= false %>
+	<input for-type="HoboFields::Types::Text" data-rapid='&no_editor ? "{}" : data_rapid("textile-editor")' merge/>
+</def>

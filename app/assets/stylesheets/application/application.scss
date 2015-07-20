@@ -165,12 +165,7 @@ a.external:after {
 
 .modal .my-click-editor {
 	display: inline-block;
-	margin-right: 2em;
-	width: 30vw;
-	width: -moz-calc(100% - 260px);
-	width: -webkit-calc(100% - 260px);
-	width: -o-calc(100% - 260px);
-	width: calc(100% - 260px);
+	width: 100%;
 }
 .modal textarea {
 	width: 100%;
@@ -433,6 +428,10 @@ h1 {
 
 strong {
 	font-weight: 400;
+}
+
+.postit strong {
+	font-weight: 700;
 }
 
 body h3 {
@@ -2798,10 +2797,15 @@ form.modal {
 	background-color: transparent;
 }
 
-.btn-raised {
+.btn-raised, .wmd-button-bar .btn {
 	  background-color: #f5f5f5;
 	  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 	  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+textarea.wmd-input {
+	margin-top: 2px;
+	height: 200px;
 }
 
 .btn-primary, .btn-primary:link, .btn-primary:visited, .btn-primary[disabled] {
@@ -3108,4 +3112,20 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
    color:    #666;
+}
+
+.ic-h1:before {
+	content: "H1";
+}
+.ic-h2:before {
+	content: "H2";
+}
+.ic-h3:before {
+	content: "H3";
+}
+.ic-h4:before {
+	content: "H4";
+}
+.ic-bq:before {
+	content: "Bq";
 }

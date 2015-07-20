@@ -63,6 +63,7 @@ gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", 
 gem "hobo_bootstrap_ui", :git => "git://github.com/informatom/hobo_bootstrap_ui.git", :branch => 'bootstrap3'
 gem "hobo_jquery_ui"
 gem "bootstrap-switch-rails"
+gem "bootbox-rails"
 gem "jquery-ui-themes"
 gem "acts_as_list"
 gem "ruby-hmac"
@@ -85,7 +86,7 @@ gem 'redis-rails'
 gem 'redis-store'
 gem 'request_store'
 gem 'newrelic_rpm', :group => :production
-gem 'RedCloth'
+gem 'redcloth-rails'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
 gem 'murmurhash3'

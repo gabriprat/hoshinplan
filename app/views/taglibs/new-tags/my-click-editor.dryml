@@ -4,7 +4,7 @@
 			<view/>
 			<span><t key="click_to_edit"/></span>
 		</div>
-		<input class="in-place-input" style="display: none;"/>
+		<input class="in-place-input" style="display: none;" merge/>
 		<a href="#" onclick="launchBoxSelect($(this).prevUntil('.in-place-edit')); return false;" class="btn btn-box in-place-btn hide">
 			<span class="ic-box"/>
 			<span><t key="insert_box_link"/></span>

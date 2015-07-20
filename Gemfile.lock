@@ -113,6 +113,7 @@ GEM
     benchmark-ips (2.2.0)
     bitmask_attributes (1.0.0)
       activerecord (>= 3.1)
+    bootbox-rails (0.5.0)
     bootstrap-datepicker-rails (1.4.0)
       railties (>= 3.0)
     bootstrap-sass (3.3.5.1)
@@ -296,6 +297,9 @@ GEM
     rake (10.4.2)
     raphaeljs-rails (2.1.2)
       railties
+    redcloth-rails (0.2.0)
+      RedCloth (>= 4.2.0)
+      rails (>= 3.1.0)
     redis (3.2.1)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
@@ -379,12 +383,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth
   actionmailer_inline_css
   active_record_query_trace
   acts_as_list
   aws-sdk-v1
   bitmask_attributes
+  bootbox-rails
   bootstrap-sass (~> 3.3.4)
   bootstrap-switch-rails
   clockwork
@@ -431,6 +435,7 @@ DEPENDENCIES
   rails_12factor
   rake
   raphaeljs-rails
+  redcloth-rails
   redis-rails
   redis-store
   request_store

@@ -201,6 +201,7 @@ end
 
   
   def select_responsible(obj)
+    return if obj.nil?
     if (obj["responsible_id"].nil? && !obj["responsible"].nil?) 
       r = Regexp.new(/\(([a-zA-Z0-9\._%+-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]+)\)/)     
       email = obj["responsible"].scan(r).last

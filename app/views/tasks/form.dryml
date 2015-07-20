@@ -5,13 +5,9 @@
 	      		   <div class="modal-body">
 	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, reminder #{show_on_parent}">
     			    	<description-view: >
-					<my-click-editor/>
+					<my-click-editor id="task-description-#{this_parent.id}"/>
     				</description-view:>
-				<description-help: class="bubble bubble-top">
-			                <t key="you_can_use_textile" textile="&link_to(t('textile', :default => 'Textile'), t('textle_href', :default => 'http://en.wikipedia.org/wiki/Textile_(markup_language)'))">
-					You can use Textile markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
-					</t>
-				</description-help:>
+				
 	      			    	<objective-view:>
 	      					<select-one options="&this_parent.area.objectives" />
 	      				</objective-view:>
