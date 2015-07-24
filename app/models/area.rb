@@ -1,5 +1,7 @@
 class Area < ActiveRecord::Base
 
+  acts_as_paranoid
+
   include ModelBase
 
   hobo_model # Don't put anything above this
@@ -11,8 +13,10 @@ class Area < ActiveRecord::Base
     description :text
     color       Color
     timestamps
+    deleted_at    :datetime
   end
-  
+  index [:deleted_at]
+    
   validates_presence_of :name
 
   attr_accessible :name, :description, :hoshin, :hoshin_id, :company, :company_id, :creator, :creator_id, :color
@@ -35,6 +39,8 @@ class Area < ActiveRecord::Base
         .except(:order)
         .reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')},
       :inverse_of => :parent_area, :accessible => true, :class_name => 'Task', :foreign_key => :parent_area_id
+  
+  has_many :log, :class_name => "AreaLog", :inverse_of => :area
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false
   belongs_to :company, :inverse_of => :areas, :null => false

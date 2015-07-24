@@ -1,4 +1,25 @@
-module ModelBase   
+module ModelBase
+  extend ActiveSupport::Concern
+  
+  included do
+      after_destroy do log_operation(true) end
+      after_save :log_operation
+  end
+    
+  def log_operation(destroyed=false)
+    return unless self.respond_to? :deleted_at
+    changed = self.changes & self.class.accessible_attributes
+    return unless self.id_changed? || changed.present? || destroyed
+    operation = :create if self.id_changed?
+    operation ||= :delete if destroyed
+    operation ||= :update
+    title = self.name
+    body = changed.to_json unless self.id_changed? || destroyed
+    l = Object::const_get(self.class.name + 'Log').new(title: title, body: body)
+    l.operation = operation
+    self.log << l
+    l.save!
+  end
   
   def all_user_companies=(companies)
     RequestStore.store[:all_user_companies] = companies

@@ -1,7 +1,8 @@
 class Objective < ActiveRecord::Base
 
-  include ModelBase
-  
+  acts_as_paranoid
+
+  include ModelBase  
   
   hobo_model # Don't put anything above this
 
@@ -11,9 +12,12 @@ class Objective < ActiveRecord::Base
     neglected    :boolean, :default => false, :required => true
     blind       :boolean, :default => true, :required => true
     timestamps
+    deleted_at    :datetime
   end
+  index [:deleted_at]
+    
   validates_presence_of :name
-  
+    
   attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id, 
     :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id, :creator_id
     
@@ -24,6 +28,8 @@ class Objective < ActiveRecord::Base
   
   has_many :tasks, -> { order :tsk_pos }, :dependent => :destroy, :inverse_of => :objective
   has_many :child_tasks, :inverse_of => :parent_objective, :class_name => 'Task'
+  
+  has_many :log, :class_name => "ObjectiveLog", :inverse_of => :objective
 
   children :indicators, :tasks
 

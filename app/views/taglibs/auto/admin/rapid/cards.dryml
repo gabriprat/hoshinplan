@@ -13,6 +13,17 @@
   </card>
 </def>
 
+<def tag="card" for="AreaLog">
+  <card class="area-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="AuthProvider">
   <card class="auth-provider" param="default" merge>
     <header: param>
@@ -98,6 +109,17 @@
   </card>
 </def>
 
+<def tag="card" for="GoalLog">
+  <card class="goal-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Hoshin">
   <card class="hoshin" param="default" merge>
     <header: param>
@@ -108,6 +130,17 @@
       <ht key="area.collection.count" count="&this.areas.size">
          <count:areas param/>
       </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="HoshinLog">
+  <card class="hoshin-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>
@@ -132,6 +165,29 @@
   </card>
 </def>
 
+<def tag="card" for="IndicatorLog">
+  <card class="indicator-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Log">
+  <card class="log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
+      <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Milestone">
   <card class="milestone" param="default" merge>
     <header: param>
@@ -151,6 +207,17 @@
       <ht key="indicator.collection.count" count="&this.indicators.size">
          <count:indicators param/>
       </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="ObjectiveLog">
+  <card class="objective-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>
@@ -195,6 +262,17 @@
     <body: param>
       <view:description param="description"/>
       <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="TaskLog">
+  <card class="task-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>

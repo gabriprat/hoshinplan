@@ -1,5 +1,7 @@
 class Hoshin < ActiveRecord::Base
   
+  acts_as_paranoid
+  
   include ModelBase
 
   hobo_model # Don't put anything above this
@@ -20,9 +22,11 @@ class Hoshin < ActiveRecord::Base
     header HoboFields::Types::TextileString
     health_updated_at :datetime
     timestamps
+    deleted_at    :datetime
   end
-  index [:company_id, :parent_id]
-  
+  index [:deleted_at]
+  index [:company_id, :parent_id]  
+    
   attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :children, :children_ids, :creator_id, :creator
   
   belongs_to :creator, :class_name => "User", :creator => true, :inverse_of => :my_hoshins
@@ -36,6 +40,7 @@ class Hoshin < ActiveRecord::Base
   has_many :indicators, -> { readonly }, :through => :objectives, :inverse_of => :hoshin, :accessible => true
   has_many :tasks, -> { readonly }, :through => :objectives, :accessible => true
   has_many :goals, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
+  has_many :log, :class_name => "HoshinLog", :inverse_of => :hoshin
   
   children :areas
   

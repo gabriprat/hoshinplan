@@ -1,5 +1,7 @@
 class Indicator < ActiveRecord::Base
 
+  acts_as_paranoid
+
   include ModelBase
   
   hobo_model # Don't put anything above this
@@ -18,8 +20,10 @@ class Indicator < ActiveRecord::Base
     show_on_parent  :boolean, :default => false, :null => false
     show_on_charts  :boolean, :default => true, :null => false
     timestamps
+    deleted_at    :datetime
   end
-  
+  index [:deleted_at]
+    
   validates_presence_of :objective_id, :name
   
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
@@ -31,6 +35,8 @@ class Indicator < ActiveRecord::Base
   #Next line has a delete_all instead of destroy to prevent this object value 
   #from being updated just before being destroyed and creating errors
   has_many :indicator_histories, -> { order :day }, :dependent => :delete_all, :inverse_of => :indicator
+  
+  has_many :log, :class_name => "IndicatorLog", :inverse_of => :indicator
   
   belongs_to :company, :null => false
 

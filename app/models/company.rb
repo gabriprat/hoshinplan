@@ -1,5 +1,7 @@
 class Company < ActiveRecord::Base
 
+  acts_as_paranoid
+
   include ModelBase
   
   hobo_model # Don't put anything above this
@@ -9,9 +11,11 @@ class Company < ActiveRecord::Base
     hoshins_count :integer, :default => 0, :null => false
     unlimited :boolean, :default => false, :null => false
     timestamps
+    deleted_at    :datetime
   end
+  index [:deleted_at]
   attr_accessible :name, :creator_id
-  
+    
   belongs_to :creator, :class_name => "User", :creator => true
   
   has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company
@@ -26,6 +30,8 @@ class Company < ActiveRecord::Base
   has_many :user_companies, :dependent => :destroy
   
   has_many :payments, :dependent => :destroy
+  
+  has_many :log, :class_name => "CompanyLog", :inverse_of => :company
   
   children :hoshins
   

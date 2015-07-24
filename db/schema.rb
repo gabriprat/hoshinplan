@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616110111) do
+ActiveRecord::Schema.define(version: 20150724202051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,12 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.integer  "company_id",  null: false
     t.integer  "creator_id"
     t.string   "color"
+    t.datetime "deleted_at"
   end
 
   add_index "areas", ["company_id"], name: "index_areas_on_company_id", using: :btree
   add_index "areas", ["creator_id"], name: "index_areas_on_creator_id", using: :btree
+  add_index "areas", ["deleted_at"], name: "index_areas_on_deleted_at", using: :btree
   add_index "areas", ["hoshin_id"], name: "index_areas_on_hoshin_id", using: :btree
 
   create_table "auth_providers", force: true do |t|
@@ -95,8 +97,10 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "deleted_at"
   end
 
+  add_index "client_applications", ["deleted_at"], name: "index_client_applications_on_deleted_at", using: :btree
   add_index "client_applications", ["user_id"], name: "index_client_applications_on_user_id", using: :btree
 
   create_table "companies", force: true do |t|
@@ -106,9 +110,11 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.boolean  "unlimited",     default: false, null: false
+    t.datetime "deleted_at"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
+  add_index "companies", ["deleted_at"], name: "index_companies_on_deleted_at", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -134,10 +140,12 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.integer  "company_id", null: false
     t.integer  "position"
     t.integer  "creator_id"
+    t.datetime "deleted_at"
   end
 
   add_index "goals", ["company_id"], name: "index_goals_on_company_id", using: :btree
   add_index "goals", ["creator_id"], name: "index_goals_on_creator_id", using: :btree
+  add_index "goals", ["deleted_at"], name: "index_goals_on_deleted_at", using: :btree
   add_index "goals", ["hoshin_id"], name: "index_goals_on_hoshin_id", using: :btree
 
   create_table "hoshins", force: true do |t|
@@ -161,11 +169,13 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.datetime "health_updated_at"
     t.string   "state",                      default: "active"
     t.datetime "key_timestamp"
+    t.datetime "deleted_at"
   end
 
   add_index "hoshins", ["company_id", "parent_id"], name: "index_hoshins_on_company_id_and_parent_id", using: :btree
   add_index "hoshins", ["company_id"], name: "index_hoshins_on_company_id", using: :btree
   add_index "hoshins", ["creator_id"], name: "index_hoshins_on_creator_id", using: :btree
+  add_index "hoshins", ["deleted_at"], name: "index_hoshins_on_deleted_at", using: :btree
   add_index "hoshins", ["parent_id"], name: "index_hoshins_on_parent_id", using: :btree
   add_index "hoshins", ["state"], name: "index_hoshins_on_state", using: :btree
 
@@ -213,17 +223,46 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.boolean  "show_on_charts",      default: true,  null: false
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
+    t.datetime "deleted_at"
   end
 
   add_index "indicators", ["area_id"], name: "index_indicators_on_area_id", using: :btree
   add_index "indicators", ["company_id"], name: "index_indicators_on_company_id", using: :btree
   add_index "indicators", ["creator_id"], name: "index_indicators_on_creator_id", using: :btree
+  add_index "indicators", ["deleted_at"], name: "index_indicators_on_deleted_at", using: :btree
   add_index "indicators", ["hoshin_id"], name: "index_indicators_on_hoshin_id", using: :btree
   add_index "indicators", ["objective_id"], name: "index_indicators_on_objective_id", using: :btree
   add_index "indicators", ["parent_area_id"], name: "index_indicators_on_parent_area_id", using: :btree
   add_index "indicators", ["parent_objective_id"], name: "index_indicators_on_parent_objective_id", using: :btree
   add_index "indicators", ["responsible_id"], name: "index_indicators_on_responsible_id", using: :btree
   add_index "indicators", ["type"], name: "index_indicators_on_type", using: :btree
+
+  create_table "logs", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id",   null: false
+    t.integer  "creator_id"
+    t.integer  "hoshin_id"
+    t.integer  "area_id"
+    t.integer  "goal_id"
+    t.integer  "objective_id"
+    t.integer  "indicator_id"
+    t.string   "type"
+    t.integer  "task_id"
+    t.string   "operation",    null: false
+  end
+
+  add_index "logs", ["area_id"], name: "index_logs_on_area_id", using: :btree
+  add_index "logs", ["company_id"], name: "index_logs_on_company_id", using: :btree
+  add_index "logs", ["creator_id"], name: "index_logs_on_creator_id", using: :btree
+  add_index "logs", ["goal_id"], name: "index_logs_on_goal_id", using: :btree
+  add_index "logs", ["hoshin_id"], name: "index_logs_on_hoshin_id", using: :btree
+  add_index "logs", ["indicator_id"], name: "index_logs_on_indicator_id", using: :btree
+  add_index "logs", ["objective_id"], name: "index_logs_on_objective_id", using: :btree
+  add_index "logs", ["task_id"], name: "index_logs_on_task_id", using: :btree
+  add_index "logs", ["type"], name: "index_logs_on_type", using: :btree
 
   create_table "milestones", force: true do |t|
     t.decimal  "value"
@@ -246,11 +285,13 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.integer  "creator_id"
     t.boolean  "neglected",      default: false
     t.boolean  "blind",          default: true
+    t.datetime "deleted_at"
   end
 
   add_index "objectives", ["area_id"], name: "index_objectives_on_area_id", using: :btree
   add_index "objectives", ["company_id"], name: "index_objectives_on_company_id", using: :btree
   add_index "objectives", ["creator_id"], name: "index_objectives_on_creator_id", using: :btree
+  add_index "objectives", ["deleted_at"], name: "index_objectives_on_deleted_at", using: :btree
   add_index "objectives", ["hoshin_id"], name: "index_objectives_on_hoshin_id", using: :btree
   add_index "objectives", ["parent_id"], name: "index_objectives_on_parent_id", using: :btree
   add_index "objectives", ["responsible_id"], name: "index_objectives_on_responsible_id", using: :btree
@@ -267,10 +308,12 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.string   "amount_currency"
     t.integer  "billing_plan_id"
     t.string   "id_paypal"
+    t.datetime "deleted_at"
   end
 
   add_index "payments", ["billing_plan_id"], name: "index_payments_on_billing_plan_id", using: :btree
   add_index "payments", ["company_id"], name: "index_payments_on_company_id", using: :btree
+  add_index "payments", ["deleted_at"], name: "index_payments_on_deleted_at", using: :btree
   add_index "payments", ["token"], name: "index_payments_on_token", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
@@ -307,6 +350,7 @@ ActiveRecord::Schema.define(version: 20150616110111) do
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
     t.string   "feeling",             default: "smile",   null: false
+    t.datetime "deleted_at"
   end
 
   add_index "tasks", ["area_id", "status"], name: "index_tasks_on_area_id_and_status", using: :btree
@@ -314,6 +358,7 @@ ActiveRecord::Schema.define(version: 20150616110111) do
   add_index "tasks", ["company_id"], name: "index_tasks_on_company_id", using: :btree
   add_index "tasks", ["creator_id"], name: "index_tasks_on_creator_id", using: :btree
   add_index "tasks", ["deadline", "status"], name: "index_tasks_on_deadline_and_status", using: :btree
+  add_index "tasks", ["deleted_at"], name: "index_tasks_on_deleted_at", using: :btree
   add_index "tasks", ["hoshin_id", "status"], name: "index_tasks_on_hoshin_id_and_status", using: :btree
   add_index "tasks", ["hoshin_id"], name: "index_tasks_on_hoshin_id", using: :btree
   add_index "tasks", ["objective_id"], name: "index_tasks_on_objective_id", using: :btree

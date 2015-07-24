@@ -1,5 +1,7 @@
 class Goal < ActiveRecord::Base
 
+  acts_as_paranoid
+
   include ModelBase
   
   hobo_model # Don't put anything above this
@@ -7,11 +9,16 @@ class Goal < ActiveRecord::Base
   fields do
     name :string, :null => false
     timestamps
+    deleted_at    :datetime
   end
-  validates_presence_of :name
+  index [:deleted_at]
   
+  validates_presence_of :name
+    
   attr_accessible :name, :hoshin, :hoshin_id, :company_id, :creator_id
   never_show :position
+  
+  has_many :log, :class_name => "GoalLog", :inverse_of => :goal
   
   belongs_to :creator, :class_name => "User", :creator => true
   

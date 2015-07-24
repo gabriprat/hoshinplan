@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 
+  acts_as_paranoid
+
   include ModelBase
   
   hobo_model # Don't put anything above this
@@ -14,17 +16,21 @@ class Task < ActiveRecord::Base
     lane_pos          :integer, :default => 0, :null => false
     feeling           EnumFeeling, :default => :smile, :null => false
     timestamps
+    deleted_at    :datetime
   end
+  index [:deleted_at]
   index [:deadline, :status]
   index [:area_id, :status]
   index [:hoshin_id, :status]
-  
+    
   validates_presence_of :objective, :name
   
   
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id, :feeling
 
+  has_many :log, :class_name => "TaskLog", :inverse_of => :task
+  
   belongs_to :creator, :class_name => "User", :creator => true
   
   belongs_to :company, :null => false

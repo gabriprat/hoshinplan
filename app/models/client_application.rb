@@ -2,6 +2,8 @@ class ClientApplication < ActiveRecord::Base
   require 'openssl'
   require 'base64'
 
+  acts_as_paranoid
+
   hobo_model # Don't put anything above this
 
   fields do
@@ -10,7 +12,9 @@ class ClientApplication < ActiveRecord::Base
     key :string, :unique
     secret :string
     timestamps
+    deleted_at    :datetime
   end
+  index [:deleted_at]
   attr_accessible :name, :description, :user, :user_id
   attr_readonly :key, :secret
   

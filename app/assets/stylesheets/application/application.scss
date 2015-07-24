@@ -1271,8 +1271,14 @@ a, a:hover, a:active, a:visited {
 	}  
 }
 
-.modal-footer-delete input[type=submit].delete-button {
-	float: left;
+.modal-footer-delete {
+	input[type=submit].delete-button, .author {
+		float: left;
+	}
+	.author {
+		color: $tertiary-color;
+		white-space: nowrap;
+	}
 }
 
 .btn.btn-danger {
