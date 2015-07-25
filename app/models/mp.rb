@@ -9,6 +9,8 @@ class Mp
   require 'net/http'
 
   TOKEN = ENV['MIXPANEL_PROJECT']  #See your Mixpanel dashboard
+
+  @queue = 'mixpanel'
   
   attr_accessor :options
   attr_accessor :people
@@ -19,19 +21,27 @@ class Mp
   attr_accessor :saved_url
 
   def self.logger
-    Rails.logger
+    defined?(Resque) ? Resque.logger : Rails.logger
+  end
+  
+  def self.perform(people, options, event, method)
+    self.logger.debug "Mixpanel perform: #{people.inspect}, #{options.inspect}, #{event.inspect}, #{method.inspect}"
+    mp = Mp.new
+    mp.options = options
+    mp.people = people
+    mp.send method
   end
 
   def self.people_set(user, ip) 
     logged_event = Mp.new(user, {id: user.id, ip: ip})
-    self.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
+    Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.people_set!
   end
   
   def self.log_event(event, user, ip, opts = {})
     opts.merge!({:event => event, :id => user.id, :ip => ip})
     logged_event = Mp.new(user, opts)
-    self.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
+    Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.track!
   end
 
@@ -39,8 +49,17 @@ class Mp
     funnel_opts = opts.merge({:funnel => funnel_name, :step => step_number, :goal => step_name})
     self.log_event("mp_funnel", user, ip, funnel_opts)
   end
+  
+  def options=(options)
+    @options = options
+  end
+  
+  def people=(people)
+    @people = people
+  end
 
-  def initialize(user, opts = {})
+  def initialize(user=nil, opts = {})
+    return unless user.is_a? User
     @people = {
         '$distinct_id'=> user.id,
         '$name'       => user.name,
@@ -68,22 +87,22 @@ class Mp
   
 
   def track!()
-    #If you have DelayedJob installed, this will use it, otherwise it fires the request *immediately*.
+    #If you have Resque installed, this will use it, otherwise it fires the request *immediately*.
     #This is a very bad idea for most uses because it will result in *your* site blocking while waiting
-    #for the Mixpanel API to return.  Be smart: install DelayedJob.
-    if (respond_to? :send_later)
-      delay.track_access_api
+    #for the Mixpanel API to return.  Be smart: install Resque.
+    if defined?(Resque)
+      Resque.enqueue(Mp, @people, @options, @event, :track_access_api)
     else
       track_access_api
     end
   end
   
   def people_set!() 
-    #If you have DelayedJob installed, this will use it, otherwise it fires the request *immediately*.
+    #If you have Resque installed, this will use it, otherwise it fires the request *immediately*.
     #This is a very bad idea for most uses because it will result in *your* site blocking while waiting
-    #for the Mixpanel API to return.  Be smart: install DelayedJob.
-    if (respond_to? :send_later)
-      delay.people_set_access_api
+    #for the Mixpanel API to return.  Be smart: install Resque.
+    if defined?(Resque)
+      Resque.enqueue(Mp, @people, @options, @event, :people_set_access_api)
     else
       people_set_access_api
     end
@@ -91,15 +110,15 @@ class Mp
 
   def people_set_access_api
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
-    tracker = Mixpanel::Tracker.new(TOKEN)
-    Rails.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options}, #{@user}" 
+    tracker = ::Mixpanel::Tracker.new(TOKEN)
+    Mp.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options.inspect}, #{@people.inspect}" 
     tracker.people.set(@options['distinct_id'], @people, @options[:ip])
   end
 
   def track_access_api
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
-    tracker = Mixpanel::Tracker.new(TOKEN)
-    Rails.logger.debug "Mixpanel track: #{@options['distinct_id']}, #{@options}, #{@event}"
+    tracker = ::Mixpanel::Tracker.new(TOKEN)
+    Mp.logger.debug "Mixpanel track: #{@options['distinct_id']}, #{@options.inspect}, #{@event.inspect}"
     tracker.track(@options['distinct_id'], @event, @options, @options[:ip])
   end
 end
