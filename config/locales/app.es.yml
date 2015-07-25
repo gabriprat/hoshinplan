@@ -420,7 +420,7 @@ es:
     delete: Borrado
     operation_date_ago: '%{operation} hace %{date} por %{creator}' 
     operation_date_at: '%{operation} el %{date} por %{creator}' 
-    changes: 'Cambios:'
+    changes: Cambios
     from: de
     to: a
   invalid_activation_key_page:

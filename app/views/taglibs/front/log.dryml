@@ -16,10 +16,12 @@
 					operation = t("log." + this.operation.parameterize.underscore)
 					key = 'log.' + (ago ? 'operation_date_ago' : 'operation_date_at')
 					%>
+					<div class="source">
+					<a href="/#{this.model.name.pluralize.underscore}/#{this.model_id}-#{this.title.parameterize.dasherize}/edit">#{this.model.model_name.human} - #{this.title}</a></div>
 					<time class="created-at" datetime="#{this.created_at.iso8601}"><t key="#{key}" operation="#{operation}" date="#{formatted_date}" creator="#{this.creator}"/></time>
 					<div class="changes" if="&this.operation == :update">
 						<% changes = JSON.parse(this.body) %>
-						<div><t key="log.changes"/></div>
+						<div class="sep line"><t key="log.changes"/></div>
 						<dl>
 						<repeat with="&changes">
 						<dt>#{@model.human_attribute_name this[0]}</dt>

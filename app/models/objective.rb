@@ -31,8 +31,8 @@ class Objective < ActiveRecord::Base
   
   has_many :log, :class_name => "ObjectiveLog", :inverse_of => :objective
 
-  children :indicators, :tasks
-
+  view_hints.parent  :area
+  
   belongs_to :company, :null => false
 
   belongs_to :parent, :class_name => "Objective"

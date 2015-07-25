@@ -17,6 +17,7 @@ module ModelBase
     body = changed.to_json unless self.id_changed? || destroyed
     l = Object::const_get(self.class.name + 'Log').new(title: title, body: body)
     l.operation = operation
+    l.hoshin_id ||= self.try.hoshin_id
     self.log << l
     l.save!
   end

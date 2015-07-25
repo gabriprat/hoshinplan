@@ -122,6 +122,22 @@ ul.log {
 		clear: both;
 		margin-top: 1em;
 	}
+	.line {
+		text-align: center;
+		white-space: nowrap;
+	}
+	.line:before, .line:after {
+		margin: .25em .5em;
+		width: 11em;
+		border-bottom-style: dashed;
+	}
+	.line:before {
+		margin-left: -19px;
+	}
+	.line:after {
+		margin-right: 0;
+	}
+	
 	@media (max-width:800px) {
 		& {
 			width: 100%;

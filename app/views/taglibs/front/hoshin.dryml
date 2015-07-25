@@ -56,6 +56,9 @@
 				</a>
 			</form>
 			<health/>
+			<a href="/log#{hoshin_path this}" title="&t 'hoshin_actions.export_as_pdf'" class="title-action">
+	    	            <span class="ic-file-text-o"/>
+			</a>
 			</do>
 			<small class="only-print"><%= l Time.now, :format => :long %></small>
 		</heading:>
