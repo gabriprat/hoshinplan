@@ -88,7 +88,7 @@ ul.log {
 		&:before {
 			text-indent: 0;
 			font-family: "hoshinplan";
-			color: rgba(255,255,255,.7);
+			color: rgba(255,255,255,.9);
 			display: block;
 			float: left;
 			width: 2em;
@@ -102,11 +102,11 @@ ul.log {
 			content: "\f005";
 		}
 		&.operation-update:before {
-			background: #ffa400;
+			background: #f0ad4e;
 			content: "\f040";
 		}
 		&.operation-delete:before {
-			background: red;
+			background: #d04b36;
 			content: "\f00d";
 		}
 
