@@ -2,9 +2,28 @@
 	h2 {
 		line-height: 1em;
 	}
+	div.pagination {
+		display: block;
+		text-align: center;
+	}
+	ul.pagination {
+		display: inline-block;
+	}
 }
 ul.log {
-	background: url(data:image/gif;base64,R0lGODdhAgACAIAAACWp4CWp4CwAAAAAAgACAAACAoRRADs=) top center repeat-y;
+	@mixin center-line-gradient($start, $middle, $end, $width) {
+		background: transparent;
+		background: -webkit-linear-gradient(top, $start 0%, $middle 10%, $middle 90%, $end 100%);
+		background: -moz-linear-gradient(top, $start 0%, $middle 10%, $middle 90%, $end 100%);
+		background: -o-linear-gradient(top, $start 0%, $middle 10%, $middle 90%, $end 100%);
+		background: -ms-linear-gradient(top, $start 0%, $middle 10%, $middle 90%, $end 100%);
+		background: linear-gradient(to bottom, $start 0%, $middle 10%, $middle 90%, $end 100%);
+		background-position: 50%;
+		background-repeat: no-repeat;
+		background-size: $width 100%;
+	}
+	
+	@include center-line-gradient(#25a9e0, #25a9e0, #25a9e0, 2px);
 	width: 1020px;
 	padding: 50px 0;
 	margin: 0 auto 50px auto;
@@ -14,31 +33,35 @@ ul.log {
 
 	&:before,
 	&:after {
-		content: " ";
-		width: 10px;
-		height: 10px;
+		font-family: 'hoshinplan';
+		content: "\f111";
+		width: 100%;
+		height: 1em;
 		display: block;
-		background: #25a9e0;
+		color: #25a9e0;
 		position: absolute;
-		top: 0;
-		left: 50%;
-		margin-left: -5px;
-		-moz-border-radius: 20px;
-		-webkit-border-radius: 20px;
-		border-radius: 20px;
+		top: -6px;
+		left: 1px;
+		text-align: center;
+	}
+	&.continued {
+		@include center-line-gradient(transparent, #25a9e0, #25a9e0, 2px);
+	}
+	&.more {
+		@include center-line-gradient(#25a9e0, #25a9e0, transparent, 2px);
+	}
+	&.continued.more {
+		@include center-line-gradient(transparent, #25a9e0, transparent, 2px);
+	}
+	&.continued:before {
+			content: none;
+	}
+	&.more:after {
+			content: none;
 	}
 	&:after {
-		margin-left: -7px;
-		background: none;
-		border: 7px solid transparent;
-		border-top-color: #25a9e0;
-		width: 0;
-		height: 0;
 		top: auto;
-		bottom: -7px;
-		-moz-border-radius: 0;
-		-webkit-border-radius: 0;
-		border-radius: 0;
+		bottom: 4px;
 	}
 	li {
 		position: relative;
@@ -60,7 +83,7 @@ ul.log {
 	}
 	li:nth-of-type(odd),
 	li:nth-of-type(even) {
-		margin: -45px 0 0 0;
+		margin: -39px 0 0 0;
 	}
 	li:nth-of-type(even) {
 		float: right;
@@ -71,6 +94,7 @@ ul.log {
 	}
 	.card {
 		margin: 0;
+		overflow: hidden;
 	}
 	time {
 		font-weight: bold;
@@ -120,25 +144,10 @@ ul.log {
 	.changes {
 		text-align: left;
 		clear: both;
-		margin-top: 1em;
+		border-top: 1px dashed;
+		margin: 0 -15px;
+		padding: 1em 15px 0 15px;
 	}
-	.line {
-		text-align: center;
-		white-space: nowrap;
-	}
-	.line:before, .line:after {
-		margin: .25em .5em;
-		width: 15em;
-		max-width: 45vw;
-		border-bottom-style: dashed;
-	}
-	.line:before {
-		margin-left: -19px;
-	}
-	.line:after {
-		margin-right: 0;
-	}
-	
 	@media (max-width:1020px) {
 		& {
 			width: 100%;

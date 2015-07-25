@@ -203,9 +203,9 @@ class Task < ActiveRecord::Base
     transition :reactivate, {:completed => :active}, :available_to => "User" 
     transition :reactivate, {:discarded => :active}, :available_to => "User" 
     
-    transition :delete, {:backlog => :deleted}, :available_to => "User" 
-    transition :delete, {:completed => :deleted}, :available_to => "User" 
-    transition :delete, {:discarded => :deleted}, :available_to => "User" 
+    transition :delete, {:backlog => :backlog}, :available_to => "User" do self.destroy! end
+    transition :delete, {:completed => :completed}, :available_to => "User" do self.destroy! end
+    transition :delete, {:discarded => :discarded}, :available_to => "User" do self.destroy! end
     
     transition :to_backlog, {Task::Lifecycle.states.keys => :backlog}, :available_to => "User" 
     transition :to_active, {Task::Lifecycle.states.keys => :active}, :available_to => "User" 

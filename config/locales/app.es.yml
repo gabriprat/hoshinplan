@@ -7,6 +7,8 @@ es:
   insert_box_link: Insertar enlace a Box
   created_by: Creado por
   view_log: Ver cambios
+  older: Más antiguas
+  newer: Más recientes
   legal:
     legal_documents: Documentos legales
     terms_of_use: Términos de Uso
@@ -256,6 +258,7 @@ es:
         name: Nombre
         description: Descripción
         frequency: Frecuencia
+        last_update: Última Actualiz.
         next_update: Prox. Actualiz.
         responsible: Responsable
         goal: Valor 100%
@@ -281,6 +284,8 @@ es:
         show_on_parent: Subir tarea
         reminder: Recordatorio
         objective: Objetivo
+        status: Estado
+        original_deadline: Venc. original
         lifecycle:
           transitions:
             discard: Descartar

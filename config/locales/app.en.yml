@@ -7,6 +7,8 @@ en:
   insert_box_link: Insert Box link
   created_by: Created by
   view_log: View log
+  older: Older
+  newer: Newer
   legal:
     legal_documents: Legal documents
     terms_of_use: Terms of use
@@ -256,6 +258,7 @@ en:
         name: Name
         description: Description
         frequency: Frequency
+        last_update: Last update
         next_update: Next update
         responsible: Responsible
         goal: 100% value
@@ -281,6 +284,7 @@ en:
         show_on_parent: Show on parent
         reminder: Reminder
         objective: Objective
+        status: Status
         lifecycle:
           transitions:
             discard: Discard
