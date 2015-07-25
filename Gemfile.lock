@@ -389,7 +389,7 @@ DEPENDENCIES
   aws-sdk-v1
   bitmask_attributes
   bootbox-rails
-  bootstrap-sass (~> 3.3.4)
+  bootstrap-sass
   bootstrap-switch-rails
   clockwork
   coffee-rails

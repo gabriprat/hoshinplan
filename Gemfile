@@ -58,7 +58,7 @@ gem "active_record_query_trace", :group => :development
 gem 'derailed', group: :development
 # Hobo's version of will_paginate is required.
 gem "hobo_will_paginate"
-gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap-sass'
 gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3'
 gem "hobo_bootstrap_ui", :git => "git://github.com/informatom/hobo_bootstrap_ui.git", :branch => 'bootstrap3'
 gem "hobo_jquery_ui"
