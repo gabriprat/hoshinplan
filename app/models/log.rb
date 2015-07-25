@@ -10,16 +10,19 @@ class Log < ActiveRecord::Base
     operation   HoboFields::Types::EnumString.for(:create, :update, :delete), :null => false
     timestamps
   end
-  attr_accessible :title, :body
+  attr_accessible :title, :body, :creator_id
   
-  after_initialize :add_company
+  set_default_order :created_at
+  
+  after_initialize :add_company_and_user
 
-  def add_company
+  def add_company_and_user
     self.company_id ||= Company.current_id if self.new_record?
+    self.creator_id ||= User.current_id if self.new_record?
   end
   
   belongs_to :company, :null => false
-  belongs_to :creator, :class_name => "User", :creator => true  
+  belongs_to :creator, :class_name => "User", :creator => true, :null => false
   
 
   # --- Permissions --- #
@@ -40,6 +43,9 @@ class Log < ActiveRecord::Base
     acting_user.administrator? || same_company
   end
 
+end
+
+class CompanyLog < Log
 end
 
 class HoshinLog < Log

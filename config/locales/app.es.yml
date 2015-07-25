@@ -6,6 +6,7 @@ es:
   value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
   insert_box_link: Insertar enlace a Box
   created_by: Creado por
+  view_log: Ver cambios
   legal:
     legal_documents: Documentos legales
     terms_of_use: Términos de Uso
@@ -412,6 +413,16 @@ es:
       return: volver
     index:
       cancel_subscription: Cancelar la suscripción
+  log:
+    log_for: 'Historia del %{model}: %{name}'
+    create: Creado 
+    update: Modificado 
+    delete: Borrado
+    operation_date_ago: '%{operation} hace %{date} por %{creator}' 
+    operation_date_at: '%{operation} el %{date} por %{creator}' 
+    changes: 'Cambios:'
+    from: de
+    to: a
   invalid_activation_key_page:
     title: Link de activación inválido
     heading: Link de activación inválido
@@ -517,3 +528,46 @@ es:
         precision: 1
         significant: false
         strip_insignificant_zeros: true
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: alrededor de 1 hora
+        other: alrededor de %{count} horas
+      about_x_months:
+        one: alrededor de 1 mes
+        other: alrededor de %{count} meses
+      about_x_years:
+        one: alrededor de 1 año
+        other: alrededor de %{count} años
+      almost_x_years:
+        one: casi 1 año
+        other: casi %{count} años
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de 1 año
+        other: más de %{count} años
+      x_days:
+        one: 1 día
+        other: "%{count} días"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mes
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Año

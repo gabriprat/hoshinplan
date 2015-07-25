@@ -122,6 +122,10 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller log
+  resources :log, :only => [:index]
+
+
   # Resource routes for controller milestones
   resources :milestones, :only => [:new, :edit, :show, :create, :update, :destroy]
 

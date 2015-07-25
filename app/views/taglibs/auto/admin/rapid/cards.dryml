@@ -98,6 +98,17 @@
   </card>
 </def>
 
+<def tag="card" for="CompanyLog">
+  <card class="company-log" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Goal">
   <card class="goal" param="default" merge>
     <header: param>

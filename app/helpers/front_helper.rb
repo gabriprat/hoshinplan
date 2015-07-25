@@ -1,4 +1,5 @@
 module FrontHelper 
+  include ActionView::Helpers::DateHelper
   
   def date_format_default
     begin

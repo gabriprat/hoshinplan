@@ -1,0 +1,34 @@
+<extend tag="index-page" for="Log">
+	<old-index-page merge>
+		<prepend-content-header:>
+		        <div param="back-to">
+		          <t key="hobo.actions.back">Back to</t> <a with="&@back"/>
+		        </div>
+		</prepend-content-header:>
+		<heading:><t key="log.log_for" model="#{@model.model_name.human}" name="&@source.name"/></heading:>
+		<content-body:>
+			<collection class="log">
+				<card:>
+					<view:operation class="operation operation-#{this.operation.parameterize.dasherize}"/>
+					<% 
+					ago = Time.now  - this.created_at < 86400
+					formatted_date = ago ? time_ago_in_words(this.created_at) : l(this.created_at) 
+					operation = t("log." + this.operation.parameterize.underscore)
+					key = 'log.' + (ago ? 'operation_date_ago' : 'operation_date_at')
+					%>
+					<time class="created-at" datetime="#{this.created_at.iso8601}"><t key="#{key}" operation="#{operation}" date="#{formatted_date}" creator="#{this.creator}"/></time>
+					<div class="changes" if="&this.operation == :update">
+						<% changes = JSON.parse(this.body) %>
+						<div><t key="log.changes"/></div>
+						<dl>
+						<repeat with="&changes">
+						<dt>#{@model.human_attribute_name this[0]}</dt>
+						<dd><t key="log.from"/> <q>#{truncate this[1][0].to_s, length: 50}</q> <t key="log.to"/> <q>#{truncate this[1][1].to_s, length: 50}</q></dd><br/>
+						</repeat>
+						</dl>
+					</div>
+				</card:>
+			</collection>
+		</content-body:>
+	</old-index-page>
+</extend>

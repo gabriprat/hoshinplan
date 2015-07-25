@@ -85,6 +85,8 @@ Hoshinplan::Application.routes.draw do
   get "/payments/cancel" => "payments#cancel"
   get "/payments/correct" => "payments#correct"
   
+  get "/log/:type/:id" => "log#index", :as => 'log_index'
+  
   SamlDynamicRouter.load unless Rails.env.development?
   
   # The priority is based upon order of creation:

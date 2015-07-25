@@ -6,6 +6,7 @@ en:
   value_goal_previous_long: 'Current value,Goal,Previous value,Increment over previous value (%)'
   insert_box_link: Insert Box link
   created_by: Created by
+  view_log: View log
   legal:
     legal_documents: Legal documents
     terms_of_use: Terms of use
@@ -412,6 +413,16 @@ en:
       return: go back
     index:
       cancel_subscription: Cancel subscription
+  log:
+    log_for: 'Log for %{model}: %{name}'
+    create: Created 
+    update: Updated 
+    delete: Deleted 
+    operation_date_ago: '%{operation} %{date} ago by %{creator}' 
+    operation_date_at: '%{operation} at %{date} by %{creator}'
+    changes: 'Changes:'
+    from: from
+    to: to
   invalid_activation_key_page:
     title: Invalid activation link
     heading: Invalid activation link
@@ -517,3 +528,46 @@ en:
         precision: 1
         significant: false
         strip_insignificant_zeros: true
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year

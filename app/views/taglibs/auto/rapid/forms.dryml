@@ -119,6 +119,18 @@
 
 
 
+<def tag="form" for="Log">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title, body, operation, company, creator" param/>
+    <div param="actions">
+      <submit label="#{ht 'log.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Milestone">
   <form merge param="default">
     <error-messages param/>

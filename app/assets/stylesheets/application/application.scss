@@ -1278,6 +1278,16 @@ a, a:hover, a:active, a:visited {
 	.author {
 		color: $tertiary-color;
 		white-space: nowrap;
+		margin: 2px 0 0 1em;
+	}
+	.view-log {
+		margin-right: 1em;
+	}
+	.view-log span:before {
+		margin-right: .2em;
+	}
+	* {
+		vertical-align: baseline;
 	}
 }
 
