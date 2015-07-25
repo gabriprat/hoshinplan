@@ -150,6 +150,7 @@
 <extend tag="form" for="Hoshin">
 	<set parent="&this.company.hoshins.size > 0 ? ', parent' : ''" if="&this.company"/>
 	<old-form merge>
+	    <prepend-default:><submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/></prepend-default:>
             <field-list: fields="name, header #{parent}, company" no-edit="view">
 	    	<company-view:>
 			<select-one options="&current_user.all_companies" if="&current_user.all_companies.length &gt; 0"/>

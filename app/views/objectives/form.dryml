@@ -3,6 +3,7 @@
 				<set areas="&this.hoshin.areas"/> 
 				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-obj-#{this.id}" updates="#area-#{this.area_id.to_s}, #tutorial,#sec-actions">
 				   <div class="modal-body">
+				   <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
 				    <field-list: fields="name, description, responsible #{parent}, area">
 						<parent-tag: options="&options" />
 					    	<description-view:>
