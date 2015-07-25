@@ -10,17 +10,20 @@
  
   <body: class="dashboard hoshin" />
 	
-  <heading:>
-  	#{@page_title}
-  </heading:>
-  <append-content-header:>
+  <content-header:>
+  	<h2 class="heading">
+		<a action="edit">#{@page_title}</a>
+		<a href="#{user_path this}/kanban" title="Kanban" class="title-action">
+	            <span class="ic-kanban"/>
+		</a>
+	</h2>
 	<if test="&attributes[:pending]">
 	<a> <t key="user.show_all">Show all</t></a>
 	</if>
 	<else>
 	<a action="pending"> <t key="user.show_only_pending">Show only pending actions</t></a>
 	</else>
-  </append-content-header:>
+  </content-header:>
   	
   <aside:/>
   

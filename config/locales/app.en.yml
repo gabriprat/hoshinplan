@@ -333,6 +333,7 @@ en:
     show_only_pending: Show only pending actions
     dashboard_for: Dashboard for %{name}
     pending_actions_for: Pending actions for %{name}
+    kanban_for: Kanban for %{name}
     delete_account: Delete account
     collaborating_with: Collaborating with
     end_collaboration: End collaboration

@@ -334,6 +334,7 @@ es:
     show_only_pending: Mostrar sólo las acciones pendientes
     dashboard_for: Panel de control para %{name}
     pending_actions_for: Acciones pendientes para %{name}
+    kanban_for: Kanban para %{name}
     delete_account: Eliminar cuenta
     collaborating_with: Colaborando con
     change: Cambiar

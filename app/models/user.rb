@@ -154,6 +154,19 @@ class User < ActiveRecord::Base
     acting_user unless acting_user.guest?
   end
   
+  def backlog_tasks
+    tasks.backlog.reorder(:lane_pos)
+  end
+  def active_tasks
+    tasks.active.reorder(:lane_pos)
+  end
+  def completed_tasks
+    tasks.completed.visible.reorder(:lane_pos)
+  end
+  def discarded_tasks
+    tasks.discarded.visible.reorder(:lane_pos)
+  end
+  
   # --- Signup lifecycle --- #
 
   lifecycle do

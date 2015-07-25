@@ -1,0 +1,19 @@
+<show-page>
+  	<body: class="kanban dashboard hoshin" />
+        <content-header:>
+		<a with="&this" class="parent-link">&laquo; <ht key="user.actions.back_to_parent" parent="&User.model_name.human" name="&this.to_s" /></a>
+        	<h2 class="heading"><t key="user.kanban_for" name="&this.name"/></h2>
+        </content-header:>
+	<content-body:>
+		<script type="text/javascript">
+			$(document).ready(loadKanban);
+			$(window).on("popstate", loadKanban);
+		</script>
+		<div class="kb-frame">
+			<kanban-lane:backlog_tasks lane="backlog"/>
+			<kanban-lane:active_tasks lane="active"/>
+			<kanban-lane:completed_tasks lane="completed"/>
+			<kanban-lane:discarded_tasks lane="discarded"/>
+		</div>
+	</content-body:>
+</show-page>

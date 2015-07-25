@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   auto_actions :all, :lifecycle, :except => :index
   
-  show_action :dashboard, :tutorial, :pending, :unsubscribe
+  show_action :dashboard, :tutorial, :pending, :unsubscribe, :kanban
     
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
@@ -75,6 +75,14 @@ class UsersController < ApplicationController
     rescue Hobo::PermissionDeniedError => e
       self.current_user = nil
       redirect_to "/login?force=true"
+    end
+  end
+  
+  def kanban
+    @this = find_instance
+    @lanes = Task::Lifecycle.states.keys
+    if request.xhr?
+      hobo_ajax_response
     end
   end
   

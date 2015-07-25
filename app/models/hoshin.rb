@@ -3,6 +3,7 @@ class Hoshin < ActiveRecord::Base
   acts_as_paranoid
   
   include ModelBase
+  include ColorHelper
 
   hobo_model # Don't put anything above this
 

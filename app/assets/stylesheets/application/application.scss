@@ -512,7 +512,7 @@ body h2 {
 	vertical-align: text-bottom;
 }
 
-h2.heading .title-action {
+body h2.heading a.title-action {
 	font-size: 0.4em;
 	margin: 0 15px;
 	color: #aaa;
@@ -542,7 +542,7 @@ h2.heading .title-action .label, .health-indicator .title-action .label {
 	min-width: 1.6em;
 }
 
-h2.heading .title-action:hover {
+body h2.heading .title-action:hover {
 	color: inherit;
 }
 
@@ -2455,6 +2455,7 @@ form.indicator-value input[type=radio] {
 	border-bottom-right-radius: 6em .5em;
 	display: inline-block;
 	box-sizing: border-box;   
+	background-color: rgb(255, 251, 223);
 }
 
 .postit.sortable-placeholder {
@@ -2575,6 +2576,10 @@ form.indicator-value input[type=radio] {
 	float: right;
 	margin: 0.5em;
 	text-align: center;
+}
+
+.show-page.user .postit .user-image {
+	display: none;
 }
 
 /* charts */
