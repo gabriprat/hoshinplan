@@ -38,14 +38,15 @@ GIT
 
 GIT
   remote: git://github.com/informatom/hobo_bootstrap.git
-  revision: a01d3e2d0b665bf659b96ad634bb1f825ed5425a
+  revision: a065167a94ec64c96eb0797d8050f5497a9be6ce
+  ref: a065167a94ec64c96eb0797d8050f5497a9be6ce
   branch: bootstrap3
   specs:
     hobo_bootstrap (2.1.0)
-      bootstrap-sass (~> 3.3.5.1)
+      bootstrap-sass (~> 3.3.4)
       hobo_jquery (>= 2.0)
       hobo_will_paginate-bootstrap
-      sass-rails (>= 5.0.3)
+      sass-rails (>= 3.2)
       sprockets-rails (>= 2.1.4)
 
 GIT

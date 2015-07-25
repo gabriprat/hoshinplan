@@ -59,7 +59,7 @@ gem 'derailed', group: :development
 # Hobo's version of will_paginate is required.
 gem "hobo_will_paginate"
 gem 'bootstrap-sass'
-gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3'
+gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3', :ref => 'a065167a94ec64c96eb0797d8050f5497a9be6ce'
 gem "hobo_bootstrap_ui", :git => "git://github.com/informatom/hobo_bootstrap_ui.git", :branch => 'bootstrap3'
 gem "hobo_jquery_ui"
 gem "bootstrap-switch-rails"
