@@ -45,7 +45,9 @@ class Mp
         '$distinct_id'=> user.id,
         '$name'       => user.name,
         '$email'      => user.email_address.to_s,
-        '$created'    => user.created_at
+        '$created'    => user.created_at,
+        'language'    => user.language,
+        'payments'    => user.payments_count
     }
     @options = {}
     @options['ip'] = opts[:ip] unless opts[:ip].nil?
