@@ -38,6 +38,8 @@ Hoshinplan::Application.routes.draw do
 
   get 'healthupdate' => 'front#healthupdate', :as => 'health_update'
 
+  get 'updatepeoplemixpanel' => 'front#updatepeoplemixpanel', :as => 'update_people_mixpanel'
+
   get 'colorize' => 'front#colorize', :as => 'colorize'
 
   get 'mail_preview' => 'mail_preview#index'

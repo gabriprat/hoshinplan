@@ -113,6 +113,12 @@ class FrontController < ApplicationController
     ret
   end
   
+  def updatepeoplemixpanel
+    User.all.each {|user|
+      Mp.people_set(user, '')
+    }
+  end
+  
   def healthupdate
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
