@@ -14,11 +14,19 @@ class Log < ActiveRecord::Base
   
   set_default_order :created_at
   
-  after_initialize :add_company_and_user
+  after_initialize :add_defaults
 
-  def add_company_and_user
+  def add_defaults
     self.company_id ||= Company.current_id if self.new_record?
     self.creator_id ||= User.current_id if self.new_record?
+  end
+  
+  def model
+    self.type.to_s[/\A(\w+)Log\Z/,1].constantize
+  end
+  
+  def model_id
+    self.send model.name.underscore + '_id'
   end
   
   belongs_to :company, :null => false

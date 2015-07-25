@@ -209,9 +209,6 @@
     </header:>
     <body: param>
       <a:creator param="creator-link"/>
-      <ht key="indicator.collection.count" count="&this.indicators.size">
-         <count:indicators param/>
-      </ht>
     </body:>
   </card>
 </def>
