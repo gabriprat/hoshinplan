@@ -242,9 +242,9 @@ GEM
     omniauth-openid (1.0.1)
       omniauth (~> 1.0)
       rack-openid (~> 1.3.1)
-    omniauth-saml (1.3.1)
+    omniauth-saml (1.4.0)
       omniauth (~> 1.1)
-      ruby-saml (~> 0.8.1)
+      ruby-saml (~> 1.0.0)
     paperclip (4.3.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -334,8 +334,8 @@ GEM
       rufus-scheduler (~> 3.0)
     ruby-hmac (0.4.0)
     ruby-openid (2.7.0)
-    ruby-saml (0.8.2)
-      nokogiri (>= 1.5.0)
+    ruby-saml (1.0.0)
+      nokogiri (>= 1.5.10)
       uuid (~> 2.3)
     rufus-scheduler (3.1.3)
     sass (3.4.16)
@@ -424,7 +424,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-google-oauth2
   omniauth-openid
-  omniauth-saml (~> 1.3.1)
+  omniauth-saml
   paperclip
   paranoia
   paypal-sdk-rest
