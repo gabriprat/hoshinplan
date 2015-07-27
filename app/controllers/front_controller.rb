@@ -182,7 +182,8 @@ class FrontController < ApplicationController
   end
   
   def failure
-    msg = t("errors." + params[:message].to_s, :default => t("errors.unknown")) 
+    fail env["omniauth.error"].to_yaml
+    msg = t("errors." + params[:message].to_s, :default => t("errors.unknown") + params[:message].to_s) 
     unless params[:error_reason].blank? 
       msg += " " + t("errors.provider_said", :default => "The message from your authentication provider was: ") + " " + params[:error_reason]
     end

@@ -47,7 +47,7 @@ gem 'puma'
 #gem 'byebug', :group => :development
 
 gem "omniauth-openid"
-gem "omniauth-saml"
+gem "omniauth-saml", '~> 1.3.1'
 gem "omniauth-google-oauth2"
 
 gem "hobo"
