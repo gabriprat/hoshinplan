@@ -12,14 +12,10 @@ class Log < ActiveRecord::Base
   end
   attr_accessible :title, :body, :creator_id
   
-  set_default_order :created_at
+  set_default_order "created_at DESC"
   
-  after_initialize :add_defaults
-
-  def add_defaults
-    self.company_id ||= Company.current_id if self.company_id.nil?
-    self.creator_id ||= User.current_id if self.creator_id.nil?
-  end
+  belongs_to :company, :null => false
+  belongs_to :creator, :class_name => "User", :creator => true, :null => false
   
   def model
     self.type.to_s[/\A(\w+)Log\Z/,1].constantize
@@ -28,10 +24,6 @@ class Log < ActiveRecord::Base
   def model_id
     self.send model.name.underscore + '_id'
   end
-  
-  belongs_to :company, :null => false
-  belongs_to :creator, :class_name => "User", :creator => true, :null => false
-  
 
   # --- Permissions --- #
 

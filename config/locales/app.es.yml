@@ -425,7 +425,9 @@ es:
     update: Modificado 
     delete: Borrado
     operation_date_ago: '%{operation} hace %{date} por %{creator}' 
-    operation_date_at: '%{operation} el %{date} por %{creator}' 
+    operation_date_at: '%{operation} el %{date} por %{creator}'
+    operation_date_ago_automatic: '%{operation} automáticamente hace %{date}' 
+    operation_date_automatic: '%{operation} automáticamente el %{date}' 
     changes: Cambios
     from: de
     to: a
