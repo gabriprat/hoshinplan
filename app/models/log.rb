@@ -17,8 +17,8 @@ class Log < ActiveRecord::Base
   after_initialize :add_defaults
 
   def add_defaults
-    self.company_id ||= Company.current_id if self.new_record?
-    self.creator_id ||= User.current_id if self.new_record?
+    self.company_id ||= Company.current_id if self.company_id.nil?
+    self.creator_id ||= User.current_id if self.creator_id.nil?
   end
   
   def model
