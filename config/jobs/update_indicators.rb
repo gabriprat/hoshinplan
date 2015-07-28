@@ -32,6 +32,7 @@ module Jobs
           ind.last_update = ih.day
         end
         Jobs::say line
+        Company.current_company = ind.company
         ind.save!({:validate => false})
       }
       Jobs::say "End update indicators job!"
