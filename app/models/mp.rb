@@ -29,6 +29,7 @@ class Mp
     mp = Mp.new
     mp.options = options
     mp.people = people
+    mp.event = event
     mp.send method
   end
 
@@ -56,6 +57,10 @@ class Mp
   
   def people=(people)
     @people = people
+  end
+  
+  def event=(event)
+    @event = event
   end
 
   def initialize(user=nil, opts = {})
@@ -118,7 +123,8 @@ class Mp
   def track_access_api
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     tracker = ::Mixpanel::Tracker.new(TOKEN)
-    Mp.logger.debug "Mixpanel track: #{@options['distinct_id']}, #{@options.inspect}, #{@event.inspect}"
+    Mp.logger.debug "Mixpanel track: distinct_id=#{@options['distinct_id']}, options=#{@options.inspect}, event=#{@event.inspect}"
+    fail "Null event" unless @event.present?
     tracker.track(@options['distinct_id'], @event, @options, @options[:ip])
   end
 end

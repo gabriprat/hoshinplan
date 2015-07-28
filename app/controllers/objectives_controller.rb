@@ -39,6 +39,7 @@ class ObjectivesController < ApplicationController
     obj = params["objective"]
     select_responsible(obj)
     hobo_update do
+      log_event("Update objective", {objid: @this.id, name: @this.name})
       redirect_to this.area.hoshin if valid? && !request.xhr?
     end
   end
