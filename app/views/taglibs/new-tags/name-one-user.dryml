@@ -3,13 +3,11 @@
 	comp = Company.current_id ? Company.current_company : nil
 	value ||= (this.name.nil? ? "" : this.name) + " (" + this.email_address + ")" unless this.nil?
 	value ||= default if default
-	value ||= (current_user.name.nil? ? "" : current_user.name) + " (" + current_user.email_address + ")"
+	value ||= (current_user.name.nil? ? "" : current_user.name) + " (" + current_user.email_address + ")" if this_parent.new_record? #Add the current user as owner by default
 	value ||= ""
 	if (comp.nil? && !this_parent.nil? && this_parent.respond_to?("company"))
 		comp = this_parent.company
-	end
-	
-	 fail "nil" if (comp.nil?)
+	end	
 	%>
 	<div style="position:relative">
 	<name-one completer="users" value="#{value}" complete-target="&comp" autocomplete='off' class="form-control" merge/>
