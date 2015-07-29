@@ -130,19 +130,19 @@ class Hoshin < ActiveRecord::Base
       return      
     end
     Objective.transaction do
-      objectives = Objective.unscoped.where(hoshin_id: id)
+      objectives = Objective.unscoped.where(hoshin_id: id, deleted_at: nil)
       objectives.update_all(neglected: false, blind: false)
       neglected = objectives.neglected
       neglected.update_all(neglected: true)
       self.neglected_objectives_count = neglected.count(:id)
   
-      outdated_ind = Indicator.unscoped.where(hoshin_id: id).overdue.count(:id)
+      outdated_ind = Indicator.unscoped.where(hoshin_id: id, deleted_at: nil).overdue.count(:id)
       self.outdated_indicators_count = outdated_ind
 
-      outdated_tsk = Task.unscoped.where(hoshin_id: id).overdue.count(:id)
+      outdated_tsk = Task.unscoped.where(hoshin_id: id, deleted_at: nil).overdue.count(:id)
       self.outdated_tasks_count = outdated_tsk
   
-      blind = Objective.unscoped.where(hoshin_id: id).blind
+      blind = Objective.unscoped.where(hoshin_id: id, deleted_at: nil).blind
       blind.where(blind: false).update_all(blind: true)
       self.blind_objectives_count = blind.count(:id)
 
