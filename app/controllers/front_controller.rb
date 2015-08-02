@@ -71,7 +71,7 @@ class FrontController < ApplicationController
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
 
-    @text = Jobs::SendReminders.new(params[:hour]).perform
+    @text = Jobs::SendReminders.perform(params[:hour])
     render :text => @text, :content_type => Mime::TEXT
   end
   
