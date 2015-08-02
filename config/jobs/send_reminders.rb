@@ -26,7 +26,7 @@ module Jobs
           I18n.locale = user.language.to_s unless user.language.to_s.blank?
           I18n.locale ||= I18n.default_locale
           Jobs::say " ==== User: #{user.email_address}" 
-          #UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver 
+          UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver 
         ensure
           I18n.locale = old_locale
         end
