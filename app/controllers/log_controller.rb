@@ -6,7 +6,8 @@ class LogController < ApplicationController
   
   def index
     fail unless params[:id].present? && params[:type].present?
-    @logs = Log.where(params[:type].singularize + '_id = ?',  params[:id].to_i).order(created_at: :desc).paginate(:page => params[:page], :per_page => 15)
+    self.this = Log.where(params[:type].singularize + '_id = ?',  params[:id].to_i)
+      .order(created_at: :desc).paginate(:page => params[:page], :per_page => 15)
     @model = params[:type].singularize.capitalize.constantize
     @source = @model.with_deleted.find(params[:id].to_i.to_s)
     if @model == Hoshin || @model == Company
@@ -17,7 +18,7 @@ class LogController < ApplicationController
     if request.xhr?
       hobo_ajax_response
     else
-      respond_with(@logs)
+      hobo_index
     end
   end
 

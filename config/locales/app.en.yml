@@ -426,7 +426,7 @@ en:
     operation_date_ago: '%{operation} %{date} ago by %{creator}' 
     operation_date_at: '%{operation} at %{date} by %{creator}'
     operation_date_ago_automatic: '%{operation} automatically %{date} ago' 
-    operation_date_automatic: '%{operation} automatically at %{date}'
+    operation_date_at_automatic: '%{operation} automatically at %{date}'
     changes: Changes
     from: from
     to: to
