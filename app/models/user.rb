@@ -185,7 +185,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    create :invite, :new_key => true, :params => [:email_address], :become => :invited do
+    create :invite, :params => [:email_address], :become => :invited, :new_key => true  do
         self.email_address = email_address
         UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s)
     end
@@ -209,7 +209,9 @@ class User < ActiveRecord::Base
     end
     
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
-          :params => [:name, :password, :password_confirmation]
+          :params => [:name, :password, :password_confirmation] do
+      self.update_column(:key_timestamp, nil)
+    end
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
       current_user = acting_user

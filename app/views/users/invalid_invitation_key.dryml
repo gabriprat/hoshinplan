@@ -1,0 +1,18 @@
+<simple-page class="simple-message" title='#{t &apos;invalid_invitation_key_page.title&apos;}'>
+	<body: class='invalid-invitation-key-page'/>
+	<prepend-main-column:>
+		<do part="resend-invitation"> 
+			<flash-messages/>
+		</do>
+	</prepend-main-column:>
+	
+	<content: with-flash-messages="&false">
+		<header>
+			<h2><t key='invalid_invitation_key_page.heading'/></h2>
+		</header>
+
+		<section class="content-body">
+			<p><t key='invalid_invitation_key_page.text'/></p>
+		</section>
+	</content:>
+</simple-page>

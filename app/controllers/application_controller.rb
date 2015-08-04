@@ -169,13 +169,9 @@ class ApplicationController < ActionController::Base
   
     private
     
-    def set_user_time_zone
-      @cookie_time_zone = cookies[:tz]
-      old_time_zone = Time.zone
-      Time.zone = current_user.timezone if self.respond_to?("logged_in?") && logged_in?
-      yield
-    ensure
-      Time.zone = old_time_zone
+    def set_user_time_zone(&block)
+      tz = current_user.try.timezone || @cookie_time_zone || Time.zone
+      Time.use_zone(tz, &block);
     end
     
     def authenticate_client_app

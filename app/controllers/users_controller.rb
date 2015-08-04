@@ -21,17 +21,33 @@ class UsersController < ApplicationController
                                    :expires => current_user.remember_token_expires_at, :domain => :all }
   end
   
+  def accept_invitation
+    begin
+      transition_page_action :accept_invitation 
+    rescue Hobo::PermissionDeniedError => e
+      unless request.xhr? || this.lifecycle.valid_key? 
+        render template: 'users/invalid_invitation_key'  
+      else
+        fail e
+      end
+    end
+  end
+  
   def do_accept_invitation
     do_transition_action :accept_invitation do
-      self.current_user = model.find(params[:id])
-      redirect_to home_page
+      if valid?
+        self.current_user = model.find(params[:id])
+        redirect_to home_page
+      end
     end
   end
   
   def do_activate
     do_transition_action :activate do
-      self.current_user = model.find(params[:id])
-      redirect_to home_page
+      if valid?
+        self.current_user = model.find(params[:id])
+        redirect_to home_page
+      end
     end
   end
   
