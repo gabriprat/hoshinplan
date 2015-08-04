@@ -4,7 +4,7 @@ module Jobs
     
     def self.perform(hour = 7)
       hour = hour.to_i
-      Jobs::say "Initiating send reminders job (at #{hour})!"
+      Rails.logger.info "Initiating send reminders job (at #{hour})!"
       User.current_user = -1
       kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Hoshin.unscoped.active).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
       tasks = User.at_hour(hour).includes(:tasks, {:tasks => :hoshin}, {:tasks => :company}).joins(:tasks).merge(Hoshin.unscoped.active).merge(Task.unscoped.due('5 day')).order("tasks.company_id, tasks.hoshin_id")
@@ -25,13 +25,13 @@ module Jobs
         begin
           I18n.locale = user.language.to_s unless user.language.to_s.blank?
           I18n.locale ||= I18n.default_locale
-          Jobs::say " ==== User: #{user.email_address}" 
+          Rails.logger.info " ==== User: #{user.email_address}" 
           UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver 
         ensure
           I18n.locale = old_locale
         end
       }
-      Jobs::say "End send reminders job!"
+      Rails.logger.info "End send reminders job!"
     end
   end
 end
