@@ -140,9 +140,14 @@ class ApplicationController < ActionController::Base
     I18n.available_locales.include?(parsed_locale.to_sym) ? parsed_locale : nil if !parsed_locale.nil?
   end
   
+  def extract_locale_from_tld
+    ret = request.host.split('.').last
+    ret if ret.length == 2
+  end
+  
   def set_locale
     begin
-      I18n.locale = params[:locale] || extract_locale_from_subdomain || user_locale || header_locale || I18n.default_locale
+      I18n.locale = params[:locale] || extract_locale_from_subdomain || extract_locale_from_tld || user_locale || header_locale || I18n.default_locale
       logger.debug locale.to_yaml
     rescue I18n::InvalidLocale
       flash[:error] =  t("errors.invalid_locale", :default => "Invalid locale.")
