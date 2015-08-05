@@ -68,7 +68,7 @@
 		      <li>&copy; #{Time.now.year} Hoshinplan</li>
 		      <li><a href="#{request.protocol}github.com/gabriprat/hoshinplan"><t key="footer.github"/></a></li>
 		      <li><a href="/about/"><t key="footer.about"/></a></li>
-		      <li><a href="#{request.protocol}hoshinplan#{locale.to_s=='en'?'':locale}.wordpress.com"><t key="footer.blog"/></a></li>
+		      <li><a href="http://blog.hoshinplan.#{locale.to_s=='en'?'com':locale}"><t key="footer.blog"/></a></li>
 		      <li><a with="&ClientApplication" subsite=""><t key="footer.developers"/></a></li>
 		      <li><a href="/privacy/"><t key="footer.privacy"/></a></li>
 		      <li><a href="/terms-of-use/"><t key="footer.terms_of_use"/></a></li>
