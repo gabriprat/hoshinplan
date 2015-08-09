@@ -11,7 +11,7 @@
     :font_src => 'self fonts.gstatic.com static.hoshinplan.com staticdoc.hoshinplan.com',
     :frame_src => "self https:",
     :style_src => "self 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
-    :script_src => "self nonce 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com",
+    :script_src => "self 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com",
     :img_src => "self static.hoshinplan.com staticdoc.hoshinplan.com shield.sitelock.com cdn.mxpnl.com *.doubleclick.com",
     :report_uri => '/uri-directive'
   }
