@@ -17,6 +17,11 @@ class Log < ActiveRecord::Base
   belongs_to :company, :null => false
   belongs_to :creator, :class_name => "User", :creator => true, :null => false
   
+  def add_defaults		
+    self.company_id ||= Company.current_id if self.company_id.nil?		
+    self.creator_id ||= User.current_id if self.creator_id.nil?		
+  end
+  
   def model
     self.type.to_s[/\A(\w+)Log\Z/,1].constantize
   end
