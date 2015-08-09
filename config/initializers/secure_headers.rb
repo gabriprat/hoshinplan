@@ -7,7 +7,7 @@
   config.x_permitted_cross_domain_policies = 'none'
   config.csp = {
     :default_src => "self static.hoshinplan.com *.userreport.com api.mixpanel.com",
-    :enforce => false,
+    :enforce => true,
     :font_src => 'self fonts.gstatic.com static.hoshinplan.com staticdoc.hoshinplan.com',
     :frame_src => "self https:",
     :style_src => "self 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
