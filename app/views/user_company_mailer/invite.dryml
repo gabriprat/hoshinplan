@@ -2,13 +2,13 @@
 	<h2><%= I18n.translate "emails.invite.title", :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company %></h2>
 	<p><%= I18n.translate "emails.invite.message", :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company %></p>
 	 <div class="btn" itemscope itemtype="http://schema.org/EmailMessage">
-	 	<div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction">
-			<link itemprop="url" href="#{accept_url}"/>
-			    <meta itemprop="name" content="#{I18n.translate('emails.invite.call_to_action')}"/>
+	 	<div itemprop="action" itemscope itemtype="http://schema.org/ViewAction">
+			<link itemprop="url" href="#{accept_url}"></link>
+			<meta itemprop="name" content="#{I18n.translate('emails.invite.call_to_action')}"></meta>
 			<a href="#{accept_url}">
 			 <%= I18n.translate("emails.invite.call_to_action") %>
 		 	</a>
 	 	</div>
-		<meta itemprop="description" content="#{I18n.translate 'emails.invite.title', :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company}<"/>
+		<meta itemprop="description" content="#{I18n.translate 'emails.invite.title', :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company}<"></meta>
 	 </div>
 </email>
