@@ -5,7 +5,7 @@
         	<h2 class="heading"><t key="user.kanban_for" name="&this.name"/></h2>
         </content-header:>
 	<content-body:>
-		<script type="text/javascript">
+		<script type="text/javascript" nonce="#{@content_security_policy_nonce}">
 			$(document).ready(loadKanban);
 			$(window).on("popstate", loadKanban);
 		</script>

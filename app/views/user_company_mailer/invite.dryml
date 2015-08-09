@@ -9,6 +9,6 @@
 			 <%= I18n.translate("emails.invite.call_to_action") %>
 		 	</a>
 	 	</div>
-		<meta itemprop="description" content="#{I18n.translate 'emails.invite.title', :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company}<"></meta>
+		<meta itemprop="description" content="#{I18n.translate 'emails.invite.title', :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company}"></meta>
 	 </div>
 </email>

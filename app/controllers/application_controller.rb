@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   
+  ensure_security_headers
+  
   helper CmsHelper
 
   rescue_from RuntimeError do |exception|

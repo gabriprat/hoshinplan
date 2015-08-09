@@ -31,7 +31,8 @@
 					<a action="health"><t key="hoshin.see_detailed_health">See detailed health report</t></a>
 				</else>
 			</div>
-			<script type="text/javascript">updateTimer()</script>
+			<script type="text/javascript" nonce="#{@content_security_policy_nonce}">
+			updateTimer()</script>
 			</if>
 			<!-- /content: -->
 			
