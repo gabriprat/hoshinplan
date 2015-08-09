@@ -12,7 +12,7 @@
     :frame_src => "self https:",
     :style_src => "self 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
     :script_src => "self 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com",
-    :img_src => "self static.hoshinplan.com staticdoc.hoshinplan.com shield.sitelock.com cdn.mxpnl.com *.doubleclick.com www.google-analytics.com",
+    :img_src => "self static.hoshinplan.com staticdoc.hoshinplan.com shield.sitelock.com cdn.mxpnl.com *.*.doubleclick.com www.google-analytics.com",
     :report_uri => '/uri-directive'
   }
   config.hpkp = false
