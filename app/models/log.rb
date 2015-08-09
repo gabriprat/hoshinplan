@@ -20,8 +20,8 @@ class Log < ActiveRecord::Base
   belongs_to :creator, :class_name => "User", :creator => true, :null => false
   
   def add_defaults		
-    self.company_id ||= Company.current_id if self.company_id.nil?		
-    self.creator_id ||= User.current_id if self.creator_id.nil?		
+    self.company_id ||= Company.current_id if self.new_record?
+    self.creator_id ||= User.current_id if self.new_record?
   end
   
   def model
