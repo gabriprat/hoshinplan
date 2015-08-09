@@ -14,6 +14,8 @@ class Log < ActiveRecord::Base
   
   set_default_order "created_at DESC"
   
+  after_initialize :add_defaults
+  
   belongs_to :company, :null => false
   belongs_to :creator, :class_name => "User", :creator => true, :null => false
   
