@@ -8,11 +8,11 @@
   config.csp = {
     :default_src => "self static.hoshinplan.com",
     :enforce => false,
-    :font_src => 'self fonts.gstatic.com static.hoshinplan.com',
+    :font_src => 'self fonts.gstatic.com static.hoshinplan.com staticdoc.hoshinplan.com',
     :frame_src => "self https:",
-    :style_src => "self 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com",
-    :script_src => "self nonce 'unsafe-eval' static.hoshinplan.com app.box.com cdn.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com",
-    :img_src => "self static.hoshinplan.com shield.sitelock.com cdn.mxpnl.com",
+    :style_src => "self 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
+    :script_src => "self nonce 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com app.box.com cdn.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com",
+    :img_src => "self static.hoshinplan.com staticdoc.hoshinplan.com shield.sitelock.com cdn.mxpnl.com",
     :report_uri => '/uri-directive'
   }
   config.hpkp = false
