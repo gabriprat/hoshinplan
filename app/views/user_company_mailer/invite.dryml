@@ -3,7 +3,7 @@
 	<p><%= I18n.translate "emails.invite.message", :name => invitor.name.empty? ? invitor.email_address : invitor.name, :company => company %></p>
 	 <div class="btn" itemscope itemtype="http://schema.org/EmailMessage">
 	 	<div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction">
-			<link itemprop="target" href="#{accept_url}"/>
+			<link itemprop="url" href="#{accept_url}"/>
 			    <meta itemprop="name" content="#{I18n.translate('emails.invite.call_to_action')}"/>
 			<a href="#{accept_url}">
 			 <%= I18n.translate("emails.invite.call_to_action") %>
