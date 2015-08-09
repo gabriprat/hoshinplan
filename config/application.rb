@@ -81,7 +81,7 @@ module Hoshinplan
     config.cms_auto_calls = !ENV['CMS_AUTO_CALLS'].blank? && YAML.load(ENV['CMS_AUTO_CALLS'])
     config.new_relic_disable = !ENV['NEW_RELIC_DISABLE'].blank? && YAML.load(ENV['NEW_RELIC_DISABLE'])
     config.mixpanel_disable = !ENV['MIXPANEL_DISABLE'].blank? && YAML.load(ENV['MIXPANEL_DISABLE'])
-        
+    config.ssl_disable = !Rails.env.production? || !ENV['DISABLE_SSL'].blank? && YAML.load(ENV['DISABLE_SSL'])
   end
 end
 

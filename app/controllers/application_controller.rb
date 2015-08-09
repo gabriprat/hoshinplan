@@ -50,13 +50,12 @@ class ApplicationController < ActionController::Base
          :do_activate, :do_signup, :forgot_password, :reset_password,
          :do_reset_password, :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, :accept_invitation, :do_accept_invitation]
         
-  if (Rails.env.production?)
+  unless Rails.configuration.ssl_disable
     before_filter :force_ssl
   end
 
-  # Force logged in users to use SSL
   def force_ssl
-    if logged_in? && request.protocol != "https://"
+    if request.protocol != "https://"
       redirect_to :protocol => "https://"
     end
   end
