@@ -1,10 +1,10 @@
-	      		 <% update = @this.new_record? ? "#objectives-#{this.area.id},#lane-#{this.status},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#objectives-#{this.area.id},#lane-#{this.status},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
-			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();">
+	      		 <% update = @this.new_record? ? "#objectives-#{this.area.id},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#objectives-#{this.area.id},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
+			<form updates="&update" ajax success="$('.modal.in').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();">
 		   	   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
 			
 	      		   <div class="modal-body">
 	      			    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
-	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, reminder #{show_on_parent}">
+	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, impact, confidence, effort, reminder #{show_on_parent}">
     			    	<description-view: >
 					<my-click-editor id="task-description-#{this_parent.id}"/>
     				</description-view:>
@@ -15,6 +15,16 @@
 	      			    	<responsible-view:>
 	      					<name-one-user />
 	      				</responsible-view:>
+					
+	      			    	<effort-view:>
+	      					<slider min="0" max="100"/>
+	      				</effort-view:>
+	      			    	<confidence-view:>
+	      					<slider min="0" max="100"/>
+	      				</confidence-view:>
+	      			    	<impact-view:>
+	      					<slider min="0" max="100"/>
+	      				</impact-view:>
 	      			    </field-list:>
 	      		    </div>
 	      		    <modal-form-footer-delete/>

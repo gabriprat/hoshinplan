@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724202051) do
+ActiveRecord::Schema.define(version: 20150810215649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -351,6 +351,9 @@ ActiveRecord::Schema.define(version: 20150724202051) do
     t.integer  "parent_objective_id"
     t.string   "feeling",             default: "smile",   null: false
     t.datetime "deleted_at"
+    t.string   "confidence"
+    t.string   "impact"
+    t.string   "effort"
   end
 
   add_index "tasks", ["area_id", "status"], name: "index_tasks_on_area_id_and_status", using: :btree

@@ -97,6 +97,15 @@
 				    	<responsible-view:>
 						<name-one-user />
 					</responsible-view:>
+	      			    	<effort-view:>
+	      					<slider min="0" max="100"/>
+	      				</effort-view:>
+	      			    	<confidence-view:>
+	      					<slider min="0" max="100"/>
+	      				</confidence-view:>
+	      			    	<impact-view:>
+	      					<slider min="0" max="100"/>
+	      				</impact-view:>
 				    </field-list:>
 	</old-form>
 </extend>

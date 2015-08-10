@@ -6,7 +6,7 @@ class HoshinsController < ApplicationController
   
   auto_actions_for :company, [:new, :create]
   
-  show_action :health, :kanban, :charts
+  show_action :health, :kanban, :charts, :map
   
   web_method :kanban_update
   
@@ -93,6 +93,15 @@ class HoshinsController < ApplicationController
   def kanban
     @this = find_instance
     @lanes = Task::Lifecycle.states.keys
+    if request.xhr?
+      hobo_ajax_response
+    end
+  end
+  
+  def map
+    @this = find_instance
+    @lanes = Task::Lifecycle.states.keys
+    @objectives = Objective.includes(:tasks, :area).where(tasks: {hoshin_id: @this.id}).references(:tasks, :area).order("areas.position, obj_pos")
     if request.xhr?
       hobo_ajax_response
     end

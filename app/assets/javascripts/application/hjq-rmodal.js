@@ -41,7 +41,7 @@
         } else if ( typeof method === 'object' || ! method ) {
             return methods.init.apply( this, arguments );
         } else {
-            $.error( 'Method ' +  method + ' does not exist on hjq_click_editor' );
+            $.error( 'Method ' +  method + ' does not exist on hjq_rmodal' );
         }
     };
 

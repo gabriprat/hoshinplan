@@ -74,6 +74,7 @@ Hoshinplan::Application.routes.draw do
       get 'health'
       get 'kanban'
       get 'charts'
+      get 'map'
       post 'kanban_update'
       put 'activate', :action => 'do_activate'
       get 'activate'

@@ -1,0 +1,8 @@
+<def tag="dot" attrs="left, top, size, tag" polymorphic>
+	<% 
+		tag ||= 'div'
+		ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
+		add_data_rapid!(html_attrs, "dot", :left => left, :top => top, :size => size, :ajax_attrs => ajax_attrs)
+	%>
+	<call-tag tag="#{tag}" class="dot" param='default' merge-attrs='&html_attrs'/>
+</def>

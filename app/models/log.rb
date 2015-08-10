@@ -17,7 +17,7 @@ class Log < ActiveRecord::Base
   after_initialize :add_defaults
   
   belongs_to :company, :null => false
-  belongs_to :creator, :class_name => "User", :creator => true, :null => false
+  belongs_to :creator, :class_name => "User", :creator => true
   
   def add_defaults		
     self.company_id ||= Company.current_id if self.new_record?

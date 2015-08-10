@@ -100,11 +100,25 @@ var filterPostits = function(event) {
 	return false;
 }
 
+var laneOver = function (event, ui) {
+	var that = $(event.target).addClass("active");
+}
+
+var laneOut = function (event, ui) {
+	var that = $(event.target).removeClass("active");
+}
+
 var postitDrop = function (event, ui) {
 	var that = ui.item.closest(".sortable-collection");
+	var row = ui.item.closest(".kanban-row");
+	that.sortable("refresh");
 	var lane = that.data("list-id");
 	$form = ui.item.find(".csupdate.formlet");
 	$form.find("input[name='task[status]']").val(lane);
+	if (row.length > 0) {
+		var objective_id = row.data("id");
+		$form.find("input[name='task[objective_id]']").val(objective_id);
+	}
 	$form.data('rapid').formlet.form_attrs.action = "/tasks/" + ui.item.data("id");
 	$form.hjq_formlet("submit");
 	var annotations=that.data('rapid')['sortable-collection'];
@@ -265,7 +279,6 @@ var equalHeightSections = function() {
 	equalHeights("div.objectives-wrapper");
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
-	equalHeights(".kb-lane");
 	equalHeights(".area .header");
 	eh = false;
 }
@@ -435,4 +448,11 @@ $(document).ready(function() {
 		}
 	});
 	
+});
+
+$(document).ready(function() {
+	var append = $("#to-append").children();
+	if (append.length > 0) {
+		$(".kb-frame.dots .connected-sortable-wrapper .kb-lane").append(append);
+	}
 });

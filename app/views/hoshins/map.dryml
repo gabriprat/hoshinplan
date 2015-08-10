@@ -1,0 +1,55 @@
+<show-page>
+	<parent-link:>
+		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
+	</parent-link:>
+	<heading: class="only-print"/>
+	<content-body:>
+		<script type="text/javascript" nonce="#{@content_security_policy_nonce}">
+			$(document).ready(loadKanban);
+			$(window).on("popstate", loadKanban);
+		</script>
+		<set headings="true"/>
+		<div class="kb-frame dots">
+			<div style="display:table-row">
+				<div class="panel panel-default lane dots">
+					<div class="panel-heading"><h2>#{Objective.model_name.human}</h2></div>
+				</div>
+				<div class="panel panel-default lane dots">
+					<div class="panel-heading"><h2><view with="#{t 'kanban.lanes.backlog'}"/></h2></div>
+				</div>
+				<div class="panel panel-default lane dots">
+					<div class="panel-heading"><h2><view with="#{t 'kanban.lanes.active'}"/></h2></div>
+				</div>
+				<div class="panel panel-default lane dots">
+					<div class="panel-heading"><h2><view with="#{t 'kanban.lanes.completed'}"/></h2></div>
+				</div>
+				<div class="panel panel-default lane dots">
+					<div class="panel-heading"><h2><view with="#{t 'kanban.lanes.discarded'}"/></h2></div>
+				</div>
+			</div>
+			<set h="&this"/>
+			<repeat with="&@objectives">
+			<div class="kanban-row" data-id="#{this.id}" style="display:table-row">
+				<div class="panel panel-default lane dots">
+					<div class="panel-body kb-lane">
+					#{this.name}
+					<repeat with="&this.indicators.first(1)">
+					<mini-indicator-chart/>
+					</repeat>
+					</div>
+					
+				</div>
+				<kanban-lane:backlog_tasks lane="backlog" headings="" tag="dot"/>
+				<kanban-lane:active_tasks lane="active" headings="" tag="dot"/>
+				<kanban-lane:completed_tasks lane="completed" headings="" tag="dot"/>
+				<kanban-lane:discarded_tasks lane="discarded" headings="" tag="dot"/>
+			</div>
+			<set headings=""/>
+			</repeat>
+		</div>
+		<div class="hide" id="to-append">
+		<div class="effort">- <t key="activerecord.attributes.task.effort"/> +</div>
+		<div class="confidence">- <t key="activerecord.attributes.task.confidence"/> +</div>
+		</div>
+	</content-body:>
+</show-page>

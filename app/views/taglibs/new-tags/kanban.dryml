@@ -1,45 +1,66 @@
-<def tag="kanban-lane" attrs="lane">
-
-	<div class="connected-sortable-wrapper panel panel-default lane" id="lane-#{lane}" part="lane" part-locals="lane">
-	<div class="panel-heading"><h2><view with="#{t 'kanban.lanes.' + lane}"/> (<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.count}</div>)</h2></div>
-<sortable-collection connectWith=".kb-lane" title="#{lane}" class="kb-lane panel-body" show-empty="true" placeholder="sortable-placeholder kanban-card postit" stop="postitDrop" update="" items="li:not(.not-draggable)" data-list-id="#{lane}" id="lane-#{lane}">
+<def tag="kanban-lane" attrs="lane, headings, tag, sortable">
+	<% 
+		sortable ||= true
+		headings ||= true
+		tag ||= 'postit'
+		collection_tag = "sortable-collection"
+		list_tag = tag == 'postit' ? 'ul' : 'div'
+	%>
+	<div class="connected-sortable-wrapper panel panel-default lane" id="lane-#{lane}" part="lane" part-locals="lane,headings,tag,collection_tag,list_tag">
+	<div class="panel-heading" if="&headings"><h2><view with="#{t 'kanban.lanes.' + lane}"/> (<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.count}</div>)</h2></div>
+<call-tag tag="#{collection_tag}" list-tag="#{list_tag}" connectWith=".kb-lane" title="#{lane}" class="kb-lane panel-body" show-empty="true" placeholder="sortable-placeholder kanban-card #{tag}" stop="postitDrop" over="laneOver" out="laneOut" update="" items=".kanban-card:not(.not-draggable)" data-list-id="#{lane}" id="lane-#{lane}">
 	<empty-message: replace/>
 	<item: replace>
-		<li class="kanban-card postit kb-color-#{this.area_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
-			<div class="task-header"> <view:feeling/> <click-editor-innards:name/></div>
-			<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="ic-cog"/></rmodal>
-			<div class="postit-description">
-				<click-editor-innards:description>
-					<input: replace><input field='description' no-editor="true"/></input:>
-				</click-editor-innards>
-				<span class="more"/>
-			</div>
-			<if test="&this.original_deadline != this.deadline">
-			<div class="original-deadline">
-				<%= l this.original_deadline, format: :short %>
-			</div>
-			</if>
-			<div class="deadline">
-				<autosubmit:deadline class="#{this.deadline_status} inline" live>
-					<append-wrapper:>
-					<if test="&this_parent.original_deadline != this">
-					<set diff="&0"/>
-					<set diff="&this - this_parent.original_deadline" unless="&this_parent.original_deadline.nil? || this.nil?"/>
-					<view class="&(diff > 0 ? 'overdue' : '') + ' inline'" with="&'(' + (diff).to_i.to_s + ')'"/>
-					</if>
-					</append-wrapper:>
-				</autosubmit>
-			</div>
-			<user-img:responsible_id size="mini" class="user-#{this.responsible_id}"/>
-			<else>
-			<br/><br/>
-			</else>
-			<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-kb-lane">
-				<hidden-fields fields="lane_pos, status"/>
-			</formlet>
-			<a class="show-all ic-chevron-down" href="#" onclick="openPostit(this); return false;"></a>
-		</li>
+		<call-tag tag="#{tag}"/>
 	</item:>
-</sortable-collection>
+</call-tag>
 </div>
+</def>
+
+<def tag="dot" for="Task">
+	<div part="task" class="kanban-card" data-rapid-context="<%= typed_id %>" data-id="#{this.id}" >
+	<dot for-type="Object" left="#{left(this)}" top="#{top(this)}" size="#{size(this)}px" class="#{this.feeling}">
+		<rmodal target-id="update-task-modal-#{this.id}" url="#{task_path this}/form" title="#{this.name}" />
+		<formlet class="csupdate">
+			<hidden-fields fields="lane_pos, status, objective_id"/>
+		</formlet>
+	</dot>
+	</div>
+</def>
+
+<def tag="postit">
+	<li class="kanban-card postit kb-color-#{this.area_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
+		<div class="task-header"> <view:feeling/> <click-editor-innards:name/></div>
+		<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="ic-cog"/></rmodal>
+		<div class="postit-description">
+			<click-editor-innards:description>
+				<input: replace><input field='description' no-editor="true"/></input:>
+			</click-editor-innards>
+			<span class="more"/>
+		</div>
+		<if test="&this.original_deadline != this.deadline">
+		<div class="original-deadline">
+			<%= l this.original_deadline, format: :short %>
+		</div>
+		</if>
+		<div class="deadline">
+			<autosubmit:deadline class="#{this.deadline_status} inline" live>
+				<append-wrapper:>
+				<if test="&this_parent.original_deadline != this">
+				<set diff="&0"/>
+				<set diff="&this - this_parent.original_deadline" unless="&this_parent.original_deadline.nil? || this.nil?"/>
+				<view class="&(diff > 0 ? 'overdue' : '') + ' inline'" with="&'(' + (diff).to_i.to_s + ')'"/>
+				</if>
+				</append-wrapper:>
+			</autosubmit>
+		</div>
+		<user-img:responsible_id size="mini" class="user-#{this.responsible_id}"/>
+		<else>
+		<br/><br/>
+		</else>
+		<formlet class="csupdate" updates="#postit-#{this.id},.cs-size-kb-lane">
+			<hidden-fields fields="lane_pos, status"/>
+		</formlet>
+		<a class="show-all ic-chevron-down" href="#" onclick="openPostit(this); return false;"></a>
+	</li>
 </def>

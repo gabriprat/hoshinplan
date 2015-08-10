@@ -1750,7 +1750,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="deadline, original_deadline, lane_pos, feeling, tsk_pos, status, area, company, hoshin, objective, parent_area, parent_objective, responsible" param/>
+      <field-list fields="deadline, original_deadline, lane_pos, feeling, confidence, impact, effort, tsk_pos, status, area, company, hoshin, objective, parent_area, parent_objective, responsible" param/>
     </content-body:>
 
   </page>

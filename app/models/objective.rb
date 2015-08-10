@@ -137,6 +137,19 @@ class Objective < ActiveRecord::Base
     area.name + " - " + name
   end
   
+  def backlog_tasks
+    tasks.backlog.reorder(:lane_pos)
+  end
+  def active_tasks
+    tasks.active.reorder(:lane_pos)
+  end
+  def completed_tasks
+    tasks.completed.visible.reorder(:lane_pos)
+  end
+  def discarded_tasks
+    tasks.discarded.visible.reorder(:lane_pos)
+  end
+  
   # --- Permissions --- #
   
   def validate_company

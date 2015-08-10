@@ -1,0 +1,11 @@
+<def tag="slider">
+	<%
+		options, attrs = attributes.partition_hash(['id','min','max','step','precision','orientation','value','range','selection','tooltip','tooltip_split','tooltip_position','handle','reversed','enabled','formatter','natural_arrow_keys','ticks','ticks_positions','ticks_labels','ticks_snap_bounds','scale','focus']);
+		events, html_attrs = attrs.partition_hash(['slide','slideStart','slideStop','change','slideEnabled','slideDisabled'])
+		ajax_attrs, html_attrs = attrs.partition_hash(HoboRapidHelper::AJAX_CALLBACKS)
+		add_classes!(html_attrs, "slider")
+		add_data_rapid!(html_attrs, "slider", :options => options, :events => events, :ajax_attrs => ajax_attrs)
+	%>
+	<input merge-attrs="&html_attrs" merge-params/>
+</def>
+

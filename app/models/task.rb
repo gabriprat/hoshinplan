@@ -15,6 +15,9 @@ class Task < ActiveRecord::Base
     reminder          :boolean, :default => true
     lane_pos          :integer, :default => 0, :null => false
     feeling           EnumFeeling, :default => :smile, :null => false
+    confidence        :percentage
+    impact            :percentage
+    effort            :percentage
     timestamps
     deleted_at    :datetime
   end
@@ -27,7 +30,8 @@ class Task < ActiveRecord::Base
   
   
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
-    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, :hoshin_id, :feeling
+    :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, 
+    :hoshin_id, :feeling, :confidence, :impact, :effort
 
   has_many :log, :class_name => "TaskLog", :inverse_of => :task
   
@@ -89,7 +93,7 @@ class Task < ActiveRecord::Base
   
   scope :visible, -> {
     where("status != 'deleted' and (status = 'active' or status = 'backlog' or coalesce(deadline, tasks.created_at)>current_date-110)")
-  }  
+  }
  
   before_create do |task|
     task.area = task.objective.area
@@ -136,7 +140,6 @@ class Task < ActiveRecord::Base
     end
   end
   
-  
   def update_lane_positions
       old_position = lane_pos_was
       new_position = lane_pos
@@ -172,8 +175,6 @@ class Task < ActiveRecord::Base
     end
   end
   
-  
-
   def update_counter_cache
     self.hoshin.tasks_count = Task.where(:status => [:active, :backlog], :hoshin_id => self.hoshin_id).count(:id)
     self.hoshin.save!
@@ -247,6 +248,18 @@ class Task < ActiveRecord::Base
     else
       0
     end
+  end
+  
+  def effort_or_rand
+    effort || (id * 37 + 17) % 100
+  end
+  
+  def confidence_or_rand
+    confidence || (id * 29 + 19) % 100
+  end
+  
+  def impact_or_rand
+    impact || (id * 43 + 13) % 100
   end
   
   # --- Permissions --- #

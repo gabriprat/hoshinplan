@@ -285,6 +285,10 @@ en:
         reminder: Reminder
         objective: Objective
         status: Status
+        original_deadline: Original Deadline
+        effort: Effort
+        confidence: Confidence
+        impact: Impact
         lifecycle:
           transitions:
             discard: Discard

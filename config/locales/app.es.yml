@@ -286,6 +286,9 @@ es:
         objective: Objetivo
         status: Estado
         original_deadline: Venc. original
+        effort: Esfuerzo
+        confidence: Confianza
+        impact: Impacto
         lifecycle:
           transitions:
             discard: Descartar
