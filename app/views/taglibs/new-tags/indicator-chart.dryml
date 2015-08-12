@@ -82,5 +82,7 @@
 		axes="false"
 		grid="&false"
 		merge
+		
+		unless="&data.blank?"
 	/>
 </def>
