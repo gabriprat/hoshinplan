@@ -29,8 +29,9 @@
 </def>
 
 <def tag="postit">
-	<li class="kanban-card postit kb-color-#{this.area_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
-		<div class="task-header"> <view:feeling/> <click-editor-innards:name/></div>
+	<li class="kanban-card postit kb-color-#{this.area_id} kb-color-#{this.hoshin_id} #{this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-rapid-context='#{typed_id}' data-id="#{this.id}" part="postit" id="postit-#{this.id}">
+		<div class="task-header"> <view:feeling/> <click-editor-innards:name/> </div>
+		
 		<rmodal url="#{task_path this}/form" target-id="update-task-modal-#{this.id}" class="edit hoshin-tasks"><span class="ic-cog"/></rmodal>
 		<div class="postit-description">
 			<click-editor-innards:description>

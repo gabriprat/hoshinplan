@@ -741,7 +741,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="header, health_updated_at, state, parent" param/>
+      <field-list fields="header, health_updated_at, color, state, parent" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="area.collection.heading" count="&this.areas.count" >

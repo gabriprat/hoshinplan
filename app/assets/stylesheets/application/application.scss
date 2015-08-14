@@ -2450,6 +2450,11 @@ form.indicator-value input[type=radio] {
 	}
 }
 
+.show-page.user .kb-colors .filter-color-wrapper {
+	margin-left: -6.5em;
+	margin-right: 6.5em;
+}
+
 .kb-frame .lane {
 	display:table-cell;
 	width: 20%;
@@ -2538,6 +2543,14 @@ form.indicator-value input[type=radio] {
         margin-bottom: 1em;
 	border-bottom: 1px dashed;
 	position: relative;
+	.view.hoshin-name {
+		white-space: nowrap;
+		width: 75%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: inline-block;
+		line-height: 1em;
+	}
 }
 
 .postit .in-place-edit.task-name {

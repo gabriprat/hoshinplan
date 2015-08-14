@@ -22,13 +22,15 @@ class Hoshin < ActiveRecord::Base
     hoshins_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
     health_updated_at :datetime
+    color       Color
     timestamps
     deleted_at    :datetime
   end
   index [:deleted_at]
   index [:company_id, :parent_id]  
     
-  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :children, :children_ids, :creator_id, :creator
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :children, 
+    :children_ids, :creator_id, :creator, :color
   
   belongs_to :creator, :class_name => "User", :creator => true, :inverse_of => :my_hoshins
 
@@ -47,6 +49,15 @@ class Hoshin < ActiveRecord::Base
   
   validate :validate_company
   
+  before_save do |hoshin|
+    hoshin.color = hoshin.defaultColor if hoshin.color.blank?
+  end
+  
+  def defaultColor
+    str = "hoshin+" + (name.nil? ? rand(1000000000).to_s(16) : name)
+    res = hexFromString(str, 0.95)  
+    return res
+  end
 
   lifecycle do
 

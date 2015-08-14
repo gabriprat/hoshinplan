@@ -1,10 +1,31 @@
-<show-page>
+<show-page  aside-location="none" content-size="12">
   	<body: class="kanban dashboard hoshin" />
         <content-header:>
 		<a with="&this" class="parent-link">&laquo; <ht key="user.actions.back_to_parent" parent="&User.model_name.human" name="&this.to_s" /></a>
         	<h2 class="heading"><t key="user.kanban_for" name="&this.name"/></h2>
         </content-header:>
 	<content-body:>
+		<div class="kb-colors">
+			<repeat:hoshins part="colors">
+				<modal id="update-hoshin-modal-#{this.id}">
+				<modal:>
+					<div class="modal-dialog">
+					<formlet ajax success="updateColors(); $('#update-hoshin-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" class="modal-content" id="upd-hoshin-#{this.id}">
+					    <modal-header> <view:name/></modal-header>
+					    <div class="modal-body">
+					    <feckless-fieldset class="horizontal" fields="color"/>
+					    </div>
+					    <modal-form-footer/>
+					 </formlet>
+					 </div>
+				</modal:>
+				</modal>
+				<modal-open-button class="kb-color" data-color-id="#{this.id}" style="background-color:#{this.color}" modal="update-hoshin-modal-#{this.id}">
+				<view:name/>
+				</modal-open-button>
+				<span onclick="filterPostits(event); return false;" class="filter-color-wrapper hoshin-tasks"><span class="ic-eye col-tog col-tog-#{this.id} filter-color" data-color="#{this.id}"></span><span class="ic-eye-slash col-tog col-tog-#{this.id}" style="display:none" data-color="#{this.id}"></span></span>
+			</repeat>
+		</div>
 		<script type="text/javascript" nonce="#{@content_security_policy_nonce}">
 			$(document).ready(loadKanban);
 			$(window).on("popstate", loadKanban);

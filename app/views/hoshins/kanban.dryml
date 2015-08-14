@@ -4,10 +4,6 @@
 	</parent-link:>
 	<heading: class="only-print"/>
 	<content-body:>
-		<script type="text/javascript" nonce="#{@content_security_policy_nonce}">
-			$(document).ready(loadKanban);
-			$(window).on("popstate", loadKanban);
-		</script>
 		<div class="kb-colors">
 			<repeat:areas part="colors">
 				<modal id="update-area-modal-#{this.id}">

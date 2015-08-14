@@ -36,9 +36,14 @@ var validateDate = function(formElem) {
 	}
 	return true;
 }
+$(document).ready(loadKanban);
+$(window).on("popstate", loadKanban);
 
 var loadKanban = function() {
 	try {
+		if ($("body.kanban.show-page").length < 1) {
+			return;
+		}
 		var showMine = false;
 		var colors = [];
 		if (window.location.hash.length > 1) {
