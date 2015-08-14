@@ -16,3 +16,8 @@ task :update_indicators => :environment do
   puts Jobs::UpdateIndicators.perform
 end
 
+
+task :set_colors => :environment do
+  puts Jobs::SetColors.perform
+end
+
