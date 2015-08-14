@@ -28,6 +28,8 @@ Hoshinplan::Application.routes.draw do
 
   get 'reprocessphotos' => 'front#reprocess_photos', :as => 'reprocess_photos'
   
+  get 'setcolors' => 'front#set_colors', :as => 'set_colors'
+  
   get 'sendreminders' => 'front#sendreminders', :as => 'send_reminders'
   
   get 'updateindicators' => 'front#updateindicators', :as => 'update_indicators'

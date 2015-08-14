@@ -81,6 +81,11 @@ class FrontController < ApplicationController
     end
   end
   
+  def set_colors
+    @text = Jobs::SetColors.perform
+    render :text => @text, :content_type => Mime::TEXT
+  end
+  
   def updateindicators
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}

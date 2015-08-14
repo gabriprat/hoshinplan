@@ -3,17 +3,19 @@ module Jobs
     @queue = :jobs
     
     def self.perform(hour = 0)
+      ret = ""
       begin
-      Jobs::say "Initiating setcolors job (at #{hour})!"
+      ret += Jobs::say "Initiating setcolors job (at #{hour})!" + "\n"
       Hoshin.unscoped.where(color: nil).each { |h|
-        Jobs::say "Hoshin: " + h.name.to_s
+        ret += Jobs::say "Hoshin: " + h.name.to_s + "\n"
         h.update_attribute("color", h.defaultColor)
       }
-      Jobs::say "End setcolors job!"
+      ret += Jobs::say "End setcolors job!" + "\n"
       rescue 
-        Jobs::say $!.inspect
-        Jobs::say $@
+        ret += Jobs::say $!.inspect + "\n"
+        ret += Jobs::say $@
       end
+      return ret
     end
   end
 end
