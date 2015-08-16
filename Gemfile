@@ -111,3 +111,4 @@ gem 'resque'
 gem 'resque-delay', :git => "git://github.com/rykov/resque-delay.git"
 gem 'paranoia'
 gem "secure_headers", :require => 'secure_headers'
+gem 'tunemygc'

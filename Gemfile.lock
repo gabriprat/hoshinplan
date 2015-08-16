@@ -362,6 +362,7 @@ GEM
     thread_safe (0.3.5)
     thread_safe (0.3.5-java)
     tilt (1.4.1)
+    tunemygc (1.0.61)
     turn (0.9.7)
       ansi
       minitest (~> 4)
@@ -450,6 +451,7 @@ DEPENDENCIES
   ruby-openid
   sass-rails
   secure_headers
+  tunemygc
   turn
   uglifier (>= 1.3.0)
   unscoped_associations
