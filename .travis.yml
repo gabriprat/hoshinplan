@@ -1,9 +1,9 @@
 language: ruby
 rvm:
-  - "2.0.0"
+  - "2.2.2"
 bundler_args: --without production
 addons:
-  postgresql: "9.3"
+  postgresql: "9.4.1"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 services:
