@@ -1,5 +1,7 @@
 # Hoshinplan
 
+[![Build Status](https://travis-ci.org/gabriprat/hoshinplan.svg?branch=master)](https://travis-ci.org/gabriprat/hoshinplan)
+
 Hoshinplan is a tool to make it easy for companies to share and track their strategy.
 
 We have a hosted version of the tool at http://www.hoshinplan.com
