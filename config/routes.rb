@@ -56,9 +56,19 @@ Hoshinplan::Application.routes.draw do
 
   get  'c/:key' => 'cms#page', :constraints => {:key => /.*/}
 
-  get  'privacy' => 'legal#show', :defaults => {:id => 'privacy'}
+  get  'legal', :to => redirect('/legal/terms-of-use')
+
+  get  'privacy', :to => redirect('/legal/privacy')
   
-  get  'terms-of-use' => 'legal#show', :defaults => {:id => 'terms-of-use'}
+  get  '/legal/privacy' => 'legal#show', :defaults => {:id => 'privacy'}
+  
+  get  'terms-of-use', :to => redirect('/legal/terms-of-use')
+  
+  get  '/legal/terms-of-use' => 'legal#show', :defaults => {:id => 'terms-of-use'}
+
+  get  'cookies', :to => redirect('/legal/cookies')
+
+  get  '/legal/cookies' => 'legal#show', :defaults => {:id => 'cookies'}
   
   get  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
   

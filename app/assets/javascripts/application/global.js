@@ -214,6 +214,21 @@ function updateColors() {
 }
 $(document).ready(updateColors);
 
+$(document).ready(function () {
+	var msg = $("[data-rapid-page-data]").data('rapid-page-data').cookiemsg;
+	var agree = $("[data-rapid-page-data]").data('rapid-page-data').agreemsg;
+	$.cookieCuttr({
+		"cookieAnalytics": false,
+		"cookieMessage": msg,
+		"cookieAcceptButtonText": agree,
+		"cookiePolicyLink": "/legal/cookies/"
+	});
+	if (!$.cookieAccepted()) {
+		var h = $(".cc-cookies").first().css('height');
+		$(".navbar").first().css('padding-top', h);
+	}
+});
+
 function fixedHorizontal() {
 	if ($("html.pdf").length > 0) { return; }
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {

@@ -1,6 +1,8 @@
 en:
   loading: Loading...
   saving: Saving...
+  cookie_msg: 'This site uses its own and third-party cookies to provide a better browsing experience. By using our service, you are agreeing on our <a href="{{cookiePolicyLink}}" title="More information about our cookies">cookie policy</a>.'
+  i_agree: I agree
   new: NEW
   value_goal_previous: 'Value,Goal,Previous,Increment'
   value_goal_previous_long: 'Current value,Goal,Previous value,Increment over previous value (%)'
@@ -13,6 +15,7 @@ en:
     legal_documents: Legal documents
     terms_of_use: Terms of use
     privacy: Privacy policy
+    cookies: Cookie policy
   footer:
     github: GitHub
     about: About

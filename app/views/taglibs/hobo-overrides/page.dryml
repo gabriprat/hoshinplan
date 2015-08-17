@@ -70,12 +70,12 @@
 		      <li><a href="/about/"><t key="footer.about"/></a></li>
 		      <li><a href="http://blog.hoshinplan.#{locale.to_s=='en'?'com':locale}"><t key="footer.blog"/></a></li>
 		      <li><a with="&ClientApplication" subsite=""><t key="footer.developers"/></a></li>
-		      <li><a href="/privacy/"><t key="footer.privacy"/></a></li>
-		      <li><a href="/terms-of-use/"><t key="footer.terms_of_use"/></a></li>
+		      <li><a href="/legal/privacy/"><t key="footer.privacy"/></a></li>
+		      <li><a href="/legal/terms-of-use/"><t key="footer.terms_of_use"/></a></li>
 		      <li><a href="mailto:hello@hoshinplan.com"><t key="footer.contact_us"/></a></li>
 		    </ul>
 		   <div id="footer-logos" if="&show_footer_logos"><a href="https://mixpanel.com/f/partner"><img width="114" height="36" alt="Mobile Analytics" src="#{request.protocol}cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a><a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=hoshinplan.com','SiteLock','width=600,height=600,left=160,top=170');" ><img alt="SiteLock" title="SiteLock" src="https://shield.sitelock.com/shield/hoshinplan.com"/></a></div>
 		</footer:>
-		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" spinner-at="body"/>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}"/>
 	 </old-page>
 </extend>
