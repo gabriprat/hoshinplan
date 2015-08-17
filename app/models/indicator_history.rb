@@ -39,7 +39,8 @@ class IndicatorHistory < ActiveRecord::Base
     max_day ||= Date.today
     ret = where("indicator_id = ? and day <= ?", indicator_id, max_day)
     ret = ret.where("id != ?", ih.id) unless ih.nil?
-    ret.first(order: "day desc")
+    ret = ret.order("day desc")
+    ret.first
   }
 
   # --- Permissions --- #

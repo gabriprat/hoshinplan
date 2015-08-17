@@ -170,10 +170,10 @@ class Indicator < ActiveRecord::Base
   def update_from_latest_history!
     ind = self
     day = ind.next_update.nil? ? Date.today : ind.next_update
-    latest = IndicatorHistory.latest(ind.id, ind.next_update)   
-    #Update the indicator value if we had no value or previous update or the 
-    if (ind.value.nil? || ind.last_update.nil? || ind.last_update <= latest.day)
-      update_from_history!(latest)
+    lt = IndicatorHistory.latest(ind.id, ind.next_update)
+    #Update the indicator value if we had no value or previous update or the next update is the same we have in the history
+    if (lt.is_a?(IndicatorHistory) && (ind.value.nil? || ind.last_update.nil? || ind.next_update == lt.day))
+      update_from_history!(lt)
     end
   end
   
