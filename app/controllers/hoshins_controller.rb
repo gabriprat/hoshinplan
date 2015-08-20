@@ -98,10 +98,15 @@ class HoshinsController < ApplicationController
     end
   end
   
-  def map
+  def map    
     @this = find_instance
     @lanes = Task::Lifecycle.states.keys
-    @objectives = Objective.includes(:tasks, :area).where(tasks: {hoshin_id: @this.id}).references(:tasks, :area).order("areas.position, obj_pos")
+    @objectives = Objective.joins(:area).where( 
+        Task.unscoped.where(
+          Task.arel_table[:objective_id].eq(Objective.arel_table[:id])
+            .and(Task.arel_table[:hoshin_id].eq(@this.id))
+        ).exists
+      ).references(:area).order("areas.id, obj_pos")
     if request.xhr?
       hobo_ajax_response
     end

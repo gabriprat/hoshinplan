@@ -138,16 +138,16 @@ class Objective < ActiveRecord::Base
   end
   
   def backlog_tasks
-    tasks.backlog.reorder(:lane_pos)
+    tasks.backlog.reorder(impact: :desc)
   end
   def active_tasks
-    tasks.active.reorder(:lane_pos)
+    tasks.active.reorder(impact: :desc)
   end
   def completed_tasks
-    tasks.completed.visible.reorder(:lane_pos)
+    tasks.completed.visible.reorder(impact: :desc)
   end
   def discarded_tasks
-    tasks.discarded.visible.reorder(:lane_pos)
+    tasks.discarded.visible.reorder(impact: :desc)
   end
   
   # --- Permissions --- #
