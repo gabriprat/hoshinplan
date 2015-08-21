@@ -197,10 +197,18 @@ class UsersController < ApplicationController
         redirect_to current_user, :dgv => Time.now.to_i if valid?
       end
     else
-      hobo_update do
+      begin
+        hobo_update do
+          if ajax
+            flash[:notice] = nil
+            hobo_ajax_response
+          else
+            redirect_to current_user, :dgv => Time.now.to_i if valid?
+          end
+        end
+      rescue Paperclip::Error => e
         if ajax
-          flash[:notice] = nil
-          hobo_ajax_response
+          render text: "Unrecognized image format", :status => 400
         else
           redirect_to current_user, :dgv => Time.now.to_i if valid?
         end

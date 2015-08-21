@@ -66,9 +66,8 @@ class User < ActiveRecord::Base
   
   validates :email_address, uniqueness: { case_sensitive: false }
   
-  #validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  #validates_attachment_size :image, :less_than => 10.megabytes   
-  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] } 
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :image, :less_than => 10.megabytes   
     
   attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at, :language
   

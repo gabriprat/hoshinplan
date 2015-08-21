@@ -2179,6 +2179,15 @@ ul.timeline li.highlight:hover:after {
 	width: 100%;
 	height: 350px;
 	text-align: center;
+	.jcrop-keymgr {
+		display: none;
+	}
+	.progress {
+		top: 50%;
+		width: 80%;
+		left: 10%;
+		height: 2em;
+	}
 	.image-cropbox {
 		margin: auto;
 		display: inline-block;

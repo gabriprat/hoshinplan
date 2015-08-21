@@ -1,5 +1,6 @@
 /* image_input */
 (function($) {
+    var retries = 5;
     var methods = {
         init: function(annotations) {
 		var that = $(this);
@@ -42,42 +43,32 @@
 
 		// if the file is not an image, continue
 		if (!file.type.match('image.*')) {
-		return;
+			return;
 		}
 
 		reader = new FileReader();
 		reader.onload = (function (tFile) {
 		return function (evt) {
-		    var img = that.find(".preview img");
-		    if (!img.data('originalSrc')) {
-		    	img.data('originalSrc', img.attr('src'));
-		    }
-		    img.attr('src', evt.target.result);
-		    img.removeAttr('srcset');
-		    that.find(".placeholder").html('<div class="ic-spinner ic-pulse ic-3x ic-center"></div>');
+			var img = that.find(".preview img");
+			if (!img.data('originalSrc')) {
+				img.data('originalSrc', img.attr('src'));
+			}
+			img.attr('src', evt.target.result);
+			img.removeAttr('srcset');
+			if (that.find(".placeholder").data("orig-html") == null) {
+				that.find(".placeholder").data("orig-html", that.find(".placeholder").html());
+			}
+			that.find(".placeholder").html('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div></div>');
 		};
 		}(file));
 		reader.readAsDataURL(file);
 		
-		var li = document.createElement("li"),
-			div = document.createElement("div"),
-			img,
-			progressBarContainer = document.createElement("div"),
-			progressBar = document.createElement("div"),
-			reader,
-			xhr,
-			fileInfo;
-			
-		li.appendChild(div);
-		
-		progressBarContainer.className = "progress-bar-container";
-		progressBar.className = "progress-bar";
-		progressBarContainer.appendChild(progressBar);
-		li.appendChild(progressBarContainer);
-		
 		// Uploading - for Firefox, Google Chrome and Safari
-		var form = that.closest("form");		
-		var roptions = that.hjq('buildRequest', {type: 'put', attrs:{ajax:true, complete:methods.complete}});
+		var form = that.closest("form");
+		var error = function(xhr, ajaxOptions, thrownError) {
+			that.find(".placeholder").html(that.find(".placeholder").data("orig-html"));
+		}
+		var roptions = that.hjq('buildRequest', {type: 'put', attrs:{ajax:true, complete:methods.complete, error:error}});
 		roptions.data["user[image]"] = file;
 		
 		form.find(".hidden-fields input").each(function() {
@@ -90,6 +81,31 @@
 		roptions.data = fd;
 		roptions['processData'] = false;
 		roptions['contentType'] = false;
+		roptions["xhr"] = function () {
+			var xhr = new window.XMLHttpRequest();
+			if (xhr.upload) {
+	                    xhr.upload.onprogress = function(event) {
+	                        var percent = 0;
+	                        var position = event.loaded || event.position; /*event.position is deprecated*/
+	                        var total = event.total;
+	                        if (event.lengthComputable) {
+	                            percent = Math.ceil(position / total * 100);
+	                        }
+				if (percent == 100) {
+					that.find(".placeholder").html('<div class="ic-spinner ic-pulse ic-3x ic-center"></div>');
+				} else {
+					that.find(".placeholder .progress-bar").attr("aria-value-now", percent)
+						.css("width", percent + "%")
+						.text(percent + "%");
+				}
+	                    };
+			    
+			    xhr.onerror = function(event) {
+				    alert(event);
+			    }
+	                }
+			return xhr;
+		};
 		$.ajax(form.attr("action"), roptions);
 	},
 	fileSelect: function(evt) {
@@ -100,18 +116,27 @@
 	},
 	complete: function () {
 		window.init_papercrop();
+		retries = 5;
 		setTimeout(methods.setSelect, 50);
 	},
 	setSelect: function() {
-		if (!window.jcrop_api) {
-			setTimeout(methods.setSelect, 50);
-		}
-		var bounds = window.jcrop_api.getBounds();
-		var aspect = bounds[0] / bounds[1];
-		if (aspect > 1.0) {
-			window.jcrop_api.setSelect([(bounds[0]-bounds[1])/2,0,bounds[1],bounds[1]]);
-		} else {
-			window.jcrop_api.setSelect([0,(bounds[1]-bounds[0])/2,bounds[0],bounds[0]]);
+		try {
+			if (!window.jcrop_api && retries > 0) {
+				retries--;
+				setTimeout(methods.setSelect, 50);
+			}
+			var bounds = window.jcrop_api.getBounds();
+			var aspect = bounds[0] / bounds[1];
+			if (aspect > 1.0) {
+				window.jcrop_api.setSelect([(bounds[0]-bounds[1])/2,0,bounds[1],bounds[1]]);
+			} else {
+				window.jcrop_api.setSelect([0,(bounds[1]-bounds[0])/2,bounds[0],bounds[0]]);
+			}
+		} catch(err) {
+			if (retries>0) {
+				retries--;
+				setTimeout(methods.setSelect, 50);
+			}
 		}
 	}
     };
