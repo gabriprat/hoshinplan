@@ -2,6 +2,7 @@
 	<old-index-page merge>
 		<content-header: replace/>
 		<content-body:>
+			<div class="invoice-frequency"><t key="pricing_plans.invoicing_frequency"/> <a href="?freq=MONTH" class="btn #{@freq!=:YEAR ? 'btn-default' : ''}"><t key="pricing_plans.monthly"/></a> <t key="hobo.support.or"/> <a href="?freq=YEAR" class="btn #{@freq==:YEAR ? 'btn-default' : ''}"><t key="pricing_plans.annual"/></a></div>
 			<pricing/>
 		</content-body:>
 	</old-index-page>

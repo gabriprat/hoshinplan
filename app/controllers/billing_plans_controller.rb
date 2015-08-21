@@ -4,4 +4,10 @@ class BillingPlansController < ApplicationController
   
   auto_actions :index
   
+  def index
+    @freq = params[:freq]
+    @preq ||= :MONTH
+    @this = BillingPlan.where(frequency: [:WEEK, @freq]) 
+    hobo_index
+  end
 end
