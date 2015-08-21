@@ -6,7 +6,7 @@
         </content-header:>
 	<content-body:>
 		<div class="kb-colors">
-			<repeat:hoshins part="colors">
+			<repeat:active_hoshins part="colors">
 				<modal id="update-hoshin-modal-#{this.id}">
 				<modal:>
 					<div class="modal-dialog">
