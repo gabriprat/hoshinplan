@@ -6,7 +6,7 @@ class BillingPlansController < ApplicationController
   
   def index
     @freq = params[:freq]
-    @preq ||= :MONTH
+    @freq ||= :MONTH
     @this = BillingPlan.where(frequency: [:WEEK, @freq]) 
     hobo_index
   end

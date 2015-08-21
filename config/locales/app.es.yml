@@ -405,11 +405,12 @@ es:
     map_view:  'Vista mapa'
     price_MONTH: '%{value} / mes'
     price_YEAR: '%{value} / año'
-    for_companies: Para empresas de cualquier tamaño
-    for_startups: Para startups
+    for_companies: "&nbsp;"
+    for_startups: "&nbsp;"
     we_help_you: Te ayudamos a construir tu hoshinplan
     contact_us: Contáctanos
     unlimited_users: Usuarios ilimitados
+    all_startup_features: Todo lo incluido en la versión startup
     all_enterprise_features: Todo lo incluido en la versión enterprise
     support_assistance: Soporte 8/5 vía email o Skpe
     two_days_workshop: Workshop de dos días para crear los hoshinplan necesarios y formar al equipo
