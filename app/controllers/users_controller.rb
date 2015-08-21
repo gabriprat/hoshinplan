@@ -158,7 +158,8 @@ class UsersController < ApplicationController
   end
   
   def update
-    ajax = request.xhr?
+    ajax = request.xhr? || !(request.headers['HTTP_X_REQUESTED_WITH'] !~ /XMLHttpRequest/i)
+    
     self.this = find_instance
     
     if self.this.timezone.nil? && !cookies[:tz].nil?
@@ -186,12 +187,23 @@ class UsersController < ApplicationController
       params[:user][:tutorial_step] = self.this.tutorial_step
       ajax = true
     end
-    hobo_update do
+    if params[:delete_image].present?
+      self.this.image.clear
+      self.this.save
       if ajax
         flash[:notice] = nil
         hobo_ajax_response
       else
         redirect_to current_user, :dgv => Time.now.to_i if valid?
+      end
+    else
+      hobo_update do
+        if ajax
+          flash[:notice] = nil
+          hobo_ajax_response
+        else
+          redirect_to current_user, :dgv => Time.now.to_i if valid?
+        end
       end
     end
     people_set

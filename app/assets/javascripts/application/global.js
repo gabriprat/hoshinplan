@@ -476,3 +476,12 @@ $(document).ready(function() {
 		$(".kb-frame.dots .connected-sortable-wrapper .kb-lane").append(append);
 	}
 });
+
+var tooltips = function() {
+   $('[data-toggle=tooltip]').tooltip();
+};
+$(document).ready(tooltips);
+$(window).bind('page:change', tooltips);
+
+
+

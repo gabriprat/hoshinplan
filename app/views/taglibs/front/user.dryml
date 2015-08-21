@@ -28,14 +28,15 @@
   <aside:/>
   
   <aside-column:>
-  	<div class="panel">
-		<div class="panel-heading clearfix">
+  	<div class="panel user">
+		<% style = "background-image: url(#{this.image.url(:blur)});" if this.image_updated_at > Date.new(2015,8,20) %>
+		<div class="panel-heading clearfix" style="#{style}">
 			<span class="tools pull-right hoshin-tasks" style="margin-left: -20px;">
 		            <a action="edit" if="&this == current_user"><span class="ic-cog"/></a>
 			</span>
 			<div class="inline edit-image">
 			<view:image size="thumb"/>
-			<div if="&this == current_user"><a data-toggle="modal" href="#edit-img"><t key="user.change">Change</t></a></div>
+			<div if="&this == current_user" class="change" data-toggle="tooltip" data-placement="bottom" title="#{t 'user.change'}"><a data-toggle="modal" href="#edit-img" class="ic-camera"></a></div>
 			</div>
 			<div class="inline">
 			<strong><view:name /></strong>
@@ -44,23 +45,35 @@
 			</div>
 		</div>
 		<modal id="edit-img">
-		<modal:>
+		<modal: class="auto-modal">
 			<div class="modal-dialog">
 			<form class="modal-content">
 			    <div class="modal-body">
-			    <feckless-fieldset class="horizontal" fields="image">
-			    	<image-view:>
+			    <input type="hidden" class="delete_image" name="delete_image" value=""/>
+			    <feckless-fieldset fields="image">
+			    	<image-label: replace/>
+			    	<image-view: class="filedrop">
+					<do part="image-input">
 					<div data-rapid='#{data_rapid(:image_input)}' class="image-input">
 					<input class="hide"/>
-					<a class="btn" href="#" onclick="$(this).prev('input').click()" ><t key="choose_file">Choose file</t></a>
-					<div class="preview" style="max-height: 104px; max-width: 104px;">
-						<view no-wrapper size="thumb"/>
+					<cropbox width="350" if="&this.present? && request.xhr?"/>
+					<else>
+						<div class="placeholder preview">
+						<span class="big ic-image ic-pointer-small"></span>
+						<p><t key="drag_a_file"/></p>
+						<p>– <ht key="hoshin.support.or">or</ht> –</p>
+						</div>
+						<a class="btn btn-raised" href="#" onclick="$(this).prevAll('input').click()" ><t key="choose_file">Choose file</t></a>
+					</else>
 					</div>
-					</div>
+					</do>
 				</image-view:>
 			    </feckless-fieldset>
 			    </div>
-			    <modal-form-footer/>
+			    <modal-form-footer>
+			    	<input class="btn btn-danger button delete-button" onclick="$(this).closest('form').find('.delete_image').val('true')" type="submit" value="&t('hobo.actions.remove', :default=>'Remove')" if="&can_update?"/>
+				<submit label='&t(&apos;hobo.actions.submit&apos;, :default => &apos;Submit&apos;)' param onclick="$(this).closest('form').find('.delete_image').val('');"/>
+			    </modal-form-footer>
 			 </form>
 			 </div>
 		</modal:>

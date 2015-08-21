@@ -1,0 +1,29 @@
+<def tag="cropbox" attrs="width">
+	<% 
+		if this.class != Paperclip::Attachment || this.blank?
+			return
+		end
+		attachment = this_field.to_sym
+		original_width  = this_parent.image_geometry(attachment, :original).width
+		original_height = this_parent.image_geometry(attachment, :original).height
+		original_aspect = original_width / original_height
+		if (original_aspect > 1.0)
+			box_width      = width.to_i || original_width
+			box_height     = (box_width / original_aspect).round
+		else
+			box_height      = width.to_i || original_height
+			box_width     = (box_height * original_aspect).round
+		end
+		aspect		= this_parent.send(:"#{attachment}_aspect")
+	%>
+	<input type="hidden" name="user[#{attachment}_original_w]" value="#{original_width}"/>
+	<input type="hidden" name="user[#{attachment}_original_h]" value="#{original_height}"/>
+	<input type="hidden" name="user[#{attachment}_box_w]" id="_#{attachment}_box_w" value="#{box_width}"/>
+	<input type="hidden" name="user[#{attachment}_aspect]" id="#{attachment}_aspect" value="#{aspect}"/>
+	<repeat with="&[:crop_x, :crop_y, :crop_w, :crop_h]">
+		<input type="hidden" name="user[#{attachment}_#{this}]" id="#{attachment}_#{this}"/>
+	</repeat>
+	<div id="#{attachment}_cropbox" class="image-cropbox">
+		<img src="#{this.url}" />
+	</div>
+</def>

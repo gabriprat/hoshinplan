@@ -30,12 +30,14 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, {
     :styles => {
+      :blur => "104x104#",
       :thumb2x => "208x208#",
       :thumb => "104x104#",
       :mini2x => "58x58#",
       :mini => "29x29#"
     },
     :convert_options => {
+      :blur => "-blur 0x12 -fill black -colorize 20% -quality 80 -interlace Plane",
       :mini => "-quality 80 -interlace Plane",
       :mini2x => "-quality 80 -interlace Plane",
       :thumb => "-quality 80 -interlace Plane",
@@ -47,6 +49,7 @@ class User < ActiveRecord::Base
     },
     :default_url => "/assets/default.jpg"
   }
+  crop_attached_file :image
   
   before_save do |user|
     if user.name.blank?

@@ -4,6 +4,7 @@ es:
   cookie_msg: 'Este sitio web utiliza cookies propias y de terceros para dar un mejor servicio. Al usar nuestro servicio, está aceptando nuestra <a href="{{cookiePolicyLink}}" title="Más información sobre nuestras cookies">Política de cookies</a>.'
   i_agree: Entendido
   new: Nuevo
+  drag_a_file: Arrastra una foto aquí
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
   value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
   insert_box_link: Insertar enlace a Box
@@ -343,7 +344,7 @@ es:
     kanban_for: Kanban para %{name}
     delete_account: Eliminar cuenta
     collaborating_with: Colaborando con
-    change: Cambiar
+    change: Cambiar foto de perfil
     end_collaboration: Cancelar colaboración
     activation_sent_button: Ya enviado
     messages:
@@ -460,7 +461,7 @@ es:
   locale_en_US: English (US)
   locale_es_ES: Español (España)
   home: Inicio
-  choose_file: Escoje un fichero
+  choose_file: Escoje una foto de tu ordenador
   area:
     no_xx_defined: No hay %{xx} en esta %{model}
   indicator:

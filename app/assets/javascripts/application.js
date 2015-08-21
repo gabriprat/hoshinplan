@@ -7,6 +7,8 @@
 //
 //= require jquery
 //= require jquery.cookie
+//= require jquery.jcrop
+//= require papercrop
 //= require jquery_ujs
 //= require jquery-ui
 //= require raphael

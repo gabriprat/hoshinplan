@@ -9,7 +9,7 @@
 		<content-body:>
 		        <page-nav previous-label="#{t 'newer'}" next-label="#{t 'older'}"/>
 			<% page = (params[:page] || 1).to_i; first = page==1; last = page==this.total_pages; %>
-			<collection class="log --#{page}.. #{first ? '' : 'continued'} #{last ? '' : 'more'}">
+			<collection class="log #{first ? '' : 'continued'} #{last ? '' : 'more'}">
 				<card:>
 					<view:operation class="operation operation-#{this.operation.parameterize.dasherize}"/>
 					<% 

@@ -251,6 +251,10 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    papercrop (0.2.0)
+      jquery-rails
+      paperclip (>= 3.4)
+      rails (>= 3.1)
     paranoia (2.1.3)
       activerecord (~> 4.0)
     paypal-sdk-rest (1.3.3)
@@ -430,6 +434,7 @@ DEPENDENCIES
   omniauth-openid
   omniauth-saml
   paperclip
+  papercrop
   paranoia
   paypal-sdk-rest
   pg

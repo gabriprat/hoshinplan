@@ -339,6 +339,11 @@ html body {
 	font-family: $secondary-font-stack;
 	color: $primary-color;
 	font-weight: 400;
+	background-color: #e7e9ec;
+}
+
+html body p {
+	font-family: $secondary-font-stack;
 }
 
 html input {
@@ -409,8 +414,6 @@ body .navbar .navbar-brand:hover, body .navbar .navbar-brand:hover strong, body 
 
 body.show-page, body.index-page {
 	font-weight: 400;
-	background: #e7e9ec;
-	background-attachment: fixed;
 }
 
 ul.input-many > li > div.buttons button {
@@ -419,7 +422,7 @@ ul.input-many > li > div.buttons button {
 
 body h1, body h2, body h3, body h4, body h5 {
 	font-family: $primary-font-stack;
-	font-weight: 300;
+	font-weight: 200;
 }
 
 h1 {
@@ -465,13 +468,24 @@ body.compact h5 {
 	background-color: rgba(37,169,224,.1);
 	padding: 5px 5px 6px 5px;
 }
-
+body .content-header:not(.well) {
+	margin: 0 auto;
+        max-width: 740px; 
+	.btn-danger {
+		margin-top: -3em;
+	}
+	h2, h3 {
+		display: inline;
+	}
+	h2 + h3 {
+		margin-left: 1em;
+	}
+}
 body h2.heading {
-       font-weight: 300;
+       font-weight: 200;
        font-family: $primary-font-stack;
        line-height: 1em;
-       font-size: 3.5em;
-       margin: 0;
+       font-size: 3.5em;       
        >a, >a:hover, >a:active, >a:visited {
 	       color: $secondary-color;
        }
@@ -622,8 +636,6 @@ body.compact {
 .area h4 {
 	font-weight: 200;
 	font-family: $primary-font-stack;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
 	font-size: 3.5em;
 	margin: 0;
 }
@@ -745,6 +757,18 @@ body.hoshin div.indicators tr, body.hoshin div.indicators th {
 	padding: 5px;
 }
 
+.content-body > .form-horizontal {
+	max-width: 740px;
+	background: #fff;
+	padding: 1em;
+	margin: 2em auto;
+	box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+	.actions {
+		margin: 2em 0;
+		text-align: right;
+	}
+}
+
 body.hoshin form.inline-form {
 	display: inline-block;
 	margin: 0;
@@ -763,10 +787,6 @@ body.hoshin .content-body .user-image {
 	max-width: 29px;
 	line-height: 29px;
 	color: $inverse-secondary-color;
-}
-
-body.hoshin .form-horizontal {
-	margin: 0;
 }
 
 body .modal .form-horizontal {
@@ -1374,23 +1394,6 @@ form.hoshin textarea.hoshin-header {
 .user .bootstrap-content .user-image img {
 	height: 104px;
 	width: 104px;
-	border-top-left-radius: 52px;
-	border-top-right-radius: 52px;
-	border-bottom-right-radius: 52px;
-	border-bottom-left-radius: 52px;
-	box-shadow: 0px 2px 5px 0px;
-	border-top-color: rgb(255, 255, 255);
-	border-left-color: rgb(255, 255, 255);
-	border-right-color: rgb(255, 255, 255);
-	border-bottom-color: rgb(255, 255, 255);
-	border-top-width: 2px;
-	border-left-width: 2px;
-	border-right-width: 2px;
-	border-bottom-width: 2px;
-	border-top-style: solid;
-	border-left-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid
 }
 
 .header .logged-in-as img, .header .logged-in-as .user-image {
@@ -1871,6 +1874,15 @@ form#delete-history, form#delete-history input {
 	text-shadow: -1.5px -1.5px 0 $inverse-primary-color, 0.5px -1.5px 0 $inverse-primary-color, -1.5px 1.5px 0 $inverse-primary-color, 1.5px 1.5px 0 $inverse-primary-color;
 }
 
+.ic-pointer-small:after {
+        content: "\f245";
+        margin-left: 1.5em;
+        font-size: .6em;
+        display: block;
+        margin-top: -.7em;
+	text-shadow: -1.5px -1.5px 0 $inverse-primary-color, 0.5px -1.5px 0 $inverse-primary-color, -1.5px 1.5px 0 $inverse-primary-color, 1.5px 1.5px 0 $inverse-primary-color;
+}
+
 .hoshin-tasks span {
 	font-size: 1.5em;
 	color: #aaa;
@@ -1884,6 +1896,11 @@ form#delete-history, form#delete-history input {
 .hoshin-tasks:hover span {
 	color: #000;
 }
+
+.panel.user .panel-heading .hoshin-tasks:hover span {
+	color: #fff;
+} 
+
 @media (min-width:640px) {
 .compact .icons .hoshin-tasks span {
 	font-size: 1.2em;
@@ -2121,34 +2138,61 @@ ul.timeline li.highlight:hover:after {
 	margin-left: 15px;	
 }
 
-.user .edit-image {
+.user .edit-image  {
 	position: relative;
 }
 
-.user .edit-image div {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	background: rgba(78,144,254,.7);
+.user .edit-image .change {
+	display: none;
+	background-color: rgba(0,0,0,.7);
+	width: 60px;
+	height: 60px;
 	text-align: center;
-	width: 100%;
+	padding-top: 10px;
+	border-radius: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -30px;
+	font-size: 2em;
 	color: $inverse-secondary-color;
+}
+
+.user .edit-image:hover .change {
+	display: block;
 }
 
 .user .edit-image a {
+	text-decoration: none;
 	color: $inverse-secondary-color;
 }
 
-.user .edit-image .user-image img {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
-	border: 0;
+.auto-modal.modal .modal-body{
+	min-height: 400px;
+	max-height: 100%;
 }
 
 .image-input {
-	display: inline-block;
+	background-color: #e7e9ec;
+	color: #aaa;
+	display: block;
+	width: 100%;
+	height: 350px;
+	text-align: center;
+	.image-cropbox {
+		margin: auto;
+		display: inline-block;
+	}
+	.preview {
+		height: 300px;
+		.big {
+			margin-top: 1em;
+			font-size: 8em;
+		}
+	}
+	.ic-pointer-small:after {
+		text-shadow: -1.5px -1.5px 0 #e7e9ec, 0.5px -1.5px 0 #e7e9ec, -1.5px 1.5px 0 #e7e9ec, 1.5px 1.5px 0 #e7e9ec;
+	}
 }
 
 .image-input .btn {
@@ -2158,6 +2202,14 @@ ul.timeline li.highlight:hover:after {
 body.show-page.user #companies .form-horizontal {
 	display: inline-block;
 	vertical-align: bottom;
+}
+
+.panel.user .panel-heading {
+	background: #2f4154;
+	background-size: 100% auto;
+	background-position: center;
+	color: #fff;
+	position: relative;
 }
 
 form.indicator-value {
@@ -2997,6 +3049,12 @@ ul {
 
 .form-group .actions {
 	margin-top: 2em;
+	* {
+		vertical-align: baseline;
+	}
+	a {
+		padding: 0 1em;
+	}
 }
 
 .hamburger {
