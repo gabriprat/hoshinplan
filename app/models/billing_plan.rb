@@ -15,10 +15,11 @@ class BillingPlan < ActiveRecord::Base
     id_paypal       :string
     status_paypal   HoboFields::Types::EnumString.for(:CREATED, :ACTIVE, :INACTIVE, :DELETED)
     css_class       :string
+    workers         :integer
     timestamps
   end
   attr_accessible :name, :description, :brief, :users, :css_class, :features, 
-    :frequency, :interval, :amount_currency, :amount_value, :id_paypal, :status_paypal
+    :frequency, :interval, :amount_currency, :amount_value, :id_paypal, :status_paypal, :workers
 
   has_many :payments, :inverse_of => :billing_plan
   acts_as_list

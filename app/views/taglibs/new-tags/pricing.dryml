@@ -19,7 +19,7 @@
 		</else>
 	    </li>
 	    <% this.features.split(/\r?\n/).each { |feature| %>
-            <li><t key="#{feature.chomp.strip}" users="#{this.users}" /></li>
+            <li><t key="#{feature.chomp.strip}" users="#{this.users}" workers="#{this.workers}" /></li>
 	    <% } %>
 	    <li class="buy" unless="amount_value">
 	    	<button><a href="mailto:hello@hoshinplan.com"><t key="pricing_plans.contact_us"/></a></button>

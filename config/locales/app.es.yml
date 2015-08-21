@@ -400,6 +400,9 @@ es:
     charts_view: Vista de gráficos
     kanban_view: Vista Kanban
     users: '%{users} usuarios'
+    workers: 'Empresas de hasta %{workers} trabajadores'
+    sso:  'Single-sign-on OpenId o SAML'
+    map_view:  'Vista mapa'
     price_MONTH: '%{value} / mes'
     price_YEAR: '%{value} / año'
     for_companies: Para empresas de cualquier tamaño

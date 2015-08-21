@@ -95,7 +95,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="brief, users, features, frequency, interval, amount_currency, amount_value, id_paypal, status_paypal, css_class, position" param/>
+      <field-list fields="brief, users, features, frequency, interval, amount_currency, amount_value, id_paypal, status_paypal, css_class, workers, position" param/>
     </content-body:>
 
   </page>
