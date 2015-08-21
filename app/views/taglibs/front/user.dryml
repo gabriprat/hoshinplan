@@ -52,20 +52,9 @@
 			    <input type="hidden" class="delete_image" name="delete_image" value=""/>
 			    <feckless-fieldset fields="image">
 			    	<image-label: replace/>
-			    	<image-view: class="filedrop">
-					<do part="image-input">
-					<div data-rapid='#{data_rapid(:image_input)}' class="image-input">
-					<input class="hide"/>
-					<cropbox width="350" if="&this.present? && request.xhr?"/>
-					<else>
-						<div class="placeholder preview">
-						<span class="big ic-image ic-pointer-small"></span>
-						<p><t key="drag_a_file"/></p>
-						<p>– <ht key="hoshin.support.or">or</ht> –</p>
-						</div>
-						<a class="btn btn-raised" href="#" onclick="$(this).prevAll('input').click()" ><t key="choose_file">Choose file</t></a>
-					</else>
-					</div>
+			    	<image-view:>
+					<do part="user-image">
+						<image-input/>
 					</do>
 				</image-view:>
 			    </feckless-fieldset>

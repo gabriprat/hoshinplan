@@ -2,11 +2,16 @@
 (function($) {
     var methods = {
         init: function(annotations) {
-		$(this).find('input').change(methods.fileSelect);
-		$(this).on("dragenter", methods.noopHandler)
+		var that = $(this);
+		var input = that.find('input');
+		var button = that.find("a");
+		
+		input.change(methods.fileSelect);
+		that.on("dragenter", methods.noopHandler)
 			.on("dragexit", methods.noopHandler)
 			.on("dragover", methods.noopHandler)
 			.on("drop", methods.drop);
+		button.click(function() { input.click() });
         },
 	noopHandler: function(e) {
 		var evt = e.originalEvent;
@@ -26,6 +31,7 @@
 			methods.handleFile.call(this, files[0]);
 	},
 	handleFile: function(file) {
+		
 		var that = $(this);
 		if (!file) {
 			var img = that.find(".preview img");
@@ -48,7 +54,7 @@
 		    }
 		    img.attr('src', evt.target.result);
 		    img.removeAttr('srcset');
-		    that.find(".placeholder").hide();
+		    that.find(".placeholder").html('<div class="ic-spinner ic-pulse ic-3x ic-center"></div>');
 		};
 		}(file));
 		reader.readAsDataURL(file);

@@ -2184,10 +2184,16 @@ ul.timeline li.highlight:hover:after {
 		display: inline-block;
 	}
 	.preview {
+		position: relative;
 		height: 300px;
 		.big {
 			margin-top: 1em;
 			font-size: 8em;
+		}
+		.ic-spinner {
+			position: absolute;
+			top: 50%;
+			left: 50%;
 		}
 	}
 	.ic-pointer-small:after {
