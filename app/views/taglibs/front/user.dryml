@@ -29,7 +29,18 @@
   
   <aside-column:>
   	<div class="panel user">
-		<% style = "background-image: url(#{this.image.url(:blur)});" if this.image_updated_at > Date.new(2015,8,20) %>
+		<% 
+			if this.image_updated_at
+				style = "background-image: url(#{this.image.url(:blur)});"
+			else
+				col = hexToRgb(this.color).join(",")
+				style = "background:" +
+					"linear-gradient(130deg, rgba(#{col}, 0.8) 10%, rgba(#{col}, 0) 63%)," +
+					"linear-gradient(405deg, #25A9E0 10%, rgba(37, 169, 224, 0) 84%)," +
+					"linear-gradient(225deg, rgba(47, 65, 84, 1) 0%, rgba(47, 65, 84, 0) 100%)," + 
+					"linear-gradient(135deg, #939DAA 10%, rgba(147, 157, 170, 0) 128%);"
+			end
+		 %>
 		<div class="panel-heading clearfix" style="#{style}">
 			<span class="tools pull-right hoshin-tasks" style="margin-left: -20px;">
 		            <a action="edit" if="&this == current_user"><span class="ic-cog"/></a>
