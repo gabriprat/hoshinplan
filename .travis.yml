@@ -3,8 +3,6 @@ language: ruby
 
 before_install: 
 - docker build -t gabriprat/hoshinplan .
-- docker build -f Dockerfile.worker -t gabriprat/hoshinplan-worker .
-- docker build -t Dockerfile.clock gabriprat/hoshinplan-clock .
 - docker run /run.sh /start /web
 - docker ps -a
 - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
