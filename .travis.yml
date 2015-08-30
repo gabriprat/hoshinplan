@@ -4,7 +4,7 @@ language: ruby
 before_install: 
 - docker build -t gabriprat/hoshinplan .
 - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-- docker push
+- docker push gabriprat/hoshinplan
 - docker run /exec bundle exec rake test
 
 addons:
