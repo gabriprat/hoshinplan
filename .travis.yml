@@ -3,6 +3,8 @@ language: ruby
 
 before_install: 
 - docker build -t gabriprat/hoshinplan .
+
+after_success:
 - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker push gabriprat/hoshinplan
 
