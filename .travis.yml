@@ -1,6 +1,5 @@
 sudo: required
 language: ruby
-services: docker
 
 before_install: 
 - docker build -t gabriprat/hoshinplan .
@@ -17,4 +16,5 @@ addons:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 services:
+  - docker
   - redis
