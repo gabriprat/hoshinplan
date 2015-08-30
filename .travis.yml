@@ -3,11 +3,9 @@ language: ruby
 
 before_install: 
 - docker build -t gabriprat/hoshinplan .
-- docker run gabriprat/hoshinplan /run.sh
-- docker ps -a
 - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-- docker run /exec bundle exec rake test
 - docker push
+- docker run /exec bundle exec rake test
 
 addons:
   postgresql: "9.4"
