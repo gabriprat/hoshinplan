@@ -1,4 +1,17 @@
+sudo: required
 language: ruby
+services: docker
+
+before_install: 
+- docker build -t gabriprat/hoshinplan .
+- docker build -f Dockerfile.worker -t gabriprat/hoshinplan-worker .
+- docker build -t Dockerfile.clock gabriprat/hoshinplan-clock .
+- docker run /run.sh /start /web
+- docker ps -a
+- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker run /exec bundle exec rake test
+- docker push
+
 rvm:
   - "2.2.2"
 bundler_args: --without production
