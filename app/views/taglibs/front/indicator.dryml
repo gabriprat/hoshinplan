@@ -76,6 +76,7 @@
 						<name-one-user />
 					</responsible-view:>
 				    </field-list:>
+				    <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>
 

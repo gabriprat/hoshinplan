@@ -53,5 +53,6 @@
 <extend tag="form" for="Area">
 	<old-form merge>
             <field-list: fields="name, description" />
+	    <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>

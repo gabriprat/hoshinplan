@@ -31,7 +31,7 @@ class Objective < ActiveRecord::Base
   
   has_many :log, :class_name => "ObjectiveLog", :inverse_of => :objective
 
-  view_hints.parent  :area
+  view_hints.parent  :hoshin
   
   belongs_to :company, :null => false
 

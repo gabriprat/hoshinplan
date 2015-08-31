@@ -107,5 +107,6 @@
 	      					<slider min="0" max="100"/>
 	      				</impact-view:>
 				    </field-list:>
+				    <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>

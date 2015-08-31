@@ -489,6 +489,7 @@ body h2.heading {
        >a, >a:hover, >a:active, >a:visited {
 	       color: $secondary-color;
        }
+       margin-top: 0;
 }
 
 body h2 {
@@ -2482,7 +2483,7 @@ form.indicator-value input[type=radio] {
 	line-height: 2em;
 	padding-right: 4em;
 	vertical-align: middle;
-	margin: .25em 3em .5em 0;
+	margin: .25em 0 .5em 0;
 }
 
 .col-tog {
@@ -2500,7 +2501,7 @@ form.indicator-value input[type=radio] {
 }
 
 .kb-colors .add-task {
-	margin-left: -7em;
+	margin-left: -4em;
 	margin-right: 4em;
 	vertical-align: text-bottom;
 	span {
@@ -2509,8 +2510,8 @@ form.indicator-value input[type=radio] {
 }
 
 .kb-colors .filter-color-wrapper {
-	margin-left: -7.5em;
-	margin-right: 7.5em;
+	margin-left: -4.5em;
+	margin-right: 4.5em;
 	vertical-align: text-bottom;
 	span {
 		vertical-align: middle;
@@ -2518,8 +2519,8 @@ form.indicator-value input[type=radio] {
 }
 
 .show-page.user .kb-colors .filter-color-wrapper {
-	margin-left: -6.5em;
-	margin-right: 6.5em;
+	margin-left: -3.5em;
+	margin-right: 3.5em;
 }
 
 .kb-frame .lane {

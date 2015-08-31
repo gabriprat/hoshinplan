@@ -17,8 +17,9 @@ class UserCompany < ActiveRecord::Base
   #validate :company_admin_validator
   
   default_scope lambda { 
-    where("user_companies.company_id = ?", Company.current_id) if Company.current_id
-  }  
+    where("company_id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless !User.current_user.nil? && User.current_user.administrator? 
+  }
+ 
   scope :by_cname, lambda {
     includes(:company).references(:company).order('companies.name')
   }

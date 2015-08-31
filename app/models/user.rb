@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at, :language
   
   has_many :hoshins, :through => :companies
-  has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin"
+  has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
 
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :indicators, -> { order :next_update }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id

@@ -20,3 +20,9 @@
 	</swept-cache>
 	</old-card>
 </extend>
+
+<extend tag="form" for="Goal">
+	<old-form merge>
+		<cancel: href="&session[:return_to] || request.referer"/>
+	</old-form>
+</extend>

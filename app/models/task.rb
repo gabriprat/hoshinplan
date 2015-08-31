@@ -55,6 +55,8 @@ class Task < ActiveRecord::Base
   
   validate :validate_company
   
+  view_hints.parent  :hoshin
+  
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  

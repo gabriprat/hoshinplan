@@ -28,6 +28,8 @@ class Goal < ActiveRecord::Base
   
   acts_as_list :scope => :hoshin
   
+  view_hints.parent  :hoshin
+  
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  

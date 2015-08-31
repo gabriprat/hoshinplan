@@ -54,6 +54,8 @@ class Indicator < ActiveRecord::Base
   
   validate :validate_company
   
+  view_hints.parent  :hoshin
+  
   set_default_order 'ind_pos'
   
   default_scope lambda { 
