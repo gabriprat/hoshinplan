@@ -20,7 +20,7 @@ ul.log {
 		background: linear-gradient(to bottom, $start 0%, $middle 10%, $middle 90%, $end 100%);
 		background-position: 50%;
 		background-repeat: no-repeat;
-		background-size: $width 100%;
+		background-size: $width 99%;
 	}
 	
 	@include center-line-gradient(#25a9e0, #25a9e0, #25a9e0, 2px);
@@ -40,8 +40,8 @@ ul.log {
 		display: block;
 		color: #25a9e0;
 		position: absolute;
-		top: -6px;
-		left: 1px;
+		top: -5px;
+		left: 0;
 		text-align: center;
 	}
 	&.continued {
