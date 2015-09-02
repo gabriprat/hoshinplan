@@ -48,7 +48,7 @@
 			</if>
 			<else>
 				<stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
-				<%= stylesheet_link_tag "#{request.protocol}fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700%7CRoboto:200,300,400;", :media => 'all' %>
+				<%= stylesheet_link_tag "#{request.protocol}fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700%7CLato:300,400,700;", :media => 'all' %>
 			</else>
 		</stylesheets:>
 		<append-custom-scripts:>

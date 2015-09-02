@@ -21,7 +21,7 @@
 		<div class="column" data-label="Actions">
 			<ul class="icons">
 				<li class="kpi">
-					<rmodal title="#{ht key='indicator.actions.new'}" href-url="#{objective_path this}/indicators/new" url="#{indicator_path Indicator.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" target-id="add-kpi-modal-#{this.id}" class="hoshin-tasks"><span class="ic-tachometer ic-plus-small ic-fw"></span></rmodal>
+					<rmodal title="#{ht key='indicator.actions.new'}" href-url="#{objective_path this}/indicators/new" url="#{indicator_path Indicator.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" target-id="add-kpi-modal-#{this.id}" class="hoshin-tasks"><span class="ic-dashboard ic-plus-small ic-fw"></span></rmodal>
 				</li>
 				<li class="task">
 					<rmodal title="#{ht key='task.actions.new'}" href-url="#{objective_path this}/tasks/new" url="#{task_path Task.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" target-id="add-task-modal-#{this.id}" class="hoshin-tasks" if="&can_create? Task"><span class="ic-tasks ic-plus-small ic-fw"></span></rmodal>

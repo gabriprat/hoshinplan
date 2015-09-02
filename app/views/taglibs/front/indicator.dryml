@@ -54,7 +54,7 @@
   <div class="column nowrap" data-label="Actions"> 
 	  <ul class="icons">
 	  	<li>
-  			<a action="history" class="hoshin-tasks" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><span class="ic-bar-chart-o ic-fw"></span></a>
+  			<a action="history" class="hoshin-tasks" title="#{t 'indicator.show_chart', :default => 'Show chart'}"><span class="ic-bar-chart ic-fw"></span></a>
 		</li>
 	</ul>
   </div>
