@@ -18,14 +18,14 @@ TextileEditor.setButtons(
         new TextileEditorButton("ed_h4",         "h4",             "h4",   "", "4", "Header 4"),
         new TextileEditorButton("ed_block",      "quote-left",     "bq",   "\n", "q", "Blockquote"),
         new TextileEditorButtonSeparator(),
-        new TextileEditorButton("ed_outdent",    "outdent",        ")",    "\n", "]", "Outdent"),
+        new TextileEditorButton("ed_dedent",     "dedent",        ")",    "\n", "]", "Outdent"),
         new TextileEditorButton("ed_indent",     "indent",         "(",    "\n", "[", "Indent"),
         new TextileEditorButton("ed_justifyl",   "align-left",     "<",    "\n", "l", "Left Justify"),
         new TextileEditorButton("ed_justifyc",   "align-center",   "=",    "\n", "e", "Center Text"),
         new TextileEditorButton("ed_justifyr",   "align-right",    ">",    "\n", "r", "Right Justify"),
         new TextileEditorButton("ed_justify",    "align-justify",  "<>",   "\n", "j", "Justify"),
         new TextileEditorButtonSeparator(),
-        new TextileEditorButtonLink("ed_link",   "link",           "\"link text\":",   "", "k", "Link"),
+        new TextileEditorButtonLink("ed_chain",   "chain",           "\"link text\":",   "", "k", "Link"),
         new TextileEditorButtonImage("ed_image", "image",          "!",    "", "g", "Image"),
     ]    
 )
