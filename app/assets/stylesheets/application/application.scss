@@ -2234,14 +2234,17 @@ form.indicator-value input[type=radio] {
 	margin-top: 4px;
 }
 
-.column[data-label=Value] .autosubmit .input-append {
+.column[data-label=Value] .wrapper {
 	position: relative;
 } 
+
+.autosubmit form.inline-form.indicator .input-append {
+	position: absolute;
+	right: -50px;
+	top: 0;
+}
 .autosubmit form input.indicator-value {
 	width: 100px;
-	position: absolute;
-	right: 33px;
-	top: 2px;
 	text-align: right;
 	padding-right: 5px;
 }

@@ -123,10 +123,6 @@ Hoshinplan::Application.routes.draw do
   end
 
 
-  # Resource routes for controller log
-  resources :log, :only => [:index]
-
-
   # Resource routes for controller milestones
   resources :milestones, :only => [:new, :edit, :show, :create, :update, :destroy]
 
@@ -276,6 +272,10 @@ Hoshinplan::Application.routes.draw do
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   get 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
   post 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password_post'
+
+
+  # Resource routes for controller log
+  resources :log, :only => [:index]
 
   namespace :admin do
 
