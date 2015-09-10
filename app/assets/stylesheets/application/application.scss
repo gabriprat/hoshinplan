@@ -1174,6 +1174,11 @@ body div.ordering-handle {
 	background-color: rgba(0,0,0,0.2);
 }
 
+body .table div.ordering-handle {
+	padding: 0 2px;
+	margin: 0;
+}
+
 body.compact div.ordering-handle, body.compact .column.ordering,
 body.presenting div.ordering-handle, body.presenting .column.ordering {
 	display: none;
