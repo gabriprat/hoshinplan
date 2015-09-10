@@ -17,7 +17,7 @@ class UserCompany < ActiveRecord::Base
   #validate :company_admin_validator
   
   default_scope lambda { 
-    where(company_id: UserCompany.select(:company_id).where('user_id=?', User.current_id)) unless !User.current_user.nil? && User.current_user.administrator? 
+    where(company_id: UserCompany.select(:company_id).where('user_id=?', User.current_id)) unless !User.current_user.nil? && User.current_user.respond_to?("administrator?") && User.current_user.administrator? 
   }
  
   scope :by_cname, lambda {
