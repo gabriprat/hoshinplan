@@ -9,7 +9,7 @@ class UserCompanyMailer < ActionMailer::Base
     #fail Dryml::Taglib.get({:src => 'email_template',  :template_dir=>"app/views/user_company_mailer", :template_path=>"app/views/user_company_mailer/email_template", :source_template=>"user_company_mailer/reminder"}).to_s
   Dryml.render(File.read("app/views/user_company_mailer/" + name + ".dryml"), 
     params,
-    "app/views/taglibs/new-tags/" + name,
+    "app/views/user_company_mailer/" + name + ".dryml",
     [{:src => 'hobo_rapid', :gem => 'hobo_rapid'}, {:src => 'email_template'}],
     nil,
     [ActionView::Helpers::UrlHelper, ActionView::Helpers::ControllerHelper, HoboRouteHelper, HoboPermissionsHelper, ActionView::Helpers::ActiveModelHelper]

@@ -4,6 +4,9 @@
 							<div if="&kpis">
 							<h3><%= kpis.size.to_s + ' ' + Indicator.model_name.human(:count => kpis.size) %></h3>
 							<ul><repeat with="&kpis">
+								<% fail this.to_yaml if this.nil? %>
+								<% fail this.hoshin.to_yaml if this.hoshin.nil? %>
+								<% fail this.company.to_yaml if this.company.nil? %>
 								<li>#{this.name} (#{this.hoshin.name} - #{this.company.name})</li>
 							</repeat></ul>
 							</div>
