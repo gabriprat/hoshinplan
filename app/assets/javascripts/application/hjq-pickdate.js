@@ -21,7 +21,8 @@
 			formatSubmit: format,
 			hiddenName: true,
 			firstDay: weekstart,
-			onClose: methods.triggerChange
+			onClose: methods.triggerChange,
+			container: "body"
 		};
 		jQuery.extend(settings, options);
 		$(this).pickadate(
