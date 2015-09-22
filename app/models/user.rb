@@ -183,6 +183,8 @@ class User < ActiveRecord::Base
       domain = self.email_address.split("@").last
       if (domain == "infojobs.net" || domain == "lectiva.com")
         self.companies = [Company.unscoped.find(1)]
+      elsif (domain == "doctoralia.com")
+        self.companies = [Company.unscoped.find(128)]
       else
         Rails.logger.debug "------- Welcome email!"
         UserCompanyMailer.delay.welcome(self)
