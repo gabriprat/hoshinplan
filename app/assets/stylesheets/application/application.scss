@@ -1432,10 +1432,13 @@ acronym.user-image {
 	&.smile {
 		color: rgb(0, 139, 0);
 		background-color: rgb(206, 250, 151);
-		background: -webkit-linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
-		background: -o-linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
-		background: -moz-linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
-		background: linear-gradient(90deg, rgb(206, 250, 151) 80%, transparent 20%);
+		background-image: -ms-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
+		background-image: -moz-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
+		background-image: -o-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
+		background-image: -webkit-gradient(linear, right top, left top, color-stop(10, transparent), color-stop(10, rgb(206, 250, 151)), color-stop(90, rgb(206, 250, 151)), color-stop(90, transparent));
+		background-image: -webkit-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
+		background-image: linear-gradient(to left, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
+		
 	}
 	&.wondering {
 		color: rgb(255, 100, 0);
@@ -1443,7 +1446,7 @@ acronym.user-image {
 		background: -webkit-linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
 		background: -o-linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
 		background: -moz-linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
-		background: linear-gradient(90deg, rgb(251, 202, 106) 80%, transparent 20%);
+		background: linear-gradient(0deg, rgb(251, 202, 106) 80%, transparent 20%);
 	}
 	&.sad {
 		color: rgb(139, 0, 0);
@@ -1451,7 +1454,7 @@ acronym.user-image {
 		background: -webkit-linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
 		background: -o-linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
 		background: -moz-linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
-		background: linear-gradient(90deg, rgb(242, 136, 115) 80%, transparent 20%);
+		background: linear-gradient(0deg, rgb(242, 136, 115) 80%, transparent 20%);
 	}
 }
 

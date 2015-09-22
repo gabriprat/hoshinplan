@@ -181,12 +181,8 @@ class User < ActiveRecord::Base
     
     create :from_omniauth, :params => [:name, :email_address], :become => :active do
       domain = self.email_address.split("@").last
-      if (domain == "infojobs.net" || domain == "lectiva.com")
-        self.companies = [Company.unscoped.find(1)]
-      elsif (domain == "doctoralia.com")
-        self.companies = [Company.unscoped.find(128)]
-      else
-        Rails.logger.debug "------- Welcome email!"
+      self.companies = Company.unscoped.joins(:company_email_domains).where(company_email_domains: {domain: domain})
+      if (self.companies.blank?) 
         UserCompanyMailer.delay.welcome(self)
       end
     end

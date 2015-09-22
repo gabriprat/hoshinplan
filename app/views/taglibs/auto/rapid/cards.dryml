@@ -91,6 +91,14 @@
   </card>
 </def>
 
+<def tag="card" for="CompanyEmailDomain">
+  <card class="company-email-domain" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="CompanyLog">
   <card class="company-log" param="default" merge>
     <header: param>

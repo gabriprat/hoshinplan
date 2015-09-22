@@ -79,7 +79,7 @@ class CompaniesController < ApplicationController
           user = User.unscoped.where(:email_address => email).first
           if user.nil?
             domain = email.split("@").last
-            if (domain == "infojobs.net" || domain == "lectiva.com")
+            if (CompanyEmailDomain.where(domain: domain).exists?)
               user = User::Lifecycle.activate_ij(:email_address => email)
               user.email_address = email
               user.save!(:validate => false)
@@ -95,7 +95,7 @@ class CompaniesController < ApplicationController
           if uc.nil? 
             company = Company.find(params[:id])
             begin
-              if (domain == "infojobs.net" || domain == "lectiva.com")
+              if (CompanyEmailDomain.where(domain: domain).exists?)
                 UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
               else
                 if invite_sent

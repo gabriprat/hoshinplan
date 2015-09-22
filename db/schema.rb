@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821182004) do
+ActiveRecord::Schema.define(version: 20150922092640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,16 @@ ActiveRecord::Schema.define(version: 20150821182004) do
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
   add_index "companies", ["deleted_at"], name: "index_companies_on_deleted_at", using: :btree
+
+  create_table "company_email_domains", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "domain"
+    t.integer  "company_id"
+  end
+
+  add_index "company_email_domains", ["company_id"], name: "index_company_email_domains_on_company_id", using: :btree
+  add_index "company_email_domains", ["domain", "company_id"], name: "index_company_email_domains_on_domain_and_company_id", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false

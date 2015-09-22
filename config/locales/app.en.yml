@@ -242,7 +242,10 @@ en:
       company:
         name: Name
         Company: Company
+        company_email_domains: Email domains with automatic access
         actions: Actions
+      company_email_domain:
+        domain: Domain
       hoshin:
         name: Name
         header: Header

@@ -14,9 +14,11 @@ class Company < ActiveRecord::Base
     deleted_at    :datetime
   end
   index [:deleted_at]
-  attr_accessible :name, :creator_id
+  attr_accessible :name, :creator_id, :company_email_domains
     
   belongs_to :creator, :class_name => "User", :creator => true
+  
+  has_many :company_email_domains, :accessible => true, :inverse_of => :company
   
   has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company
   has_many :active_hoshins, -> { active.order :name }, :class_name => "Hoshin"
@@ -132,19 +134,19 @@ class Company < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.signed_up?
+    User.current_user.signed_up?
   end
 
   def update_permitted?
-     acting_user.administrator? || same_company_admin(id)
+     User.current_user.administrator? || same_company_admin(id)
   end
 
   def destroy_permitted?
-     acting_user.administrator? || same_company_admin(id)
+     User.current_user.administrator? || same_company_admin(id)
   end
 
   def view_permitted?(field)
-    self.new_record? || acting_user.administrator? || same_company(id)
+    self.new_record? || User.current_user.administrator? || same_company(id)
   end
 
 end

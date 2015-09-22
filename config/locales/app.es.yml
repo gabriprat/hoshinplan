@@ -242,7 +242,10 @@ es:
       company:
         name: Nombre
         Company: Empresa
+        company_email_domains: Dominios de email con acceso automático
         actions: Acciones
+      company_email_domain:
+        domain: Dominio
       hoshin:
         name: Nombre
         header: Cabecera

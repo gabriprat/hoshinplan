@@ -70,7 +70,7 @@ class UserCompany < ActiveRecord::Base
   def activate_ij_available
     ret = create_available
     domain = self.user.email_address.split("@").last 
-    return ret if (domain == "infojobs.net" || domain == "lectiva.com")
+    return ret if CompanyEmailDomain.where(domain: domain).exists?
   end
   
   def create_available
