@@ -131,7 +131,7 @@ var postitDrop = function (event, ui) {
 	var roptions = that.hjq('buildRequest', {type: 'post',
 	                                     attrs: annotations.ajax_attrs
 	                                    });
-	roptions.data['authenticity_token']=that.hjq('pageData').form_auth_token.value;
+	roptions.data['authenticity_token']=$('body').find("[data-rapid-page-data]").data("rapid-page-data").form_auth_token.value;
 	roptions.data=$.param(roptions.data);
 	roptions.data = roptions.data+"&task_ordering=-1"
 	that.children("*[data-rapid-context]").each(function(i) {
@@ -346,13 +346,14 @@ var numberFormat = function(num) {
     	} else {
     		var parts = num.toString().split(".");
     	    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, "#{t 'number.format.delimiter'}");
-    	    	return parts.join(that.hjq('pageData').separator);
+    	    	return parts.join($('body').find("[data-rapid-page-data]").data("rapid-page-data").separator);
     	}
 }
 
 var dateFormatDefault = function(d) {
 	var that = $(document);
-	return dateFormat(that.hjq('pageData').dateformat.replace('yyyy','yy'), d);
+	
+	return dateFormat($('body').find("[data-rapid-page-data]").data("rapid-page-data").dateformat.replace('yyyy','yy'), d);
 }
 
 var ylabelformat = function(val, i) {
@@ -362,7 +363,7 @@ var ylabelformat = function(val, i) {
 	if (i==3) {
 		ret  = numberFormat((ret.toFixed(2) * 1).toString()) + '%';
 	} else {
-		ret = ret.formatMoney(2, that.hjq('pageData').delimiter, that.hjq('pageData').separator);
+		ret = ret.formatMoney(2, $('body').find("[data-rapid-page-data]").data("rapid-page-data").delimiter, $('body').find("[data-rapid-page-data]").data("rapid-page-data").separator);
 	}
 	return ret;
 }

@@ -142,7 +142,7 @@ class Hoshin < ActiveRecord::Base
     end
     Objective.transaction do
       objectives = Objective.unscoped.where(hoshin_id: id, deleted_at: nil)
-      objectives.update_all(neglected: false, blind: false)
+      objectives.update_all({neglected: false, blind: false})
       neglected = objectives.neglected
       neglected.update_all(neglected: true)
       self.neglected_objectives_count = neglected.count(:id)
@@ -166,11 +166,11 @@ class Hoshin < ActiveRecord::Base
   after_update do |hoshin|
     if hoshin.company_id_changed?
       IndicatorHistory.joins(:indicator).where(:indicators => {:hoshin_id => id}).update_all(:company_id => company_id)
-      Indicator.update_all({:company_id => company_id},{:hoshin_id => id})
-      Task.update_all({:company_id => company_id},{:hoshin_id => id})
-      Objective.update_all({:company_id => company_id},{:hoshin_id => id})
-      Area.update_all({:company_id => company_id},{:hoshin_id => id})
-      Goal.update_all({:company_id => company_id},{:hoshin_id => id})
+      Indicator.where(:hoshin_id => id).update_all({:company_id => company_id})
+      Task.where(:hoshin_id => id).update_all({:company_id => company_id})
+      Objective.where(:hoshin_id => id).update_all({:company_id => company_id})
+      Area.where(:hoshin_id => id).update_all({:company_id => company_id})
+      Goal.where(:hoshin_id => id).update_all({:company_id => company_id})
     end
     #if needs_health_update?
     #  Jobs::HealthUpdate.delay.perform id

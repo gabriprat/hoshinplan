@@ -94,11 +94,11 @@ class Objective < ActiveRecord::Base
   
   after_update do |obj|
     if obj.area_id_changed?
-      Indicator.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.indicators.blank?
-      Task.update_all({:area_id => area_id}, {:objective_id => id}) unless obj.tasks.blank?
+      Indicator.where(:objective_id => id).update_all({:area_id => area_id}) unless obj.indicators.blank?
+      Task.where(:objective_id => id).update_all({:area_id => area_id}) unless obj.tasks.blank?
     end
     if obj.parent_changed?
-      Task.update_all({:parent_area_id => obj.parent.area_id, :parent_objective_id => obj.parent_id}, {:objective_id => id, :show_on_parent => true})
+      Task.where(:objective_id => id, :show_on_parent => true).update_all({:parent_area_id => obj.parent.area_id, :parent_objective_id => obj.parent_id})
     end
   end
   

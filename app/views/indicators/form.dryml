@@ -8,7 +8,7 @@
 					<my-click-editor id="indicator-description-#{this_parent.id}"/>
 				</description-view:>
 			    	<objective-view:>
-					<select-one options="&this_parent.area.objectives" />
+					<select-one options="&this_parent.area.objectives.to_a" />
 				</objective-view:>
 			    	<responsible-view:>
 					<name-one-user />

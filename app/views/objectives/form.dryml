@@ -12,7 +12,7 @@
 					    	<responsible-view:>
 							<name-one-user />
 						</responsible-view:>
-						<area-tag: options="&areas" />
+						<area-tag: options="&areas.to_a" />
 					</field-list:>
 					</div>
 					 <modal-form-footer-delete />

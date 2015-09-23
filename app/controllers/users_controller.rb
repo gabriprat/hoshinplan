@@ -80,8 +80,8 @@ class UsersController < ApplicationController
   
   def show
     begin   
-      ActiveRecord::Associations::Preloader.new(self.this, 
-        [:dashboard_tasks, :dashboard_indicators]).run 
+      ActiveRecord::Associations::Preloader.new.preload(self.this, 
+        [:dashboard_tasks, :dashboard_indicators]) 
       self.this.all_active_user_companies_and_hoshins
       raise Hobo::PermissionDeniedError if self.this.nil?
       name = self.this.name.nil? ? self.this.email_address : self.this.name
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
       self.this = User.includes({:user_companies => {:company => :active_hoshins}}).preload([:pending_tasks, :pending_indicators])
         .order('lower(companies.name) asc, lower(hoshins.name) asc').references(:company, :hoshin)
         .user_find(current_user, params[:id])
-      ActiveRecord::Associations::Preloader.new(self.this, [:pending_tasks, :pending_indicators]).run
+      ActiveRecord::Associations::Preloader.new.preload(self.this, [:pending_tasks, :pending_indicators])
       @page_title = I18n.translate('user.pending_actions_for', :name => self.this.name, 
         :default => 'Pending actions for ' + self.this.name)      
     rescue Hobo::PermissionDeniedError => e

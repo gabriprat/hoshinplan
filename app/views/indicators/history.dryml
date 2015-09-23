@@ -7,7 +7,7 @@
 	var data;
 	$(document).ready(function () {
 		var txt = "";
-		data = $('#graph-line').data('chart').options.data;
+		data = $('#graph-line').data('rapid').chart.morris_attrs.data;
 		for (var i = 0; data.length > i; i++) {
 			if (i>0) {
 				txt += "\\n";
@@ -92,7 +92,7 @@
 	    		/>
 		        </div>
 	    	</section>
-		<form action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
+		<form class="hide" action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
 		</form>
 	</content-body:>
 </show-page:>

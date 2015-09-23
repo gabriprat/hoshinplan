@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
 
-gem 'rails', '4.0.13'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -49,8 +49,9 @@ gem 'puma'
 gem "omniauth-openid"
 gem "omniauth-saml"
 gem "omniauth-google-oauth2"
+gem "google-api-client"
 
-gem "hobo"
+gem "hobo", '>= 2.2.3'
 gem "hobo_fields"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
@@ -78,7 +79,6 @@ gem "nested_has_many_through"
 gem "actionmailer_inline_css"
 
 gem 'wicked_pdf'
-gem 'delocalize'
 gem 'aws-sdk-v1'
 gem 'paperclip'
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
@@ -113,3 +113,4 @@ gem 'paranoia'
 gem "secure_headers", :require => 'secure_headers'
 gem 'tunemygc'
 gem 'papercrop'
+gem 'responders', '~> 2.0'

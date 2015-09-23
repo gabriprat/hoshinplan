@@ -29,13 +29,13 @@ class Area < ActiveRecord::Base
   has_many :child_indicators, -> { order :ind_pos }, :inverse_of => :parent_area, :accessible => true, :class_name => 'Indicator', :foreign_key => :parent_area_id
   
   has_many :tasks, -> { 
-      where(Task.visible.where_values)
+      visible
         .except(:order)
         .reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')},
        :inverse_of => :area, 
        :accessible => true
   has_many :child_tasks, -> { 
-      where(Task.visible.where_values)
+      visible
         .except(:order)
         .reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')},
       :inverse_of => :parent_area, :accessible => true, :class_name => 'Task', :foreign_key => :parent_area_id
@@ -72,9 +72,9 @@ class Area < ActiveRecord::Base
   
   after_update do |area|
     if area.hoshin_id_changed?
-      Objective.update_all({:hoshin_id => hoshin_id}, {:area_id => id})
-      Indicator.update_all({:hoshin_id => hoshin_id}, {:area_id => id})
-      Task.update_all({:hoshin_id => hoshin_id}, {:area_id => id})
+      Objective.where(:area_id => id).update_all({:hoshin_id => hoshin_id})
+      Indicator.where(:area_id => id).update_all({:hoshin_id => hoshin_id})
+      Task.where(:area_id => id).update_all({:hoshin_id => hoshin_id})
     end
   end
   
