@@ -181,7 +181,9 @@ class User < ActiveRecord::Base
     
     create :from_omniauth, :params => [:name, :email_address], :become => :active do
       domain = self.email_address.split("@").last
-      self.companies = Company.unscoped.joins(:company_email_domains).where(company_email_domains: {domain: domain})
+      Company.unscoped.joins(:company_email_domains).where(company_email_domains: {domain: domain}).each do |company|
+        UserCompany::Lifecycle.activate_ij(self, {:user => self, :company => company})
+      end
       if (self.companies.blank?) 
         UserCompanyMailer.delay.welcome(self)
       end

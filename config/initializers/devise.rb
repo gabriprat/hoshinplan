@@ -11,6 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            } 
 end
 
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
 
 OmniAuth.config.on_failure do |env|
   st = ""

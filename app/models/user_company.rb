@@ -70,7 +70,7 @@ class UserCompany < ActiveRecord::Base
   def activate_ij_available
     ret = create_available
     domain = self.user.email_address.split("@").last 
-    return ret if CompanyEmailDomain.where(domain: domain).exists?
+    return ret if CompanyEmailDomain.where(domain: domain, company_id: self.company_id).exists?
   end
   
   def create_available
@@ -137,7 +137,7 @@ class UserCompany < ActiveRecord::Base
 
   def create_permitted?
     return true unless company_id
-    company = Company.find(company_id)
+    company = Company.unscoped.find(company_id)
     !company.collaborator_limits_reached?
   end
 
