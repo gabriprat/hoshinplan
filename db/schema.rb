@@ -16,16 +16,16 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "areas", force: true do |t|
-    t.string   "name",        null: false
+  create_table "areas", force: :cascade do |t|
+    t.string   "name",        limit: 255, null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hoshin_id",   null: false
+    t.integer  "hoshin_id",               null: false
     t.integer  "position"
-    t.integer  "company_id",  null: false
+    t.integer  "company_id",              null: false
     t.integer  "creator_id"
-    t.string   "color"
+    t.string   "color",       limit: 255
     t.datetime "deleted_at"
   end
 
@@ -34,32 +34,32 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "areas", ["deleted_at"], name: "index_areas_on_deleted_at", using: :btree
   add_index "areas", ["hoshin_id"], name: "index_areas_on_hoshin_id", using: :btree
 
-  create_table "auth_providers", force: true do |t|
-    t.string   "email_domain", null: false
+  create_table "auth_providers", force: :cascade do |t|
+    t.string   "email_domain", limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
-    t.string   "openid_url"
-    t.string   "issuer"
-    t.string   "sso_url"
+    t.string   "type",         limit: 255
+    t.string   "openid_url",   limit: 255
+    t.string   "issuer",       limit: 255
+    t.string   "sso_url",      limit: 255
     t.text     "cert"
-    t.string   "fingerprint"
-    t.string   "id_format"
+    t.string   "fingerprint",  limit: 255
+    t.string   "id_format",    limit: 255
   end
 
   add_index "auth_providers", ["email_domain", "type"], name: "index_auth_providers_on_email_domain_and_type", unique: true, using: :btree
   add_index "auth_providers", ["type"], name: "index_auth_providers_on_type", using: :btree
 
-  create_table "authorizations", force: true do |t|
-    t.string   "provider",      null: false
-    t.string   "uid",           null: false
-    t.string   "email_address"
-    t.string   "name"
-    t.string   "nickname"
-    t.string   "location"
-    t.string   "image"
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider",      limit: 255, null: false
+    t.string   "uid",           limit: 255, null: false
+    t.string   "email_address", limit: 255
+    t.string   "name",          limit: 255
+    t.string   "nickname",      limit: 255
+    t.string   "location",      limit: 255
+    t.string   "image",         limit: 255
     t.text     "description"
-    t.string   "phone"
+    t.string   "phone",         limit: 255
     t.text     "urls"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -71,30 +71,30 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
-  create_table "billing_plans", force: true do |t|
-    t.string   "name"
-    t.string   "description"
+  create_table "billing_plans", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "description",     limit: 255
     t.text     "features"
-    t.string   "frequency"
+    t.string   "frequency",       limit: 255
     t.integer  "interval"
-    t.string   "amount_currency"
-    t.decimal  "amount_value",    precision: 8, scale: 2
+    t.string   "amount_currency", limit: 255
+    t.decimal  "amount_value",                precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "id_paypal"
-    t.string   "status_paypal"
-    t.string   "brief"
-    t.string   "css_class"
+    t.string   "id_paypal",       limit: 255
+    t.string   "status_paypal",   limit: 255
+    t.string   "brief",           limit: 255
+    t.string   "css_class",       limit: 255
     t.integer  "position"
     t.integer  "users"
     t.integer  "workers"
   end
 
-  create_table "client_applications", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "key"
-    t.string   "secret"
+  create_table "client_applications", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.string   "key",         limit: 255
+    t.string   "secret",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -104,20 +104,20 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "client_applications", ["deleted_at"], name: "index_client_applications_on_deleted_at", using: :btree
   add_index "client_applications", ["user_id"], name: "index_client_applications_on_user_id", using: :btree
 
-  create_table "companies", force: true do |t|
-    t.string   "name"
-    t.integer  "hoshins_count", default: 0,     null: false
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.integer  "hoshins_count",             default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
-    t.boolean  "unlimited",     default: false, null: false
+    t.boolean  "unlimited",                 default: false, null: false
     t.datetime "deleted_at"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
   add_index "companies", ["deleted_at"], name: "index_companies_on_deleted_at", using: :btree
 
-  create_table "company_email_domains", force: true do |t|
+  create_table "company_email_domains", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "domain"
@@ -127,28 +127,28 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "company_email_domains", ["company_id"], name: "index_company_email_domains_on_company_id", using: :btree
   add_index "company_email_domains", ["domain", "company_id"], name: "index_company_email_domains_on_domain_and_company_id", using: :btree
 
-  create_table "delayed_jobs", force: true do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",               default: 0, null: false
+    t.integer  "attempts",               default: 0, null: false
+    t.text     "handler",                            null: false
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "goals", force: true do |t|
-    t.string   "name",       null: false
+  create_table "goals", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hoshin_id",  null: false
-    t.integer  "company_id", null: false
+    t.integer  "hoshin_id",              null: false
+    t.integer  "company_id",             null: false
     t.integer  "position"
     t.integer  "creator_id"
     t.datetime "deleted_at"
@@ -159,29 +159,29 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "goals", ["deleted_at"], name: "index_goals_on_deleted_at", using: :btree
   add_index "goals", ["hoshin_id"], name: "index_goals_on_hoshin_id", using: :btree
 
-  create_table "hoshins", force: true do |t|
-    t.string   "name",                       default: "plan",   null: false
-    t.integer  "areas_count",                default: 0,        null: false
+  create_table "hoshins", force: :cascade do |t|
+    t.string   "name",                       limit: 255, default: "plan",   null: false
+    t.integer  "areas_count",                            default: 0,        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "parent_id"
     t.text     "header"
     t.integer  "creator_id"
-    t.integer  "objectives_count",           default: 0,        null: false
-    t.integer  "goals_count",                default: 0,        null: false
-    t.integer  "indicators_count",           default: 0,        null: false
-    t.integer  "tasks_count",                default: 0,        null: false
-    t.integer  "outdated_indicators_count",  default: 0,        null: false
-    t.integer  "outdated_tasks_count",       default: 0,        null: false
-    t.integer  "blind_objectives_count",     default: 0,        null: false
-    t.integer  "neglected_objectives_count", default: 0,        null: false
-    t.integer  "hoshins_count",              default: 0,        null: false
+    t.integer  "objectives_count",                       default: 0,        null: false
+    t.integer  "goals_count",                            default: 0,        null: false
+    t.integer  "indicators_count",                       default: 0,        null: false
+    t.integer  "tasks_count",                            default: 0,        null: false
+    t.integer  "outdated_indicators_count",              default: 0,        null: false
+    t.integer  "outdated_tasks_count",                   default: 0,        null: false
+    t.integer  "blind_objectives_count",                 default: 0,        null: false
+    t.integer  "neglected_objectives_count",             default: 0,        null: false
+    t.integer  "hoshins_count",                          default: 0,        null: false
     t.datetime "health_updated_at"
-    t.string   "state",                      default: "active"
+    t.string   "state",                      limit: 255, default: "active"
     t.datetime "key_timestamp"
     t.datetime "deleted_at"
-    t.string   "color"
+    t.string   "color",                      limit: 255
   end
 
   add_index "hoshins", ["company_id", "parent_id"], name: "index_hoshins_on_company_id_and_parent_id", using: :btree
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "hoshins", ["parent_id"], name: "index_hoshins_on_parent_id", using: :btree
   add_index "hoshins", ["state"], name: "index_hoshins_on_state", using: :btree
 
-  create_table "indicator_histories", force: true do |t|
+  create_table "indicator_histories", force: :cascade do |t|
     t.decimal  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -210,29 +210,29 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "indicator_histories", ["indicator_id"], name: "index_indicator_histories_on_indicator_id", using: :btree
   add_index "indicator_histories", ["responsible_id"], name: "index_indicator_histories_on_responsible_id", using: :btree
 
-  create_table "indicators", force: true do |t|
-    t.string   "name",                                null: false
+  create_table "indicators", force: :cascade do |t|
+    t.string   "name",                limit: 255,                 null: false
     t.decimal  "value"
     t.text     "description"
-    t.string   "frequency"
+    t.string   "frequency",           limit: 255
     t.date     "next_update"
-    t.decimal  "goal",                default: 100.0
+    t.decimal  "goal",                            default: 100.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id",                        null: false
-    t.integer  "area_id",                             null: false
+    t.integer  "objective_id",                                    null: false
+    t.integer  "area_id",                                         null: false
     t.integer  "ind_pos"
     t.date     "last_update"
     t.decimal  "last_value"
     t.integer  "responsible_id"
-    t.integer  "company_id",                          null: false
-    t.boolean  "reminder",            default: true,  null: false
-    t.decimal  "worst_value",         default: 0.0
-    t.boolean  "show_on_parent",      default: false, null: false
-    t.string   "type"
+    t.integer  "company_id",                                      null: false
+    t.boolean  "reminder",                        default: true,  null: false
+    t.decimal  "worst_value",                     default: 0.0
+    t.boolean  "show_on_parent",                  default: false, null: false
+    t.string   "type",                limit: 255
     t.integer  "creator_id"
-    t.integer  "hoshin_id",                           null: false
-    t.boolean  "show_on_charts",      default: true,  null: false
+    t.integer  "hoshin_id",                                       null: false
+    t.boolean  "show_on_charts",                  default: true,  null: false
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
     t.datetime "deleted_at"
@@ -249,21 +249,21 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "indicators", ["responsible_id"], name: "index_indicators_on_responsible_id", using: :btree
   add_index "indicators", ["type"], name: "index_indicators_on_type", using: :btree
 
-  create_table "logs", force: true do |t|
-    t.string   "title"
+  create_table "logs", force: :cascade do |t|
+    t.string   "title",        limit: 255
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "company_id",   null: false
+    t.integer  "company_id",               null: false
     t.integer  "creator_id"
     t.integer  "hoshin_id"
     t.integer  "area_id"
     t.integer  "goal_id"
     t.integer  "objective_id"
     t.integer  "indicator_id"
-    t.string   "type"
+    t.string   "type",         limit: 255
     t.integer  "task_id"
-    t.string   "operation",    null: false
+    t.string   "operation",    limit: 255, null: false
   end
 
   add_index "logs", ["area_id"], name: "index_logs_on_area_id", using: :btree
@@ -276,27 +276,27 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "logs", ["task_id"], name: "index_logs_on_task_id", using: :btree
   add_index "logs", ["type"], name: "index_logs_on_type", using: :btree
 
-  create_table "milestones", force: true do |t|
+  create_table "milestones", force: :cascade do |t|
     t.decimal  "value"
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "objectives", force: true do |t|
-    t.string   "name",                           null: false
+  create_table "objectives", force: :cascade do |t|
+    t.string   "name",           limit: 255,                 null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "area_id",                        null: false
-    t.integer  "hoshin_id",                      null: false
+    t.integer  "area_id",                                    null: false
+    t.integer  "hoshin_id",                                  null: false
     t.integer  "obj_pos"
     t.integer  "parent_id"
     t.integer  "responsible_id"
-    t.integer  "company_id",                     null: false
+    t.integer  "company_id",                                 null: false
     t.integer  "creator_id"
-    t.boolean  "neglected",      default: false
-    t.boolean  "blind",          default: true
+    t.boolean  "neglected",                  default: false
+    t.boolean  "blind",                      default: true
     t.datetime "deleted_at"
   end
 
@@ -308,18 +308,18 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "objectives", ["parent_id"], name: "index_objectives_on_parent_id", using: :btree
   add_index "objectives", ["responsible_id"], name: "index_objectives_on_responsible_id", using: :btree
 
-  create_table "payments", force: true do |t|
+  create_table "payments", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "token"
-    t.string   "status"
+    t.string   "token",           limit: 255
+    t.string   "status",          limit: 255
     t.boolean  "sandbox"
     t.integer  "company_id"
-    t.decimal  "amount_value",    precision: 8, scale: 2
-    t.string   "amount_currency"
+    t.decimal  "amount_value",                precision: 8, scale: 2
+    t.string   "amount_currency", limit: 255
     t.integer  "billing_plan_id"
-    t.string   "id_paypal"
+    t.string   "id_paypal",       limit: 255
     t.datetime "deleted_at"
   end
 
@@ -329,39 +329,39 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "payments", ["token"], name: "index_payments_on_token", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
-  create_table "paypal_buttons", force: true do |t|
-    t.string   "product"
-    t.string   "id_paypal"
-    t.string   "id_paypal_sandbox"
+  create_table "paypal_buttons", force: :cascade do |t|
+    t.string   "product",           limit: 255
+    t.string   "id_paypal",         limit: 255
+    t.string   "id_paypal_sandbox", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
 
-  create_table "tasks", force: true do |t|
-    t.string   "name",                                    null: false
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name",                limit: 255,                     null: false
     t.text     "description"
     t.date     "deadline"
     t.date     "original_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id",                            null: false
-    t.string   "status",              default: "backlog"
+    t.integer  "objective_id",                                        null: false
+    t.string   "status",              limit: 255, default: "backlog"
     t.datetime "key_timestamp"
     t.integer  "tsk_pos"
-    t.integer  "area_id",                                 null: false
+    t.integer  "area_id",                                             null: false
     t.boolean  "show_on_parent"
-    t.string   "type"
+    t.string   "type",                limit: 255
     t.integer  "responsible_id"
-    t.integer  "company_id",                              null: false
-    t.boolean  "reminder",            default: true
+    t.integer  "company_id",                                          null: false
+    t.boolean  "reminder",                        default: true
     t.integer  "creator_id"
-    t.integer  "hoshin_id",                               null: false
-    t.integer  "lane_pos",            default: 0,         null: false
+    t.integer  "hoshin_id",                                           null: false
+    t.integer  "lane_pos",                        default: 0,         null: false
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
-    t.string   "feeling",             default: "smile",   null: false
+    t.string   "feeling",             limit: 255, default: "smile",   null: false
     t.datetime "deleted_at"
     t.float    "confidence"
     t.float    "impact"
@@ -383,12 +383,12 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "tasks", ["status"], name: "index_tasks_on_status", using: :btree
   add_index "tasks", ["type"], name: "index_tasks_on_type", using: :btree
 
-  create_table "user_companies", force: true do |t|
+  create_table "user_companies", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "company_id"
-    t.string   "state"
+    t.string   "state",         limit: 255
     t.datetime "key_timestamp"
   end
 
@@ -397,33 +397,33 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "user_companies", ["user_id", "company_id"], name: "index_user_companies_on_user_id_and_company_id", using: :btree
   add_index "user_companies", ["user_id"], name: "index_user_companies_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "crypted_password",          limit: 40
     t.string   "salt",                      limit: 40
-    t.string   "remember_token"
+    t.string   "remember_token",            limit: 255
     t.datetime "remember_token_expires_at"
-    t.string   "name"
-    t.string   "email_address"
-    t.boolean  "administrator",                        default: false
+    t.string   "name",                      limit: 255
+    t.string   "email_address",             limit: 255
+    t.boolean  "administrator",                         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                default: "inactive"
+    t.string   "state",                     limit: 255, default: "inactive"
     t.datetime "key_timestamp"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
+    t.string   "image_file_name",           limit: 255
+    t.string   "image_content_type",        limit: 255
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "tutorial_step"
-    t.string   "timezone"
-    t.string   "color"
-    t.string   "language"
+    t.string   "timezone",                  limit: 255
+    t.string   "color",                     limit: 255
+    t.string   "language",                  limit: 255
     t.datetime "last_login_at"
     t.integer  "login_count"
-    t.string   "preferred_view",                       default: "expanded"
+    t.string   "preferred_view",            limit: 255, default: "expanded"
     t.date     "last_seen_at"
-    t.integer  "payments_count",                       default: 0,          null: false
-    t.string   "firstName"
-    t.string   "lastName"
+    t.integer  "payments_count",                        default: 0,          null: false
+    t.string   "firstName",                 limit: 255
+    t.string   "lastName",                  limit: 255
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
