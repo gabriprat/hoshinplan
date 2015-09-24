@@ -110,15 +110,13 @@ class IndicatorsController < ApplicationController
         old_value = i.value
         i.value = params[:indicator][:value]
         i.value_will_change!
-        attributes = {:value => i.value}
         if params[:indicator][:last_update]
           i.last_update = params[:indicator][:last_update]
           i.last_update_will_change!
-          attributes = {:value => i.value, :last_update => i.last_update}
         end
-        hobo_update(i, :attributes => attributes) do
-          redirect_to this.objective.area.hoshin if valid? && !request.xhr?
-        end
+        #Empty change to keep the already changed attributes and the will_change! calls
+        i.user_save(current_user)
+        response_block {redirect_to this.objective.area.hoshin if valid? && !request.xhr?} ||  update_response(nil, {})
       else
         hobo_update do
           redirect_to this.objective.area.hoshin if valid? && !request.xhr?

@@ -129,7 +129,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def update_history
-    update_date = self.last_update
+    update_date = self.last_update    
     unless update_date.nil?
       #only update trends once per day
       ih = IndicatorHistory.unscoped.where(:day => update_date, :indicator_id => self.id).first
@@ -243,6 +243,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def compute_next_update
+    return self.next_update if self.last_update_changed? && last_update != next_update #If overwriting or setting value for today leave the next update as it was    
     next_update_after(self.last_update, self.frequency)
   end
   
