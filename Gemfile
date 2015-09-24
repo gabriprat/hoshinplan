@@ -51,7 +51,7 @@ gem "omniauth-saml"
 gem "omniauth-google-oauth2"
 gem "google-api-client"
 
-gem "hobo", '>= 2.2.3'
+gem "hobo"
 gem "hobo_fields"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
@@ -78,6 +78,7 @@ gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "nested_has_many_through"
 gem "actionmailer_inline_css"
 
+gem 'delocalize', :git => 'https://github.com/gabriprat/delocalize.git'
 gem 'wicked_pdf'
 gem 'aws-sdk-v1'
 gem 'paperclip'

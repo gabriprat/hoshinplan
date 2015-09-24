@@ -66,6 +66,13 @@ GIT
       resque (>= 1.25)
       resque-scheduler (>= 4.0.0)
 
+GIT
+  remote: https://github.com/gabriprat/delocalize.git
+  revision: 11a5205b2a161f1cf54b3b68442e611ab3a11873
+  specs:
+    delocalize (0.4.0)
+      rails (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -256,7 +263,7 @@ GEM
     mime-types (2.6.2)
     mimemagic (0.3.0)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     mixpanel-ruby (2.2.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
@@ -472,6 +479,7 @@ DEPENDENCIES
   bootstrap-switch-rails
   clockwork
   coffee-rails
+  delocalize!
   derailed
   detect_timezone_rails
   excon
@@ -479,7 +487,7 @@ DEPENDENCIES
   font_assets!
   google-api-client
   heroku-deflater
-  hobo (>= 2.2.3)
+  hobo
   hobo_bootstrap!
   hobo_bootstrap_ui!
   hobo_fields
