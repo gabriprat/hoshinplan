@@ -95,13 +95,14 @@ class Indicator < ActiveRecord::Base
   scope :due_today, -> { due('0 hour') }
   
   before_save do |indicator|
-    return unless indicator.objective
-    if indicator.show_on_parent && indicator.objective.parent
-      indicator.parent_area_id = indicator.objective.parent.area_id
-      indicator.parent_objective_id = indicator.objective.parent.id
-    else
-      indicator.parent_area_id = nil
-      indicator.parent_objective_id = nil
+    if indicator.objective
+      if indicator.show_on_parent && indicator.objective.parent
+        indicator.parent_area_id = indicator.objective.parent.area_id
+        indicator.parent_objective_id = indicator.objective.parent.id
+      else
+        indicator.parent_area_id = nil
+        indicator.parent_objective_id = nil
+      end
     end
   end
  
