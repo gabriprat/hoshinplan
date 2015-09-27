@@ -484,5 +484,31 @@ var tooltips = function() {
 $(document).ready(tooltips);
 $(window).bind('page:change', tooltips);
 
+var mapImpactFilterEnable = function() {
+	if (location.hash.startsWith("#min-")) {
+		var value = parseInt(location.hash.substr(5));
+		$(this).bootstrapSlider('setValue', value);
+		$(this).trigger("change");
+	}
+};
+
+var mapImpactFilterChange = function(event) {
+	var min = parseInt($(this).attr("data-value"));
+	$(".dot").each(function() {
+		var that = $(this);
+		var impact = parseInt(that.data("impact"));
+		if (min <= impact) {
+			that.show();
+		} else {
+			that.hide();
+		}
+	});
+}
+
+var mapImpactFilterAnchor = function() {
+	var min = parseInt($(this).attr("data-value"));
+	location.hash = '#min-' + min;
+}
+
 
 

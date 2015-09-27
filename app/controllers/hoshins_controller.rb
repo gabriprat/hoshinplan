@@ -98,7 +98,8 @@ class HoshinsController < ApplicationController
     end
   end
   
-  def map    
+  def map
+    raise Hobo::PermissionDeniedError unless Feature.enabled? :map
     @this = find_instance
     @lanes = Task::Lifecycle.states.keys
     @objectives = Objective.joins(:area).where( 

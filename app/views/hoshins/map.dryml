@@ -9,6 +9,9 @@
 			$(window).on("popstate", loadKanban);
 		</script>
 		<set headings="true"/>
+		<div class="kb-colors map">
+			<label><t key="map.minimum_impact_filter"/></label><slider min="0" max="100" type="text" slideStop="mapImpactFilterAnchor" change="mapImpactFilterChange" create="mapImpactFilterEnable" id="map-impact-filter"/>
+		</div>
 		<div class="kb-frame dots">
 			<div style="display:table-row">
 				<div class="panel panel-default lane dots">
@@ -48,7 +51,7 @@
 			</repeat>
 		</div>
 		<div class="hide" id="to-append">
-		<div class="effort">- <t key="activerecord.attributes.task.effort"/> +</div>
+		<div class="effort">+ <t key="activerecord.attributes.task.effort"/> -</div>
 		<div class="confidence">- <t key="activerecord.attributes.task.confidence"/> +</div>
 		</div>
 	</content-body:>

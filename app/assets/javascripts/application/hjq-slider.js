@@ -4,6 +4,10 @@
         init: function(annotations) {
             var options = $.extend({"value": parseFloat(this.val())}, this.hjq('getOptions', annotations));
             this.bootstrapSlider(options);
+	    for (var event in annotations.events) {
+		    this.on(event, this.hjq('createFunction', annotations.events[event]));
+	    }
+	    this.trigger("create");
         }
     };
 

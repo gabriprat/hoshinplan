@@ -283,7 +283,8 @@ class Task < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || same_company
+    ret = acting_user.administrator? || same_company
+    ret && (![:impact, :confidence, :effort].include?(field) || Feature.enabled?(:map))
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922092640) do
+ActiveRecord::Schema.define(version: 20150924114039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   create_table "company_email_domains", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "domain"
+    t.string   "domain",     limit: 255
     t.integer  "company_id"
   end
 
@@ -142,6 +142,24 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "flipper_features", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "flipper_features", ["name"], name: "index_flipper_features_on_name", unique: true, using: :btree
+
+  create_table "flipper_gates", force: :cascade do |t|
+    t.integer  "flipper_feature_id", null: false
+    t.string   "name",               null: false
+    t.string   "value"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "flipper_gates", ["flipper_feature_id", "name", "value"], name: "index_flipper_gates_on_flipper_feature_id_and_name_and_value", unique: true, using: :btree
 
   create_table "goals", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -429,4 +447,5 @@ ActiveRecord::Schema.define(version: 20150922092640) do
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
   add_index "users", ["state"], name: "index_users_on_state", using: :btree
 
+  add_foreign_key "flipper_gates", "flipper_features", on_delete: :cascade
 end

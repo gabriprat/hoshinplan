@@ -103,6 +103,10 @@ Hoshinplan::Application.routes.draw do
   
   SamlDynamicRouter.load unless Rails.env.development?
   
+  constraints CanAccessFlipperUI do
+    mount Flipper::UI.app($flipper) => '/admin/flipper'
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -57,7 +57,10 @@
 			</form>
 			<health/>
 			<a href="/log#{hoshin_path this}" title="&t 'view_log'" class="title-action">
-	    	            <span class="ic-file-text-o"/><sup class="label label-danger label-as-badge">#{t 'new'}</sup>
+	    	            <span class="ic-file-text-o"/>
+			</a>
+			<a href="#{hoshin_path this}/map" title="&t 'hoshin_actions.map'" class="title-action" if="&Feature.enabled? :map">
+				<span class="ic-th"/><sup class="label label-warning label-as-badge">#{t 'beta'}</sup>
 			</a>
 			</do>
 			<small class="only-print"><%= l Time.now, :format => :long %></small>

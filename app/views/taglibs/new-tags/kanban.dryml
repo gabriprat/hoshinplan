@@ -19,7 +19,7 @@
 
 <def tag="dot" for="Task">
 	<div part="task" class="kanban-card" data-rapid-context="<%= typed_id %>" data-id="#{this.id}" >
-	<dot for-type="Object" left="#{left(this)}" top="#{top(this)}" size="#{size(this)}px" class="#{this.feeling}">
+	<dot for-type="Object" left="#{left(this)}" top="#{top(this)}" size="#{size(this)}px" class="#{this.feeling}" data-impact="#{this.impact_or_rand}">
 		<rmodal target-id="update-task-modal-#{this.id}" url="#{task_path this}/form" title="#{this.name}" />
 		<formlet class="csupdate">
 			<hidden-fields fields="lane_pos, status, objective_id"/>

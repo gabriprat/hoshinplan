@@ -4,11 +4,13 @@ en:
   cookie_msg: 'This site uses its own and third-party cookies to provide a better browsing experience. By using our service, you are agreeing on our <a href="{{cookiePolicyLink}}" title="More information about our cookies">cookie policy</a>.'
   i_agree: I agree
   new: NEW
+  beta: Beta
   drag_a_file: Drag a photo here
   value_goal_previous: 'Value,Goal,Previous,Increment'
   value_goal_previous_long: 'Current value,Goal,Previous value,Increment over previous value (%)'
   insert_box_link: Insert Box link
   created_by: Created by
+  view_log: View log
   view_log: View log
   older: Older
   newer: Newer
@@ -90,6 +92,7 @@ en:
     export_as_pdf: Export as PDF
     charts: KPI charts
     compact: Expanded or compact view
+    map: Map view
   no_oid_url: No corporate login for the given email
   errors: 
     messages:
@@ -445,6 +448,8 @@ en:
     changes: Changes
     from: from
     to: to
+  map:
+    minimum_impact_filter: 'Minimum impact to show:'
   invalid_invitation_key_page:
     title: Invalid invitation link
     heading: Invalid invitation link

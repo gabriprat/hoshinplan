@@ -130,6 +130,19 @@ class Company < ActiveRecord::Base
     return users 
   end
   
+  def startup?
+    RequestStore.store[:startup_users] ||= BillingPlan.select(:users).where(name: 'Startup')
+    user_limit == RequestStore.store[:startup_users]
+  end
+  
+  def enterprise?
+    RequestStore.store[:enterprise_users] ||= BillingPlan.select(:users).where(name: 'Startup')
+    user_limit == RequestStore.store[:enterprise_users] 
+  end
+  
+  def flipper_id
+    "Company:" + id.to_s
+  end
 
   # --- Permissions --- #
 

@@ -181,6 +181,15 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10-java)
+    flipper (0.7.1)
+    flipper-activerecord (0.1.1)
+      activerecord (>= 4.2.0.beta2)
+      flipper (~> 0.6)
+    flipper-ui (0.7.1)
+      erubis (~> 2.7.0)
+      flipper (~> 0.7.1)
+      rack (~> 1.4, < 1.7)
+      rack-protection (~> 1.5.3)
     get_process_mem (0.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -484,6 +493,9 @@ DEPENDENCIES
   detect_timezone_rails
   excon
   faraday
+  flipper
+  flipper-activerecord
+  flipper-ui
   font_assets!
   google-api-client
   heroku-deflater

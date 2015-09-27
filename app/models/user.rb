@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
     login_count   :integer
     payments_count :integer, :default => 0, :null => false
     preferred_view EnumView, :required, :default=> :expanded
+    beta_access   :boolean
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -320,6 +321,10 @@ class User < ActiveRecord::Base
   
   def self.current_user=(id)
     RequestStore.store[:user] = id
+  end
+  
+  def flipper_id
+    "User:" + id.to_s
   end
   
   # --- Permissions --- #
