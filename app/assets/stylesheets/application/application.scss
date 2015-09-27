@@ -3057,8 +3057,13 @@ select.form-control[multiple] {
 }
 .select-many.form-control {
 	height: auto;
+	select {
+		width: 100%;
+	}
 }
-
+.check-many.form-control {
+	height: auto;
+}
 select.form-control {
 	border: 0;
 	border-radius: 0;

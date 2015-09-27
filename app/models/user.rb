@@ -70,7 +70,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :less_than => 10.megabytes   
     
-  attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image, :timezone, :tutorial_step, :created_at, :language
+  attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies,
+     :image, :timezone, :tutorial_step, :created_at, :language, :beta_access
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
