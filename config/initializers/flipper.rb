@@ -10,7 +10,7 @@ Flipper.register(:admins) do |actor|
 end
 
 Flipper.register(:beta) do |actor|
-  actor.respond_to?(:beta?) && actor.beta?
+  actor.respond_to?(:beta_access?) && actor.beta_access?
 end
 
 Flipper.register(:startup) do |actor|

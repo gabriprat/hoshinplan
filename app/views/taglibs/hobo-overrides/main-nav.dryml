@@ -5,6 +5,7 @@
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item href="/admin/billing_plans">Billing plans</nav-item>
+    <nav-item href="/admin/flipper">Flipper</nav-item>
   </navigation>
   </if>
   <else>
