@@ -38,7 +38,7 @@
 			    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + dateFormatDefault(row.day) + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
 			  }
 		</script>
-		<section class="panel">
+		<section class="panel indicator-chart">
 		        <header class="panel-heading clearfix">
 		            <p class="inline"><t key="history.historic_values">Historic values and goals</t></p>
     			<div class="history-actions">

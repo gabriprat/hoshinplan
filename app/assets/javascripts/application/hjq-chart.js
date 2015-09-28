@@ -56,3 +56,11 @@
     };
 
 })( jQuery );
+
+(function(moveTo) {
+  Morris.Hover.prototype.moveTo = function (x, y, centre_y) {
+    var ret = moveTo.call(this, x, y, centre_y);
+    ret.css({top:"auto", bottom: "-90px"});
+    return ret;
+  };
+}(Morris.Hover.prototype.moveTo));
