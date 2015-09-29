@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929131917) do
+ActiveRecord::Schema.define(version: 20150929142343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -400,6 +400,12 @@ ActiveRecord::Schema.define(version: 20150929131917) do
   add_index "tasks", ["responsible_id"], name: "index_tasks_on_responsible_id", using: :btree
   add_index "tasks", ["status"], name: "index_tasks_on_status", using: :btree
   add_index "tasks", ["type"], name: "index_tasks_on_type", using: :btree
+
+  create_table "uri_dir_reports", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_companies", force: :cascade do |t|
     t.datetime "created_at"

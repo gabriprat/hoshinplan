@@ -303,7 +303,7 @@
 <def tag="form" for="UriDirReport">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="body" param/>
     <div param="actions">
       <submit label="#{ht 'uri_dir_report.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
