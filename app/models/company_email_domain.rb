@@ -10,7 +10,8 @@ class CompanyEmailDomain < ActiveRecord::Base
   
   attr_accessible :domain, :accessible => true
 
-  belongs_to :company
+  belongs_to :company, :null => false
+  validates :company, :presence => true
 
   # --- Permissions --- #
 

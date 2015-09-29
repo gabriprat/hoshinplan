@@ -189,12 +189,12 @@ class Task < ActiveRecord::Base
   end
 
   lifecycle :state_field => :status do
-    state :backlog, :default => true
-    state :active, :completed, :discarded, :deleted
+    state :active, :default => true
+    state :backlog, :active, :completed, :discarded, :deleted
     
-    create :backlog,
+    create :active,
       :params => [:company_id, :objective_id, :area_id],
-      :become => :backlog    
+      :become => :active    
       
     transition :activate, {nil => :active}, :available_to => "User" 
     

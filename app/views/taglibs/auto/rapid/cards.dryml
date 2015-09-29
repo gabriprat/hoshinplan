@@ -289,6 +289,14 @@
   </card>
 </def>
 
+<def tag="card" for="UriDirReport">
+  <card class="uri-dir-report" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>

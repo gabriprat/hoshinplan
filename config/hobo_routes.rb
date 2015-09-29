@@ -215,6 +215,10 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller uri_dir_reports
+  resources :uri_dir_reports
+
+
   # Resource routes for controller user_companies
   resources :user_companies, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do

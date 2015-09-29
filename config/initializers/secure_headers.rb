@@ -1,6 +1,6 @@
 ::SecureHeaders::Configuration.configure do |config|
   config.hsts = false
-  config.x_frame_options = 'DENY'
+  config.x_frame_options = 'SAMEORIGIN'
   config.x_content_type_options = "nosniff"
   config.x_xss_protection = {:value => 1, :mode => 'block'}
   config.x_download_options = 'noopen'
@@ -13,7 +13,7 @@
     :style_src => "self 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
     :script_src => "self 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com",
     :img_src => "self static.hoshinplan.com staticdoc.hoshinplan.com hoshinplan.s3-eu-west-1.amazonaws.com shield.sitelock.com cdn.mxpnl.com stats.g.doubleclick.net www.google-analytics.com",
-    :report_uri => '/uri-directive'
+    :report_uri => '/uri-dir-report'
   }
   config.hpkp = false
 end

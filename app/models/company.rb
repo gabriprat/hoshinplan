@@ -18,7 +18,7 @@ class Company < ActiveRecord::Base
     
   belongs_to :creator, :class_name => "User", :creator => true
   
-  has_many :company_email_domains, :accessible => true, :inverse_of => :company
+  has_many :company_email_domains, :accessible => true, :inverse_of => :company, :dependent => :destroy
   
   has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company
   has_many :active_hoshins, -> { active.order :name }, :class_name => "Hoshin"

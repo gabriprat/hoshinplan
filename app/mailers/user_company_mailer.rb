@@ -27,7 +27,7 @@ class UserCompanyMailer < ActionMailer::Base
                     :accept_url => accept_from_email_url(:id => user_company, :key => key), :invitor => invitor})          
               }
     end
-    ret.deliver
+    
   end
   
   def new_invite(key, invitor, invitee, language)
@@ -41,7 +41,7 @@ class UserCompanyMailer < ActionMailer::Base
                     :accept_url => accept_invitation_from_email_url(:id => invitee, :key => key), :invitor => invitor})          
               }
     end
-    ret.deliver
+    
   end
  
   def transition(user, user2, company, email_key)
@@ -54,7 +54,7 @@ class UserCompanyMailer < ActionMailer::Base
                     :message => I18n.translate("emails." + email_key + ".message", :user => user.name.blank? ? user.email_address : user.name, :user2 => user2.name.blank? ? user2.email_address : user2.name, :company => company.name).html_safe})          
               }
     end
-    ret.deliver
+    
   end
 
   def get_host_port(user) 
@@ -80,7 +80,7 @@ class UserCompanyMailer < ActionMailer::Base
                     :kpis => kpis, :tasks => tasks})          
               }
       end
-      ret.deliver
+      
     end
   end
   
@@ -94,7 +94,7 @@ class UserCompanyMailer < ActionMailer::Base
               )
             }
     end
-    ret.deliver
+    
   end
   
   def invited_welcome(user)
@@ -108,7 +108,7 @@ class UserCompanyMailer < ActionMailer::Base
               )
             }
     end
-    ret.deliver
+    
   end
   
   def forgot_password(user, key)
@@ -124,7 +124,7 @@ class UserCompanyMailer < ActionMailer::Base
               )
             }
     end
-    ret.deliver
+    
   end
 
 
@@ -141,7 +141,7 @@ class UserCompanyMailer < ActionMailer::Base
               )
             }
     end
-    ret.deliver
+    
   end
   
 end

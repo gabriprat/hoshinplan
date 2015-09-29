@@ -187,17 +187,17 @@ class User < ActiveRecord::Base
         UserCompany::Lifecycle.activate_ij(self, {:user => self, :company => company})
       end
       if (self.companies.blank?) 
-        UserCompanyMailer.delay.welcome(self)
+        UserCompanyMailer.welcome(self).deliver_later
       end
     end
 
     create :invite, :params => [:email_address], :become => :invited, :new_key => true  do
         self.email_address = email_address
-        UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s)
+        UserCompanyMailer.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s).deliver_later
     end
     
     transition :resend_invite, { :invited => :invited }, :new_key => true do
-       UserCompanyMailer.delay.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s)
+       UserCompanyMailer.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s).deliver_later
     end
       
     create :activate_ij,
@@ -207,11 +207,11 @@ class User < ActiveRecord::Base
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation, :language, :timezone],
       :become => :inactive, :new_key => true  do
-      UserCompanyMailer.delay.activation(self, lifecycle.key)
+      UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
     
     transition :resend_activation, {:inactive => :inactive}, :available_to => :all, :new_key => true do
-      UserCompanyMailer.delay.activation(self, lifecycle.key)
+      UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
     
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
@@ -221,25 +221,25 @@ class User < ActiveRecord::Base
 
     transition :activate, { :inactive => :active }, :available_to => :key_holder do
       current_user = acting_user
-      UserCompanyMailer.delay.welcome(self)
+      UserCompanyMailer.welcome(self).deliver_later
     end
 
     transition :activate, { :invited => :active } do
       acting_user = self
       @subject = "#{self.name} welcome to Hoshinplan!"
-      UserCompanyMailer.delay.invited_welcome(self)
+      UserCompanyMailer.invited_welcome(self).deliver_later
     end
 
     transition :request_password_reset, { :inactive => :inactive }, :new_key => true do
-      UserCompanyMailer.delay.activation(self, lifecycle.key)
+      UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
-      UserCompanyMailer.delay.forgot_password(self, lifecycle.key)
+      UserCompanyMailer.forgot_password(self, lifecycle.key).deliver_later
     end
 
     transition :request_password_reset, { :invited => :invited }, :new_key => true do
-      UserCompanyMailer.delay.forgot_password(self, lifecycle.key)
+      UserCompanyMailer.forgot_password(self, lifecycle.key).deliver_later
     end
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,

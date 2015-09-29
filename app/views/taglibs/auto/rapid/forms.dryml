@@ -300,6 +300,18 @@
   </form>
 </def>
 
+<def tag="form" for="UriDirReport">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'uri_dir_report.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="UserCompany">
   <form merge param="default">
     <error-messages param/>

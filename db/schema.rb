@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927232523) do
+ActiveRecord::Schema.define(version: 20150929131917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20150927232523) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "domain"
-    t.integer  "company_id"
+    t.integer  "company_id", null: false
   end
 
   add_index "company_email_domains", ["company_id"], name: "index_company_email_domains_on_company_id", using: :btree
@@ -358,28 +358,28 @@ ActiveRecord::Schema.define(version: 20150927232523) do
   add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "name",                                    null: false
+    t.string   "name",                                   null: false
     t.text     "description"
     t.date     "deadline"
     t.date     "original_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id",                            null: false
-    t.string   "status",              default: "backlog"
+    t.integer  "objective_id",                           null: false
+    t.string   "status",              default: "active"
     t.datetime "key_timestamp"
     t.integer  "tsk_pos"
-    t.integer  "area_id",                                 null: false
+    t.integer  "area_id",                                null: false
     t.boolean  "show_on_parent"
     t.string   "type"
     t.integer  "responsible_id"
-    t.integer  "company_id",                              null: false
+    t.integer  "company_id",                             null: false
     t.boolean  "reminder",            default: true
     t.integer  "creator_id"
-    t.integer  "hoshin_id",                               null: false
-    t.integer  "lane_pos",            default: 0,         null: false
+    t.integer  "hoshin_id",                              null: false
+    t.integer  "lane_pos",            default: 0,        null: false
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
-    t.string   "feeling",             default: "smile",   null: false
+    t.string   "feeling",             default: "smile",  null: false
     t.datetime "deleted_at"
     t.float    "confidence"
     t.float    "impact"

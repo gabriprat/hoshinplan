@@ -71,6 +71,7 @@ class ApplicationController < ActionController::Base
                if defined?("logged_in?")
                  User.current_id = logged_in? ? current_user.id : nil
                  User.current_user = current_user
+                 UserCompanyMailer.welcome(current_user).deliver_later
                  if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
                    current_user.last_seen_at = Date.today
                    people_set
