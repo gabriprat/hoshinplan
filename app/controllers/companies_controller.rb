@@ -77,9 +77,10 @@ class CompaniesController < ApplicationController
         params[:collaborators].each_line do |email|
           email.squish! 
           user = User.unscoped.where(:email_address => email).first
+          domain = email.split("@").last
+          company_domain_exists = CompanyEmailDomain.where(domain: domain).exists?
           if user.nil?
-            domain = email.split("@").last
-            if (CompanyEmailDomain.where(domain: domain).exists?)
+            if (company_domain_exists)
               user = User::Lifecycle.activate_ij(:email_address => email)
               user.email_address = email
               user.save!(:validate => false)
@@ -95,7 +96,7 @@ class CompaniesController < ApplicationController
           if uc.nil? 
             company = Company.find(params[:id])
             begin
-              if (CompanyEmailDomain.where(domain: domain).exists?)
+              if (company_domain_exists)
                 UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
               else
                 if invite_sent

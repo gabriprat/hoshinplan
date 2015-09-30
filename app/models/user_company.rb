@@ -125,7 +125,7 @@ class UserCompany < ActiveRecord::Base
      end
  
      transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do 
-       UserCompanyMailer.transition(User.find(self.user_id), acting_user, company, "removed").deliver_later
+       UserCompanyMailer.transition(User.unscoped.find(self.user_id), acting_user, company, "removed").deliver_later
        Objective.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
        Indicator.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
        Task.where(:responsible_id => user_id, :company_id => company_id).update_all(:responsible_id => nil)
