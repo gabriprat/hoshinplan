@@ -69,7 +69,7 @@ gem "jquery-ui-themes"
 gem "acts_as_list"
 gem "ruby-hmac"
 gem "ruby-openid"
-gem "hobo_omniauth", :git => "git://github.com/Hobo/hobo_omniauth.git"
+gem "hobo_omniauth", :git => "git://github.com/gabriprat/hobo_omniauth.git"
 #gem 'gem_bench', :group => :console
 gem "clockwork"
 gem "protected_attributes"
