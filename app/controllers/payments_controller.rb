@@ -67,11 +67,10 @@ class PaymentsController < ApplicationController
       finder = finder.where("upper(companies.name) LIKE ? OR payments.id_paypal LIKE ? OR upper(billing_plans.name) LIKE ?", "%#{search}%","%#{search}%","%#{search}%")
     end
     sort = parse_sort_param("company" => "companies.name", "id_paypal" => "payments.id_paypal", "billing_plan.name" => "billing_plans.name")
-    Rails.logger.debug(sort.to_yaml)
     if sort
       finder = finder.order(sort)
     end
-    hobo_index_for :user, finder
+    hobo_index_for :user, finder.paginate(:page => params[:page], :per_page => 30)
   end
   
   def create

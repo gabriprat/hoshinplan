@@ -2,6 +2,8 @@ class Payment < ActiveRecord::Base
 
   acts_as_paranoid
 
+  include ModelBase
+
   hobo_model # Don't put anything above this
 
   fields do
@@ -25,19 +27,19 @@ class Payment < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    true
+    acting_user.administrator? || same_company
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? || same_company 
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? || same_company_admin
   end
 
-  def view_permitted?(field)
-     acting_user.administrator?
+  def view_permitted?(field=nil)
+    acting_user.administrator? || same_company
   end
 
 end
