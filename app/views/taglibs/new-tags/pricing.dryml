@@ -25,7 +25,9 @@
 	    	<button><a href="mailto:hello@hoshinplan.com"><t key="pricing_plans.contact_us"/></a></button>
 	    </li>
 	    <else>
-		    <paypal-button product="#{this.id_paypal}"/>
+	    	    <if test="&Company.current_id">
+		    	<paypal-button product="#{this.id_paypal}" if="&this.amount_value &gt; 0"/>
+		    </if>
 		    <else>
 		            <li class="buy">
 			    	<button><a href="/login"><ht key="user.actions.signup"/></a></button>
