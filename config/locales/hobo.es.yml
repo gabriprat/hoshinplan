@@ -140,7 +140,7 @@ es:
       current_password_is_not_correct: "no está correcta"
       you_are_site_admin: "Ahora usted es el administrador del sitio."
       you_signed_up: "Usted se registró."
-      none: "No hay %{model} disponibles."
+      none: "(Sin %{model})"
       confirm: "¿Está seguro?"
 
     # default hobo collection translation

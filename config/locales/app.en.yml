@@ -104,6 +104,7 @@ en:
     error_contact: Get in contact with us
     permission_denied: Permission denied
     parent_hoshin_same_company: Parent hoshin must be from the same company
+    different_parent: A hoshin can not be its own parent
     row_invalid_length: 'Row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remember that %{sep} is expected to separate columns.'
     date_format_error: 'Row %{row} contains an invalid date. The date "%{found}" does not follow the expected format "%{expected}".'
     value_format_error: 'Row %{row} contains an incorrect value "%{found}".'

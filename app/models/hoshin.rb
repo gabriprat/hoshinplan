@@ -48,6 +48,7 @@ class Hoshin < ActiveRecord::Base
   children :areas
   
   validate :validate_company
+  validate :validate_different_parent
   
   before_save do |hoshin|
     hoshin.color = hoshin.defaultColor if hoshin.color.blank?
@@ -296,7 +297,11 @@ class Hoshin < ActiveRecord::Base
     errors.add(:company, I18n.t("errors.permission_denied", :default => "Permission denied")) unless same_company
     errors.add(:parent, I18n.t("errors.parent_hoshin_same_company", :default => "Parent hoshin must be from the same company")) unless parent_same_company
   end
-
+  
+  def validate_different_parent
+    errors.add(:parent, I18n.t("errors.different_parent")) unless parent_id != id
+  end
+  
   def create_permitted?
     true
   end

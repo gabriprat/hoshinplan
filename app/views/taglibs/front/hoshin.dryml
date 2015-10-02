@@ -161,6 +161,9 @@
 				<input type="text" name="new-company-name"/>
 			</else>
 		</company-view:>
+		<parent-view:>
+			<select-one include-none="true"/>
+		</parent-view:>
 	    </field-list:>
 	    <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>

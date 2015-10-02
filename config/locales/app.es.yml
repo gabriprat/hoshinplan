@@ -103,6 +103,7 @@ es:
     error_contact: Infórmanos del error
     permission_denied: Permiso denegado
     parent_hoshin_same_company: El hoshin padre tiene que ser de la misma empresa
+    different_parent: Un hoshin no puede ser su propio padre
     row_invalid_length: 'La fila %{row} tiene un número de columnas no válido. Se esperaban %{expected} y se han encontrado %{found}. Recuerda que se espera %{sep} para separar las columnas.'
     date_format_error: 'La fila %{row} contiene una fecha incorrecta. La fecha "%{found}" no estaba en el formato esperado "%{expected}".'
     value_format_error: 'La fila %{row} contiene un valor incorrecto "%{found}".'
