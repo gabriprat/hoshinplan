@@ -299,7 +299,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def validate_different_parent
-    errors.add(:parent, I18n.t("errors.different_parent")) unless parent_id != id
+    errors.add(:parent, I18n.t("errors.different_parent")) unless parent_id.nil? || parent_id != id
   end
   
   def create_permitted?
