@@ -5,8 +5,7 @@ module Jobs
     def self.perform(hour = 7)
       hour = hour.to_i
       Rails.logger.info "Initiating send reminders job (at #{hour})!"
-      User.current_user = User.administrator.first
-      User.current_id = User.current_user.id
+      User.current_id = -1
       kpis = User.at_hour(hour).includes(:indicators, {:indicators => :hoshin}, {:indicators => :company}).joins(:indicators).merge(Hoshin.unscoped.active).merge(Indicator.unscoped.due('5 day')).order("indicators.company_id, indicators.hoshin_id")
       tasks = User.at_hour(hour).includes(:tasks, {:tasks => :hoshin}, {:tasks => :company}).joins(:tasks).merge(Hoshin.unscoped.active).merge(Task.unscoped.due('5 day')).order("tasks.company_id, tasks.hoshin_id")
       comb = {}

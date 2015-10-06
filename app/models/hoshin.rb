@@ -77,7 +77,7 @@ class Hoshin < ActiveRecord::Base
   default_scope lambda {
     if Company.current_id
       where(:company_id => Company.current_id)
-    else
+    elsif User.current_id != -1
       where(:company_id => UserCompany.select(:company_id).where(:user_id => User.current_id)) unless User.current_user == -1
     end
   }

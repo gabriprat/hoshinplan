@@ -55,7 +55,7 @@ class Company < ActiveRecord::Base
   set_default_order :name
   
   default_scope lambda { 
-    where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless !User.current_user.nil? && User.current_user.respond_to?("administrator?") && User.current_user.administrator? 
+    where("companies.id in (#{UserCompany.select(:company_id).where('user_id=?', User.current_id).to_sql})") unless User.current_id == -1 || (!User.current_user.nil? && User.current_user.respond_to?("administrator?") && User.current_user.administrator?) 
   }
   
   scope :admin, lambda { 
