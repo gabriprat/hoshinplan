@@ -60,7 +60,7 @@ class Task < ActiveRecord::Base
   default_scope lambda { 
     where(:company_id => UserCompany.select(:company_id)
       .where('user_id=?',  
-        User.current_id)).reorder('') unless User.current_user == -1 }
+        User.current_id)).reorder('') unless User.current_id == -1 }
   
   scope :lane, lambda {|*status|
     visible.where(:status => status).order(:status)
