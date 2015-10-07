@@ -5,11 +5,11 @@
 	<title>Pitch Deck</title>
 <!--**END PAGE TITLE**-->	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 " />
-	<link rel="stylesheet" media="all" href="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTcvNDEvNjUyL3BpdGNoX2FsbC5jc3MiXV0/pitch-all.css" type="text/css"/>
+	<link rel="stylesheet" media="all" href="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTcvNDEvNjUyL3BpdGNoX2FsbC5jc3MiXV0/pitch-all.css?sha=8b8a073663c7a5d1" type="text/css"/>
     <link href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,400,400|Nobile:400,700|Reenie+Beanie:400;" media="all" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTQvMzQvMjcwL3BpdGNoX2pxdWVyeV8xLjguMC5taW4uanMiXV0/pitch-jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTQvMzQvNjU1L3BpdGNoX2pxdWVyeS5tYWluLmpzIl1d/pitch-jquery.main.js?sha=498ec1b7fd9a6c46"></script>
 	<script type="text/javascript" src="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTQvMzQvNjU1L3BpdGNoX2pxdWVyeS5tYWluLmpzIl1d/pitch-jquery.main.js"></script>
-	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTQvMDYvNDQ2L3BpdGNoX2llLmNzcyJdXQ/pitch-ie.css" media="screen"/><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="//staticdoc.hoshinplan.com/system/resources/W1siZiIsIjIwMTQvMDgvMjQvMDEvNTQvMDYvNDQ2L3BpdGNoX2llLmNzcyJdXQ/pitch-ie.css?sha=cb9004c245d5bf67" media="screen"/><![endif]-->
 </head>
 <body>
 	<cms key="pitch_#{locale}" />
