@@ -1,0 +1,12 @@
+<page title="Health check">
+
+  <body: class="front-page"/>
+  
+  <content-body:>
+	test_ok
+  </content-body:>
+  
+  <main-nav: replace />
+  
+</page>
+
