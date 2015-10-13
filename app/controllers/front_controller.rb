@@ -197,7 +197,6 @@ class FrontController < ApplicationController
   end
   
   def health_check
-    render text: "test_ok"
   end
 
 end
