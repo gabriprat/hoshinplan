@@ -1,0 +1,11 @@
+<page title="Home">
+  
+  <body: class="front-page"/>
+
+  <content:>
+    
+  <cms key="custom_fragments/home_no_logged_#{locale}" />
+    
+  </content:>
+
+</page>

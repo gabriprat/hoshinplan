@@ -199,7 +199,7 @@ class FrontController < ApplicationController
   end
   
   def health_check
-    index
+    
   end
 
 end
