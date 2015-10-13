@@ -1,12 +1,11 @@
 <page title="Health check">
-
+  
   <body: class="front-page"/>
-  
-  <content-body:>
-	test_ok
-  </content-body:>
-  
-  <main-nav: replace />
-  
-</page>
 
+  <content:>
+    
+  <cms key="custom_fragments/home_no_logged_#{locale}" />
+    test_ok
+  </content:>
+
+</page>
