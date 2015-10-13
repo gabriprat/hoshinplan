@@ -50,6 +50,7 @@ Hoshinplan::Application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = !Rails.configuration.ssl_disable
+  config.ssl_options = { exclude: proc { |env| env['PATH_INFO'].start_with?('/health_check') } }
 
   # See everything in the log (default is :info)
   config.log_level = ENV['LOG_LEVEL'].blank? ? :info : ENV['LOG_LEVEL']

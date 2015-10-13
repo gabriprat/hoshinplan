@@ -195,5 +195,9 @@ class FrontController < ApplicationController
     
     render 'index'
   end
+  
+  def health_check
+    render text: "test_ok"
+  end
 
 end
