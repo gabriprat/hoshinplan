@@ -23,7 +23,7 @@ class UserCompanyMailer < ActionMailer::Base
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
               format.html {    
                 render_email("invite", 
-                  {:user => user_company.user, :app_name => @app_name, :company => user_company.company.name,
+                  {:user => user_company.user, :app_name => @app_name, :company => company.name,
                     :accept_url => accept_from_email_url(:id => user_company, :key => key), :invitor => invitor})          
               }
     end
