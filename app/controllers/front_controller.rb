@@ -197,7 +197,7 @@ class FrontController < ApplicationController
   end
   
   def health_check
-    if !current_user.nil? 
+    if !current_user.nil? && !current_user.guest? 
       redirect_to "/first"
     end
   end
