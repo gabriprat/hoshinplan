@@ -4,7 +4,7 @@ class FrontController < ApplicationController
   
   # Require the user to be logged in for every other action on this controller
   # except :index. 
-  skip_before_filter :my_login_required, :only => [:test_fail, :index, :pitch, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize, :reprocess_photos]
+  skip_before_filter :my_login_required, :only => [:test_fail, :index, :health_check, :pitch, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize, :reprocess_photos]
   
   def index
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
@@ -15,6 +15,8 @@ class FrontController < ApplicationController
       redirect_to current_user.hoshins.first
     elsif !current_user.nil? && !current_user.guest?
        redirect_to current_user
+    else
+      render "index"
     end
   end
   
@@ -197,9 +199,7 @@ class FrontController < ApplicationController
   end
   
   def health_check
-    if !current_user.nil? && !current_user.guest? 
-      redirect_to "/first"
-    end
+    index
   end
 
 end
