@@ -19,8 +19,6 @@ module ActionDispatch
     end
 
     def call(env)
-      return @app.call(env) if exclude?(env)
-
       request = Request.new(env)
 
       if request.ssl?
@@ -28,6 +26,8 @@ module ActionDispatch
         headers = hsts_headers.merge(headers)
         flag_cookies_as_secure!(headers)
         [status, headers, body]
+      elsif exclude?(env)
+        return @app.call(env)
       else
         redirect_to_https(request)
       end

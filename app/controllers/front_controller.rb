@@ -199,7 +199,15 @@ class FrontController < ApplicationController
   end
   
   def health_check
-    
+    if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
+      redirect_to "/first"
+    elsif !current_user.nil? && !current_user.guest? && current_user.respond_to?('tutorial_complete?') && !current_user.tutorial_complete? && current_user.hoshins.empty? && current_user.companies.size == 1
+      redirect_to current_user.companies.first
+    elsif !current_user.nil? && !current_user.guest? && current_user.respond_to?('tutorial_complete?') && !current_user.tutorial_complete? && current_user.hoshins.size == 1
+      redirect_to current_user.hoshins.first
+    elsif !current_user.nil? && !current_user.guest?
+       redirect_to current_user
+    end
   end
 
 end
