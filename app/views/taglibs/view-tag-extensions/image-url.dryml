@@ -5,6 +5,7 @@
 <def tag="view" for="Paperclip::Attachment" attrs='size'>
   <unless test="&@pdf">
   <% begin 
+  	size ||= 'thumb'
   	size_attr = (size == 'mini') ? '29x29' : '104x104'
   %>
   <image param src="#{this.url(size)}" srcset="#{this.url(size)} 1x, #{this.url(size + '2x')} 2x" size="&size_attr" merge-attrs if="&this.file?"/>

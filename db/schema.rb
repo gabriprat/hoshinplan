@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016180731) do
+ActiveRecord::Schema.define(version: 20151016194527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,7 +183,6 @@ ActiveRecord::Schema.define(version: 20151016180731) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
-    t.integer  "parent_id"
     t.text     "header"
     t.integer  "creator_id"
     t.integer  "objectives_count",           default: 0,        null: false
@@ -201,14 +200,15 @@ ActiveRecord::Schema.define(version: 20151016180731) do
     t.datetime "deleted_at"
     t.string   "color"
     t.string   "ancestry"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
-  add_index "hoshins", ["ancestry"], name: "index_hoshins_on_ancestry", using: :btree
-  add_index "hoshins", ["company_id", "parent_id"], name: "index_hoshins_on_company_id_and_parent_id", using: :btree
   add_index "hoshins", ["company_id"], name: "index_hoshins_on_company_id", using: :btree
   add_index "hoshins", ["creator_id"], name: "index_hoshins_on_creator_id", using: :btree
   add_index "hoshins", ["deleted_at"], name: "index_hoshins_on_deleted_at", using: :btree
-  add_index "hoshins", ["parent_id"], name: "index_hoshins_on_parent_id", using: :btree
   add_index "hoshins", ["state"], name: "index_hoshins_on_state", using: :btree
 
   create_table "indicator_histories", force: :cascade do |t|

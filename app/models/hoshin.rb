@@ -25,11 +25,36 @@ class Hoshin < ActiveRecord::Base
     color       Color
     timestamps
     deleted_at    :datetime
+    ancestry      :string
   end
   index [:deleted_at]
-  index [:company_id, :parent_id]  
+  
+  has_attached_file :image, {
+    :styles => {
+      :blur => "104x104#",
+      :thumb2x => "208x208#",
+      :thumb => "104x104#",
+      :mini2x => "58x58#",
+      :mini => "29x29#"
+    },
+    :convert_options => {
+      :blur => "-blur 0x12 -fill black -colorize 20% -quality 80 -interlace Plane",
+      :mini => "-quality 80 -interlace Plane",
+      :mini2x => "-quality 80 -interlace Plane",
+      :thumb => "-quality 80 -interlace Plane",
+      :thumb2x => "-quality 80 -interlace Plane"
+    },
+    :s3_headers => { 
+      'Cache-Control' => 'public, max-age=315576000', 
+      'Expires' => 10.years.from_now.httpdate 
+    },
+    :default_url => "/assets/default.jpg"
+  }
+  crop_attached_file :image
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :image, :less_than => 10.megabytes   
     
-  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :creator_id, :creator, :color
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :creator_id, :creator, :color, :image
     
   has_ancestry 
   

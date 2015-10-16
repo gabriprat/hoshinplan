@@ -1995,6 +1995,10 @@ ul.timeline {
 	clear: both;
 }
 
+.clear-both {
+	clear:both;
+}
+
 ul.timeline:after {
   content:"";
   z-index: 1;
@@ -3287,7 +3291,12 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 	}
 	.well {
 		margin-bottom: 0;
+		.view.hoshin-image {
+			float: left;
+			margin-right: 1em;
+		}
 	}
+	
 }
 
 @media (max-width:767px) {

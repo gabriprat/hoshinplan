@@ -134,8 +134,10 @@
         </div>
     </append-heading:>
     <body:>
+      <view:image if="&this.image.file?"/>
       <div><t key="created_by"/> <a:creator param="creator-link"/></div>
-      <ht key="area.collection.count" count="&this.areas.size"/>
+      <p><ht key="area.collection.count" count="&this.areas.size"/></p>
+      <br class="clear-both"/>
     </body:>
   </old-card>
 </extend>
@@ -151,19 +153,28 @@
 
 
 <extend tag="form" for="Hoshin">
-	<set parent="&this.company.hoshins.size > 0 ? ', parent' : ''" if="&this.company"/>
-	<old-form merge>
+	<set parent="&this.company.hoshins.size > 0 ? ', parent_id' : ''" if="&this.company"/>
+	<old-form merge multipart>
 	    <prepend-default:><submit style="width: 0; height: 0; display: inline; padding: 0; margin: 0; border: 0;" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/></prepend-default:>
-            <field-list: fields="name, header #{parent}, company" no-edit="view">
+            <field-list: fields="name, header #{parent}, company, image" no-edit="view">
 	    	<company-view:>
-			<select-one options="&current_user.all_companies" if="&current_user.all_companies.length &gt; 0" required/>
+			<select-one options="&current_user.all_companies.to_a" if="&current_user.all_companies.length &gt; 0" required/>
 			<else>
 				<input type="text" name="new-company-name"/>
 			</else>
 		</company-view:>
-		<parent-view:>
-			<select-one include-none="true"/>
-		</parent-view:>
+		<parent-id-view:>
+			<%
+				blank_message ||= ht("#{Hoshin.name.underscore}.messages.none", :default=>"No #{Hoshin.model_name.human} available.")
+				options = this_parent.company.hoshins.where(state: this_parent.state).where.not(id:this_parent.id)
+				select_options = options.map { |x| [name(:with => x, :no_wrapper => true), x.id] }
+				select_options.sort!
+				select_options.insert(0, [blank_message, ""])
+			%>			
+			<select name="#{param_name_for_this(true)}" class="form-control input belongs_to hoshin_parent">
+			    <%= options_for_select(select_options, this) %>
+			</select>
+		</parent-id-view:>
 	    </field-list:>
 	    <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
