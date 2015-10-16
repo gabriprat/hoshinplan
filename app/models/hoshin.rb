@@ -74,6 +74,15 @@ class Hoshin < ActiveRecord::Base
   validate :validate_company
   validate :validate_different_parent
   
+  amoeba do
+    enable
+    include_association :areas
+    include_association :objectives
+    include_association :indicators
+    include_association :tasks
+    include_association :goals
+  end
+  
   before_save do |hoshin|
     hoshin.color = hoshin.defaultColor if hoshin.color.blank?
   end
