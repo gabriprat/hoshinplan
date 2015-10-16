@@ -29,11 +29,11 @@
 			</h3>
 		</collection-heading:>
 		<collection: replace>
-			<collection with="&@active"/>
+			<tree-collection with="&@active"/>
 			<h3 class="collection-heading">
 			    <ht key="hoshin.company.archived_hoshins" count="100"/>
 			</h3>
-			<collection with="&@archived"/>
+			<tree-collection with="&@archived"/>
 		</collection:>
 		<new-link: replace/>
 	</old-show-page>

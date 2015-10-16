@@ -24,8 +24,8 @@ class CompaniesController < ApplicationController
     current_user.all_companies
     self.this = find_instance
     self.this.same_company_admin # load request variable to aviod queries in the template
-    @active = self.this.hoshins.active.includes(:creator).load
-    @archived = self.this.hoshins.archived.includes(:creator).load
+    @active = Hoshin.arrange_nodes(self.this.hoshins.active.includes(:creator).ordered_by_ancestry)
+    @archived = Hoshin.arrange_nodes(self.this.hoshins.archived.includes(:creator).ordered_by_ancestry)
     hobo_show
   end
   

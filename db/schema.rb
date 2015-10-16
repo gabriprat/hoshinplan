@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929142343) do
+ActiveRecord::Schema.define(version: 20151016180731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,8 +200,10 @@ ActiveRecord::Schema.define(version: 20150929142343) do
     t.datetime "key_timestamp"
     t.datetime "deleted_at"
     t.string   "color"
+    t.string   "ancestry"
   end
 
+  add_index "hoshins", ["ancestry"], name: "index_hoshins_on_ancestry", using: :btree
   add_index "hoshins", ["company_id", "parent_id"], name: "index_hoshins_on_company_id_and_parent_id", using: :btree
   add_index "hoshins", ["company_id"], name: "index_hoshins_on_company_id", using: :btree
   add_index "hoshins", ["creator_id"], name: "index_hoshins_on_creator_id", using: :btree

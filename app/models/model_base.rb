@@ -41,7 +41,7 @@ module ModelBase
   
   def rs_key(prefix, cid)
     user = acting_user ? acting_user : User.current_user
-    prefix.to_s + user.id.to_s + "-" + cid.to_s
+    prefix.to_s + user._?.id.to_s + "-" + cid.to_s
   end
   
   def same_company(cid=nil)
@@ -55,9 +55,9 @@ module ModelBase
   
   def _same_company(cid=nil)
     user = acting_user ? acting_user : User.current_user
-    return true if user.administrator?
+    return true if user._?.administrator?
      
-    if respond_to?("creator_id") && (user.id == creator_id)
+    if respond_to?("creator_id") && (user._?.id == creator_id)
       return true
     end
     if (self.all_user_companies.nil? && !user.nil?)
@@ -68,7 +68,7 @@ module ModelBase
     else
       cid = company_id ? company_id : Company.current_id if cid.nil?
     end
-    ret = self.all_user_companies.include? cid
+    ret = self.all_user_companies._?.include? cid
     ret
   end
   

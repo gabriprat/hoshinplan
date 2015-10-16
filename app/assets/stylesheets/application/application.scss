@@ -3275,8 +3275,19 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 
 .show-page.company .collection.hoshins li {
 	display: inline-block;
-	width: 30%;
-	margin: 0 1em;
+	width: 30vw;
+	margin: 0 20px 20px 0;
+	&.parent {
+		width: 100%;
+		border-left: 1px solid rgba(0,0,0,.2);
+		ul {
+			margin-top: 20px;
+			padding-left: 2em;
+		}
+	}
+	.well {
+		margin-bottom: 0;
+	}
 }
 
 @media (max-width:767px) {

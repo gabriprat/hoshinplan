@@ -1,0 +1,21 @@
+<def tag="tree-collection" attrs="to">
+    <%
+        def tree_ul(acts_as_tree_set, init=true, &block)
+            if acts_as_tree_set.size > 0
+                %><ul class="collection hoshins"><%
+                acts_as_tree_set.each do |item, children|
+                    %><li class="item #{'parent' if children.size > 0}"><%
+                    yield item
+                    tree_ul(children, false, &block) if children.size > 0
+                    %></li><%
+                end
+                %></ul><%
+            else
+                %>(none)<%
+            end
+        end     
+    %>
+    <% tree_ul(this, true) {|item| %>
+    	<card with="&item" param="default"/>
+    <% } %>
+</def>

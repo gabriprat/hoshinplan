@@ -29,14 +29,13 @@ class Hoshin < ActiveRecord::Base
   index [:deleted_at]
   index [:company_id, :parent_id]  
     
-  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :children, 
-    :children_ids, :creator_id, :creator, :color
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :creator_id, :creator, :color
+    
+  has_ancestry 
   
   belongs_to :creator, :class_name => "User", :creator => true, :inverse_of => :my_hoshins
 
   belongs_to :company, :inverse_of => :hoshins, :counter_cache => true
-  belongs_to :parent, :inverse_of => :children, :class_name => "Hoshin", :counter_cache => true
-  has_many :children, :inverse_of => :parent, :class_name => "Hoshin", :foreign_key => "parent_id", :dependent => :destroy
   
   has_many :areas, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
   has_many :objectives, -> { readonly }, :through => :areas, :inverse_of => :hoshin, :accessible => true
@@ -290,7 +289,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def parent_same_company
-    User.current_user.administrator? || parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
+    User.current_user._?.administrator? || parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
   end
   
   def validate_company
