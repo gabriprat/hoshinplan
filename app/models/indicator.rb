@@ -24,7 +24,7 @@ class Indicator < ActiveRecord::Base
   end
   index [:deleted_at]
     
-  validates_presence_of :objective_id, :name
+  validates_presence_of :name
   
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
    :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id, :show_on_parent,

@@ -80,6 +80,10 @@ Hoshinplan::Application.routes.draw do
       get 'activate'
       put 'archive', :action => 'do_archive'
       get 'archive'
+      put 'clone', :action => 'do_clone'
+      get 'clone'
+      put 'clone', :action => 'do_clone'
+      get 'clone'
     end
   end
 

@@ -77,10 +77,8 @@ class Hoshin < ActiveRecord::Base
   amoeba do
     enable
     include_association :areas
-    include_association :objectives
-    include_association :indicators
-    include_association :tasks
     include_association :goals
+    prepend :name => I18n.t("copy_of") + " " 
   end
   
   before_save do |hoshin|
@@ -101,10 +99,20 @@ class Hoshin < ActiveRecord::Base
     create :create, :become => :active
     transition :activate, { :archived => :active }, :available_to => :transition_available
     transition :archive, { :active => :archived }, :available_to => :transition_available
+    transition :clone, {:active => :active}, :available_to => :clone_available do 
+      b = self.amoeba_dup 
+      fail b.areas[1].objectives[1].indicators[0].errors.inspect unless b.areas[1].objectives[1].indicators[0].valid?
+      b.save
+    end
+    transition :clone, {:archived => :archived}, :available_to => :clone_available do self.amoeba_dup.save! end
   end  
   
   def transition_available
     return acting_user if same_creator || same_company_admin
+  end
+  
+  def clone_available
+    return acting_user if same_company
   end
   
   default_scope lambda {

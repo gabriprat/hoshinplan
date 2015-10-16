@@ -16,6 +16,11 @@ class Area < ActiveRecord::Base
     deleted_at    :datetime
   end
   index [:deleted_at]
+  
+  amoeba do
+    enable
+    include_association :objectives
+  end
     
   validates_presence_of :name
 

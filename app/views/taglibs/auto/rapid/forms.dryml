@@ -94,6 +94,17 @@
     </div>
   </form>
 </def>
+<def tag="clone-form" polymorphic/>
+<def tag="clone-form" for="Hoshin">
+  <form lifecycle="clone" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.hoshin.lifecycle.transitions.clone', :default=>['Clone']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="IndicatorHistory">
   <form merge param="default">

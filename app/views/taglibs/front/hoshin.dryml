@@ -145,8 +145,10 @@
 <extend tag="edit-page" for="Hoshin">
 	<old-edit-page merge>
 		<append-content-header:>
-			<transition-buttons class="form-horizontal pull-right"/>
-			<a class="view-log pull-right" href="/log/#{this.class.model_name.to_s.downcase.pluralize}/#{this.id}" title="#{t 'view_log'}"><span class="ic-file-text-o"><t key="view_log"/></span></a>
+			<transition-buttons class="form-horizontal pull-buttons-right"/>
+			<div class="form-horizontal">
+			<a class="view-log pull-right btn input-prepend" href="/log/#{this.class.model_name.to_s.downcase.pluralize}/#{this.id}" title="#{t 'view_log'}"><span class="ic-file-text-o"><t key="view_log"/></span></a>
+			</div>
 		</append-content-header:>
 	</old-edit-page>
 </extend>

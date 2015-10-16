@@ -5,6 +5,7 @@ es:
   i_agree: Entendido
   new: Nuevo
   beta: Beta
+  copy_of: Copia de
   drag_a_file: Arrastra una foto aquí
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
   value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
@@ -257,8 +258,9 @@ es:
         creator: Responsable
         lifecycle:
           transitions:
-            activate: Activar hoshin
-            archive: Archivar hoshin
+            activate: Activar
+            archive: Archivar
+            clone: Clonar
       goal:
         name: Nombre
       area:

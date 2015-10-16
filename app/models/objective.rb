@@ -15,6 +15,12 @@ class Objective < ActiveRecord::Base
     deleted_at    :datetime
   end
   index [:deleted_at]
+  
+  amoeba do
+    enable
+    include_association :tasks
+    include_association :indicators
+  end
     
   validates_presence_of :name
     

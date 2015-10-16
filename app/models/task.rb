@@ -26,7 +26,7 @@ class Task < ActiveRecord::Base
   index [:area_id, :status]
   index [:hoshin_id, :status]
     
-  validates_presence_of :objective, :name
+  validates_presence_of :name
   
   
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
@@ -219,7 +219,10 @@ class Task < ActiveRecord::Base
       
   end
   
-  before_save do |task|    
+  before_save do |task|        
+    if task.area.nil?
+      task.area = task.objective.area
+    end
     if task.original_deadline.nil? && !task.deadline.nil?
       task.original_deadline = task.deadline
     end

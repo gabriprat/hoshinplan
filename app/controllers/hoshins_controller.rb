@@ -112,5 +112,13 @@ class HoshinsController < ApplicationController
       hobo_ajax_response
     end
   end
+  
+  def do_clone
+    do_transition_action :clone do
+      if valid?
+        redirect_to self.this.company
+      end
+    end
+  end
 
 end
