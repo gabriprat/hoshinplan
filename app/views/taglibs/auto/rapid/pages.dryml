@@ -969,7 +969,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="day, company, indicator" param/>
+      <field-list fields="company, indicator" param/>
     </content-body:>
 
   </page>

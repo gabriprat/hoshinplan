@@ -109,7 +109,7 @@
 <def tag="form" for="IndicatorEvent">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="day, name, company, creator, indicator" param/>
+    <field-list fields="company, creator, indicator" param/>
     <div param="actions">
       <submit label="#{ht 'indicator_event.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
