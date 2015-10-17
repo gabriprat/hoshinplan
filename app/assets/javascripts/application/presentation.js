@@ -66,6 +66,7 @@ var startPresentation = function() {
 	$('.slide-page').css({position:'absolute', left:0, top:0, outline: '1px solid transparent'});
 	showSlide(currentSlide);
 	equalHeightSections();
+	enterFullscreen();
 }
 
 var endPresentation = function() {
@@ -76,6 +77,12 @@ var endPresentation = function() {
 	$('.slide-page').removeAttr('style');
 	presenting = false;
 	setTimeout(equalHeightSections,500);
+	exitFullscreen();
+}
+
+function isFullscreen() {
+	return (document.fullscreenElement ||    // alternative standard method
+		document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
 }
 
 /**
@@ -85,20 +92,44 @@ var endPresentation = function() {
  * @see https://developer.mozilla.org/en-US/docs/DOM/Using_fullscreen_mode
  */
 function enterFullscreen() {
+	if (document.documentElement.requestFullscreen) {
+		document.documentElement.requestFullscreen();
+	} else if (document.documentElement.msRequestFullscreen) {
+		document.documentElement.msRequestFullscreen();
+	} else if (document.documentElement.mozRequestFullScreen) {
+		document.documentElement.mozRequestFullScreen();
+	} else if (document.documentElement.webkitRequestFullscreen) {
+		document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+	}
+}
 
-        var element = document.body;
+function exitFullscreen() {
+	if (document.exitFullscreen) {
+		document.exitFullscreen();
+	} else if (document.msExitFullscreen) {
+		document.msExitFullscreen();
+	} else if (document.mozCancelFullScreen) {
+		document.mozCancelFullScreen();
+	} else if (document.webkitExitFullscreen) {
+		document.webkitExitFullscreen();
+	}
+}
 
-        // Check which implementation is available
-        var requestMethod = element.requestFullScreen ||
-                                                element.webkitRequestFullscreen ||
-                                                element.webkitRequestFullScreen ||
-                                                element.mozRequestFullScreen ||
-                                                element.msRequestFullScreen;
+function toggleFullscreen() {
+	if (isFullscreen()) {
+		exitFullscreen();
+	} else {
+		enterFullscreen();
+	}
+}
 
-        if( requestMethod ) {
-                requestMethod.apply( element );
-        }
-
+function fsChange() {
+	if (isFullscreen()) {
+		$('body').prepend('');
+		startPresentation();
+	} else {
+		endPresentation();
+	}
 }
 
 var attachKeyEvents = function() {
@@ -121,5 +152,6 @@ var attachKeyEvents = function() {
 		        case 70: enterFullscreen(); break;
 		}
 	});
+	$(document).on("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", fsChange );
 }
 $(document).ready(attachKeyEvents);

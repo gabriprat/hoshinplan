@@ -121,6 +121,7 @@
 				</div>
 				</modal:>
 			</modal>
+			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help"/></div>
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>

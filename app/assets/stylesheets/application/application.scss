@@ -1,5 +1,12 @@
 @import "colors.scss";
 
+:-webkit-full-screen {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	background: none;
+}
+
 .ic-fw {
   width: 1.2857142857142858em;
   text-align: center;
@@ -353,6 +360,23 @@ html input {
 
 html body.presenting, html body.presenting input {
 	font-size: 23px;
+}
+
+html body .presentation-help {
+        display: none;
+        position: fixed;
+        left: 42em;
+        right: 0;
+        padding: 1em 2em;
+        margin: 2em;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 15px;
+        color: #fff;
+        font-size: .5em;
+}
+
+html body.presenting .presentation-help {
+	display: block;
 }
 
 html body.presenting input {
