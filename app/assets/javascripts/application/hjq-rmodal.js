@@ -27,7 +27,6 @@
 		}
 		target.modal('show'); 
 		target.on('hide', function (e) {
-			alert(1);
 			$('body').removeClass("modal-open");
 		});
 		return false;

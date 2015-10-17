@@ -365,18 +365,14 @@ html body.presenting, html body.presenting input {
 html body .presentation-help {
         display: none;
         position: fixed;
-        left: 42em;
+        left: 35em;
         right: 0;
         padding: 1em 2em;
         margin: 2em;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.5);
         border-radius: 15px;
         color: #fff;
-        font-size: .5em;
-}
-
-html body.presenting .presentation-help {
-	display: block;
+        font-size: .6em;
 }
 
 html body.presenting input {
@@ -694,6 +690,46 @@ body.hoshin div.goals {
 	background: $background-color;
 	border-left: 5em solid $secondary-background-color;
 	position: relative;
+}
+
+body.hoshin.presenting {
+	div.goals {
+		border-left: 0;
+		padding: 0;
+		h3 {
+			font-size: 3em;
+			font-weight: 100;
+			font-family: $primary-font-stack;
+			position: static;
+			display: block;
+			background-color: #25a9e0;
+			padding: .2em;
+			&:before {
+				content:  attr(title);
+			}
+		}
+		ul {
+			padding: 1em;
+		}
+	}
+	.hoshin-header {
+		padding: 0;
+		margin-bottom: 1em;
+		&:before {
+			content: attr(title);
+			display: block;
+			color: white;
+			font-size: 3em;
+			font-family: $primary-font-stack;
+			font-weight: 100;
+			background-color: #25a9e0;
+			padding: .2em;
+			line-height: 1em;
+		}
+		p {
+			padding: 1em;
+		}
+	}
 }
 
 body.hoshin ul.collection.goals {
@@ -1066,7 +1102,6 @@ body button.close {
 	line-height: 14px;
 	padding-bottom: .2em;
 }
-
 .front-page .alert {
 	position: fixed;
 	right: 2em;
@@ -1465,7 +1500,7 @@ body .column.feeling {
 		background-color: rgb(206, 250, 151);
 		background-image: -ms-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
 		background-image: -moz-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
-		background-image: -o-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
+		background-image: -o-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, tent 90%);
 		background-image: -webkit-gradient(linear, right top, left top, color-stop(10, transparent), color-stop(10, rgb(206, 250, 151)), color-stop(90, rgb(206, 250, 151)), color-stop(90, transparent));
 		background-image: -webkit-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
 		background-image: linear-gradient(to left, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);

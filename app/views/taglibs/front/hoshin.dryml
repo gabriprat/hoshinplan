@@ -70,10 +70,10 @@
 		
 		<content-body: >
 		        <%# swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?" %>
-			<div class="fixed-x">
-				<view:header class="well slide-page" unless="&this.header.empty?"/>
+			<div class="fixed-x slide-page">
+				<view:header class="well" title="&Hoshin.human_attribute_name('header')" unless="&this.header.empty?"/>
 				<div id="goals" part="goals">
-					<div class="goals well slide-page" if="&this.goals">
+					<div class="goals well" if="&this.goals">
 						<h3 title="#{Goal.model_name.human(:count => 100).to_s}" class="ic-bullseye"></h3>
 						<sortable-collection:goals />
 					</div>
@@ -121,7 +121,7 @@
 				</div>
 				</modal:>
 			</modal>
-			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help"/></div>
+			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help" html-safe/></div>
 		</content-body:>
 		<field-list: fields=""/>
 	 </old-show-page>

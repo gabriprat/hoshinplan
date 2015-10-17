@@ -1,5 +1,5 @@
 
-var PRESENTATION_SELECTOR = '.slide-page,div.navbar,div.content-header,div.hoshin-header,.footer';
+var PRESENTATION_SELECTOR = '.slide-page,div.navbar,div.content-header,.footer';
 
 var presenting = false;
 var currentSlide = 1;
@@ -125,7 +125,10 @@ function toggleFullscreen() {
 
 function fsChange() {
 	if (isFullscreen()) {
-		$('body').prepend('');
+		$(".presentation-help").fadeIn(1000);
+		window.setTimeout(function() {
+			$(".presentation-help").fadeTo(1500, 0);
+		}, 15000);
 		startPresentation();
 	} else {
 		endPresentation();

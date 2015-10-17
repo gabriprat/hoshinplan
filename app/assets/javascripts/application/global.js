@@ -440,7 +440,6 @@ $(document).ready(function() {
 	$('.modal').on('hidden.bs.modal', function (e) {
 		$('body').removeClass("modal-open");
 	});
-	$(".alert").css("display", "none").fadeIn(1000);
 	window.setTimeout(function() {
 	    $(".alert.alert-info,.alert.alert-success").fadeTo(1500, 0).slideUp(500, function(){
 	        $(this).remove(); 

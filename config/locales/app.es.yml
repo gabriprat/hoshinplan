@@ -255,7 +255,7 @@ es:
         domain: Dominio
       hoshin:
         name: Nombre
-        header: Cabecera
+        header: Descripción
         parent: Padre
         company: Empresa
         creator: Responsable
@@ -371,7 +371,7 @@ es:
     tasks_health: "Salud de tus tareas: %{health}%"
     click_to_know: Haz click para saber cómo llevar tu Hoshinplan al 100%
     see_detailed_health: Ver un informe de salud detallado
-    presentation_help: Utiliza las teclas de cursor para moverte entre secciones y ESC para salir del modo presentación.
+    presentation_help: Utiliza las teclas de cursor <kbd>←</kbd> / <kbd>→</kbd> para moverte entre secciones y <kbd>esc</kbd> para salir del modo presentación.
   health:
     health_for: Salud para %{name}
     top_users_with_pending: Ranking de usuarios con más acciones pendientes
