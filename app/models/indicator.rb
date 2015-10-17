@@ -36,6 +36,8 @@ class Indicator < ActiveRecord::Base
   #from being updated just before being destroyed and creating errors
   has_many :indicator_histories, -> { order :day }, :dependent => :delete_all, :inverse_of => :indicator
   
+  has_many :indicator_events, -> { order :day }, :dependent => :destroy, :inverse_of => :indicator
+  
   has_many :log, :class_name => "IndicatorLog", :inverse_of => :indicator
   
   belongs_to :company, :null => false

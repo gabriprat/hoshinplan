@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016194527) do
+ActiveRecord::Schema.define(version: 20151017002134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,6 +210,21 @@ ActiveRecord::Schema.define(version: 20151016194527) do
   add_index "hoshins", ["creator_id"], name: "index_hoshins_on_creator_id", using: :btree
   add_index "hoshins", ["deleted_at"], name: "index_hoshins_on_deleted_at", using: :btree
   add_index "hoshins", ["state"], name: "index_hoshins_on_state", using: :btree
+
+  create_table "indicator_events", force: :cascade do |t|
+    t.date     "day",          null: false
+    t.string   "name",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
+    t.integer  "company_id",   null: false
+    t.integer  "indicator_id", null: false
+  end
+
+  add_index "indicator_events", ["company_id"], name: "index_indicator_events_on_company_id", using: :btree
+  add_index "indicator_events", ["creator_id"], name: "index_indicator_events_on_creator_id", using: :btree
+  add_index "indicator_events", ["indicator_id", "day"], name: "index_indicator_events_on_indicator_id_and_day", using: :btree
+  add_index "indicator_events", ["indicator_id"], name: "index_indicator_events_on_indicator_id", using: :btree
 
   create_table "indicator_histories", force: :cascade do |t|
     t.decimal  "value"

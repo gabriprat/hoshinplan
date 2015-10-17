@@ -1,0 +1,17 @@
+<def tag="scard" for="IndicatorEvent">
+	<scard class="indicator table-row" param="default" merge>
+	  <div class="column" data-label="Day"><view:day/></div>
+	  <div class="column" data-label="Name"><view:name/></div>
+	  <div class="column nowrap" data-label="Actions"> 
+		  <ul class="icons">
+		  	<li>
+				<% if can_delete?(this) %>
+					<form method='delete' updates="#chart, #events">
+					      <button class="btn" type="submit"><i class="ic-trash"></i></button>
+					</form>    
+				  <% end %>
+			</li>
+		</ul>
+	  </div>
+	</scard>
+</def>

@@ -38,7 +38,7 @@
 			    return content + '<a href="javascript:deleteHistory(' + row.id + ', \\'' + dateFormatDefault(row.day) + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>'
 			  }
 		</script>
-		<section class="panel indicator-chart">
+		<section class="panel indicator-chart" part="chart">
 		        <header class="panel-heading clearfix">
 		            <p class="inline"><t key="history.historic_values">Historic values and goals</t></p>
     			<div class="history-actions">
@@ -72,6 +72,8 @@
 				data="&this.indicator_histories.map{|i| {id: i.id, day: i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}" 
 	    			
 	    			xkey="day"
+				events="&this.indicator_events.map {|event| event.day }"
+				eventLineColors="#2f4154"
 	    		  	ykeys="value,goal,previous,inc"
 				yaxes="y,y,y,y2"
 	    		  	labels="#{t 'value_goal_previous'}"
@@ -92,6 +94,40 @@
 	    		/>
 		        </div>
 	    	</section>
+		<div class="col-md-6 col-md-offset-3">
+		<section class="panel" part="events">
+			<header class="panel-heading">
+			            <p class="inline"><model-name-human with="&IndicatorEvent" count="100"/></p>
+	    			<div class="history-actions">
+		    		<a href="#{indicator_path this}/indicator_events/new" onclick="$('#add-event-modal').modal('show'); $('#add-event-modal form').trigger('reset'); return false;" class="btn pull-right btn-primary">
+		                <ht key="indicator_event.actions.new" name="#{name(:no_wrapper => true)}"/>
+		    		</a>
+				</div>
+			</header>
+			<div class="panel-body">
+				<rtable:indicator_events columns="Day, Description, Actions"/>
+				<else><ht key='indicator_event.collection.empty_message'/></else>
+			</div>
+		</section>
+		</div>
+		<modal id="add-event-modal">
+			<modal:>
+			<set hid="#{this.id}"/>
+			<div class="modal-dialog">
+			<% iid = this.id %>
+			<form with="&IndicatorEvent.new" success="$('#add-event-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" updates="#chart,#events" class="modal-content">
+				<div class="modal-body">
+					<field-list: fields="name, day">
+						<day-view:><input class="form-control" required/></day-view:>
+						<name-view:><input class="form-control" required/></name-view:>
+					</field-list:>
+					<hidden-field:indicator_id value="#{iid}"/>
+				</div>
+				<modal-form-footer/>
+			</form>
+			</div>
+			</modal:>
+		</modal>
 		<form class="hide" action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
 		</form>
 	</content-body:>

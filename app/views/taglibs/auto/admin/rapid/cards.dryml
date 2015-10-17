@@ -176,6 +176,17 @@
   </card>
 </def>
 
+<def tag="card" for="IndicatorEvent">
+  <card class="indicator-event" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="IndicatorHistory">
   <card class="indicator-history" param="default" merge>
     <body: param>

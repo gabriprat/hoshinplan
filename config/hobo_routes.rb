@@ -98,6 +98,20 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller indicator_events
+  resources :indicator_events, :only => [:edit, :show, :create, :update, :destroy]
+
+  # Owner routes for controller indicator_events
+  resources :indicators, :as => :indicator, :only => [] do
+    resources :indicator_events, :only => [] do
+      get '/', :on => :new, :action => 'new_for_indicator'
+      collection do
+        post '/', :action => 'create_for_indicator'
+      end
+    end
+  end
+
+
   # Resource routes for controller indicator_histories
   resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
 

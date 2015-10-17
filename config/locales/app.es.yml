@@ -216,6 +216,9 @@ es:
       payment:
         one: Suscripción
         other: Suscripciones
+      indicator_event:
+        one: Evento
+        other: Eventos
     attributes:
       user:
         name: Nombre
@@ -516,6 +519,8 @@ es:
       Email: Email
       State: Estado
       Actions: Acciones
+      Day: Día
+      Description: Descripción
   date:
     input:
       formats:

@@ -883,6 +883,154 @@
 
 
 
+<!-- ====== IndicatorEvent Pages ====== -->
+
+<def tag="index-page" for="IndicatorEvent">
+  <page merge title="#{ht 'indicator_event.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page indicator-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_event.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="indicator_event.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="indicator_event.form.new.heading">New Indicator event</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(IndicatorEvent)" param/>
+      </div>
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="IndicatorEvent">
+  <page merge title="#{ht 'indicator_event.new.title', :default=>[' New Indicator event'] }">
+    <body: class="new-page indicator-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_event.new.heading">
+          New Indicator event
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'indicator_event.actions.create', :default=>['Create Indicator event']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="IndicatorEvent">
+  <page merge title="#{ht 'indicator_event.show.title', :default=>['Indicator event'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page indicator-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_event.show.heading" name="#{name(:no_wrapper => true)}">
+          Indicator event <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a:creator param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="indicator_event.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Indicator event
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="day, company, indicator" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="IndicatorEvent">
+  <page merge title="#{ht 'indicator_event.edit.title', :default=>['Edit Indicator event'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page indicator-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_event.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Indicator event
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'indicator_event.actions.delete', :default=>['Remove This Indicator event']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-indicator-page" polymorphic/>
+<def tag="new-for-indicator-page" for="IndicatorEvent">
+  <page merge title="#{ht 'indicator_event.new_for_owner.title', :default=>['New Indicator event for']} #{name :with => @indicator}">
+    <body: class="new-for-owner-page  indicator-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_event.new_for_owner.heading">
+          New Indicator Event
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="indicator_event.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@indicator"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="indicator" method="post" param>
+        <field-list: skip="indicator"/>
+        <submit: label="#{ht 'indicator_event.actions.create', :default=>['Create Indicator event']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== IndicatorHistory Pages ====== -->
 
 <def tag="index-page" for="IndicatorHistory">
