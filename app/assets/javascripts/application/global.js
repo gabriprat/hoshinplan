@@ -231,6 +231,7 @@ $(document).ready(function () {
 
 function fixedHorizontal() {
 	if ($("html.pdf").length > 0) { return; }
+	if (typeof presenting != "undefined" && presenting) return;
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"margin-left": "0"}); 
 		$(this).css({"width": "auto"});
@@ -243,7 +244,6 @@ function fixedHorizontal() {
 
 
 $(window).scroll(function () {
-	if (typeof presenting != "undefined" && presenting) return;
         fixedHorizontal();
 });
 
