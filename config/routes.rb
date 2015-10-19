@@ -22,8 +22,6 @@ Hoshinplan::Application.routes.draw do
 
   get 'health_check' => 'front#health_check', :as => 'health_check'
 
-  get 'uri-dir-report' => 'front#uri_dir_report', :as => 'uri_dir_report'
-
   get 'about' => 'cms#page', :as => 'cms_about', :key => :about
 
   get 'features' => 'cms#page', :as => 'cms_features', :key => :features

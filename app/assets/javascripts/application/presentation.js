@@ -133,16 +133,20 @@ function fsChange() {
 	} else {
 		endPresentation();
 	}
+	$(".modal").modal("hide");
 }
 
 var attachKeyEvents = function() {
 	$('body').keydown(function(e){
+		if (isModalShown()) {
+			return;
+		}
 		if (e.which==122 || (e.metaKey && (e.shiftKey || e.ctrlKey) && e.which == 70)) {
 			e.preventDefault();
 			enterFullscreen();
 			return;
 		}
-		if (!presenting) {
+		if (!presenting || isInputFocused()) {
 			return;
 		}
 		switch( e.which ) {

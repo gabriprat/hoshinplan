@@ -10,17 +10,12 @@ gem 'pg'
 
 gem 'json'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets, :development do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-
-  gem 'uglifier', '>= 1.3.0'
-  gem 'raphaeljs-rails'
-  gem 'morrisjs-rails', :git => 'git://github.com/gabriprat/morrisjs-rails'
-  gem 'yui-compressor'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier', '>= 1.3.0'
+gem 'raphaeljs-rails'
+gem 'morrisjs-rails', :git => 'git://github.com/gabriprat/morrisjs-rails'
+gem 'yui-compressor'
 
 gem 'jquery-rails'
 gem 'jquery-cookie-rails'

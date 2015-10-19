@@ -509,5 +509,10 @@ var mapImpactFilterAnchor = function() {
 	location.hash = '#min-' + min;
 }
 
-
+var isInputFocused = function() {
+	return $.inArray($(document.activeElement)[0].tagName, ["INPUT", "SELECT", "TEXTAREA"]) >= 0;
+}
+var isModalShown = function() {
+	return $(".modal").toArray().reduce(function(a,b) { return (($(b).data('bs.modal') || {}).isShown) || a }, false);
+}
 
