@@ -13,7 +13,7 @@
     :style_src => "'self' 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
     :script_src => "'self' 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com cdn.mxpnl.com",
     :img_src => "'self' doc.hoshinplan.com static.hoshinplan.com staticdoc.hoshinplan.com hoshinplan.s3-eu-west-1.amazonaws.com shield.sitelock.com cdn.mxpnl.com stats.g.doubleclick.net www.google-analytics.com",
-    :report_uri => "/uri-dir-reports"
+    :report_uri => "/uri_dir_reports"
   }
   config.hpkp = false
 end
