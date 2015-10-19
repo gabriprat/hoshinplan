@@ -12,20 +12,15 @@ gem 'json'
 
 # Gems used only for assets and not required
 # in production environments by default.
-#group :assets do
+group :assets, :development do
   gem 'sass-rails'
   gem 'coffee-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  #gem 'libv8'
-  #gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.3.0'
-  #gem 'less'
   gem 'raphaeljs-rails'
   gem 'morrisjs-rails', :git => 'git://github.com/gabriprat/morrisjs-rails'
   gem 'yui-compressor'
-#end
+end
 
 gem 'jquery-rails'
 gem 'jquery-cookie-rails'
@@ -49,7 +44,6 @@ gem 'puma'
 gem "omniauth-openid"
 gem "omniauth-saml"
 gem "omniauth-google-oauth2"
-gem "google-api-client"
 
 gem "hobo"
 gem "hobo_fields"
@@ -71,7 +65,7 @@ gem "ancestry"
 gem "ruby-hmac"
 gem "ruby-openid"
 gem "hobo_omniauth", :git => "git://github.com/gabriprat/hobo_omniauth.git"
-#gem 'gem_bench', :group => :console
+
 gem "clockwork"
 gem "protected_attributes"
 
@@ -92,7 +86,6 @@ gem 'redcloth-rails'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
 gem 'murmurhash3'
-gem 'heroku-deflater', :group => :production
 gem 'excon'
 gem "faraday"
 gem 'rails-observers'
@@ -113,7 +106,6 @@ gem 'resque'
 gem 'resque-delay', :git => "git://github.com/rykov/resque-delay.git"
 gem 'paranoia'
 gem "secure_headers", :require => 'secure_headers'
-gem 'tunemygc'
 gem 'papercrop'
 gem 'responders', '~> 2.0'
 gem 'flipper'
