@@ -97,10 +97,12 @@ class FrontController < ApplicationController
   end
   
   def expirecaches
+    Dryml.clear_cache
+    Dryml.precompile_taglibs
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
     
-    @text = Jobs::ExpireCaches.new.perform
+    @text = Jobs::ExpireCaches.perform
     render :text => @text, :content_type => Mime::TEXT
   end
   
