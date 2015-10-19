@@ -11,10 +11,22 @@ class UsersController < ApplicationController
   skip_before_filter :my_login_required, :only => :omniauth_callback
   
   after_filter :update_data, :only => :omniauth_callback
+  
+  before_filter :collect_azure_attributes, :only => :omniauth_callback
       
   include HoboOmniauth::Controller
   
   include RestController
+  
+  def collect_azure_attributes
+    if request.env["omniauth.auth"]["info"] && request.env["omniauth.auth"]["info"]["email"].nil?
+      extra = request.env["omniauth.auth"].extra._?.raw_info.to_h
+      request.env["omniauth.auth"]["info"]["email"] ||= extra["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"][0]
+      request.env["omniauth.auth"]["info"]["first_name"] ||= extra["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"][0]
+      request.env["omniauth.auth"]["info"]["last_name"] ||= extra["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"][0]
+      request.env["omniauth.auth"]["info"]["name"] ||= extra["http://schemas.microsoft.com/identity/claims/displayname"][0]
+    end
+  end
   
   def create_auth_cookie
     cookies[:auth_token] = { :value => "#{current_user.remember_token} #{current_user.class.name}",
