@@ -340,6 +340,7 @@ es:
           transitions:
             activate: Activar hoshin
             archive: Archivar hoshin
+            clone: Clonar hoshin
       user:
         lifecycle:
           transitions:

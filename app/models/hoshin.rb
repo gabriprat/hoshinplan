@@ -77,11 +77,13 @@ class Hoshin < ActiveRecord::Base
     enable
     include_association :areas
     include_association :goals
-    prepend :name => I18n.t("copy_of") + " "
     nullify :image_file_name
     nullify :image_content_type
     nullify :image_file_size
     nullify :image_updated_at
+    customize(lambda { |original, clone|
+      clone.name = I18n.t('copy_of', default: 'Copy of') + " " + clone.name
+    })
   end
   
   before_save do |hoshin|

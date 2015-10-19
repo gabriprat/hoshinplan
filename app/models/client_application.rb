@@ -15,7 +15,7 @@ class ClientApplication < ActiveRecord::Base
     deleted_at    :datetime
   end
   index [:deleted_at]
-  attr_accessible :name, :description, :user, :user_id
+  attr_accessible :name, :description
   attr_readonly :key, :secret
   
   belongs_to :user, :inverse_of => :client_applications

@@ -341,6 +341,7 @@ en:
           transitions:
             activate: Activate hoshin
             archive: Archive hoshin
+            clone: Clone hoshin
       user:
         lifecycle:
           transitions:

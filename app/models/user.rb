@@ -137,9 +137,12 @@ class User < ActiveRecord::Base
   end
   
   default_scope lambda { 
-    where(:id => UserCompany.select(:user_id)
-      .where('company_id=?',  
-        Company.current_id) ) unless Company.current_id.nil? }    
+    if Company.current_id
+      where(id: UserCompany.select(:user_id).where(company_id: Company.current_id))
+    elsif User.current_id && User.current_id != -1
+      where(id: UserCompany.select(:user_id).all)
+    end
+ }    
        
   TODAY_SQL = "date_trunc('day',now() at time zone coalesce(users.timezone, 'Europe/Berlin'))"
   
