@@ -137,6 +137,11 @@ function fsChange() {
 
 var attachKeyEvents = function() {
 	$('body').keydown(function(e){
+		if (e.which==122 || (e.metaKey && (e.shiftKey || e.ctrlKey) && e.which == 70)) {
+			e.preventDefault();
+			enterFullscreen();
+			return;
+		}
 		if (!presenting) {
 			return;
 		}
@@ -144,15 +149,13 @@ var attachKeyEvents = function() {
 			// esc
 			case 27: endPresentation(); break;
 		        // left
-		        case 37: navigatePrev(); break;
+		        case 37: e.preventDefault(); navigatePrev(); break;
 		        // right
-		        case 39: navigateNext(); break;
+		        case 39: e.preventDefault(); navigateNext(); break;
 		        // home
-		        case 36: showSlide( 0 ); break;
+		        case 36: e.preventDefault(); showSlide( 0 ); break;
 		        // end
-		        case 35: showSlide( Number.MAX_VALUE ); break;
-		        // f
-		        case 70: enterFullscreen(); break;
+		        case 35: e.preventDefault(); showSlide( Number.MAX_VALUE ); break;
 		}
 	});
 	$(document).on("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", fsChange );
