@@ -4,7 +4,7 @@
 		v.is_a?(ActiveRecord::Validations::PresenceValidator) && 
 		v.attributes.include?(this_field_reflection.name) 
 		}.nil?
-	attributes[:required] = "required" if required
+	attributes[:required] ||= "required" if required
 	%>
 	<old-select-one class="form-control" merge>
 	</old-select-one>
