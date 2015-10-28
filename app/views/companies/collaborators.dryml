@@ -61,6 +61,14 @@
 							</button>
 						</button:>
 					</transition-button>
+					<transition-button transition="make_admin" success="location.reload();">
+						<form: class="inline-form"/>
+						<button: replace>
+							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>:make_admin.to_s.titleize)}">
+								<span class="ic-key ic-fw"></span>
+							</button>
+						</button:>
+					</transition-button>
 				</if>
 				<if test="&this.state == 'admin'">
 					<transition-button transition="revoke_admin" success="location.reload();">
