@@ -66,7 +66,7 @@ class Objective < ActiveRecord::Base
 
     indicator_cond = includes([:area, :responsible])
     .where(Indicator.unscoped
-        .where(indicator[:objective_id].in(subq))
+        .where(indicator[:objective_id].in(subq).and(indicator[:deleted_at].eq(nil)))
         .exists.not).references(:responsible)
   }
   
