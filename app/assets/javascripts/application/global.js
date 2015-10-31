@@ -36,9 +36,6 @@ var validateDate = function(formElem) {
 	}
 	return true;
 }
-$(document).ready(loadKanban);
-$(window).on("popstate", loadKanban);
-
 var loadKanban = function() {
 	try {
 		if ($("body.kanban.show-page").length < 1) {
@@ -66,6 +63,13 @@ var loadKanban = function() {
 		window.location.hash = "";
 	}
 }
+$(document).ready(function() {
+	if ($("body.kanban.show-page").length >= 1) {
+		$(window).on("popstate", loadKanban);
+		loadKanban();
+	}
+});
+
 
 var doFilterPostits = function(colors, showMine) {
 	var selector = "";

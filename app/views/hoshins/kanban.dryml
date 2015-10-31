@@ -3,6 +3,7 @@
 		<a with="&this_parent" class="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this.to_s" /></a>
 	</parent-link:>
 	<heading: class="only-print"/>
+	<body: class="kanban"/>
 	<content-body:>
 		<div class="kb-colors">
 			<repeat:areas part="colors">
