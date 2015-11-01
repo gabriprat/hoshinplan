@@ -21,7 +21,7 @@ class Hoshin < ActiveRecord::Base
     hoshins_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextileString
     health_updated_at :datetime
-    color       Color
+    color       Color 
     timestamps
     deleted_at    :datetime
     ancestry      :string
@@ -336,7 +336,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def parent_same_company
-    User.current_user._?.administrator? || parent_id.nil? || Hoshin.find(parent_id).company_id == company_id
+    User.current_user._?.administrator? || parent_id.nil? || Hoshin.unscoped.find(parent_id).company_id == company_id
   end
   
   def validate_company
