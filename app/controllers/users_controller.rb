@@ -115,7 +115,7 @@ class UsersController < ApplicationController
   end
   
   def login
-    unless params[:force]
+    unless params[:force] || request.post? && params[:login].nil?
       hobo_login do
         if performed?
           redirect_to home_page 
