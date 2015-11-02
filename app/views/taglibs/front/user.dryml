@@ -1,9 +1,14 @@
+<extend tag="form" for="User">
+  <old-form merge multipart>
+    <field-list: fields="firstName, lastName, email_address, timezone, language"/>
+  </old-form>
+</extend>
+
 <extend tag="signup-form" for="User">
   <old-signup-form merge multipart>
     <field-list: fields="email_address, password, password_confirmation, timezone, language"/>
   </old-signup-form>
 </extend>
-
 
 <extend tag="show-page" for="User">
 <old-show-page merge>
