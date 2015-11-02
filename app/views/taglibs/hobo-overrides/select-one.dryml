@@ -2,7 +2,7 @@
 	<% 
 	required = !this_parent.class.validators.find_index { |v| 
 		v.is_a?(ActiveRecord::Validations::PresenceValidator) && 
-		v.attributes.include?(this_field_reflection.name) 
+		v.attributes.include?(this_field_reflection._?.name) 
 		}.nil?
 	attributes[:required] ||= "required" if required
 	%>

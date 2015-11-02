@@ -238,9 +238,16 @@ class UsersController < ApplicationController
     lastName = auth['info']['lastName']
     firstName ||= auth['info']['first_name']
     lastName ||= auth['info']['last_name']
-    current_user.delay.update_data_from_authorization(provider, uid, email, firstName, lastName, request.remote_ip, cookies[:tz], header_locale)
+    current_user.delay.update_data_from_authorization(provider, uid, email, firstName, lastName, request.remote_ip, cookies[:tz], 
+    le)
   end
   
+  def signup
+    self.this = User.new
+    self.this.timezone = cookies[:tz]
+    self.this.language = header_locale
+    hobo_signup
+  end
   
   def sign_in(user) 
     sign_user_in(user)
@@ -263,5 +270,4 @@ class UsersController < ApplicationController
   
   def omniauth
   end
-  
 end
