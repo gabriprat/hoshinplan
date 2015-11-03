@@ -69,18 +69,15 @@ class UserCompanyMailer < ActionMailer::Base
   def reminder(user, kpis, tasks)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
-    if @user.state == "active" 
-      ret = mail( :subject => I18n.translate("emails.reminder.subject"),
-            :to      => @user.email_address,
-            :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
-              format.html {    
-                render_email("reminder", 
-                  {:user => @user, :app_name => @app_name, 
-                    :url => pending_user_url(@user, :host => get_host_port(user)),
-                    :kpis => kpis, :tasks => tasks})          
-              }
-      end
-      
+    ret = mail( :subject => I18n.translate("emails.reminder.subject"),
+          :to      => @user.email_address,
+          :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
+            format.html {    
+              render_email("reminder", 
+                {:user => @user, :app_name => @app_name, 
+                  :url => pending_user_url(@user, :host => get_host_port(user)),
+                  :kpis => kpis, :tasks => tasks})          
+            }
     end
   end
   

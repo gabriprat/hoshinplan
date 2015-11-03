@@ -23,15 +23,19 @@ Hoshinplan::Application.configure do
   config.action_controller.perform_caching = false
   config.cache_store = :redis_store, { :expires_in => 8.day }
   
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = true
-config.action_mailer.delivery_method = :sendmail
+config.action_mailer.delivery_method = :smtp
+# Send mails through mailcatcher gem. Start smtpserver by typing:
+# $ mailcatcher
+# View mails at http://127.0.0.1:1080
+config.action_mailer.smtp_settings = { address: 'localhost',
+                                         port: 1025 }
 # Defaults to:
 # config.action_mailer.sendmail_settings = {
 #   :location => '/usr/sbin/sendmail',
 #   :arguments => '-i -t'
 # }
 config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_deliveries = true
 config.action_mailer.asset_host = 'http://www.hoshinplandev.com:5000'
 config.action_mailer.default_url_options = { host: 'www.hoshinplandev.com:5000', only_path: false }
 
