@@ -4,7 +4,9 @@
 	}
 }
 @media print {
-	
+	.cc-cookies {
+		display: none !important;
+	}
 	.table .table-row {
 		page-break-inside: avoid;
 	}
