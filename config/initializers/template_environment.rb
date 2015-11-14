@@ -6,7 +6,7 @@ class TemplateEnvironment
 		if @view
       begin
 			  @view.send(name, *args, &b)
-      rescue NoMethodError => e
+      rescue ActionView::Template::Error => e
           Dryml.clear_cache
           Dryml.empty_page_renderer(@view)
           Dryml.precompile_taglibs
