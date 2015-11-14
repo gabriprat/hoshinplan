@@ -1,5 +1,5 @@
 threads_count = Integer(ENV['MAX_THREADS'] || 5)
-workers_count = Integer(ENV['WORKERS'] || 1)
+workers_count = Integer(ENV['WORKERS'] || 0)
 threads threads_count, threads_count
 workers workers_count
 

@@ -6,10 +6,9 @@ class TemplateEnvironment
 		if @view
       begin
 			  @view.send(name, *args, &b)
-      rescue ActionView::Template::Error => e
+      rescue NoMethodError => e
         Rails.logger.error "Clearing DRYML cache and precompiling taglibs again"
-        Dryml.clear_cache
-        Dryml.empty_page_renderer(@view)
+        Dryml::Taglib.clear_cache
         Dryml.precompile_taglibs
         fail e
       end
