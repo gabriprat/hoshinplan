@@ -3,6 +3,10 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 300
 preload_app true
 
+# Garbage collection settings.
+GC.respond_to?(:copy_on_write_friendly=) &&
+  GC.copy_on_write_friendly = true
+
 before_fork do |server, worker|
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
