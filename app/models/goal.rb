@@ -54,15 +54,15 @@ class Goal < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_creator || same_company
   end
 
   def destroy_permitted?
-    acting_user.administrator? || same_company_admin
+    acting_user.administrator? || same_creator || same_company_admin
   end
 
   def view_permitted?(field)
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_creator || same_company
   end
 
 end
