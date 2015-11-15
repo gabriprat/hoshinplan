@@ -1,7 +1,5 @@
 sudo: required
 language: ruby
-rvm:
-  - jruby-9.0.1.0
 
 before_install: 
 - docker build -t gabriprat/hoshinplan .
