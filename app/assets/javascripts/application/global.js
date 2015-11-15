@@ -395,18 +395,31 @@ $(document).ready(function() {
 	$(document).ready(footer);
 })();
 
-var launchBoxSelect = function(elem) {
-	var boxSelect = new BoxSelect({
-	    clientId: 'xp2amwwyx7pmz2zhkco6pe351datue23',
-	    linkType: 'shared',
-	    multiselect: 'false'
-	});
-	boxSelect.success(function(response) {
-		var val = '"'+response[0].name+'":'+response[0].url;
-		elem.insertAtCaret(val);
-	});
-	boxSelect.launchPopup();
-}
+var __loadedjs = [];
+function loadJs(url, attributes, cb) {
+	if (__loadedjs.indexOf(url) < 0) {
+		var script = document.createElement('script');
+		script.setAttribute('src', url);
+		script.setAttribute('type', 'text/javascript');
+		if (attributes) {
+			for(att in attributes) {
+				script.setAttribute(att, attributes[att]);
+			}
+		}
+		var loaded = false;
+	        var loadFunction = function () {
+	          if (loaded) return;
+		  __loadedjs.push(url);
+	          loaded = true;
+	          cb & cb();
+	        };
+	        script.onload = loadFunction;
+	        script.onreadystatechange = loadFunction;
+		document.getElementsByTagName("head")[0].appendChild(script);
+	} else {
+		cb & cb();
+	}
+};
 
 $.fn.extend({
     insertAtCaret: function(myValue) {

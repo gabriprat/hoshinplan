@@ -1,6 +1,9 @@
 class TextileEditorButtonLink extends TextileEditorButton
 	    
 class TextileEditorButtonImage extends TextileEditorButton
+	
+class TextileEditorButtonBox extends TextileEditorButton
+class TextileEditorButtonDropBox extends TextileEditorButton
 
 
 TextileEditor.setButtons(
@@ -27,6 +30,9 @@ TextileEditor.setButtons(
         new TextileEditorButtonSeparator(),
         new TextileEditorButtonLink("ed_chain",   "chain",           "\"link text\":",   "", "k", "Link"),
         new TextileEditorButtonImage("ed_image", "image",          "!",    "", "g", "Image"),
+        new TextileEditorButtonSeparator(),
+        new TextileEditorButtonDropBox("ed_dropbox",      "dropbox",     "",   "", "", "Dropbox link"),
+        new TextileEditorButtonBox("ed_box",      "box",     "",   "", "", "Box link")
     ]    
 )
 
@@ -50,7 +56,10 @@ class MyTextileEditor extends TextileEditor
         theButton.setAttribute("data-type", "link")
       if button instanceof TextileEditorButtonImage
         theButton.setAttribute("data-type", "image")
-
+      if button instanceof TextileEditorButtonBox
+        theButton.setAttribute("data-type", "box")
+      if button instanceof TextileEditorButtonDropBox
+        theButton.setAttribute("data-type", "dropbox")	 
     else
       return button
 
@@ -119,6 +128,10 @@ class MyTextileEditor extends TextileEditor
       bootbox.prompt("URL", (result) ->    
       	MyTextileEditor.__super__.insertTag.apply that, [button, "!" + result + "!", ''] unless result == null
       );
+    else if button.getAttribute("data-type") == "box"
+      launchBoxSelect($(that.canvas));
+    else if button.getAttribute("data-type") == "dropbox"
+      launchDropBoxSelect($(that.canvas));
     else
       super(button, tagStart, tagEnd)
 	
