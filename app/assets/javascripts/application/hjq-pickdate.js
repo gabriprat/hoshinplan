@@ -22,7 +22,8 @@
 			hiddenName: true,
 			firstDay: weekstart,
 			onClose: methods.triggerChange,
-			container: "body"
+			container: "body",
+			klass: {picker: 'dpicker'}
 		};
 		jQuery.extend(settings, options);
 		$(this).pickadate(

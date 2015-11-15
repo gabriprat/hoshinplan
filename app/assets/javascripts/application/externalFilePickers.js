@@ -14,21 +14,24 @@ var launchGoogleDriveSelect = function(elem) {
 		}
 		function createPicker(oauthToken){    
 			var picker = new google.picker.PickerBuilder()
+			    .addView(new google.picker.DocsView())
+			    .setLocale($('html').attr('lang'))             
 			    .addView(new google.picker.DocsUploadView())
-			    .addView(new google.picker.DocsView())                
 			    .setOAuthToken(oauthToken)
 			    .setDeveloperKey('AIzaSyDyunqzHgz5ohSQ2dSV69T_tgiecgPZgIs')
 			    .setCallback(pickerCallback)
 			    .build();
 			picker.setVisible(true);
+			$('.picker-dialog').css('z-index', 5000);
 		}
 		
 		function pickerCallback(data) {
 			var url = 'nothing';
 			if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
 				var doc = data[google.picker.Response.DOCUMENTS][0];
-				url = doc[google.picker.Document.URL];
-				var val = '"'+ url +'":' + url;
+				var url = doc[google.picker.Document.URL];
+				var nm = doc[google.picker.Document.NAME];
+				var val = '"'+ nm +'":' + url;
 				elem.insertAtCaret(val);
 			}
 		}
