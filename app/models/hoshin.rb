@@ -90,6 +90,14 @@ class Hoshin < ActiveRecord::Base
     hoshin.color = hoshin.defaultColor if hoshin.color.blank?
   end
   
+  after_save do |hoshin|
+    if (hoshin.ancestry_changed?)
+      Hoshin.unscoped.where(company_id: hoshin.company_id).each do |h| 
+        h.update_attributes(hoshins_count: h.children.count)
+      end
+    end
+  end
+  
   def defaultColor
     str = "hoshin+" + (name.nil? ? rand(1000000000).to_s(16) : name)
     res = hexFromString(str, 0.95)  
