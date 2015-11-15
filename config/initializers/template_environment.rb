@@ -1,38 +1,5 @@
 module Dryml
-
-  @semaphore ||= Mutex.new
    
-  alias_method :old_precompile_taglibs, :precompile_taglibs
-
-  def precompile_taglibs
-    old_precompile_taglibs
-  end
-  
-  def page_renderer(view, identifier, local_names=[], controller_path=nil, imports=nil)
-      controller_path ||= view.controller.controller_path
-      if identifier =~ /#{ID_SEPARATOR}/
-        identifier = identifier.split(ID_SEPARATOR).first
-        @cache[identifier] ||=  make_renderer_class("", "", local_names, taglibs_for(controller_path), imports_for_view(view))
-        @cache[identifier].new(view)
-      else
-        mtime = File.mtime(identifier)
-        renderer_class = @cache[identifier]
-        # do we need to recompile?
-        if (!renderer_class ||                                          # nothing cached?
-            (local_names - renderer_class.compiled_local_names).any? || # any new local names?
-            renderer_class.load_time < mtime)                           # cache out of date?
-            Rails.logger.error "========= Compiling: " + identifier
-          renderer_class = make_renderer_class(File.read(identifier), identifier,
-                                               local_names, taglibs_for(controller_path),
-                                               imports_for_view(view))
-          renderer_class.load_time = mtime
-          @cache[identifier] = renderer_class
-        end
-        renderer_class.new(view)
-      end
-    end
-  
-  
   class TemplateEnvironment
   
   	def method_missing(name, *args, &b)
