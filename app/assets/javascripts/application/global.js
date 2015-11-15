@@ -194,7 +194,6 @@ function updateTimer(percent) {
 	$( ".health-popover-toggle" ).click(function( event ) {
 	  $('.health-popover-toggle').not(this).popover('hide');
 	  event.stopPropagation();
-	  $("#health-popover .popover").addClass("fixed-x");
 	});
 	$("#tutorial").hjq_tutorial("update");
 	$('body').on('keyup.dismiss.healthPopover', function (e) {
@@ -236,6 +235,7 @@ $(document).ready(function () {
 function fixedHorizontal() {
 	if ($("html.pdf").length > 0) { return; }
 	if (typeof presenting != "undefined" && presenting) return;
+	$(".health-popover-toggle[aria-describedby]").click();
         $("body.fixed-headers .navbar, body.fixed-headers .content-header, .fixed-x").map(function() {
 		$(this).css({"margin-left": "0"}); 
 		$(this).css({"width": "auto"});
