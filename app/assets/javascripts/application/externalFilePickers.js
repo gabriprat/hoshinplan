@@ -1,5 +1,6 @@
+var __google_oauthToken;
 var launchGoogleDriveSelect = function(elem) {
-	loadJs('https://apis.google.com/js/api.js', null, function() {		
+	loadJs('https://apis.google.com/js/api.js', null, function() {	
 		var onGoogleAuthApiLoad = function() {
 			window.gapi.auth.authorize({
 			    'client_id':'561715127660-7mp6jik3o3rveadsmumlivplajiogcls.apps.googleusercontent.com',
@@ -9,6 +10,7 @@ var launchGoogleDriveSelect = function(elem) {
 		function handleGoogleAuthResult(authResult){
 			if(authResult && !authResult.error){
 				oauthToken = authResult.access_token;
+				__google_oauthToken = oauthToken;
 				createPicker(oauthToken);
 			}
 		}
@@ -35,8 +37,12 @@ var launchGoogleDriveSelect = function(elem) {
 				elem.insertAtCaret(val);
 			}
 		}
-		gapi.load('auth',{'callback':onGoogleAuthApiLoad}); 
-		gapi.load('picker'); 
+		if (__google_oauthToken == null) {
+			gapi.load('auth',{'callback':onGoogleAuthApiLoad}); 
+			gapi.load('picker'); 
+		} else {
+			createPicker(__google_oauthToken);
+		}
 	});
 }
 
@@ -49,11 +55,13 @@ var launchBoxSelect = function(elem) {
 		    	    linkType: 'shared',
 		    	    multiselect: 'false'
 			});
-			__boxSelect.success(function(response) {
-				var val = '"'+response[0].name+'":'+response[0].url;
-				elem.insertAtCaret(val);
-			});
 		}
+		var cb = function(response) {
+			var val = '"'+response[0].name+'":'+response[0].url;
+			elem.insertAtCaret(val);
+		}
+		__boxSelect.unregister(__boxSelect.SUCCESS_EVENT_TYPE);
+		__boxSelect.success(cb);
 		__boxSelect.launchPopup();
 	});
 }

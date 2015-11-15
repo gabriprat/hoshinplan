@@ -35,7 +35,7 @@
 	<old-form merge>
 			            <field-list: fields="name, description, responsible, area">
 				    	<area-view:>
-						<select-one options="&this_parent.area.hoshin.areas" />
+						<select-one options="&this_parent.area.hoshin.areas.to_a" />
 					</area-view:>
 				    	<objective-view:>
 						<select-one options="&this_parent.objective.area_objectives" />
