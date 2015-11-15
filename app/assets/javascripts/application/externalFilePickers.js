@@ -3,7 +3,7 @@ var launchGoogleDriveSelect = function(elem) {
 		var onGoogleAuthApiLoad = function() {
 			window.gapi.auth.authorize({
 			    'client_id':'561715127660-7mp6jik3o3rveadsmumlivplajiogcls.apps.googleusercontent.com',
-			    'scope':['https://www.googleapis.com/auth/drive']
+			    'scope':['https://www.googleapis.com/auth/drive.readonly']
 			},handleGoogleAuthResult);
 		} 
 		function handleGoogleAuthResult(authResult){
