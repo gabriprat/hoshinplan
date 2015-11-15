@@ -1,3 +1,32 @@
+var launchGoogleDriveSelect = function(elem) {
+	loadJs('https://apis.google.com/js/api.js', null, function() {		
+		var onGoogleAuthApiLoad = function() {
+			window.gapi.auth.authorize({
+			    'client_id':'561715127660-7mp6jik3o3rveadsmumlivplajiogcls.apps.googleusercontent.com',
+			    'scope':['https://www.googleapis.com/auth/drive']
+			},handleGoogleAuthResult);
+		} 
+		var __oauthToken;
+		function handleGoogleAuthResult(authResult){
+			if(authResult && !authResult.error){
+				__oauthToken = authResult.access_token;
+				createPicker();
+			}
+		}
+		function pickerCallback(data) {
+			var url = 'nothing';
+			if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+				var doc = data[google.picker.Response.DOCUMENTS][0];
+				url = doc[google.picker.Document.URL];
+				var val = '"'+ url +'":' + url;
+				elem.insertAtCaret(val);
+			}
+		}
+		gapi.load('auth',{'callback':onGoogleAuthApiLoad}); 
+		gapi.load('picker'); 
+	});
+}
+
 var __boxSelect;
 var launchBoxSelect = function(elem) {
 	loadJs('https://app.box.com/js/static/select.js', null, function() {	

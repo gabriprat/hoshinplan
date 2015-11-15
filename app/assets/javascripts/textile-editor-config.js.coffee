@@ -2,6 +2,7 @@ class TextileEditorButtonLink extends TextileEditorButton
 	    
 class TextileEditorButtonImage extends TextileEditorButton
 	
+class TextileEditorButtonGoogleDrive extends TextileEditorButton
 class TextileEditorButtonBox extends TextileEditorButton
 class TextileEditorButtonDropBox extends TextileEditorButton
 
@@ -31,6 +32,7 @@ TextileEditor.setButtons(
         new TextileEditorButtonLink("ed_chain",   "chain",           "\"link text\":",   "", "k", "Link"),
         new TextileEditorButtonImage("ed_image", "image",          "!",    "", "g", "Image"),
         new TextileEditorButtonSeparator(),
+        new TextileEditorButtonGoogleDrive("ed_google_drive",      "google-drive",     "",   "", "", "Google Drive link"),
         new TextileEditorButtonDropBox("ed_dropbox",      "dropbox",     "",   "", "", "Dropbox link"),
         new TextileEditorButtonBox("ed_box",      "box",     "",   "", "", "Box link")
     ]    
@@ -56,6 +58,8 @@ class MyTextileEditor extends TextileEditor
         theButton.setAttribute("data-type", "link")
       if button instanceof TextileEditorButtonImage
         theButton.setAttribute("data-type", "image")
+      if button instanceof TextileEditorButtonGoogleDrive
+        theButton.setAttribute("data-type", "google-drive")
       if button instanceof TextileEditorButtonBox
         theButton.setAttribute("data-type", "box")
       if button instanceof TextileEditorButtonDropBox
@@ -128,6 +132,8 @@ class MyTextileEditor extends TextileEditor
       bootbox.prompt("URL", (result) ->    
       	MyTextileEditor.__super__.insertTag.apply that, [button, "!" + result + "!", ''] unless result == null
       );
+    else if button.getAttribute("data-type") == "google-drive"
+      launchGoogleDriveSelect($(that.canvas));
     else if button.getAttribute("data-type") == "box"
       launchBoxSelect($(that.canvas));
     else if button.getAttribute("data-type") == "dropbox"

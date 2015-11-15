@@ -22,7 +22,9 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+.ic-google-drive:before {
+	content: "\e900";
+}
 .ic-box:before, .fa-box:before {
 	content: "\e603";
 }
