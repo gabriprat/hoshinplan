@@ -6,13 +6,23 @@ var launchGoogleDriveSelect = function(elem) {
 			    'scope':['https://www.googleapis.com/auth/drive']
 			},handleGoogleAuthResult);
 		} 
-		var __oauthToken;
 		function handleGoogleAuthResult(authResult){
 			if(authResult && !authResult.error){
-				__oauthToken = authResult.access_token;
-				createPicker();
+				oauthToken = authResult.access_token;
+				createPicker(oauthToken);
 			}
 		}
+		function createPicker(oauthToken){    
+			var picker = new google.picker.PickerBuilder()
+			    .addView(new google.picker.DocsUploadView())
+			    .addView(new google.picker.DocsView())                
+			    .setOAuthToken(oauthToken)
+			    .setDeveloperKey('AIzaSyDyunqzHgz5ohSQ2dSV69T_tgiecgPZgIs')
+			    .setCallback(pickerCallback)
+			    .build();
+			picker.setVisible(true);
+		}
+		
 		function pickerCallback(data) {
 			var url = 'nothing';
 			if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
