@@ -8,18 +8,37 @@
 		<script type="text/javascript">
 		var objectData, hot, data;
 		var loadData = function () {
+			var decChar = numeral.languageData().delimiters.decimal == "," ? "," : "\\\\.";
+			var numRegEx = new RegExp("^\\\\s*[+-]?\\\\s*(?:(?:\\\\d+(?:" + decChar + "\\\\d+)?(?:e[+-]?\\\\d+)?)|(?:0x[a-f\\\\d]+))\\\\s*$", "i");
+			var isNumeric = function (n) {
+			    var t = typeof n;
+			    if (t == 'number') {
+			    	return !(isNaN(n) || !isFinite(n));
+			    }  else if (t == 'string') {
+			    	if (!n.length) {
+				return false;
+				} else if (n.length == 1) {
+					return /\\d/.test(n);
+				} else {
+					return numRegEx.test(n);
+				}
+			    } else {
+			    	return false;
+			    }
+			}
+		
 			var l = document.documentElement.lang;
 			$("#spreadsheet").html("");
 			if ($('#graph-line').data('rapid')) {
 				data = $('#graph-line').data('rapid').chart.morris_attrs.data;
 			}
-			objectData = <%= this.indicator_histories.map{|i| {day: l(i.day), value: i.value||'', goal: i.goal||'', previous: i.previous||''}}.to_json.html_safe %>;
+			objectData = <%= this.indicator_histories.map{|i| {day: l(i.day), value: number_with_precision(i.value)||'', goal: number_with_precision(i.goal)||'', previous: number_with_precision(i.previous)||''}}.to_json.html_safe %>;
 			var container = document.getElementById('spreadsheet');
 			var notOrNumericValidator = function (value, callback) {
 		            if (!value || 0 === value.length){
 		                callback(true);
 		            }else{
-		                if (Handsontable.helper.isNumeric(value)){
+		                if (isNumeric(value)){
 		                    callback(true);
 		                }else{
 		                    callback(false);
@@ -32,13 +51,13 @@
 					IndicatorHistory.human_attribute_name a}.to_json
 				},
 				columns: [{data: 'day', type:'date'},
-					{type: 'numeric',format: '0.[000000000]', language: l, validator: notOrNumericValidator,data: 'value'},
-					{type: 'numeric',format: '0.[000000000]', language: l, validator: notOrNumericValidator,data: 'goal'},
-					{type: 'numeric',format: '0.[000000000]', language: l, validator: notOrNumericValidator,data: 'previous'}
+					{type: 'text', language: l, className: 'htRight', validator: notOrNumericValidator,data: 'value'},
+					{type: 'text', language: l, className: 'htRight', validator: notOrNumericValidator,data: 'goal'},
+					{type: 'text', language: l, className: 'htRight', validator: notOrNumericValidator,data: 'previous'}
 					],
 				dateFormat: '#{date_format_default.upcase}',
 				correctFormat: true,
-				contextMenu: false,
+				contextMenu: ['row_above','row_below','remove_row','undo','redo'],
 				minSpareRows: 1
 			});
 			Handsontable.hooks.add('afterValidate', function(isValid, value, row, prop, source) {
