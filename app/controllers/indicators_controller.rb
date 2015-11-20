@@ -42,67 +42,7 @@ class IndicatorsController < ApplicationController
   end
   
   def update
-    if params[:history_values]
-      error = false
-      @this = find_instance
-      IndicatorHistory.transaction do
-        options = {}
-        col_sep = ','
-        if t('number.format.separator') == ','
-          col_sep = ';'
-        end
-        options[:col_sep] = col_sep
-        idx = 0
-        CSV.parse( params[:history_values], options) do |row|
-          idx = idx + 1
-          if row.length != 4 
-            @this.errors.add(:indicator, t("errors.row_invalid_length", :row => idx, :expected => 4, :found => row.length, :sep => col_sep))
-            next
-          end
-          begin
-            d = Date.strptime(row[0], t('date.formats.default'))
-            if d.year < 1900
-              @this.errors.add(:indicator, t("errors.date_format_error", :row => idx, :expected => date_format_default, :found => row[0]))
-            end
-          rescue ArgumentError
-            @this.errors.add(:indicator, t("errors.date_format_error", :row => idx, :expected => date_format_default, :found => row[0]))
-          end
-          begin
-            v = Float row[1].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.') unless row[1].nil?
-          rescue
-            @this.errors.add(:indicator, t("errors.value_format_error", :row => idx, :found => row[1]))
-          end
-          begin
-            g = Float row[2].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.') unless row[2].nil?
-          rescue
-            @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
-          end
-          begin
-            p = Float row[3].delete(t('number.format.delimiter')).gsub(t('number.format.separator'),'.') unless row[3].nil?
-          rescue
-            @this.errors.add(:indicator, t("errors.last_format_error", :row => idx, :found => row[3]))
-          end
-          if @this.errors.messages.length==0
-            ih = @this.indicator_histories.find_or_initialize_by(day: d)
-            ih.value = v
-            ih.goal = g
-            ih.previous = p
-            begin
-            ih.save!
-            rescue
-             @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
-            end
-          end
-        end
-        if @this.errors.messages.length>0
-          raise ActiveRecord::Rollback
-        end
-        @this.update_from_latest_history!
-      end
-      redirect_to @this, :action => :history if valid?
-      render :history unless valid?
-      log_event("Upload indicator values", {objid: @this.id, name: @this.name})
-    else
+    
       old_value = nil
       obj = params[:indicator]
       select_responsible(obj)
@@ -124,7 +64,7 @@ class IndicatorsController < ApplicationController
         end
       end
       log_event("Update indicator", {objid: @this.id, name: @this.name, value: @this.value, old_value: old_value.nil? ? @this.value : old_value})
-    end
+    
   end
   
   def history

@@ -3,57 +3,56 @@
 		<a with="&this.objective.area.hoshin">&laquo; Back to hoshin #{name}</a>
 		<h2>#{this.name}</h2>
 	</content-header:>
-	<custom-javascript:>
-	var data;
-	$(document).ready(function () {
-		var txt = "";
-		data = $('#graph-line').data('rapid').chart.morris_attrs.data;
-		for (var i = 0; data.length > i; i++) {
-			if (i>0) {
-				txt += "\\n";
-			}
-			var date = dateFormatDefault(data[i].day.split("-"));
-			var value = numberFormat(data[i].value);
-			var goal = numberFormat(data[i].goal);
-			var previous = numberFormat(data[i].previous);
-			var fieldSep = '#{t 'number.format.separator'}' == ',' ? ';' : ','; 
-			txt += date + fieldSep + value + fieldSep + goal + fieldSep + previous;
-		}
-		$("#upload textarea").val(txt);
-	});
-	</custom-javascript:>
 	<content-body:>
 		<div part="all">
 		<script type="text/javascript">
-		var objectData, hot;
+		var objectData, hot, data;
 		var loadData = function () {
+			var l = document.documentElement.lang;
 			$("#spreadsheet").html("");
+			if ($('#graph-line').data('rapid')) {
+				data = $('#graph-line').data('rapid').chart.morris_attrs.data;
+			}
 			objectData = <%= this.indicator_histories.map{|i| {day: l(i.day), value: i.value||'', goal: i.goal||'', previous: i.previous||''}}.to_json.html_safe %>;
 			var container = document.getElementById('spreadsheet');
+			var notOrNumericValidator = function (value, callback) {
+		            if (!value || 0 === value.length){
+		                callback(true);
+		            }else{
+		                if (Handsontable.helper.isNumeric(value)){
+		                    callback(true);
+		                }else{
+		                    callback(false);
+		                }
+		            }
+		        };
 			hot = new Handsontable(container, {
 				data: objectData,
 				colHeaders: #{['day','value','goal','previous'].collect { |a| 
 					IndicatorHistory.human_attribute_name a}.to_json
 				},
 				columns: [{data: 'day', type:'date'},
-					{type: 'numeric',format: '0.[000000000]', data: 'value'},
-					{type: 'numeric',format: '0.[000000000]', data: 'goal'},
-					{type: 'numeric',format: '0.[000000000]', data: 'previous'}
+					{type: 'numeric',format: '0.[000000000]', language: l, validator: notOrNumericValidator,data: 'value'},
+					{type: 'numeric',format: '0.[000000000]', language: l, validator: notOrNumericValidator,data: 'goal'},
+					{type: 'numeric',format: '0.[000000000]', language: l, validator: notOrNumericValidator,data: 'previous'}
 					],
 				dateFormat: '#{date_format_default.upcase}',
 				correctFormat: true,
-				contextMenu: true,
+				contextMenu: false,
 				minSpareRows: 1
 			});
 			Handsontable.hooks.add('afterValidate', function(isValid, value, row, prop, source) {
 			   if(!isValid){
-			   console.log("error!!!!");
 			    hadErrors  = true;
 			    return false;
 			   }
 			}, hot);
 		}
 		var hadErrors = false;
+		var cn = function(num) {
+			if (num === null || num === "") return null;
+			return numeral(num).format('0.[000000000]');
+		}
 		var data_update = function() {
 			hadErrors = false;
 			while (hot.isEmptyRow(objectData.length-1)) {
@@ -64,7 +63,10 @@
 				if (hadErrors) {
 					return false;
 				} else {
-					$("#json").val(JSON.stringify(objectData));
+					var d = objectData.map(function(o) {
+						return {"day": o.day, "value": cn(o.value), "goal": cn(o.goal), "previous": cn(o.previous) }
+					});
+					$("#json").val(JSON.stringify(d));
 					$("#upload").submit();
 				}
 			});
