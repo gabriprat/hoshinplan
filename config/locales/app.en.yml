@@ -489,7 +489,7 @@ en:
     upload: Upload
     upload_values: Add/replace values
     delete_values: Delete all values
-    upload_values_by: 'Upload values by putting one value per line. Each line must have the format: mm/dd/yyy,value,goal,previous. For example: 4/21/2014,29.3,100,21 <br/> If you have no value for some of the fields just leave it blank. For example, if you have no objective: 4/21/2014,29.3,,21'
+    upload_values_by: '<span class="label label-success">NEW!</span> Now you can copy & paste Excel data<br/>Dates are in the format: mm/dd/yyy <br/>Use the "." character as the decimal separator.'    
     value_form:
       this_indicator_doesnt: This indicator doesn't need an update. What would you like to do?
       overwrite_the_value: Overwrite the value from last update

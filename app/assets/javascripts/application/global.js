@@ -533,3 +533,31 @@ var isModalShown = function() {
 	return $(".modal").toArray().reduce(function(a,b) { return (($(b).data('bs.modal') || {}).isShown) || a }, false);
 }
 
+$(document).ready(function() {
+	if (typeof(numeral) == "undefined") {
+		return;
+	}
+	// load a language
+	numeral.language('es', {
+	    delimiters: {
+	        thousands: '.',
+	        decimal: ','
+	    },
+	    abbreviations: {
+	        thousand: 'K',
+	        million: 'M',
+	        billion: 'B',
+	        trillion: 'T'
+	    },
+	    ordinal : function (number) {
+	        return 'o';
+	    },
+	    currency: {
+	        symbol: '€'
+	    }
+	});
+
+	// switch between languages
+	numeral.language(document.documentElement.lang);
+});
+

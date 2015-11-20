@@ -126,6 +126,7 @@ Hoshinplan::Application.routes.draw do
       post 'form'
       post 'value_form'
       post 'delete_history'
+      post 'data_update'
     end
   end
 

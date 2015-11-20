@@ -11,6 +11,7 @@ class IndicatorsController < ApplicationController
   web_method :form
   web_method :value_form
   web_method :delete_history
+  web_method :data_update
   
   cache_sweeper :indicators_sweeper
   
@@ -133,6 +134,28 @@ class IndicatorsController < ApplicationController
       else
         respond_with(@this)
       end
+  end
+  
+  def data_update
+    @this = Indicator.find(params[:id])
+    if request.xhr?
+      JSON.parse(params[:json]).each { |h| 
+        d = Date.strptime(h["day"], t('date.formats.default'))
+        if (d)
+          ih = @this.indicator_histories.find_or_initialize_by(day: d)
+          ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]
+          begin
+          ih.save!
+          rescue
+           @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
+          end
+        end
+      }  
+      @this = Indicator.where(id: params[:id]).includes(:indicator_histories).first
+      hobo_ajax_response
+    else
+      respond_with(@this)
+    end
   end
   
   def delete_history

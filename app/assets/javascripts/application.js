@@ -16,4 +16,7 @@
 //= require detect_timezone
 //= require jquery.detect_timezone
 //= require bootstrap-switch
+//= require handsontable.full
+//= require moment
+//= require moment/es.js
 //= require_tree ./application

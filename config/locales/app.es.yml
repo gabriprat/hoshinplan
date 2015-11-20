@@ -289,7 +289,12 @@ es:
       indicator/frequencys:
         weekly: Semanal
         monthly: Mensual
-        quarterly: Trimestral	      
+        quarterly: Trimestral	 
+      indicator_history:
+        day: Fecha
+        value: Valor actual
+        goal: Objetivo
+        previous: Valor periodo anterior
       task:
         name: Nombre
         description: Descripción
@@ -488,7 +493,7 @@ es:
     upload: Enviar
     upload_values: Añadir/reemplazar valores
     delete_values: Borrar todos los valores
-    upload_values_by: 'Carga valores en bloque escribiendo un valor por línea. Cada línea tiene que tener el formato: dd/mm/yyy;valor;objetivo;previo. Por ejemplo: 21/4/2014;29,3;100;31 <br/> Si no hay valor para alguno de los campos simplemente déjalo vacío. Por ejemplo, si no hay objetivo: 21/4/2014;29,3;;31'
+    upload_values_by: '<span class="label label-success">¡NUEVO!</span> Ahora puedes copiar y pegar directamente datos de Excel<br/>Las fechas deben tener el formato: dd/mm/yyy <br/>Usa el carácter "," para separar decimales.'
     value_form:
       this_indicator_doesnt: Este indicador no necesita ser actualizado. ¿Qué quieres hacer?
       overwrite_the_value: Sobreescribir el valor de la última actualización 

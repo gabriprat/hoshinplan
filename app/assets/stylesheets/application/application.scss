@@ -1390,6 +1390,16 @@ a, a:hover, a:active, a:visited {
 	} 
 }
 
+form.history-upload {
+	.bubble, #spreadsheet {
+		float:left;
+		margin: 1em;
+	}
+	.actions {
+		margin: 1em;
+	}
+}
+
 .history-actions {
 	float: right;
 }
