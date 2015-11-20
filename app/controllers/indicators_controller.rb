@@ -78,6 +78,7 @@ class IndicatorsController < ApplicationController
   
   def data_update
     @this = Indicator.find(params[:id])
+    ihs = []
     if request.xhr?
       JSON.parse(params[:json]).each { |h| 
         d = Date.strptime(h["day"], t('date.formats.default'))
@@ -85,12 +86,19 @@ class IndicatorsController < ApplicationController
           ih = @this.indicator_histories.find_or_initialize_by(day: d)
           ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]
           begin
-          ih.save!
+            ih.save!
           rescue
            @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
           end
+          ihs.push(ih)
         end
-      }  
+      }
+      begin
+        @this.indicator_histories = ihs
+        @this.save!
+      rescue
+       @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
+      end
       @this = Indicator.where(id: params[:id]).includes(:indicator_histories).first
       hobo_ajax_response
     else

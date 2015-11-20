@@ -491,7 +491,7 @@ es:
   indicator:
     show_chart: Mostrar gráfico
     upload: Enviar
-    upload_values: Añadir/reemplazar valores
+    upload_values: Editar tabla de valores
     delete_values: Borrar todos los valores
     upload_values_by: '<span class="label label-success">¡NUEVO!</span> Ahora puedes copiar y pegar directamente datos de Excel<br/>Las fechas deben tener el formato: dd/mm/yyy <br/>Usa el carácter "," para separar decimales.'
     value_form:
