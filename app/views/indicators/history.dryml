@@ -102,7 +102,7 @@
 		</modal>
 		<form class="hide" action="/indicator_histories/#" id="delete-form" method="delete" confirm="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
 		</form>
-		<div id="dynamic-js" data-remove="#{t 'hobo.actions.remove'}" data-confirm-delete="&t 'history.messages.confirm_delete'">
+		<div id="dynamic-js" data-remove="#{t 'hobo.actions.remove'}" data-confirm-delete="&t 'history.messages.confirm_delete'" style="display:none">
 			<a href="javascript:deleteHistory(XXX, \\'' + dateFormatDefault(row.day) + '\\');"><%=t("hobo.actions.remove", :default=>"Remove")%></a>
 		</div>
 	</content-body:>
