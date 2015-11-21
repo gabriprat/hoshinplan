@@ -561,3 +561,5 @@ $(document).ready(function() {
 	numeral.language(document.documentElement.lang);
 });
 
+$.webshims.setOptions('basePath', '/webshims/1.15.9/shims/');
+$.webshims.polyfill();
