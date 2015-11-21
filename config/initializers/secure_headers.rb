@@ -8,7 +8,7 @@
   config.csp = {
     :default_src => "'self' static.hoshinplan.com *.userreport.com api.mixpanel.com",
     :enforce => true,
-    :font_src => "'self' fonts.gstatic.com static.hoshinplan.com staticdoc.hoshinplan.com",
+    :font_src => "'self' fonts.gstatic.com static.hoshinplan.com staticdoc.hoshinplan.com data:",
     :frame_src => "'self' accounts.google.com docs.google.com *.userreport.com",
     :style_src => "'self' 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
     :script_src => "'self' 'unsafe-eval' 'unsafe-inline' static.hoshinplan.com staticdoc.hoshinplan.com apis.google.com www.dropbox.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com cdn.mxpnl.com",
