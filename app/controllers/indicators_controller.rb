@@ -80,25 +80,28 @@ class IndicatorsController < ApplicationController
     @this = Indicator.find(params[:id])
     ihs = []
     if request.xhr?
-      JSON.parse(params[:json]).each { |h| 
+      last = {}
+      JSON.parse(params[:json]).each_with_index { |h,idx| 
         d = Date.strptime(h["day"], t('date.formats.default'))
         if (d)
           ih = @this.indicator_histories.find_or_initialize_by(day: d)
           ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]
-          begin
-            ih.save!
-          rescue
-           @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
-          end
+          ih.save!
           ihs.push(ih)
+          if !h["value"].nil? && (last["last_update"].nil? || d > last["last_update"])
+            last["last_update"] = d
+            last["value"] = h["value"]
+            last["goal"] = h["goal"]
+          end
         end
       }
-      begin
-        @this.indicator_histories = ihs
-        @this.save!
-      rescue
-       @this.errors.add(:indicator, t("errors.goal_format_error", :row => idx, :found => row[2]))
-      end
+      @this.last_update = last["last_update"]
+      @this.value = last["value"]
+      @this.goal = last["goal"]
+      @this.last_update_will_change!
+      @this.next_update = @this.next_update_after(@this.last_update, @this.frequency)
+      @this.indicator_histories = ihs
+      @this.save!
       @this = Indicator.where(id: params[:id]).includes(:indicator_histories).first
       hobo_ajax_response
     else

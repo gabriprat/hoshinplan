@@ -7,6 +7,12 @@
 					<span id="ajax-progress-text"></span>
 				</div>
 			</div>
+			<div id="ajax-error-wrapper">
+				<div class="ajax-error" id="ajax-error">
+					<i class="ic-exclamation-triangle"></i>
+					<span id="ajax-error-text"></span>
+				</div>
+			</div>
 		</ajax-progress:>
 		<navbar:>
 			<header class='navbar-header header'>
@@ -74,6 +80,6 @@
 		      <li><a href="mailto:hello@hoshinplan.com"><t key="footer.contact_us"/></a></li>
 		    </ul>
 		</footer:>
-		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}"/>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" error-message="#{t :error_message}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}"/>
 	 </old-page>
 </extend>
