@@ -8,7 +8,7 @@
   config.csp = {
     :default_src => "'self' static.hoshinplan.com *.userreport.com api.mixpanel.com",
     :enforce => true,
-    :connect_src => "'self' sqs.us-east-1.amazonaws.com",
+    :connect_src => "'self' static.hoshinplan.com *.userreport.com api.mixpanel.com sqs.us-east-1.amazonaws.com",
     :font_src => "'self' fonts.gstatic.com static.hoshinplan.com staticdoc.hoshinplan.com data:",
     :frame_src => "'self' accounts.google.com docs.google.com *.userreport.com",
     :style_src => "'self' 'unsafe-inline' fonts.googleapis.com static.hoshinplan.com staticdoc.hoshinplan.com",
