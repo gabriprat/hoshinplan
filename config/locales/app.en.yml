@@ -291,7 +291,12 @@ en:
       indicator/frequencys:
         weekly: Weekly
         monthly: Monthly
-        quarterly: Quarterly	      
+        quarterly: Quarterly
+      indicator_history:
+        day: Date
+        value: Value
+        objective: Objective
+        previous: Previous value
       task:
         name: Name
         description: Description

@@ -9,7 +9,7 @@ es:
   copy_of: Copia de
   drag_a_file: Arrastra una foto aquí
   value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
-  value_goal_previous_long: 'Valor actual, Objetivo, Valor previo, Incremento sobre el valor previo (%)'
+  value_goal_previous_long: 'Valor actual, Objetivo, Valor periodo anterior, Incremento sobre el periodo anterior (%)'
   insert_box_link: Insertar enlace a Box
   created_by: Creado por
   view_log: Ver cambios
@@ -294,7 +294,7 @@ es:
       indicator_history:
         day: Fecha
         value: Valor actual
-        goal: Objetivo
+        objective: Objetivo
         previous: Valor periodo anterior
       task:
         name: Nombre

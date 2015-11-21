@@ -11,7 +11,7 @@ var hover = function(index, options, content) {
 	}
 	if (!data) return content;
 	var row = data[index];
-	var remove_msg = "Remove"
+	var remove_msg = $("#dynamic-js").data("remove");
 	return content + '<a href="javascript:deleteHistory(' + row.id + ', \'' + dateFormatDefault(row.day) + '\');">' + remove_msg + '</a>'
 }
 
@@ -64,7 +64,7 @@ var loadData = function() {
 	};
 	hot = new Handsontable(container, {
 		data: objectData,
-		colHeaders: ['Day', 'Value', 'Goal', 'Previous'],
+		colHeaders: $("#dynamic-js").data("columns").split(","),
 		columns: [{
 			data: 'day',
 			type: 'date'
@@ -132,7 +132,7 @@ $(document).ready(loadData);
 function deleteHistory(id, date) {
 	var form = $("#delete-form");
 	form.attr("action", "/indicator_histories/" + id);
-	var conf = "Are you sure you want to delete the value for the date XXX?</t>";
+	var conf = form.data("confirm-orig");
 	form.data("confirm", conf.replace("XXX", date));
 	form.submit();
 }
