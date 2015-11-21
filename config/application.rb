@@ -17,7 +17,7 @@ module Hoshinplan
     # Hobo: remove support for ERB templates
     config.hobo.dryml_only_templates = true
     # Hobo: the front subsite loads front.css & front.js
-    config.assets.precompile += %w(pdf.css front.css front.js)
+    config.assets.precompile += %w(pdf.css front.css front.js history.js history.css)
   
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
