@@ -32,19 +32,19 @@
 </def>
 
 <extend tag="form" for="Objective">
+	<set options="&this.parent_objectives"/>
+	<set parent=", parent" if="&options.size>0"/>
 	<old-form merge>
-			            <field-list: fields="name, description, responsible, area">
-				    	<area-view:>
-						<select-one options="&this_parent.area.hoshin.areas.to_a" />
-					</area-view:>
-				    	<objective-view:>
-						<select-one options="&this_parent.objective.area_objectives" />
-					</objective-view:>
-				    	<responsible-view:>
-						<name-one-user />
-					</responsible-view:>
-				    </field-list:>
-				    <cancel: href="&session[:return_to] || request.referer"/>
+	<field-list: fields="name, description, responsible #{parent}, area">
+		<parent-tag: options="&options" />
+		<area-view:>
+			<select-one options="&this_parent.area.hoshin.areas.to_a" />
+		</area-view:>
+		<responsible-view:>
+			<name-one-user />
+		</responsible-view:>
+	</field-list:>
+	<cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>
 
