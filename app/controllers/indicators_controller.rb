@@ -107,6 +107,7 @@ class IndicatorsController < ApplicationController
     else
       respond_with(@this)
     end
+    log_event("Upload indicator values", {objid: @this.id, name: @this.name})
   end
   
   def delete_history
