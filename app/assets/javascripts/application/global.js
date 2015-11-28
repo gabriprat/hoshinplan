@@ -562,4 +562,4 @@ $(document).ready(function() {
 });
 
 $.webshims.setOptions('basePath', '/webshims/1.15.9/shims/');
-$.webshims.polyfill();
+$.webshims.polyfill("forms");
