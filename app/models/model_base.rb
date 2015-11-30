@@ -7,7 +7,7 @@ module ModelBase
   end
     
   def log_operation(destroyed=false)
-    return unless self.respond_to? :deleted_at && self.respond_to? :name
+    return unless self.respond_to?(:deleted_at) && self.respond_to?(:name)
     changed = self.changes & self.class.accessible_attributes
     return unless self.id_changed? || changed.present? || destroyed
     operation = :create if self.id_changed?
