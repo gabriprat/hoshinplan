@@ -113,7 +113,7 @@ class Company < ActiveRecord::Base
   
   def collaborator_limits_reached?
     count = user_companies.size
-    return user_limit < count
+    return user_limit <= count
   end
   
   def user_limit

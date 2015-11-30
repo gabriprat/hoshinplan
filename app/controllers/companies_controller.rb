@@ -36,18 +36,18 @@ class CompaniesController < ApplicationController
     @this = Company.user_find(current_user, params[:id])
     @this.same_company_admin # load request variable to aviod queries in the template
     @limit_reached = false
+    @collaborators = cols
+    @collaborators[0].company_admin if @collaborators.size > 0 # load request variable to aviod queries in the template
     if @this.collaborator_limits_reached?
       @limit_reached = true
       flash.now[:info] = t("errors.user_limit_reached").html_safe 
-      @this = BillingPlan.where(frequency: [:WEEK, @freq]) 
+      @billing_plans = BillingPlan.where(frequency: [:WEEK, @freq]) 
+      if (@collaborators.size == 1)
+        @this = @billing_plans
+        session[:payment_return_to] = request.url
+        render template: 'payments/pricing'
+      end
     end
-    if (@this.user_limit==1)
-      @this = BillingPlan.where(frequency: [:WEEK, @freq]) 
-      session[:payment_return_to] = request.url
-      render template: 'payments/pricing'
-    end
-    @collaborators = cols
-    @collaborators[0].company_admin if @collaborators.size > 0 # load request variable to aviod queries in the template
   end
   
   def cols
