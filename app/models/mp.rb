@@ -71,7 +71,9 @@ class Mp
         '$email'      => user.email_address.to_s,
         '$created'    => user.created_at,
         'language'    => user.language,
-        'payments'    => user.payments_count
+        'payments'    => user.payments_count,
+        'timezone'    => user.timezone,
+        'tutorial_step' => user.tutorial_step
     }
     @options = {}
     @options['ip'] = opts[:ip] unless opts[:ip].nil?
