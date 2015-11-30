@@ -10,6 +10,7 @@ module ModelBase
     return unless self.respond_to? :deleted_at
     changed = self.changes & self.class.accessible_attributes
     return unless self.id_changed? || changed.present? || destroyed
+    return unless self.name
     operation = :create if self.id_changed?
     operation ||= :delete if destroyed
     operation ||= :update
