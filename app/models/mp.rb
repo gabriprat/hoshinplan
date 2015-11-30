@@ -35,9 +35,9 @@ class Mp
 
   def self.people_set(user, ip, ignore_time=false) 
     opts = {id: user.id, ip: ip}
-    if (ignore_time) {
+    if ignore_time
       opts["$ignore_time"] = true
-    }
+    end
     logged_event = Mp.new(user, opts)
     Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.people_set!
