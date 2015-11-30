@@ -124,8 +124,9 @@ class FrontController < ApplicationController
   
   def updatepeoplemixpanel
     User.all.each {|user|
-      Mp.people_set(user, '')
+      Mp.people_set(user, '', ignore_time=true)
     }
+    render :text => "Updated!", :content_type => Mime::TEXT
   end
   
   def healthupdate

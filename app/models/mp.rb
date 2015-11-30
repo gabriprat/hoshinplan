@@ -33,8 +33,12 @@ class Mp
     mp.send method
   end
 
-  def self.people_set(user, ip) 
-    logged_event = Mp.new(user, {id: user.id, ip: ip})
+  def self.people_set(user, ip, ignore_time=false) 
+    opts = {id: user.id, ip: ip}
+    if (ignore_time) {
+      opts["$ignore_time"] = true
+    }
+    logged_event = Mp.new(user, opts)
     Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.people_set!
   end
@@ -66,14 +70,15 @@ class Mp
   def initialize(user=nil, opts = {})
     return unless user.is_a? User
     @people = {
-        '$distinct_id'=> user.id,
-        '$name'       => user.name,
-        '$email'      => user.email_address.to_s,
-        '$created'    => user.created_at,
-        'language'    => user.language,
-        'payments'    => user.payments_count,
-        'timezone'    => user.timezone,
-        'tutorial_step' => user.tutorial_step
+        '$distinct_id'  => user.id,
+        '$name'         => user.name,
+        '$email'        => user.email_address.to_s,
+        '$created'      => user.created_at,
+        'language'      => user.language,
+        'payments'      => user.payments_count,
+        'timezone'      => user.timezone,
+        'tutorial_step' => user.tutorial_step,
+        'last_seen_at'  => user.last_seen_at
     }
     @options = {}
     @options['ip'] = opts[:ip] unless opts[:ip].nil?

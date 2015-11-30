@@ -209,7 +209,7 @@ end
   end
   
   def people_set(user = current_user, remote_ip = request.remote_ip)
-    Mp.people_set(user, remote_ip)
+    Mp.people_set(user, remote_ip, ignore_time=true)
   end
   
   #Log a new Mixpanel event
