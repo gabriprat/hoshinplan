@@ -46,10 +46,10 @@
 		<table-plus with="&@collaborators" fields="user, state" part="users" id="users" part-id="users" part-locals="@collaborators">
 			<user-view: >
 				<a action="show" if="&can_view?">#{this.name} (#{this.email_address})</a>
-				<a action="edit" if="&can_edit?"><span class="ic-cog"></span></a>
 				<else >
-				<view >#{this.name} (#{this.email_address})</view>
+					<view >#{this.name} (#{this.email_address})</view>
 				</else >
+				<a action="edit" if="&can_update?"><span class="ic-cog"></span></a>
 			</user-view: >
 			<controls:>
 				<if test="&this.state == 'invited'">
