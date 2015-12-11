@@ -19,6 +19,26 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  rescue_from Dryml::PartContext::TamperedWithPartContext, :backtrace => true do |exception|
+    track_exception(exception, request)
+    error = {message:exception.message}
+    error[:type] = exception.class.name.split('::').last || ''
+    error[:code] = :service_unavailable
+    error[:code] = exception.code if exception.respond_to?(:code) 
+    error[:status] = :service_unavailable
+    error[:status] = exception.status if exception.respond_to?(:status) 
+    error[:stack_trace] = exception.backtrace if Rails.env.development? 
+    if request.xhr?
+      render :js => "location.reload();", status: error[:status]
+    else
+    respond_to do |format|
+      format.html { raise exception }
+      format.json { render :json => error, status: error[:status] }
+      format.xml { render :xml => error, status: error[:status] }
+    end
+  end
+  end
+  
   rescue_from Timeout::Error, :backtrace => true do |exception|
     track_exception(exception, request)
       
