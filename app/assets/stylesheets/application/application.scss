@@ -758,6 +758,10 @@ body.hoshin.compact .collection.areas {
 	table-layout: fixed;
 }
 
+body.hoshin.expanded .collection.areas li {
+	width: auto !important;
+}
+
 body.hoshin .carousel {
 	display: none;
 }

@@ -111,3 +111,4 @@ gem 'amoeba'
 gem 'rails_handsontable'
 gem 'webshims-rails'
 gem 'momentjs-rails'
+gem 'codeclimate-test-reporter', group: :test, require: nil
