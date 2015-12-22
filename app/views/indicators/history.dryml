@@ -21,7 +21,7 @@
 			</form>
 			</div>
 			<div style="text-transform: none;">
-			<form action="data_update" method="post" id="upload" class="history-upload" success="loadData()" update="all" style="display:none;" ajax>
+			<form action="data_update" method="post" id="upload" class="history-upload" success="loadData()" update="all" style="display:none;" enctype="multipart/form-data" ajax>
     				<div id="spreadsheet"></div>
     				<p class="bubble">
     					<t key="indicator.upload_values_by"/>

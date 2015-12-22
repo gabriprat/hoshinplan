@@ -79,34 +79,30 @@ class IndicatorsController < ApplicationController
   def data_update
     @this = Indicator.find(params[:id])
     ihs = []
-    if request.xhr?
-      last = {}
-      JSON.parse(params[:json]).each_with_index { |h,idx| 
-        d = Date.strptime(h["day"], t('date.formats.default'))
-        if (d)
-          ih = @this.indicator_histories.find_or_initialize_by(day: d)
-          ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]
-          ih.save!
-          ihs.push(ih)
-          if !h["value"].nil? && (last["last_update"].nil? || d > last["last_update"])
-            last["last_update"] = d
-            last["value"] = h["value"]
-            last["goal"] = h["goal"]
-          end
+    last = {}
+    JSON.parse(params[:json]).each_with_index { |h,idx| 
+      d = Date.strptime(h["day"], t('date.formats.default'))
+      if (d)
+        ih = @this.indicator_histories.find_or_initialize_by(day: d)
+        ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]
+        ih.save!
+        ihs.push(ih)
+        if !h["value"].nil? && (last["last_update"].nil? || d > last["last_update"])
+          last["last_update"] = d
+          last["value"] = h["value"]
+          last["goal"] = h["goal"]
         end
-      }
-      @this.last_update = last["last_update"]
-      @this.value = last["value"]
-      @this.goal = last["goal"]
-      @this.last_update_will_change!
-      @this.next_update = @this.next_update_after(@this.last_update, @this.frequency)
-      @this.indicator_histories = ihs
-      @this.save!
-      @this = Indicator.where(id: params[:id]).includes(:indicator_histories).first
-      hobo_ajax_response
-    else
-      respond_with(@this)
-    end
+      end
+    }
+    @this.last_update = last["last_update"]
+    @this.value = last["value"]
+    @this.goal = last["goal"]
+    @this.last_update_will_change!
+    @this.next_update = @this.next_update_after(@this.last_update, @this.frequency)
+    @this.indicator_histories = ihs
+    @this.save!
+    @this = Indicator.where(id: params[:id]).includes(:indicator_histories).first
+    hobo_ajax_response
     log_event("Upload indicator values", {objid: @this.id, name: @this.name})
   end
   
