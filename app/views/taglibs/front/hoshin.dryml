@@ -31,6 +31,9 @@
 	            </ht>
 			</a>
 		</span>
+		<bootstrap-switch id="show-mine" data-user="#{current_user.id}" switch-change="filterPostits" size="mini">
+			<label:><t key="hoshin.show_only_mine"/></label:>
+		</bootstrap-switch>
 		</if>
 		</prepend-content-header:>
 		

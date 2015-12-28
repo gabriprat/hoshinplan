@@ -1,6 +1,9 @@
 <def tag="bootstrap-switch" attrs="id, switch-change">
-	<div class="bootstrap-switch-input no-print">
+	<% 
+		options, attrs = attributes.partition_hash(['size'])
+	%>
+	<div class="bootstrap-switch-input no-print" id="bsi-#{id}">
 		<label for="#{id}" param="label"/>
-		<input id="#{id}" type="checkbox" data-rapid="&data_rapid('bootstrap_switch', options:{}, events: {change: switch_change})" merge-attrs/>
+		<input id="#{id}" type="checkbox" data-rapid="&data_rapid('bootstrap_switch', options:options, events: {change: switch_change})" merge-attrs='&attrs'/>
 	</div>
 </def>

@@ -4,6 +4,9 @@
         init: function(annotations) {
 		var options = this.hjq('getOptions', annotations);
 		this.bootstrapSwitch();
+		if (options.size) {
+			this.bootstrapSwitch("size", options.size);
+		}
 		if (options.change) {
 			this.on('switchChange.bootstrapSwitch', options.change);
 		}

@@ -380,6 +380,7 @@ en:
     click_to_know: Click to find out how to bring your Hoshinplan to 100%
     see_detailed_health: Show detailed health report
     presentation_help: Use arrow keys <kbd>←</kbd> / <kbd>→</kbd> to move between sections and <kbd>esc</kbd> to exit presentation mode.
+    show_only_mine: Show only mine
   health:
     health_for: Health for %{name}
     top_users_with_pending: Users with pending actions in descending order

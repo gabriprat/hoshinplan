@@ -88,6 +88,11 @@ body.hoshin.show-page.expanded h2 .timer {
 	margin-top: 0;
 }
 
+
+.content-header #bsi-show-mine {
+	display: none;
+}
+
 body h2.heading .title-action {
 	font-size: 0.8em;
 }
@@ -517,13 +522,19 @@ body h2 {
 }
 
 @media (min-width: 1100px) {
-.hoshin.show-page.expanded h2 {
+.hoshin.show-page h2 {
 	white-space: nowrap;
 	a.hoshin-link {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		max-width: 40%;
+		max-width: 35%;
 		display: inline-block;
+	}
+}
+.hoshin.show-page.expanded h2 {
+	white-space: nowrap;
+	a.hoshin-link {
+		max-width: 40%;
 	}
 }
 }
@@ -624,6 +635,7 @@ body.compact {
 	
 	.header.well {
 		border-radius: 0;
+		padding-bottom: 20px;
 	}
 	
 	.well {
@@ -1790,10 +1802,6 @@ form#delete-history, form#delete-history input {
 		display:none;
 	}
 	
-	.content-header {
-		position: relative;
-	}
-	
 	.content-header #sec-actions {
 		float: none;
 		display: block;
@@ -1806,13 +1814,23 @@ form#delete-history, form#delete-history input {
 		width: 100%;
 	}
 	
-	.content-header #create-buttons {
-		position: absolute;
-		bottom: 5px;
-		left: 0;
-		a {
-			font-size: .81em;
+	body .content-header {
+		
+		#create-buttons {
+			position: absolute;
+			bottom: 5px;
+			left: 0;
+			a {
+				font-size: .81em;
+			}
 		}
+		#bsi-show-mine {
+			bottom: 40px;
+		}
+	}
+	
+	body.compact .content-header #bsi-show-mine {
+		bottom: 35px;
 	}
 	
 	.navbar-nav > li > .dropdown-menu {
@@ -2372,6 +2390,12 @@ form.indicator-value input[type=radio] {
 	width: 100px;
 	text-align: right;
 	padding-right: 5px;
+}
+
+.bootstrap-switch-container {
+	input {
+		margin: 0;
+	}
 }
 
 .bootstrap-switch.bootstrap-switch-mini {
@@ -3192,6 +3216,16 @@ ul {
 
 .content-header {
 	box-sizing: content-box;
+	position: relative;	
+	#bsi-show-mine {
+		position: absolute;
+		bottom: 10px;
+		left: 20px;
+	}
+}
+
+.compact .content-header #bsi-show-mine {
+	bottom: 5px;
 }
 
 .form-group .actions {

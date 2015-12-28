@@ -38,7 +38,7 @@ var validateDate = function(formElem) {
 }
 var loadKanban = function() {
 	try {
-		if ($("body.kanban.show-page").length < 1) {
+		if ($("#show-mine").length < 1) {
 			return;
 		}
 		var showMine = false;
@@ -64,7 +64,7 @@ var loadKanban = function() {
 	}
 }
 $(document).ready(function() {
-	if ($("body.kanban.show-page").length >= 1) {
+	if ($("#show-mine").length >= 1) {
 		$(window).on("popstate", loadKanban);
 		loadKanban();
 	}
@@ -80,11 +80,11 @@ var doFilterPostits = function(colors, showMine) {
 		selector +=  ".kb-color-" + colors[i];
 	}
 	$(".postit").show();
+	$(".kb-not-mine").show();
 	$(selector).hide();
 	if (showMine) {
 		var sm = $("#show-mine");
-		var user = sm.data("user");
-		$(".postit:not(:has(.user-" + user + "))").hide();
+		$(".kb-not-mine").hide();
 	}
 	equalHeightSections();
 }
