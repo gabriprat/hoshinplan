@@ -10,6 +10,7 @@ gem 'pg'
 
 gem 'json'
 
+gem 'sprockets-rails', '~> 2.3.0'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -102,7 +103,7 @@ gem 'resque-delay', :git => "git://github.com/rykov/resque-delay.git"
 gem 'paranoia'
 gem "secure_headers", :require => 'secure_headers'
 gem 'papercrop'
-gem 'responders', '~> 2.0'
+gem 'responders', '= 2.1.0'
 gem 'flipper'
 gem 'flipper-ui'
 gem 'flipper-activerecord'

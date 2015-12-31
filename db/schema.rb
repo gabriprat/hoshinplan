@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017002134) do
+ActiveRecord::Schema.define(version: 20151230224545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,21 @@ ActiveRecord::Schema.define(version: 20151017002134) do
   add_index "goals", ["creator_id"], name: "index_goals_on_creator_id", using: :btree
   add_index "goals", ["deleted_at"], name: "index_goals_on_deleted_at", using: :btree
   add_index "goals", ["hoshin_id"], name: "index_goals_on_hoshin_id", using: :btree
+
+  create_table "health_histories", force: :cascade do |t|
+    t.date     "day"
+    t.decimal  "objectives_health"
+    t.decimal  "indicators_health"
+    t.decimal  "tasks_health"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "hoshin_id",         null: false
+    t.integer  "company_id",        null: false
+  end
+
+  add_index "health_histories", ["company_id"], name: "index_health_histories_on_company_id", using: :btree
+  add_index "health_histories", ["hoshin_id", "day"], name: "index_health_histories_on_hoshin_id_and_day", unique: true, using: :btree
+  add_index "health_histories", ["hoshin_id"], name: "index_health_histories_on_hoshin_id", using: :btree
 
   create_table "hoshins", force: :cascade do |t|
     t.string   "name",                       default: "plan",   null: false

@@ -384,6 +384,7 @@ en:
   health:
     health_for: Health for %{name}
     top_users_with_pending: Users with pending actions in descending order
+    health_history: Health history
   kanban:
     show_only_my_tasks: Show only my tasks
     lanes:

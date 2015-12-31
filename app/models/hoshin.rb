@@ -67,6 +67,8 @@ class Hoshin < ActiveRecord::Base
   has_many :tasks, -> { readonly }, :through => :objectives, :accessible => true
   has_many :goals, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
   has_many :log, :class_name => "HoshinLog", :inverse_of => :hoshin
+  has_many :health_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :hoshin
+  
   
   children :areas
   
@@ -140,6 +142,19 @@ class Hoshin < ActiveRecord::Base
     user = User.current_user
     user.tutorial_step << :hoshin
     user.save!
+  end
+  
+  after_save do |obj|
+    if obj.health_updated_at_changed? || true
+      #one data point per day
+      hh = HealthHistory.unscoped.where(:day => obj.health_updated_at, :hoshin_id => obj.id).first_or_initialize
+      hh.hoshin = obj
+      hh.day = obj.health_updated_at
+      hh.objectives_health = obj.objectives_health
+      hh.indicators_health = obj.indicators_health
+      hh.tasks_health = obj.tasks_health
+      hh.save!
+    end
   end
   
   def company_name=(name)

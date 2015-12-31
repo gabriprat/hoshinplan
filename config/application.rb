@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'wicked_pdf'
+require 'sprockets/railtie'
 
 require File.expand_path('../../config/jobs/base_job.rb',        __FILE__)
 Dir['config/jobs/*.rb'].each {|file| require File.expand_path('../../' + file, __FILE__)}

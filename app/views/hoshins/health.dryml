@@ -45,5 +45,28 @@
 			<% } %>
 			</ol>
 		</div>
+		<div class="well" if="&this.health_histories">
+			<h3><t key="health.health_history"/></h3>
+	    		<chart 
+	    			id="graph-line" 
+	    			type="line" 
+				data="&this.health_histories.map{|i| {id: i.id, day: i.day, objectives: i.objectives_health, indicators: i.indicators_health, tasks: i.tasks_health}}" 
+	    			xkey="day"
+	    		  	ykeys="objectives,indicators,tasks"
+	    		  	labels="#{Objective.model_name.human(:count => 100)},#{Indicator.model_name.human(:count => 100)},#{Task.model_name.human(:count => 100)}"
+				dateFormat="dateFormatDefault"
+				hideHover="auto"
+				style="position: relative;"
+				xLabels="day"
+				xLabelFormat="dateFormatDefault"
+				xLabelAngle="45"
+				lineWidth="3,3,3"
+				pointSize="3"
+				lineColors="#008f00,#5DA5DA,#ff7c00"
+				trendLineColors="#008f00,#5DA5DA,#ff7c00"
+				yLabelFormat="ylabelformatHealth"
+	    		/>
+			<chart-legend labels="#{Objective.model_name.human(:count => 100)},#{Indicator.model_name.human(:count => 100)},#{Task.model_name.human(:count => 100)}" colors="#008f00,#5DA5DA,#ff7c00"/>
+		</div>
 	</aside-column:>
 </show-page>

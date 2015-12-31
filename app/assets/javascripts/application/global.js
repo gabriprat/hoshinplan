@@ -371,6 +371,14 @@ var ylabelformat = function(val, i) {
 	}
 	return ret;
 }
+
+var ylabelformatHealth = function(val, i) {
+	var ret = val;
+	var that = $(document);
+	if (ret == null) return ret;
+	ret  = numberFormat((ret.toFixed(2) * 1).toString()) + '%';
+	return ret;
+}
 $(document).ready(function() {
 	$("#sso-login").submit(function () {
 		var val = $("#sso-login input[name=email]").val();
@@ -561,5 +569,5 @@ $(document).ready(function() {
 	numeral.language(document.documentElement.lang);
 });
 
-$.webshims.setOptions('basePath', '/webshims/1.15.9/shims/');
+$.webshims.setOptions('basePath', '/webshims/1.15.10/shims/');
 $.webshims.polyfill("forms");

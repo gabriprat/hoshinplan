@@ -43,7 +43,8 @@ config.action_mailer.default_url_options = { host: 'www.hoshinplandev.com:5000',
   config.active_support.deprecation = :log
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
+  config.assets.digest = false
   config.paperclip_defaults = {
     #:storage => :s3,
     #:s3_host_name => 's3-eu-west-1.amazonaws.com',

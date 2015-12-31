@@ -383,6 +383,7 @@ es:
   health:
     health_for: Salud para %{name}
     top_users_with_pending: Ranking de usuarios con más acciones pendientes
+    health_history: Historial de salud
   kanban:
     show_only_my_tasks: Ver sólo mis tareas
     lanes:
