@@ -21,7 +21,9 @@ class IndicatorsController < ApplicationController
   include RestController
   
   def create
+    delocalize_config = { last_update: :date, next_update: :date, value: :number, last_value: :number, goal: :number, worst_value: :number }
     obj = params["indicator"]
+    obj.delocalize(delocalize_config)
     select_responsible(obj)
     hobo_create do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
@@ -42,9 +44,10 @@ class IndicatorsController < ApplicationController
   end
   
   def update
-    
+      delocalize_config = { last_update: :date, next_update: :date, value: :number, last_value: :number, goal: :number, worst_value: :number }
       old_value = nil
       obj = params[:indicator]
+      obj.delocalize(delocalize_config)
       select_responsible(obj)
       if params[:indicator] && params[:indicator][:value]
         i = find_instance

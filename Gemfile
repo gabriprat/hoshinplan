@@ -13,7 +13,7 @@ gem 'json'
 gem 'sprockets-rails', '~> 2.3.0'
 gem 'sass-rails'
 gem 'coffee-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'raphaeljs-rails'
 gem 'morrisjs-rails', :git => 'git://github.com/gabriprat/morrisjs-rails'
 gem 'yui-compressor'
@@ -50,7 +50,7 @@ gem 'derailed', group: :development
 # Hobo's version of will_paginate is required.
 gem "hobo_will_paginate"
 gem 'bootstrap-sass'
-gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3', :ref => 'a065167a94ec64c96eb0797d8050f5497a9be6ce'
+gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3'
 gem "hobo_bootstrap_ui", :git => "git://github.com/informatom/hobo_bootstrap_ui.git", :branch => 'bootstrap3'
 gem "hobo_jquery_ui"
 gem "bootstrap-switch-rails"
@@ -69,7 +69,7 @@ gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "nested_has_many_through"
 gem "actionmailer_inline_css"
 
-gem 'delocalize', :git => 'https://github.com/gabriprat/delocalize.git'
+gem 'delocalize'
 gem 'wicked_pdf'
 gem 'aws-sdk-v1'
 gem 'paperclip'
@@ -113,3 +113,4 @@ gem 'rails_handsontable'
 gem 'webshims-rails'
 gem 'momentjs-rails'
 gem 'codeclimate-test-reporter', group: :test, require: nil
+gem 'ruby-trello'

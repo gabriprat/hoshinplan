@@ -27,7 +27,9 @@ class TasksController < ApplicationController
   end
   
   def create
+    delocalize_config = { deadline: :date }
     obj = params["task"]
+    obj.delocalize(delocalize_config)
     select_responsible(obj)
     hobo_create do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
@@ -48,12 +50,14 @@ class TasksController < ApplicationController
   end
   
   def update
+    delocalize_config = { deadline: :date }
     self.this = find_instance
     if (params[:task] && params[:task][:status]) 
       self.this.lifecycle.send("to_" + params[:task][:status] + "!", current_user)
       params[:task].delete(:status)
     end
     obj = params["task"]
+    obj.delocalize(delocalize_config)
     select_responsible(obj)
     hobo_update do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
