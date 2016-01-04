@@ -18,6 +18,7 @@ class ActiveSupport::TestCase
     session[:user_id] = u.id
     session[:user] = u.id
     User.current_user = u
+    User.current_id = u.id
     @controller.send(:current_user=, u)
   end
 end

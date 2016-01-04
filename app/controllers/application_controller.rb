@@ -122,10 +122,6 @@ class ApplicationController < ActionController::Base
                yield
              rescue ActiveRecord::RecordInvalid => invalid
                  fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
-             ensure
-                 #avoids issues when an exception is raised, to clear the current_id
-                 User.current_id = nil   
-                 Company.current_id = nil    
              end
              
   before_filter :is_pdf

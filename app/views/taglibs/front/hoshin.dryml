@@ -74,7 +74,7 @@
 		<content-body: >
 		        <%# swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?" %>
 			<div class="fixed-x slide-page">
-				<view:header class="well" title="&Hoshin.human_attribute_name('header')" unless="&this.header.empty?"/>
+				<view:header class="well" title="&Hoshin.human_attribute_name('header')" unless="&this.header.blank?"/>
 				<div id="goals" part="goals">
 					<div class="goals well" if="&this.goals">
 						<h3 title="#{Goal.model_name.human(:count => 100).to_s}" class="ic-bullseye"></h3>
@@ -89,7 +89,7 @@
 					<% } %>
 				</ol>
 			</div>
-			<sortable-collection:areas part="areas" id="areas" hoshin="&this" class="center-block areas#{this.areas_count}">
+			<sortable-collection:areas part="areas" id="areas" hoshin="&this" class="center-block areas#{this.areas_count}" if="&this.areas_count > 0">
 				<item: style="width: #{100/this.hoshin.areas_count}%" id="view-area-#{this.id}"/>
 			</sortable-collection>
 			<%# /swept-cache %>

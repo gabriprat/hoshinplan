@@ -145,7 +145,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   after_save do |obj|
-    if obj.health_updated_at_changed? || true
+    if obj.health_updated_at_changed? && !obj.health_updated_at.nil?
       #one data point per day
       hh = HealthHistory.unscoped.where(:day => obj.health_updated_at.to_date, :hoshin_id => obj.id).first_or_initialize
       hh.hoshin = obj
