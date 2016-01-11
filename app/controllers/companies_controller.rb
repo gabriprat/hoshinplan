@@ -78,7 +78,7 @@ class CompaniesController < ApplicationController
           email.squish! 
           user = User.unscoped.where(:email_address => email).first
           domain = email.split("@").last
-          company_domain_exists = CompanyEmailDomain.where(domain: domain).exists?
+          company_domain_exists = CompanyEmailDomain.where(domain: domain, company_id: params[:id]).exists?
           if user.nil?
             if (company_domain_exists)
               user = User::Lifecycle.activate_ij(:email_address => email)
