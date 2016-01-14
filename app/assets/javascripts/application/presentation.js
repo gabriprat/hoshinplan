@@ -141,11 +141,11 @@ var attachKeyEvents = function() {
 		if (isModalShown()) {
 			return;
 		}
-		if (e.which==122 || (e.metaKey && (e.shiftKey || e.ctrlKey) && e.which == 70)) {
+		/*if (e.which==122 || (e.metaKey && (e.shiftKey || e.ctrlKey) && e.which == 70)) {
 			e.preventDefault();
 			enterFullscreen();
 			return;
-		}
+		}*/
 		if (!presenting || isInputFocused()) {
 			return;
 		}
