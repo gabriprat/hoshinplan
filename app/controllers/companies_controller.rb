@@ -79,18 +79,11 @@ class CompaniesController < ApplicationController
           user = User.unscoped.where(:email_address => email).first
           domain = email.split("@").last
           company_domain_exists = CompanyEmailDomain.where(domain: domain, company_id: params[:id]).exists?
-          if user.nil?
-            if (company_domain_exists)
-              user = User::Lifecycle.activate_ij(:email_address => email)
-              user.email_address = email
-              user.save!(:validate => false)
-            else
+          if user.nil?            
               user = User::Lifecycle.invite(current_user, {:email_address => email})
               invite_sent = true
               user.email_address = email
-              user.language = current_user.language
               user.save!(:validate => false)
-            end
           end
           uc = UserCompany.where(:company_id => params[:id], :user_id => user.id).first
           if uc.nil? 

@@ -45,6 +45,8 @@ module ModelBase
   end
   
   def same_company(cid=nil)
+    user = acting_user ? acting_user : User.current_user
+    return false if user.guest?
     ret = RequestStore.store[rs_key :sc, cid]
     if ret.nil?
       ret = _same_company(cid)
@@ -85,6 +87,8 @@ module ModelBase
   end
   
   def same_company_admin(cid=nil)
+    user = acting_user ? acting_user : User.current_user
+    return false if user.guest?
     ret = RequestStore.store[rs_key :sca, cid]
     if ret.nil?
       ret = _same_company_admin(cid)

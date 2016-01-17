@@ -34,6 +34,7 @@ class Mp
   end
 
   def self.people_set(user, ip, ignore_time=false) 
+    return if user.guest?
     opts = {id: user.id, ip: ip}
     if ignore_time
       opts["$ignore_time"] = true
@@ -99,6 +100,7 @@ class Mp
   
 
   def track!()
+    return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     #If you have Resque installed, this will use it, otherwise it fires the request *immediately*.
     #This is a very bad idea for most uses because it will result in *your* site blocking while waiting
     #for the Mixpanel API to return.  Be smart: install Resque.
@@ -109,7 +111,8 @@ class Mp
     end
   end
   
-  def people_set!() 
+  def people_set!()
+    return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     #If you have Resque installed, this will use it, otherwise it fires the request *immediately*.
     #This is a very bad idea for most uses because it will result in *your* site blocking while waiting
     #for the Mixpanel API to return.  Be smart: install Resque.

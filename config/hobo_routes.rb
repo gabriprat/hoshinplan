@@ -249,6 +249,8 @@ Hoshinplan::Application.routes.draw do
       get 'activate_ij'
     end
     member do
+      put 'activate', :action => 'do_activate'
+      get 'activate'
       put 'revoke_admin', :action => 'do_revoke_admin'
       get 'revoke_admin'
       put 'resend_invite', :action => 'do_resend_invite'

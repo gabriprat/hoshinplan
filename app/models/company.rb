@@ -157,9 +157,24 @@ class Company < ActiveRecord::Base
   def destroy_permitted?
      User.current_user.administrator? || same_company_admin(id)
   end
-
-  def view_permitted?(field)
+  
+  
+  def field_view_permitted?(field)
+    case field
+    when :company_email_domains
+      #Only enterprise and unlimited users should be able to set automatic email domains
+      enterprise? || unlimited
+    else
+      true
+    end
+  end
+  
+  def record_view_permitted?
     self.new_record? || User.current_user.administrator? || same_company(id)
+  end
+  
+  def view_permitted?(field)    
+   field_view_permitted?(field) && record_view_permitted?
   end
 
 end

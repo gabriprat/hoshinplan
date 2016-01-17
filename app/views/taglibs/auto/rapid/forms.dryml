@@ -376,6 +376,17 @@
   </form>
 </def>
 
+<def tag="activate-form" polymorphic/>
+<def tag="activate-form" for="UserCompany">
+  <form lifecycle="activate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user_company.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 <def tag="revoke-admin-form" polymorphic/>
 <def tag="revoke-admin-form" for="UserCompany">
   <form lifecycle="revoke_admin" merge param="default">

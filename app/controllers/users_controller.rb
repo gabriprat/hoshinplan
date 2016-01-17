@@ -172,7 +172,7 @@ class UsersController < ApplicationController
   def update
     ajax = request.xhr? || !(request.headers['HTTP_X_REQUESTED_WITH'] !~ /XMLHttpRequest/i)
     
-    self.this = find_instance
+    self.this ||= find_instance
     
     if self.this.timezone.nil? && !cookies[:tz].nil?
    	  zone = cookies[:tz]
@@ -206,7 +206,8 @@ class UsersController < ApplicationController
         flash[:notice] = nil
         hobo_ajax_response
       else
-        redirect_to current_user, :dgv => Time.now.to_i if valid?
+        redirect_to current_user, :dgv => Time.now.to_i if valid? && current_user.signed_up?
+        redirect_to home_page if current_user.nil?
       end
     else
       begin
@@ -215,7 +216,8 @@ class UsersController < ApplicationController
             flash[:notice] = nil
             hobo_ajax_response
           else
-            redirect_to current_user, :dgv => Time.now.to_i if valid?
+            redirect_to current_user, :dgv => Time.now.to_i if valid? && current_user.signed_up?
+            redirect_to home_page if current_user.nil?
           end
         end
       rescue Paperclip::Error => e
@@ -248,6 +250,19 @@ class UsersController < ApplicationController
     hobo_signup
   end
   
+  def do_signup
+    self.this = model.find_by_email_address(params[:user][:email_address]) if params[:user].present? && params[:user][:email_address].present?
+    if self.this.present? && self.this.state == 'invited'
+      params[:user].delete :tutorial_step
+      params[:user][:current_password] = nil
+      update
+      self.this.lifecycle.resend_activation!(self.this)
+      flash[:notice] = ht(:"#{model.to_s.underscore}.messages.signup.success")
+    else
+      hobo_do_signup
+    end
+  end
+
   def sign_in(user) 
     sign_user_in(user)
   end

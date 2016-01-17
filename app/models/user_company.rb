@@ -77,6 +77,10 @@ class UserCompany < ActiveRecord::Base
     return acting_user if create_permitted?
   end
   
+  def activate_available
+    return acting_user if user_id == acting_user.id
+  end
+  
   lifecycle do
 
      state :invited, :active, :admin
@@ -91,6 +95,8 @@ class UserCompany < ActiveRecord::Base
      
      create :activate_ij, :params => [ :company, :user ], :become => :active, :available_to => :activate_ij_available
 
+     transition :activate, {:invited => :active}, :available_to => :activate_available
+     
      transition :revoke_admin, {:invited => :active}, :available_to => :activate_ij_available
      
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do

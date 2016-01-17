@@ -126,7 +126,7 @@ es:
       destroy:
         success: "La eliminación de %{model} ha sido tenido éxito."
       signup:
-        success: "¡Gracias por registrarte! Tiene que activar la cuenta antes de iniciar la sesión. Por favor verifique su correo eléctronico."
+        success: "¡Gracias por registrarte! Tienes que activar la cuenta antes de iniciar la sesión. Por favor verifica tu correo eléctronico."
         must_activate: "Tienes que activar la cuenta antes de iniciar la sesión. Por favor verifique su correo eléctronico."
       login:
         success: "Ha iniciado la sesión."
@@ -137,7 +137,7 @@ es:
       not_found: "La página solicitada no se encuentra."
       unauthenticated: "No se pudo autenticar."
       validate_password: "debe contener al menos 6 caracteres, letras mayúsculas y minúsculas"
-      current_password_is_not_correct: "no está correcta"
+      current_password_is_not_correct: "no es correcta"
       you_are_site_admin: "Ahora usted es el administrador del sitio."
       you_signed_up: "Usted se registró."
       none: "(Sin %{model})"

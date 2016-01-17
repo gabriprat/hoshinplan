@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
   
   before_save do |user| 
     user.email_address.downcase!
+    user.email_address.strip!
     if user.color.nil? && !name.nil?
       user.color = hexFromString(name)
     end
@@ -213,12 +214,15 @@ class User < ActiveRecord::Base
       UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
     
-    transition :resend_activation, {:inactive => :inactive}, :available_to => :all, :new_key => true do
+    transition :resend_activation, {:invited => :invited}, :available_to => :all, :new_key => true do
       UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
     
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
           :params => [:name, :password, :password_confirmation] do
+      UserCompany.where(user: self, state: :invited).each { |uc|
+        uc.lifecycle.activate!(self)
+      }
       self.update_column(:key_timestamp, nil)
     end
 
@@ -340,7 +344,7 @@ class User < ActiveRecord::Base
 
   def update_permitted?     
     f = none_changed?(:administrator)
-    acting_user.administrator? or
+    acting_user.administrator? or (changing_password? && state == 'invited') or
       ((acting_user == self or same_company_admin) && f)
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
@@ -362,8 +366,6 @@ class User < ActiveRecord::Base
 
   def view_permitted?(field)
     # permit password fields to avoid the reset password page to fail
-    return true
-    self.state == :invited ||
     field == :password || 
     field == :password_confirmation || 
     acting_user.administrator? || 
@@ -418,4 +420,8 @@ class User < ActiveRecord::Base
     end
   end
   
+  # Check if the encrypted passwords match
+  def authenticated?(password)
+    crypted_password == encrypt(password) || crypted_password.blank? && password.blank?
+  end
 end

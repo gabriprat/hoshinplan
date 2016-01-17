@@ -53,3 +53,10 @@
 		</prepend-main-content:>
 	</old-index-page>
 </extend>
+
+<extend tag="form" for="Company">
+	<set href="&session[:return_to] || request.referer" unless='&linkable?'/>
+	<old-form merge multipart>
+	    <cancel: href="&href"/>
+	</old-form>
+</extend>
