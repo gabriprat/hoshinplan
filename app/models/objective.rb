@@ -85,6 +85,13 @@ class Objective < ActiveRecord::Base
       .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists).references(:responsible)
   }
   
+  after_destroy do |obj| 
+    if obj.deleted_at.present? && obj.obj_pos.present?
+      obj.obj_pos = nil
+      obj.save!
+    end
+  end
+  
   after_save :update_counter_cache
   after_destroy :update_counter_cache
   def update_counter_cache

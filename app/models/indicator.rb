@@ -96,6 +96,13 @@ class Indicator < ActiveRecord::Base
   
   scope :due_today, -> { due('0 hour') }
   
+  after_destroy do |obj| 
+    if obj.deleted_at.present? && obj.ind_pos.present?
+      obj.ind_pos = nil
+      obj.save!
+    end
+  end
+  
   before_save do |indicator|
     if indicator.objective
       if indicator.show_on_parent && indicator.objective.parent

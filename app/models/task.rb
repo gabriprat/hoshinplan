@@ -183,6 +183,13 @@ class Task < ActiveRecord::Base
     h.save!
   end
   
+  after_destroy do |obj| 
+    if obj.deleted_at.present? && obj.tsk_pos.present?
+      obj.tsk_pos = nil
+      obj.save!
+    end
+  end
+  
   after_create do |obj|
     user = User.current_user
     user.tutorial_step << :task
