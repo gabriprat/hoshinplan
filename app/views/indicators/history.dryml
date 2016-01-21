@@ -38,10 +38,17 @@
 		        </header>
 		        <div class="panel-body" style="display: block;">
 			    <error-messages />
+			<% 
+				ihs = this.indicator_histories
+		       		months = ihs.length == 12 \
+		       		 	&& ihs[0].day.month == 1 \
+		       		 	&& ihs[11].day.month == 12 \
+		       			&& ihs[0].day.year == ihs[11].day.year
+			%>
 	    		<chart 
 	    			id="graph-line" 
 	    			type="line" 
-				data="&this.indicator_histories.map{|i| {id: i.id, day: i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}" 
+				data="&ihs.map{|i| {id: i.id, day: months ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}" 
 	    			
 	    			xkey="day"
 				events="&this.indicator_events.map {|event| event.day }"
@@ -49,12 +56,12 @@
 	    		  	ykeys="value,goal,previous,inc"
 				yaxes="y,y,y,y2"
 	    		  	labels="#{t 'value_goal_previous'}"
-				dateFormat="dateFormatDefault"
 				hoverCallback="hover"
 				hideHover="auto"
 				style="position: relative;"
-				xLabels="month"
-				xLabelFormat="dateFormatDefault"
+				dateFormat="&months ? 'dateFormatMonth' : 'dateFormatDefault'"
+				xLabels="&months ? 'month' : 'auto'"
+				xLabelFormat="&months ? 'dateFormatMonth' : 'dateFormatDefault'"
 				xLabelAngle="45"
 				lineWidth="3,2,3,1"
 				pointSize="3"

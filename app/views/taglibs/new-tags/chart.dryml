@@ -2,7 +2,7 @@
 <%
 	raise Hobo::Error, "The \"id\" attribute must be defined" if id.blank?
 	required_attributes = ['data', 'xkey', 'ykeys', 'labels']
-	morris_attributes = required_attributes + ['lineColors','lineWidth','pointSize','pointFillColors',
+	morris_attributes = required_attributes + ['months','lineColors','lineWidth','pointSize','pointFillColors',
 		'pointStrokeColors','ymax','ymin','smooth','hideHover','hoverCallback','parseTime','units',
 		'postUnits','preUnits','dateFormat','xLabels','xLabelFormat','xLabelAngle','yLabelFormat',
 		'goals','goalStrokeWidth','goalLineColors','events','eventStrokeWidth','eventLineColors',

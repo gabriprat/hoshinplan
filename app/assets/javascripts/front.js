@@ -19,4 +19,6 @@
 //= require textile-editor
 //= require ./textile-editor-config
 //= require_tree ./hobo_simple_color
+//= require moment
+//= require moment/es.js
 //= require_tree ./front

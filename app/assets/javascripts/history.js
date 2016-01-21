@@ -1,6 +1,4 @@
 //= require handsontable.full
-//= require moment
-//= require moment/es.js
 
 var objectData = [], hot;
 

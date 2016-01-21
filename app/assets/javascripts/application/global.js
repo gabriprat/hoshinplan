@@ -354,6 +354,10 @@ var numberFormat = function(num) {
     	}
 }
 
+var dateFormatMonth = function(d) { 
+	return dateFormat('M', d);
+}
+
 var dateFormatDefault = function(d) {
 	var that = $(document);
 	
