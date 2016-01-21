@@ -43,7 +43,7 @@ class Objective < ActiveRecord::Base
 
   belongs_to :parent, :class_name => "Objective"
   belongs_to :area, :inverse_of => :objectives, :null => false
-  belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => true, :null => false, :touch => true
+  belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => false, :null => false, :touch => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
   
   acts_as_list :scope => :area, :column => "obj_pos"
@@ -85,8 +85,14 @@ class Objective < ActiveRecord::Base
       .where(Indicator.unscoped.under_tpc(100).where(ind_cond).exists).references(:responsible)
   }
   
-  after_destroy do |objective| objective.hoshin.touch unless objective.hoshin.nil? end
-        
+  after_save :update_counter_cache
+  after_destroy :update_counter_cache
+  def update_counter_cache
+    h = self.hoshin
+    h.indicators_count = h.indicators.count
+    h.save!
+  end
+          
   before_create do |objective|
     objective.hoshin_id = objective.area.hoshin_id
     objective.company_id = objective.area.company_id

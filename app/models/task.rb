@@ -178,8 +178,9 @@ class Task < ActiveRecord::Base
   end
   
   def update_counter_cache
-    self.hoshin.tasks_count = Task.where(:status => [:active, :backlog], :hoshin_id => self.hoshin_id).count(:id)
-    self.hoshin.save!
+    h = self.hoshin
+    h.tasks_count = h.tasks.where(:status => [:active, :backlog]).count
+    h.save!
   end
   
   after_create do |obj|
