@@ -1258,7 +1258,7 @@ body .table div.ordering-handle {
 }
 
 body.compact div.ordering-handle, body.compact .column.ordering,
-body.presenting div.ordering-handle, body.presenting .column.ordering {
+body.presenting div.ordering-handle, body.presenting .column.ordering, body.presenting #tutorial {
 	display: none;
 }
 
