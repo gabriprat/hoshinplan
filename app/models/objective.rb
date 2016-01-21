@@ -111,6 +111,13 @@ class Objective < ActiveRecord::Base
     user.save!
   end
   
+  before_update do |obj|
+    if obj.area_id_changed?
+      last_obj = Objective.unscoped.where(area_id: obj.area_id).where.not(obj_pos: nil).order(obj_pos: 'DESC').first
+      obj.obj_pos = last_obj.obj_pos + 1      
+    end
+  end
+  
   after_update do |obj|
     if obj.area_id_changed?
       Indicator.where(:objective_id => id).update_all({:area_id => area_id}) unless obj.indicators.blank?
