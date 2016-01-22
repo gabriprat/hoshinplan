@@ -59,7 +59,6 @@
 		</stylesheets:>
 		<append-custom-scripts:>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' unless="&@pdf"/>
-			<script data-cfasync="false" src="https://cdn.userreport.com/userreport.js" async unless="&@pdf"></script>
 		</append-custom-scripts:>
 		<append-body: >
 			<%= raw "<"+"/span>" %>
