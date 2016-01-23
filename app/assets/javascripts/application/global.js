@@ -584,11 +584,8 @@ if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('
 	$.webshims.polyfill("forms");
 }
 
-$(document).load(function () {
-	if (userId) {
-		alert("tracking... " + userId);
+$(window).load(function () {
+	if (userId && mixpanel && typeof mixpanel.identify === "function") {
 		mixpanel.identify(userId);
-	} else {
-		alert("Not tracking");
 	}
 });
