@@ -57,13 +57,9 @@
 				<%= stylesheet_link_tag "#{request.protocol}fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700%7CLato:300,400,700;", :media => 'all' %>
 			</else>
 		</stylesheets:>
-		<append-custom-scripts:>
+		<prepend-body:>
 			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' unless="&@pdf"/>
-		</append-custom-scripts:>
-		<append-body: >
-			<%= raw "<"+"/span>" %>
-			<cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="&Rails.configuration.cms_auto_calls"/>
-		</append-body:>
+		</prepend-body:>
 		<prepend-head:>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		</prepend-head:>
@@ -79,6 +75,14 @@
 		      <li><a href="mailto:hello@hoshinplan.com"><t key="footer.contact_us"/></a></li>
 		    </ul>
 		</footer:>
-		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" error-message="#{t :error_message}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}"/>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" error-message="#{t :error_message}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}" user-id="#{User.current_id}"/>
 	 </old-page>
 </extend>
+
+<def tag="page-scripts">
+  <do param="default">
+ <% attrs = deunderscore_attributes(attributes).reverse_merge( 'form_auth_token' => { 'name' => request_forgery_protection_token, 'value' => form_authenticity_token}, 'hobo_parts' => part_contexts_storage_uncoded) %>
+    <call-tag tag="span" data-rapid-page-data="&attrs.to_json" style="display: none;"/>
+    <cms key="fragments/#{params[:controller]}_#{params[:action]}_#{locale}" async="true" if="&Rails.configuration.cms_auto_calls"/>
+  </do>
+</def>

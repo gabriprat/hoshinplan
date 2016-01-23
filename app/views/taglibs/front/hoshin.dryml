@@ -14,7 +14,7 @@
 		<navbar: />
 		        
 		<collection-heading: replace />
-		<parent-link: >
+		<parent-link: replace>
 			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
 		</parent-link:>
 		<prepend-content-header: >

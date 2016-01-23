@@ -217,9 +217,11 @@ function updateColors() {
 }
 $(document).ready(updateColors);
 
+var userId = '';
 $(document).ready(function () {
 	var msg = $("[data-rapid-page-data]").data('rapid-page-data').cookiemsg;
 	var agree = $("[data-rapid-page-data]").data('rapid-page-data').agreemsg;
+	userId = $("[data-rapid-page-data]").data('rapid-page-data')["user-id"];
 	$.cookieCuttr({
 		"cookieAnalytics": false,
 		"cookieMessage": msg,
