@@ -1,5 +1,5 @@
 ::SecureHeaders::Configuration.configure do |config|
-  config.hsts = true
+  config.hsts = false
   config.x_frame_options = "SAMEORIGIN"
   config.x_content_type_options = "nosniff"
   config.x_xss_protection = {:value => 1, :mode => "block"}
