@@ -1,5 +1,5 @@
 <def attrs='tracking,domain' tag='google-analytics'>
-  <if test='&ENV[&apos;RAILS_ENV&apos;] != &apos;production&apos;'>
+  <if test='&ENV[&apos;RAILS_ENV&apos;] == &apos;production&apos;'>
 	<!-- Google Tag Manager -->
 	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PZHNHD"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
