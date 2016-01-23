@@ -583,3 +583,12 @@ if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('
 	$.webshims.setOptions('basePath', '/webshims/1.15.10/shims/', 'forms');
 	$.webshims.polyfill("forms");
 }
+
+$(document).load(function () {
+	if (userId) {
+		alert("tracking... " + userId);
+		mixpanel.identify(userId);
+	} else {
+		alert("Not tracking");
+	}
+});
