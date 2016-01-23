@@ -24,12 +24,12 @@ Rails.application.configure do
   config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
 
   config.middleware.use HtmlCompressor::Rack,
-    compress_css: true,
-    compress_javascript: true,
+    compress_css: false,
+    compress_javascript: false,
     css_compressor: Sass,
     enabled: true,
     javascript_compressor: uglifier,
-    preserve_line_breaks: false,
+    preserve_line_breaks: true,
     remove_comments: true,
     remove_form_attributes: false,
     remove_http_protocol: false,

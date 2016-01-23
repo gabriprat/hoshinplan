@@ -1,5 +1,5 @@
 module ActionDispatch
-  class SSL2
+  class SSL
     YEAR = 31536000
 
     def self.default_hsts_options
