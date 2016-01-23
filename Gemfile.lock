@@ -173,9 +173,9 @@ GEM
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
-    dryml (2.2.4)
+    dryml (2.2.3)
       actionpack
-      hobo_support (= 2.2.4)
+      hobo_support (= 2.2.3)
     erubis (2.7.0)
     excon (0.45.4)
     execjs (2.6.0)
@@ -195,27 +195,28 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.4.3)
     heapy (0.1.2)
-    hobo (2.2.4)
-      dryml (= 2.2.4)
-      hobo_fields (= 2.2.4)
-      hobo_support (= 2.2.4)
+    hobo (2.2.3)
+      dryml (= 2.2.3)
+      hobo_fields (= 2.2.3)
+      hobo_support (= 2.2.3)
       hobo_will_paginate
-    hobo_fields (2.2.4)
-      hobo_support (= 2.2.4)
-    hobo_jquery (2.2.4)
-      hobo_rapid (= 2.2.4)
+    hobo_fields (2.2.3)
+      hobo_support (= 2.2.3)
+    hobo_jquery (2.2.3)
+      hobo_rapid (= 2.2.3)
       jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.2.4)
-      hobo (= 2.2.4)
-      hobo_jquery (= 2.2.4)
+    hobo_jquery_ui (2.2.3)
+      hobo (= 2.2.3)
+      hobo_jquery (= 2.2.3)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.2.4)
-      hobo (= 2.2.4)
-    hobo_support (2.2.4)
+    hobo_rapid (2.2.3)
+      hobo (= 2.2.3)
+    hobo_support (2.2.3)
       rails (~> 4.2.4)
     hobo_will_paginate (2.1.1)
     hobo_will_paginate-bootstrap (1.0.0)
       hobo_will_paginate
+    htmlcompressor (0.3.0)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -247,7 +248,7 @@ GEM
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     mixpanel-ruby (2.2.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
@@ -504,6 +505,7 @@ DEPENDENCIES
   hobo_paperclip!
   hobo_tokeninput!
   hobo_will_paginate
+  htmlcompressor
   http_accept_language
   immigrant
   jquery-cookie-rails

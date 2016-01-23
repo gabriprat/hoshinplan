@@ -114,3 +114,4 @@ gem 'webshims-rails'
 gem 'momentjs-rails'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'ruby-trello'
+gem 'htmlcompressor'
