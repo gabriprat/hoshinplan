@@ -23,7 +23,7 @@ Hoshinplan::Application.configure do
             :domain         => 'hoshinplan.com',
             :enable_starttls_auto => true
     }
-  config.action_mailer.asset_host = 'http://static.hoshinplan.com'
+  config.action_mailer.asset_host = 'http://d4i78hkg1rdv3.cloudfront.net'
   config.action_mailer.default_url_options = { host: 'www.hoshinplan.com', only_path: false }
   
 
@@ -68,7 +68,7 @@ Hoshinplan::Application.configure do
   #config.hobo.stable_cache_store = :redis_store, 'redis://rediscloud:E2rOg7rZl9fIpgtp@pub-redis-18280.eu-west-1-1.2.ec2.garantiadata.com:18280'
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = 'static.hoshinplan.com'
+  config.action_controller.asset_host = 'd4i78hkg1rdv3.cloudfront.net'
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )

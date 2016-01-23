@@ -28,7 +28,7 @@
 				<table class="header">
 					<tr>
 						<td class="logo">
-							<img alt="Hoshinplan" src="http://static.hoshinplan.com/assets/logo.png" />
+							<img alt="Hoshinplan" src="https://d4i78hkg1rdv3.cloudfront.net/assets/logo.png" />
 						</td>
 						<td class="claim"><h4 class="collapse">#{ I18n.translate "emails.claim", :default => "Make your company strategy work"}</h4></td>
 					</tr>
