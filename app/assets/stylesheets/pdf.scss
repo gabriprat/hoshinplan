@@ -9,6 +9,23 @@
  *= require ./application/print.css
  *= require_tree ./front
 */
+
+[class^="ic-"]:before, [class^="fa-"]:before {
+	content: " " !important;
+}
+
+.ic-sad:before {
+	content: " " !important;
+}
+
+.ic-smile:before {
+	content: " " !important;
+}
+
+.ic-wondering:before {
+	content: " " !important;
+}
+
 div.table div.column[data-label="Actions"] {
 	display: none;
 }

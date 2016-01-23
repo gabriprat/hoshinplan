@@ -1,3 +1,7 @@
+Rails.application.configure do
+  config.middleware.use WickedPdf::Middleware
+end
+
 WickedPdf.config = {
   :page_size => 'A4',
   :print_media_type => true,
