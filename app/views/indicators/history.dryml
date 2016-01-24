@@ -1,7 +1,7 @@
 <show-page: >
-	<prepend-custom-scripts:>
-		<javascript name="history"/>
-	</prepend-custom-scripts:>
+	<custom-javascript:>
+		getScript('<%= asset_path('history.js')%>', function(){});
+	</custom-javascript:>
 	<append-stylesheets:>
 		<stylesheet name="history"/>
 	</append-stylesheets:>
