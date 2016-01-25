@@ -27,7 +27,8 @@ class IndicatorHistory < ActiveRecord::Base
     
   
   before_create do |ih|
-    ih.company = ih.indicator.company
+    ind = Indicator.unscoped.find(ih.indicator_id)
+    ih.company_id = ind.company_id
   end
 
   before_destroy do |ih|
