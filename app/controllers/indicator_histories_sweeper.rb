@@ -12,18 +12,20 @@ class IndicatorHistoriesSweeper < ActionController::Caching::Sweeper
 
   def after_update(ih)
     if Rails.configuration.action_controller.perform_caching
-      expire_swept_caches_for(ih.indicator.area)
-      expire_swept_caches_for(ih.indicator)
-      expire_swept_caches_for(ih.indicator.objective.parent.area) if ih.indicator && ih.indicator.objective && ih.indicator.objective.parent  
+      ind = Indicator.unscoped.find(ih.indicator_id)
+      expire_swept_caches_for(ind.area)
+      expire_swept_caches_for(ind)
+      expire_swept_caches_for(ind.objective.parent.area) if ind && ind.objective && ind.objective.parent  
       
     end
   end
 
   def after_destroy(ih)
     if Rails.configuration.action_controller.perform_caching
-      expire_swept_caches_for(ih.indicator)
-      expire_swept_caches_for(ih.indicator.area)
-      expire_swept_caches_for(ih.indicator.objective.parent.area) if ih.indicator && ih.indicator.objective && ih.indicator.objective.parent  
+      ind = Indicator.unscoped.find(ih.indicator_id)
+      expire_swept_caches_for(ind)
+      expire_swept_caches_for(ind.area)
+      expire_swept_caches_for(ind.objective.parent.area) if ind && ind.objective && ind.objective.parent  
     end
   end
 end
