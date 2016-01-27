@@ -116,6 +116,7 @@ es:
     unknown: 'Error desconocido.'
     invalid_locale: Idioma no soportado.
     user_limit_reached: 'Has llegado al límite de colaboradores de tu plan actual. Por favor, mejora tu plan o contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>'
+    not_expected_format: no tiene el formato esperado
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'

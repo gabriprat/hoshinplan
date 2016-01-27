@@ -117,6 +117,7 @@ en:
     unknown: 'Unknown error.'
     invalid_locale: Invalid language.
     user_limit_reached: You have reached the maximum number of collaborators for your current plan. Please upgrade your plan or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>
+    not_expected_format: does not have the expected format    
   hobo:
     area:
       child_models: '%{model} from children hoshin plans'

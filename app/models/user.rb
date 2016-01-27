@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  validates :email_address, uniqueness: { case_sensitive: false }
+  validates :email_address, uniqueness: { case_sensitive: false }, presence: true, email: true
   
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :less_than => 10.megabytes   

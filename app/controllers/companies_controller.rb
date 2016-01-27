@@ -75,7 +75,8 @@ class CompaniesController < ApplicationController
       invite_sent = false
       begin
         params[:collaborators].each_line do |email|
-          email.squish! 
+          email.strip!
+          email.downcase! 
           user = User.unscoped.where(:email_address => email).first
           domain = email.split("@").last
           company_domain_exists = CompanyEmailDomain.where(domain: domain, company_id: params[:id]).exists?
@@ -83,7 +84,12 @@ class CompaniesController < ApplicationController
               user = User::Lifecycle.invite(current_user, {:email_address => email})
               invite_sent = true
               user.email_address = email
-              user.save!(:validate => false)
+              begin
+                user.save!
+              rescue ActiveRecord::RecordInvalid => invalid
+                
+                flash[:error] = (flash[:error].nil? ? '' :  flash[:error] + ", ") + user.errors.full_messages.first + " (" + email + ")"
+              end
           end
           uc = UserCompany.where(:company_id => params[:id], :user_id => user.id).first
           if uc.nil? 
