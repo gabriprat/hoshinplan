@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
 
   fields do
     name              :string, :null => false
-    description       HoboFields::Types::TextileString
+    description       HoboFields::Types::TextilePlusString
     deadline          :date
     original_deadline :date
     show_on_parent    :boolean

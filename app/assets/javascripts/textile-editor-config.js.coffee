@@ -21,6 +21,7 @@ TextileEditor.setButtons(
         new TextileEditorButton("ed_h3",         "h3",             "h3",   "", "3", "Header 3"),
         new TextileEditorButton("ed_h4",         "h4",             "h4",   "", "4", "Header 4"),
         new TextileEditorButton("ed_block",      "quote-left",     "bq",   "\n", "q", "Blockquote"),
+        new TextileEditorButton("ed_table",      "table",          "| Column 1 | Column 2 | Column 3 |\n| Text     | Text     | Text     |",   "\n", "t", "Table"),
         new TextileEditorButtonSeparator(),
         new TextileEditorButton("ed_dedent",     "dedent",        ")",    "\n", "]", "Outdent"),
         new TextileEditorButton("ed_indent",     "indent",         "(",    "\n", "[", "Indent"),

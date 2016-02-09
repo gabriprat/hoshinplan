@@ -13,6 +13,7 @@ module Hoshinplan
   class Application < Rails::Application
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js)
+    config.assets.precompile << "emoji/**/*.png"
     # Hobo: Named routes have changed in Hobo 2.0.   Set to false to emit both the 2.0 and 1.3 names.
     config.hobo.dont_emit_deprecated_routes = true
     # Hobo: remove support for ERB templates
@@ -74,6 +75,7 @@ module Hoshinplan
     I18n.config.enforce_available_locales = true
     
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.paths << Emoji.images_path
     
     config.font_assets.origin = '*'
     

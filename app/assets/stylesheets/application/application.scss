@@ -886,7 +886,7 @@ body.hoshin form.inline-form input,  body.hoshin .in-place-form input{
 
 .hoshin-header, .in-place-edit {
 	td {
-		border: 1px solid black;
+		border: 1px solid $primary-color;
 		padding: 5px;
 	}
 }
@@ -3504,4 +3504,11 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 
 .handsontableInput {
 	margin-top: initial !important;
+}
+
+img.emoji, img.emojione {
+	width: 1.4em;
+	line-height: 1.4em;
+	vertical-align: middle;
+	margin-top: -0.35em;
 }

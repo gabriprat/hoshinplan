@@ -4,6 +4,8 @@
 require 'rake/dsl_definition'
 require 'rake'
 
+load 'tasks/emoji.rake'
+
 require File.expand_path('../config/application', __FILE__)
 
 Hoshinplan::Application.load_tasks

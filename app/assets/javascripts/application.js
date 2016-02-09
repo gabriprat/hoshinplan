@@ -17,4 +17,5 @@
 //= require jquery.detect_timezone
 //= require bootstrap-switch
 //= require webshims/polyfiller
+//= require jquery-textcomplete
 //= require_tree ./application

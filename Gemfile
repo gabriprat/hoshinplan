@@ -115,3 +115,5 @@ gem 'momentjs-rails'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'ruby-trello'
 gem 'htmlcompressor'
+gem 'gemoji-parser'
+gem 'jquery-textcomplete-rails'
