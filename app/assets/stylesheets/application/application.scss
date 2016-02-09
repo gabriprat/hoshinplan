@@ -884,6 +884,13 @@ body.hoshin form.inline-form input,  body.hoshin .in-place-form input{
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+.hoshin-header, .in-place-edit {
+	td {
+		border: 1px solid black;
+		padding: 5px;
+	}
+}
+
 body.hoshin .kb-frame form.inline-form input,  body.hoshin .kb-frame .in-place-form input{
 	border: 0;
 	background: transparent;
