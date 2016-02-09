@@ -7,7 +7,7 @@
 			$(this).prev(".textile-toolbar").hide();
 			$(this).focus(function() {$(this).prev(".textile-toolbar").show();});
 		}
-		$(this).textcomplete([ {
+		var a = $(this).textcomplete([ {
 		        match: /\B:([\-+\w]*)$/,
 		        search: function (term, callback) {
 		            var results = [];
@@ -44,9 +44,8 @@
 		        maxCount: 10
 		    }
 		    ],{
-		        'zIndex': '2000'
-		    });
-		
+		        'zIndex': '2000', 'className':'textcomplete-dropdown'
+		    });		
         }
     };
 
@@ -60,7 +59,28 @@
             $.error( 'Method ' +  method + ' does not exist on hjq_textile_editor' );
         }
     };
-
+    
+    var oldSetPosition = $.fn.textcomplete.Dropdown.prototype.setPosition;
+    $.fn.textcomplete.Dropdown.prototype.setPosition = function (position) { 
+	    oldSetPosition.call(this, position); 
+	    this.$el.css('position','absolute');
+    };
+    
+    $.fn.textcomplete.Dropdown.prototype.isEscape = function (e) {
+          return e.keyCode === 27;  // ESCAPE
+    };
+    
+    var oldOnKeyDown = $.fn.textcomplete.Dropdown.prototype._onKeydown;
+    
+    $.fn.textcomplete.Dropdown.prototype._onKeydown = function (e) {
+	if (this.isEscape(e)) {
+		e.preventDefault();
+		this.deactivate();
+	} else {
+		oldOnKeyDown.call(this, e);
+	}
+    };
+    
 })( jQuery );
 
 

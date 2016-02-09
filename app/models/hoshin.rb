@@ -19,7 +19,7 @@ class Hoshin < ActiveRecord::Base
     neglected_objectives_count :integer, :default => 0, :null => false
     tasks_count :integer, :default => 0, :null => false
     hoshins_count :integer, :default => 0, :null => false
-    header HoboFields::Types::TextileString
+    header HoboFields::Types::TextilePlusString
     health_updated_at :datetime
     color       Color 
     timestamps

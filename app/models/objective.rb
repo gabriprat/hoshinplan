@@ -8,7 +8,7 @@ class Objective < ActiveRecord::Base
 
   fields do
     name        :string, :null => false
-    description HoboFields::Types::TextileString
+    description HoboFields::Types::TextilePlusString
     neglected    :boolean, :default => false, :required => true
     blind       :boolean, :default => true, :required => true
     timestamps

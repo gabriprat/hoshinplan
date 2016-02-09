@@ -9,7 +9,7 @@ class Indicator < ActiveRecord::Base
   fields do
     name        :string, :null => false
     value       :decimal
-    description HoboFields::Types::TextileString
+    description HoboFields::Types::TextilePlusString
     frequency   HoboFields::Types::EnumString.for(:weekly, :monthly, :quarterly)
     next_update :date
     last_update :date
