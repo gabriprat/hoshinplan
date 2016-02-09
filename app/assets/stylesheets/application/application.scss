@@ -3172,6 +3172,11 @@ select {
 	line-height: 1.5;
 }
 
+select.collab-state {
+	font-size: 1em;
+	padding-right: 1.3em;
+}
+
 select::-ms-expand,
 select.form-control::-ms-expand {
   display: none;

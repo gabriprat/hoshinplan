@@ -8,9 +8,8 @@ class UserCompaniesController < ApplicationController
   
   def permission_denied(error)
     @title = t "user_company.that_operation_is"
-    
-    if find_instance.user_id != current_user.id
-      redirect_to "/users/logout_and_return?return_url=" + request.fullpath
+    if find_instance.user_id != current_user.id && !request.xhr?
+      redirect_to "/users/logout_and_return?return_url=" + request.fullpath 
     else
       @message = t "user_company.the_provided_key"
       super

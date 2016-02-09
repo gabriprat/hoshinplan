@@ -37,7 +37,6 @@ class CompaniesController < ApplicationController
     @this.same_company_admin # load request variable to aviod queries in the template
     @limit_reached = false
     @collaborators = cols
-    @collaborators[0].company_admin if @collaborators.size > 0 # load request variable to aviod queries in the template
     if @this.collaborator_limits_reached?
       @limit_reached = true
       flash.now[:info] = t("errors.user_limit_reached").html_safe 
@@ -51,9 +50,11 @@ class CompaniesController < ApplicationController
   end
   
   def cols
+    order = parse_sort_param(:state => "user_companies.state", :user => "lower(coalesce(users.\"firstName\",'') || coalesce(users.\"lastName\",'') || email_address)")
+    order ||= "lower(coalesce(users.\"firstName\",'') || coalesce(users.\"lastName\",'') || email_address)"
     find_instance.user_companies.includes(:user).references(:user)
           .where("email_address like ? or name like ?", "%"+params[:search].to_s+"%", "%"+params[:search].to_s+"%")
-          .order_by(parse_sort_param(:state => "user_companies.state", :user => "lower(users.\"firstName\" || '-' || users.\"lastName\" || '-' || email_address)"))
+          .order_by(order)
           .paginate(:page => params[:page], :per_page => 15).load
   end
   

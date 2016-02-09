@@ -322,6 +322,10 @@ es:
         user: Usuario
         state: Estado
         lifecycle:
+          states:
+            active: Usuario
+            admin: Administrador
+            invited: Invitado
           transitions:
             make_admin: Hacer administrador
             revoke_admin: Revocar administrador

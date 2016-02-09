@@ -29,7 +29,7 @@ class UserCompany < ActiveRecord::Base
       errors.add(:company, "you have to be logged in" ) 
     else
       errors.add(:company, "you must be an administrator of \"" + company.name + 
-        "\" to be able to associate users to it.") unless company_admin || new_company_available
+        "\" to be able to associate users to it.") unless same_company_admin || new_company_available
     end
   end
   
@@ -38,24 +38,8 @@ class UserCompany < ActiveRecord::Base
     Task.where(:company_id => uc.company_id, :responsible_id => uc.user_id).update_all(:responsible_id => nil)
   end
   
-  def company_admin
-    user = acting_user ? acting_user : User.current_user
-    ret = RequestStore.store[rs_key]
-    if ret.nil?
-      ret = self.company_id.nil? || #!self.company_changed? ||
-        user.user_companies.company_id_is(self.company_id).state_is(:admin).exists?
-      RequestStore.store[rs_key] = ret
-    end
-    ret
-  end
-  
-  def rs_key
-    user = acting_user ? acting_user : User.current_user
-    "company_admin-" + user.id.to_s + "-" + self.company_id.to_s
-  end
-  
   def company_admin_available
-    acting_user if company_admin
+    acting_user if same_company_admin
   end
   
   def accept_available 
@@ -78,7 +62,7 @@ class UserCompany < ActiveRecord::Base
   end
   
   def activate_available
-    return acting_user if user_id == acting_user.id
+    return acting_user if user_id == acting_user.id || same_company_admin 
   end
   
   lifecycle do

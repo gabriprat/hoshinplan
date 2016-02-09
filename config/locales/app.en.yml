@@ -323,6 +323,10 @@ en:
         user: User
         state: Status
         lifecycle:
+          states:
+            active: User
+            admin: Admin
+            invited: Invited
           transitions:
             make_admin: Make admin
             revoke_admin: Revoke admin

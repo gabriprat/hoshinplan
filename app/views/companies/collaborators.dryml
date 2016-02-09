@@ -43,18 +43,44 @@
 			</form>
 		</if>
 		</else>
-		<table-plus with="&@collaborators" fields="user, state" part="users" id="users" part-id="users" part-locals="@collaborators">
+		<set pid="&1"/>
+		<table-plus with="&@collaborators" fields="user, state">
 			<user-view: >
+				<do part="user" id="user-#{pid}" part-locals="pid">
 				<a action="show" if="&can_view?">#{this.name} (#{this.email_address})</a>
 				<else >
 					<view >#{this.name} (#{this.email_address})</view>
 				</else >
 				<a action="edit" if="&can_update?"><span class="ic-cog"></span></a>
+				</do>
 			</user-view: >
+			<state-view: >
+				<if test="&this_parent.same_company_admin">
+					<do part="state" id="state-#{pid}" part-locals="this_parent,pid">
+						<call-tag tag="select" class="collab-state" data-rapid="&data_rapid('collaborator_state')">
+							<% 	opts = { t("activerecord.attributes.user_company.lifecycle.states.active") => :active,  t("activerecord.attributes.user_company.lifecycle.states.admin") => :admin}
+								if this.to_s == 'invited'
+									opts[t("activerecord.attributes.user_company.lifecycle.states.invited")] = :invited
+								end
+							%>
+							<%= options_for_select(opts, this) %>
+						</call-tag>
+						<form with="&this_parent" class="admin" lifecycle='make_admin' updates="#user-#{pid},#state-#{pid},#controls-#{pid}" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
+						      
+						</form>
+						<form with="&this_parent" class="active" lifecycle="& this.to_s == 'invited' ? 'activate' : 'revoke_admin'" updates="#user-#{pid},#state-#{pid},#controls-#{pid}" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
+						        
+						</form>
+					</do>
+				</if>
+				<else>
+					<t key="activerecord.attributes.user_company.lifecycle.states.#{this}"/>
+				</else>
+			</state-view:>
 			<controls:>
-				<do part="actions">
-				<if test="&this.state == 'invited'">
-					<transition-button transition="resend_invite" ajax>
+				<do part="controls"  id="controls-#{pid}" part-locals="pid">
+				<if test="&this.state == 'invited'">		
+					<transition-button transition="resend_invite" updates="#user-#{pid},#state-#{pid},#controls-#{pid}">
 						<form: class="inline-form"/>
 						<button: replace>
 							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.resend_invite', :default=>:resend_invite.to_s.titleize)}">
@@ -62,36 +88,8 @@
 							</button>
 						</button:>
 					</transition-button>
-					<transition-button transition="make_admin" ajax>
-						<form: class="inline-form"/>
-						<button: replace>
-							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>:make_admin.to_s.titleize)}">
-								<span class="ic-key ic-fw"></span>
-							</button>
-						</button:>
-					</transition-button>
 				</if>
-				<if test="&this.state == 'admin'">
-					<transition-button transition="revoke_admin" ajax>
-						<form: class="inline-form"/>
-						<button: replace>
-							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.revoke_admin', :default=>:revoke_admin.to_s.titleize)}">
-								<span class="ic-user ic-fw"></span>
-							</button>
-						</button:>
-					</transition-button>
-				</if>
-				<if test="&this.state == 'active'">
-					<transition-button transition="make_admin" ajax>
-						<form: class="inline-form"/>
-						<button: replace>
-							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>:make_admin.to_s.titleize)}">
-								<span class="ic-key ic-fw"></span>
-							</button>
-						</button:>
-					</transition-button>
-				</if>
-				<transition-button transition="remove" ajax>
+				<transition-button transition="remove" success="window.location.reload()">
 					<form: class="inline-form"/>
 					<button: replace>
 						
@@ -101,6 +99,7 @@
 					</button:>
 				</transition-button>
 				</do>
+				<set pid="&pid + 1"/>
 			</controls>
 		</table-plus>
 		<page-nav with="&@collaborators" />
