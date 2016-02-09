@@ -73,7 +73,9 @@
     var oldOnKeyDown = $.fn.textcomplete.Dropdown.prototype._onKeydown;
     
     $.fn.textcomplete.Dropdown.prototype._onKeydown = function (e) {
+	if (!this.shown) { return; }
 	if (this.isEscape(e)) {
+		e.stopPropagation();
 		e.preventDefault();
 		this.deactivate();
 	} else {
