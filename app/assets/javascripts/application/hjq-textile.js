@@ -35,7 +35,7 @@
 		            callback(newResults);
 		        },
 		        template: function (shortname) {
-		            return '<img class="emojione" src="/assets/emoji/unicode/'+emojiStrategy[shortname].unicode.toLowerCase()+'.png"> :'+shortname+':';
+		            return '<img class="emojione" src="https://d4i78hkg1rdv3.cloudfront.net/assets/emoji/unicode/'+emojiStrategy[shortname].unicode.toLowerCase()+'.png"> :'+shortname+':';
 		        },
 		        replace: function (shortname) {
 		            return ':'+shortname+': ';
