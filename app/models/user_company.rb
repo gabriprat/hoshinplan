@@ -121,12 +121,10 @@ class UserCompany < ActiveRecord::Base
      transition :cancel_invitation, { :invited => :destroy }, :available_to => :company_admin_available 
 
      transition :make_admin, { [:invited, :active] => :admin }, :available_to => :company_admin_available do
-       self.save!
        UserCompanyMailer.transition(user, user, company, "admin").deliver_later
      end
      
      transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
-       self.save!
        UserCompanyMailer.transition(user, acting_user, company, "no_admin").deliver_later
      end
  

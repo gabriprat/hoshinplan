@@ -52,8 +52,9 @@
 				<a action="edit" if="&can_update?"><span class="ic-cog"></span></a>
 			</user-view: >
 			<controls:>
+				<do part="actions">
 				<if test="&this.state == 'invited'">
-					<transition-button transition="resend_invite" success="location.reload();">
+					<transition-button transition="resend_invite" ajax>
 						<form: class="inline-form"/>
 						<button: replace>
 							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.resend_invite', :default=>:resend_invite.to_s.titleize)}">
@@ -61,7 +62,7 @@
 							</button>
 						</button:>
 					</transition-button>
-					<transition-button transition="make_admin" success="location.reload();">
+					<transition-button transition="make_admin" ajax>
 						<form: class="inline-form"/>
 						<button: replace>
 							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>:make_admin.to_s.titleize)}">
@@ -71,7 +72,7 @@
 					</transition-button>
 				</if>
 				<if test="&this.state == 'admin'">
-					<transition-button transition="revoke_admin" success="location.reload();">
+					<transition-button transition="revoke_admin" ajax>
 						<form: class="inline-form"/>
 						<button: replace>
 							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.revoke_admin', :default=>:revoke_admin.to_s.titleize)}">
@@ -81,7 +82,7 @@
 					</transition-button>
 				</if>
 				<if test="&this.state == 'active'">
-					<transition-button transition="make_admin" success="location.reload();">
+					<transition-button transition="make_admin" ajax>
 						<form: class="inline-form"/>
 						<button: replace>
 							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.make_admin', :default=>:make_admin.to_s.titleize)}">
@@ -90,7 +91,7 @@
 						</button:>
 					</transition-button>
 				</if>
-				<transition-button transition="remove" success="location.reload();">
+				<transition-button transition="remove" ajax>
 					<form: class="inline-form"/>
 					<button: replace>
 						
@@ -99,6 +100,7 @@
 						</button>
 					</button:>
 				</transition-button>
+				</do>
 			</controls>
 		</table-plus>
 		<page-nav with="&@collaborators" />

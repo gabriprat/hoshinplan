@@ -26,4 +26,6 @@ class UserCompaniesController < ApplicationController
   def do_accept
     do_transition_action :accept, :redirect => "/"
   end
+  
+
 end
