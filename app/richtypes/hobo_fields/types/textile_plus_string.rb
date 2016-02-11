@@ -19,7 +19,7 @@ module HoboFields
           textilized.hard_breaks = true if textilized.respond_to?("hard_breaks=")
           textilized = EmojiParser.parse(textilized) do |emoji|
             src = 'https://d4i78hkg1rdv3.cloudfront.net/assets/emoji/' + emoji.image_filename
-            %Q(<img src="#{src}" class="emoji">).html_safe
+            %Q(<img src="#{src}" class="emoji" width="24" height="24">).html_safe
           end
           
           textilized = textilized.gsub(@@user_regex) do |match|
