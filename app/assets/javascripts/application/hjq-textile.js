@@ -11,6 +11,11 @@
 		var cid = that.closest("form[data-company]").data("company");
 		var csrf = $("meta[name=csrf-token]").attr("content");
 		var users = null;
+		
+		if (!cid) {
+			cid = $(document).hjq('pageData')["company-id"];
+		}
+		
 		that.textcomplete([ {
 		        match: /\B([:@][\-+\w]*)$/,
 			
