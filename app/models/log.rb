@@ -35,7 +35,7 @@ class Log < ActiveRecord::Base
   def changes
     if operation == :update
       JSON.parse(body).map {|attr,change|
-        ret = {attribute: attr, old: change[0] || '', new: change[1] || ''}
+        ret = {attribute: attr, old: (change[0] || '').to_s, new: (change[1].to_s || '').to_s}
         ret[:diff] = Differ.diff_by_word(ret[:new], ret[:old]).format_as(:html).html_safe
         ret
       }
