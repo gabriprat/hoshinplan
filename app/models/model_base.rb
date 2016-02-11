@@ -28,7 +28,7 @@ module ModelBase
     return unless self.respond_to?(:deleted_at) && self.respond_to?(:name) && self.respond_to?(:description)
     mentions = Differ.diff_by_word(description, description_was).new_mentions
     mentions.each do |user, message|
-      UserCompanyMailer.mention(User.current_user, user, self, message).deliver
+      UserCompanyMailer.mention(User.current_user, user, self, message).deliver_later
     end
   end
   
