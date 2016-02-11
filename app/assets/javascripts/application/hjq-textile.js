@@ -7,7 +7,11 @@
 			$(this).prev(".textile-toolbar").hide();
 			$(this).focus(function() {$(this).prev(".textile-toolbar").show();});
 		}
-		$(this).textcomplete([ {
+		var that = $(this);
+		var cid = that.closest("form[data-company]").data("company");
+		var csrf = $("meta[name=csrf-token]").attr("content");
+		var users = null;
+		that.textcomplete([ {
 		        match: /\B([:@][\-+\w]*)$/,
 			
 		        search: function (termWithStart, callback) {    
@@ -16,12 +20,9 @@
 		            var results = [];
 		            var results2 = [];
 		            var results3 = [];
-			    var users = null;
 			    
 			    if (start === '@') { 
-				var cid = $(document).hjq('pageData')["company-id"];
 				if (users == null) {
-					var csrf = $("meta[name=csrf-token]").attr("content");
 					$.ajax({
 						beforeSend: function(request) {
 							request.setRequestHeader("X-CSRF-Token", csrf);

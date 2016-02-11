@@ -18,7 +18,7 @@ module HoboFields
           textilized = RedCloth.new(self, [ :hard_breaks ])
           textilized.hard_breaks = true if textilized.respond_to?("hard_breaks=")
           textilized = EmojiParser.parse(textilized) do |emoji|
-            src = ActionController::Base.helpers.image_path("emoji/" + emoji.image_filename) 
+            src = 'https://d4i78hkg1rdv3.cloudfront.net/assets/emoji/' + emoji.image_filename
             %Q(<img src="#{src}" class="emoji">).html_safe
           end
           

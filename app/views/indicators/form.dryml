@@ -1,5 +1,5 @@
 		        <% update = @this.new_record? ? "#objectives-#{this.area.id},#tutorial,#sec-actions,#blind,#hindicators,#indicators-" + this.area.id.to_s : "#objectives-#{this.area.id},#tutorial,#sec-actions,#blind,#neglected" %>
-			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();">
+			<form updates="&update" ajax success="$(this).parent().modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" data-company="&this.company_id">
 				   <div class="modal-body">
 				   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
 				   <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>

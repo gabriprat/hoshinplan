@@ -1,7 +1,7 @@
 				<set options="&this.parent_objectives"/>
 				<set parent=", parent" if="&options.size>0"/>
 				<set areas="&this.hoshin.areas"/> 
-				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-obj-#{this.id}" updates="#area-#{this.area_id.to_s}, #tutorial,#sec-actions">
+				<form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-obj-#{this.id}" updates="#area-#{this.area_id.to_s}, #tutorial,#sec-actions" data-company="&this.company_id">
 				   <div class="modal-body">
 				   <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
 				    <field-list: fields="name, description, responsible #{parent}, area">

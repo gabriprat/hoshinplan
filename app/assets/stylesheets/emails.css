@@ -676,3 +676,9 @@ hr {
 	}
 
 }
+img.emoji, img.emojione {
+	width: 1.4em;
+	line-height: 1.4em;
+	vertical-align: middle;
+	margin-top: -0.35em;
+}

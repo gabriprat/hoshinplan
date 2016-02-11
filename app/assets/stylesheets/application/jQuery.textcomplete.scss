@@ -3,7 +3,11 @@
 .textcomplete-dropdown {
   border: 1px solid #ddd;
   background-color: #fff;
-
+  
+  > li > a {
+  	color: #666;
+  }
+  
   // SHOULD not modify
   list-style: none;
   padding: 0;
