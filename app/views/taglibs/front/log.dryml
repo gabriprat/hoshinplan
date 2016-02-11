@@ -22,12 +22,11 @@
 					<div class="source">
 					<a href="/#{this.model.name.pluralize.underscore}/#{this.model_id}-#{this.title.parameterize.dasherize}/edit" if="&@model == Hoshin">#{this.model.model_name.human} - #{this.title}</a></div>
 					<time class="created-at" datetime="#{this.created_at.iso8601}"><t key="#{key}" operation="#{operation}" date="#{formatted_date}" creator="#{this.creator}"/></time>
-					<div class="changes" if="&this.operation == :update">
-						<% changes = JSON.parse(this.body); model = this.model %>
+					<div class="changes" if="&this.changes">
 						<dl>
-						<repeat with="&changes">
-						<dt>#{model.human_attribute_name this[0]}</dt>
-						<dd><t key="log.from"/> <q>#{truncate this[1][0].to_s, length: 50}</q> <t key="log.to"/> <q>#{truncate this[1][1].to_s, length: 50}</q></dd><br/>
+						<repeat:changes>
+						<dt>#{model.human_attribute_name this[:attribute]}</dt>
+						<dd>#{truncate this[:diff], length: 150}</dd><br/>
 						</repeat>
 						</dl>
 					</div>

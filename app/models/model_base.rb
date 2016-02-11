@@ -4,6 +4,7 @@ module ModelBase
   included do
       after_destroy do log_operation(true) end
       after_save :log_operation
+      after_save :notify
   end
     
   def log_operation(destroyed=false)
@@ -21,6 +22,14 @@ module ModelBase
     l.hoshin_id ||= self.try.hoshin_id
     self.log << l
     l.save!
+  end
+  
+  def notify
+    return unless self.respond_to?(:deleted_at) && self.respond_to?(:name) && self.respond_to?(:description)
+    mentions = Differ.diff_by_word(description, description_was).new_mentions
+    mentions.each do |user, message|
+      UserCompanyMailer.mention(User.current_user, user, self, message).deliver
+    end
   end
   
   def all_user_companies=(companies)

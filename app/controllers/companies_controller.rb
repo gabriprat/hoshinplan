@@ -12,6 +12,14 @@ class CompaniesController < ApplicationController
     render :json => ret
   end
   
+  autocomplete :users2 do
+    ret = {}
+    users = find_instance.users.each { |user| 
+      ret[user.id] = user.name.to_s + " (" + user.email_address.to_s + ")"
+    }
+    render :json => ret
+  end
+  
   include RestController
   
   show_action :collaborators

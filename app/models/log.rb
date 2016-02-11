@@ -1,9 +1,9 @@
 class Log < ActiveRecord::Base
-
+  require 'differ'
   include ModelBase
 
   hobo_model # Don't put anything above this
-
+  
   fields do
     title :string
     body  :text
@@ -30,6 +30,16 @@ class Log < ActiveRecord::Base
   
   def model_id
     self.send model.name.underscore + '_id'
+  end
+  
+  def changes
+    if operation == :update
+      JSON.parse(body).map {|attr,change|
+        ret = {attribute: attr, old: change[0], new: change[1]}
+        ret[:diff] = Differ.diff_by_word(ret[:new], ret[:old]).format_as(:html).html_safe
+        ret
+      }
+    end
   end
 
   # --- Permissions --- #

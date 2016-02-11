@@ -35,8 +35,12 @@ es:
     hi: '¡Hola %{name}!'
     footer: 'Recibes este e-mail porque te has registrado en Hoshinplan.com. Si no es así, utiliza el siguiente link y no volveremos a molestarte.'
     unsubscribe: Cancelar suscripción
+    mention:
+      subject: '[Hoshinplan] Te han mencionado en el hoshin %{name}'
+      message: '%{mentioning_user} te ha mencionado de en el %{model} <a href="%{url}">%{name}</a> para el hoshin <a href="%{hoshin_url}">%{hoshin_name}</a>.'
+      view: Ver el %{model}
     reminder:
-      subject: Tienes indicadores o tareas pendientes
+      subject: '[Hoshinplan] Tienes indicadores o tareas pendientes'
       message: 'Puedes acceder a todos los indicadores y tareas pendientes en tu <a href="%{url}">panel de control</a>. Te falta actualizar:'
       update: Panel de control
     welcome:

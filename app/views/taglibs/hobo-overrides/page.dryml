@@ -75,7 +75,7 @@
 		      <li><a href="mailto:hello@hoshinplan.com"><t key="footer.contact_us"/></a></li>
 		    </ul>
 		</footer:>
-		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" error-message="#{t :error_message}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}" user-id="#{User.current_id}"/>
+		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" error-message="#{t :error_message}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}" user-id="#{User.current_id}" company-id="#{Company.current_id}"/>
 	 </old-page>
 </extend>
 

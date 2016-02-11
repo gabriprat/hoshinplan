@@ -141,4 +141,20 @@ class UserCompanyMailer < ActionMailer::Base
     
   end
   
+  def mention(mentioning_user, user, object, message)
+    I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
+    @user = user
+    ret = mail( :subject => I18n.translate("emails.mention.subject", name: object.hoshin.name),
+          :to      => @user.email_address,
+          :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
+            format.html {    
+              render_email("mention", {
+                 mentioning_user: mentioning_user, user: @user, app_name: @app_name, 
+                 model: object.class.model_name.human, name: object.name, url: url_for(object),
+                 hoshin_name: object.hoshin.name, hoshin_url: url_for(object.hoshin), message: message
+              })
+            }
+    end
+  end
+  
 end

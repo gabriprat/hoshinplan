@@ -3,7 +3,12 @@ module HoboFields
     class TextilePlusString < TextileString
 
       include SanitizeHtml
-
+      include ActionView::Helpers
+      include ActionDispatch::Routing
+      include Rails.application.routes.url_helpers
+      
+      @@user_regex = Regexp.new('@(\d+):')
+      
       def to_html(xmldoctype = true)
         require 'redcloth'
 
@@ -15,6 +20,16 @@ module HoboFields
           textilized = EmojiParser.parse(textilized) do |emoji|
             src = ActionController::Base.helpers.image_path("emoji/" + emoji.image_filename) 
             %Q(<img src="#{src}" class="emoji">).html_safe
+          end
+          
+          textilized = textilized.gsub(@@user_regex) do |match|
+            user = Company.current_company.comp_users[$1.to_i] 
+            if user.present?
+              user =  (link_to user.name, user) + ": "
+            else
+              user = match
+            end
+            user.html_safe
           end
           HoboFields::SanitizeHtml.sanitize(textilized.to_html)
         end

@@ -170,6 +170,7 @@ GEM
       thor (~> 0.19)
     detect_timezone_rails (0.0.5)
       railties (>= 3.1)
+    differ (0.1.2)
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
@@ -497,6 +498,7 @@ DEPENDENCIES
   delocalize
   derailed
   detect_timezone_rails
+  differ
   excon
   faraday
   flipper

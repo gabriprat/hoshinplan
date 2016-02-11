@@ -36,6 +36,10 @@ en:
     hi: Hi %{name}!
     footer: 'You are receiving this email because you are a Hoshinplan.com user. Want to be removed? No problem, click below and we won''t bug you again.'
     unsubscribe: Unsubscribe
+    mention:
+      subject: '[Hoshinplan] You have been mentioned at the hoshin %{name}'
+      message: '%{mentioning_user} has mentioned you in the %{model} <a href="%{url}">%{name}</a> for the hoshin <a href="%{hoshin_url}">%{hoshin_name}</a>.'
+      view: View the %{model}
     reminder:
       subject: You have KPIs or tasks to update
       message: 'You can access all the KPIs and tasks you have to update at your <a href="%{url}">dashboard</a>. You should update:'

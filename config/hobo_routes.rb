@@ -43,6 +43,7 @@ Hoshinplan::Application.routes.draw do
   resources :companies do
     collection do
       get 'complete_users'
+      get 'complete_users2'
     end
     member do
       get 'collaborators'
