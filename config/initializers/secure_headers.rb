@@ -12,8 +12,8 @@
     :font_src => %w('self' fonts.gstatic.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com data:),
     :frame_src => %w('self' accounts.google.com docs.google.com *.userreport.com www.youtube.com www.googletagmanager.com),
     :style_src => %w('self' 'unsafe-inline' fonts.googleapis.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com),
-    :script_src => %w('self' 'unsafe-eval' 'unsafe-inline' d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com apis.google.com www.dropbox.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com ajax.cloudflare.com cdn.mxpnl.com www.googletagmanager.com),
-    :img_src => %w('self' doc.hoshinplan.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com hoshinplan.s3-eu-west-1.amazonaws.com shield.sitelock.com cdn.mxpnl.com stats.g.doubleclick.net www.google-analytics.com *.userreport.com sqs.us-east-1.amazonaws.com sha1test.cloudflaressl.net sha2test.cloudflaressl.net),
+    :script_src => %w('self' 'unsafe-eval' 'unsafe-inline' d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com apis.google.com www.dropbox.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com *.mxpnl.com www.googletagmanager.com),
+    :img_src => %w('self' doc.hoshinplan.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com hoshinplan.s3-eu-west-1.amazonaws.com shield.sitelock.com *.mxpnl.com stats.g.doubleclick.net www.google-analytics.com *.userreport.com sqs.us-east-1.amazonaws.com),
     :report_uri => %w(/uri_dir_reports)
   }
   config.hpkp = false
