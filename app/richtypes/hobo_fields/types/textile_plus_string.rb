@@ -38,4 +38,9 @@ module HoboFields
       HoboFields.register_type(:textile, self)
     end
   end
+
+  module SanitizeHtml
+    PERMITTED_ATTRIBUTES = %w(href title class style align name src label target border width height)
+  end
+
 end

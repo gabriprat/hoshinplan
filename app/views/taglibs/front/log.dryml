@@ -26,7 +26,7 @@
 						<dl>
 						<repeat:changes>
 						<dt>#{model.human_attribute_name this[:attribute]}</dt>
-						<dd>#{truncate this[:diff], length: 150}</dd><br/>
+						<dd>#{this[:diff]}</dd><br/>
 						</repeat>
 						</dl>
 					</div>
