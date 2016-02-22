@@ -7,8 +7,10 @@
 	</prepend-main-column:>
 	<content: with-flash-messages="&false"/>
 	<append-content-body:> 
-			<% sent = t('user.activation_sent_button') %>
-			<transition-button with="&model.find_by_email_address(params[:login].to_s.downcase)" transition="resend_activation" update="resend-activation" success="var e = $('.content-body .btn'); e.val('#{sent}'); e[0].disabled=true"/> 
+			<% sent = t('user.activation_sent_button'); 
+			   u = self.this || model.find_by_email_address(params[:login].to_s.downcase)
+			%>
+			<transition-button with="&u" transition="resend_activation" update="resend-activation" success="var e = $('.content-body .btn'); e.val('#{sent}'); e[0].disabled=true"/> 
 	</append-content-body:>
   </old-account-disabled-page>
 </extend>

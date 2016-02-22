@@ -218,6 +218,10 @@ class User < ActiveRecord::Base
       UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
     
+    transition :resend_activation, {:inactive => :inactive}, :available_to => :all, :new_key => true do
+      UserCompanyMailer.activation(self, lifecycle.key).deliver_later
+    end
+    
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
           :params => [:name, :password, :password_confirmation] do
       UserCompany.where(user: self, state: :invited).each { |uc|

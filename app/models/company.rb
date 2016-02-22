@@ -147,7 +147,7 @@ class Company < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    User.current_user.signed_up?
+    User.current_user._?.signed_up?
   end
 
   def update_permitted?
