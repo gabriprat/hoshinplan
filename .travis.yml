@@ -24,3 +24,5 @@ before_script:
 services:
   - docker
   - redis
+rvm:
+  - 2.3.0
