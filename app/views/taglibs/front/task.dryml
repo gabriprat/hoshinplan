@@ -68,7 +68,7 @@
 				</button>
 	      		  </form>
 	      	  	  </li>
-	      		  <li class="delete" if="&can_delete?">
+	      		  <li class="delete">
 	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="delete" class="inline-form">
 				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.delete', :default => 'Delete'}">
 					<span class="ic-trash-o ic-fw"></span>

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.0'
 
 gem 'rails'
 
@@ -41,7 +41,7 @@ gem "omniauth-openid"
 gem "omniauth-saml"
 gem "omniauth-google-oauth2"
 
-gem "hobo"
+gem "hobo", '>= 2.2.4'
 gem "hobo_fields"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
@@ -52,7 +52,7 @@ gem "hobo_will_paginate"
 gem 'bootstrap-sass'
 gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3'
 gem "hobo_bootstrap_ui", :git => "git://github.com/informatom/hobo_bootstrap_ui.git", :branch => 'bootstrap3'
-gem "hobo_jquery_ui"
+gem "hobo_jquery_ui", '>= 2.2.4'
 gem "bootstrap-switch-rails"
 gem "bootbox-rails"
 gem "jquery-ui-themes"
@@ -106,7 +106,7 @@ gem 'papercrop'
 gem 'responders', '= 2.1.0'
 gem 'flipper'
 gem 'flipper-ui'
-gem 'flipper-activerecord'
+gem 'flipper-redis'
 gem 'immigrant'
 gem 'amoeba'
 gem 'rails_handsontable'
@@ -118,3 +118,4 @@ gem 'htmlcompressor'
 gem 'gemoji-parser'
 gem 'jquery-textcomplete-rails'
 gem 'differ'
+gem 'dryml'

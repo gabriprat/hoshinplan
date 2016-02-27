@@ -56,6 +56,9 @@ Hoshinplan::Application.routes.draw do
     collection do
       post 'reorder'
     end
+    member do
+      post 'form'
+    end
   end
 
   # Owner routes for controller goals

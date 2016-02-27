@@ -5,6 +5,8 @@ class GoalsController < ApplicationController
   auto_actions :all, :except => :index
   
   auto_actions_for :hoshin, [:new, :create]
+  web_method :form
+  
   
   cache_sweeper :goals_sweeper
 
@@ -26,6 +28,10 @@ class GoalsController < ApplicationController
     hobo_create_for :hoshin do
       redirect_to this.hoshin if valid? && !request.xhr?
     end
+  end
+  
+  def form
+    @this = find_instance
   end
 
 end

@@ -1,0 +1,9 @@
+<form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" class="modal-content" id="upd-goal-#{this.id}" updates="#goals,#tutorial,#sec-actions" data-company="&this.company_id">
+   <div class="modal-body">
+    <field-list: fields="name"/>
+   </div>
+   <modal-form-footer-delete />
+ </form>
+				 
+				 
+				

@@ -55,12 +55,13 @@ class HoshinsController < ApplicationController
               current_user.all_companies
               if this.hoshins_count > 0
                 ActiveRecord::Associations::Preloader.new.preload(self.this, 
-                [:company, {:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals])
+                [{:areas => [:objectives, :indicators, :tasks, :child_tasks, :child_indicators]}, :goals])
               else
                 ActiveRecord::Associations::Preloader.new.preload(self.this, 
-                [:company, {:areas => [:objectives, :indicators, :tasks]}, :goals])
+                [{:areas => [:objectives, :indicators, :tasks]}, :goals])
               end
-              Company.current_company = self.this.company
+              Company.current_company = current_user.all_companies[self.this.company_id]
+              Company.current_company.comp_users
               hobo_show
             }
       end

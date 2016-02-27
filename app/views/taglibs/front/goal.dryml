@@ -3,19 +3,7 @@
 	<old-card: replace>
 	<swept-cache route-on suffix="card" path="&request.fullpath">
 		<div>
-			<a action="edit" onclick="$('#update-goal-modal-#{this.id}').modal('show'); $('#update-goal-modal-#{this.id} form').trigger('reset'); return false;"><name/></a>
-			<modal id="update-goal-modal-#{this.id}">
-				<modal:>
-				<div class="modal-dialog">
-				<form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" class="modal-content" id="upd-goal-#{this.id}" updates="#goals,#tutorial,#sec-actions">
-				   <div class="modal-body">
-				    <field-list: fields="name"/>
-				   </div>
-				   <modal-form-footer-delete />
-				 </form> 
-				 </div>
-				</modal:>
-			</modal>
+			<rmodal title="#{ht key='goal.actions.edit'}" href-url="#{goal_path this}/edit" url="#{goal_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-goal-modal-#{this.id}"><name/></rmodal>
 		</div>
 	</swept-cache>
 	</old-card>

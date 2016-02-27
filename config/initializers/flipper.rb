@@ -1,8 +1,9 @@
-require 'flipper/adapters/activerecord'
+require 'flipper/adapters/redis'
 
 # config/application.rb
-adapter = Flipper::Adapters::ActiveRecord.new
-$flipper = Flipper.new(adapter)
+$client = Redis.new
+$adapter = Flipper::Adapters::Redis.new($client)
+$flipper = Flipper.new($adapter)
 Rails.application.config.middleware.use Flipper::Middleware::Memoizer, lambda { $flipper }
 
 Flipper.register(:admins) do |actor|
