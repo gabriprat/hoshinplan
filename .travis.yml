@@ -26,3 +26,4 @@ services:
   - redis
 rvm:
   - 2.3.0
+install: gem install bundler
