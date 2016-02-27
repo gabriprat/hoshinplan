@@ -4,7 +4,8 @@ cache: bundler
 sudo: false
 
 before_install: 
-- docker build -t gabriprat/hoshinplan .
+  - gem install bundler
+  - docker build -t gabriprat/hoshinplan .
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
@@ -26,4 +27,3 @@ services:
   - redis
 rvm:
   - 2.3.0
-install: gem install bundler
