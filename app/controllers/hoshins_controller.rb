@@ -60,7 +60,7 @@ class HoshinsController < ApplicationController
                 ActiveRecord::Associations::Preloader.new.preload(self.this, 
                 [{:areas => [:objectives, :indicators, :tasks]}, :goals])
               end
-              Company.current_company = current_user.all_companies[self.this.company_id]
+              Company.current_company = current_user.all_companies.find { |c| c.id == self.this.company_id }
               Company.current_company.comp_users
               hobo_show
             }

@@ -114,6 +114,7 @@ class ApplicationController < ActionController::Base
                    Company.current_id = inst.id
                    Company.current_company = inst
                  end
+                 Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
                end
                Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
                Nr.add_custom_parameters({ referrer: request.referrer }) unless !request || request.referrer.nil?
