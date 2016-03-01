@@ -3,7 +3,7 @@ begin
     Rails.application.config.middleware.use OmniAuth::Builder do
       provider :saml,
         :name => 'saml_' + prov.email_domain,
-        :assertion_consumer_service_url     => 'http://' + Rails.application.routes.default_url_options[:host] + "/auth/saml_" + prov.email_domain + "/callback",
+        :assertion_consumer_service_url     => (Rails.configuration.ssl_disable ? 'http' : 'https') +  '://' + Rails.application.routes.default_url_options[:host] + "/auth/saml_" + prov.email_domain + "/callback",
         :issuer                             => prov.issuer,
         :idp_sso_target_url                 => prov.sso_url,
         :idp_sso_target_url_runtime_params  => {:original_request_param => :mapped_idp_param},
