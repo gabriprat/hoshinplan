@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   include RestController
   
   def collect_azure_attributes
-    if request.env["omniauth.auth"]["info"] && request.env["omniauth.auth"]["info"]["email"].nil?
+    if request.env["omniauth.auth"].present? && request.env["omniauth.auth"]["info"].present? && request.env["omniauth.auth"]["info"]["email"].nil?
       extra = request.env["omniauth.auth"].extra._?.raw_info.to_h
       request.env["omniauth.auth"]["info"]["email"] ||= extra["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"][0]
       request.env["omniauth.auth"]["info"]["first_name"] ||= extra["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"][0]
