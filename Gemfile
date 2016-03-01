@@ -10,7 +10,7 @@ gem 'pg'
 
 gem 'json'
 
-gem 'sprockets-rails', '~> 2.3.0'
+gem 'sprockets-rails'#, '~> 2.3.0'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
@@ -118,4 +118,4 @@ gem 'htmlcompressor'
 gem 'gemoji-parser'
 gem 'jquery-textcomplete-rails'
 gem 'differ'
-gem 'dryml'
+gem 'dryml', :git => "git://github.com/Hobo/hobo"
