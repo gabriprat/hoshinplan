@@ -1,7 +1,13 @@
+class RedirectWww
+  def matches?(request)
+    request.subdomain.blank? && !request.path_info.start_with?('/health_check')
+  end
+end
+
 Hoshinplan::Application.routes.draw do
   
   #adding www. to the beginning of any URL that doesn't already have it
-  constraints subdomain: false do
+  constraints RedirectWww.new do
     get ':any', to: redirect(subdomain: 'www', path: '/%{any}'), any: /.*/
     root to: redirect(subdomain: 'www'), :as => 'root_redirect'
   end
