@@ -10,7 +10,7 @@ class Area < ActiveRecord::Base
   
   fields do
     name        :string, :null => false
-    description :text
+    description HoboFields::Types::TextilePlusString
     color       Color
     timestamps
     deleted_at    :datetime

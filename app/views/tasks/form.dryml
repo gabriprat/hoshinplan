@@ -1,6 +1,6 @@
 	      		 <% update = @this.new_record? ? "#objectives-#{this.area.id},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#objectives-#{this.area.id},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
 			<form updates="&update" ajax success="$('.modal.in').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();" data-company="&this.company_id">
-		   	   <set show-on-parent=", show_on_parent" if="&!this.objective || this.objective.parent"/>
+		   	   <set show-on-parent=", show_on_parent" if="&this.area.hoshin.parent_id"/>
 			
 	      		   <div class="modal-body">
 	      			    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>

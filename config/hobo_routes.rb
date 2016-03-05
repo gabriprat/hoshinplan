@@ -175,10 +175,6 @@ Hoshinplan::Application.routes.draw do
   end
 
 
-  # Resource routes for controller payment_notifications
-  resources :payment_notifications, :only => []
-
-
   # Resource routes for controller payments
   resources :payments, :only => [:new, :create, :destroy]
 
@@ -311,6 +307,10 @@ Hoshinplan::Application.routes.draw do
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   get 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
   post 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password_post'
+
+
+  # Resource routes for controller payment_notifications
+  resources :payment_notifications, :only => []
 
   namespace :admin do
 

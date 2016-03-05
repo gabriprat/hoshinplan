@@ -181,7 +181,7 @@
 <def tag="form" for="PaymentNotification">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="response, raw_post" param/>
     <div param="actions">
       <submit label="#{ht 'payment_notification.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
