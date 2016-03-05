@@ -270,6 +270,14 @@
   </card>
 </def>
 
+<def tag="card" for="PaymentNotification">
+  <card class="payment-notification" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="PaypalButton">
   <card class="paypal-button" param="default" merge>
     <header: param>

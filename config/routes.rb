@@ -107,9 +107,9 @@ Hoshinplan::Application.routes.draw do
   
   get 'pricing' => 'billing_plans#index'
   
-  get "/payments/test-paypal-ipn" => "payments#test_paypal_ipn"
+  get "/payments/test-paypal-ipn" => "payment_notifications#index"
   
-  post "/payments/paypal-ipn" => "payments#paypal_ipn"
+  post "/payments/paypal-ipn" => "payment_notifications#paypal_ipn"
   
   get "/payments/cancel" => "payments#cancel"
   get "/payments/correct" => "payments#correct"

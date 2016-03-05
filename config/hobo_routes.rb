@@ -175,6 +175,10 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller payment_notifications
+  resources :payment_notifications, :only => []
+
+
   # Resource routes for controller payments
   resources :payments, :only => [:new, :create, :destroy]
 

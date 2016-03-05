@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230224545) do
+ActiveRecord::Schema.define(version: 20160305221927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -357,6 +357,13 @@ ActiveRecord::Schema.define(version: 20151230224545) do
   add_index "objectives", ["hoshin_id"], name: "index_objectives_on_hoshin_id", using: :btree
   add_index "objectives", ["parent_id"], name: "index_objectives_on_parent_id", using: :btree
   add_index "objectives", ["responsible_id"], name: "index_objectives_on_responsible_id", using: :btree
+
+  create_table "payment_notifications", force: :cascade do |t|
+    t.string   "response"
+    t.text     "raw_post"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at"

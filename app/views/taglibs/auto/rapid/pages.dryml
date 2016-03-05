@@ -1696,6 +1696,108 @@
 
 
 
+<!-- ====== PaymentNotification Pages ====== -->
+
+<def tag="index-page" for="PaymentNotification">
+  <page merge title="#{ht 'payment_notification.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page payment-notification" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="payment_notification.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="payment_notification.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="PaymentNotification">
+  <page merge title="#{ht 'payment_notification.new.title', :default=>[' New Payment notification'] }">
+    <body: class="new-page payment-notification" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="payment_notification.new.heading">
+          New Payment notification
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'payment_notification.actions.create', :default=>['Create Payment notification']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="PaymentNotification">
+  <page merge title="#{ht 'payment_notification.show.title', :default=>['Payment notification'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page payment-notification" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="payment_notification.show.heading" name="#{name(:no_wrapper => true)}">
+          Payment notification <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="PaymentNotification">
+  <page merge title="#{ht 'payment_notification.edit.title', :default=>['Edit Payment notification'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page payment-notification" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="payment_notification.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Payment notification
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'payment_notification.actions.delete', :default=>['Remove This Payment notification']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Payment Pages ====== -->
 
 <def tag="index-page" for="Payment">
