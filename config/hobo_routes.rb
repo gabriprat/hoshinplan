@@ -175,6 +175,10 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller payment_notifications
+  resources :payment_notifications, :only => []
+
+
   # Resource routes for controller payments
   resources :payments, :only => [:new, :create, :destroy]
 
@@ -308,10 +312,6 @@ Hoshinplan::Application.routes.draw do
   get 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
   post 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password_post'
 
-
-  # Resource routes for controller payment_notifications
-  resources :payment_notifications, :only => []
-
   namespace :admin do
 
 
@@ -326,6 +326,10 @@ Hoshinplan::Application.routes.draw do
         post 'sync_paypal'
       end
     end
+
+
+    # Resource routes for controller admin/clockwork_events
+    resources :clockwork_events
 
 
     # Resource routes for controller admin/openid_providers

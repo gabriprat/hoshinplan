@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305221927) do
+ActiveRecord::Schema.define(version: 20160306194637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,16 @@ ActiveRecord::Schema.define(version: 20160305221927) do
 
   add_index "client_applications", ["deleted_at"], name: "index_client_applications_on_deleted_at", using: :btree
   add_index "client_applications", ["user_id"], name: "index_client_applications_on_user_id", using: :btree
+
+  create_table "clockwork_events", force: :cascade do |t|
+    t.string   "name"
+    t.string   "job"
+    t.integer  "frequency_quantity"
+    t.string   "frequency_period"
+    t.string   "at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"

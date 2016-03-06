@@ -8,6 +8,7 @@
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&AuthProvider"><ht key="auth_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&BillingPlan"><ht key="billing_plan.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&ClockworkEvent"><ht key="clockwork_event.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PaypalButton"><ht key="paypal_button.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -114,6 +115,118 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'billing_plan.actions.delete', :default=>['Remove This Billing plan']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== ClockworkEvent Pages ====== -->
+
+<def tag="index-page" for="ClockworkEvent">
+  <page merge title="#{ht 'clockwork_event.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page clockwork-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="clockwork_event.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="clockwork_event.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="clockwork_event.actions.new">New Clockwork event</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ClockworkEvent">
+  <page merge title="#{ht 'clockwork_event.new.title', :default=>[' New Clockwork event'] }">
+    <body: class="new-page clockwork-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="clockwork_event.new.heading">
+          New Clockwork event
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'clockwork_event.actions.create', :default=>['Create Clockwork event']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ClockworkEvent">
+  <page merge title="#{ht 'clockwork_event.show.title', :default=>['Clockwork event'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page clockwork-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="clockwork_event.show.heading" name="#{name(:no_wrapper => true)}">
+          Clockwork event <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="clockwork_event.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Clockwork event
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="job, frequency_quantity, frequency_period, at" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ClockworkEvent">
+  <page merge title="#{ht 'clockwork_event.edit.title', :default=>['Edit Clockwork event'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page clockwork-event" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="clockwork_event.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Clockwork event
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'clockwork_event.actions.delete', :default=>['Remove This Clockwork event']}" param/>
     </content-header:>
 
     <content-body: param>

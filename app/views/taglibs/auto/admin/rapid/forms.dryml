@@ -13,6 +13,18 @@
 
 
 
+<def tag="form" for="ClockworkEvent">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, job, frequency_quantity, frequency_period, at" param/>
+    <div param="actions">
+      <submit label="#{ht 'clockwork_event.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="OpenidProvider">
   <form merge param="default">
     <error-messages param/>

@@ -77,6 +77,14 @@
   </card>
 </def>
 
+<def tag="card" for="ClockworkEvent">
+  <card class="clockwork-event" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Company">
   <card class="company" param="default" merge>
     <header: param>
