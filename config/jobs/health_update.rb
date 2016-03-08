@@ -2,7 +2,8 @@ module Jobs
   class HealthUpdate
     @queue = :jobs
     
-    def self.perform(hoshin_id=nil)
+    def self.perform(options)
+      hoshin_id = options.present? && options["hoshin_id"].present? ? options["hoshin_id"].to_i : nil
       Jobs::say "Initiating healthupdate job!"    
       if hoshin_id.nil?
         Hoshin.unscoped.all.each{|hoshin|

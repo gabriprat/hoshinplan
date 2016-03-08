@@ -2,7 +2,8 @@ module Jobs
   class SetColors
     @queue = :jobs
     
-    def self.perform(hour = 0)
+    def self.perform(options)
+      hour = options.present? && options["hour"].present? ? options["hour"].to_i : 0
       ret = ""
       begin
       ret += Jobs::say "Initiating setcolors job (at #{hour})!" + "\n"

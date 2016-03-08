@@ -2,7 +2,7 @@ module Jobs
   class UpdateIndicators
     @queue = :jobs 
     
-    def self.perform
+    def self.perform(options)
       User.current_user = User.administrator.first
       Jobs::say " Initiating updateindicators job!"
       ihs = IndicatorHistory.joins(:indicator).includes({:indicator => :responsible}, {:indicator => :hoshin})

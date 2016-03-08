@@ -2,8 +2,8 @@ module Jobs
   class ExpireCaches
     @queue = :jobs
     
-    def self.perform(hour = 0)
-      begin
+    def self.perform(options)
+      hour = options.present? && options["hour"].present? ? options["hour"].to_i : 0  
       Jobs::say "Initiating expirecaches job (at #{hour})!"
       if Rails.configuration.action_controller.perform_caching
         kpis = Indicator.unscoped.due('0 day').merge(User.at_hour(hour))
@@ -25,10 +25,6 @@ module Jobs
         }
       end
       Jobs::say "End expirecaches job!"
-      rescue 
-        Jobs::say $!.inspect
-        Jobs::say $@
-      end
     end
   end
 end
