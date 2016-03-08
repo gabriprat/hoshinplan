@@ -208,7 +208,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="job, frequency_quantity, frequency_period, at" param/>
+      <field-list fields="job, frequency_quantity, frequency_period, at, options" param/>
     </content-body:>
 
   </page>

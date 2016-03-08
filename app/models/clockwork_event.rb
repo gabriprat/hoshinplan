@@ -8,9 +8,10 @@ class ClockworkEvent < ActiveRecord::Base
     frequency_quantity :integer
     frequency_period   HoboFields::Types::EnumString.for(:second, :minute, :hour, :day, :week, :month)
     at                 :string
+    options            :string 
     timestamps
   end
-  attr_accessible :name, :job, :frequency_quantity, :frequency_period, :at
+  attr_accessible :name, :job, :frequency_quantity, :frequency_period, :at, :options
   
   # Used by clockwork to schedule how frequently this event should be run
   # Should be the intended number of seconds between executions

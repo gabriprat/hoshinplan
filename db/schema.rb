@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306201050) do
+ActiveRecord::Schema.define(version: 20160308091634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160306201050) do
     t.string   "at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "options"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -449,6 +450,11 @@ ActiveRecord::Schema.define(version: 20160306201050) do
   add_index "tasks", ["responsible_id"], name: "index_tasks_on_responsible_id", using: :btree
   add_index "tasks", ["status"], name: "index_tasks_on_status", using: :btree
   add_index "tasks", ["type"], name: "index_tasks_on_type", using: :btree
+
+  create_table "tzu", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.string  "timezone"
+  end
 
   create_table "uri_dir_reports", force: :cascade do |t|
     t.text     "body"
