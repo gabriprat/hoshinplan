@@ -3,7 +3,6 @@ module Jobs
     @queue = :jobs 
     
     def self.perform(options)
-      fail "sdf"
       Rails.logger.info "Initiating send reminders job with options: #{options.to_yaml}" 
       hour = options.present? && options["hour"].present? ? options["hour"].to_i : 7 
       Rails.logger.info "Send reminders job at #{hour}!"
