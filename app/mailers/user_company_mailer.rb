@@ -18,7 +18,7 @@ class UserCompanyMailer < ActionMailer::Base
 
   def invite(user_company, company, key, invitor, language)
     I18n.locale = language.blank? ? I18n.default_locale : language
-    ret = mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
+    mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
           :to      => user_company.user.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
               format.html {    
@@ -26,13 +26,12 @@ class UserCompanyMailer < ActionMailer::Base
                   {:user => user_company.user, :app_name => @app_name, :company => company.name,
                     :accept_url => accept_from_email_url(:id => user_company, :key => key), :invitor => invitor})          
               }
-    end
-    
+          end
   end
   
   def new_invite(key, invitor, invitee, language)
     I18n.locale = language.blank? ? I18n.default_locale : language
-    ret = mail( :subject => I18n.translate("emails.new_invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name), 
+    mail( :subject => I18n.translate("emails.new_invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name), 
           :to      => invitee.email_address,
           :from    => invitor.name + " at hoshinplan.com <no-reply@hoshinplan.com>" )  do |format|
               format.html {    
@@ -40,21 +39,19 @@ class UserCompanyMailer < ActionMailer::Base
                   {:user => invitee, :app_name => @app_name,
                     :accept_url => accept_invitation_from_email_url(:id => invitee, :key => key), :invitor => invitor})          
               }
-    end
-    
+          end
   end
  
   def transition(user, user2, company, email_key)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
-    ret = mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
           :to      => user.email_address) do |format|
               format.html {    
                 render_email("transition", 
                   {:user => user, :app_name => @app_name, 
                     :message => I18n.translate("emails." + email_key + ".message", :user => user.name.blank? ? user.email_address : user.name, :user2 => user2.name.blank? ? user2.email_address : user2.name, :company => company.name).html_safe})          
               }
-    end
-    
+          end
   end
 
   def get_host_port(user) 
@@ -69,7 +66,7 @@ class UserCompanyMailer < ActionMailer::Base
   def reminder(user, kpis, tasks)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
-    ret = mail( :subject => I18n.translate("emails.reminder.subject"),
+    mail( :subject => I18n.translate("emails.reminder.subject"),
           :to      => @user.email_address,
           :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
             format.html {    
@@ -78,26 +75,25 @@ class UserCompanyMailer < ActionMailer::Base
                   :url => pending_user_url(@user, :host => get_host_port(user)),
                   :kpis => kpis, :tasks => tasks})          
             }
-    end
+          end
   end
   
   def welcome(user)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
-    ret = mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
+    mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
           :to      => user.email_address) do |format|
             format.html {
               render_email("welcome", 
                 {:user => user, :app_name => @app_name}          
               )
             }
-    end
-    
+          end
   end
   
   def invited_welcome(user)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user, @message = user
-    ret = mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
             format.html {
               render_email("invited_welcome", 
@@ -105,13 +101,12 @@ class UserCompanyMailer < ActionMailer::Base
               )
             }
     end
-    
   end
   
   def forgot_password(user, key)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user, @message = user, @key = key
-    ret = mail( :subject => I18n.translate("emails.forgot_password.subject", :name => user.name.blank? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails.forgot_password.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
             format.html {
               render_email("forgot_password", {
@@ -120,15 +115,14 @@ class UserCompanyMailer < ActionMailer::Base
                 }          
               )
             }
-    end
-    
+          end
   end
 
 
   def activation(user, key)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user, @message = user, @key = key
-    ret = mail( :subject => I18n.translate("emails.activation.subject", :name => user.name.blank? ? user.email_address : user.name),
+    mail( :subject => I18n.translate("emails.activation.subject", :name => user.name.blank? ? user.email_address : user.name),
           :to      => @user.email_address) do |format|
             format.html {
               render_email("activation", {
@@ -137,15 +131,14 @@ class UserCompanyMailer < ActionMailer::Base
                 }          
               )
             }
-    end
-    
+          end
   end
   
   def mention(mentioning_user, user, object, message)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
     hoshin = Hoshin.unscoped.find(object.hoshin_id)
-    ret = mail( :subject => I18n.translate("emails.mention.subject", name: hoshin.name),
+    mail( :subject => I18n.translate("emails.mention.subject", name: hoshin.name),
           :to      => @user.email_address,
           :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
             format.html {    
@@ -155,7 +148,7 @@ class UserCompanyMailer < ActionMailer::Base
                  hoshin_name: hoshin.name, hoshin_url: url_for(hoshin), message: message
               })
             }
-    end
+          end
   end
   
 end
