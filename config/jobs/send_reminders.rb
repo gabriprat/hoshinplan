@@ -1,6 +1,11 @@
 module Jobs
-  class SendReminders
+  require 'resque-retry'
+  
+  class SendReminders extend Resque::Plugins::Retry
     @queue = :jobs 
+    
+    @retry_limit = 3
+    @retry_delay = 60
     
     def self.perform(options)
       Rails.logger.info "Initiating send reminders job with options: #{options.to_yaml}" 
@@ -12,12 +17,12 @@ module Jobs
       comb = {}
       kpis.each {|user|
         com = comb[user.id] || {:user => user}
-        com[:kpis] = user.indicators
+        com[:kpis] = user.indicators.map {|ind| {name: ind.name, hoshin_name: ind.hoshin.name, company_name: ind.company.name}}
         comb[user.id] = com
       }
       tasks.each {|user|
         com = comb[user.id] || {:user => user}
-        com[:tasks] = user.tasks
+        com[:tasks] = user.tasks.map {|tsk| {name: tsk.name, hoshin_name: tsk.hoshin.name, company_name: tsk.company.name}}
         comb[user.id] = com
       }
       comb.values.each { |com|

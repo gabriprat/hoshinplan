@@ -4,14 +4,14 @@
 							<div if="&kpis">
 							<h3><%= kpis.size.to_s + ' ' + Indicator.model_name.human(:count => kpis.size) %></h3>
 							<ul><repeat with="&kpis">
-								<li>#{this.name} (#{this.hoshin.name} - #{this.company.name})</li>
+								<li>#{this.name} (#{this.hoshin_name} - #{this.company_name})</li>
 							</repeat></ul>
 							</div>
 							<div if="&tasks">
 							<h3><%= tasks.size.to_s + ' ' + Task.model_name.human(:count => tasks.size) %></h3>
 							
 							<ul><repeat with="&tasks">
-								<li>#{this.name} (#{this.hoshin.name} - #{this.company.name})</li>
+								<li>#{this.name} (#{this.hoshin_name} - #{this.company_name})</li>
 							</repeat></ul>
 							</div>
 							
