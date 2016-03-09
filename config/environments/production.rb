@@ -14,6 +14,9 @@ Hoshinplan::Application.configure do
   
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  
+  ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
+  
   ActionMailer::Base.smtp_settings = {
             :address        => 'smtp.sendgrid.net',
             :port           => '587',
