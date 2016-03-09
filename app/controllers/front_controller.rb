@@ -73,7 +73,7 @@ class FrontController < ApplicationController
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
 
-    @text = Jobs::SendReminders.perform(params[:hour])
+    @text = Jobs::SendReminders.perform({params[:hour]})
     render :text => @text, :content_type => Mime::TEXT
   end
   
@@ -84,7 +84,7 @@ class FrontController < ApplicationController
   end
   
   def set_colors
-    @text = Jobs::SetColors.perform
+    @text = Jobs::SetColors.perform({})
     render :text => @text, :content_type => Mime::TEXT
   end
   
@@ -92,7 +92,7 @@ class FrontController < ApplicationController
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
     
-    @text = Jobs::UpdateIndicators.perform
+    @text = Jobs::UpdateIndicators.perform({})
     render :text => @text, :content_type => Mime::TEXT
   end
   
@@ -102,7 +102,7 @@ class FrontController < ApplicationController
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
     
-    @text = Jobs::ExpireCaches.perform
+    @text = Jobs::ExpireCaches.perform({})
     render :text => @text, :content_type => Mime::TEXT
   end
   
@@ -133,7 +133,7 @@ class FrontController < ApplicationController
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
     
-    @text = Jobs::HealthUpdate.perform
+    @text = Jobs::HealthUpdate.perform({})
     render :text => @text, :content_type => Mime::TEXT
   end
   
