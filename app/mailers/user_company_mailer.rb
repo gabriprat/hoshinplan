@@ -1,5 +1,6 @@
 class UserCompanyMailer < ActionMailer::Base
   include Rails.application.routes.url_helpers
+  include SendGrid
   
   default :from => "Hoshinplan Team <hello@hoshinplan.com>",
           'X-SMTPAPI' => '{"filters": { "subscriptiontrack": { "settings": {"replace": "#unsubscribe_url#", "enable": 1} } } }'
@@ -17,6 +18,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def invite(user_company, company, key, invitor, language)
+    sendgrid_category "invite"
     I18n.locale = language.blank? ? I18n.default_locale : language
     mail( :subject => I18n.translate("emails.invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name, :company => company), 
           :to      => user_company.user.email_address,
@@ -30,6 +32,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def new_invite(key, invitor, invitee, language)
+    sendgrid_category "new_invite"
     I18n.locale = language.blank? ? I18n.default_locale : language
     mail( :subject => I18n.translate("emails.new_invite.subject", :name => invitor.name.blank? ? invitor.email_address : invitor.name), 
           :to      => invitee.email_address,
@@ -43,6 +46,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
  
   def transition(user, user2, company, email_key)
+    sendgrid_category "transition"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     mail( :subject => I18n.translate("emails." + email_key + ".subject", :company => company, :user => user.name.blank? ? user.email_address : user.name),
           :to      => user.email_address) do |format|
@@ -64,6 +68,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def reminder(user, kpis, tasks)
+    sendgrid_category "reminder"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
     mail( :subject => I18n.translate("emails.reminder.subject"),
@@ -79,6 +84,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def welcome(user)
+    sendgrid_category "welcome"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
           :to      => user.email_address) do |format|
@@ -91,6 +97,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def invited_welcome(user)
+    sendgrid_category "invited_welcome"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user, @message = user
     mail( :subject => I18n.translate("emails.invited_welcome.subject", :name => user.name.blank? ? user.email_address : user.name),
@@ -104,6 +111,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def forgot_password(user, key)
+    sendgrid_category "forgot_password"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user, @message = user, @key = key
     mail( :subject => I18n.translate("emails.forgot_password.subject", :name => user.name.blank? ? user.email_address : user.name),
@@ -120,6 +128,7 @@ class UserCompanyMailer < ActionMailer::Base
 
 
   def activation(user, key)
+    sendgrid_category "activation"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user, @message = user, @key = key
     mail( :subject => I18n.translate("emails.activation.subject", :name => user.name.blank? ? user.email_address : user.name),
@@ -135,6 +144,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
   
   def mention(mentioning_user, user, object, message)
+    sendgrid_category "mention"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
     hoshin = Hoshin.unscoped.find(object.hoshin_id)
