@@ -27,7 +27,7 @@ module Jobs
           I18n.locale = user.language.to_s unless user.language.to_s.blank?
           I18n.locale ||= I18n.default_locale
           Rails.logger.info " ==== User: #{user.email_address}"
-          UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver_now
+          UserCompanyMailer.reminder(user, com[:kpis], com[:tasks]).deliver_later
         ensure
           I18n.locale = old_locale
         end
