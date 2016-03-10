@@ -3,18 +3,27 @@ class UserCompanyMailer < ActionMailer::Base
   include SendGrid
   
   default :from => "Hoshinplan Team <hello@hoshinplan.com>",
-          'X-SMTPAPI' => '{"filters": { "subscriptiontrack": { "settings": {"replace": "#unsubscribe_url#", "enable": 1} } } }'
-          
-  def render_email(name, params)
-    user = params[:user]
-    #fail Dryml::Taglib.get({:src => 'email_template',  :template_dir=>"app/views/user_company_mailer", :template_path=>"app/views/user_company_mailer/email_template", :source_template=>"user_company_mailer/reminder"}).to_s
-  Dryml.render(File.read("app/views/user_company_mailer/" + name + ".dryml"), 
-    params,
-    "app/views/user_company_mailer/" + name + ".dryml",
-    [{:src => 'hobo_rapid', :gem => 'hobo_rapid'}, {:src => 'email_template'}],
-    nil,
-    [ActionView::Helpers::UrlHelper, ActionView::Helpers::ControllerHelper, HoboRouteHelper, HoboPermissionsHelper, ActionView::Helpers::ActiveModelHelper]
-    )
+          'X-SMTPAPI' => '{"filters": { "subscriptiontrack": { "settings": {"replace": "#unsubscribe_url#", "enable": 1} } } }'       
+  
+  @@renderer = {}
+  
+  def get_renderer(key, locals)
+    unless @@renderer.has_key?(key)
+      Rails.logger.debug "================= COMPILING EMAIL TEMPLATE #{key} =================="
+      template_path = "app/views/user_company_mailer/" + key + ".dryml"
+      template_src = File.read(template_path)
+      included_taglibs = [{:src => 'hobo_rapid', :gem => 'hobo_rapid'}, {:src => 'email_template'}]
+      imports = [ActionView::Helpers::UrlHelper, ActionView::Helpers::ControllerHelper, HoboRouteHelper, HoboPermissionsHelper, ActionView::Helpers::ActiveModelHelper]
+      @@renderer[key] = Dryml.send(:make_renderer_class, template_src, template_path, locals.keys, included_taglibs, imports)
+    end
+    @@renderer[key]
+  end
+  
+  def render_email(key, locals)
+    view = ActionView::Base.new(ActionController::Base.view_paths, {})
+    this = locals.delete(:this) || nil
+    get_renderer(key, locals).new(view).render_page(this, locals)
+    Rails.logger.debug "================= FINISHED RENDERING EMAIL #{key} =================="
   end
 
   def invite(user_company, company, key, invitor, language)
@@ -71,14 +80,16 @@ class UserCompanyMailer < ActionMailer::Base
     sendgrid_category "reminder"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
+    html_body = render_email("reminder", 
+                {:user => @user, :app_name => @app_name, 
+                  :url => pending_user_url(@user, :host => get_host_port(user)),
+                  :kpis => kpis, :tasks => tasks})
+    Rails.logger.info "========= Mail rendered, starting sending to (#{@user.email_address}) ============"
     mail( :subject => I18n.translate("emails.reminder.subject"),
           :to      => @user.email_address,
           :from    => "Hoshinplan Notifications <alerts@hoshinplan.com>") do |format|
             format.html {    
-              render_email("reminder", 
-                {:user => @user, :app_name => @app_name, 
-                  :url => pending_user_url(@user, :host => get_host_port(user)),
-                  :kpis => kpis, :tasks => tasks})          
+              html_body          
             }
           end
   end
