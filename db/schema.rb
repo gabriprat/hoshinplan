@@ -451,11 +451,6 @@ ActiveRecord::Schema.define(version: 20160308091634) do
   add_index "tasks", ["status"], name: "index_tasks_on_status", using: :btree
   add_index "tasks", ["type"], name: "index_tasks_on_type", using: :btree
 
-  create_table "tzu", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.string  "timezone"
-  end
-
   create_table "uri_dir_reports", force: :cascade do |t|
     t.text     "body"
     t.datetime "created_at"

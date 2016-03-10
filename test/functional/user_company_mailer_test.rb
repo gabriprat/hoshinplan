@@ -5,7 +5,7 @@ class UserCompanyMailerTest < ActionController::TestCase
   test "invite" do
       user = users(:one)
       # Send the email, then test that it got queued
-      email = UserCompanyMailer.welcome(user).deliver!
+      email = UserCompanyMailer.welcome(user).deliver_now!
       assert_not ActionMailer::Base.deliveries.empty?
  
       # Test the body of the sent email contains what we expect it to

@@ -22,8 +22,9 @@ class UserCompanyMailer < ActionMailer::Base
   def render_email(key, locals)
     view = ActionView::Base.new(ActionController::Base.view_paths, {})
     this = locals.delete(:this) || nil
-    get_renderer(key, locals).new(view).render_page(this, locals)
+    ret = get_renderer(key, locals).new(view).render_page(this, locals)
     Rails.logger.debug "================= FINISHED RENDERING EMAIL #{key} =================="
+    ret
   end
 
   def invite(user_company, company, key, invitor, language)
@@ -97,7 +98,8 @@ class UserCompanyMailer < ActionMailer::Base
   def welcome(user)
     sendgrid_category "welcome"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
-    mail( :subject => I18n.translate("emails.welcome.subject", :name => user.name.blank? ? user.email_address : user.name), 
+    name = user.name.blank? ? user.email_address : user.name
+    mail( :subject => I18n.translate("emails.welcome.subject", :name => name), 
           :to      => user.email_address) do |format|
             format.html {
               render_email("welcome", 
