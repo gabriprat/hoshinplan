@@ -10,4 +10,4 @@ Resque.logger = Rails.logger
 
 Resque::Failure.backend = Resque::Failure::Newrelic
 
-Resque::Plugins::Timeout.timeout = 180
+Resque::Plugins::Timeout.timeout = 300
