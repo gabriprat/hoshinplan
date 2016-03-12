@@ -96,6 +96,7 @@ group :test do
   gem 'turn', require: false
   gem 'minitest'
   gem 'mocha'
+  gem 'codeclimate-test-reporter', require: nil
 end
 gem 'unscoped_associations'
 gem 'resque'
@@ -114,11 +115,9 @@ gem 'amoeba'
 gem 'rails_handsontable'
 gem 'webshims-rails'
 gem 'momentjs-rails'
-gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'ruby-trello'
 gem 'htmlcompressor'
 gem 'gemoji-parser'
 gem 'jquery-textcomplete-rails'
 gem 'differ'
-gem 'dryml'
 gem 'sendgrid'

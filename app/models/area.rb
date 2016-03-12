@@ -47,7 +47,7 @@ class Area < ActiveRecord::Base
   
   has_many :log, :class_name => "AreaLog", :inverse_of => :area
 
-  belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false
+  belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false, :touch => true
   belongs_to :company, :inverse_of => :areas, :null => false
   
   acts_as_list :scope => :hoshin

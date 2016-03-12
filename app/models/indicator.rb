@@ -43,7 +43,7 @@ class Indicator < ActiveRecord::Base
   belongs_to :company, :null => false
 
   belongs_to :objective, :inverse_of => :indicators, :null => false
-  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :null => false, :unscoped => true
+  belongs_to :hoshin, :inverse_of => :indicators, :counter_cache => false, :null => false, :unscoped => true, :touch => true
   
   belongs_to :area, :inverse_of => :indicators, :null => false
   belongs_to :responsible, :class_name => "User", :inverse_of => :indicators

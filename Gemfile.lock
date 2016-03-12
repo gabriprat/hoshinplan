@@ -504,7 +504,6 @@ DEPENDENCIES
   derailed
   detect_timezone_rails
   differ
-  dryml
   excon
   faraday
   flipper
