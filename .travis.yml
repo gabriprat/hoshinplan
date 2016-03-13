@@ -27,4 +27,4 @@ services:
 rvm:
   - jruby-9.0.5.0
 env:
-  - JRUBY_OPTS=""
+  - JRUBY_OPTS="--server -J-Xmn1024m -J-Xms2048m -J-Xmx2048m"
