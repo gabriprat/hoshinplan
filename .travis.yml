@@ -29,7 +29,4 @@ services:
   - redis
 #rvm:
 #  - jruby-9.0.5.0
-env:
-  - JRUBY_OPTS="--server -J-Xmn1024m -J-Xms2048m -J-Xmx2048m"
-  - rvm_autoinstall_bundler_flag=1
-  - rvm_install_on_use_flag=1
+env: JRUBY_OPTS="--server -J-Xmn1024m -J-Xms2048m -J-Xmx2048m" rvm_autoinstall_bundler_flag=1 rvm_install_on_use_flag=1
