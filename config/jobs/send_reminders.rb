@@ -1,7 +1,9 @@
 module Jobs
   require 'resque-retry'
   
-  class SendReminders extend Resque::Plugins::Retry
+  class SendReminders 
+    extend Resque::Plugins::Retry
+    
     @queue = :jobs 
     
     @retry_limit = 3

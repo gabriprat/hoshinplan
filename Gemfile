@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+#ruby '2.3.0'
+ruby '2.2.3', :engine => 'jruby', :engine_version => '9.0.5.0'
 
 gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+#gem 'pg'
+gem 'activerecord-jdbcpostgresql-adapter'
+
 
 gem 'json'
 
@@ -46,7 +49,7 @@ gem "hobo_fields"
 # Hobo has a lot of assets.   Stop cluttering the log in development mode.
 gem "quiet_assets", :group => :development
 gem "active_record_query_trace", :group => :development
-gem 'derailed', group: :development
+#gem 'derailed', group: :development
 # Hobo's version of will_paginate is required.
 gem "hobo_will_paginate"
 gem 'bootstrap-sass'
@@ -115,7 +118,6 @@ gem 'amoeba'
 gem 'rails_handsontable'
 gem 'webshims-rails'
 gem 'momentjs-rails'
-gem 'ruby-trello'
 gem 'htmlcompressor'
 gem 'gemoji-parser'
 gem 'jquery-textcomplete-rails'
