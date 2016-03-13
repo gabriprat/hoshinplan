@@ -3,7 +3,6 @@ language: ruby
 cache: bundler
 
 before_install: 
-  - rvm use jruby-9.0.5.0
   - gem install bundler
 
 after_success:
