@@ -20,7 +20,7 @@ addons:
     repo_token: 5636a9b21787d77dd5012723
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-#  - bundle exec rake db:test:prepare
+  - bundle exec rake db:test:prepare
   - rake db:test:prepare
 services:
   - docker
