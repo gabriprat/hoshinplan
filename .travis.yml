@@ -2,7 +2,7 @@ sudo: false
 language: ruby
 cache: bundler
 
-#before_install: 
+before_install: 
   - rvm use jruby-9.0.5.0
   - gem install bundler
 
