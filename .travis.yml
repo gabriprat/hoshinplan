@@ -3,6 +3,7 @@ language: ruby
 cache: bundler
 
 before_install: 
+  - rvm use jruby-9.0.5.0 --install --binary --fuzzy --ignore-gemsets
   - gem install bundler
 
 after_success:
@@ -24,7 +25,7 @@ before_script:
 services:
   - docker
   - redis
-rvm:
-  - jruby-9.0.5.0
+#rvm:
+#  - jruby-9.0.5.0
 env:
   - JRUBY_OPTS="--server -J-Xmn1024m -J-Xms2048m -J-Xmx2048m"
