@@ -4,7 +4,7 @@
 require 'rake/dsl_definition'
 require 'rake'
 
-load 'tasks/emoji.rake'
+#load 'tasks/emoji.rake'
 
 require File.expand_path('../config/application', __FILE__)
 
