@@ -19,5 +19,4 @@ services:
   - docker
   - redis
 rvm:
-  - jruby-9.0.1.0
-script: echo "build"
+  - ruby-2.3.0
