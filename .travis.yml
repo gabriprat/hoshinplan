@@ -20,3 +20,4 @@ services:
   - redis
 rvm:
   - jruby-9.0.1.0
+script: echo "build"
