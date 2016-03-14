@@ -1,13 +1,6 @@
-sudo: false
 language: ruby
+sudo: false
 cache: bundler
-
-before_install: 
-#  - gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-#  - rvm get head
-#  - rvm use jruby-9.0.5.0 --install --binary --fuzzy --ignore-gemsets
-#  - gem install bundler --pre
-#  - bundle install --deployment
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
@@ -19,8 +12,6 @@ after_success:
   - docker push $REPO
 addons:
   postgresql: "9.4"
-  code_climate:
-    repo_token: 5636a9b21787d77dd5012723
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - bundle exec rake db:test:prepare
@@ -29,4 +20,3 @@ services:
   - redis
 rvm:
   - jruby-9.0.1.0
-#env: JRUBY_OPTS="--server" 

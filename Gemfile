@@ -99,7 +99,7 @@ group :test do
   gem 'turn', require: false
   gem 'minitest'
   gem 'mocha'
-  gem 'codeclimate-test-reporter', require: nil
+  #gem 'codeclimate-test-reporter', require: nil
 end
 gem 'unscoped_associations'
 gem 'resque'
