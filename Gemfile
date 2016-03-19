@@ -29,7 +29,7 @@ gem 'jquery-cookie-rails'
 
 # Use unicorn as the app server
 #gem 'unicorn'
-gem 'puma'
+gem 'passenger'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -120,3 +120,5 @@ gem 'gemoji-parser'
 gem 'jquery-textcomplete-rails'
 gem 'differ'
 gem 'sendgrid'
+#gem 'slim'
+

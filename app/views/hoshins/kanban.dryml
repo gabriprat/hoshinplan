@@ -24,7 +24,7 @@
 				<view:name/>
 				</modal-open-button>
 				<span onclick="filterPostits(event); return false;" class="filter-color-wrapper hoshin-tasks"><span class="ic-eye col-tog col-tog-#{this.id} filter-color" data-color="#{this.id}"></span><span class="ic-eye-slash col-tog col-tog-#{this.id}" style="display:none" data-color="#{this.id}"></span></span>
-				<rmodal title="#{ht key='task.actions.new'}" url="#{task_path Task.new}form?company_id=#{Company.current_id}&hoshin_id=#{this.hoshin.id}&area_id=#{this.id}" target-id="add-task-modal-#{this.id}" class="add-task hoshin-tasks" if="&can_create? Task"><span class="ic-plus"></span></rmodal>
+				<rmodal title="#{ht'task.actions.new'}" url="#{task_path Task.new}form?company_id=#{Company.current_id}&hoshin_id=#{this.hoshin.id}&area_id=#{this.id}" target-id="add-task-modal-#{this.id}" class="add-task hoshin-tasks" if="&can_create? Task"><span class="ic-plus"></span></rmodal>
 			</repeat>
 			<bootstrap-switch id="show-mine" data-user="#{current_user.id}" switch-change="filterPostits">
 				<label:><t key="kanban.show_only_my_tasks"/></label:>

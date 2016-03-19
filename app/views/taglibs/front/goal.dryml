@@ -3,7 +3,7 @@
 	<old-card: replace>
 	<swept-cache route-on suffix="card" path="&request.fullpath">
 		<div>
-			<rmodal title="#{ht key='goal.actions.edit'}" href-url="#{goal_path this}/edit" url="#{goal_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-goal-modal-#{this.id}"><name/></rmodal>
+			<rmodal title="#{ht 'goal.actions.edit'}" href-url="#{goal_path this}/edit" url="#{goal_path this}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}" target-id="update-goal-modal-#{this.id}"><name/></rmodal>
 		</div>
 	</swept-cache>
 	</old-card>

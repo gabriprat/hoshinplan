@@ -1,0 +1,25 @@
+doctype html
+html lang=I18n.locale
+  head == param :head
+    title == param :full_title
+       = strip_tags full_title(content_for(:title))
+    == param :stylesheets
+      == stylesheet_link_tag(subsite || 'front', media: 'all')
+    == param :javascripts
+      == javascript_include_tag subsite || 'front'
+    == param :custom_scripts
+      script
+        == param :custom_javascript
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    == csrf_meta_tag
+  body == param :body
+    == param :ajax_progress
+    .navbar == param :navbar
+      .navbar-inner == param :navbar_inner
+        .container == param :header
+          a[href="#" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"]
+            - 3.times do |i|
+              span.icon-bar
+          . == param :app_name
+            a[class="brand" href="#{base_url}/"] = app_name
+        == render partial: "test/main_nav"

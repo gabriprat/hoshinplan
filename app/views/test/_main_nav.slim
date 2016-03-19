@@ -1,0 +1,16 @@
+- if self.logged_in?
+  ul.main-nav 
+    li class="nav-item dropdown"
+      a href="#" class="dropdown-toggle" data-toggle="dropdown"
+        - if Company.current_id.nil?
+          = ht("company.nav_item", count: "100", default: model_name_human(Company, count:"100"))
+        - else
+          = Company.model_name.human + ": " + Company.current_company.name
+      ul.dropdown-menu
+        -current_user.all_companies.each do |company|
+          li 
+            == ha({to: company})
+        li.divider
+        li 
+          == ha({to: Company, action: "new"})
+            ht "company.actions.create"
