@@ -35,6 +35,11 @@ http {
     # Learn more at:
     # https://www.phusionpassenger.com/library/config/standalone/intro.html#nginx-configuration-template
 
+    map $http_origin $cors_header {
+      default "";
+      "~^https?://[^/]+\.hoshinplandev\.com(:[0-9]+)?$" "$http_origin";
+    }
+
     ### END your own configuration options ###
 
     default_type application/octet-stream;
