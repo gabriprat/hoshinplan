@@ -3524,8 +3524,21 @@ del.differ {
 
 .invalid {
         input:required:invalid, select:required:invalid {
-            border: 1px solid #BE4C54;
-            border-radius: 5px;
+                -moz-box-shadow: inset 0 -2px 0 #BE4C54;
+                -webkit-box-shadow: inset 0 -2px 0 #BE4C54;
+                box-shadow: inset 0 -2px 0 #BE4C54;
         }
+}
+
+.popover .validation-message {
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        background: #f8aa35;
+        border-radius: 2px;
+        color: #fff;
+        text-align: center;
+        line-height: 1.5em;
+        margin-right: 0.5em;
 }
 
