@@ -12,8 +12,6 @@
 
 <include gem='hobo_omniauth'/>
 
-<include gem='hobo_tokeninput'/>
-
 <include src="taglibs/auto/rapid/cards"/>
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>

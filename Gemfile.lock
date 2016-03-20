@@ -8,13 +8,6 @@ GIT
       paperclip
 
 GIT
-  remote: git://github.com/Hobo/hobo_tokeninput.git
-  revision: 271317004e0a3c6fd6083405b30193e3fbbae0ba
-  specs:
-    hobo_tokeninput (0.0.1)
-      hobo (> 1.4.0.pre5)
-
-GIT
   remote: git://github.com/ericallam/font_assets
   revision: d0db51614d924c7672406e617475b43df239d620
   specs:
@@ -435,8 +428,6 @@ GEM
     uuidtools (2.1.5)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    webshims-rails (1.15.10)
-      rails (> 3.1.0)
     wicked_pdf (1.0.4)
     xml-simple (1.1.5)
     yui-compressor (0.12.0)
@@ -472,10 +463,10 @@ DEPENDENCIES
   hobo_bootstrap!
   hobo_bootstrap_ui!
   hobo_fields
+  hobo_jquery
   hobo_jquery_ui (>= 2.2.5)
   hobo_omniauth!
   hobo_paperclip!
-  hobo_tokeninput!
   hobo_will_paginate
   htmlcompressor
   http_accept_language
@@ -528,7 +519,6 @@ DEPENDENCIES
   turn
   uglifier
   unscoped_associations
-  webshims-rails
   wicked_pdf
   yui-compressor
 

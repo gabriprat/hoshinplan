@@ -3521,3 +3521,11 @@ ins.differ {
 del.differ {
 	color: red;
 }
+
+.invalid {
+        input:required:invalid, select:required:invalid {
+            border: 1px solid #BE4C54;
+            border-radius: 5px;
+        }
+}
+

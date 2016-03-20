@@ -52,7 +52,9 @@ gem "hobo_will_paginate"
 gem 'bootstrap-sass'
 gem "hobo_bootstrap", :git => "git://github.com/informatom/hobo_bootstrap.git", :branch => 'bootstrap3'
 gem "hobo_bootstrap_ui", :git => "git://github.com/informatom/hobo_bootstrap_ui.git", :branch => 'bootstrap3'
+gem "hobo_jquery"#, :git => "git://github.com/gabriprat/hobo.git", :branch => 'test-jquery2'
 gem "hobo_jquery_ui", '>= 2.2.5'
+#gem 'jquery-ui-rails'
 gem "bootstrap-switch-rails"
 gem "bootbox-rails"
 gem "jquery-ui-themes"
@@ -65,7 +67,7 @@ gem "hobo_omniauth", :git => "git://github.com/gabriprat/hobo_omniauth.git"
 gem "clockwork"
 gem "protected_attributes"
 
-gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
+#gem "hobo_tokeninput", :git => "git://github.com/Hobo/hobo_tokeninput.git"
 gem "nested_has_many_through"
 gem "actionmailer_inline_css"
 
@@ -106,14 +108,13 @@ gem 'resque-delay', :git => "git://github.com/rykov/resque-delay.git"
 gem 'paranoia'
 gem "secure_headers", :require => 'secure_headers'
 gem 'papercrop'
-gem 'responders', '=2.1.0'
+gem 'responders', "=2.1.0"
 gem 'flipper'
 gem 'flipper-ui'
 gem 'flipper-redis'
 gem 'immigrant'
 gem 'amoeba'
 gem 'rails_handsontable'
-gem 'webshims-rails'
 gem 'momentjs-rails'
 gem 'htmlcompressor'
 gem 'gemoji-parser'

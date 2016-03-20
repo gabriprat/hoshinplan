@@ -24,8 +24,4 @@ module RestController
                   format.html {super}
           end
     end
-    
-    def render
-      fail "hola"
-    end
 end

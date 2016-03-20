@@ -538,10 +538,6 @@ function addAreaUpdate(elem) {
 	var that = $(elem);
 	that.closest("form").data('rapid').form.ajax_attrs.updates += ",#area-" + elem.value;
 }
-if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
-	$.webshims.setOptions('basePath', '/webshims/1.15.10/shims/', 'forms');
-	$.webshims.polyfill("forms");
-}
 
 $(window).load(function () {
 	if (userId && typeof mixpanel === "object" && typeof mixpanel.identify === "function") {
