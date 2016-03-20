@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'hoshinplan';
-    src:    url('fonts/hoshinplan.eot');
-    src:    url('fonts/hoshinplan.eot#iefix') format('embedded-opentype'),
-        url('fonts/hoshinplan.woff2') format('woff2'),
-        url('fonts/hoshinplan.ttf') format('truetype'),
-        url('fonts/hoshinplan.woff') format('woff'),
-        url('fonts/hoshinplan.svg#hoshinplan') format('svg');
+    src:    url(font-path('hoshinplan.eot'));
+    src:    url(font-path('hoshinplan.eot#iefix')) format('embedded-opentype'),
+        url(font-path('hoshinplan.woff2')) format('woff2'),
+        url(font-path('hoshinplan.ttf')) format('truetype'),
+        url(font-path('hoshinplan.woff')) format('woff'),
+        url(font-path('hoshinplan.svg#hoshinplan')) format('svg');
     font-weight: normal;
     font-style: normal;
 }
