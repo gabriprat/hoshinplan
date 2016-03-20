@@ -22,7 +22,8 @@
 
 worker_processes 1;
 events {
-    worker_connections 4096;
+    worker_connections 1024;
+    multi_accept on;
 }
 
 http {
@@ -37,15 +38,26 @@ http {
 
     map $http_origin $cors_header {
       default "";
-      "~^https?://[^/]+\.hoshinplandev\.com(:[0-9]+)?$" "$http_origin";
+      "~^https?://[^/]+\.hoshinplan\.com(:[0-9]+)?$" "$http_origin";
     }
+    
+    keepalive_requests 100000;
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    
+    client_body_buffer_size      128k;
+    client_max_body_size         10m;
+    
+    client_header_timeout  1m;
+    client_body_timeout    1m;
+    send_timeout           1m;
 
     ### END your own configuration options ###
 
     default_type application/octet-stream;
     types_hash_max_size 2048;
     server_names_hash_bucket_size 64;
-    client_max_body_size 1024m;
     access_log off;
     keepalive_timeout 60;
     underscores_in_headers on;
