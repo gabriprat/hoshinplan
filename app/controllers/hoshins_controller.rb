@@ -48,6 +48,9 @@ class HoshinsController < ApplicationController
     if request.xhr?
       hobo_ajax_response
     else
+      if is_pdf
+        Nr.set_transaction_name('HoshinsController#pdf')
+      end
       hobo_show do |format|
             format.json { hobo_show }
             format.xml { hobo_show }

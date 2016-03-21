@@ -13,7 +13,11 @@ class Nr
       :referrer => request.referrer,
       :request_params => request.params
     } unless request.nil?
-    NewRelic::Agent.notice_error(exception, options)
+    ::NewRelic::Agent.notice_error(exception, options)
   end
   
+  def self.set_transaction_name(name)
+    return if Rails.configuration.new_relic_disable || !defined?(NewRelic)
+    ::NewRelic::Agent.set_transaction_name(name)
+  end
 end
