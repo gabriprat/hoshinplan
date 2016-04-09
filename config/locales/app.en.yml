@@ -500,6 +500,7 @@ en:
   features: Features
   use_your_corporate: Use your corporate credentials
   use_your_user: Use your hoshinplan.com user
+  use_your_email_address: Use your email address
   dont_have_an_account: Still don't have an account?
   login_signup: Signup
   change_locale: Language

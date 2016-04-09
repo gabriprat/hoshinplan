@@ -1,37 +1,61 @@
 <def attrs='user-model' tag='login-form'>
-	<% user_model ||= User -%>
+        <% user_model ||= User %>
+        <div class="login-form-wrapper">
+        <do part="login-form-part" part-locals="all_parameters, attributes">
+        <unless test="&@provider.present? || params[:login].present?">
 		<div class="social-login">
 			<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
 			            <i class="ic-google-plus"></i> <t key="log_in_with" provider="Google"/>
 			</a>
 		</div>
-		<div class="corporate-login">
-			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
-			<p class="sep"><t key="use_your_corporate">Use your corporate credentials</t></p>
-			<form action="/sso_login" method="get" id="sso-login" hidden-fields="">
-				<input type="email" name="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level"/>
-				<br/>
-				<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-raised"/>
-			</form>
-		</div>
-		<div class="local-login">
-			<p class="line sep"><ht key="hoshin.support.or">or</ht></p>
-			<% @numLoginForm ||= 0; @numLoginForm += 1 %> 
-			<p class="sep"><a class="toggle collapsed" data-toggle="collapse" href="#collapseLogin#{@numLoginForm}"><i class="ic-chevron-down"></i><t key="use_your_user">Use your hoshinplan user</t></a></p>
-			<div class="collapse" id="collapseLogin#{@numLoginForm}">
-				<br/>
-				<form merge class='login' action='/login' hidden-fields="">
-				    <input type="email" name="login" id="email" placeholder="#{t 'hobo.login.' + user_model.login_attribute.to_s, :default=> user_model.login_attribute.to_s.titleize}" class="input-block-level form-control"/>
-				   <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}" autocomplete="off"/>  
-				    <br/>
-				    <div param='actions'>
-				      <submit class="btn-raised" label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/> &nbsp;
-				      <if test="&forgot_password_url"><a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
-		      		      <p class="sep"></p>
-		      		      <span><t key="dont_have_an_account"/></span> <a href='&signup_url' param='signup'><t key="login_signup"/></a>
-				      
-				    </div>
-				</form>
-			</div>
-		</div>
+                <div class="email-login">
+                        <p class="line sep"><ht key="hoshin.support.or">or</ht></p>
+                        <p class="sep"><t key="use_your_email_address"/></p>
+        		<form action="/users/check_corporate_login" method="get" enctype="application/x-www-form-urlencoded" hidden-fields="" ajax unless="&self.this.present? && self.this[:exists]==false" success="$('form.login input#password').focus()">
+        			<input type="email" name="email" placeholder="#{t 'email_placeholder'}" class="input-block-level form-control" value="&controller.ssoemail"/>
+        			<br/>
+        			<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-raised"/>
+        		</form>
+                </div>
+        </unless>
+        <else>
+		<form class='login' action='/login' hidden-fields="">
+		    <% params[:login] ||= (@provider[:email] if @provider.present?)  %>
+                    <input type="email" name="login" placeholder="#{t 'email_placeholder'}" class="input-block-level form-control" value="&params[:login]"/>
+                    <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}" autocomplete="off" autofocus="autofocus"/>  
+		    <br/>
+		    <div param='actions'>
+		      <submit class="btn-raised" label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/> &nbsp;
+		      <if test="&forgot_password_url"><a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
+		    </div>
+		</form>
+        </else>
+        </do>
+        </div>
 </def>
+
+
+<def tag="login-page">
+  <% remember_me = true if remember_me.nil? %>
+  <simple-page title="#{t 'hobo.login.title', :default=>['Log in'] }" without-subnav merge>
+
+    <body: class="login-page" param/>
+
+    <content: param>
+      <div class="row">
+        <div class="col-md-3">&nbsp;</div>
+        <div class="col-md-6">
+          <section param="content-body" class="well" style="padding:50px 50px 10px 50px;">
+            <h2 param="heading"><t key="hobo.login.heading">Log In</t></h2>
+            <login-form param="form" user-model="&model"/>
+          </section>
+          <span><t key="dont_have_an_account"/></span> <a href='&signup_url' param='signup'><t key="login_signup"/></a>
+        </div>
+        <div class="col-md-3">&nbsp;</div>
+      </div>
+    </content:>
+  </simple-page>
+</def>
+
+
+

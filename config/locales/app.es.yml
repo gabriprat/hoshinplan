@@ -498,6 +498,7 @@ es:
   features: Funcionalidades
   use_your_corporate: Utiliza tus credenciales corporativas
   use_your_user: Utiliza tu usuario de hoshinplan.com
+  use_your_email_address: Utiliza tu dirección de email
   dont_have_an_account: ¿Aún no tienes cuenta?
   login_signup: Regístrate
   change_locale: Idioma

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
     
   helper CmsHelper
+  
+  helper_method :ssoemail
 
   rescue_from RuntimeError do |exception|
     error = {message:exception.message}
@@ -66,9 +68,10 @@ class ApplicationController < ActionController::Base
    
   before_filter :authenticate_client_app
 
-  before_filter :my_login_required,  :except => [:login, :sso_login, :signup, :activate, :resend_activation, :do_resend_activation,
-         :do_activate, :do_signup, :forgot_password, :reset_password,
-         :do_reset_password, :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, :accept_invitation, :do_accept_invitation]
+  before_filter :my_login_required,  :except => [:login, :sso_login, :signup, :activate, :resend_activation,
+     :do_resend_activation, :do_activate, :do_signup, :forgot_password, :reset_password, :do_reset_password, 
+     :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, 
+     :accept_invitation, :do_accept_invitation, :check_corporate_login]
   
   around_filter :set_user_time_zone,  :except => [:activate_from_email, :activate]
          
@@ -179,6 +182,10 @@ class ApplicationController < ActionController::Base
     return false 
   end
   
+  def ssoemail
+    cookies[:ssoemail]
+  end
+  
     private
     
     def set_user_time_zone(&block)
@@ -253,5 +260,6 @@ end
   def show_footer_logos
     request.cookies['nmpl'].nil? && !@pdf
   end
+  
   
   

@@ -280,6 +280,7 @@ Hoshinplan::Application.routes.draw do
   # Resource routes for controller users
   resources :users, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do
+      get 'check_corporate_login'
       post 'signup', :action => 'do_signup'
       get 'signup'
     end

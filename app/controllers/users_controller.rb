@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   auto_actions :all, :lifecycle, :except => :index
   
   show_action :dashboard, :tutorial, :pending, :unsubscribe, :kanban
+  
+  index_action :check_corporate_login
     
   # Allow only the omniauth_callback action to skip the condition that
   # we're logged in. my_login_required is defined in application_controller.rb.
@@ -17,6 +19,29 @@ class UsersController < ApplicationController
   include HoboOmniauth::Controller
   
   include RestController
+  
+  def check_corporate_login
+    email = params[:email]
+    domain = email.split("@").last if email.present? and email.include?("@")
+    user = model.where(email_address: email).exists? if domain.present?
+    prov = AuthProvider.where(:email_domain => domain).first
+    exists = user & prov
+    if exists
+      if prov.type == 'OpenidProvider' 
+        oi = prov.openid_url
+        url = oi.gsub('{user}', user)
+        render js: "window.location.href = '/auth/openid?openid_url=#{url}'"
+      elsif prov.type == 'SamlProvider'
+        render js: "window.location.href = '/auth/saml_#{prov.email_domain}'"
+      else
+        flash[:error] = "Unknown provider: " + prov.type.to_s
+        render js: "window.location.href = '/'"
+      end
+    else
+      @provider = {exists: exists, email: email}
+      hobo_ajax_response
+    end
+  end
   
   def collect_azure_attributes
     if request.env["omniauth.auth"].present? && request.env["omniauth.auth"]["info"].present? && request.env["omniauth.auth"]["info"]["email"].nil?

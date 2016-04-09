@@ -19,17 +19,15 @@
           </if>
 
           <else>
-            <li class='nav-item' param="log-in">
+            <li class='nav-item' param="log-in" unless="&controller.action_name=='login'">
               <a href="#" onclick="$('#login').modal('show'); return false;"><ht key="hoshin.actions.login"/></a>
             </li>
+            <li class='nav-item' unless="&controller.action_name=='signup' or controller.action_name=='login'">
+                    <a href='&signup_url' param='signup' class="dropdown-toggle btn btn-primary btn-raised">
+                            <t key="login_signup"/>
+                    </a>
+            </li>
           </else>
-          <li class='nav-item dropdown'>
-       	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><t key="change_locale">Language</t> <b class="caret"></b></a>
-       			    <ul class="dropdown-menu">
-       			                        <li><a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath" onclick="event.cancelBubble()"><t key="locale_en_US">English (US)</t></a></li>
-       			                        <li><a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath" onclick="event.cancelBubble()"><t key="locale_es_ES">Español (España)</t></a></li>
-       			                      </ul>
-          </li>
         </ul>
       </do>
 </def>

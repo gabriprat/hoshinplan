@@ -73,6 +73,13 @@
 		      <li><a href="/legal/privacy/"><t key="footer.privacy"/></a></li>
 		      <li><a href="/legal/terms-of-use/"><t key="footer.terms_of_use"/></a></li>
 		      <li><a href="mailto:hello@hoshinplan.com"><t key="footer.contact_us"/></a></li>
+                      <li class='dropup'>
+                   	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><t key="change_locale">Language</t> <b class="caret"></b></a>
+                   			    <ul class="dropdown-menu">
+                   			                        <li><a href="&root_url(:subdomain => 'en').chomp('/') + request.fullpath" onclick="event.cancelBubble()"><t key="locale_en_US">English (US)</t></a></li>
+                   			                        <li><a href="&root_url(:subdomain => 'es').chomp('/') + request.fullpath" onclick="event.cancelBubble()"><t key="locale_es_ES">Español (España)</t></a></li>
+                   			                      </ul>
+                      </li>
 		    </ul>
 		</footer:>
 		<page-scripts: separator="#{t 'number.format.separator'}" delimiter="#{t 'number.format.delimiter'}" dateformat="#{date_format_default}" message="#{t :saving}" error-message="#{t :error_message}" spinner-at="body" cookiemsg="#{t('cookie_msg')}" agreemsg="#{t('i_agree')}" user-id="#{User.current_id}" company-id="#{Company.current_id}"/>

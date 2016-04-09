@@ -154,7 +154,7 @@ a.external:after {
 	text-decoration: inherit;
 }
 
-.social-login, .corporate-login, .local-login, .signup-login {
+.social-login, .corporate-login, .local-login, .signup-login, .email-login {
 	text-align: center;
 }
 
@@ -441,6 +441,16 @@ ul.navbar-nav {
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
+  
+  &.btn-raised {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin: 5px 10px 0 10px;
+          background: transparent;
+          border: 2px solid #fff;
+          box-shadow: none;
+          -webkit-box-shadow: none;
+  }
 }
 
 body .navbar .navbar-brand:hover, body .navbar .navbar-brand:hover strong, body .navbar .navbar-brand:hover span {
@@ -3077,12 +3087,12 @@ body .center-block {
 	color: $inverse-secondary-color;
 }
 
-.footer-links li {
+.footer-links > li {
 	display: inline;
 	padding: 0;
 }
 
-.footer-links li + li:before {
+.footer-links > li + li:before {
 	content: '·';
 	margin: 0 0.5em;
 }
@@ -3641,4 +3651,22 @@ body.column-form {
         .aside-column {
                 background: #f0f8ff;
         }
+}
+
+.login-form-wrapper {
+        margin-top: 2em;
+}
+
+form.login {
+        .actions {
+                margin: 2em 0 1.5em 0;
+        }
+}
+
+.modal form.login .actions {
+        text-align: center;
+}
+
+a#signup {
+        text-transform: none;
 }
