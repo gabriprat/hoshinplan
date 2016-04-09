@@ -4,11 +4,64 @@
   </old-form>
 </extend>
 
-<extend tag="signup-form" for="User">
-  <old-signup-form merge multipart>
-    <field-list: fields="email_address, password, password_confirmation, timezone, language"/>
-  </old-signup-form>
-</extend>
+<def tag="signup-form" for="User">
+  <form lifecycle="signup" hidden-fields="" merge param="default">
+    <error-messages param/>     
+    <cms key="custom_fragments/signup_form_#{locale}"/>
+    <field-list fields="email_address, news" param>
+            <email-address-tag: required="required" autofocus="autofocus"/>
+            <news-field:>
+                   <div class='control-group text-center'>
+                   <input/>
+                   <label for="#{param_name_for_this.gsub('[', '_').gsub(']', '')}">
+                           <t key="user.signup.it_is_ok"/>
+                   </label>
+                   </div>
+            </news-field:>
+    </field-list>
+    <div param="actions">
+      <submit label="#{ht 'user.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="signup-page" for="User">
+
+  <page title="#{ht 'user.signup.title', :default=>['Signup']}" content-size="5" aside merge>
+
+    <body: class="lifecycle-start-page signup-page column-form" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.signup.heading"/>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <signup-form param="form"/>
+      <div class="legalese narrow">
+               <%= t("user.signup.by_proceeding", 
+                    terms: link_to(t('user.signup.terms_link'), '/legal/terms-of-use'), 
+                    privacy: link_to(t('user.signup.privacy_link'), '/legal/privacy') 
+                   )
+                %>
+      </div>
+    </content-body:>
+
+    <aside-column:>
+            <cms class="flex" key="custom_fragments/signup_aside_#{locale}"/>
+            <div class="legalese wide">
+                     <%= t("user.signup.by_proceeding", 
+                          terms: link_to(t('user.signup.terms_link'), '/legal/terms-of-use'), 
+                          privacy: link_to(t('user.signup.privacy_link'), '/legal/privacy') 
+                         )
+                      %>
+            </div>
+    </aside-column:>
+    <aside:/>
+  </page>
+</def>
 
 <extend tag="show-page" for="User">
 <old-show-page merge>
@@ -168,6 +221,14 @@
   </old-accept-invitation-page>
 </extend>
 
+<extend tag="activate-form" for="User">
+<old-activate-form merge>
+    <field-list: fields="firstName, lastName, password, timezone, language" required="firstName, password">
+            <firstName-tag: required="required" autofocus="autofocus"/>
+            <password-tag: required="required"/>
+    </field-list:>
+</old-activate-form>
+</extend>
 
 <extend tag="activate-page" for="User">
   <old-activate-page title="#{ht 'user.activate.heading'}" merge>

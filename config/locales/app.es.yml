@@ -15,6 +15,7 @@ es:
   view_log: Ver cambios
   older: Más antiguas
   newer: Más recientes
+  email_placeholder: nombre@empresa.com
   legal:
     legal_documents: Documentos legales
     terms_of_use: Términos de Uso
@@ -165,7 +166,6 @@ es:
   attributes:
     created_at: Creado el
     updated_at: Actualizado el
-
   activerecord:
     errors:
       models:
@@ -184,6 +184,7 @@ es:
             email_address:
               taken: La dirección de email ya pertenece a otro usuario
               too_short: es demasiado corto
+              blank: está vacío
       messages:
         record_invalid: Registro incorrecto
       template:
@@ -233,7 +234,7 @@ es:
         password: Contraseña
         current_password: Contraseña Actual
         password_confirmation: Confirmación Contraseña
-        email_address: Correo Electrónico
+        email_address: Email
         image: Imagen
         state: Estado
         language: Idioma
@@ -357,12 +358,18 @@ es:
             archive: Archivar hoshin
             clone: Clonar hoshin
       user:
+        email_address: "Por favor, utiliza tu email de empresa para que podamos conectarte con tu equipo en Hoshinplan."
         lifecycle:
           transitions:
             resend_activation: Reenviar email de activación de usuario
   index:
     title: Haz que tu estrategia de negocio funcione
   user:
+    signup:
+      it_is_ok: Estoy de acuerdo en recibir emails sobre Hoshinplan.
+      by_proceeding: Continuar para crear tu usuario y usar Hoshinplan significa que estás de acuerdo con nuestros %{terms} y %{privacy}. Si no lo estás no puedes usar Hoshinplan.
+      terms_link: Términos de uso
+      privacy_link: Política de privacidad 
     my_dashboard: Mi panel de control
     show_all: Mostrar todas
     show_only_pending: Mostrar sólo las acciones pendientes

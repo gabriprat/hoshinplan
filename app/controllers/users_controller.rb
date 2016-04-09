@@ -252,12 +252,10 @@ class UsersController < ApplicationController
   
   def do_signup
     self.this = model.find_by_email_address(params[:user][:email_address]) if params[:user].present? && params[:user][:email_address].present?
-    if self.this.present? && self.this.state == 'invited'
-      params[:user].delete :tutorial_step
-      params[:user][:current_password] = nil
-      update
+    if self.this.present? && (self.this.state == 'invited' || self.this.state == 'inactive')
       self.this.lifecycle.resend_activation!(self.this)
       flash[:notice] = ht(:"#{model.to_s.underscore}.messages.signup.success")
+      redirect_to home_page
     else
       hobo_do_signup
     end

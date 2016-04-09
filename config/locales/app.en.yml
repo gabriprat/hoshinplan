@@ -16,6 +16,7 @@ en:
   view_log: View log
   older: Older
   newer: Newer
+  email_placeholder: name@company.com
   legal:
     legal_documents: Legal documents
     terms_of_use: Terms of use
@@ -184,7 +185,8 @@ en:
           attributes:
             email_address:
               taken: The email address is already taken
-              too_short: es demasiado corto
+              too_short: is too short
+              blank: is blank
       messages:
         record_invalid: Invalid record
       template:
@@ -234,7 +236,7 @@ en:
         password: Password
         current_password: Current password
         password_confirmation: Password confirmation
-        email_address: Email address
+        email_address: Email
         image: Image
         state: Status
         language: Language
@@ -358,12 +360,18 @@ en:
             archive: Archive hoshin
             clone: Clone hoshin
       user:
+        email_address: "Please use your work email address, so we can connect you with your team in Hoshinplan."
         lifecycle:
           transitions:
             resend_activation: Resend user activation email
   index:
     title: Make your business strategy work
   user:
+    signup:
+      it_is_ok: It is ok to send me email about Hoshinplan.
+      by_proceeding: By proceeding to create your account and use Hoshinplan, you are agreeing to our %{terms} and %{privacy}. If you do not agree, you cannot use Hoshinplan.
+      terms_link: Terms of use 
+      privacy_link: Pivacy policy
     my_dashboard: My dashboard
     show_all: Show all
     show_only_pending: Show only pending actions

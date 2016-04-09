@@ -469,7 +469,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, firstName, lastName, color, email_address, administrator, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, beta_access, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
+    <field-list fields="name, firstName, lastName, color, email_address, administrator, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, beta_access, news, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -480,7 +480,7 @@
 <def tag="signup-form" for="User">
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, password, password_confirmation, language, timezone" param/>
+    <field-list fields="email_address, news" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
     </div>
@@ -503,7 +503,7 @@
   <form lifecycle="accept_invitation" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="name, password, password_confirmation" param/>
+    <field-list fields="firstName, lastName, password, language, timezone" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.accept_invitation', :default=>['Accept Invitation']}" param/><or-cancel param="cancel"/>
     </div>
@@ -514,7 +514,7 @@
   <form lifecycle="activate" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="" param/>
+    <field-list fields="firstName, lastName, password, language, timezone" param/>
     <div param="actions">
       <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.activate', :default=>['Activate']}" param/><or-cancel param="cancel"/>
     </div>

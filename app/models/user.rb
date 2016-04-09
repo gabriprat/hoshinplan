@@ -10,22 +10,23 @@ class User < ActiveRecord::Base
   include HoboOmniauth::MultiAuth
   
   fields do
-    name          :string
-    firstName     :string
-    lastName      :string
-    color         Color
-    email_address :email_address, :login => true, :index => true, :unique => true
-    administrator :boolean, :default => false
-    tutorial_step :integer
-    timezone      HoboFields::Types::Timezone
+    name            :string
+    firstName       :string
+    lastName        :string
+    color           Color
+    email_address   :email_address, :login => true, :index => true, :unique => true
+    administrator   :boolean, :default => false
+    tutorial_step   :integer
+    timezone        HoboFields::Types::Timezone
     timestamps
-    language      EnumLanguage
-    last_seen_at  :date
-    last_login_at :datetime
-    login_count   :integer
-    payments_count :integer, :default => 0, :null => false
-    preferred_view EnumView, :required, :default=> :expanded
-    beta_access   :boolean
+    language        EnumLanguage
+    last_seen_at    :date
+    last_login_at   :datetime
+    login_count     :integer
+    payments_count  :integer, :default => 0, :null => false
+    preferred_view  EnumView, :required, :default=> :expanded
+    beta_access     :boolean
+    news            :boolean, default: true
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -71,7 +72,7 @@ class User < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 10.megabytes   
     
   attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies,
-     :image, :timezone, :tutorial_step, :created_at, :language, :beta_access
+     :image, :timezone, :tutorial_step, :created_at, :language, :beta_access, :news
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
@@ -209,7 +210,7 @@ class User < ActiveRecord::Base
         :become => :active
     
     create :signup, :available_to => "Guest",
-      :params => [:name, :email_address, :password, :password_confirmation, :language, :timezone],
+      :params => [:email_address, :news],
       :become => :inactive, :new_key => true  do
       UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
@@ -223,19 +224,21 @@ class User < ActiveRecord::Base
     end
     
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
-          :params => [:name, :password, :password_confirmation] do
+          :params => [:firstName, :lastName, :password, :language, :timezone] do
       UserCompany.where(user: self, state: :invited).each { |uc|
         uc.lifecycle.activate!(self)
       }
       self.update_column(:key_timestamp, nil)
     end
 
-    transition :activate, { :inactive => :active }, :available_to => :key_holder do
-      current_user = acting_user
+    transition :activate, { :inactive => :active }, :available_to => :key_holder,
+      :params => [:firstName, :lastName, :password, :language, :timezone] do
+      current_user = acting_user 
       UserCompanyMailer.welcome(self).deliver_later
     end
 
-    transition :activate, { :invited => :active } do
+    transition :activate, { :invited => :active },
+      :params => [:firstName, :lastName, :password, :language, :timezone]  do
       acting_user = self
       @subject = "#{self.name} welcome to Hoshinplan!"
       UserCompanyMailer.invited_welcome(self).deliver_later
@@ -346,10 +349,13 @@ class User < ActiveRecord::Base
     self.class.count == 0 || acting_user.administrator?
   end
 
-  def update_permitted?     
+  def update_permitted?
     f = none_changed?(:administrator)
-    acting_user.administrator? or (changing_password? && state == 'invited') or
-      ((acting_user == self or same_company_admin) && f)
+    acting_user.administrator? or 
+    (lifecycle.signup_in_progress? && (state == 'invited' || state == 'inactive')) or
+    (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) or 
+    (changing_password? && state == 'invited') or
+    ((acting_user == self || same_company_admin) && f)
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
@@ -369,9 +375,8 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    # permit password fields to avoid the reset password page to fail
-    field == :password || 
-    field == :password_confirmation || 
+    (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) ||
+    changing_password? && state == 'invited' ||
     acting_user.administrator? || 
     self.new_record? || 
     self.guest? || 

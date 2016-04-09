@@ -359,15 +359,6 @@ $(document).ready(function() {
 	});
 });
 
-(function() {
-	var footer = function() {
-		var fh = $(".footer").first().height();
-		$("body").css("margin-bottom", fh);
-	}
-	$(window).resize(footer);
-	$(document).ready(footer);
-})();
-
 var __loadedjs = [];
 function loadJs(url, attributes, cb) {
 	if (__loadedjs.indexOf(url) < 0) {
