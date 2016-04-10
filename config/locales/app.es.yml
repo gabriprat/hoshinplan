@@ -454,6 +454,8 @@ es:
     invoicing_frequency: Periodo de facturación
     monthly: Mensual
     annual: Anual
+  stripe:
+    purchase: Suscribirme
   paypal:
     purchase: Comprar
   payments:

@@ -121,5 +121,5 @@ gem 'gemoji-parser'
 gem 'jquery-textcomplete-rails'
 gem 'differ'
 gem 'sendgrid'
-#gem 'slim'
+gem 'stripe'
 

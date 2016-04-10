@@ -1,4 +1,5 @@
 <def tag="pricing">
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <div class="promos clearfix">
     <collection/>
 </div>
@@ -26,7 +27,7 @@
 	    </li>
 	    <else>
 	    	    <if test="&Company.current_id">
-		    	<paypal-button product="#{this.id_paypal}" if="&this.amount_value &gt; 0"/>
+		    	<pay-button if="&this.amount_value &gt; 0"/>
 		    </if>
 		    <else>
 		            <li class="buy">

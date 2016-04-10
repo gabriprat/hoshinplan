@@ -1,0 +1,39 @@
+<def tag="pay-button">
+        <% 
+        ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
+        
+        stripe_attrs = { 
+                config: {
+                        key: Rails.configuration.stripe[:publishable_key],
+                        locale: I18n.locale,
+                        image: image_path('hp-ico.png')
+                },
+                open: {
+                        amount: this.amount_value,
+                        email: User.current_user.email_address,
+                        currency: this.amount_currency,
+                        name: 'Hoshinplan',
+                        description: this.name + ' plan'
+                },
+                plan: this.stripe_id
+        }
+        add_data_rapid!(html_attrs, "stripe", stripe_attrs)
+        %>
+
+	<% unless Rails.env.development? then %>
+        <form action="/payments">
+		<input type="hidden" name="product" value="#{this.id_paypal}"/>
+		<input type="hidden" name="company" value="#{Company.current_id}"/>
+		<button type="submit"><t key="paypal.purchase"/></button>
+	</form>
+        <% else %>
+        
+        <form action="/stripe_subscription_checkout">
+		<input type="hidden" name="plan" value="#{this.stripe_id}"/>
+		<input type="hidden" name="company" value="#{Company.current_id}"/>
+		<input type="hidden" name="stripeToken" value=""/>
+                <button type="button" merge-attrs='&html_attrs'><t key="stripe.purchase"/></button>
+        </form>
+        
+        <% end %>
+</def>

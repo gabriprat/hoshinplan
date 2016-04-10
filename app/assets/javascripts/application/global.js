@@ -350,6 +350,13 @@ $(document).ready(function() {
 		var domain = document.domain.replace(/^.+?\./, '.');
 		$.cookie("ssoemail", val, {domain: domain, path: '/', expires: 600});
 	});
+        
+        if ($.cookie("auth_token") != null) {
+                $("body.front-page a#signup").click(function(e) {
+                        $("#login.modal").modal("show");
+                        e.preventDefault();
+                });
+        }
 
 	$("#login.modal").on('shown.bs.modal.selectAll', function() {
 		var email = $.cookie("ssoemail");

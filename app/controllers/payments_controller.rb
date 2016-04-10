@@ -53,7 +53,7 @@ class PaymentsController < ApplicationController
       redirect_to session[:payment_return_to]
       session[:payment_return_to] = nil
     else
-      redirect_to "/"
+      redirect_to :back
     end
   end
   
@@ -95,5 +95,48 @@ class PaymentsController < ApplicationController
       end
     }
     fail "Redirection link not found" + agreement.to_yaml
+  end
+  
+  # This is the callback from stripe
+  def stripe_subscription_checkout
+    plan_id = params[:plan]
+    plan = Stripe::Plan.retrieve(plan_id)
+    
+    if current_user.stripe_id.present?
+      customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    else
+      customer = Stripe::Customer.create(
+            :description => current_user.name,
+            :source => params[:stripeToken],
+            :email => current_user.email_address
+          )
+      current_user.stripe_id = customer.id
+      current_user.save!
+    end
+    
+    stripe_subscription = customer.subscriptions.create(:plan => plan.id)
+
+    plan = BillingPlan.where(stripe_id: params[:plan]).first
+    
+    payment = Payment.new
+    payment.token = stripe_subscription.id
+    payment.status = stripe_subscription.status.capitalize
+    payment.billing_plan = plan
+    payment.sandbox = !stripe_subscription.plan.livemode
+    payment.amount_value = plan.amount_value
+    payment.amount_currency = plan.amount_currency
+    payment.company_id = params[:company]
+    payment.user = current_user
+    payment.save!
+    
+    Rails.logger.debug stripe_subscription.to_yaml
+    
+    flash[:notice] = t "payments.correct.heading"
+    if session[:payment_return_to]
+      redirect_to session[:payment_return_to]
+      session[:payment_return_to] = nil
+    else
+      redirect_to :back
+    end
   end
 end

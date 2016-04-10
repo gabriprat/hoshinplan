@@ -114,6 +114,8 @@ Hoshinplan::Application.routes.draw do
   get "/payments/cancel" => "payments#cancel"
   get "/payments/correct" => "payments#correct"
   
+  post "/stripe_subscription_checkout" => "payments#stripe_subscription_checkout"
+  
   get "/log/:type/:id" => "log#index", :as => 'log_index'
   
   SamlDynamicRouter.load unless Rails.env.development?
