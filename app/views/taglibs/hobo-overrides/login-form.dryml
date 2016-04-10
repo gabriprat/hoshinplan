@@ -11,8 +11,8 @@
                 <div class="email-login">
                         <p class="line sep"><ht key="hoshin.support.or">or</ht></p>
                         <p class="sep"><t key="use_your_email_address"/></p>
-        		<form action="/users/check_corporate_login" method="get" enctype="application/x-www-form-urlencoded" hidden-fields="" ajax unless="&self.this.present? && self.this[:exists]==false" success="$('form.login input#password').focus()">
-        			<input type="email" name="email" placeholder="#{t 'email_placeholder'}" class="input-block-level form-control" value="&controller.ssoemail"/>
+        		<form class="login-form" action="/users/check_corporate_login" method="get" enctype="application/x-www-form-urlencoded" hidden-fields="" ajax unless="&self.this.present? && self.this[:exists]==false" success="$('form.login input#password').focus()">
+        			<input type="email" name="email" placeholder="#{t 'email_placeholder'}" class="input-block-level form-control" value="&controller.ssoemail" data-autofocus="autofocus"/>
         			<br/>
         			<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-raised"/>
         		</form>

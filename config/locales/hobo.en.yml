@@ -50,7 +50,7 @@ en:
 
     signup:
       title: "Signup"
-      heading: "Signup new user"
+      heading: "Try us for free"
 
     forgot_password:
       title: *forgot_password
@@ -95,7 +95,7 @@ en:
       back_to_parent: "Back to %{parent} %{name}"
       send: "Send"
       remove: "Remove"
-      signup: "Signup"
+      signup: "Create my account"
       login: "Login"
       logout: "Log out"
       logged_in_as: "%{name}"

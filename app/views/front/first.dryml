@@ -1,6 +1,6 @@
 <page title="Create your first company">
 
-  <body: class="front-page"/>
+  <body: class="first-page"/>
   
   <content-body:>
 	<cms key="custom_fragments/front_first_#{locale}"/>

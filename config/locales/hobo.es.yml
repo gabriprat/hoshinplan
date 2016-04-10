@@ -58,7 +58,7 @@ es:
 
     signup:
       title: "Registro"
-      heading: "Registrar nuevo usuario"
+      heading: "Pruébanos gratis"
 
     forgot_password:
       title: *forgot_password
@@ -103,7 +103,7 @@ es:
       back_to_parent: "Volver a %{parent} %{name}"
       send: "Enviar"
       remove: "Eliminar"
-      signup: "Registro"
+      signup: "Crear mi cuenta"
       login: "Iniciar Sesión"
       logout: "Terminar Sesión"
       logged_in_as: "%{name}"

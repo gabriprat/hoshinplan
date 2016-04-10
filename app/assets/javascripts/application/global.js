@@ -345,16 +345,16 @@ var ylabelformatHealth = function(val, i) {
 	return ret;
 }
 $(document).ready(function() {
-	$("#sso-login").submit(function () {
-		var val = $("#sso-login input[name=email]").val();
+	$("form.login-form").submit(function () {
+		var val = $(this).find("input[name=email]").val();
 		var domain = document.domain.replace(/^.+?\./, '.');
 		$.cookie("ssoemail", val, {domain: domain, path: '/', expires: 600});
 	});
 
-	$("#login.modal").on('shown', function() {
+	$("#login.modal").on('shown.bs.modal.selectAll', function() {
 		var email = $.cookie("ssoemail");
 		if (email != null) {
-			$("#sso-login input[name=email]").val(email).focus();
+			$(this).find("input[name=email]").val(email).focus().select();
 		}
 	});
 });

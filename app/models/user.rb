@@ -122,6 +122,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  after_save do |user|
+    unless image.exists?
+      self.delay.update_gravatar
+    end
+  end
+  
   before_save do |user| 
     user.email_address.downcase!
     user.email_address.strip!
@@ -390,6 +396,20 @@ class User < ActiveRecord::Base
       ret += lastName
     end
     ret = ret.blank? ? super : ret
+  end
+  
+  def update_gravatar
+    digest = Digest::MD5.hexdigest email_address
+    gravatar_check = "http://www.gravatar.com/avatar/#{digest}?s=208&d=404"
+    uri = URI.parse(gravatar_check)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    Rails.logger.debug "====== GRAVATAR ===== #{uri} ----- #{response.code.to_i} ======"
+    if response.code.to_i == 200
+      self.image = gravatar_check
+      self.save!
+    end
   end
   
   def update_data_from_authorization(provider, uid, email, firstName, lastName, remote_ip, tz, header_locale)

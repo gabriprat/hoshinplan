@@ -358,7 +358,7 @@ es:
             archive: Archivar hoshin
             clone: Clonar hoshin
       user:
-        email_address: "Por favor, utiliza tu email de empresa para que podamos conectarte con tu equipo en Hoshinplan."
+        email_address: "Por favor, utiliza tu email de empresa para que podamos conectarte con tu equipo."
         lifecycle:
           transitions:
             resend_activation: Reenviar email de activación de usuario

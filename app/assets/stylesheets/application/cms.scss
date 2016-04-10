@@ -207,8 +207,8 @@ body.tutorial #tutorial-close {
 		margin: 0;
 	}
 	
-	#cms .claim, #cms .product-pitch, #cms .quotes {
-		margin: 0 -15px;
+	#cms .claim, #cms .product-pitch, #cms .quotes, #cms #enum {
+		margin: 0;
 	}
 	
 	#cms .product-pitch {
@@ -230,10 +230,6 @@ body.tutorial #tutorial-close {
 	
 	#cms {
 		padding: 0;
-	}
-	
-	#cms #enum {
-		width: 100%;
 	}
 	
 	#cms img {

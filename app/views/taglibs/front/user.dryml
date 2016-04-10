@@ -1,6 +1,6 @@
 <extend tag="form" for="User">
   <old-form merge multipart>
-    <field-list: fields="firstName, lastName, email_address, timezone, language"/>
+    <field-list: fields="firstName, lastName, timezone, language"/>
   </old-form>
 </extend>
 
@@ -20,7 +20,7 @@
             </news-field:>
     </field-list>
     <div param="actions">
-      <submit class="btn-raised" label="#{ht 'user.actions.submit'}" param/><or-cancel param="cancel"/>
+      <submit class="btn-raised" label="#{ht 'user.actions.signup'}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   skip_before_filter :my_login_required, :only => :omniauth_callback
   
   after_filter :update_data, :only => :omniauth_callback
-  
+    
   before_filter :collect_azure_attributes, :only => :omniauth_callback
       
   include HoboOmniauth::Controller
