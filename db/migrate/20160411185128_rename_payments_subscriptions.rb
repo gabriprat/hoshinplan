@@ -1,5 +1,11 @@
 class RenamePaymentsSubscriptions < ActiveRecord::Migration
   def self.up
+    remove_index :payments, :name => :index_payments_on_billing_plan_id rescue ActiveRecord::StatementInvalid
+    remove_index :payments, :name => :index_payments_on_company_id rescue ActiveRecord::StatementInvalid
+    remove_index :payments, :name => :index_payments_on_deleted_at rescue ActiveRecord::StatementInvalid
+    remove_index :payments, :name => :index_payments_on_token rescue ActiveRecord::StatementInvalid
+    remove_index :payments, :name => :index_payments_on_user_id rescue ActiveRecord::StatementInvalid
+    
     rename_table :payments, :subscriptions
 
     rename_column :users, :payments_count, :subscriptions_count
@@ -35,11 +41,6 @@ class RenamePaymentsSubscriptions < ActiveRecord::Migration
     change_column :tasks, :lane_pos, :integer, :null => false, :default => 0
     change_column :tasks, :feeling, :string, :null => false, :default => :smile
 
-    remove_index :subscriptions, :name => :index_payments_on_billing_plan_id rescue ActiveRecord::StatementInvalid
-    remove_index :subscriptions, :name => :index_payments_on_company_id rescue ActiveRecord::StatementInvalid
-    remove_index :subscriptions, :name => :index_payments_on_deleted_at rescue ActiveRecord::StatementInvalid
-    remove_index :subscriptions, :name => :index_payments_on_token rescue ActiveRecord::StatementInvalid
-    remove_index :subscriptions, :name => :index_payments_on_user_id rescue ActiveRecord::StatementInvalid
     add_index :subscriptions, [:token], :unique => true
     add_index :subscriptions, [:deleted_at]
     add_index :subscriptions, [:user_id]
@@ -81,13 +82,14 @@ class RenamePaymentsSubscriptions < ActiveRecord::Migration
     change_column :tasks, :lane_pos, :integer, default: 0,        null: false
     change_column :tasks, :feeling, :string, default: "smile",  null: false
 
+    remove_index :subscriptions, :name => :index_subscriptions_on_token rescue ActiveRecord::StatementInvalid
+    remove_index :subscriptions, :name => :index_subscriptions_on_deleted_at rescue ActiveRecord::StatementInvalid
+    remove_index :subscriptions, :name => :index_subscriptions_on_user_id rescue ActiveRecord::StatementInvalid
+    remove_index :subscriptions, :name => :index_subscriptions_on_company_id rescue ActiveRecord::StatementInvalid
+    remove_index :subscriptions, :name => :index_subscriptions_on_billing_plan_id rescue ActiveRecord::StatementInvalid
+
     rename_table :subscriptions, :payments
 
-    remove_index :payments, :name => :index_subscriptions_on_token rescue ActiveRecord::StatementInvalid
-    remove_index :payments, :name => :index_subscriptions_on_deleted_at rescue ActiveRecord::StatementInvalid
-    remove_index :payments, :name => :index_subscriptions_on_user_id rescue ActiveRecord::StatementInvalid
-    remove_index :payments, :name => :index_subscriptions_on_company_id rescue ActiveRecord::StatementInvalid
-    remove_index :payments, :name => :index_subscriptions_on_billing_plan_id rescue ActiveRecord::StatementInvalid
     add_index :payments, [:billing_plan_id]
     add_index :payments, [:company_id]
     add_index :payments, [:deleted_at]

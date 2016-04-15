@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410212103) do
+ActiveRecord::Schema.define(version: 20160411185128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -377,7 +377,17 @@ ActiveRecord::Schema.define(version: 20160410212103) do
     t.datetime "updated_at"
   end
 
-  create_table "payments", force: :cascade do |t|
+  create_table "paypal_buttons", force: :cascade do |t|
+    t.string   "product"
+    t.string   "id_paypal"
+    t.string   "id_paypal_sandbox"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
+
+  create_table "subscriptions", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -392,21 +402,11 @@ ActiveRecord::Schema.define(version: 20160410212103) do
     t.datetime "deleted_at"
   end
 
-  add_index "payments", ["billing_plan_id"], name: "index_payments_on_billing_plan_id", using: :btree
-  add_index "payments", ["company_id"], name: "index_payments_on_company_id", using: :btree
-  add_index "payments", ["deleted_at"], name: "index_payments_on_deleted_at", using: :btree
-  add_index "payments", ["token"], name: "index_payments_on_token", unique: true, using: :btree
-  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
-
-  create_table "paypal_buttons", force: :cascade do |t|
-    t.string   "product"
-    t.string   "id_paypal"
-    t.string   "id_paypal_sandbox"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
+  add_index "subscriptions", ["billing_plan_id"], name: "index_subscriptions_on_billing_plan_id", using: :btree
+  add_index "subscriptions", ["company_id"], name: "index_subscriptions_on_company_id", using: :btree
+  add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at", using: :btree
+  add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", unique: true, using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name",                                   null: false
@@ -496,7 +496,7 @@ ActiveRecord::Schema.define(version: 20160410212103) do
     t.integer  "login_count"
     t.string   "preferred_view",                       default: "expanded"
     t.date     "last_seen_at"
-    t.integer  "payments_count",                       default: 0,          null: false
+    t.integer  "subscriptions_count",                  default: 0,          null: false
     t.string   "firstName"
     t.string   "lastName"
     t.boolean  "beta_access"
