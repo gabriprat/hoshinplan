@@ -1,4 +1,4 @@
-<extend tag="index-for-user-page" for="Payment">
+<extend tag="index-for-user-page" for="Subscription">
 	<old-index-for-user-page merge>
 		<collection: replace>
 			<table-plus fields="company, billing_plan.name, id_paypal">

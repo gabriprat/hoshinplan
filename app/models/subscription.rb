@@ -1,4 +1,4 @@
-class Payment < ActiveRecord::Base
+class Subscription < ActiveRecord::Base
 
   acts_as_paranoid
 
@@ -20,9 +20,9 @@ class Payment < ActiveRecord::Base
   
   attr_accessible :user, :user_id, :status, :token, :sandbox, :amount_value, :amount_currency, :billing_plan, :company, :billing_plan_id, :company_id
     
-  belongs_to :user, :inverse_of => :payments, :counter_cache => true
-  belongs_to :company, :inverse_of => :payments
-  belongs_to :billing_plan, :inverse_of => :payments
+  belongs_to :user, :inverse_of => :subscriptions, :counter_cache => true
+  belongs_to :company, :inverse_of => :subscriptions
+  belongs_to :billing_plan, :inverse_of => :subscriptions
 
   # --- Permissions --- #
 

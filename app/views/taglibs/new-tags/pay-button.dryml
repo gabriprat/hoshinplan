@@ -21,7 +21,7 @@
         %>
 
 	<% unless Rails.env.development? then %>
-        <form action="/payments">
+        <form action="/subcriptions">
 		<input type="hidden" name="product" value="#{this.id_paypal}"/>
 		<input type="hidden" name="company" value="#{Company.current_id}"/>
 		<button type="submit"><t key="paypal.purchase"/></button>

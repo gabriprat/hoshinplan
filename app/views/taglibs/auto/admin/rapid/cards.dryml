@@ -273,14 +273,6 @@
   </card>
 </def>
 
-<def tag="card" for="Payment">
-  <card class="payment" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-  </card>
-</def>
-
 <def tag="card" for="PaymentNotification">
   <card class="payment-notification" param="default" merge>
     <header: param>
@@ -301,6 +293,14 @@
   <card class="saml-provider" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Subscription">
+  <card class="subscription" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>

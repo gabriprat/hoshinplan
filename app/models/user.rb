@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     last_seen_at    :date
     last_login_at   :datetime
     login_count     :integer
-    payments_count  :integer, :default => 0, :null => false
+    subscriptions_count  :integer, :default => 0, :null => false
     preferred_view  EnumView, :required, :default=> :expanded
     beta_access     :boolean
     news            :boolean, default: true
@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   has_many :active_user_companies_and_hoshins, -> {by_cname}, :class_name => "UserCompany", unscoped: true
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
-  has_many :payments, :dependent => :destroy
+  has_many :subscriptions, :dependent => :nullify
   
   has_many :my_companies, :class_name => "Company", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_hoshins, :class_name => "Hoshin", :inverse_of => :creator, :foreign_key => :creator_id

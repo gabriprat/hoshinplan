@@ -190,12 +190,12 @@
 
 
 
-<def tag="form" for="Payment">
+<def tag="form" for="Subscription">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="token, id_paypal, status, sandbox, amount_value, amount_currency, billing_plan, company, user" param/>
+    <field-list fields="billing_plan, company, user" param/>
     <div param="actions">
-      <submit label="#{ht 'payment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'subscription.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

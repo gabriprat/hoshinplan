@@ -22,7 +22,7 @@ class BillingPlan < ActiveRecord::Base
   attr_accessible :name, :description, :brief, :users, :css_class, :features, 
     :frequency, :interval, :amount_currency, :amount_value, :id_paypal, :status_paypal, :workers, :stripe_id
 
-  has_many :payments, :inverse_of => :billing_plan
+  has_many :subscriptions, :inverse_of => :billing_plan
   acts_as_list
     
   # --- Permissions --- #

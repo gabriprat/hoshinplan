@@ -40,8 +40,8 @@ class PaypalAccess
               }
           ],
           merchant_preferences: {
-              cancel_url: "https://#{Rails.application.routes.default_url_options[:host]}/payments/cancel",
-              return_url: "https://#{Rails.application.routes.default_url_options[:host]}/payments/correct",
+              cancel_url: "https://#{Rails.application.routes.default_url_options[:host]}/subscriptions/cancel",
+              return_url: "https://#{Rails.application.routes.default_url_options[:host]}/subscriptions/correct",
               max_fail_attempts: "3",
               auto_bill_amount: "YES",
               initial_fail_amount_action: "CANCEL"

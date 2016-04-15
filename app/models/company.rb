@@ -31,7 +31,7 @@ class Company < ActiveRecord::Base
   has_many :users, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy
   
-  has_many :payments, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
   
   has_many :log, :class_name => "CompanyLog", :inverse_of => :company
   
@@ -121,9 +121,9 @@ class Company < ActiveRecord::Base
     if unlimited
       users = 1000000
     else
-      payments.includes(:billing_plan).where(status: 'Active').each { |payment|
-        if !users || users < payment.billing_plan.users
-          users = payment.billing_plan.users
+      subscriptions.includes(:billing_plan).where(status: 'Active').each { |subscription|
+        if !users || users < subscription.billing_plan.users
+          users = subscription.billing_plan.users
         end
       }
     end

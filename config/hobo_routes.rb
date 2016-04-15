@@ -179,12 +179,12 @@ Hoshinplan::Application.routes.draw do
   resources :payment_notifications, :only => []
 
 
-  # Resource routes for controller payments
-  resources :payments, :only => [:new, :create, :destroy]
+  # Resource routes for controller subscriptions
+  resources :subscriptions, :only => [:new, :create, :destroy]
 
-  # Owner routes for controller payments
+  # Owner routes for controller subscriptions
   resources :users, :as => :user, :only => [] do
-    resources :payments, :only => [] do
+    resources :subscriptions, :only => [] do
       collection do
         get '/', :action => 'index_for_user'
       end

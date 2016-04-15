@@ -1,4 +1,4 @@
-class PaymentsController < ApplicationController
+class SubscriptionsController < ApplicationController
 
   hobo_model_controller
 
@@ -10,9 +10,9 @@ class PaymentsController < ApplicationController
   
   def cancel
     fail "Token not found" unless params[:token]
-    payment = Payment.find_by_token(params[:token])
-    payment.status = "Pending"
-    payment.save!
+    subscription =Subscription.find_by_token(params[:token])
+    subscription.status = "Pending"
+    subscription.save!
   end
   
   def destroy
@@ -32,20 +32,20 @@ class PaymentsController < ApplicationController
   
   def correct
     fail "Token not found" unless params[:token]
-    payment = Payment.find_by_token(params[:token])
+    subscription =Subscription.find_by_token(params[:token])
     agreement = PaypalAccess.execute_agreement(params[:token])
     agreement = PaypalAccess.find_agreement(agreement.id)
-    payment.id_paypal = agreement.id
-    payment.status = agreement.state
-    payment.save!
-    Payment.where(status: 'Active', company: payment.company).where.not(id_paypal: payment.id_paypal).each { |payment_to_cancel|
-      agreement_to_cancel = PaypalAccess.find_agreement(payment_to_cancel.id_paypal)
+    subscription.id_paypal = agreement.id
+    subscription.status = agreement.state
+    subscription.save!
+    Subscription.where(status: 'Active', company: subscription.company).where.not(id_paypal: subscription.id_paypal).each { |subscription_to_cancel|
+      agreement_to_cancel = PaypalAccess.find_agreement(subscription_to_cancel.id_paypal)
       resp = agreement_to_cancel.cancel(note: "Canceling old subscription as you are buying a new one for the same company")
       if resp
-        payment_to_cancel.status = 'Canceled'
-        payment_to_cancel.save!
+        subscription_to_cancel.status = 'Canceled'
+        subscription_to_cancel.save!
       else
-        track_exception "Failed canceling payment with id=#{payment.id_paypal}"
+        track_exception "Failed canceling subscription with id=#{subscription.id_paypal}"
       end
     }
     flash[:notice] = t "payments.correct.heading"
@@ -61,12 +61,12 @@ class PaymentsController < ApplicationController
   end
   
   def index_for_user
-    finder = Payment.includes(:billing_plan, :company).where(user_id: params[:user_id], status: 'Active').references(:billing_plan, :company)
+    finder = Subscription.includes(:billing_plan, :company).where(user_id: params[:user_id], status: 'Active').references(:billing_plan, :company)
     search = params[:search].strip.upcase if params[:search]
     unless search.blank?
-      finder = finder.where("upper(companies.name) LIKE ? OR payments.id_paypal LIKE ? OR upper(billing_plans.name) LIKE ?", "%#{search}%","%#{search}%","%#{search}%")
+      finder = finder.where("upper(companies.name) LIKE ? OR subscriptions.id_paypal LIKE ? OR upper(billing_plans.name) LIKE ?", "%#{search}%","%#{search}%","%#{search}%")
     end
-    sort = parse_sort_param("company" => "companies.name", "id_paypal" => "payments.id_paypal", "billing_plan.name" => "billing_plans.name")
+    sort = parse_sort_param("company" => "companies.name", "id_paypal" => "subscriptions.s.id_paypal", "billing_plan.name" => "billing_plans.name")
     if sort
       finder = finder.order(sort)
     end
@@ -79,16 +79,16 @@ class PaymentsController < ApplicationController
     agreement = PaypalAccess.create_agreement(plan)
     agreement.links.each {|link|
       if link.rel == 'approval_url'
-        payment = Payment.new
-        payment.token = agreement.token
-        payment.status = "Pending"
-        payment.billing_plan = plan
-        payment.sandbox = PaypalAccess.sandbox?
-        payment.amount_value = plan.amount_value
-        payment.amount_currency = plan.amount_currency
-        payment.company_id = params[:company]
-        payment.user = current_user
-        payment.save!
+        subscription =Subscription.new
+        subscription.token = agreement.token
+        subscription.status = "Pending"
+        subscription.billing_plan = plan
+        subscription.sandbox = PaypalAccess.sandbox?
+        subscription.amount_value = plan.amount_value
+        subscription.amount_currency = plan.amount_currency
+        subscription.company_id = params[:company]
+        subscription.user = current_user
+        subscription.save!
         log_event("Paypal redirection", {product: plan.name})
         redirect_to link.href
         return
@@ -118,16 +118,16 @@ class PaymentsController < ApplicationController
 
     plan = BillingPlan.where(stripe_id: params[:plan]).first
     
-    payment = Payment.new
-    payment.token = stripe_subscription.id
-    payment.status = stripe_subscription.status.capitalize
-    payment.billing_plan = plan
-    payment.sandbox = !stripe_subscription.plan.livemode
-    payment.amount_value = plan.amount_value
-    payment.amount_currency = plan.amount_currency
-    payment.company_id = params[:company]
-    payment.user = current_user
-    payment.save!
+    subscription =Subscription.new
+    subscription.token = stripe_subscription.id
+    subscription.status = stripe_subscription.status.capitalize
+    subscription.billing_plan = plan
+    subscription.sandbox = !stripe_subscription.plan.livemode
+    subscription.amount_value = plan.amount_value
+    subscription.amount_currency = plan.amount_currency
+    subscription.company_id = params[:company]
+    subscription.user = current_user
+    subscription.save!
     
     Rails.logger.debug stripe_subscription.to_yaml
     
