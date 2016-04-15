@@ -9,12 +9,14 @@
 			</a>
 		</div>
                 <div class="email-login">
-                        <p class="line sep"><ht key="hoshin.support.or">or</ht></p>
-                        <p class="sep"><t key="use_your_email_address"/></p>
+                        <p class="line"><ht key="hoshin.support.or">or</ht></p>
+                        <p><t key="use_your_email_address"/></p>
         		<form class="login-form" action="/users/check_corporate_login" method="get" enctype="application/x-www-form-urlencoded" hidden-fields="" ajax success="$('form.login input#password').focus()">
         			<input type="email" name="email" placeholder="#{t 'email_placeholder'}" class="input-block-level form-control" value="&controller.ssoemail" data-autofocus="autofocus"/>
         			<br/>
-        			<submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-raised"/>
+                                <div param='actions'>
+        			        <submit value="#{ht 'hoshin.actions.login', :default=>'Login'}" class="btn-raised"/>
+                                </div>
         		</form>
                 </div>
         </unless>
@@ -22,11 +24,11 @@
 		<form class='login' action='/login' hidden-fields="">
 		    <% params[:login] ||= (@provider[:email] if @provider.present?)  %>
                     <input type="email" name="login" placeholder="#{t 'email_placeholder'}" class="input-block-level form-control" value="&params[:login]"/>
-                    <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}" autocomplete="off" autofocus="autofocus"/>  
+                    <input name='password' class='string input-block-level form-control' style='margin-top: 10px' param='password-input' id='password' type='password' placeholder="#{t 'hobo.login.password', :default=>'Password'}" autocomplete="off" autofocus="autofocus"/>
+                    <if test="&forgot_password_url"><a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
 		    <br/>
 		    <div param='actions'>
-		      <submit class="btn-raised" label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/> &nbsp;
-		      <if test="&forgot_password_url"><a href="&forgot_password_url" param="forgot-password"><t key="hobo.login.forgot_password">Forgot your password?</t></a></if>
+		      <submit class="btn-raised" label='#{t &apos;hobo.actions.login&apos;, :default=>[&apos;Log in&apos;] }' param/>
 		    </div>
 		</form>
         </else>

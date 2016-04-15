@@ -209,19 +209,33 @@ a.external:after {
 	font-weight: 400;
 }
 
-#login .modal-body {
-	max-height: 100vh;
-}
-
-#login input[type=email], #login input[type=text], #login input[type=password] {
-	width: 50%;
-	margin: auto;
-	border: 1px solid #999;
-	padding-left: 1em;
-	border-radius: 3px;
-	&:focus, &:active {
-		outline: none;
-	}
+#login {
+        h4 {
+                font-size: 3em;
+                text-align: center;
+                font-weight: 400;
+        }
+        .modal-dialog {
+                max-width: 500px;
+        }
+        .modal-body {
+                padding-top: 0;
+                max-height: 100vh;
+        }
+        .actions {
+                text-align: right;
+                 margin: 1em 0;
+        }
+        input[type=email], #login input[type=text], #login input[type=password] {
+                margin: auto;
+                border: 1px solid #999;
+                padding-left: 1em;
+                border-radius: 3px;
+                box-shadow: none;
+                &:focus, &:active {
+                        outline: none;
+                }
+        }
 }
 
 .local-login a i {
@@ -316,16 +330,30 @@ body .btn-box:active {
 }
 
 .line {
-  display: block;
-  
+        display: block;
+        position: relative;
+        color: #b9bcc0;
+        font-size: 1.75em;
+        line-height: 2.5;
+        position: relative;
+        text-align: center;
+        margin: 0;
 }
 
-.line:before, .line:after {
-  content: '';
-  display: inline-block;
-  width: 6em;
-  border-bottom: 1px solid black;
-  margin: 0.25em 2em;
+.line:after, .line:before {
+        border-top: 1px solid #e1e2e4;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 50%;
+        width: 45%;
+        z-index: 0;
+}
+
+.line:before {
+        left: auto;
+        right: 0;
 }
 
 .compact .children {
@@ -3694,20 +3722,6 @@ body.column-form {
         .aside-column {
                 background: #f0f8ff;
         }
-}
-
-.login-form-wrapper {
-        margin-top: 2em;
-}
-
-form.login {
-        .actions {
-                margin: 2em 0 1.5em 0;
-        }
-}
-
-.modal form.login .actions {
-        text-align: center;
 }
 
 a#signup {
