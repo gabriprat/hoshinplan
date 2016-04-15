@@ -1869,11 +1869,11 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="sandbox" param/>
     </content-header:>
 
     <content-body: param>
-      <field-list fields="billing_plan, company, user" param/>
+      <field-list fields="token, id_paypal, status, amount_value, amount_currency, billing_plan, company, user" param/>
     </content-body:>
 
   </page>
