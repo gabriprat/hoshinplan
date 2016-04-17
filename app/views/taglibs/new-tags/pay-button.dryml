@@ -11,7 +11,7 @@
                 open: {
                         amount: this.amount_value,
                         email: User.current_user.email_address,
-                        currency: this.amount_currency,
+                        currency: this.amount_currency * 100, #in cents
                         name: 'Hoshinplan',
                         description: this.name + ' plan'
                 },
