@@ -20,7 +20,7 @@
         add_data_rapid!(html_attrs, "stripe", stripe_attrs)
         %>
 
-	<% unless Rails.env.development? then %>
+	<% if false then %>
         <form action="/subcriptions">
 		<input type="hidden" name="product" value="#{this.id_paypal}"/>
 		<input type="hidden" name="company" value="#{Company.current_id}"/>

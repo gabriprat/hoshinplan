@@ -111,10 +111,12 @@ Hoshinplan::Application.routes.draw do
   
   post "/payments/paypal-ipn" => "payment_notifications#paypal_ipn"
   
-  get "/payments/cancel" => "payments#cancel"
-  get "/payments/correct" => "payments#correct"
+  get "/payments/cancel" => "subscriptions#cancel"
+  get "/payments/correct" => "subscriptions#correct"
   
-  post "/stripe_subscription_checkout" => "payments#stripe_subscription_checkout"
+  post "/stripe_subscription_checkout" => "subscriptions#stripe_subscription_checkout"
+  
+  get "/admin/billing_plans/create_stripe_plans" => "admin/billing_plans#create_stripe_plans"
   
   get "/log/:type/:id" => "log#index", :as => 'log_index'
   

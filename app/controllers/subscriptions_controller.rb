@@ -10,35 +10,20 @@ class SubscriptionsController < ApplicationController
   
   def cancel
     fail "Token not found" unless params[:token]
-    subscription =Subscription.find_by_token(params[:token])
+    subscription = SubscriptionPaypal.find_by_token(params[:token])
     subscription.status = "Pending"
     subscription.save!
   end
   
-  def destroy
-    @this = find_instance
-    if (@this.id_paypal)
-      agreement = PaypalAccess.find_agreement(@this.id_paypal)
-      agreement.cancel(note: "Canceled through Hoshinplan.com by " + current_user.email_address)
-    end
-    @this.status = 'Canceled'
-    @this.save!
-    if request.xhr?
-      hobo_ajax_response
-    else
-      redirect_to :back
-    end
-  end
-  
   def correct
     fail "Token not found" unless params[:token]
-    subscription =Subscription.find_by_token(params[:token])
+    subscription = SubscriptionPaypal.find_by_token(params[:token])
     agreement = PaypalAccess.execute_agreement(params[:token])
     agreement = PaypalAccess.find_agreement(agreement.id)
     subscription.id_paypal = agreement.id
     subscription.status = agreement.state
     subscription.save!
-    Subscription.where(status: 'Active', company: subscription.company).where.not(id_paypal: subscription.id_paypal).each { |subscription_to_cancel|
+    SubscriptionPaypal.where(status: 'Active', company: subscription.company).where.not(id_paypal: subscription.id_paypal).each { |subscription_to_cancel|
       agreement_to_cancel = PaypalAccess.find_agreement(subscription_to_cancel.id_paypal)
       resp = agreement_to_cancel.cancel(note: "Canceling old subscription as you are buying a new one for the same company")
       if resp
@@ -61,7 +46,8 @@ class SubscriptionsController < ApplicationController
   end
   
   def index_for_user
-    finder = Subscription.includes(:billing_plan, :company).where(user_id: params[:user_id], status: 'Active').references(:billing_plan, :company)
+    company_ids =  User.find(params[:user_id]).all_companies.map {|c| c.id }
+    finder = Subscription.includes(:billing_plan, :company).where(company_id: company_ids, status: 'Active').references(:billing_plan, :company)
     search = params[:search].strip.upcase if params[:search]
     unless search.blank?
       finder = finder.where("upper(companies.name) LIKE ? OR subscriptions.id_paypal LIKE ? OR upper(billing_plans.name) LIKE ?", "%#{search}%","%#{search}%","%#{search}%")
@@ -79,7 +65,7 @@ class SubscriptionsController < ApplicationController
     agreement = PaypalAccess.create_agreement(plan)
     agreement.links.each {|link|
       if link.rel == 'approval_url'
-        subscription =Subscription.new
+        subscription =SubscriptionPaypal.new
         subscription.token = agreement.token
         subscription.status = "Pending"
         subscription.billing_plan = plan
@@ -118,7 +104,7 @@ class SubscriptionsController < ApplicationController
 
     plan = BillingPlan.where(stripe_id: params[:plan]).first
     
-    subscription =Subscription.new
+    subscription = SubscriptionStripe.new
     subscription.token = stripe_subscription.id
     subscription.status = stripe_subscription.status.capitalize
     subscription.billing_plan = plan
@@ -140,3 +126,42 @@ class SubscriptionsController < ApplicationController
     end
   end
 end
+
+
+class SubscriptionPaypalsController < ApplicationController
+
+  hobo_model_controller
+
+  auto_actions :new, :destroy
+  
+  def destroy
+    @this = find_instance
+    @this.cancel
+    if request.xhr?
+      hobo_ajax_response
+    else
+      redirect_to :back
+    end
+  end
+  
+end
+
+class SubscriptionStripesController < ApplicationController
+  
+  hobo_model_controller
+
+  auto_actions :new, :destroy
+  
+  def destroy
+    @this = find_instance
+    @this.cancel
+    if request.xhr?
+      hobo_ajax_response
+    else
+      redirect_to :back
+    end
+  end
+
+end
+
+

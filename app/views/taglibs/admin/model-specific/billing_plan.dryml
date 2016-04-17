@@ -14,9 +14,40 @@
 	<old-index-page merge>
 		<append-content-header:>
 			<a action="from_paypal">From PayPal</a>
+                        <a action="from_stripe">From Stripe</a>
+                        <a class="pull-right" href="/admin/billing_plans/create_stripe_plans">Create Stripe Plans</a>
 		</append-content-header:>
 	</old-index-page>
 </extend>
+
+<def tag="card" for="Stripe::Plan">
+	<div class='card well' param='default' merge-attrs>
+	    <header param>
+	    	<%=this.name%>
+	    </header>
+	    <div param='body'>
+	    	<%=this.id%>
+	    </div>
+	</div>
+</def>
+
+<def tag="index-page" for="Stripe::ListObject">
+    <page>
+    <body: class="index-page billing-plan"/>
+
+    <content-header: >
+      <h2>
+      	Billing Plans
+      </h2>
+    </content-header:>
+
+    <content-body: >
+
+      <collection:data if="data.present?"/>
+      
+    </content-body:>
+    </page>
+</def>
 
 
 <def tag="card" for="PayPal::SDK::REST::DataTypes::Plan">

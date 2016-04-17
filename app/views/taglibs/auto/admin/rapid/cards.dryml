@@ -305,6 +305,22 @@
   </card>
 </def>
 
+<def tag="card" for="SubscriptionPaypal">
+  <card class="subscription-paypal" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="SubscriptionStripe">
+  <card class="subscription-stripe" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Task">
   <card class="task" param="default" merge>
     <header: param>

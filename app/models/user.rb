@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   has_many :active_user_companies_and_hoshins, -> {by_cname}, :class_name => "UserCompany", unscoped: true
   has_many :authorizations, :dependent => :destroy
   has_many :client_applications, :dependent => :destroy
-  has_many :subscriptions, :dependent => :nullify
+  has_many :subscriptions, :dependent => :nullify, :inverse_of => :user
   
   has_many :my_companies, :class_name => "Company", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_hoshins, :class_name => "Hoshin", :inverse_of => :creator, :foreign_key => :creator_id

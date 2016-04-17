@@ -10,6 +10,7 @@ class Company < ActiveRecord::Base
     name :string
     hoshins_count :integer, :default => 0, :null => false
     unlimited :boolean, :default => false, :null => false
+    subscriptions_count  :integer, :default => 0, :null => false
     timestamps
     deleted_at    :datetime
   end
@@ -50,7 +51,7 @@ class Company < ActiveRecord::Base
     if cu.created_at < Date.new(2015,4,4) || domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com'
       self.unlimited = true
     end
-  end  
+  end
   
   set_default_order :name
   

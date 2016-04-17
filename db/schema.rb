@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411185128) do
+ActiveRecord::Schema.define(version: 20160417221503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,12 +118,13 @@ ActiveRecord::Schema.define(version: 20160411185128) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.integer  "hoshins_count", default: 0,     null: false
+    t.integer  "hoshins_count",       default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
-    t.boolean  "unlimited",     default: false, null: false
+    t.boolean  "unlimited",           default: false, null: false
     t.datetime "deleted_at"
+    t.integer  "subscriptions_count", default: 0,     null: false
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
@@ -400,12 +401,15 @@ ActiveRecord::Schema.define(version: 20160411185128) do
     t.integer  "billing_plan_id"
     t.string   "id_paypal"
     t.datetime "deleted_at"
+    t.string   "type"
+    t.string   "deleted_by"
   end
 
   add_index "subscriptions", ["billing_plan_id"], name: "index_subscriptions_on_billing_plan_id", using: :btree
   add_index "subscriptions", ["company_id"], name: "index_subscriptions_on_company_id", using: :btree
   add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at", using: :btree
   add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", unique: true, using: :btree
+  add_index "subscriptions", ["type"], name: "index_subscriptions_on_type", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|

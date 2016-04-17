@@ -192,6 +192,14 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller subscription_paypals
+  resources :subscription_paypals, :only => [:new, :destroy]
+
+
+  # Resource routes for controller subscription_stripes
+  resources :subscription_stripes, :only => [:new, :destroy]
+
+
   # Resource routes for controller tasks
   resources :tasks, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
@@ -319,6 +327,7 @@ Hoshinplan::Application.routes.draw do
     # Resource routes for controller admin/billing_plans
     resources :billing_plans do
       collection do
+        get 'from_stripe'
         get 'from_paypal'
         post 'reorder'
       end
