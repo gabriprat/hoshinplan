@@ -9,9 +9,9 @@
                         image: image_path('hp-ico.png')
                 },
                 open: {
-                        amount: this.amount_value,
+                        amount: (this.amount_value * 100).to_i, #in cents
                         email: User.current_user.email_address,
-                        currency: this.amount_currency * 100, #in cents
+                        currency: this.amount_currency, 
                         name: 'Hoshinplan',
                         description: this.name + ' plan'
                 },
