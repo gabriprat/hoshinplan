@@ -456,6 +456,7 @@ es:
     annual: Anual
   stripe:
     purchase: Suscribirme
+    panelLabel: 'Pagar {{amount}}/mes'
   paypal:
     purchase: Comprar
   payments:

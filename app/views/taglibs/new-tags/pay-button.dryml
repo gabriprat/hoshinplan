@@ -13,7 +13,8 @@
                         email: User.current_user.email_address,
                         currency: this.amount_currency, 
                         name: 'Hoshinplan',
-                        description: this.name + ' plan'
+                        description: this.name + ' plan',
+                        panelLabel: t('stripe.panelLabel')
                 },
                 plan: this.stripe_id
         }
