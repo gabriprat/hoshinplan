@@ -456,7 +456,11 @@ es:
     annual: Anual
   stripe:
     purchase: Suscribirme
-    panelLabel: 'Pagar {{amount}}/mes'
+    panelLabel: 'Pagar {{amount}}/%{frequency}'
+    day: día
+    week: semana
+    month: mes
+    year: año
   paypal:
     purchase: Comprar
   payments:

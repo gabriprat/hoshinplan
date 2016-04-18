@@ -14,7 +14,7 @@
                         currency: this.amount_currency, 
                         name: 'Hoshinplan',
                         description: this.name + ' plan',
-                        panelLabel: t('stripe.panelLabel')
+                        panelLabel: t('stripe.panelLabel', frequency: t('stripe.' + this.frequency.downcase))
                 },
                 plan: this.stripe_id
         }

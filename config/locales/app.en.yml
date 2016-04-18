@@ -458,7 +458,11 @@ en:
     annual: Annual
   stripe:
     purchase: Subscribe
-    panelLabel: "Pay {{amount}}/month"
+    panelLabel: "Pay {{amount}}/%{frequency}"
+    day: day
+    week: week
+    month: month
+    year: year
   paypal:
     purchase: Purchase
   payments:
