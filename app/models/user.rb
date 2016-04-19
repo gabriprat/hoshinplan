@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     beta_access     :boolean
     news            :boolean, default: true
     stripe_id       :string
+    was_invited     :boolean
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -116,11 +117,13 @@ class User < ActiveRecord::Base
   has_many :my_indicators, :class_name => "Indicator", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_indicator_histories, :class_name => "IndicatorHistory", :inverse_of => :creator, :foreign_key => :creator_id
     
-  # This gives admin rights and an :active state to the first sign-up.
   before_create do |user|
+    # This gives admin rights and an :active state to the first sign-up.
     if user.class.count == 0
       user.administrator = true
     end
+    # If users already has access to some companies we will assume they have been invited
+    self.was_invited = (self.user_companies.count > 0)
   end
   
   after_save do |user|
@@ -219,7 +222,7 @@ class User < ActiveRecord::Base
     create :signup, :available_to => "Guest",
       :params => [:email_address, :news],
       :become => :inactive, :new_key => true  do
-      UserCompanyMailer.activation(self, lifecycle.key).deliver_later
+        UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
     
     transition :resend_activation, {:invited => :invited}, :available_to => :all, :new_key => true do
