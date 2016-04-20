@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     beta_access     :boolean
     news            :boolean, default: true
     stripe_id       :string
-    was_invited     :boolean
+    from_invitation     :boolean, default: false
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -60,6 +60,9 @@ class User < ActiveRecord::Base
       n = user.email_address.split('@')[0]
       user.name = n.split(".").join(" ").titleize
     end
+    if user.lifecycle.state.name == :invited
+      user.from_invitation = true
+    end
   end
   
   before_destroy do |user|
@@ -74,7 +77,7 @@ class User < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 10.megabytes   
     
   attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies,
-     :image, :timezone, :tutorial_step, :created_at, :language, :beta_access, :news
+     :image, :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
@@ -122,8 +125,6 @@ class User < ActiveRecord::Base
     if user.class.count == 0
       user.administrator = true
     end
-    # If users already has access to some companies we will assume they have been invited
-    self.was_invited = (self.user_companies.count > 0)
   end
   
   after_save do |user|
@@ -220,7 +221,7 @@ class User < ActiveRecord::Base
         :become => :active
     
     create :signup, :available_to => "Guest",
-      :params => [:email_address, :news],
+      :params => [:email_address, :news, :from_invitation],
       :become => :inactive, :new_key => true  do
         UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
@@ -249,8 +250,6 @@ class User < ActiveRecord::Base
 
     transition :activate, { :invited => :active },
       :params => [:firstName, :lastName, :password, :language, :timezone]  do
-      acting_user = self
-      @subject = "#{self.name} welcome to Hoshinplan!"
       UserCompanyMailer.invited_welcome(self).deliver_later
     end
 
@@ -412,7 +411,7 @@ class User < ActiveRecord::Base
     Rails.logger.debug "====== GRAVATAR ===== #{uri} ----- #{response.code.to_i} ======"
     if response.code.to_i == 200
       self.image = gravatar_check
-      self.save!
+      self.save!(validate: false) #Password validation would fail
     end
   end
   
@@ -434,6 +433,7 @@ class User < ActiveRecord::Base
     self.lastName ||= lastName
     if self.lifecycle.state.name == :invited
       self.lifecycle.activate!(self)
+      self.from_invitation = true
     end
     if self.timezone.nil? && !tz.nil?
    	  zone = tz
@@ -444,12 +444,11 @@ class User < ActiveRecord::Base
       self.language = header_locale || I18n.locale
     end
     begin
-      self.save!
+      self.save!(validate: false) #Password validation would fail
       people_set(self, remote_ip)
     rescue ActiveRecord::RecordInvalid => invalid
-      fail ActiveRecord::RecordInvalid, invalid.record.errors.to_yaml if invalid.record && invalid.record.respond_to?('errors')
-      fail ActiveRecord::RecordInvalid, invalid.record.to_yaml if invalid.record
-      fail ActiveRecord::RecordInvalid, invalid.to_yaml
+      Rails.logger.error invalid.record.errors.messages.to_yaml if invalid.record && invalid.record.respond_to?('errors') && invalid.record.errors.respond_to?('messages') 
+      fail invalid
     end
   end
   

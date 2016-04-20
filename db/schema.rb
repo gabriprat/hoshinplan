@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419124452) do
+ActiveRecord::Schema.define(version: 20160419233442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -506,7 +506,7 @@ ActiveRecord::Schema.define(version: 20160419124452) do
     t.boolean  "beta_access"
     t.boolean  "news",                                 default: true
     t.string   "stripe_id"
-    t.boolean  "was_invited"
+    t.boolean  "from_invitation",                      default: false
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

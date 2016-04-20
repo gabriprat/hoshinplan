@@ -3076,7 +3076,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="administrator, beta_access, news, was_invited" param/>
+      <record-flags fields="administrator, beta_access, news, from_invitation" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">

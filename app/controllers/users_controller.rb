@@ -74,6 +74,8 @@ class UsersController < ApplicationController
     do_transition_action :accept_invitation do
       if valid?
         self.current_user = model.find(params[:id])
+        self.current_user.from_invitation = true
+        self.current_user.save
         redirect_to home_page
       end
     end
