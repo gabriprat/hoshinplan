@@ -36,10 +36,11 @@ class Mp
   def self.people_set(user, ip, ignore_time=false) 
     return if user.guest?
     opts = {id: user.id, ip: ip}
+    optional_params = {}
     if ignore_time
-      opts["$ignore_time"] = true
+      optional_params["$ignore_time"] = true
     end
-    logged_event = Mp.new(user, opts)
+    logged_event = Mp.new(user, opts, optional_params)
     Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.people_set!
   end
@@ -68,7 +69,7 @@ class Mp
     @event = event
   end
 
-  def initialize(user=nil, opts = {})
+  def initialize(user=nil, opts = {}, optional_params = {})
     return unless user.is_a? User
     @people = {
         '$distinct_id'  => user.id,
@@ -80,7 +81,7 @@ class Mp
         'timezone'      => user.timezone,
         'tutorial_step' => user.tutorial_step,
         'last_seen_at'  => user.last_seen_at,
-        'from_invitation' => user.from_invitation
+        'from_invitation' => user.from_invitation,
     }
     @options = {}
     @options['ip'] = opts[:ip] unless opts[:ip].nil?
@@ -96,6 +97,7 @@ class Mp
         @options[key.to_s] = value.to_i
       end
     end
+    @optional_params = optional_params
   end
 
   
@@ -128,7 +130,7 @@ class Mp
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     tracker = ::Mixpanel::Tracker.new(TOKEN)
     Mp.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options.inspect}, #{@people.inspect}" 
-    tracker.people.set(@options['distinct_id'], @people, @options[:ip])
+    tracker.people.set(@options['distinct_id'], @people, @options[:ip], @optional_params)
   end
 
   def track_access_api
