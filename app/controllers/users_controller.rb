@@ -285,7 +285,7 @@ class UsersController < ApplicationController
       redirect_to home_page
     else
       hobo_do_signup
-      log_event("Signup", {objid: self.id, email_address: self.email_address})
+      log_event("Signup", {objid: self.this.id, email_address: self.this.email_address})
     end
   end
 
