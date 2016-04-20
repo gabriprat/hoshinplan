@@ -204,6 +204,7 @@ class User < ActiveRecord::Base
       end
       if (self.companies.blank?) 
         UserCompanyMailer.welcome(self).deliver_later
+        Mp.log_event("Signup", self, '')
       end
     end
 
@@ -224,6 +225,7 @@ class User < ActiveRecord::Base
       :params => [:email_address, :news, :from_invitation],
       :become => :inactive, :new_key => true  do
         UserCompanyMailer.activation(self, lifecycle.key).deliver_later
+        Mp.log_event("Signup", self, '')
     end
     
     transition :resend_activation, {:invited => :invited}, :available_to => :all, :new_key => true do
