@@ -204,14 +204,12 @@ class User < ActiveRecord::Base
       end
       if (self.companies.blank?) 
         UserCompanyMailer.welcome(self).deliver_later
-        log_event("Signup", {objid: self.id, email_address: self.email_address})
       end
     end
 
     create :invite, :params => [:email_address], :become => :invited, :new_key => true  do
         self.email_address = email_address
         UserCompanyMailer.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s).deliver_later
-        log_event("Invited", {objid: self.id, email_address: self.email_address})
     end
     
     transition :resend_invite, { :invited => :invited }, :new_key => true do
@@ -226,17 +224,14 @@ class User < ActiveRecord::Base
       :params => [:email_address, :news, :from_invitation],
       :become => :inactive, :new_key => true  do
         UserCompanyMailer.activation(self, lifecycle.key).deliver_later
-        log_event("Signup", {objid: self.id, email_address: self.email_address})
     end
     
     transition :resend_activation, {:invited => :invited}, :available_to => :all, :new_key => true do
       UserCompanyMailer.activation(self, lifecycle.key).deliver_later
-      log_event("Resend activation", {objid: self.id, email_address: self.email_address})
     end
     
     transition :resend_activation, {:inactive => :inactive}, :available_to => :all, :new_key => true do
       UserCompanyMailer.activation(self, lifecycle.key).deliver_later
-      log_event("Resend activation", {objid: self.id, email_address: self.email_address})
     end
     
     transition :accept_invitation, { :invited => :active }, :available_to => :key_holder,
