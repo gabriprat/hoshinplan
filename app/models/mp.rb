@@ -79,7 +79,8 @@ class Mp
         'subscriptions' => user.subscriptions_count,
         'timezone'      => user.timezone,
         'tutorial_step' => user.tutorial_step,
-        'last_seen_at'  => user.last_seen_at
+        'last_seen_at'  => user.last_seen_at,
+        'from_invitation' => user.from_invitation
     }
     @options = {}
     @options['ip'] = opts[:ip] unless opts[:ip].nil?
