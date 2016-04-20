@@ -130,7 +130,7 @@ class Mp
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     tracker = ::Mixpanel::Tracker.new(TOKEN)
     Mp.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options.inspect}, #{@people.inspect}" 
-    tracker.people.set(@options['distinct_id'], @people, @options[:ip], @optional_params)
+    tracker.people.set(@options['distinct_id'], @people, @options[:ip], @optional_params || {})
   end
 
   def track_access_api
