@@ -290,6 +290,7 @@ class UsersController < ApplicationController
 
   def sign_in(user) 
     sign_user_in(user)
+    log_event("Signin", {objid: self.this.id, email_address: self.this.email_address})
   end
   
   def sign_user_in(user, password=nil)
