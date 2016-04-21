@@ -284,7 +284,9 @@ class UsersController < ApplicationController
       flash[:notice] = ht(:"#{model.to_s.underscore}.messages.signup.success")
       redirect_to home_page
     else
-      hobo_do_signup
+      hobo_do_signup do
+        people_set_with_event "Signup", self.this if valid?
+      end
     end
   end
 
