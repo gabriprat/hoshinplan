@@ -114,7 +114,6 @@ class SubscriptionsController < ApplicationController
     subscription.company_id = params[:company]
     subscription.user = current_user
     subscription.save!
-    
     Rails.logger.debug stripe_subscription.to_yaml
     
     flash[:notice] = t "payments.correct.heading"
@@ -124,6 +123,7 @@ class SubscriptionsController < ApplicationController
     else
       redirect_to :back
     end
+    log_event "Create subscription", {objid: subscription.id, company_id: subscription.company_id, name: plan.name, amount: plan.amount_value, frequency: plan.frequency, currency: plan.amount_currency}
   end
 end
 
@@ -137,6 +137,7 @@ class SubscriptionPaypalsController < ApplicationController
   def destroy
     @this = find_instance
     @this.cancel
+    log_event "Cancel subscription", {objid: @this.id, company_id: @this.company_id, name: @this.billing_plan.name, amount: @this.amount_value, frequency: @this.billing_plan.frequency, currency: @this.amount_currency}
     if request.xhr?
       hobo_ajax_response
     else
@@ -155,6 +156,7 @@ class SubscriptionStripesController < ApplicationController
   def destroy
     @this = find_instance
     @this.cancel
+    log_event "Cancel subscription", {objid: @this.id, company_id: @this.company_id, name: @this.billing_plan.name, amount: @this.amount_value, frequency: @this.billing_plan.frequency, currency: @this.amount_currency}
     if request.xhr?
       hobo_ajax_response
     else

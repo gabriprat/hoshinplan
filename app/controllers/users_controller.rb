@@ -77,6 +77,7 @@ class UsersController < ApplicationController
         self.current_user.from_invitation = true
         self.current_user.save
         redirect_to home_page
+        log_event "Accept invitation"
       end
     end
   end
@@ -86,6 +87,7 @@ class UsersController < ApplicationController
       if valid?
         self.current_user = model.find(params[:id])
         redirect_to home_page
+        log_event "Activate"
       end
     end
   end
@@ -94,6 +96,7 @@ class UsersController < ApplicationController
     do_transition_action :resend_activation do
       flash.now[:notice] = I18n.translate('user.messages.activation_mail_resent')
       hobo_ajax_response
+      log_event "Resend activation"
     end
   end
   

@@ -14,6 +14,15 @@
 
                         this.on('click.handler', function(e) {
                                 handler.open(annotations.open);
+                                if (typeof mixpanel === "object" && typeof mixpanel.track === "function") {
+                                        mixpanel.track("Checkout", {
+                                                amount: annotations.open.amount/100, 
+                                                currency: annotations.open.currency, 
+                                                frequency: annotations.frequency,
+                                                name: annotations.name,
+                                                company_id: annotations.company_id
+                                        });
+                                }
                                 e.preventDefault();
                         });
 

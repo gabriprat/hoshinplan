@@ -16,20 +16,23 @@
                         description: this.name + ' plan',
                         panelLabel: t('stripe.panelLabel', frequency: t('stripe.' + this.frequency.downcase))
                 },
-                plan: this.stripe_id
+                plan: this.stripe_id,
+                name: this.name,
+                company_id: Company.current_id,
+                frequency: this.frequency
         }
         add_data_rapid!(html_attrs, "stripe", stripe_attrs)
         %>
 
 	<% if false then %>
-        <form action="/subcriptions">
+        <form action="/subcriptions" class="subscription">
 		<input type="hidden" name="product" value="#{this.id_paypal}"/>
 		<input type="hidden" name="company" value="#{Company.current_id}"/>
 		<button type="submit"><t key="paypal.purchase"/></button>
 	</form>
         <% else %>
         
-        <form action="/stripe_subscription_checkout">
+        <form action="/stripe_subscription_checkout" class="subscription">
 		<input type="hidden" name="plan" value="#{this.stripe_id}"/>
 		<input type="hidden" name="company" value="#{Company.current_id}"/>
 		<input type="hidden" name="stripeToken" value=""/>

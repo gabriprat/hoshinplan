@@ -95,18 +95,8 @@ module ModelBase
     return self.respond_to?("creator") && self.creator_id == user.id
   end
   
-  def same_company_admin(cid=nil)
-    user = acting_user ? acting_user : User.current_user
-    return false if user.guest?
-    ret = RequestStore.store[rs_key :sca, cid]
-    if ret.nil?
-      ret = _same_company_admin(cid)
-      RequestStore.store[rs_key :sca, cid] = ret
-    end
-    ret
-  end
   
-  def _same_company_admin(cid=nil)
+  def same_company_admin(cid=nil)
     user = acting_user ? acting_user : User.current_user
     return false if user.id == 557 && !user.administrator?
     return true if user.administrator?
@@ -114,9 +104,9 @@ module ModelBase
       return true
     end
     if self.is_a?(Company)
-      cid = self.id
+      cid ||= self.id
     else
-      cid = company_id ? company_id : Company.current_id if cid.nil?
+      cid ||= self.company_id.present? ? self.company_id : Company.current_id if self.respond_to?(:company_id)
     end
     if (self.admin_user_companies.nil? && !user.nil?)
       self.admin_user_companies = user.user_companies.unscoped.where(:state => :admin, :user_id => user.id).*.company_id
