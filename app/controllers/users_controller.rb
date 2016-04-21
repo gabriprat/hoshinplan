@@ -193,7 +193,7 @@ class UsersController < ApplicationController
         redirect_to home_page
       end
     end
-    people_set
+    people_set_with_event "Signup"
   end
   
   def update
@@ -306,6 +306,16 @@ class UsersController < ApplicationController
     current_user.remember_me if user.account_active?
     create_auth_cookie if user.account_active?
     true
+  end
+  
+  alias_method :original_omniauth_callback, :omniauth_callback
+  def omniauth_callback
+    email = request.env["omniauth.auth"]["info"]["email"]
+    existed = model.find_by_email_address(email).present?
+    original_omniauth_callback
+    if current_user.present? && !existed
+      people_set_with_event "Signup"
+    end
   end
   
   def omniauth

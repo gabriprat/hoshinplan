@@ -33,7 +33,7 @@ class Mp
     mp.send method
   end
 
-  def self.people_set(user, ip, ignore_time=false) 
+  def self.people_set(user, ip, ignore_time=false, event=nil) 
     return if user.guest?
     opts = {id: user.id, ip: ip}
     optional_params = {}
@@ -41,6 +41,7 @@ class Mp
       optional_params["$ignore_time"] = true
     end
     logged_event = Mp.new(user, opts, optional_params)
+    logged_event.event = event
     Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.people_set!
   end
@@ -131,6 +132,9 @@ class Mp
     tracker = ::Mixpanel::Tracker.new(TOKEN)
     Mp.logger.debug "Mixpanel people_set: #{@options['distinct_id']}, #{@options.inspect}, #{@people.inspect}" 
     tracker.people.set(@options['distinct_id'], @people, @options[:ip], @optional_params || {})
+    if @event.present?
+      track_access_api
+    end
   end
 
   def track_access_api

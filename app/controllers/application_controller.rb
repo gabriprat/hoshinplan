@@ -234,6 +234,11 @@ end
     Mp.people_set(user, remote_ip, ignore_time=true)
   end
   
+  def people_set_with_event(event, user = current_user, remote_ip = request.remote_ip)
+    Mp.people_set(user, remote_ip, ignore_time=true, event)
+  end
+    
+  
   #Log a new Mixpanel event
   #event: name of event
   #opts: Properties defined for this event only.
