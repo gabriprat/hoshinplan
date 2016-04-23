@@ -16,7 +16,7 @@ class EmailTemplate
   end
   
   def self.find(template_id)
-    Rails.cache.fetch(template_id, 1.hour) do 
+    Rails.cache.fetch(template_id, expires_in: 1.hour) do 
       client = SendGrid4r::Client.new(api_key: ENV['SENDGRID_API_KEY'])
       template = client.get_template(template_id: template_id)
       EmailTemplate.new(template)
