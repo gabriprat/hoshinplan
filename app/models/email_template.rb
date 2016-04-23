@@ -1,6 +1,4 @@
 require 'sendgrid4r'
-require 'erb'
-require 'ostruct'
 
 class EmailTemplate
     
@@ -15,12 +13,18 @@ class EmailTemplate
     @template = template
   end
   
-  def self.find(template_id)
-    Rails.cache.fetch(template_id, expires_in: 1.hour) do 
-      client = SendGrid4r::Client.new(api_key: ENV['SENDGRID_API_KEY'])
-      template = client.get_template(template_id: template_id)
-      EmailTemplate.new(template)
+  def self.find(name, locale=I18n.locale)
+    ret = nil
+    name_locale = "#{name}_#{I18n.locale}".to_sym
+    if TEMPLATES.include?(name_locale)
+      template_id = TEMPLATES[name_locale]
+      Rails.cache.fetch("email_template_#{template_id}", expires_in: 1.hour) do 
+        client = SendGrid4r::Client.new(api_key: ENV['SENDGRID_API_KEY'])
+        template = client.get_template(template_id: template_id)
+        ret = EmailTemplate.new(template)
+      end
     end
+    ret
   end
   
   def render_content(vars)
@@ -36,20 +40,12 @@ class EmailTemplate
   end
   
   #### Initialize template based on missing method name #####
-  def self.method_missing(name, *args, &block)
-    key = templates_key(name)
-    super unless TEMPLATES.include? key
-    find(TEMPLATES[key])
+  def self.method_missing(method_name, *args, &block)
+    find(method_name) || super
   end
   
   def self.respond_to?(method_name, include_private = false)
-    TEMPLATES.include? templates_key(name) || super
-  end
-  
-  private
-  
-  def self.templates_key(name)
-    "#{name}_#{I18n.locale}".to_sym
+    find(method_name).present? || super
   end
 end
 
