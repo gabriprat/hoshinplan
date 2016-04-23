@@ -135,7 +135,7 @@ class UserCompanyMailer < ActionMailer::Base
 
   def activation(user, key)
     sendgrid_category "activation"
-    I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
+    I18n.locale = user.language.to_s.blank? ? (I18n.locale || I18n.default_locale) : user.language.to_s
     mail_from_template(EmailTemplate.activation, user, {
       url: activate_from_email_url(:id => user, :key => key)}
     )
