@@ -99,14 +99,7 @@ class UserCompanyMailer < ActionMailer::Base
     sendgrid_category "welcome"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     name = user.name.blank? ? user.email_address : user.name
-    mail( :subject => I18n.translate("emails.welcome.subject", :name => name), 
-          :to      => user.email_address) do |format|
-            format.html {
-              render_email("welcome", 
-                {:user => user, :app_name => @app_name}          
-              )
-            }
-          end
+    mail_from_template(EmailTemplate.welcome, user)
   end
   
   def invited_welcome(user)
@@ -143,17 +136,9 @@ class UserCompanyMailer < ActionMailer::Base
   def activation(user, key)
     sendgrid_category "activation"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
-    @user, @message = user, @key = key
-    mail( :subject => I18n.translate("emails.activation.subject", :name => user.name.blank? ? user.email_address : user.name),
-          :to      => @user.email_address) do |format|
-            format.html {
-              render_email("activation", {
-                :user => user, :app_name => @app_name,
-                :url =>  activate_from_email_url(:id => @user, :key => @key)
-                }          
-              )
-            }
-          end
+    mail_from_template(EmailTemplate.activation, user, {
+      url: activate_from_email_url(:id => user, :key => key)}
+    )
   end
   
   def mention(mentioning_user, user, object, message)
@@ -174,4 +159,15 @@ class UserCompanyMailer < ActionMailer::Base
           end
   end
   
+  private
+  
+  def mail_from_template(template, user, vars={})
+    vars[:name] ||= user.name.blank? ? user.email_address : user.name
+    mail( :subject => template.render_subject(vars),
+          :to      => user.email_address) do |format|
+      format.html {
+        template.render_content(vars)
+      }
+    end
+  end  
 end

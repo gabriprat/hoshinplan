@@ -122,4 +122,6 @@ gem 'jquery-textcomplete-rails'
 gem 'differ'
 gem 'sendgrid'
 gem 'stripe'
+gem 'sendgrid4r'
+gem 'mustache'
 
