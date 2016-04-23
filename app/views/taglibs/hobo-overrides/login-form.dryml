@@ -39,24 +39,23 @@
 
 <def tag="login-page">
   <% remember_me = true if remember_me.nil? %>
-  <simple-page title="#{t 'hobo.login.title', :default=>['Log in'] }" without-subnav merge>
+  <page title="#{t 'hobo.login.title', :default=>['Log in'] }" without-subnav merge>
 
-    <body: class="login-page" param/>
+    <body: class="login-page simple-message" param/>
 
-    <content: param>
-      <div class="row">
-        <div class="col-md-3">&nbsp;</div>
-        <div class="col-md-6">
-          <section param="content-body" class="well" style="padding:50px 50px 10px 50px;">
-            <h2 param="heading"><t key="hobo.login.heading">Log In</t></h2>
+    <content-header: >
+             <h2 param="heading"><t key="hobo.login.heading">Log In</t></h2>
+    </content-header:>
+    
+    <content-body: param>  
+            <section class="well">
             <login-form param="form" user-model="&model"/>
-          </section>
-          <span><t key="dont_have_an_account"/></span> <a href='&signup_url' param='signup'><t key="login_signup"/></a>
-        </div>
-        <div class="col-md-3">&nbsp;</div>
-      </div>
-    </content:>
-  </simple-page>
+            <div class="sep">
+                    <span><t key="dont_have_an_account"/></span> <a href='&signup_url' param='signup'><t key="login_signup"/></a>
+            </div>
+            </section>
+    </content-body:>
+  </page>
 </def>
 
 

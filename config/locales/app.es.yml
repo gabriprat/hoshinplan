@@ -366,7 +366,7 @@ es:
     title: Haz que tu estrategia de negocio funcione
   user:
     signup:
-      it_is_ok: Estoy de acuerdo en recibir emails sobre Hoshinplan.
+      it_is_ok: Recibir emails de Hoshinplan.
       by_proceeding: Continuar para crear tu usuario y usar Hoshinplan significa que estás de acuerdo con nuestros %{terms} y %{privacy}. Si no lo estás no puedes usar Hoshinplan.
       terms_link: Términos de uso
       privacy_link: Política de privacidad 

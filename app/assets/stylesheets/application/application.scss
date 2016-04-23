@@ -89,7 +89,8 @@ body.hoshin .container .collection.areas > .item {
 }
 
 body .container h2.heading {
-	font-size: 2em;
+	font-size: 3em;
+        font-weight: 400;
 }
 
 body.hoshin.show-page.expanded h2 .timer {
@@ -567,6 +568,13 @@ body h2 {
 	font-size: 3em;
 }
 
+@media (max-width: 768px) {
+        body h2 {
+        	font-weight: 400;
+                padding: 0 .2em;
+        }
+}
+
 @media (min-width: 1100px) {
 .hoshin.show-page h2 {
 	white-space: nowrap;
@@ -662,6 +670,10 @@ body h2.heading .title-action:hover {
 			.content-header {
 				margin-bottom: 2em;
 			}
+                        
+                        .content-body {
+                                overflow-x: initial;
+                        }
 	
 			form {
 				margin-top: 2em;
@@ -3710,6 +3722,8 @@ del.differ {
         }
         .legalese.narrow {
             display: block!important;
+            padding: 0;
+            margin: 0;
         }
 }
 

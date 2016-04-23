@@ -368,7 +368,7 @@ en:
     title: Make your business strategy work
   user:
     signup:
-      it_is_ok: It is ok to send me email about Hoshinplan.
+      it_is_ok: Send me emails about Hoshinplan.
       by_proceeding: By proceeding to create your account and use Hoshinplan, you are agreeing to our %{terms} and %{privacy}. If you do not agree, you cannot use Hoshinplan.
       terms_link: Terms of use 
       privacy_link: Pivacy policy
