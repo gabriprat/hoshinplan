@@ -120,6 +120,8 @@ Hoshinplan::Application.routes.draw do
   
   get "/log/:type/:id" => "log#index", :as => 'log_index'
   
+  get "/tutorial" => "users#tutorial"
+  
   SamlDynamicRouter.load unless Rails.env.development?
   
   constraints CanAccessFlipperUI do

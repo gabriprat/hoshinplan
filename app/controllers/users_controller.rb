@@ -177,7 +177,11 @@ class UsersController < ApplicationController
   end
 
   def tutorial
-    @this = find_instance
+    if params[:id].present? 
+       @this = User.unscoped.user_find(current_user, params[:id])
+    else
+      redirect_to current_user, action: :tutorial
+    end
   end
   
   def logout_and_return
