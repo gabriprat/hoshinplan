@@ -16,7 +16,7 @@ class EmailTemplate
   end
   
   def self.find(template_id)
-    self._fetch_or_store(template_id, 1.hour) do 
+    Rails.cache.fetch(template_id, 1.hour) do 
       client = SendGrid4r::Client.new(api_key: ENV['SENDGRID_API_KEY'])
       template = client.get_template(template_id: template_id)
       EmailTemplate.new(template)
@@ -50,23 +50,6 @@ class EmailTemplate
   
   def self.templates_key(name)
     "#{name}_#{I18n.locale}".to_sym
-  end
-  
-  def self._fetch_or_store(template_id, expires)
-    cache_key = "SENDGRID_TEMPLATE_#{template_id}"
-    fail "No block given" unless block_given?
-    return yield unless Rails.configuration.action_controller.perform_caching
-    Rails.logger.debug "=========== Fecth or store #{cache_key}"
-    cont = ActionController::Base.new
-    ret = cont.read_fragment(cache_key) 
-    Rails.logger.debug "=========== Fecth or store: cached=#{!ret.nil?}"      
-    if ret.nil?
-          ret = yield
-          ret = cont.write_fragment(cache_key, ret, {expires: expires}) unless ret.nil?
-          Rails.logger.debug "=========== Fecth or store retrieved from SendGrid"      
-    end
-    Rails.logger.debug "=========== Fecth or store END present=#{ret.present?}"
-    ret
   end
 end
 
