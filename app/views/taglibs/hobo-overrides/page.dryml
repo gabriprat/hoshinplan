@@ -63,7 +63,7 @@
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                         <param-content for="head"/>
                         <script src="https://use.typekit.net/oxz6ytt.js"></script>
-                        <script>try{Typekit.load({ async: false });}catch(e){}</script>
+                        <script>try{Typekit.load({ async: true });}catch(e){}</script>
 		</head:>
 		<footer: class="fixed-x">
 		   <ul class="footer-links">
