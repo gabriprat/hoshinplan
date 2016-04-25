@@ -31,6 +31,8 @@ en:
     terms_of_use: Terms of use
     contact_us: Contact us	  
   emails:
+    from:
+      gabriel: Gabriel from Hoshinplan
     thank_you: 'Thank you,'
     claim: 'Make your business strategy work'
     the_team: The %{app_name} team

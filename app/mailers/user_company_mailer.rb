@@ -99,7 +99,16 @@ class UserCompanyMailer < ActionMailer::Base
     sendgrid_category "welcome"
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     name = user.name.blank? ? user.email_address : user.name
-    mail_from_template(EmailTemplate.welcome, user)
+    vars = {}
+    vars[:name] ||= user.name.blank? ? user.email_address : user.name
+    template = EmailTemplate.welcome
+    mail( :subject => template.render_subject(vars),
+          :to      => user.email_address,
+          :from    => t("emails.from.gabriel") + " <gabri@hoshinplan.com>") do |format|
+      format.html {
+        template.render_content(vars)
+      }
+    end
   end
   
   def invited_welcome(user)

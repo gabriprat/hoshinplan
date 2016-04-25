@@ -30,6 +30,8 @@ es:
     terms_of_use: Términos de uso
     contact_us: Contáctanos
   emails:
+    from:
+      gabriel: Gabriel de Hoshinplan
     thank_you: 'Gracias,'
     claim: 'Haz que la estrategia de tu empresa funcione'
     the_team: El equipo de %{app_name}
