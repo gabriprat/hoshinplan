@@ -23,6 +23,7 @@ class CompaniesController < ApplicationController
   include RestController
   
   show_action :collaborators
+  show_action :upgrade
     
   def first
     hobo_new
@@ -55,6 +56,14 @@ class CompaniesController < ApplicationController
         render template: 'payments/pricing'
       end
     end
+  end
+  
+  def upgrade
+    @freq = params[:freq]
+    @freq ||= :MONTH
+    @this = BillingPlan.where(frequency: [:WEEK, @freq]).where.not(position: 1) 
+    session[:payment_return_to] = request.url
+    render template: 'payments/pricing'
   end
   
   def cols

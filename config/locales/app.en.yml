@@ -431,6 +431,7 @@ en:
     developers_link: developers site
     rest_link: REST API
   pricing_plans: 
+    title: Pricing plans
     pending: 'Your plan''s activation is pending PayPal''s confirmation, please try again in a minute or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Sorry for the inconvenience.'
     try_it: Try it for free
     free: 'Free!'
@@ -444,8 +445,6 @@ en:
     workers: 'Companies up to %{workers} workers'
     sso:  'SAML & OpenId Single-sign-on'
     map_view:  'Map view'
-    price_MONTH: '%{value} / month'
-    price_YEAR: '%{value} / year'
     for_companies: "&nbsp;"
     for_startups: "&nbsp;"
     we_help_you: We help you build your hoshinplan
@@ -458,6 +457,7 @@ en:
     invoicing_frequency: Invoicing frequency
     monthly: Monthly
     annual: Annual
+    includes: '%{name} includes'
   stripe:
     purchase: Subscribe
     panelLabel: "Pay {{amount}}/%{frequency}"

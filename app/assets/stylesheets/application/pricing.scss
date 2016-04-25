@@ -3,15 +3,22 @@
 // mixins
 // scottnix.com/placement-of-media-queries/
 @mixin breakpoint($point) {
-    @if $point == medium {
-        @media (min-width: 30em)  { @content; }
-    }
-    @else if $point == large {
-        @media (min-width: 50em) { @content; }
-    }
-    @else if $point { // allows custom breakpoints
-        @media (min-width: $point) { @content; }
-    }
+        @if $point == medium {
+                @media (min-width: 30em) {@content;
+                }
+
+        }
+        @else if $point == large {
+                @media (min-width: 50em) {@content;
+                }
+
+        }
+        @else if $point {// allows custom breakpoints
+                @media (min-width: $point) {@content;
+                }
+
+        }
+
 }
 
 @mixin box-sizing($sizing) {
@@ -28,119 +35,176 @@
 }
 
 // variables
-$background: $inverse-background-color;
+$background1: $secondary-color;
+$background2: #15B097;
+$background3: #545454;
 $header-color: $inverse-secondary-color;
 $body-color: $tertiary-color;
 $body-color-secondary: $inverse-background-color-highlight;
 $accent-color: $secondary-color;
+$feature-color: #666;
+
+
+.pricing-page h1 {
+        font-size: 50px;
+        font-weight: 400;
+        text-align: center;
+}
 
 #collapsed-pricing.in {
-	width: 100%;
+        width: 100%;
 }
 
 .promos {
-	*,
-	*:before,
-	*:after {
-	    @include box-sizing(border-box);
-	    @include transition(color .3s ease-in-out, background .3s ease-in-out);
-	}
-}
-.promos {
-    max-width: 1140px;
-    margin: 2em auto 4em auto;
-}
-.promo {
-    margin: 1em .5em 1.625em;
-    padding: .25em 0 2em;
-    background: $background;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400; 
-    line-height: 1.625;
-    color: $header-color;
-    text-align: center;
+        *,
+        *:before,
+        *:after {
+                @include box-sizing(border-box);
+                @include transition(color .3s ease-in-out, background .3s ease-in-out);
+        }
 
-    @include breakpoint(40em) {
-        display: inline;
-        float: left;
-        width: 25%;
-        margin: 1em 0 0;
-        &.first {
-            border-right: none;
-        }
-        &.last {
-            float: right;
-            border-left: none;
-        }
-    }
-    h4 {
-        margin: .25em 0 0;
-        font-size: 170%;
-        font-weight: normal;
-    }
-    .features {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        color: $body-color;
-    }
-    li {
-        padding: .25em 1em;
-    }
-    li.price{
-	    padding: .25em 0;
-    }
-    .brief { 
-        color: $header-color;
-    }
-    .price {
-        margin: .5em 0;
-        padding: .25em 0;
-        background: $body-color-secondary;
-        font-size: 250%;
-        color: $header-color;
-    }
-    .buy {
-        margin: 1em 0 0;
-    }
-    button {
-        padding: 1em 3.25em;
-        border: none;
-        border-radius: 40px;
-        background: $body-color-secondary;
-        color: $header-color;
-        cursor: pointer;
-        &:hover {
-            background: darken($body-color-secondary, 1%);
-        }
-	a, a:hover, a:visited, a:active {
-		color: $header-color;
-	}    
-    }
 }
-.scale {
-    button {
-        background: $accent-color;
-        &:hover {
-            background: darken($accent-color, 10%);
-        }
-    }
+ul.promos.collection {
+        max-width: 1140px;
+        margin: 2em auto 4em auto;
+}
+.promos > li {
+        margin: 1em .5em 1.625em;
+        padding: .25em 0 2em;
+        font-family: $secondary-font-stack;
+        font-weight: 400;
+        line-height: 1.625;
+        color: $header-color;
+        text-align: center;
 
-    @include breakpoint(40em) {
-	-webkit-transform: scale(1.2) translate(-1em, 1.5em);
-	-moz-transform: scale(1.2) translate(-1em, 1.5em);
-	-ms-transform:scaleY(1.2) translate(-1em, 1.5em);
-	-o-transform:scaleY(1.2) translate(-1em, 1.5em);
-	transform: scale(1.2) translate(-1em, 1.5em);
-	margin-left: -1em;
-	margin-top: .5em;
-        box-shadow: 0 0 4px 1px rgba(20, 20, 20, 0.8);
+        @include breakpoint(40em) {
+                display: inline;
+                float: left;
+                width: 33%;
+                margin: 1em 0 0;
+                &.first {
+                        border-right: none;
+                }
+                &.last {
+                        float: right;
+                        border-left: none;
+                }
+
+        }
+    
+        .promo {
+                border-radius: 10px;
+                background: $background1;
+                margin: 0 .6em;
+                padding: 1em 0;
+        }
+        .promo.bg-enterprise {
+                background: $background2;
+        }
+        .promo.bg-assisted {
+                background: $background3;
+        }
+        h4 {
+                margin: 0;
+                font-size: 250%;
+                font-weight: normal;
+        }
+        .features {
+                margin: 1em 0 0 0;
+                padding: 0;
+                list-style-type: none;
+                text-align: left;
+                color: $background1;
+                span {
+                        color: $feature-color;
+                }
+                &.features-enterprise {
+                        color: $background2;
+                }
+                &.features-assisted {
+                        color: $background3;
+                }
+                li {
+                        list-style-type: circle;
+                        margin-left: 3em;
+                        line-height: 2em;
+                }
+        }
+        li.price {
+                padding: .25em 0;
+        }
+        .brief {
+                color: $header-color;
+        }
         .price {
-            color: $accent-color;
+                margin     : .5em 0;
+                padding    : .25em 0;
+                background : transparent;
+                color      : $header-color;
+                height     : 8em;
+                background     : rgba(0,0,0,.1);
+                .amount {
+                        font-size: 250%;
+                }
+                small {
+                        font-size: 75%;
+                        display: block;
+                }
+
         }
-    }
-}
-.invoice-frequency {
-	text-align: center;
-	margin-bottom: 3em;
+        .amount.space {
+                font-size: 150%;
+                line-height: 5em;
+        }
+        .buy {
+                margin: 1em 0 0;
+        }
+        button, a.button {
+                display: inline-block;
+                padding: .5em 2em;
+                border: none;
+                border-radius: .25em;
+                white-space: nowrap;
+                background: rgba(0,0,0,.2);
+                color: $header-color;
+                cursor: pointer;
+                &:hover {
+                        background: rgba(0,0,0,0.5);
+                }
+                a, a:hover, a:visited, a:active {
+                        color: $header-color;
+                }
+                position: relative;
+                font-size: 1.5em;
+                font-weight: 700;
+                &.hover:after, &:focus:after, &:hover:after {
+                        box-shadow: inset 0 -2px rgba(0,0,0,.25);
+                }
+                &:after {
+                        position: absolute;
+                        content: '';
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        border-radius: .25rem;
+                }
+        }
+        .sub {
+                font-size: 2em;
+                border-bottom: 1px solid $background1;
+                color: $background1;
+                text-align: left;
+                padding: .5em;
+                margin: 0 .5em;
+                &.sub-enterprise {
+                        color: $background2;
+                        border-bottom: 1px solid $background2;
+                }
+                &.sub-assisted {
+                        color: $background3;
+                        border-bottom: 1px solid $background3;
+                }
+        }
+
 }

@@ -47,6 +47,7 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       get 'collaborators'
+      get 'upgrade'
     end
   end
 

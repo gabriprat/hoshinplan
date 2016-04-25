@@ -1,40 +1,42 @@
 <def tag="pricing">
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<div class="promos clearfix">
-    <collection/>
-</div>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <collection class="promos clearfix"/>
 </def>
 
 <def tag="card" for="BillingPlan">
-    <div class="promo #{this.css_class}">
-        <h4><view:name/></h4>
-        <ul class="features">
-            <li class="brief"><t key="#{this.brief}"/></li>
-            <li class="price">
-	    	<t key="pricing_plans.contact_us" unless="amount_value"/>
-		<else>
-			<t key="pricing_plans.free" if="amount_value==0"/>
-			<else>
-				<t key="pricing_plans.price_#{this.frequency}"  value="#{number_to_currency(this.amount_value, unit: get_unit(this.amount_currency))}"/>
-			</else>
-		</else>
-	    </li>
-	    <% this.features.split(/\r?\n/).each { |feature| %>
-            <li><t key="#{feature.chomp.strip}" users="#{this.users}" workers="#{this.workers}" /></li>
-	    <% } %>
-	    <li class="buy" unless="amount_value">
-	    	<button><a href="mailto:hello@hoshinplan.com"><t key="pricing_plans.contact_us"/></a></button>
-	    </li>
-	    <else>
-	    	    <if test="&Company.current_id">
-		    	<pay-button if="&this.amount_value &gt; 0"/>
-		    </if>
-		    <else>
-		            <li class="buy">
-			    	<button><a href="/login"><ht key="user.actions.signup"/></a></button>
-			    </li>   
-		    </else>
-	    </else>
+        <div class="promo bg-#{this.name.partition(' ').first.downcase}">
+                <h4><view:name/></h4>
+                <div class="brief"><t key="#{this.brief}"/></div>
+                <div class="price">
+                <div class="amount space" unless="amount_value"><t key="pricing_plans.contact_us"/></div>
+                <else>
+                        <div class="amount space" if="amount_value==0"><t key="pricing_plans.free"/></div>
+                        <else>
+                        <div class="amount"><%= number_to_currency(this.amount_value, unit: get_unit(this.amount_currency)) %></div>
+                        <small class="details"><!--per daily active user per month billed annually--></small>
+                        <small class="details"><!--$8 billed monthly--></small>
+                        </else>
+                </else>
+                
+                </div>
+                <div class="buy">
+                <a class="button" href="mailto:hello@hoshinplan.com" unless="amount_value"><t key="pricing_plans.contact_us"/></a>
+                    <else>
+                            <if test="&Company.current_id">
+                                    <pay-button if="&this.amount_value &gt; 0"/>
+                            </if>
+                            <else>
+                                    <li class="buy">
+                                            <button><a href="/login"><ht key="user.actions.signup"/></a></button>
+                                    </li>   
+                            </else>
+                    </else>
+                </div>
+        </div>
+        <h4 class="sub sub-#{this.name.partition(' ').first.downcase}"><t key="pricing_plans.includes" name="#{this.name.partition(' ').first}"/></h4>
+        <ul class="features features-#{this.name.partition(' ').first.downcase}">
+            <% this.features.split(/\r?\n/).each { |feature| %>
+            <li><span><t key="#{feature.chomp.strip}" users="#{this.users}" workers="#{this.workers}" /></span></li>
+            <% } %>
         </ul>
-    </div>
 </def>
