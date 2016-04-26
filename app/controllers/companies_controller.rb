@@ -99,9 +99,8 @@ class CompaniesController < ApplicationController
       begin
         params[:collaborators].split(",").each do |email|
           email.strip!
-          email.gsub!(/"/,'')
           email.downcase! 
-          arr = email.split(/[ <>]/)
+          arr = email.split(/[ <>"]/)
           email = arr.pop
           if (arr.present?)
             case 

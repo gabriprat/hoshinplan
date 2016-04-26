@@ -3,26 +3,29 @@
     <body: class="show-page hoshin collaborators" />
     
     <content-header: class="well">
+     <if test="&this.same_company_admin">
+             <if test="&@limit_reached">
+                     <a action="upgrade" class="btn btn-primary btn-raised pull-right"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
+             </if>
+             <else>
+                 <rmodal title="#{t 'company.invite_collaborators'}" url="#{company_path this}/invite" class="btn btn-primary btn-raised pull-right" target-id="invite-collaborators-modal">
+                     <span class="ic-envelope-o ic-fw"></span>
+                     <view with=" #{t 'company.invite_collaborators'}"/>
+                 </rmodal>
+             </else>
+     </if>
      <a>&laquo; <ht key="company.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a>
-      <h2>
+     <h2>
         <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
           Company <name/>
         </ht> - 
 	<t key="company.manage_collaborators">Manage collaborators</t>
 	<t key="company.maximum_collaborators" value="#{this.user_limit}"/>
-      </h2>
+     </h2>
     </content-header:>
     
     
     <content-body: class="well">
-    		<if test="&@limit_reached">
-			<a action="upgrade" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
-		</if>
-		<else>
-		<if test="&this.same_company_admin">
-			<rmodal title="#{t 'company.invite_collaborators'}" url="#{company_path this}/invite" class="btn btn-primary pull-right" target-id="invite-collaborators-modal"><view with="#{t 'company.invite_collaborators'}" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"/></rmodal>
-		</if>
-		</else>
 		<set pid="&1"/>
 		<table-plus with="&@collaborators" fields="user, state">
 			<user-view: >
