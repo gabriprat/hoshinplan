@@ -50,7 +50,7 @@ class CompaniesController < ApplicationController
     if @this.collaborator_limits_reached?
       @limit_reached = true
       flash.now[:info] = t("errors.user_limit_reached").html_safe 
-      @billing_plans = BillingPlan.where(frequency: [:WEEK, @freq]) 
+      @billing_plans = BillingPlan.where(frequency: [:WEEK, @freq]).where.not(position: 1) 
       if (@collaborators.size == 1)
         @this = @billing_plans
         session[:payment_return_to] = request.url
