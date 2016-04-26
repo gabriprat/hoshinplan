@@ -1,0 +1,31 @@
+
+ <section class="modal-header">
+         <h2 class="heading">
+                 <small class="ic-paper-plane-o icon"></small>
+                 <span><t key="company.invite_collaborators"/></span>
+        </h2>
+ </section>
+ <form submit="sdf">
+         <section class="modal-body">
+                        <div class="row">
+                                <div class='form-group'>
+
+                                        <label class='col-sm-2 control-label' for='collaborators'>
+                                          <t key="company.email_addresses"/>
+                                        </label>
+
+                                        <div class='col-sm-8'>
+                                                <tokenfield with="&nil" name="collaborators" id="collaborators" autofocus="autofocus" inputType="email" createTokensOnBlur="true"/>
+                                                <p class='help-block'>
+                                                        <t key="company.send_invitations"/>
+                                                </p>
+                                        </div>
+                                </div>
+        		</div>
+        </section>
+        <section class="modal-footer">
+	        <submit label="&t(:key=>'company.add_collaborators', :default=>'Add collaborators')" /> 
+	        <a class="cancel btn" href="#" rel="nofollow" onclick="$(this).closest('form')[0].reset(); $('.modal').modal('hide');"><t key="hobo.actions.cancel">Cancel</t></a>
+        </section>
+</form>
+                

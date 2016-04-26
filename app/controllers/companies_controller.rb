@@ -24,6 +24,7 @@ class CompaniesController < ApplicationController
   
   show_action :collaborators
   show_action :upgrade
+  web_method  :invite
     
   def first
     hobo_new
@@ -66,6 +67,10 @@ class CompaniesController < ApplicationController
     render template: 'payments/pricing'
   end
   
+  def invite
+    @this = find_instance
+  end
+  
   def cols
     order = parse_sort_param(:state => "user_companies.state", :user => "lower(coalesce(users.\"firstName\",'') || coalesce(users.\"lastName\",'') || email_address)")
     order ||= "lower(coalesce(users.\"firstName\",'') || coalesce(users.\"lastName\",'') || email_address)"
@@ -92,9 +97,27 @@ class CompaniesController < ApplicationController
       error = false
       invite_sent = false
       begin
-        params[:collaborators].each_line do |email|
+        params[:collaborators].split(",").each do |email|
           email.strip!
+          email.gsub!(/"/,'')
           email.downcase! 
+          arr = email.split(/[ <>]/)
+          email = arr.pop
+          if (arr.present?)
+            case 
+            when arr.size==1
+              firstName = arr.shift
+            when arr.size==2
+              firstName = arr.shift
+              lastName = arr.shift
+            when arr.size==3
+              firstName = arr.shift
+              lastName = arr.join(" ")
+            when arr.size>3
+              firstName = arr[0..1].join(" ")
+              lastName = arr[2..arr.size].join(" ")
+            end
+          end
           user = User.unscoped.where(:email_address => email).first
           domain = email.split("@").last
           company_domain_exists = CompanyEmailDomain.where(domain: domain, company_id: params[:id]).exists?
@@ -102,6 +125,8 @@ class CompaniesController < ApplicationController
               user = User::Lifecycle.invite(current_user, {:email_address => email})
               invite_sent = true
               user.email_address = email
+              user.firstName = firstName if firstName.present?
+              user.lastName = lastName if lastName.present?
               begin
                 user.save!
               rescue ActiveRecord::RecordInvalid => invalid

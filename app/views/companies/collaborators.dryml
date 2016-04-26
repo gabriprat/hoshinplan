@@ -16,31 +16,11 @@
     
     <content-body: class="well">
     		<if test="&@limit_reached">
-			<a class="toggle collapsed btn btn-primary pull-right" data-toggle="collapse" href="#collapsed-pricing" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
-			<div id="collapsed-pricing" class="collapse">
-			<pricing with="&@billing_plans"/>
-			</div>
+			<a action="upgrade" class="btn btn-primary pull-right" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
 		</if>
 		<else>
 		<if test="&this.same_company_admin">
-			<a href="#" onclick="$('#add-collaborators').toggle(); return false;" class="btn btn-primary pull-right">
-				<t key="company.add_collaborators">Add collaborators</t>
-			</a>
-			<form id="add-collaborators">
-				<textarea name="collaborators"></textarea>
-				<p class="bubble">
-					<t key="company.send_invitations">
-					Send collaboration invitations by pasting 
-					one email address per line in the textbox.
-					</t>
-				</p>
-				<div class="actions form-actions">
-				<submit label="&t(:key=>'company.add_collaborators', :default=>'Add collaborators')" /> 
-				<t key="hobo.support.or">or</t> 
-				<a class="cancel company-link" href="#" rel="nofollow" onclick="$('#add-collaborators')[0].reset(); $('#add-collaborators').toggle();"><t key="hobo.actions.cancel">Cancel</t></a>
-				</div>
-			
-			</form>
+			<rmodal title="#{t 'company.invite_collaborators'}" url="#{company_path this}/invite" class="btn btn-primary pull-right" target-id="invite-collaborators-modal"><view with="#{t 'company.invite_collaborators'}" if="&this.user_companies.exists?(:user_id => current_user.id, :state => 'admin')"/></rmodal>
 		</if>
 		</else>
 		<set pid="&1"/>

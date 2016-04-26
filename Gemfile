@@ -124,4 +124,5 @@ gem 'sendgrid'
 gem 'stripe'
 gem 'sendgrid4r'
 gem 'mustache'
+gem 'bootstrap_tokenfield_rails'
 

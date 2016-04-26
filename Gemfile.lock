@@ -126,6 +126,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     bootstrap-switch-rails (3.3.3)
+    bootstrap_tokenfield_rails (0.12.1)
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -464,6 +465,7 @@ DEPENDENCIES
   bootbox-rails
   bootstrap-sass
   bootstrap-switch-rails
+  bootstrap_tokenfield_rails
   clockwork
   coffee-rails
   delocalize

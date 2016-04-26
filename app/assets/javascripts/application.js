@@ -16,5 +16,6 @@
 //= require detect_timezone
 //= require jquery.detect_timezone
 //= require bootstrap-switch
+//= require bootstrap-tokenfield
 //= require jquery-textcomplete
 //= require_tree ./application

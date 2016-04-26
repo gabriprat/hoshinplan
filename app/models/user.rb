@@ -394,8 +394,9 @@ class User < ActiveRecord::Base
   
   def name
     ret = firstName
-    unless lastName.blank?
+    if lastName.present?
       ret += " " unless ret.blank? 
+      ret ||= ""
       ret += lastName
     end
     ret = ret.blank? ? super : ret
