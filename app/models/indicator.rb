@@ -151,7 +151,7 @@ class Indicator < ActiveRecord::Base
         ih = IndicatorHistory.create(:day => self.last_update, :indicator_id => self.id)
       end
       ih.value = self.value
-      ih.goal = self.goal
+      ih.goal ||= self.goal
       ih.save!
     end
   end
@@ -257,7 +257,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def compute_next_update
-    return self.next_update if self.last_update_changed? && last_update != next_update #If overwriting or setting value for today leave the next update as it was    
+    return self.next_update if self.last_update_changed? && last_update < next_update #If overwriting or setting a value before the next update date
     next_update_after(self.last_update, self.frequency)
   end
   
