@@ -257,6 +257,7 @@ class Indicator < ActiveRecord::Base
   end
   
   def compute_next_update
+    return nil if last_update.nil? || next_update.nil?
     return self.next_update if self.last_update_changed? && last_update < next_update #If overwriting or setting a value before the next update date
     next_update_after(self.last_update, self.frequency)
   end
