@@ -100,12 +100,12 @@
             var unit = $("input[name=billing_detail\\[active_subscription\\]\\[billing_period\\]]:checked").val();
             unit = unit == "monthly" ? "month" : "year";
             if (!next.isValid()) {
-                next = moment().endOf('month').add(1, 'days');
+                next = moment().endOf('month').startOf('day').add(1, 'days');
             }
             if (!last.isValid()) {
                 last = next.clone().subtract(1, unit);
             }
-            var remaining_days = next.diff(moment.now(), 'days');
+            var remaining_days = next.diff(moment().startOf('day'), 'days') - 1;
             var total_days = next.diff(last, 'days');
             var subscription_remaining = $("#subscription-prorate").data("remaining");
             var pay_now = rowTotal * remaining_days / total_days;

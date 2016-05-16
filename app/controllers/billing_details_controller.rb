@@ -122,7 +122,7 @@ class BillingDetailsController < ApplicationController
     subscription = self.this.active_subscription
     credit = self.this.company.credit || 0;
     pay_now = subscription.remaining_amount - old_remaining_amount - credit;
-    pay_now = pay_now * (1 + self.this.tax_tpc/100)
+    pay_now = pay_now * (1.0 + self.this.tax_tpc.to_f/100.0)
     if pay_now > 0
       order = Stripe::Charge.create(
           amount: (pay_now * 100).to_i,
