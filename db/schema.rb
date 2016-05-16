@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419233442) do
+ActiveRecord::Schema.define(version: 20160516195134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,34 @@ ActiveRecord::Schema.define(version: 20160419233442) do
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
+  create_table "billing_details", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "address_line_1"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "vat_number"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "stripe_client_id"
+    t.string   "card_brand"
+    t.string   "card_last4"
+    t.integer  "card_exp_month"
+    t.integer  "card_exp_year"
+    t.string   "card_stripe_token"
+    t.integer  "creator_id"
+    t.integer  "company_id"
+    t.datetime "deleted_at"
+    t.boolean  "vies_valid",        default: false
+  end
+
+  add_index "billing_details", ["company_id"], name: "index_billing_details_on_company_id", unique: true, using: :btree
+  add_index "billing_details", ["creator_id"], name: "index_billing_details_on_creator_id", using: :btree
+
   create_table "billing_plans", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -89,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160419233442) do
     t.integer  "users"
     t.integer  "workers"
     t.string   "stripe_id"
+    t.decimal  "monthly_value",   precision: 8, scale: 2
   end
 
   create_table "client_applications", force: :cascade do |t|
@@ -118,13 +147,14 @@ ActiveRecord::Schema.define(version: 20160419233442) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.integer  "hoshins_count",       default: 0,     null: false
+    t.integer  "hoshins_count",                               default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
-    t.boolean  "unlimited",           default: false, null: false
+    t.boolean  "unlimited",                                   default: false, null: false
     t.datetime "deleted_at"
-    t.integer  "subscriptions_count", default: 0,     null: false
+    t.integer  "subscriptions_count",                         default: 0,     null: false
+    t.decimal  "credit",              precision: 8, scale: 2
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
@@ -392,23 +422,29 @@ ActiveRecord::Schema.define(version: 20160419233442) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "token"
-    t.string   "status"
+    t.string   "status",                                    default: "Active"
     t.boolean  "sandbox"
     t.integer  "company_id"
-    t.decimal  "amount_value",    precision: 8, scale: 2
+    t.decimal  "amount_value",      precision: 8, scale: 2
     t.string   "amount_currency"
-    t.integer  "billing_plan_id"
     t.string   "id_paypal"
     t.datetime "deleted_at"
     t.string   "type"
     t.string   "deleted_by"
+    t.integer  "users"
+    t.decimal  "monthly_value",     precision: 8, scale: 2
+    t.string   "billing_period"
+    t.integer  "billing_detail_id"
+    t.string   "plan_name"
+    t.integer  "billing_plan_id"
+    t.datetime "last_payment_at"
+    t.date     "next_payment_at"
   end
 
+  add_index "subscriptions", ["billing_detail_id"], name: "index_subscriptions_on_billing_detail_id", using: :btree
   add_index "subscriptions", ["billing_plan_id"], name: "index_subscriptions_on_billing_plan_id", using: :btree
   add_index "subscriptions", ["company_id"], name: "index_subscriptions_on_company_id", using: :btree
   add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at", using: :btree
-  add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", unique: true, using: :btree
   add_index "subscriptions", ["type"], name: "index_subscriptions_on_type", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
@@ -505,7 +541,6 @@ ActiveRecord::Schema.define(version: 20160419233442) do
     t.string   "lastName"
     t.boolean  "beta_access"
     t.boolean  "news",                                 default: true
-    t.string   "stripe_id"
     t.boolean  "from_invitation",                      default: false
   end
 

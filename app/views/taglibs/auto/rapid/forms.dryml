@@ -13,6 +13,18 @@
 
 
 
+<def tag="form" for="BillingDetail">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="company, creator" param/>
+    <div param="actions">
+      <submit label="#{ht 'billing_detail.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="BillingPlan">
   <form merge param="default">
     <error-messages param/>
@@ -193,7 +205,7 @@
 <def tag="form" for="SubscriptionPaypal">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="token, id_paypal, status, sandbox, amount_value, amount_currency, deleted_by, billing_plan, company, user" param/>
+    <field-list fields="id_paypal, status, sandbox, amount_value, amount_currency, deleted_by, billing_detail, billing_plan, company, user" param/>
     <div param="actions">
       <submit label="#{ht 'subscription_paypal.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -205,7 +217,7 @@
 <def tag="form" for="SubscriptionStripe">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="token, id_paypal, status, sandbox, amount_value, amount_currency, deleted_by, billing_plan, company, user" param/>
+    <field-list fields="id_paypal, status, sandbox, amount_value, amount_currency, deleted_by, billing_detail, billing_plan, company, user" param/>
     <div param="actions">
       <submit label="#{ht 'subscription_stripe.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -217,7 +229,7 @@
 <def tag="form" for="Subscription">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="token, id_paypal, status, sandbox, amount_value, amount_currency, deleted_by, billing_plan, company, user" param/>
+    <field-list fields="id_paypal, status, sandbox, amount_value, amount_currency, deleted_by, billing_detail, billing_plan, company, user" param/>
     <div param="actions">
       <submit label="#{ht 'subscription.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -1,0 +1,20 @@
+<def tag="input" for="HoboFields::Types::Vat" attrs="country-input">
+    <%
+        country_input ||= '#' + this_parent.class.name.underscore + "_country"
+        attributes[:placeholder] ||= " "
+        attributes[:ajax] ||= true
+        ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
+        add_data_rapid!(html_attrs, "vat", options: {country_input: country_input}, ajax_attrs: ajax_attrs)
+    %>
+	<div class="input-group vat">
+      <span class="input-group-addon">&nbsp;</span>
+	  <input for-type="String" merge-attrs="&html_attrs" data-valid="#{this_parent.vies_valid}"/>
+	  <span class="input-group-addon"><span class="ic-spinner ic-pulse" style="display:none"></span></span>
+    </div>
+    <div class="vat-errors">
+        <ul if="&this_parent && this_parent.errors && this_parent.errors[:vat_number].present?">
+            <li repeat="&this_parent.errors[:vat_number]"><%= this %></li>
+        </ul>
+    </div>
+</def>
+

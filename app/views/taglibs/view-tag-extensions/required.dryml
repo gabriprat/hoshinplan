@@ -1,6 +1,6 @@
 <extend tag="input" for="String">
-	<% required = this_parent.class.validators_on(this_field.to_s).map(&:class).include?(
-         ActiveRecord::Validations::PresenceValidator) %>
+	<% required = attributes[:type] != "hidden" && this_parent.class.validators_on(this_field.to_s).map(&:class).include?(
+         ActiveRecord::Validations::PresenceValidator) if this_parent.present? %>
 	<if test="&required">
 		<old-input merge required/>
 	</if>

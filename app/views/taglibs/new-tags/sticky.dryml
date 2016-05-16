@@ -1,0 +1,4 @@
+<def tag="sticky">
+        <% add_data_rapid!(attributes, "sticky", {}) %>
+        <call-tag tag="div" merge/>
+</def>

@@ -36,6 +36,7 @@ gem 'passenger'
 
 # To use debugger
 #gem 'byebug', :group => :development
+gem 'debase', group: :development
 
 gem "omniauth-openid"
 gem "omniauth-saml"
@@ -114,7 +115,8 @@ gem 'flipper-ui'
 gem 'flipper-redis'
 gem 'immigrant'
 gem 'amoeba'
-gem 'rails_handsontable', "=0.13.2"
+gem 'rails_handsontable'
+#gem 'rails_handsontable', "=0.13.2"
 gem 'momentjs-rails'
 gem 'htmlcompressor'
 gem 'gemoji-parser'
@@ -126,5 +128,5 @@ gem 'sendgrid4r'
 gem 'mustache'
 gem 'bootstrap_tokenfield_rails'
 gem 'countries'
-gem 'vat_validator'
+gem 'vat_validator', git: 'git://github.com/gabriprat/vat_validator.git', branch: 'without-module'
 

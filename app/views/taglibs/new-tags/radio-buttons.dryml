@@ -1,19 +1,44 @@
-<def tag="radio-button" attrs="option" polymorphic> 
-   <%= radio_button_tag(param_name_for_this, option, (option==this), 
-attributes) %> 
+<def tag="radio-button" attrs="option, selected-option" polymorphic> 
+   <% selected_option ||= this %>
+   <%= radio_button_tag(param_name_for_this, option, (option==selected_option), 
+deunderscore_attributes(attributes)) %> 
 </def> 
 
-<def tag="radio-button-item" attrs="option, id" polymorphic> 
-   <radio-button option="&option" id="&id" param /> 
-   <label for="&id" param/> 
+<def tag="radio-button-item" attrs="option, id, label-class" polymorphic> 
+   <% 
+      label_class ||= ""
+      label_class += " active" if (attributes[:selected_option] || this)==option
+   %> 
+   <label for="&id" class="#{label_class}" param>
+            <radio-button option="&option" id="&id" merge param />
+   </label>
 </def> 
 
-<def tag="radio-group" attrs="options, labels" polymorphic> 
-   <% labels ||= [] %> 
+<def tag="radio-group" attrs="options, labels, label-class" polymorphic> 
+   <% labels ||= [] 
+      label_class ||= ""
+   %> 
    <% options.each_with_index do |option, index| -%> 
    <radio-button-item option="&option" 
-id="#{attributes[:id]}#{param_name_for_this}[#{index}]" param> 
-     <label: param><%= labels[index] || option %></label:> 
+id="#{attributes[:id]}#{param_name_for_this}[#{index}]" label-class="&label_class"  merge param> 
+     <append-label: param><%= labels[index] || option %></append-label:> 
    </radio-button-item> 
    <% end %>
 </def> 
+
+
+<def tag="btn-radio-group" polymorphic>
+        <div class="btn-group clearfix" data-toggle="buttons" param="wrapper">
+                <radio-group merge/>
+        </div>
+</def>
+
+<def tag="btn-radio-group" for="HoboFields::Types::EnumString">
+
+    <div class="btn-group clearfix" data-toggle="buttons">
+             <radio-group options="&this_type.values" labels="&this_type.values" label-class="btn" merge/>
+    </div>
+
+</def>
+
+

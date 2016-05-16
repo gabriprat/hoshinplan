@@ -5,14 +5,15 @@ class Company < ActiveRecord::Base
   include ModelBase
   
   hobo_model # Don't put anything above this
-  
+
   fields do
     name :string
     hoshins_count :integer, :default => 0, :null => false
     unlimited :boolean, :default => false, :null => false
-    subscriptions_count  :integer, :default => 0, :null => false
+    subscriptions_count :integer, :default => 0, :null => false
+    credit :decimal, precision: 8, scale: 2, default: 0
     timestamps
-    deleted_at    :datetime
+    deleted_at :datetime
   end
   index [:deleted_at]
   attr_accessible :name, :creator_id, :company_email_domains
@@ -35,6 +36,8 @@ class Company < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
   
   has_many :log, :class_name => "CompanyLog", :inverse_of => :company
+  
+  has_many :billing_details, :inverse_of => :company
   
   children :hoshins
   
@@ -113,7 +116,7 @@ class Company < ActiveRecord::Base
   end
   
   def collaborator_limits_reached?
-    count = user_companies.size
+    count = users.size
     return user_limit <= count
   end
   
@@ -122,23 +125,13 @@ class Company < ActiveRecord::Base
     if unlimited
       users = 1000000
     else
-      subscriptions.includes(:billing_plan).where(status: 'Active').each { |subscription|
-        if !users || users < subscription.billing_plan.users
-          users = subscription.billing_plan.users
+      subscriptions.where(status: 'Active').each { |subscription|
+        if !users || users < subscription.users
+          users = subscription.users
         end
       }
     end
     return users 
-  end
-  
-  def startup?
-    RequestStore.store[:startup_users] ||= BillingPlan.select(:users).where(name: 'Startup')
-    user_limit == RequestStore.store[:startup_users]
-  end
-  
-  def enterprise?
-    RequestStore.store[:enterprise_users] ||= BillingPlan.select(:users).where(name: 'Startup')
-    user_limit == RequestStore.store[:enterprise_users] 
   end
   
   def flipper_id

@@ -30,6 +30,15 @@ GIT
       railties (> 3.1, < 5)
 
 GIT
+  remote: git://github.com/gabriprat/vat_validator.git
+  revision: 78bd5a6b2193526f43d5358204156dae036bd7de
+  branch: without-module
+  specs:
+    vat_validator (1.2)
+      activemodel
+      savon (>= 0.9.7)
+
+GIT
   remote: git://github.com/informatom/hobo_bootstrap.git
   revision: 9a3564f8b16748dc7d6936f2179f188d7a47eb6a
   branch: bootstrap3
@@ -153,6 +162,9 @@ GEM
     css_parser (1.4.1)
       addressable
     currencies (0.4.2)
+    debase (0.2.1)
+      debase-ruby_core_source
+    debase-ruby_core_source (0.9.0)
     delocalize (1.0.0)
       rails (>= 2)
     detect_timezone_rails (0.0.5)
@@ -348,7 +360,7 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_handsontable (0.13.2)
+    rails_handsontable (0.23.0)
       railties (> 3.1)
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
@@ -467,9 +479,6 @@ GEM
     uuid (2.3.8)
       macaddr (~> 1.0)
     uuidtools (2.1.5)
-    vat_validator (1.2)
-      activemodel
-      savon (>= 0.9.7)
     vegas (0.1.11)
       rack (>= 1.0.0)
     wasabi (3.5.0)
@@ -498,6 +507,7 @@ DEPENDENCIES
   clockwork
   coffee-rails
   countries
+  debase
   delocalize
   detect_timezone_rails
   differ
@@ -548,7 +558,7 @@ DEPENDENCIES
   rails
   rails-observers
   rails_12factor
-  rails_handsontable (= 0.13.2)
+  rails_handsontable
   rake
   raphaeljs-rails
   redcloth-rails
@@ -571,9 +581,12 @@ DEPENDENCIES
   turn
   uglifier
   unscoped_associations
-  vat_validator
+  vat_validator!
   wicked_pdf
   yui-compressor
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.3

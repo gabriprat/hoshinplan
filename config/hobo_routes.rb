@@ -27,6 +27,20 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller billing_details
+  resources :billing_details, :only => [:edit, :show, :create, :update, :destroy]
+
+  # Owner routes for controller billing_details
+  resources :companies, :as => :company, :only => [] do
+    resources :billing_details, :only => [] do
+      get '/', :on => :new, :action => 'new_for_company'
+      collection do
+        post '/', :action => 'create_for_company'
+      end
+    end
+  end
+
+
   # Resource routes for controller billing_plans
   resources :billing_plans, :only => [:index]
 
@@ -48,6 +62,7 @@ Hoshinplan::Application.routes.draw do
     member do
       get 'collaborators'
       get 'upgrade'
+      post 'checkout'
       post 'invite'
     end
   end

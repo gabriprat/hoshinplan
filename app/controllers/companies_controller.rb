@@ -3,6 +3,8 @@ class CompaniesController < ApplicationController
   hobo_model_controller
 
   auto_actions :all
+  
+  web_method :checkout
     
   autocomplete :users do
     ret = []
@@ -165,6 +167,4 @@ class CompaniesController < ApplicationController
       
     end
   end
-  
-
 end

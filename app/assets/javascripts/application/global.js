@@ -296,8 +296,8 @@ $(document).ready(function() {
 Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
     var n = this,
         decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
-        decSeparator = decSeparator == undefined ? "." : decSeparator,
-        thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+        decSeparator = decSeparator == undefined ? $('body').find("[data-rapid-page-data]").data("rapid-page-data").separator : decSeparator,
+        thouSeparator = thouSeparator == undefined ? $('body').find("[data-rapid-page-data]").data("rapid-page-data").delimiter : thouSeparator,
         sign = n < 0 ? "-" : "",
         i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
         j = (j = i.length) > 3 ? j % 3 : 0;
@@ -305,14 +305,30 @@ Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) 
 };
 
 var numberFormat = function(num) {
-	var that = $(document);
-    	if (num == null) {
-    		return '';
-    	} else {
-    		var parts = num.toString().split(".");
-    	    	//parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, "#{t 'number.format.delimiter'}");
-    	    	return parts.join($('body').find("[data-rapid-page-data]").data("rapid-page-data").separator);
-    	}
+    var that = $(document);
+    if (num == null) {
+        return '';
+    } else {
+        var parts = num.toString().split(".");
+            //parts[0] = parts[0].replace(/\\B(?=(\\d{3})+(?!\\d))/g, "#{t 'number.format.delimiter'}");
+            return parts.join($('body').find("[data-rapid-page-data]").data("rapid-page-data").separator);
+    }
+}
+
+String.prototype.replaceAll = function(target, replacement) {
+    return this.split(target).join(replacement);
+};
+
+var parseLocalFloat = function(numstr) {
+    var that = $('body').find("[data-rapid-page-data]").data("rapid-page-data");
+    if (numstr == null) {
+        return null;
+    } else if (typeof numstr == "number") {
+        return numstr;
+    } else {
+        numstr = numstr.replaceAll(that.delimiter, "").replaceAll(that.separator, ".");
+        return parseFloat(numstr);
+    }
 }
 
 var dateFormatMonth = function(d) { 

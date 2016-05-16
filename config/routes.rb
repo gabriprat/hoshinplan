@@ -122,6 +122,11 @@ Hoshinplan::Application.routes.draw do
   
   get "/tutorial" => "users#tutorial"
   
+  get "/countries/complete_name" => "countries#complete_name"
+
+  post "/vat_validator/validate_vat" => "vat_validator#validate_vat"
+
+
   SamlDynamicRouter.load unless Rails.env.development?
   
   constraints CanAccessFlipperUI do
