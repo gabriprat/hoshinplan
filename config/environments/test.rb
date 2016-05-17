@@ -44,4 +44,6 @@ Hoshinplan::Application.configure do
   config.log_level = :debug
   config.show_log_configuration = false
   config.logger = Logger.new(STDOUT)
+
+  config.active_support.test_order = :random
 end
