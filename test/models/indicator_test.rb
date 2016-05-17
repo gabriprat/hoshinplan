@@ -12,8 +12,8 @@ class IndicatorTest < ActiveSupport::TestCase
         last_update = eval(last_update_str)
         expected = last_update + inc
         ind = new_indicator
-        ind.expects(:last_update).returns(last_update)
-        ind.expects(:frequency).returns(freq)
+        ind.stubs(:last_update).returns(last_update)
+        ind.stubs(:frequency).returns(freq)
         assert_equal expected, ind.compute_next_update
       end
     end
