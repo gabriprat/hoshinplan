@@ -31,8 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/gabriprat/vat_validator.git
-  revision: 78bd5a6b2193526f43d5358204156dae036bd7de
-  branch: without-module
+  revision: c4609e4cdf84db42a9988cf041685d501812b385
   specs:
     vat_validator (1.2)
       activemodel

@@ -128,5 +128,5 @@ gem 'sendgrid4r'
 gem 'mustache'
 gem 'bootstrap_tokenfield_rails'
 gem 'countries'
-gem 'vat_validator', git: 'git://github.com/gabriprat/vat_validator.git', branch: 'without-module'
+gem 'vat_validator', git: 'git://github.com/gabriprat/vat_validator.git'
 
