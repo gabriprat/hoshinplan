@@ -384,12 +384,15 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) ||
-    changing_password? && state == 'invited' ||
+    ret = (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) ||
+    changing_password? ||
     acting_user.administrator? || 
     self.new_record? || 
     self.guest? || 
-    same_company
+    same_company ||
+    field == :password || field == :password_confirmation
+
+    ret
   end
   
   def name
