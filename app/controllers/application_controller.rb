@@ -75,56 +75,66 @@ class ApplicationController < ActionController::Base
   
   around_filter :set_user_time_zone,  :except => [:activate_from_email, :activate]
 
-         around_filter :scope_current_user,  :except => [:activate_from_email, :activate]
+  around_filter :scope_current_user, :except => [:activate_from_email, :activate]
 
-             def scope_current_user
-               Nr.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
-               if defined?("logged_in?")
-                 User.current_id = logged_in? ? current_user.id : nil
-                 User.current_user = current_user
-                 if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
-                   current_user.last_seen_at = Date.today
-                   people_set
-                   begin
-                   current_user.save!
-                   rescue ActiveRecord::RecordInvalid => invalid
-                      fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
-                    end
-                 end
-               end
-               Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
-               Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
-               if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
-                   params[:company_id] ||= params[model.model_name.singular]["company_id"]
-               end
-               if self.respond_to?("model") && (!params[:id].nil? || !params[:area_id].nil? || !params[:objective_id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
-                 begin
-                   inst = current_user if self.is_a?(UsersController) && params[:id] && logged_in? && params[:id].to_i == current_user.id
-                   inst = Hobo::Model.find_by_typed_id(params[:type].singularize + ":" + params[:id]) if inst.nil? && !params[:id].nil? && !params[:type].nil?
-                   inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
-                 rescue ActiveRecord::RecordNotFound => e
-                   # Let the specific controller deal with this
-                 end
-                 self.this = inst
-                 inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
-                 inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
-                 inst = Company.find(params[:company_id]) unless (inst || params[:company_id].blank?)
-                 inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
-                 Rails.logger.debug inst.to_yaml
-                 if inst.respond_to?(:company_id)
-                   Company.current_id = inst.company_id
-                 elsif inst.is_a? Company
-                   Company.current_id = inst.id
-                   Company.current_company = inst
-                 end
-                 Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
-               end
-               Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
-               Nr.add_custom_parameters({ referrer: request.referrer }) unless !request || request.referrer.nil?
-               yield
-             rescue ActiveRecord::RecordInvalid => invalid
-                 fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
-             end
+  prepend_around_filter :check_subscription, :scope_current_user, :except => [:activate_from_email, :activate]
+
+  def check_subscription
+    if !request.xhr? && view_context.upgrade_button_visible? && logged_in? && current_user.is_trial_expired?
+      redirect_to Company.current_company, action: 'upgrade', trial_expired: current_user.is_trial_expired?
+    else
+      yield
+    end
+  end
+
+  def scope_current_user
+   Nr.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
+   if defined?("logged_in?")
+     User.current_id = logged_in? ? current_user.id : nil
+     User.current_user = current_user
+     if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
+       current_user.last_seen_at = Date.today
+       people_set
+       begin
+       current_user.save!
+       rescue ActiveRecord::RecordInvalid => invalid
+          fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
+        end
+     end
+   end
+   Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
+   Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
+   if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
+       params[:company_id] ||= params[model.model_name.singular]["company_id"]
+   end
+   if self.respond_to?("model") && (!params[:id].nil? || !params[:area_id].nil? || !params[:objective_id].nil? || !params[:company_id].nil? || params[:area] && !params[:area][:hoshin_id].nil?)
+     begin
+       inst = current_user if self.is_a?(UsersController) && params[:id] && logged_in? && params[:id].to_i == current_user.id
+       inst = Hobo::Model.find_by_typed_id(params[:type].singularize + ":" + params[:id]) if inst.nil? && !params[:id].nil? && !params[:type].nil?
+       inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
+     rescue ActiveRecord::RecordNotFound => e
+       # Let the specific controller deal with this
+     end
+     self.this = inst
+     inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
+     inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
+     inst = Company.find(params[:company_id]) unless (inst || params[:company_id].blank?)
+     inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
+     Rails.logger.debug inst.to_yaml
+     if inst.respond_to?(:company_id)
+       Company.current_id = inst.company_id
+     elsif inst.is_a? Company
+       Company.current_id = inst.id
+       Company.current_company = inst
+     end
+     Rails.logger.debug "Scoping current company (" + Company.current_id.to_s + ")"
+   end
+   Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
+   Nr.add_custom_parameters({ referrer: request.referrer }) unless !request || request.referrer.nil?
+   yield
+  rescue ActiveRecord::RecordInvalid => invalid
+     fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
+  end
              
   before_filter :is_pdf
   def is_pdf

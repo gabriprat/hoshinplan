@@ -228,6 +228,14 @@
   </card>
 </def>
 
+<def tag="card" for="InvitationCode">
+  <card class="invitation-code" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Log">
   <card class="log" param="default" merge>
     <header: param>

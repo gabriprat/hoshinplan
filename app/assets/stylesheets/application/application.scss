@@ -465,19 +465,45 @@ ul.navbar-nav {
 	background-color: rgba(0,0,0,.2);
 }
 
-.navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  
-  &.btn-raised {
-          padding-top: 5px;
-          padding-bottom: 5px;
-          margin: 5px 10px 0 10px;
-          background: transparent;
-          border: 2px solid #fff;
-          box-shadow: none;
-          -webkit-box-shadow: none;
+.navbar-nav > li {
+  & > .text-and-button .text-and-button-text {
+    color: $inverse-primary-color;
+    vertical-align: baseline;
   }
+
+  & > a, & > .text-and-button a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.btn {
+      vertical-align: baseline;
+    }
+
+    &.btn-raised {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      margin: 5px 10px 0 10px;
+      background: transparent;
+      border: 2px solid $inverse-primary-color;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+    &.btn-combined {
+      padding: 0;
+      & > span {
+        padding: 5px 1em;
+      }
+      .btn-combined-inv {
+        display: inline-block;
+        background-color: $inverse-primary-color;
+        color: $inverse-background-color;
+      }
+    }
+  }
+}
+
+.navbar-nav > li > .button-combined a  {
+
 }
 
 body .navbar .navbar-brand:hover, body .navbar .navbar-brand:hover strong, body .navbar .navbar-brand:hover span {

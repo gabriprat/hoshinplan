@@ -127,6 +127,7 @@ en:
     user_limit_reached: You have reached the maximum number of collaborators for your current plan. Please upgrade your plan or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>
     not_expected_format: does not have the expected format
     invalid_credit_card: The credit card details were invalid. Pleas check them and try again.
+    invitation_code_does_not_exist: The provided invitation code was not valid.
   hobo:
     area:
       child_models: '%{model} from children hoshin plans'
@@ -378,7 +379,7 @@ en:
             archive: Archive hoshin
             clone: Clone hoshin
       user:
-        email_address: "Please use your work email address, so we can connect you with your team in Hoshinplan."
+        email_address: "Use your work email address to connect you with your team."
         lifecycle:
           transitions:
             resend_activation: Resend user activation email
@@ -386,7 +387,7 @@ en:
     title: Make your business strategy work
   user:
     signup:
-      it_is_ok: Send me emails about Hoshinplan.
+      it_is_ok: Receive emails from Hoshinplan.
       by_proceeding: By proceeding to create your account and use Hoshinplan, you are agreeing to our %{terms} and %{privacy}. If you do not agree, you cannot use Hoshinplan.
       terms_link: Terms of use 
       privacy_link: Pivacy policy

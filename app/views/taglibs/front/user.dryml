@@ -7,7 +7,7 @@
 <def tag="signup-form" for="User">
   <form lifecycle="signup" hidden-fields="" merge param="default">
     <error-messages param/>     
-    <field-list fields="email_address, news" param>
+    <field-list fields="email_address, invitation_code, news" param>
             <email-address-tag: required="required" autofocus="autofocus"/>
             <news-field:>
                    <div class='control-group text-center'>

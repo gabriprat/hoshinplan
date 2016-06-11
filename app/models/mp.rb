@@ -83,6 +83,7 @@ class Mp
         'tutorial_step' => user.tutorial_step,
         'last_seen_at'  => user.last_seen_at,
         'from_invitation' => user.from_invitation,
+        'trial_ends_at' => user.trial_ends_at
     }
     @options = {}
     @options['ip'] = opts[:ip] unless opts[:ip].nil?

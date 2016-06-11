@@ -126,6 +126,7 @@ es:
     user_limit_reached: 'Has llegado al límite de colaboradores de tu plan actual. Por favor, mejora tu plan o contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>'
     not_expected_format: no tiene el formato esperado
     invalid_credit_card: Los detalles de la tarjeta de crédito eran inválidos. Por favor, revísalos y prueba otra vez.
+    invitation_code_does_not_exist: El código de invitación proporcionado no es válido.
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'
@@ -376,7 +377,7 @@ es:
             archive: Archivar hoshin
             clone: Clonar hoshin
       user:
-        email_address: "Por favor, utiliza tu email de empresa para que podamos conectarte con tu equipo."
+        email_address: "Utiliza tu email de empresa para poder conectarte con tu equipo."
         lifecycle:
           transitions:
             resend_activation: Reenviar email de activación de usuario

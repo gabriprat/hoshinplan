@@ -1,6 +1,6 @@
 <extend tag="show-page" for="Company">
 	<old-show-page merge>
-	
+	    <field-list: replace/>
 	        <collection-heading:>
 	            <human-collection-name collection="hoshins" your/>
 	        </collection-heading:>

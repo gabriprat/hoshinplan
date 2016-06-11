@@ -16,7 +16,7 @@ class Company < ActiveRecord::Base
     deleted_at :datetime
   end
   index [:deleted_at]
-  attr_accessible :name, :creator_id, :company_email_domains
+  attr_accessible :name, :creator_id, :company_email_domains, :credit
     
   belongs_to :creator, :class_name => "User", :creator => true
   

@@ -2,6 +2,8 @@ class BillingDetail < ActiveRecord::Base
 
   acts_as_paranoid
 
+  include ModelBase
+
   hobo_model # Don't put anything above this
 
   fields do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611073944) do
+ActiveRecord::Schema.define(version: 20160611161109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -342,6 +342,17 @@ ActiveRecord::Schema.define(version: 20160611073944) do
   add_index "indicators", ["responsible_id"], name: "index_indicators_on_responsible_id", using: :btree
   add_index "indicators", ["type"], name: "index_indicators_on_type", using: :btree
 
+  create_table "invitation_codes", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "total",      null: false
+    t.integer  "used",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "trial_days", null: false
+    t.date     "start_at",   null: false
+    t.date     "end_at",     null: false
+  end
+
   create_table "logs", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -543,6 +554,7 @@ ActiveRecord::Schema.define(version: 20160611073944) do
     t.boolean  "news",                                 default: true
     t.boolean  "from_invitation",                      default: false
     t.date     "trial_ends_at"
+    t.string   "invitation_code"
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

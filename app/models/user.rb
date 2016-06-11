@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
     news            :boolean, default: true
     from_invitation :boolean, default: false
     trial_ends_at   :date
+    invitation_code :string
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -56,7 +57,14 @@ class User < ActiveRecord::Base
   crop_attached_file :image
 
   before_create do |user|
-    user.trial_ends_at = Date.today + DEFAULT_TRIAL_DAYS.days
+    trial_days = DEFAULT_TRIAL_DAYS.days
+    if user.invitation_code.present?
+      ic = InvitationCode.available(self.invitation_code).first
+      ic.used += 1
+      ic.save
+      trial_days = ic.trial_days
+    end
+    user.trial_ends_at = Date.today + trial_days.days
   end
   
   before_save do |user|
@@ -76,12 +84,14 @@ class User < ActiveRecord::Base
   end
   
   validates :email_address, uniqueness: { case_sensitive: false }, presence: true, email: true
+
+  validate :invitation_code_exists
   
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :less_than => 10.megabytes   
     
-  attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies,
-     :image, :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation
+  attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image,
+     :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
@@ -142,6 +152,12 @@ class User < ActiveRecord::Base
     user.email_address.strip!
     if user.color.nil? && !name.nil?
       user.color = hexFromString(name)
+    end
+  end
+
+  def invitation_code_exists
+    if self.new_record? && self.invitation_code.present? && !InvitationCode.available(self.invitation_code).exists?
+      errors.add(:invitation_code,  I18n.t("errors.invitation_code_does_not_exist"))
     end
   end
     
@@ -225,7 +241,7 @@ class User < ActiveRecord::Base
         :become => :active
     
     create :signup, :available_to => "Guest",
-      :params => [:email_address, :news, :from_invitation],
+      :params => [:email_address, :news, :from_invitation, :invitation_code],
       :become => :inactive, :new_key => true  do
         UserCompanyMailer.activation(self, lifecycle.key).deliver_later
     end
@@ -353,6 +369,16 @@ class User < ActiveRecord::Base
   
   def flipper_id
     "User:" + id.to_s
+  end
+
+  def trial_days_remaining
+    ret = (trial_ends_at - Date.today).to_i
+    ret = 0 if ret < 0
+    ret
+  end
+
+  def is_trial_expired?
+    trial_days_remaining == 0
   end
   
   # --- Permissions --- #
