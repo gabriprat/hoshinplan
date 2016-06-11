@@ -86,7 +86,7 @@ module ModelBase
   def subscription_active
     cc = Company.current_company
     cu = User.current_user
-
+    cc.unlimited || Date.today < cu.trial_ends_at
   end
   
   def hoshin_creator
