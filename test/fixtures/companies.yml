@@ -7,6 +7,7 @@
 one: 
  id: 1
  name: test
+ subscriptions_count: 1
 #
 two:
  id: 2

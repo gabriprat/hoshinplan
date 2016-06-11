@@ -372,7 +372,11 @@ class User < ActiveRecord::Base
   end
 
   def trial_days_remaining
-    ret = (trial_ends_at - Date.today).to_i
+    if trial_ends_at.nil?
+      ret = 0
+    else
+      ret = (trial_ends_at - Date.today).to_i
+    end
     ret = 0 if ret < 0
     ret
   end
