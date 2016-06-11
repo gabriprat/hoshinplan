@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   include ColorHelper
   
   hobo_user_model # Don't put anything above this
-  
-  NEXT_FRIDAY = DateTime.now.next_week.next_day(4)
-  
+
+  DEFAULT_TRIAL_DAYS = 30
+
   include HoboOmniauth::MultiAuth
   
   fields do
@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
     preferred_view  EnumView, :required, :default=> :expanded
     beta_access     :boolean
     news            :boolean, default: true
-    from_invitation     :boolean, default: false
+    from_invitation :boolean, default: false
+    trial_ends_at   :date
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
@@ -53,6 +54,10 @@ class User < ActiveRecord::Base
     :default_url => "/assets/default.jpg"
   }
   crop_attached_file :image
+
+  before_create do |user|
+    user.trial_ends_at = Date.today + DEFAULT_TRIAL_DAYS.days
+  end
   
   before_save do |user|
     if user.name.blank?

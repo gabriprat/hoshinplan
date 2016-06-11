@@ -372,7 +372,7 @@ class Hoshin < ActiveRecord::Base
   end
   
   def create_permitted?
-    true
+    User.current_user._?.signed_up?
   end
 
   def update_permitted?

@@ -3235,7 +3235,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="firstName, lastName, color, email_address, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
+      <field-list fields="firstName, lastName, color, email_address, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, trial_ends_at, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
     </content-body:>
 
   </page>

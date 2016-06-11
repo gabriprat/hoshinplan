@@ -51,7 +51,7 @@ class Company < ActiveRecord::Base
   before_create do |company|
     cu = User.current_user
     domain = cu.email_address.split("@").last
-    if cu.created_at < Date.new(2015,4,4) || domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com'
+    if domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com'
       self.unlimited = true
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516195134) do
+ActiveRecord::Schema.define(version: 20160611073944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 20160516195134) do
     t.boolean  "unlimited",                                   default: false, null: false
     t.datetime "deleted_at"
     t.integer  "subscriptions_count",                         default: 0,     null: false
-    t.decimal  "credit",              precision: 8, scale: 2
+    t.decimal  "credit",              precision: 8, scale: 2, default: 0.0
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
@@ -542,6 +542,7 @@ ActiveRecord::Schema.define(version: 20160516195134) do
     t.boolean  "beta_access"
     t.boolean  "news",                                 default: true
     t.boolean  "from_invitation",                      default: false
+    t.date     "trial_ends_at"
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

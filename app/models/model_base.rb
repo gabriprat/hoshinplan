@@ -82,6 +82,12 @@ module ModelBase
     ret = self.all_user_companies._?.include? cid
     ret
   end
+
+  def subscription_active
+    cc = Company.current_company
+    cu = User.current_user
+
+  end
   
   def hoshin_creator
     user = acting_user ? acting_user : User.find(User.current_id)
