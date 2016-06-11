@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
     preferred_view  EnumView, :required, :default=> :expanded
     beta_access     :boolean
     news            :boolean, default: true
-    stripe_id       :string
     from_invitation     :boolean, default: false
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]

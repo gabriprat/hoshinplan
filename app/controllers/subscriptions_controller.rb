@@ -68,7 +68,7 @@ class SubscriptionsController < ApplicationController
         subscription =SubscriptionPaypal.new
         subscription.token = agreement.token
         subscription.status = "Pending"
-        subscription.billing_plan = plan
+        #subscription.billing_plan = plan
         subscription.sandbox = PaypalAccess.sandbox?
         subscription.amount_value = plan.amount_value
         subscription.amount_currency = plan.amount_currency
@@ -107,7 +107,7 @@ class SubscriptionsController < ApplicationController
     subscription = SubscriptionStripe.new
     subscription.token = stripe_subscription.id
     subscription.status = stripe_subscription.status.capitalize
-    subscription.billing_plan = plan
+    #subscription.billing_plan = plan
     subscription.sandbox = !stripe_subscription.plan.livemode
     subscription.amount_value = plan.amount_value
     subscription.amount_currency = plan.amount_currency

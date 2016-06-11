@@ -11,7 +11,8 @@ class BillingPlan < ActiveRecord::Base
     frequency       HoboFields::Types::EnumString.for(:WEEK, :DAY, :YEAR, :MONTH)
     interval        :integer
     amount_currency :string
-    amount_value    :decimal, :precision => 8, :scale => 2
+    amount_value    :decimal, precision: 8, scale: 2
+    monthly_value   :decimal, precision: 8, scale: 2
     id_paypal       :string
     status_paypal   HoboFields::Types::EnumString.for(:CREATED, :ACTIVE, :INACTIVE, :DELETED)
     css_class       :string
@@ -20,9 +21,10 @@ class BillingPlan < ActiveRecord::Base
     timestamps
   end
   attr_accessible :name, :description, :brief, :users, :css_class, :features, 
-    :frequency, :interval, :amount_currency, :amount_value, :id_paypal, :status_paypal, :workers, :stripe_id
+    :frequency, :interval, :amount_currency, :amount_value, :monthly_value, :id_paypal, :status_paypal, :workers, :stripe_id
 
-  has_many :subscriptions, :inverse_of => :billing_plan
+  has_many :subscriptions, inverse_of: :billing_plan
+    
   acts_as_list
     
   # --- Permissions --- #

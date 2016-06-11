@@ -4,7 +4,7 @@
 <def tag="form" for="BillingPlan">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, brief, users, features, frequency, interval, amount_currency, amount_value, id_paypal, status_paypal, css_class, workers, position" param/>
+    <field-list fields="name, description, brief, users, features, frequency, interval, amount_currency, amount_value, monthly_value, id_paypal, status_paypal, css_class, workers, position" param/>
     <div param="actions">
       <submit label="#{ht 'billing_plan.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

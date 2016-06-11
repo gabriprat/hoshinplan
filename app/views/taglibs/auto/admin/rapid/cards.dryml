@@ -43,6 +43,14 @@
   </card>
 </def>
 
+<def tag="card" for="BillingDetail">
+  <card class="billing-detail" param="default" merge>
+    <body: param>
+      <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="BillingPlan">
   <card class="billing-plan" param="default" merge>
     <header: param>

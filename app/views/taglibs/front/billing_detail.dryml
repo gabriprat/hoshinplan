@@ -1,0 +1,148 @@
+<def tag="new-for-company-page" for="BillingDetail">
+        <billing-page/>
+</def>
+
+<def tag="edit-page" for="BillingDetail">
+        <billing-page/>
+</def>
+
+
+<def tag="billing-page">
+<page title="#{t 'checkout.title', :default=>['Checkout'] }" aside-size="4" content-size="8" aside-position="left">
+
+    <body: class="checkout"/>
+    
+    <custom-javascript:>
+            getScript('/assets/billing.js', function() { $.billing(); });
+    </custom-javascript:>
+    
+    <aside-column:>
+            <sticky class="sticky-payment">
+                    <div class="well payment-wrapper">
+                        <h2>
+                                <t key="billing_details.plan" name="&@billing_plan._?.name || this.active_subscription._?.plan_name"/>
+                        </h2>
+                        <table class="bill">
+                                <thead>
+                                        <tr>
+                                                <th id="bill-product">
+                                                        <t key="billing_details.concept"/>
+                                                </th>
+                                                <th id="bill-price">
+                                                        <t key="billing_details.price"/>
+                                                </th>
+                                                <th id="bill-quantity">
+                                                        <t key="billing_details.quantity"/>
+                                                </th>
+                                                <th id="bill-total-row">
+                                                        <t key="billing_details.total"/>
+                                                </th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                                <th id="bill-users" scope="row">
+                                                        <%= User.model_name.human(count:2) %>
+                                                </th>
+                                                <td headers="bill-users bill-price">
+                                                        <%= t("price_html", {value: "<span id='bill-price-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')}) %>
+                                                </td>
+                                                <td headers="bill-users bill-quantity">
+                                                        <span id="bill-quantity-value">1</span>
+                                                </td>
+                                                <td headers="bill-users bill-total-row">
+                                                        <%= t("price_html", {value: "<span id='bill-total-row-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')}) %>
+                                                </td>
+                                        </tr>
+                                </tbody>
+                                <tfoot>
+                                        <tr>
+                                                <th id="bill-taxes" scope="row" colspan="3">
+                                                        <t key="billing_details.taxes"/> (<span id="bill-tax-tpc-value">21</span>%)
+                                                </th>
+                                                <td headers="bill-taxes">
+                                                        <%= t("price_html", {value: "<span id='bill-taxes-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')}) %>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <th id="bill-total" scope="row" colspan="3">
+                                                        <t key="billing_details.total"/>
+                                                </th>
+                                                <td headers="bill-total">
+                                                        <%= t("price_html", {value: "<span id='bill-total-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')}) %>
+                                                </td>
+                                        </tr>
+                                </tfoot>
+                        </table>
+                        <p class="sep" id="subscription-prorate" data-credit="#{this.company.credit}" data-period="#{this.active_subscription._?.billing_period}" data-last="#{this.active_subscription.last_payment_at._?.strftime('%Y-%m-%d')}" data-next="#{this.active_subscription.next_payment_at._?.strftime('%Y-%m-%d')}" data-remaining="#{this._?.active_subscription.remaining_amount}">
+                            <%
+                                amount_now = t("price_html", {value: "<span id='bill-pay-now-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')})
+                                credit = t("price_html", {value: "<span id='bill-credit-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')})
+                                next_payment = "<span id='bill-next-renewal-value'></span>".html_safe
+                            %>
+                            <t key="billing_details.you_will_pay" amount="&amount_now" next="&next_payment"/>
+                        </p>
+                        <p class="sep" id="subscription-credit" style="display:none;">
+                            <t key="billing_details.credit" amount="&credit"/>
+                        </p>
+                </div>
+            </sticky>
+    </aside-column:>
+    
+    <content-body:>
+            <form class="payment" owner="&'company' if params[:action] == 'new_for_company'"/>
+    </content-body:>
+    
+    <aside:/>
+        
+</page>
+</def>
+
+
+<def tag="form" for="BillingDetail">
+  <form merge param="default">
+    <error-messages param/>
+    <h3><t key="billing_details.number_of_users"/></h3>
+    <% users_param = params[:billing_detail][:active_subscription][:users] if params[:billing_detail] && params[:billing_detail][:active_subscription] %>
+    <slider:active_subscription.users value="#{users_param || this.active_subscription._?.users || 10}" id="users" min="1" max="200" style="width: 100%" tooltip="always"/>
+    <h3><t key="billing_details.payment_frequency"/></h3>
+    <% period_param = (params[:billing_detail][:active_subscription][:billing_period] if params[:billing_detail] && params[:billing_detail][:active_subscription]) || this.active_subscription._?.billing_period 
+       monthly_price = (params[:billing_detail][:active_subscription][:monthly_value] if params[:billing_detail] && params[:billing_detail][:active_subscription]) || this.active_subscription._?.monthly_value || @billing_plan._?.monthly_value
+       annual_price = (params[:billing_detail][:active_subscription][:amount_value] if params[:billing_detail] && params[:billing_detail][:active_subscription]) || this.active_subscription._?.amount_value || @billing_plan._?.amount_value
+     %>
+    <btn-radio-group:active_subscription.billing_period selected-option="#{period_param || 'monthly'}" data-monthly-price="#{monthly_price}" data-annual-price="#{annual_price}"/>
+    <h3><t key="billing_details.billing_details"/></h3>
+    <field-list fields="company_name, contact_name, contact_email, address_line_1, address_line_2, city, state, zip, country, vat_number" param/>
+    <div class='row'>
+      <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
+      <div class="col-sm-9">
+            <div class='row'>
+                    <div class="card-wrapper"></div>
+                    <div class='col-xs-6'>
+                            <input name="number" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control'/>
+                    </div>
+                    <div class='col-xs-6'>
+                            <input name="name" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control'/>
+                    </div>
+            </div>
+            <div class="row">
+                    <div class='col-xs-3'>
+                            <input name="expiry" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control"/>
+                    </div>
+                    <div class='col-xs-3'>
+                            <input name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control"/>
+                    </div>
+            </div>
+            <div param="actions">
+              <input name="plan_id" type="hidden" value="&@billing_plan.id" unless="&@billing_plan.nil?"/>
+              <submit label="#{ht 'billing_detail.actions.save', :default=>['Save']}" param/>
+              <div class="powered-stripe">
+                      <span class="ic-powered-stripe"></span>
+              </div>
+            </div>
+      </div>
+    </div>
+    <input type="hidden" name="total" id="calc-total"/>
+    <input type="hidden" name="taxes" id="calc-taxes"/>
+  </form>
+</def>

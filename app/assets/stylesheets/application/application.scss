@@ -1570,6 +1570,10 @@ a, a:hover, a:active, a:visited {
 }
 
 form.history-upload {
+        .wtHolder {
+                width: auto !important;
+                height: auto !important;
+        }
 	.bubble, #spreadsheet {
 		float:left;
 		margin: 1em;
@@ -3821,3 +3825,22 @@ body.column-form {
         box-shadow: inset 0 -2px 0 red;
 }
 
+.input-group .input-group-addon {
+  vertical-align: baseline;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .1px;
+  text-rendering: optimizeLegibility;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -webkit-box-shadow: inset 0 -1px 0 #ddd;
+  box-shadow: inset 0 -1px 0 #ddd;
+  font-size: 16px;
+  line-height: 1.846;
+}
+
+.vat-errors li {
+  list-style-type: none;
+  color: red;
+}

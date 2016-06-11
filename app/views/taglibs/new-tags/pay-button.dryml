@@ -21,7 +21,7 @@
                 company_id: Company.current_id,
                 frequency: this.frequency
         }
-        add_data_rapid!(html_attrs, "stripe", stripe_attrs)
+        #add_data_rapid!(html_attrs, "stripe", stripe_attrs)
         %>
 
 	<% if false then %>
@@ -30,7 +30,6 @@
 		<input type="hidden" name="company" value="#{Company.current_id}"/>
 		<button type="submit"><t key="paypal.purchase"/></button>
 	</form>
-        <% else %>
         
         <form action="/stripe_subscription_checkout" class="subscription">
 		<input type="hidden" name="plan" value="#{this.stripe_id}"/>
@@ -39,5 +38,15 @@
                 <button type="button" merge-attrs='&html_attrs'><t key="stripe.purchase"/></button>
         </form>
         
+        <% else %>
+        <% plan_id = this.id %>
+        <do with="&Company.current_company">
+        <a:billing_details class="button" action="new" params="&{plan: plan_id}" if="billing_details.empty?">
+                <t key="stripe.purchase"/>
+        </a>
+        <else>
+                 <a with="&Company.current_company.billing_details.first" class="button" action="edit" params="&{plan: plan_id}"><t key="stripe.purchase"/></a>
+        </else>
+        </do>
         <% end %>
 </def>

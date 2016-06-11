@@ -13,8 +13,8 @@
                         <div class="amount space" if="amount_value==0"><t key="pricing_plans.free"/></div>
                         <else>
                         <div class="amount"><%= number_to_currency(this.amount_value, unit: get_unit(this.amount_currency)) %></div>
-                        <small class="details"><!--per daily active user per month billed annually--></small>
-                        <small class="details"><!--$8 billed monthly--></small>
+                        <small class="details"><t key="pricing_plans.billed_annually"/></small>
+                        <small class="details"><t key="pricing_plans.billed_monthly" amount="&number_to_currency(this.monthly_value, unit: get_unit(this.amount_currency), precision: 0)"/></small>
                         </else>
                 </else>
                 

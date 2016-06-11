@@ -39,7 +39,7 @@ Hoshinplan::Application.configure do
   config.paperclip_defaults = {
   }
   
-  config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => :all
+  config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain =>  (ENV['COOKIE_DOMAIN'] || :all)
   
   config.log_level = :debug
   config.show_log_configuration = false

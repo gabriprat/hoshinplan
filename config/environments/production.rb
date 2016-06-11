@@ -100,7 +100,7 @@ Hoshinplan::Application.configure do
     }
   }
   
-  config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => :all
+  config.session_store ActionDispatch::Session::CacheStore, :expire_after => 15.days, :domain => (ENV['COOKIE_DOMAIN'] || :all)
 end
 
 

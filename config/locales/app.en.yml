@@ -1,4 +1,5 @@
 en:
+  price_html: '%{currency}%{value}'
   loading: Loading...
   saving: Saving...
   error_message: 'Oh, no! There has been an error, we will work to fix it immediately. Please try again.'
@@ -124,7 +125,8 @@ en:
     unknown: 'Unknown error.'
     invalid_locale: Invalid language.
     user_limit_reached: You have reached the maximum number of collaborators for your current plan. Please upgrade your plan or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>
-    not_expected_format: does not have the expected format    
+    not_expected_format: does not have the expected format
+    invalid_credit_card: The credit card details were invalid. Pleas check them and try again.
   hobo:
     area:
       child_models: '%{model} from children hoshin plans'
@@ -230,6 +232,9 @@ en:
       indicator_event:
         one: Event
         other: Events
+      billing_detail:
+        one: Billing details
+        other: Billing details
     attributes:
       user:
         name: Name
@@ -354,6 +359,17 @@ en:
         company: Company
         billing_plan_name: Plan
         id_paypal: PayPal ID
+      billing_detail:
+        company_name: Company name
+        contact_name: Contact person name
+        contact_email: Contact person email
+        address_line_1: Address
+        address_line_2: Address (line 2)
+        city: City
+        state: State
+        zip: Zip
+        country: Country
+        vat_number: VAT Number
     attribute_help:
       hoshin:
         lifecycle:
@@ -460,6 +476,25 @@ en:
     monthly: Monthly
     annual: Annual
     includes: '%{name} includes'
+    billed_annually: per user per month billed annually
+    billed_monthly: '%{amount} per user billed monthly'
+  billing_details:
+    plan: '%{name} plan'
+    concept: Concept
+    price: Price
+    quantity: Quantity
+    total: Total
+    taxes: Taxes
+    number_of_users: Number of users
+    payment_frequency: Payment frequency
+    billing_details: Billing details
+    card_details: Card details
+    card_number: Card number
+    full_name: Full name
+    mm_yy: MM/YY
+    cvc: CVC
+    you_will_pay: You will pay %{amount} (plus taxes) now for the fraction remaining until the next subscription renewal with full payment that will be on %{next}.
+    credit: You will save %{amount} as credit for your next payments.
   stripe:
     purchase: Subscribe
     panelLabel: "Pay {{amount}}/%{frequency}"

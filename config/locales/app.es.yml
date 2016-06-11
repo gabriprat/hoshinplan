@@ -1,4 +1,5 @@
 es:
+  price_html: '%{value}%{currency}'
   loading: Cargando...
   saving: Guardando...
   error_message: 'Oh, no! Ha habido un error, nos ponemos a areglarlo de inmediato. Por favor inténtalo de nuevo.'
@@ -124,6 +125,7 @@ es:
     invalid_locale: Idioma no soportado.
     user_limit_reached: 'Has llegado al límite de colaboradores de tu plan actual. Por favor, mejora tu plan o contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>'
     not_expected_format: no tiene el formato esperado
+    invalid_credit_card: Los detalles de la tarjeta de crédito eran inválidos. Por favor, revísalos y prueba otra vez.
   hobo:
     area:
       child_models: '%{model} de hoshin plans hijos'
@@ -228,6 +230,9 @@ es:
       indicator_event:
         one: Evento
         other: Eventos
+      billing_detail:
+        one: Detalles de facturación
+        other: Detalles de facturación
     attributes:
       user:
         name: Nombre
@@ -352,6 +357,17 @@ es:
         company: Empresa
         billing_plan_name: Plan
         id_paypal: Identificador en PayPal
+      billing_detail:
+        company_name: Nombre empresa
+        contact_name: Nombre persona contacto
+        contact_email: Email persona contacto
+        address_line_1: Dirección
+        address_line_2: Dirección (linea 2)
+        city: Ciudad
+        state: Provincia
+        zip: Código postal
+        country: País
+        vat_number: Identificador fiscal
     attribute_help:
       hoshin:
         lifecycle:
@@ -418,7 +434,7 @@ es:
     maximum_collaborators: '(Máximo: %{value})'
     add_collaborators: Añadir colaboradores
     upgrade_to_invite: Mejora tu plan para invitar más colaboradores
-    send_invitations: Envía invitaciones de colaboración escribiendo direcciones de email separadas por comas en la caja de texto. Cada dirección de email puede contener el nombre de la persona con la forma <code>Nombre Apellidos &lt;email@empresa.com&gt;</code>.    
+    send_invitations: Envía invitaciones de colaboración escribiendo direcciones de email separadas por comas en la caja de texto. Cada email puede contener el nombre de la persona con la forma <code>Nombre Apellidos &lt;email@empresa.com&gt;</code>.
   client_app:
     sign_a_request: Firma una petición al API
     requests_to_the_restful: Las peticiones al API RESTful tienen que estar firmadas con el campo secreto de la Aplicación Cliente. Este formulario te permitirá firmar una petición. Tienes que entrar la ruta de la petición que quieres firmar sin los parámetros "timestamp" ni "signature". Al clicar en el botón "Firmar" te devolverá la URL con estos parámetros.
@@ -458,6 +474,25 @@ es:
     monthly: Mensual
     annual: Anual
     includes: '%{name} incluye'
+    billed_annually: por usuario al mes facturado anualmente
+    billed_monthly: '%{amount} por usuario facturado mensualmente'
+  billing_details:
+    plan: 'Plan %{name}'
+    concept: Concepto
+    price: Precio
+    quantity: Cantidad
+    total: Total
+    taxes: Impuestos
+    number_of_users: Número de usuarios
+    payment_frequency: Frecuencia de pago
+    billing_details: Detalles de facturación
+    card_details: Tarjeta de crédito
+    card_number: Número de la tarjeta
+    full_name: Nombre completo
+    mm_yy: MM/YY
+    cvc: CVC
+    you_will_pay: Pagarás %{amount} (más impuestos) ahora por la fracción correspondiente hasta la siguiente renovación por el importe completo que será el %{next}.
+    credit: Acumularás %{amount} de crédito para tus próximos pagos.
   stripe:
     purchase: Suscribirme
     panelLabel: 'Pagar {{amount}}/%{frequency}'

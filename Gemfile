@@ -36,6 +36,7 @@ gem 'passenger'
 
 # To use debugger
 #gem 'byebug', :group => :development
+gem 'debase', group: :development
 
 gem "omniauth-openid"
 gem "omniauth-saml"
@@ -91,7 +92,6 @@ gem 'rails_12factor', group: :production
 gem 'font_assets', :git => "git://github.com/ericallam/font_assets"
 gem 'http_accept_language'
 gem 'mixpanel-ruby'
-gem 'paypal-sdk-rest'
 group :test do
   gem 'rake'
   # Pretty printed test output
@@ -114,7 +114,8 @@ gem 'flipper-ui'
 gem 'flipper-redis'
 gem 'immigrant'
 gem 'amoeba'
-gem 'rails_handsontable', "=0.13.2"
+gem 'rails_handsontable'
+#gem 'rails_handsontable', "=0.13.2"
 gem 'momentjs-rails'
 gem 'htmlcompressor'
 gem 'gemoji-parser'
@@ -126,5 +127,5 @@ gem 'sendgrid4r'
 gem 'mustache'
 gem 'bootstrap_tokenfield_rails'
 gem 'countries'
-gem 'vat_validator'
+gem 'vat_validator', git: 'git://github.com/gabriprat/vat_validator.git'
 
