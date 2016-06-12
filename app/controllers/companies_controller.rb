@@ -67,6 +67,9 @@ class CompaniesController < ApplicationController
       @freq ||= :MONTH
       @this = BillingPlan.where(frequency: [:WEEK, @freq]).where.not(position: 1)
       session[:payment_return_to] = request.url
+      if params[:trial_expired].present? && params[:trial_expired]
+        flash.now[:error] = I18n.t "payments.expired_trial"
+      end
       render template: 'payments/pricing'
     else
       render template: 'payments/contact_admin'

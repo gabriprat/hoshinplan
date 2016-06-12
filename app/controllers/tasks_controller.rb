@@ -32,6 +32,13 @@ class TasksController < ApplicationController
     obj.delocalize(delocalize_config)
     select_responsible(obj)
     hobo_create do
+      if params[:status].present? && params[:status] == 'active'
+        self.this.lifecycle.to_active!(current_user)
+      end
+      if params[:status].present? && current_user.initial_task_state != params[:status]
+        current_user.initial_task_state = params[:status]
+        current_user.save
+      end
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
     end
     log_event("Create task", {objid: @this.id, name: @this.name})
@@ -39,6 +46,13 @@ class TasksController < ApplicationController
   
   def create_for_objective
     hobo_create_for :objective do
+      if params[:status].present? && params[:status] == 'active'
+        self.this.lifecycle.to_active!(current_user)
+      end
+      if params[:status].present? && current_user.initial_task_state != params[:status]
+        current_user.initial_task_state = params[:status]
+        current_user.save
+      end
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
     end
     log_event("Create task", {objid: @this.id, name: @this.name})

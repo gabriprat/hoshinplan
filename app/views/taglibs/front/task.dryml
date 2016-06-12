@@ -87,26 +87,26 @@
 
 <extend tag="form" for="Task">
 	<old-form merge>
-			            <field-list: fields="name, objective, description, responsible, deadline, feeling, reminder, show_on_parent">
-				    	<area-view:>
-						<select-one options="&this_parent.objective.area.hoshin.areas.to_a" />
-					</area-view:>
-				    	<objective-view:>
-						<select-one options="&this_parent.area.objectives.to_a" />
-					</objective-view:>
-				    	<responsible-view:>
-						<name-one-user />
-					</responsible-view:>
-	      			    	<effort-view:>
-	      					<slider min="0" max="100"/>
-	      				</effort-view:>
-	      			    	<confidence-view:>
-	      					<slider min="0" max="100"/>
-	      				</confidence-view:>
-	      			    	<impact-view:>
-	      					<slider min="0" max="100"/>
-	      				</impact-view:>
-				    </field-list:>
-				    <cancel: href="&session[:return_to] || request.referer"/>
+        <field-list: fields="name, objective, description, responsible, deadline, feeling, status, reminder, show_on_parent">
+            <area-view:>
+                <select-one options="&this_parent.objective.area.hoshin.areas.to_a" />
+            </area-view:>
+            <objective-view:>
+                <select-one options="&this_parent.area.objectives.to_a" />
+            </objective-view:>
+            <responsible-view:>
+                <name-one-user />
+            </responsible-view:>
+            <effort-view:>
+                <slider min="0" max="100"/>
+            </effort-view:>
+            <confidence-view:>
+                <slider min="0" max="100"/>
+            </confidence-view:>
+            <impact-view:>
+                <slider min="0" max="100"/>
+            </impact-view:>
+        </field-list:>
+        <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>

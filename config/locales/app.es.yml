@@ -2,6 +2,7 @@ es:
   price_html: '%{value}%{currency}'
   loading: Cargando...
   saving: Guardando...
+  trial_days_left: 'Días de prueba restantes:'
   error_message: 'Oh, no! Ha habido un error, nos ponemos a areglarlo de inmediato. Por favor inténtalo de nuevo.'
   cookie_msg: 'Este sitio web utiliza cookies propias y de terceros para dar un mejor servicio. Al usar nuestro servicio, está aceptando nuestra <a href="{{cookiePolicyLink}}" title="Más información sobre nuestras cookies">Política de cookies</a>.'
   i_agree: Entendido
@@ -132,6 +133,7 @@ es:
       child_models: '%{model} de hoshin plans hijos'
     actions:
       submit: Enviar
+      upgrade: Actualizar
     dashboard:  
       no_kpis: No tienes %{model} pendientes de actualizar
       no_tasks: No tienes %{model} con una fecha de finalización cercana
@@ -325,6 +327,11 @@ es:
         confidence: Confianza
         impact: Impacto
         lifecycle:
+          states:
+            active: Activa
+            backlog: En cola
+            discarded: Descartada
+            completed: Completada
           transitions:
             discard: Descartar
             complete: Completar
@@ -504,6 +511,7 @@ es:
   paypal:
     purchase: Comprar
   payments:
+    expired_trial: Tu período de prueba ha acabado, por favor configura un plan para seguir disfrutando de Hoshinplan
     correct:
       heading: La compra se ha realizado correctamente
       description: Ahora puedes %{link} a la página dónde te encontrabas antes de hacer la compra.

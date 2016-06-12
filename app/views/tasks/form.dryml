@@ -4,7 +4,7 @@
 			
 	      		   <div class="modal-body">
 	      			    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
-	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, impact, confidence, effort, reminder #{show_on_parent}">
+	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, #{@this.new_record? ? 'status,' : ''} impact, confidence, effort, reminder #{show_on_parent}">
     			    	<description-view: >
 					<my-click-editor id="task-description-#{this_parent.id}"/>
     				</description-view:>
@@ -25,6 +25,9 @@
 	      			    	<impact-view:>
 	      					<slider min="0" max="100"/>
 	      				</impact-view:>
+	      				<status-view:>
+                           <%= select_tag "status", options_for_select([[t('activerecord.attributes.task.lifecycle.states.backlog'), :backlog], [t('activerecord.attributes.task.lifecycle.states.active'), :active]], selected: current_user.initial_task_state), {class: 'form-control'} %>
+                        </status-view:>
 	      			    </field-list:>
 	      		    </div>
 	      		    <modal-form-footer-delete/>

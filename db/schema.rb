@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611161109) do
+ActiveRecord::Schema.define(version: 20160612211720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -460,28 +460,28 @@ ActiveRecord::Schema.define(version: 20160611161109) do
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "name",                                   null: false
+    t.string   "name",                                    null: false
     t.text     "description"
     t.date     "deadline"
     t.date     "original_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "objective_id",                           null: false
-    t.string   "status",              default: "active"
+    t.integer  "objective_id",                            null: false
+    t.string   "status",              default: "backlog"
     t.datetime "key_timestamp"
     t.integer  "tsk_pos"
-    t.integer  "area_id",                                null: false
+    t.integer  "area_id",                                 null: false
     t.boolean  "show_on_parent"
     t.string   "type"
     t.integer  "responsible_id"
-    t.integer  "company_id",                             null: false
+    t.integer  "company_id",                              null: false
     t.boolean  "reminder",            default: true
     t.integer  "creator_id"
-    t.integer  "hoshin_id",                              null: false
-    t.integer  "lane_pos",            default: 0,        null: false
+    t.integer  "hoshin_id",                               null: false
+    t.integer  "lane_pos",            default: 0,         null: false
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
-    t.string   "feeling",             default: "smile",  null: false
+    t.string   "feeling",             default: "smile",   null: false
     t.datetime "deleted_at"
     t.float    "confidence"
     t.float    "impact"
@@ -555,6 +555,7 @@ ActiveRecord::Schema.define(version: 20160611161109) do
     t.boolean  "from_invitation",                      default: false
     t.date     "trial_ends_at"
     t.string   "invitation_code"
+    t.string   "initial_task_state",                   default: "backlog",  null: false
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

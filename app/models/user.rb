@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
     from_invitation :boolean, default: false
     trial_ends_at   :date
     invitation_code :string
+    initial_task_state HoboFields::Types::EnumString.for(:backlog, :active), default: :backlog, null: false
   end
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
