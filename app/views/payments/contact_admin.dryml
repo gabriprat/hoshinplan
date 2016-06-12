@@ -1,0 +1,29 @@
+<page class="simple-message">
+	<body: class='contact-admin-page'/>
+
+	<content:>
+		<header>
+			<h2><t key='contact_admin_page.heading'/></h2>
+		</header>
+
+		<section class="content-body well">
+			<p><t key='contact_admin_page.text'/></p>
+			<div class="contact-list">
+                <collection with="&User.current_company_admins">
+                        <%
+                            if Company.current_company.trial_days_remaining > 0
+                                subject = u(t('contact_admin_page.email_subject', count: Company.current_company.trial_days_remaining))
+                                body = u(t('contact_admin_page.email_body', count: Company.current_company.trial_days_remaining))
+                            else
+                                subject = u(t('contact_admin_page.expired_email_subject'))
+                                body = u(t('contact_admin_page.expired_email_body'))
+                            end
+                        %>
+                        <a target="_blank" href="mailto:#{this.email_address}?subject=#{subject}&body=#{body}">
+                            <span class="send-email ic-envelope-o"></span><view:name/>
+                        </a>
+                </collection>
+			</div>
+		</section>
+	</content:>
+</page>

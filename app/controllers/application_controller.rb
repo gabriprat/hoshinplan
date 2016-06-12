@@ -80,8 +80,8 @@ class ApplicationController < ActionController::Base
   prepend_around_filter :check_subscription, :scope_current_user, :except => [:activate_from_email, :activate]
 
   def check_subscription
-    if !request.xhr? && view_context.upgrade_button_visible? && logged_in? && current_user.is_trial_expired?
-      redirect_to Company.current_company, action: 'upgrade', trial_expired: current_user.is_trial_expired?
+    if !request.xhr? && view_context.upgrade_button_visible? && Company.current_company.is_trial_expired?
+      redirect_to Company.current_company, action: 'upgrade', trial_expired: Company.current_company.is_trial_expired?
     else
       yield
     end

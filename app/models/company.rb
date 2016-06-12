@@ -124,6 +124,8 @@ class Company < ActiveRecord::Base
     users = 1
     if unlimited
       users = 1000000
+    elsif subscriptions_count == 0 && creator.present? && creator.trial_days_remaining > 0
+      users = 200
     else
       subscriptions.where(status: 'Active').each { |subscription|
         if !users || users < subscription.users
@@ -136,6 +138,14 @@ class Company < ActiveRecord::Base
   
   def flipper_id
     "Company:" + id.to_s
+  end
+
+  def trial_days_remaining
+    creator.nil? ? 0 :  creator.trial_days_remaining
+  end
+
+  def is_trial_expired?
+    creator.nil? || creator.is_trial_expired?
   end
 
   # --- Permissions --- #

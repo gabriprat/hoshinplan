@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   
   hobo_user_model # Don't put anything above this
 
-  DEFAULT_TRIAL_DAYS = 30
+  DEFAULT_TRIAL_DAYS = 30.days
 
   include HoboOmniauth::MultiAuth
   
@@ -57,14 +57,14 @@ class User < ActiveRecord::Base
   crop_attached_file :image
 
   before_create do |user|
-    trial_days = DEFAULT_TRIAL_DAYS.days
+    trial_days = DEFAULT_TRIAL_DAYS
     if user.invitation_code.present?
       ic = InvitationCode.available(self.invitation_code).first
       ic.used += 1
       ic.save
-      trial_days = ic.trial_days
+      trial_days = ic.trial_days.days
     end
-    user.trial_ends_at = Date.today + trial_days.days
+    user.trial_ends_at = Date.today + trial_days
   end
   
   before_save do |user|
@@ -182,6 +182,11 @@ class User < ActiveRecord::Base
   scope :at_hour, lambda { |*hour|
     where("date_part('hour',now() at time zone coalesce(users.timezone, 'Europe/Berlin')) = ?", hour) 
   }
+
+  scope :current_company_admins, lambda {
+    where(:id => UserCompany.select(:user_id)
+                     .where('company_id=? and user_companies.state = ?',
+                            Company.current_id, :admin) ) }
   
   def next_tutorial
     ret = (User.values_for_tutorial_step - tutorial_step).first

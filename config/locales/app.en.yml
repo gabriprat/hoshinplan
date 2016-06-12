@@ -538,6 +538,17 @@ en:
     title: Invalid activation link
     heading: Invalid activation link
     text: Either the link you used is expired (they expire in 24h) or another one has been generated after it. If you don't have the last activation email you can generate a new one by clicking at the button below.
+  contact_admin_page:
+    heading: Contact an administrator
+    text: Only company administrators can upgrade subscription. You can contact them and ask them to do so.
+    email_subject:
+      one: Our Hoshinplan trial account expires tomorrow
+      other: We have %{count} days left on the Hoshinplan trial account
+    email_body:
+      one: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, tomorrow the trial account will expire and only administrators can upgrade the subscription. Thank you.
+      other: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, we have %{count} days left on the trial account and only administrators can upgrade the subscription. Thank you.
+    expired_email_subject: Our Hoshinplan trial account is expired
+    expired_email_body: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, our trial account is already expired and only administrators can upgrade the subscription. Thank you.
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators

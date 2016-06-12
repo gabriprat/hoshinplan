@@ -62,11 +62,15 @@ class CompaniesController < ApplicationController
   end
   
   def upgrade
-    @freq = params[:freq]
-    @freq ||= :MONTH
-    @this = BillingPlan.where(frequency: [:WEEK, @freq]).where.not(position: 1) 
-    session[:payment_return_to] = request.url
-    render template: 'payments/pricing'
+    if find_instance.same_company_admin
+      @freq = params[:freq]
+      @freq ||= :MONTH
+      @this = BillingPlan.where(frequency: [:WEEK, @freq]).where.not(position: 1)
+      session[:payment_return_to] = request.url
+      render template: 'payments/pricing'
+    else
+      render template: 'payments/contact_admin'
+    end
   end
   
   def invite

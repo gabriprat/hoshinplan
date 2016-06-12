@@ -536,6 +536,17 @@ es:
     title: Link de activación inválido
     heading: Link de activación inválido
     text: Puede ser que el link que has usado esté caducado (caducan a las 24h) o que se haya generado otro posteriormente. Si no tienes el último mail de activación puedes generar otro clicando el botón más abajo.
+  contact_admin_page:
+    heading: Contacta con un administrador
+    text: Sólo los administradores de la empresa pueden actualizar la suscripción. Puedes contactar con ellos para pedirles que lo hagan.
+    email_subject:
+      one: Nuestro periodo de prueba de Hoshinplan caduca mañana
+      other: Nos quedan %{count} días de prueba de Hoshinplan
+    email_body:
+      one: Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba termina mañana y sólo los administradores pueden actualizar la suscripción. Gracias.
+      other: Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nos quedan %{count} días en el periodo de prueba y sólo los administradores pueden actualizar la suscripción. Gracias.
+    expired_email_subject: Nuestro periodo de prueba de Hoshinplan ha terminado
+    expired_email_body:  Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba ya ha terminado y sólo los administradores pueden actualizar la suscripción. Gracias.
   log_in_with: Accede con %{provider}
   new_child_for_parent: Nuevo %{child} para %{parent}
   invite_collaborators: Invitar colaboradores

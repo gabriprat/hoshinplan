@@ -3870,3 +3870,21 @@ body.column-form {
   list-style-type: none;
   color: red;
 }
+
+.send-email {
+  font-size: 2em;
+  margin: .5em .3em;
+  color: $secondary-color;
+}
+
+.contact-list {
+  text-align: center;
+  font-size: 1.3em;
+  ul {
+    display: inline-block;
+    text-align: left;
+    a * {
+      vertical-align: middle;
+    }
+  }
+}
