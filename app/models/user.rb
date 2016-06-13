@@ -92,7 +92,8 @@ class User < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 10.megabytes   
     
   attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image,
-     :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code
+     :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
+     :trial_ends_at, :initial_task_state
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
