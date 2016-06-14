@@ -84,7 +84,7 @@ class IndicatorsController < ApplicationController
     ihs = []
     last = {}
     JSON.parse(params[:json]).each_with_index { |h,idx| 
-      d = Date.strptime(h["day"], t('date.formats.default'))
+      d = Date.strptime(h["day"], t('date.formats.default')) if h["day"].present?
       if (d)
         ih = @this.indicator_histories.find_or_initialize_by(day: d)
         ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]

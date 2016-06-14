@@ -66,7 +66,7 @@ class TasksController < ApplicationController
   def update
     delocalize_config = { deadline: :date }
     self.this = find_instance
-    if (params[:task] && params[:task][:status]) 
+    if (params[:task] && params[:task][:status].present?)
       self.this.lifecycle.send("to_" + params[:task][:status] + "!", current_user)
       params[:task].delete(:status)
     end
