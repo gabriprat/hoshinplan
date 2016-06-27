@@ -7,6 +7,6 @@
 </def>
 
 <def tag="radio-button-item" attrs="option, id" for="EnumFeeling">
-	<radio-button option="&option" id="&id" param /> 
-	<label for="#{id}"><span class="ic-#{option}"></span><span class="feeling-option-label">#{option}</span></label>
+	<radio-button option="&option" id="#{id}-#{option}" param /> 
+	<label for="#{id}-#{option}"><span class="ic-#{option}"></span><span class="feeling-option-label">#{option}</span></label>
 </def>
