@@ -62,7 +62,7 @@
     <nav-item with="&current_user" action="tutorial" id="nav-tutorial">
     	<t key="tutorial">Tutorial</t>
     </nav-item>
-    <nav-item with="&current_user.subscriptions" action="index" id="nav-subscriptions" if="&logged_in? && current_user.all_companies.inject(0) {|sum, c| sum + c.subscriptions_count } &gt; 0">
+    <nav-item with="&current_user.subscriptions" action="index" id="nav-subscriptions" if="&logged_in? && current_user.all_companies.inject(0) {|sum, c| sum + c._?.subscriptions_count } &gt; 0">
     	<t key="subscriptions">Subscriptions</t>
     </nav-item>
     <nav-item href="#{base_url}/admin" if="&current_user.administrator?">Admin</nav-item>
