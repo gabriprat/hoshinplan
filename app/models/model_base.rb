@@ -38,11 +38,11 @@ module ModelBase
   end
 
   def same_company_editor(cid=nil)
-    same_company(cid, :active)
+    same_company(cid, :editor)
   end
 
   def same_company_reader(cid=nil)
-    same_company(cid, :readonly)
+    same_company(cid, :reader)
   end
 
   def same_company_admin(cid=nil)
