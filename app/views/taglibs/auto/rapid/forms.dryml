@@ -386,7 +386,7 @@
 <def tag="form" for="UserCompany">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="state, company, user" param/>
+    <field-list fields="roles_mask, state, company, user" param/>
     <div param="actions">
       <submit label="#{ht 'user_company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

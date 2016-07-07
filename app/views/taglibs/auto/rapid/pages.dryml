@@ -2913,7 +2913,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="state, company, user" param/>
+      <field-list fields="roles_mask, state, company, user" param/>
     </content-body:>
 
   </page>
