@@ -1,14 +1,23 @@
 class UserCompany < ActiveRecord::Base
 
+  IS_ADMIN_SQL = 'roles_mask & 4 != 0';
+
   include ModelBase
   
   
   hobo_model # Don't put anything above this
 
-  fields do 
+  fields do
+    roles_mask :integer, null: false, default: 3
     timestamps
   end
-  attr_accessible :company, :company_id, :user, :user_id
+
+  include RoleModel
+  # declare the valid roles -- do not change the order if you add more
+  # roles later, always append them at the end!
+  roles [:reader, :editor, :admin]
+
+  attr_accessible :company, :company_id, :user, :user_id, :roles
   index [:user_id, :company_id]
   
   belongs_to  :company, :accessible => true
@@ -36,6 +45,16 @@ class UserCompany < ActiveRecord::Base
   before_destroy do |uc|
     Indicator.where(:company_id => uc.company_id, :responsible_id => uc.user_id).update_all(:responsible_id => nil)
     Task.where(:company_id => uc.company_id, :responsible_id => uc.user_id).update_all(:responsible_id => nil)
+  end
+
+  before_save do |uc|
+    if uc.roles_mask == 2
+      uc.roles_mask = 3 #Editor implies reader
+    end
+
+    if uc.roles_mask == 4
+      uc.roles_mask = 7 #Admin implies editor and reader
+    end
   end
   
   def company_admin_available
@@ -67,22 +86,20 @@ class UserCompany < ActiveRecord::Base
   
   lifecycle do
 
-     state :invited, :active, :admin
+     state :invited, :active
 
-     create :invite, :params => [ :company, :user ], :become => :invited,
+     create :invite, :params => [ :company, :user, :roles ], :become => :invited,
                       :available_to => :create_available, :new_key => true do
          UserCompanyMailer.invite(self, company, lifecycle.key, acting_user, acting_user.language.to_s).deliver_later
      end
      
-     create :invite_without_email, :params => [ :company, :user ], :become => :invited,
+     create :invite_without_email, :params => [ :company, :user, :roles ], :become => :invited,
                       :available_to => :create_available, :new_key => true
      
-     create :activate_ij, :params => [ :company, :user ], :become => :active, :available_to => :activate_ij_available
+     create :activate_ij, :params => [ :company, :user, :roles ], :become => :active, :available_to => :activate_ij_available
 
      transition :activate, {:invited => :active}, :available_to => :activate_available
-     
-     transition :revoke_admin, {:invited => :active}, :available_to => :activate_ij_available
-     
+
      transition :resend_invite, { :invited => :invited }, :available_to => :company_admin_available, :new_key => true do
        if self.user.state == "invited"
          self.user.lifecycle.resend_invite!(acting_user)
@@ -91,26 +108,18 @@ class UserCompany < ActiveRecord::Base
        end
      end
      
-     create :new_company, :params => [ :company, :user ], :become => :admin
+     create :new_company, :params => [ :company, :user ], :become => :active
      
      transition :accept, { :invited => :active }, :available_to => :accept_available do
        #user = self.user
        #user.lifecycle.activate!(user)
        #user.save!(:validate => false)
-       company.user_companies.where(:state => :admin).each do |admin| 
+       company.user_companies.where(IS_ADMIN_SQL).each do |admin|
          UserCompanyMailer.transition(admin.user, user, company, 'accept').deliver_later
        end
      end
      
-     transition :cancel_invitation, { :invited => :destroy }, :available_to => :company_admin_available 
-
-     transition :make_admin, { [:invited, :active] => :admin }, :available_to => :company_admin_available do
-       UserCompanyMailer.transition(user, user, company, "admin").deliver_later
-     end
-     
-     transition :revoke_admin, { :admin => :active }, :available_to => :company_admin_available do
-       UserCompanyMailer.transition(user, acting_user, company, "no_admin").deliver_later
-     end
+     transition :cancel_invitation, { :invited => :destroy }, :available_to => :company_admin_available
  
      transition :remove, { UserCompany::Lifecycle.states.keys => :destroy }, :available_to => :company_admin_available do 
        UserCompanyMailer.transition(User.unscoped.find(self.user_id), acting_user, company, "removed").deliver_later
@@ -130,12 +139,12 @@ class UserCompany < ActiveRecord::Base
   end
 
   def update_permitted?
-    user_id == acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
+    acting_user.administrator? || acting_user.user_companies.where('company_id = ? and ' + IS_ADMIN_SQL, company_id).exists?
   end
 
   def destroy_permitted?
     return false if user_id == 557 && !acting_user.administrator?
-    user_id == acting_user.id || acting_user.administrator? || acting_user.user_companies.find(company_id).where(:state => :admin).exists?
+    user_id == acting_user.id || acting_user.administrator? || acting_user.user_companies.where('company_id = ? and ' + IS_ADMIN_SQL, company_id).exists?
   end
 
   def view_permitted?(field)

@@ -21,6 +21,23 @@
                                                 </p>
                                         </div>
                                 </div>
+                                <div class='form-group'>
+                                    <label class='col-sm-2 control-label' for='collaborators'>
+                                      <t key="company.role"/>
+                                    </label>
+
+                                    <div class='col-sm-8'>
+                                    <radio-button-item name="role" option="reader">
+                                        <append-label:><t key="activerecord.attributes.user_company.valid_roles.reader"/></append-label>
+                                    </radio-button-item>
+                                    <radio-button-item name="role" option="editor" selected-option="editor">
+                                        <append-label:><t key="activerecord.attributes.user_company.valid_roles.editor"/></append-label>
+                                    </radio-button-item>
+                                    <radio-button-item name="role" option="admin">
+                                        <append-label:><t key="activerecord.attributes.user_company.valid_roles.admin"/></append-label>
+                                    </radio-button-item>
+                                </div>
+                        </div>
         		</div>
         </section>
         <section class="modal-footer">

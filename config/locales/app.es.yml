@@ -341,6 +341,11 @@ es:
       user_company:
         user: Usuario
         state: Estado
+        roles: Roles
+        valid_roles:
+          editor: Editor
+          reader: Lector
+          admin: Admin
         lifecycle:
           states:
             active: Usuario
@@ -437,9 +442,11 @@ es:
     select_indicator_to_add: Selecciona la gráfica oculta que desees hacer visible de nuevo
   company:
     email_addresses: Emails
+    role: Rol
     manage_collaborators: Gestionar colaboradores
     invite_collaborators: Invitar colaboradores
-    maximum_collaborators: '(Máximo: %{value})'
+    maximum_collaborators: '(%{used} de %{value})'
+    unlimited: Ilimitados
     add_collaborators: Añadir colaboradores
     upgrade_to_invite: Mejora tu plan para invitar más colaboradores
     send_invitations: Envía invitaciones de colaboración escribiendo direcciones de email separadas por comas en la caja de texto. Cada email puede contener el nombre de la persona con la forma <code>Nombre Apellidos &lt;email@empresa.com&gt;</code>.

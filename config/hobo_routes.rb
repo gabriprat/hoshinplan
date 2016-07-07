@@ -284,18 +284,12 @@ Hoshinplan::Application.routes.draw do
     member do
       put 'activate', :action => 'do_activate'
       get 'activate'
-      put 'revoke_admin', :action => 'do_revoke_admin'
-      get 'revoke_admin'
       put 'resend_invite', :action => 'do_resend_invite'
       get 'resend_invite'
       put 'accept', :action => 'do_accept'
       get 'accept'
       put 'cancel_invitation', :action => 'do_cancel_invitation'
       get 'cancel_invitation'
-      put 'make_admin', :action => 'do_make_admin'
-      get 'make_admin'
-      put 'revoke_admin', :action => 'do_revoke_admin'
-      get 'revoke_admin'
       put 'remove', :action => 'do_remove'
       get 'remove'
     end

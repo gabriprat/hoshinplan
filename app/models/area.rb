@@ -104,11 +104,11 @@ class Area < ActiveRecord::Base
   end
   
   def create_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_company_editor
   end
 
   def update_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_company_editor
   end
 
   def destroy_permitted?

@@ -1673,6 +1673,16 @@ form#add-collaborators {
         color: #666;
 }
 
+.collaborators #collab-num {
+  display: inline;
+}
+
+.roles-view form {
+  .row {
+    margin: 0;
+  }
+}
+
 form#add-collaborators textarea {
 	width: 20em;
 	height: 10em;

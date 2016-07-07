@@ -1,7 +1,9 @@
-<def tag="radio-button" attrs="option, selected-option" polymorphic> 
-   <% selected_option ||= this %>
-   <%= radio_button_tag(param_name_for_this, option, (option==selected_option), 
-deunderscore_attributes(attributes)) %> 
+<def tag="radio-button" attrs="option, selected-option, name" polymorphic>
+   <% selected_option ||= this
+    name ||= param_name_for_this
+   %>
+   <%= radio_button_tag(name, option, (option==selected_option),
+deunderscore_attributes(attributes)) %>
 </def> 
 
 <def tag="radio-button-item" attrs="option, id, label-class" polymorphic> 
@@ -14,18 +16,29 @@ deunderscore_attributes(attributes)) %>
    </label>
 </def> 
 
-<def tag="radio-group" attrs="options, labels, label-class" polymorphic> 
+<def tag="radio-group" attrs="options, labels, label-class, append-id" polymorphic>
    <% labels ||= [] 
       label_class ||= ""
    %> 
    <% options.each_with_index do |option, index| -%> 
    <radio-button-item option="&option" 
-id="#{attributes[:id]}#{param_name_for_this}[#{index}]" label-class="&label_class"  merge param> 
+id="#{attributes[:id]}#{param_name_for_this}[#{index}]#{append_id}" label-class="&label_class"  merge param>
      <append-label: param><%= labels[index] || option %></append-label:> 
    </radio-button-item> 
    <% end %>
 </def> 
 
+
+<def tag="radio-group" attrs="options, labels, label-class" for="RoleModel::Roles">
+    <%
+        parent_model_name = this_parent.class.name.underscore
+        roles = this_parent.class.valid_roles
+        options ||= roles
+        labels ||= roles.map {|o| t "activerecord.attributes.#{parent_model_name}.valid_roles.#{o}" }
+        selected = this.to_a[-1]
+	%>
+	<radio-group options="&options" labels="&labels" append-id="#{this_parent.id}" selected-option="&selected" for-type="String" merge/>
+</def>
 
 <def tag="btn-radio-group" polymorphic>
         <div class="btn-group clearfix" data-toggle="buttons" param="wrapper">

@@ -202,27 +202,31 @@ class Task < ActiveRecord::Base
     
     create :active, params: [:company_id, :objective_id, :area_id], become: :backlog
       
-    transition :activate, {nil => :active}, :available_to => "User"
+    transition :activate, {nil => :active}, :available_to => :lifecycle_available
 
-    transition :complete, {:active => :completed}, :available_to => "User" 
+    transition :complete, {:active => :completed}, :available_to => :lifecycle_available
     
-    transition :discard, {:active => :discarded}, :available_to => "User" 
+    transition :discard, {:active => :discarded}, :available_to => :lifecycle_available
     
-    transition :start, {:backlog => :active}, :available_to => "User" 
-    transition :reactivate, {:completed => :active}, :available_to => "User" 
-    transition :reactivate, {:discarded => :active}, :available_to => "User" 
+    transition :start, {:backlog => :active}, :available_to => :lifecycle_available
+    transition :reactivate, {:completed => :active}, :available_to => :lifecycle_available
+    transition :reactivate, {:discarded => :active}, :available_to => :lifecycle_available
     
-    transition :delete, {:backlog => :backlog}, :available_to => "User" do self.destroy! end
-    transition :delete, {:completed => :completed}, :available_to => "User" do self.destroy! end
-    transition :delete, {:discarded => :discarded}, :available_to => "User" do self.destroy! end
+    transition :delete, {:backlog => :backlog}, :available_to => :lifecycle_available do self.destroy! end
+    transition :delete, {:completed => :completed}, :available_to => :lifecycle_available do self.destroy! end
+    transition :delete, {:discarded => :discarded}, :available_to => :lifecycle_available do self.destroy! end
     
-    transition :to_backlog, {Task::Lifecycle.states.keys => :backlog}, :available_to => "User" 
-    transition :to_active, {Task::Lifecycle.states.keys => :active}, :available_to => "User" 
-    transition :to_completed, {Task::Lifecycle.states.keys => :completed}, :available_to => "User" 
-    transition :to_discarded, {Task::Lifecycle.states.keys => :discarded}, :available_to => "User" 
-    transition :to_deleted, {Task::Lifecycle.states.keys => :deleted}, :available_to => "User" 
+    transition :to_backlog, {Task::Lifecycle.states.keys => :backlog}, :available_to => :lifecycle_available
+    transition :to_active, {Task::Lifecycle.states.keys => :active}, :available_to => :lifecycle_available
+    transition :to_completed, {Task::Lifecycle.states.keys => :completed}, :available_to => :lifecycle_available
+    transition :to_discarded, {Task::Lifecycle.states.keys => :discarded}, :available_to => :lifecycle_available
+    transition :to_deleted, {Task::Lifecycle.states.keys => :deleted}, :available_to => :lifecycle_available
     
       
+  end
+
+  def lifecycle_available
+      return acting_user if same_company_editor
   end
   
   before_save do |task|        
@@ -280,11 +284,11 @@ class Task < ActiveRecord::Base
   end
   
   def create_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_company_editor
   end
 
   def update_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_company_editor
   end
 
   def destroy_permitted?

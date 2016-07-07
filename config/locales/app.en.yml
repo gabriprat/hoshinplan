@@ -343,6 +343,11 @@ en:
       user_company:
         user: User
         state: Status
+        roles: Roles
+        valid_roles:
+          editor: Editor
+          reader: Reader
+          admin: Admin
         lifecycle:
           states:
             active: User
@@ -439,9 +444,11 @@ en:
     select_indicator_to_add: Select the hidden chart you want to show again
   company:
     email_addresses: Email addresses
+    role: Role
     manage_collaborators: Manage collaborators
     invite_collaborators: Invite collaborators
-    maximum_collaborators: '(Maximum: %{value})'
+    maximum_collaborators: '(%{used} out of %{value})'
+    unlimited: Unlimited
     add_collaborators: Add collaborators
     upgrade_to_invite: Upgrade your plan to invite more collaborators
     send_invitations: Send invitations to collaborators by writing email addresses separeted by commas. Each email address may contain the person's name in the form <code>Name LastName &lt;email@company.com&gt;</code>.

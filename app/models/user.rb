@@ -414,9 +414,9 @@ class User < ActiveRecord::Base
     acting_user == self || acting_user.administrator?
   end
   
-  def _same_company(cid=nil)
+  def _user_companies_company(user, cid=nil)
     return false unless self.signed_up?
-    acting_user == self || acting_user.user_companies.where(:company_id => self.user_companies.*.company_id).present?
+    acting_user.user_companies.where(:company_id => self.user_companies.*.company_id)
   end
   
   def _same_company_admin(cid=nil)

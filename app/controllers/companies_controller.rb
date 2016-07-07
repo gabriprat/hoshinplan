@@ -46,14 +46,14 @@ class CompaniesController < ApplicationController
     @freq ||= :MONTH
     current_user.all_companies
     @this = Company.user_find(current_user, params[:id])
-    @this.same_company_admin # load request variable to aviod queries in the template
+    @this.same_company_admin # load request variable to avoid queries in the template
     @limit_reached = false
     @collaborators = cols
     if @this.collaborator_limits_reached?
       @limit_reached = true
       flash.now[:info] = t("errors.user_limit_reached").html_safe 
       @billing_plans = BillingPlan.where(frequency: [:WEEK, @freq]).where.not(position: 1) 
-      if (@collaborators.size == 1)
+      if (@this.users.size == 1)
         @this = @billing_plans
         session[:payment_return_to] = request.url
         render template: 'payments/pricing'
@@ -102,6 +102,7 @@ class CompaniesController < ApplicationController
   end
   
   def update
+    roles = [params[:role]]
     if params[:collaborators]
       error = false
       invite_sent = false
@@ -147,12 +148,12 @@ class CompaniesController < ApplicationController
             company = Company.find(params[:id])
             begin
               if (company_domain_exists)
-                UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company})
+                UserCompany::Lifecycle.activate_ij(current_user, {:user => user, :company => company, :roles => roles})
               else
                 if invite_sent
-                  UserCompany::Lifecycle.invite_without_email(current_user, {:user => user, :company => company})
+                  UserCompany::Lifecycle.invite_without_email(current_user, {:user => user, :company => company, :roles => roles})
                 else
-                  UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company})
+                  UserCompany::Lifecycle.invite(current_user, {:user => user, :company => company, :roles => roles})
                 end
               end
             rescue Hobo::PermissionDeniedError => e

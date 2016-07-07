@@ -32,54 +32,67 @@ module ModelBase
     end
   end
   
-  def all_user_companies=(companies)
-    RequestStore.store[:all_user_companies] = companies
-  end
-
-  def all_user_companies
-    RequestStore.store[:all_user_companies]
-  end  
-  
-  def admin_user_companies=(companies)
-    RequestStore.store[:admin_user_companies] = companies
-  end
-
-  def admin_user_companies
-    RequestStore.store[:admin_user_companies]
-  end  
-  
   def rs_key(prefix, cid)
     user = acting_user ? acting_user : User.current_user
     prefix.to_s + user._?.id.to_s + "-" + cid.to_s
   end
-  
-  def same_company(cid=nil)
+
+  def same_company_editor(cid=nil)
+    same_company(cid, :active)
+  end
+
+  def same_company_reader(cid=nil)
+    same_company(cid, :readonly)
+  end
+
+  def same_company_admin(cid=nil)
     user = acting_user ? acting_user : User.current_user
-    return false if user.guest?
-    ret = RequestStore.store[rs_key :sc, cid]
-    if ret.nil?
-      ret = _same_company(cid)
-      RequestStore.store[rs_key :sc, cid] = ret
+    return false if user.id == 557 && !user.administrator?
+    return true if user.administrator?
+    if respond_to?("creator_id") && (user.id == creator_id)
+      return true
     end
-    ret
+    if self.is_a?(Company)
+      cid ||= self.id
+    else
+      cid ||= self.company_id.present? ? self.company_id : Company.current_id if self.respond_to?(:company_id)
+    end
+    same_company(cid, :admin)
   end
   
-  def _same_company(cid=nil)
+  def same_company(cid=nil, *roles)
     user = acting_user ? acting_user : User.current_user
+    return false if user.guest?
+
     return true if user._?.administrator?
-     
+
     if respond_to?("creator_id") && (user._?.id == creator_id)
       return true
     end
-    if (self.all_user_companies.nil? && !user.nil?)
-      self.all_user_companies = user.all_companies.*.id
+
+    if user == self
+      return true
     end
+
+    ret = RequestStore.store[rs_key :sc, cid]
+    if ret.nil?
+      ret = _user_companies_company(user, cid)
+      RequestStore.store[rs_key :sc, cid] = ret
+    end
+    if roles.empty?
+      ret
+    else
+        ret._?.any? {|uc| roles.include?(uc.state) }
+    end
+  end
+  
+  def _user_companies_company(user, cid=nil)
     if self.is_a?(Company)
-      cid = self.id
+      cid = self.id if cid.nil?
     else
       cid = company_id ? company_id : Company.current_id if cid.nil?
     end
-    ret = self.all_user_companies._?.include? cid
+    ret = user.all_active_user_companies_and_hoshins._?.select {|uc| uc.company.id == cid }
     ret
   end
 
@@ -100,23 +113,5 @@ module ModelBase
     return false if user.id == 557 && !user.administrator?
     return self.respond_to?("creator") && self.creator_id == user.id
   end
-  
-  
-  def same_company_admin(cid=nil)
-    user = acting_user ? acting_user : User.current_user
-    return false if user.id == 557 && !user.administrator?
-    return true if user.administrator?
-    if respond_to?("creator_id") && (user.id == creator_id)
-      return true
-    end
-    if self.is_a?(Company)
-      cid ||= self.id
-    else
-      cid ||= self.company_id.present? ? self.company_id : Company.current_id if self.respond_to?(:company_id)
-    end
-    if (self.admin_user_companies.nil? && !user.nil?)
-      self.admin_user_companies = user.user_companies.unscoped.where(:state => :admin, :user_id => user.id).*.company_id
-    end
-    self.admin_user_companies.include? cid
-  end
+
 end

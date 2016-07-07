@@ -30,7 +30,7 @@ class Company < ActiveRecord::Base
   has_many :indicators, -> { order :name },:dependent => :destroy, :inverse_of => :company
   has_many :tasks, -> { order :name },:dependent => :destroy, :inverse_of => :company
   
-  has_many :users, :through => :user_companies, :accessible => true
+  has_many :users, -> { where 'user_companies.roles_mask > 1' }, :through => :user_companies, :accessible => true
   has_many :user_companies, :dependent => :destroy
   
   has_many :subscriptions, :dependent => :destroy

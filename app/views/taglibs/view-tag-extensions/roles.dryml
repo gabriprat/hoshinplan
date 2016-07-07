@@ -1,0 +1,6 @@
+<def tag="view" for="RoleModel::Roles">
+    <% parent_model_name = this_parent.class.name.underscore %>
+    <ul>
+        <li repeat><t key="activerecord.attributes.#{parent_model_name}.valid_roles.#{this}"/></li>
+    </ul>
+</def>

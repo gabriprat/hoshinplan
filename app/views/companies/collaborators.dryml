@@ -20,14 +20,16 @@
           Company <name/>
         </ht> - 
 	<t key="company.manage_collaborators">Manage collaborators</t>
-	<t key="company.maximum_collaborators" value="#{this.user_limit}"/>
+	<do part="collab-num">
+	<t key="company.maximum_collaborators" used="#{this.users.size}" value="#{this.user_limit==1000000 ? t('company.unlimited') : number_with_precision(this.user_limit, :precision => 0)}"/>
+    </do>
      </h2>
     </content-header:>
     
     
     <content-body: class="well">
 		<set pid="&1"/>
-		<table-plus with="&@collaborators" fields="user, state">
+		<table-plus with="&@collaborators" fields="user, roles">
 			<user-view: >
 				<do part="user" id="user-#{pid}" part-locals="pid">
 				<a action="show" if="&can_view?">#{this.name} (#{this.email_address})</a>
@@ -37,29 +39,20 @@
 				<a action="edit" if="&can_update?"><span class="ic-cog"></span></a>
 				</do>
 			</user-view: >
-			<state-view: >
-				<if test="&this_parent.same_company_admin">
-					<do part="state" id="state-#{pid}" part-locals="this_parent,pid">
-						<call-tag tag="select" class="collab-state" data-rapid="&data_rapid('collaborator_state')">
-							<% 	opts = { t("activerecord.attributes.user_company.lifecycle.states.active") => :active,  t("activerecord.attributes.user_company.lifecycle.states.admin") => :admin}
-								if this.to_s == 'invited'
-									opts[t("activerecord.attributes.user_company.lifecycle.states.invited")] = :invited
-								end
-							%>
-							<%= options_for_select(opts, this) %>
-						</call-tag>
-						<form with="&this_parent" class="admin" lifecycle='make_admin' updates="#user-#{pid},#state-#{pid},#controls-#{pid}" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
-						      
-						</form>
-						<form with="&this_parent" class="active" lifecycle="& this.to_s == 'invited' ? 'activate' : 'revoke_admin'" updates="#user-#{pid},#state-#{pid},#controls-#{pid}" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
-						        
-						</form>
-					</do>
-				</if>
-				<else>
-					<t key="activerecord.attributes.user_company.lifecycle.states.#{this}"/>
-				</else>
-			</state-view:>
+			<roles-view:>
+				<do part="roles" id="roles-#{pid}" part-locals="this_parent,this_field,pid">
+                    <form with="&this_parent" updates="#user-#{pid},#roles-#{pid},#collab-num" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
+                        <field-list fields="roles">
+                            <roles-field:>
+                                <radio-group id="#{pid}" onclick="$('#roles-#{pid} form').submit()"/>
+                            </roles-field:>
+                        </field-list>
+                    </form>
+                    <else>
+                        <view/>
+                    </else>
+                </do>
+			</roles-view:>
 			<controls:>
 				<do part="controls"  id="controls-#{pid}" part-locals="pid">
 				<if test="&this.state == 'invited'">		
