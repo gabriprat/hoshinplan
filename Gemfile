@@ -75,7 +75,7 @@ gem "actionmailer_inline_css"
 gem 'delocalize'
 gem 'wicked_pdf'
 gem 'aws-sdk-v1'
-gem 'paperclip'
+gem 'paperclip', "~> 4.3.0"
 gem 'hobo_paperclip', :git => "git://github.com/Hobo/hobo_paperclip.git", :branch => "master"
 gem 'redis-rails'
 gem 'redis-store'
