@@ -82,7 +82,7 @@ module ModelBase
     if roles.empty?
       ret
     else
-        ret._?.any? {|uc| roles.include?(uc.state) }
+        ret._?.any? {|uc| roles.all? {|role| uc.roles.include? role } }
     end
   end
   
