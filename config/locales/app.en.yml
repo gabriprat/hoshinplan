@@ -278,6 +278,7 @@ en:
         parent: Parent
         company: Company
         creator: Responsible
+        tasks_visible_days: Tasks visible days
         lifecycle:
           transitions:
             activate: Activate

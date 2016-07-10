@@ -276,6 +276,7 @@ es:
         parent: Padre
         company: Empresa
         creator: Responsable
+        tasks_visible_days: Días tareas visibles
         lifecycle:
           transitions:
             activate: Activar
