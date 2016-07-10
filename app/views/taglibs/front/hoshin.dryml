@@ -161,7 +161,7 @@
 	<set parent="&this.company.hoshins.size > 0 ? ', parent_id' : ''" if="&this.company"/>
 	<old-form merge multipart>
 	    <prepend-default:><submit style="width: 0; height: 0; display: inline; padding: 0; margin: 0; border: 0;" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/></prepend-default:>
-            <field-list: fields="name, header #{parent}, company, image" no-edit="view">
+            <field-list: fields="name, header #{parent}, company, image, tasks_visible_days" no-edit="view">
 	    	<company-view:>
 			<select-one options="&current_user.all_companies.to_a" if="&current_user.all_companies.length &gt; 0" required/>
 			<else>

@@ -21,7 +21,8 @@ class Hoshin < ActiveRecord::Base
     hoshins_count :integer, :default => 0, :null => false
     header HoboFields::Types::TextilePlusString
     health_updated_at :datetime
-    color       Color 
+    color       Color
+    tasks_visible_days :integer, default: 110, null: false
     timestamps
     deleted_at    :datetime
     ancestry      :string
@@ -53,7 +54,7 @@ class Hoshin < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :less_than => 10.megabytes   
     
-  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :creator_id, :creator, :color, :image
+  attr_accessible :name, :id, :parent, :parent_id, :company, :company_id, :header, :areas, :creator_id, :creator, :color, :image, :tasks_visible_days
     
   has_ancestry 
   
@@ -97,6 +98,10 @@ class Hoshin < ActiveRecord::Base
       Hoshin.unscoped.where(company_id: hoshin.company_id).each do |h| 
         h.update_attributes(hoshins_count: h.children.count)
       end
+    end
+
+    if hoshin.tasks_visible_days_changed?
+      Task.unscoped.where(hoshin_id: hoshin.id).update_all(visible_days: hoshin.tasks_visible_days)
     end
   end
   

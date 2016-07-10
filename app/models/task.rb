@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
     confidence        :percentage
     impact            :percentage
     effort            :percentage
+    visible_days      :integer, default: 110, null: false
     timestamps
     deleted_at    :datetime
   end
@@ -94,13 +95,14 @@ class Task < ActiveRecord::Base
   }
   
   scope :visible, -> {
-    where("status != 'deleted' and (status = 'active' or status = 'backlog' or coalesce(deadline, tasks.created_at)>current_date-110)")
+    where("status != 'deleted' and (status = 'active' or status = 'backlog' or visible_days = 0 or coalesce(deadline, tasks.created_at)>current_date-visible_days)")
   }
  
   before_create do |task|
     task.area = task.objective.area
     task.company = task.objective.company
     task.hoshin = task.objective.hoshin
+    task.visible_days = task.objective.hoshin.tasks_visible_days
   end
 
   after_destroy 'hoshin.touch'
