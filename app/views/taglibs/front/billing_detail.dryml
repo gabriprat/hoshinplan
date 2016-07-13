@@ -13,7 +13,7 @@
     <body: class="checkout"/>
     
     <custom-javascript:>
-            getScript('/assets/billing.js', function() { $.billing(); });
+            getScript('<%= asset_path('billing.js')%>', function() { $.billing(); });
     </custom-javascript:>
     
     <aside-column:>
@@ -133,14 +133,16 @@
                             <input name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control"/>
                     </div>
             </div>
-            <div param="actions">
-              <input name="plan_id" type="hidden" value="&@billing_plan.id" unless="&@billing_plan.nil?"/>
-              <submit label="#{ht 'billing_detail.actions.save', :default=>['Save']}" param/>
-              <div class="powered-stripe">
-                      <span class="ic-powered-stripe"></span>
-              </div>
-            </div>
       </div>
+    </div>
+    <div class="row">
+        <div class="complete-purchase">
+          <input name="plan_id" type="hidden" value="&@billing_plan.id" unless="&@billing_plan.nil?"/>
+          <submit class="btn-raised btn-lg" label="#{t 'billing_details.complete_your_purchase'}" param/>
+          <div class="powered-stripe">
+                  <span class="ic-powered-stripe"></span>
+          </div>
+        </div>
     </div>
     <input type="hidden" name="total" id="calc-total"/>
     <input type="hidden" name="taxes" id="calc-taxes"/>
