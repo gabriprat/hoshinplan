@@ -34,6 +34,10 @@
                 that.trigger("vat:validate");
                 return;
             }
+            var vat = that.val();
+            vat = vat.replace(/[^a-z0-9]/gi,'');
+            vat = vat.toUpperCase();
+            that.val(vat);
             var value = country_input.val() + that.val();
             var options = {
                 method: 'POST',
