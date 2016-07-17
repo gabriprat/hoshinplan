@@ -255,6 +255,7 @@ GEM
       mime-types (>= 1.16, < 4)
     metaclass (0.0.4)
     mime-types (2.99.2)
+    mime-types-data (3.2016.0521)
     mimemagic (0.3.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
@@ -587,7 +588,7 @@ DEPENDENCIES
   yui-compressor
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.3.1
 
 BUNDLED WITH
    1.12.5
