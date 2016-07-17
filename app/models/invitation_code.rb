@@ -3,7 +3,7 @@ class InvitationCode < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name        :string, unique: true, :null => false
+    name        :string, :unique, :null => false
     total       :integer, :null => false
     used        :integer, :null => false
     trial_days  :integer, :null => false
