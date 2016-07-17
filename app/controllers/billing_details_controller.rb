@@ -17,24 +17,24 @@ class BillingDetailsController < ApplicationController
   end
 
   def create_for_company
-    ActiveRecord::Base.transaction do
-      @this = BillingDetail.where(company_id: params[:company_id]).first
-      @billing_plan = BillingPlan.find(params[:plan_id])
-      params[:billing_detail][:active_subscription].merge!({
-                                                               plan_name:  @billing_plan.name,
-                                                               amount_value: @billing_plan.amount_value,
-                                                               monthly_value: @billing_plan.monthly_value,
-                                                               amount_currency: @billing_plan.amount_currency
-                                                           })
-      hobo_create_for :company do
-        if valid?
-          update_stripe_billing_details
+    @this = BillingDetail.where(company_id: params[:company_id]).first
+    @billing_plan = BillingPlan.find(params[:plan_id])
+    params[:billing_detail][:active_subscription].merge!({
+                                                             plan_name:  @billing_plan.name,
+                                                             amount_value: @billing_plan.amount_value,
+                                                             monthly_value: @billing_plan.monthly_value,
+                                                             amount_currency: @billing_plan.amount_currency
+                                                         })
+    hobo_create_for :company do
+      if valid?
+        flash[:notice] = nil
+        update_stripe_billing_details
+        ActiveRecord::Base.transaction do
           begin
-            update_stripe_billing_details
             charge
             redirect_to this.company, action: :collaborators
           rescue Stripe::CardError => _
-            flash[:error] = I18n.t('errors.invalid_credit_card')
+            flash.now[:error] = I18n.t('errors.invalid_credit_card')
             update_response(false)
             raise ActiveRecord::Rollback
           end
@@ -70,7 +70,7 @@ class BillingDetailsController < ApplicationController
             charge(old_remaining_amount)
             redirect_to this.company, action: :collaborators
           rescue Stripe::CardError => _
-            flash[:error] = I18n.t('errors.invalid_credit_card')
+            flash.now[:error] = I18n.t('errors.invalid_credit_card')
             update_response(false)
             raise ActiveRecord::Rollback
           end
@@ -120,6 +120,7 @@ class BillingDetailsController < ApplicationController
   def charge(old_remaining_amount=0)
 
     subscription = self.this.active_subscription
+    subscription.billing_detail_id = self.this.id
     subscription.charge(full_amount=false)
     return nil
   end

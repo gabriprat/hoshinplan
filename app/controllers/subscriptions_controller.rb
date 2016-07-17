@@ -156,7 +156,7 @@ class SubscriptionStripesController < ApplicationController
   def destroy
     @this = find_instance
     @this.cancel
-    log_event "Cancel subscription", {objid: @this.id, company_id: @this.company_id, name: @this.billing_plan.name, amount: @this.amount_value, frequency: @this.billing_plan.frequency, currency: @this.amount_currency}
+    log_event "Cancel subscription", {objid: @this.id, company_id: @this.company_id, name: @this.plan_name, amount: @this.amount_value, frequency: @this.billing_period, currency: @this.amount_currency}
     if request.xhr?
       hobo_ajax_response
     else
