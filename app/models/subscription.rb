@@ -18,6 +18,8 @@ class Subscription < ActiveRecord::Base
     billing_period  HoboFields::Types::EnumString.for(:monthly, :annual), :required
     last_payment_at :datetime
     next_payment_at :date
+    paying_at       :datetime
+    payment_error   :text
     timestamps
     deleted_at      :datetime
     deleted_by      :string
@@ -45,7 +47,15 @@ class Subscription < ActiveRecord::Base
   after_save :update_counter_cache
   after_destroy :update_counter_cache
   after_create :update_counter_cache
-  
+
+
+  scope :at_hour, lambda { |*hour|
+    joins(:user)
+        .where("date_part('hour',now() at time zone coalesce(users.timezone, 'Europe/Berlin')) = ?", hour)
+        .references(:user)
+
+  }
+
   before_save do |s|
     if s.status_changed? && s.status == 'Canceled'
       s.deleted_by = User.current_user.email_address
@@ -67,10 +77,10 @@ class Subscription < ActiveRecord::Base
   end
   
   def update_counter_cache
-    u = self.user
+    u = User.unscoped.find(user_id)
     u.subscriptions_count = u.subscriptions.where(:status => :Active).count
     u.save!
-    c = self.company
+    c = Company.unscoped.find(company_id)
     c.subscriptions_count = c.subscriptions.where(:status => :Active).count
     c.save!
   end
@@ -116,7 +126,7 @@ class Subscription < ActiveRecord::Base
 
   def remaining_days
     return 0 if self.new_record?
-    (next_payment_at.to_date - Date.today - 1).to_i
+    (next_payment_at.to_date - Date.today).to_i
   end
   
   # --- Permissions --- #
@@ -159,6 +169,29 @@ class SubscriptionStripe < Subscription
     end
     self.status = 'Canceled'
     self.save!
+  end
+
+  def charge(full_amount=true, old_remaining_amount=0)
+    c = Company.unscoped.find(company_id)
+    b = BillingDetail.unscoped.find(billing_detail_id)
+    credit = c.credit || 0;
+    charge_amount = full_amount ? total_amount : remaining_amount
+    pay_now = charge_amount - old_remaining_amount - credit;
+    pay_now = pay_now * (1.0 + b.tax_tpc.to_f/100.0)
+    if pay_now > 0
+      order = Stripe::Charge.create(
+          amount: (pay_now * 100).to_i,
+          currency: amount_currency,
+          customer: b.stripe_client_id,
+          description: plan_name + " plan #{billing_period} (#{users} users)"
+      )
+      c.credit = 0
+      c.save
+    else
+      c.credit = -pay_now
+      c.save
+    end
+    pay_now
   end
 end
 

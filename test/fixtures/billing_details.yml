@@ -1,0 +1,25 @@
+---
+billing_details_001:
+  id: '1'
+  company_name: Company Name
+  address_line_1: Address line 1
+  contact_name: Contact Name
+  contact_email: email@email.com
+  vat_number: ''
+  country: ES
+  created_at: '2016-07-15 09:14:39.310507'
+  updated_at: '2016-07-15 09:14:45.693001'
+  address_line_2: ''
+  city: Alcobendas
+  state: Madrid
+  zip: '28100'
+  stripe_client_id: cus_8pzLZczQCKJdj7
+  card_brand: VISA
+  card_last4: '4242'
+  card_exp_month: '7'
+  card_exp_year: '2017'
+  card_stripe_token: card_18YJO8IR4b9N3GVEj3WxYsrp
+  creator_id: 1
+  company_id: 1
+  deleted_at: 
+  vies_valid: f

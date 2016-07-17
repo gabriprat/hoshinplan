@@ -167,6 +167,19 @@ class UserCompanyMailer < ActionMailer::Base
             }
           end
   end
+
+  def admin_payment_error(subscription, e)
+    sendgrid_category "payment_error"
+    mail( :subject => "Payment error for subscription #{subscription.id}!",
+          :to      => User.administrator.pluck(:email_address),
+          :from    => "Hoshinplan Jobs <no-reply@hoshinplan.com>" )  do |format|
+      format.text {
+        render text: "Payment error for subscription #{subscription.id}!"
+          + e.message + "\n"
+          + e.backtrace.join("\n")
+      }
+    end
+  end
   
   private
   

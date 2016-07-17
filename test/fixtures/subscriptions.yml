@@ -5,16 +5,26 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
+  created_at: '2016-07-15 09:14:39.021733'
+  updated_at: '2016-07-15 09:14:39.021733'
   user_id: 1
   status: Active
   sandbox: f
   company_id: 1
-  amount_value: 5
+  amount_value: '4.16'
   amount_currency: EUR
-  type: SubscriptionStripe
-  users: 10
-  monthly_value: 4.17
-# column: value
-#
-two: {}
-#  column: value
+  id_paypal:
+  deleted_at:
+  type: 'SubscriptionStripe'
+  deleted_by:
+  users: 1
+  monthly_value: '5.00'
+  billing_period: annual
+  billing_detail_id: 1
+  plan_name: Basic
+  billing_plan_id:
+  last_payment_at:
+  next_payment_at: <%= Date.today %>
+  paying_at:
+  payment_error:

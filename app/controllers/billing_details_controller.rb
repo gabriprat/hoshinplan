@@ -120,22 +120,7 @@ class BillingDetailsController < ApplicationController
   def charge(old_remaining_amount=0)
 
     subscription = self.this.active_subscription
-    credit = self.this.company.credit || 0;
-    pay_now = subscription.remaining_amount - old_remaining_amount - credit;
-    pay_now = pay_now * (1.0 + self.this.tax_tpc.to_f/100.0)
-    if pay_now > 0
-      order = Stripe::Charge.create(
-          amount: (pay_now * 100).to_i,
-          currency: self.this.active_subscription.amount_currency,
-          customer: self.this.stripe_client_id,
-          description: self.this.active_subscription.plan_name + " plan #{@this.active_subscription.billing_period} (#{ @this.active_subscription.users} users)"
-      )
-      self.this.company.credit = 0
-      self.this.company.save
-    else
-      self.this.company.credit = -pay_now
-      self.this.company.save
-    end
+    subscription.charge(full_amount)
     return nil
   end
 end

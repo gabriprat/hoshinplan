@@ -892,7 +892,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="header, health_updated_at, color, ancestry, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
+      <field-list fields="header, health_updated_at, color, tasks_visible_days, ancestry, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="area.collection.heading" count="&this.areas.count" >
@@ -2022,7 +2022,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="id_paypal, status, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, deleted_by, billing_detail, billing_plan, company, user" param/>
+      <field-list fields="id_paypal, status, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, paying_at, payment_error, deleted_by, billing_detail, billing_plan, company, user" param/>
     </content-body:>
 
   </page>
@@ -2128,7 +2128,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="id_paypal, status, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, deleted_by, billing_detail, billing_plan, company, user" param/>
+      <field-list fields="id_paypal, status, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, paying_at, payment_error, deleted_by, billing_detail, billing_plan, company, user" param/>
     </content-body:>
 
   </page>
@@ -2234,7 +2234,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="id_paypal, status, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, deleted_by, billing_detail, billing_plan, company, user" param/>
+      <field-list fields="id_paypal, status, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, paying_at, payment_error, deleted_by, billing_detail, billing_plan, company, user" param/>
     </content-body:>
 
   </page>
@@ -2387,7 +2387,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="deadline, original_deadline, lane_pos, feeling, confidence, impact, effort, tsk_pos, status, area, company, objective, parent_area, parent_objective, responsible" param/>
+      <field-list fields="deadline, original_deadline, lane_pos, feeling, confidence, impact, effort, visible_days, tsk_pos, status, area, company, objective, parent_area, parent_objective, responsible" param/>
     </content-body:>
 
   </page>
