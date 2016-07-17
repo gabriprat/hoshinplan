@@ -48,6 +48,7 @@ config.action_mailer.default_url_options = { host: 'www.hoshinplandev.com:5000',
   config.paperclip_defaults = {
     #:storage => :s3,
     #:s3_host_name => 's3-eu-west-1.amazonaws.com',
+    #:s3_region => 'eu-west-1',
     #:path => '/:class/:attachment/:id_partition/:style/:filename',
     #:url => ':s3_domain_url',
     #:s3_credentials => {
