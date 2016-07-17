@@ -569,6 +569,7 @@ DEPENDENCIES
   resque-delay!
   resque-retry
   resque-timeout
+  rest-client
   role_model
   ruby-hmac
   ruby-openid

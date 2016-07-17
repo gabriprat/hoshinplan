@@ -32,6 +32,9 @@ class User < ActiveRecord::Base
     invitation_code :string
     initial_task_state HoboFields::Types::EnumString.for(:backlog, :active), default: :backlog, null: false
   end
+
+  set_search_columns :name, '"firstName"', '"lastName"', :email_address
+
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
 
   has_attached_file :image, {
