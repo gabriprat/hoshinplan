@@ -1,7 +1,14 @@
 <extend tag="index-for-user-page" for="Subscription">
 	<old-index-for-user-page merge>
 		<collection: replace>
-			<table-plus fields="company, billing_plan.name">
+			<table-plus fields="company, plan_name, next_payment_at, total_amount">
+			       <plan-name-view:>
+			            #{this} <t key="pricing_plans.#{this_parent.billing_period}"/>
+			            (#{this_parent.users} <%= User.model_name.human(count:this_parent.users).downcase %>)
+			       </plan-name-view:>
+			       <total-amount-view:>
+			         <%= number_to_currency(this, unit: get_unit(this_parent.amount_currency)) %>
+			       </total-amount-view:>
 			       <controls: >
 			       	<delete-button label="#{t 'payments.index.cancel_subscription'}"/>
 			       </controls:>

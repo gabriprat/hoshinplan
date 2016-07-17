@@ -120,7 +120,7 @@ class BillingDetailsController < ApplicationController
   def charge(old_remaining_amount=0)
 
     subscription = self.this.active_subscription
-    subscription.charge(full_amount)
+    subscription.charge(full_amount=false)
     return nil
   end
 end

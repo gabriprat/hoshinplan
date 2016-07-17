@@ -22,8 +22,11 @@ class Admin::UsersController < Admin::AdminSiteController
   end
   
   def index
-    @users = Hobo.find_by_search(params[:search], [User])[User.name].
-     order_by(parse_sort_param(:name, :email_address, :id, :created_at, :administrator, :timezone, :state, :email_address, :preferred_view, :language)).paginate(:page => params[:page], :per_page => 15).load
+    @users = Hobo.find_by_search(params[:search], [User])[User.name] if params[:search].present?
+
+    @users ||= User.all
+
+    @users = @users.order_by(parse_sort_param(:name, :email_address, :id, :created_at, :administrator, :timezone, :state, :email_address, :preferred_view, :language)).paginate(:page => params[:page], :per_page => 15).load
     hobo_index
   end
   

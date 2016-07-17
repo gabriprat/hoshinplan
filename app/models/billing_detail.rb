@@ -69,6 +69,7 @@ class BillingDetail < ActiveRecord::Base
     s.user = creator
     s.user_update_attributes(creator, s2)
     s.company_id = company_id
+    s.billing_detail_id = id
     s.save
   end
 

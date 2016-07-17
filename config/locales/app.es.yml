@@ -382,6 +382,11 @@ es:
         zip: Código postal
         country: País
         vat_number: Identificador fiscal
+      subscription:
+        company: Empresa
+        plan_name: Plan
+        next_payment_at: Próximo cobro
+        total_amount: Importe a cobrar
     attribute_help:
       hoshin:
         lifecycle:

@@ -20,6 +20,7 @@ class Subscription < ActiveRecord::Base
     next_payment_at :date
     paying_at       :datetime
     payment_error   :text
+    per_user        :boolean, default: true, null: false
     timestamps
     deleted_at      :datetime
     deleted_by      :string
@@ -63,6 +64,7 @@ class Subscription < ActiveRecord::Base
   end
 
   before_create do |s|
+    self.type = 'SubscriptionStripe'
     self.next_payment_at = DateTime.now.end_of_month + 1.day
   end
   
@@ -102,7 +104,7 @@ class Subscription < ActiveRecord::Base
 
   def total_amount
     return 0 if self.new_record?
-    amount_per_user_per_period * users
+    amount_per_user_per_period * (per_user ? users : 1)
   end
 
   def amount_per_user_per_period
@@ -163,10 +165,6 @@ end
 
 class SubscriptionStripe < Subscription
   def cancel
-    if (self.token.present? && self.user.stripe_id.present?)
-      customer = Stripe::Customer.retrieve(self.user.stripe_id)
-      subscription = customer.subscriptions.retrieve(self.token).delete
-    end
     self.status = 'Canceled'
     self.save!
   end
