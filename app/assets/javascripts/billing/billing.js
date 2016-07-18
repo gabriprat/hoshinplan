@@ -97,6 +97,8 @@
             var total = rowTotal + taxes;
             var last = moment($("#subscription-prorate").data("last"));
             var next = moment($("#subscription-prorate").data("next"));
+            var nr = getValueDate("next-renewal");
+            if (nr)  next = nr;
             var unit = $("input[name=billing_detail\\[active_subscription\\]\\[billing_period\\]]:checked").val();
             unit = unit == "monthly" ? "month" : "year";
             if (!next.isValid()) {
@@ -105,12 +107,14 @@
             if (!last.isValid()) {
                 last = next.clone().subtract(1, unit);
             }
-            var remaining_days = next.diff(moment().startOf('day'), 'days') - 1;
+            var remaining_days = next.diff(moment().startOf('day'), 'days');
             var total_days = next.diff(last, 'days');
+            if (total_days == 366) total_days = 365;
             var subscription_remaining = $("#subscription-prorate").data("remaining");
             var pay_now = rowTotal * remaining_days / total_days;
             var credit = $("#subscription-prorate").data("credit");
-            pay_now = pay_now - subscription_remaining - credit;
+            pay_now = Math.round(pay_now * 100) / 100
+            pay_now = (pay_now - subscription_remaining) * (taxTpc/100+1) - credit;
             if (pay_now < 0) {
                 credit = -pay_now;
                 pay_now = 0;
@@ -129,6 +133,11 @@
     
     function getValue(name) {
             return parseLocalFloat($(getSelector(name)).text());
+    }
+
+    function getValueDate(name) {
+        var format = $('body').find("[data-rapid-page-data]").data("rapid-page-data").dateformat.toUpperCase();
+        return moment($(getSelector(name)).text(), format);
     }
     
     function setValue(name, value) {

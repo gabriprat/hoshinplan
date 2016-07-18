@@ -512,7 +512,7 @@ es:
     full_name: Nombre completo
     mm_yy: MM/YY
     cvc: CVC
-    you_will_pay: Pagarás %{amount} (más impuestos) ahora por la fracción correspondiente hasta la siguiente renovación por el importe completo que será el %{next}.
+    you_will_pay: Pagarás %{amount} (impuestos incluidos) ahora por la fracción correspondiente hasta la siguiente renovación por el importe completo que será el %{next}.
     credit: Acumularás %{amount} de crédito para tus próximos pagos.
     complete_your_purchase: Completar tu compra
   stripe:

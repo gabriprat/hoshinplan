@@ -61,6 +61,10 @@ class Subscription < ActiveRecord::Base
     if s.status_changed? && s.status == 'Canceled'
       s.deleted_by = User.current_user.email_address
     end
+
+    if s.billing_period_changed?
+        s.next_payment_at = DateTime.now.end_of_month + 1.day
+    end
   end
 
   before_create do |s|
@@ -174,11 +178,12 @@ class SubscriptionStripe < Subscription
     b = BillingDetail.unscoped.find(billing_detail_id)
     credit = c.credit || 0;
     charge_amount = full_amount ? total_amount : remaining_amount
-    pay_now = charge_amount - old_remaining_amount - credit;
+    pay_now = charge_amount - old_remaining_amount
     pay_now = pay_now * (1.0 + b.tax_tpc.to_f/100.0)
+    pay_now = pay_now - credit
     if pay_now > 0
       order = Stripe::Charge.create(
-          amount: (pay_now * 100).to_i,
+          amount: (pay_now * 100).round.to_i,
           currency: amount_currency,
           customer: b.stripe_client_id,
           description: plan_name + " plan #{billing_period} (#{users} users)"

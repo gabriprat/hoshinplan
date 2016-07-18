@@ -62,12 +62,13 @@ class BillingDetailsController < ApplicationController
       end
       self.this = find_instance
       old_remaining_amount = self.this.active_subscription.remaining_amount
+      old_period = self.this.active_subscription.billing_period
       hobo_update do
 
         if valid?
           begin
             update_stripe_billing_details
-            charge(old_remaining_amount)
+            charge(old_remaining_amount, old_period)
             redirect_to this.company, action: :collaborators
           rescue Stripe::CardError => _
             flash.now[:error] = I18n.t('errors.invalid_credit_card')
@@ -117,11 +118,11 @@ class BillingDetailsController < ApplicationController
     end
   end
 
-  def charge(old_remaining_amount=0)
+  def charge(old_remaining_amount, old_period)
 
     subscription = self.this.active_subscription
     subscription.billing_detail_id = self.this.id
-    subscription.charge(full_amount=false)
+    subscription.charge(full_amount=false, old_remaining_amount)
     return nil
   end
 end

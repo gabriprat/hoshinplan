@@ -509,7 +509,7 @@ en:
     full_name: Full name
     mm_yy: MM/YY
     cvc: CVC
-    you_will_pay: You will pay %{amount} (plus taxes) now for the fraction remaining until the next subscription renewal with full payment that will be on %{next}.
+    you_will_pay: You will pay %{amount} (taxes included) now for the fraction remaining until the next subscription renewal with full payment that will be on %{next}.
     credit: You will save %{amount} as credit for your next payments.
     complete_your_purchase: Complete your purchase
   stripe:
