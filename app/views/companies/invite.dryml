@@ -27,13 +27,13 @@
                                     </label>
 
                                     <div class='col-sm-8'>
-                                    <radio-button-item name="role" option="reader">
+                                    <radio-button-item name="role" option="reader" selected-option="&@this.collaborator_limits_reached? ? 'reader' : ''">
                                         <append-label:><t key="activerecord.attributes.user_company.valid_roles.reader"/></append-label>
                                     </radio-button-item>
-                                    <radio-button-item name="role" option="editor" selected-option="editor">
+                                    <radio-button-item name="role" option="editor" selected-option="&@this.collaborator_limits_reached? ? '' : 'editor'" disabled="&@this.collaborator_limits_reached?">
                                         <append-label:><t key="activerecord.attributes.user_company.valid_roles.editor"/></append-label>
                                     </radio-button-item>
-                                    <radio-button-item name="role" option="admin">
+                                    <radio-button-item name="role" option="admin" disabled="&@this.collaborator_limits_reached?">
                                         <append-label:><t key="activerecord.attributes.user_company.valid_roles.admin"/></append-label>
                                     </radio-button-item>
                                 </div>

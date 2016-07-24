@@ -118,7 +118,7 @@ class BillingDetailsController < ApplicationController
     end
   end
 
-  def charge(old_remaining_amount, old_period)
+  def charge(old_remaining_amount=0, old_period=nil)
 
     subscription = self.this.active_subscription
     subscription.billing_detail_id = self.this.id

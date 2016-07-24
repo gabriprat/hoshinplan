@@ -448,6 +448,7 @@ en:
     role: Role
     manage_collaborators: Manage collaborators
     invite_collaborators: Invite collaborators
+    invite_readers: Invite read-only collaborators
     maximum_collaborators: '(%{used} out of %{value})'
     unlimited: Unlimited
     add_collaborators: Add collaborators

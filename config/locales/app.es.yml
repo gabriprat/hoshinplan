@@ -451,6 +451,7 @@ es:
     role: Rol
     manage_collaborators: Gestionar colaboradores
     invite_collaborators: Invitar colaboradores
+    invite_readers: Invitar colaboradores sólo lectura
     maximum_collaborators: '(%{used} de %{value})'
     unlimited: Ilimitados
     add_collaborators: Añadir colaboradores

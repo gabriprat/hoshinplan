@@ -5,7 +5,11 @@
     <content-header: class="well">
      <if test="&this.same_company_admin">
              <if test="&@limit_reached">
-                     <a action="upgrade" class="btn btn-primary btn-raised pull-right"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
+                <a action="upgrade" class="btn btn-primary btn-raised pull-right"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
+                <rmodal title="#{t 'company.invite_readers'}" url="#{company_path this}/invite" class="btn pull-right" target-id="invite-collaborators-modal">
+                    <span class="ic-envelope-o ic-fw"></span>
+                    <view with=" #{t 'company.invite_readers'}"/>
+                </rmodal>
              </if>
              <else>
                  <rmodal title="#{t 'company.invite_collaborators'}" url="#{company_path this}/invite" class="btn btn-primary btn-raised pull-right" target-id="invite-collaborators-modal">
