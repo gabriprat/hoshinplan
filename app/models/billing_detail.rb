@@ -65,12 +65,14 @@ class BillingDetail < ActiveRecord::Base
   end
   
   def active_subscription=(s2)
-    s = Subscription.where(status: 'Active', company_id: company_id).first_or_initialize
+    s = active_subscription
     s.user = creator
-    s.user_update_attributes(creator, s2)
+    with_acting_user(creator) do
+      s.attributes = s2
+    end
     s.company_id = company_id
     s.billing_detail_id = id
-    s.save
+    subscriptions << s
   end
 
   def tax_tpc

@@ -9,72 +9,83 @@ class BillingDetailsController < ApplicationController
   def new_for_company
     @billing_plan = BillingPlan.find(params[:plan])
     hobo_new_for :company
+    log_event("Checkout", {plan_name: @billing_plan.name, plan_id: @billing_plan.id})
   end
 
   def create
     @billing_plan = BillingPlan.find(params[:plan_id])
     hobo_create
-  end
-
-  def create_for_company
-    @this = BillingDetail.where(company_id: params[:company_id]).first
-    @billing_plan = BillingPlan.find(params[:plan_id])
-    params[:billing_detail][:active_subscription].merge!({
-                                                             plan_name:  @billing_plan.name,
-                                                             amount_value: @billing_plan.amount_value,
-                                                             monthly_value: @billing_plan.monthly_value,
-                                                             amount_currency: @billing_plan.amount_currency
-                                                         })
-    hobo_create_for :company do
-      if valid?
-        flash[:notice] = nil
-        update_stripe_billing_details
-        ActiveRecord::Base.transaction do
-          begin
-            charge
-            redirect_to this.company, action: :collaborators
-          rescue Stripe::CardError => _
-            flash.now[:error] = I18n.t('errors.invalid_credit_card')
-            update_response(false)
-            raise ActiveRecord::Rollback
-          end
-        end
-      end
-    end
+    log_event("Checkout", {plan_name: @billing_plan.name, plan_id: @billing_plan.id})
   end
 
   def edit
     @billing_plan = BillingPlan.find(params[:plan]) if params[:plan]
     hobo_show
+    log_event("Checkout", {plan_name: @this.active_subscription._?.plan_name, plan_id: @this.active_subscription._?.billing_plan_id})
   end
 
+  def create_for_company
+    @this = BillingDetail.where(company_id: params[:company_id]).first
+    subscription_params = params[:billing_detail][:active_subscription]
+    params[:billing_detail].delete(:active_subscription)
+    if params[:plan_id]
+      @billing_plan = BillingPlan.find(params[:plan_id])
+      subscription_params.merge!({
+                                     plan_name:  @billing_plan.name,
+                                     amount_value: @billing_plan.amount_value,
+                                     monthly_value: @billing_plan.monthly_value,
+                                     amount_currency: @billing_plan.amount_currency
+                                 })
+    end
+    hobo_create_for :company do
+      if valid?
+        _update_subscription(subscription_params)
+      end
+    end
+  end
 
   def update
-    ActiveRecord::Base.transaction do
-      if params[:plan_id]
-        @billing_plan = BillingPlan.find(params[:plan_id])
-        params[:billing_detail][:active_subscription].merge!({
-                                                                 plan_name:  @billing_plan.name,
-                                                                 amount_value: @billing_plan.amount_value,
-                                                                 monthly_value: @billing_plan.monthly_value,
-                                                                 amount_currency: @billing_plan.amount_currency
-                                                             })
-      end
-      self.this = find_instance
-      old_remaining_amount = self.this.active_subscription.remaining_amount
-      old_period = self.this.active_subscription.billing_period
-      hobo_update do
+    @this = find_instance
+    subscription_params = params[:billing_detail][:active_subscription]
+    params[:billing_detail].delete(:active_subscription)
+    if params[:plan_id]
+      @billing_plan = BillingPlan.find(params[:plan_id])
+      subscription_params.merge!({
+           plan_name:  @billing_plan.name,
+           amount_value: @billing_plan.amount_value,
+           monthly_value: @billing_plan.monthly_value,
+           amount_currency: @billing_plan.amount_currency
+      })
+    end
+    hobo_update do
+      _update_subscription(subscription_params)
+    end
+  end
 
-        if valid?
-          begin
-            update_stripe_billing_details
-            charge(old_remaining_amount, old_period)
-            redirect_to this.company, action: :collaborators
-          rescue Stripe::CardError => _
-            flash.now[:error] = I18n.t('errors.invalid_credit_card')
-            update_response(false)
-            raise ActiveRecord::Rollback
+  def _update_subscription(subscription_params)
+    if valid?
+      self.this.save
+      s = self.this.active_subscription
+      old_remaining_amount = s.remaining_amount
+      old_period = s.billing_period
+      new_subscription = s.new_record?
+      ActiveRecord::Base.transaction do
+        begin
+          update_stripe_billing_details
+          self.this.active_subscription = subscription_params
+          amount = charge(old_remaining_amount, old_period)
+          s = self.this.active_subscription
+          if (new_subscription)
+            log_event("Create subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: @billing_plan.name, plan_id: @billing_plan.id})
+          else
+            log_event("Update subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: @billing_plan.name, plan_id: @billing_plan.id})
           end
+          redirect_to this.company, action: :collaborators
+        rescue Stripe::CardError => _
+          flash.now[:error] = I18n.t('errors.invalid_credit_card')
+          update_response(false)
+          log_event("Payment error", {message: _.message})
+          raise ActiveRecord::Rollback
         end
       end
     end
@@ -119,10 +130,10 @@ class BillingDetailsController < ApplicationController
   end
 
   def charge(old_remaining_amount=0, old_period=nil)
-
     subscription = self.this.active_subscription
     subscription.billing_detail_id = self.this.id
-    subscription.charge(full_amount=false, old_remaining_amount)
-    return nil
+    amount = subscription.charge(full_amount=false, old_remaining_amount)
+    track_charge(amount)
+    return amount
   end
 end

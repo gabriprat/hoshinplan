@@ -241,14 +241,17 @@ end
   end
   
   def people_set(user = current_user, remote_ip = request.remote_ip)
-    Mp.people_set(user, remote_ip, ignore_time=true)
+    Mp.people_set(user, remote_ip)
   end
   
   def people_set_with_event(event, user = current_user, remote_ip = request.remote_ip)
-    Mp.people_set(user, remote_ip, ignore_time=true, event)
+    Mp.people_set(user, remote_ip, ignore_time=false, event)
   end
-    
-  
+
+  def track_charge(amount, user = current_user, remote_ip = request.remote_ip)
+    Mp.track_charge(user, remote_ip, amount)
+  end
+
   #Log a new Mixpanel event
   #event: name of event
   #opts: Properties defined for this event only.

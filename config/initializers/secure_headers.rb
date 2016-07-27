@@ -9,7 +9,7 @@
     :default_src => %w('self' d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com *.userreport.com api.mixpanel.com),
     :report_only => false,
     :connect_src => %w('self' checkout.stripe.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com *.userreport.com api.mixpanel.com sqs.us-east-1.amazonaws.com),
-    :font_src => %w('self' fonts.gstatic.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com data:),
+    :font_src => %w('self' fonts.typekit.net fonts.gstatic.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com data:),
     :frame_src => %w('self' checkout.stripe.com accounts.google.com docs.google.com *.userreport.com www.youtube.com www.googletagmanager.com),
     :style_src => %w('self' 'unsafe-inline' checkout.stripe.com use.typekit.net fonts.googleapis.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com),
     :script_src => %w('self' 'unsafe-eval' 'unsafe-inline' checkout.stripe.com use.typekit.net d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com apis.google.com www.dropbox.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com *.mxpnl.com www.googletagmanager.com),

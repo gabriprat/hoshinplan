@@ -66,6 +66,13 @@ class Mp
     self.log_event("mp_funnel", user, ip, funnel_opts)
   end
 
+  def self.track_charge(user, ip, amount, opts = {})
+    opts.merge!({:event => 'Payment', :id => user.id, :ip => ip, :amount => amount})
+    logged_event = Mp.new(user, opts, nil)
+    Rails.logger.debug "Mixpanel track_charge: #{logged_event.inspect}, #{logged_event.options}"
+    logged_event.track_charge!
+  end
+
   def options=(options)
     @options = options
   end
@@ -95,7 +102,9 @@ class Mp
           'tutorial_step' => user.tutorial_step,
           'last_seen_at'  => user.last_seen_at,
           'from_invitation' => user.from_invitation,
-          'trial_ends_at' => user.trial_ends_at
+          'trial_ends_at' => user.trial_ends_at,
+          'owned_companies' => Company.unscoped.where('creator_id = ? and deleted_at is null', user.id).count,
+          'companies'     => UserCompany.unscoped.where('user_id': user.id).count
       }
     end
     @options = {}
@@ -141,6 +150,18 @@ class Mp
     end
   end
 
+  def track_charge!()
+    return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
+    #If you have Resque installed, this will use it, otherwise it fires the request *immediately*.
+    #This is a very bad idea for most uses because it will result in *your* site blocking while waiting
+    #for the Mixpanel API to return.  Be smart: install Resque.
+    if defined?(Resque)
+      Resque.enqueue(Mp, @people, @options, @event, @optional_params, :track_charge_access_api)
+    else
+      track_charge_access_api
+    end
+  end
+
   def people_delete!()
     return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
     #If you have Resque installed, this will use it, otherwise it fires the request *immediately*.
@@ -168,6 +189,17 @@ class Mp
     tracker = ::Mixpanel::Tracker.new(TOKEN)
     Mp.logger.debug "Mixpanel people_delete: #{@options['distinct_id']}, #{@options.inspect}"
     tracker.people.delete_user(@options['distinct_id'], @optional_params || {})
+    if @event.present?
+      track_access_api
+    end
+  end
+
+  def track_charge_access_api
+    return if Rails.configuration.mixpanel_disable || !defined?(Mixpanel)
+    amount = @options['amount'] || 0
+    tracker = ::Mixpanel::Tracker.new(TOKEN)
+    Mp.logger.debug "Mixpanel track_charge: #{@options['distinct_id']}, #{@options.inspect}"
+    tracker.people.track_charge(@options['distinct_id'], amount, @options, @options[:ip], @optional_params || {})
     if @event.present?
       track_access_api
     end

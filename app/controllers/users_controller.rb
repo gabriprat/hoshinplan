@@ -329,4 +329,11 @@ class UsersController < ApplicationController
   
   def omniauth
   end
+
+  def destroy
+    user_id = params[:id].to_i.to_s
+    hobo_destroy do
+      Mp.people_delete(user_id) if valid?
+    end
+  end
 end

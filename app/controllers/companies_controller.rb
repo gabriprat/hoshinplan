@@ -69,6 +69,7 @@ class CompaniesController < ApplicationController
     else
       render template: 'payments/contact_admin'
     end
+    log_event("Pricing page view")
   end
   
   def invite
