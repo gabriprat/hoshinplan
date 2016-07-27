@@ -8,7 +8,14 @@ one:
  id: 1
  name: test
  subscriptions_count: 1
-#
-two:
+ creator_id: 1
+free-one:
  id: 2
- name: value
+ name: test-2
+ creator_id: 2
+ subscriptions_count: 0
+free-two:
+ id: 3
+ name: test-3
+ creator_id: 3
+ subscriptions_count: 0

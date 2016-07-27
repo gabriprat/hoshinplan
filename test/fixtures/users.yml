@@ -12,3 +12,23 @@ one:
   tutorial_step: 0
   preferred_view: expanded
   state: active
+trial_ending:
+  id: 2
+  name: user-name-2
+  email_address: hello-2@hoshinplan.com
+  administrator: false
+  tutorial_step: 0
+  preferred_view: expanded
+  state: active
+  trial_ends_at: <%= Date.today + 3.days %>
+  language: en
+trial_ended:
+  id: 3
+  name: user-name-3
+  email_address: hello-3@hoshinplan.com
+  administrator: false
+  tutorial_step: 0
+  preferred_view: expanded
+  state: active
+  trial_ends_at: <%= Date.today - 3.days %>
+  language: es

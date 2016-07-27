@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717200454) do
+ActiveRecord::Schema.define(version: 20160727105733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -562,6 +562,8 @@ ActiveRecord::Schema.define(version: 20160717200454) do
     t.date     "trial_ends_at"
     t.string   "invitation_code"
     t.string   "initial_task_state",                   default: "backlog",  null: false
+    t.datetime "trial_ending_email"
+    t.datetime "trial_ended_email"
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

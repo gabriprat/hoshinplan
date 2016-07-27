@@ -320,7 +320,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -544,7 +544,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -656,7 +656,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="firstName, lastName, color, email_address, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, trial_ends_at, invitation_code, initial_task_state, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
+      <field-list fields="firstName, lastName, color, email_address, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, trial_ends_at, trial_ending_email, trial_ended_email, invitation_code, initial_task_state, image_file_name, image_content_type, image_file_size, image_updated_at, state" param/>
     </content-body:>
 
   </page>

@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
     news            :boolean, default: true
     from_invitation :boolean, default: false
     trial_ends_at   :date
+    trial_ending_email :datetime
+    trial_ended_email :datetime
     invitation_code :string
     initial_task_state HoboFields::Types::EnumString.for(:backlog, :active), default: :backlog, null: false
   end
@@ -130,7 +132,7 @@ class User < ActiveRecord::Base
   has_many :client_applications, :dependent => :destroy
   has_many :subscriptions, :dependent => :nullify, :inverse_of => :user
   
-  has_many :my_companies, :class_name => "Company", :inverse_of => :creator, :foreign_key => :creator_id
+  has_many :my_companies, :class_name => "Company", :inverse_of => :creator, :foreign_key => :creator_id, unscoped: true
   has_many :my_hoshins, :class_name => "Hoshin", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_areas, :class_name => "Area", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_goals, :class_name => "Goal", :inverse_of => :creator, :foreign_key => :creator_id

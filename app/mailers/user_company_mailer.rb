@@ -94,6 +94,25 @@ class UserCompanyMailer < ActionMailer::Base
             }
           end
   end
+
+  def trial_notifications(user, company, days)
+    sendgrid_category "trial"
+    I18n.locale = user.language.to_s.blank? ? (I18n.locale || I18n.default_locale) : user.language.to_s
+    if (days > 0)
+      mail_from_template(EmailTemplate.trial_ending, user, {
+          days: days,
+          name: user.name,
+          company: company.name,
+          url: upgrade_company_url(company)}
+      )
+    else
+      mail_from_template(EmailTemplate.trial_ended, user, {
+          name: user.name,
+          company: company.name,
+          url: upgrade_company_url(company)}
+      )
+    end
+  end
   
   def welcome(user)
     sendgrid_category "welcome"

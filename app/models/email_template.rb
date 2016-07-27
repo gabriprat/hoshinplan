@@ -6,9 +6,13 @@ class EmailTemplate
     welcome_es: '1a343d96-92cf-4fb6-a75b-38724f9fcfaa', 
     welcome_en: '102c9d46-46ed-4e79-afdb-fc0838669509',
     activation_es: '2425713b-3a6d-45a6-b4f0-2e98e40afb0e',
-    activation_en: 'cbb23ef8-77ed-4d95-8cae-bf341aabf980'
+    activation_en: 'cbb23ef8-77ed-4d95-8cae-bf341aabf980',
+    trial_ending_es: '0f140d29-e5f1-4969-8d25-0813df9e5634',
+    trial_ending_en: 'c262611d-b702-4584-8e78-3c7d65fb0ce6',
+    trial_ended_es: '965c4ef2-b92b-49f7-9ffe-d587edea4d80',
+    trial_ended_en: '0ea51c05-edaa-40cc-a23b-7c0d8c79d026'
   }
-  
+
   def initialize(template)
     @template = template
   end
