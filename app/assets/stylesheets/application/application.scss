@@ -1086,9 +1086,15 @@ body .container {
 }
 
 @media (max-width: 979px) {
-body .container .main-row {
-                display: block;
+  body .container .main-row {
+    display: block;
+  }
 }
+
+@media (min-width: 768px) {
+  body.column-form .container .main-row {
+    display: flex;
+  }
 }
 
 body.front-page .container .main-column {
@@ -1310,9 +1316,6 @@ body.first-page {
                 padding: 0;
         }
         .container {
-                padding: 0;
-        }
-        .main-column {
                 padding: 0;
         }
         .jumbotron {
@@ -3765,6 +3768,24 @@ del.differ {
         }
 }
 
+body.column-form {
+  background: #fff;
+  .content-body > .form-horizontal {
+    box-shadow: none;
+
+  }
+  .main-column {
+    width: 41.66666667%;
+    float: left;
+  }
+  .aside-column {
+    background: #f0f8ff;
+    width: 58.33333333%;
+    float: left;
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 768px) {
         body.column-form {
                 .aside-column { 
@@ -3781,16 +3802,6 @@ del.differ {
         }
 }
 
-body.column-form {
-        background: #fff;
-        .content-body > .form-horizontal {
-                box-shadow: none;
-                
-        }
-        .aside-column {
-                background: #f0f8ff;
-        }
-}
 
 a#signup {
         text-transform: none;

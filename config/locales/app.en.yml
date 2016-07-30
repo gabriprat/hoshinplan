@@ -266,7 +266,7 @@ en:
         responsible: Responsible
         parent: Parent
       company:
-        name: Name
+        name: Company
         Company: Company
         company_email_domains: Email domains with automatic access
         actions: Actions
@@ -396,6 +396,8 @@ en:
         lifecycle:
           transitions:
             resend_activation: Resend user activation email
+      company:
+        name: Pick a name based on the group of pepople that will use Hoshinplan.
   index:
     title: Make your business strategy work
   user:
@@ -443,6 +445,9 @@ en:
       discarded: Discarded
   charts:
     select_indicator_to_add: Select the hidden chart you want to show again
+  first:
+    title: Create your company
+    heading: What do you want to call your company at Hoshinplan?
   company:
     email_addresses: Email addresses
     role: Role

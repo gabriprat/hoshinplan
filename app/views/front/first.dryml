@@ -1,12 +1,30 @@
-<page title="Create your first company">
+<page title="Create your first company" content-size="5" aside>
 
-  <body: class="first-page"/>
+    <body: class="first-page column-form" />
+
+    <main-nav: replace />
+
+    <content-header:>
+        <h2>
+            <t key="first.heading"/>
+        </h2>
+    </content-header:>
   
-  <content-body:>
-	<cms key="custom_fragments/front_first_#{locale}"/>
-  </content-body:>
-  
-  <main-nav: replace />
+    <content-body:>
+        <form with="&Company.new">
+            <actions:>
+                <submit class="btn-raised" label="#{ht 'company.actions.create'}"/>
+            </actions>
+        </form>
+    </content-body:>
+
+    <main-nav: replace />
+
+    <aside-column:>
+        <cms class="flex" key="custom_fragments/front_first_v2_#{locale}"/>
+    </aside-column:>
+
+    <aside:/>
   
 </page>
 
