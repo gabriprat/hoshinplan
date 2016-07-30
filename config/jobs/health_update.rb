@@ -22,7 +22,6 @@ module Jobs
     
     def self.perform_one(hoshin)
       begin
-        hoshin.all_user_companies = nil
         uc_ids = UserCompany.unscoped.select(:user_id).where(:company_id => hoshin.company_id)
         users = User.unscoped.where(:id => uc_ids)
         if (users.length > 0)
