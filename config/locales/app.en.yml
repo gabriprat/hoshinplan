@@ -472,7 +472,7 @@ en:
     rest_link: REST API
   pricing_plans: 
     title: Plans and pricing
-    title: Try it for free for 30. No credit cards. Without time commitment. Change or cancel your plan anytime.
+    subtitle: Try it for free for 30. No credit cards. No time commitment. Change or cancel your plan anytime.
     try_it: Try it for free
     free: 'Free!'
     single_user: Single user
