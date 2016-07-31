@@ -24,12 +24,14 @@
                 if this.present?
                   if this.instance_of? Hoshin
                     obj = this
+                  elsif this.instance_of? Company
+                    obj = this
                   elsif this.respond_to? :hoshin
                     obj = this.hoshin
                   end
                 end
             %>
-            <a with="&obj" class="cancel btn" rel="nofollow"><ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this._?.name"/></a>
+            <a with="&obj" class="cancel btn" rel="nofollow"><ht key="hoshin.actions.back_to_parent" parent="&obj.class.model_name.human" name="&this._?.name"/></a>
         </else>
     </section>
 </def>

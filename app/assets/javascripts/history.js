@@ -10,7 +10,11 @@ var hover = function(index, options, content) {
 	if (!data) return content;
 	var row = data[index];
 	var remove_msg = $("#dynamic-js").data("remove");
-	return content + '<a href="javascript:deleteHistory(' + row.id + ', \'' + dateFormatDefault(row.day) + '\');">' + remove_msg + '</a>'
+    var removeLink = '';
+    if ($('#delete-form').length > 0) {
+        removeLink = '<a href="javascript:deleteHistory(' + row.id + ', \'' + dateFormatDefault(row.day) + '\');">' + remove_msg + '</a>';
+    }
+	return content + removeLink;
 }
 
 var loadData = function() {

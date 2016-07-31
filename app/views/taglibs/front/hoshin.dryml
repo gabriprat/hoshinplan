@@ -19,7 +19,7 @@
 		</parent-link:>
 		<prepend-content-header: >
 		<if test="&params['action']=='show'">
-		<span id="create-buttons">
+		<span id="create-buttons" if="&can_create?">
 		<a href="#{hoshin_path this}/areas/new" onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
             <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
               Add new area
@@ -153,12 +153,6 @@
 			<div class="form-horizontal">
 			</div>
 		</append-content-header:>
-		<main-content: replace>
-            <main-content restore if="&can_edit?"/>
-            <else>
-                <read-only-ask-for-permission show-close="&false"/>
-            </else>
-        </main-content:>
 	</old-edit-page>
 </extend>
 

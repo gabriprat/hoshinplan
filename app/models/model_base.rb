@@ -66,10 +66,6 @@ module ModelBase
 
     return true if user._?.administrator?
 
-    if respond_to?("creator_id") && (user._?.id == creator_id)
-      return true
-    end
-
     if user == self
       return true
     end
@@ -79,6 +75,11 @@ module ModelBase
       ret = _user_companies_company(user, cid)
       RequestStore.store[rs_key :sc, cid] = ret
     end
+
+    if respond_to?("creator_id") && user._?.id == creator_id && ret._?.include?(:editor)
+      return true
+    end
+
     if roles.empty?
       ret
     else

@@ -26,19 +26,19 @@ class IndicatorEvent < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    same_company
+    acting_user.administrator? || same_company_editor
   end
 
   def update_permitted?
-    indicator.updatable_by?(acting_user)
+    acting_user.administrator? || same_company_editor
   end
 
   def destroy_permitted?
-    indicator.destroyable_by?(acting_user)
+    acting_user.administrator? || same_company_admin || same_creator || hoshin_creator
   end
 
-  def view_permitted?(field)
-    self.new_record? || indicator.viewable_by?(acting_user)
+  def view_permitted?(field=nil)
+    acting_user.administrator? || same_company
   end
 
 end

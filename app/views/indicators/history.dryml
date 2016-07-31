@@ -6,16 +6,16 @@
 		<stylesheet name="history"/>
 	</append-stylesheets:>
 	<content-header: >
-		<a with="&this.objective.area.hoshin">&laquo; Back to hoshin #{name}</a>
+		<a with="&this.objective.area.hoshin">&laquo; <ht key="hoshin.actions.back_to_parent" parent="&this.class.model_name.human" name="&this._?.name"/></a>
 		<h2>#{this.name}</h2>
 	</content-header:>
 	<content-body:>
 		<chart-legend labels="#{t 'value_goal_previous_long'}" colors="#008f00,#b1c978,#ff7c00,#999999"/>
 		<section class="panel indicator-chart" part="chart">
 		        <header class="panel-heading clearfix">
-		            <p class="inline"><t key="history.historic_values">Historic values and goals</t></p>
-    			<div class="history-actions">
-			<button onclick="$('#upload').toggle()" class="btn btn-primary inline"><t key="indicator.upload_values">Add/update values</t></button>
+		            <p class="inline"><t key="history.historic_values"/></p>
+    			<div class="history-actions" if="&can_edit?">
+			<button onclick="$('#upload').toggle()" class="btn btn-primary inline"><t key="indicator.upload_values"/></button>
 			<form id="delete-history" action="delete_history" method="post" class="inline" data-confirm="&t(:key=>'history.messages.confirm_delete_all', :default => 'Are you sure you want to delete ALL value for this indicator?')">
 				<submit class="btn btn-danger inline" label="&t(:key=>'indicator.delete_values', :default=>'Delete all values')"/>
 			</form>
@@ -74,17 +74,19 @@
 		        </div>
 	    	</section>
 		<div class="col-md-6 col-md-offset-3">
-		<section class="panel" part="events">
+		<section class="panel" part="events" if="&can_edit? || this.indicator_events.present?">
 			<header class="panel-heading">
 			            <p class="inline"><model-name-human with="&IndicatorEvent" count="100"/></p>
 	    			<div class="history-actions">
-		    		<a href="#{indicator_path this}/indicator_events/new" onclick="$('#add-event-modal').modal('show'); $('#add-event-modal form').trigger('reset'); return false;" class="btn pull-right btn-primary">
-		                <ht key="indicator_event.actions.new" name="#{name(:no_wrapper => true)}"/>
-		    		</a>
+		    		<a:indicator_events action="new" if="&can_create?(this._?.indicator_events)"  onclick="$('#add-event-modal').modal('show'); $('#add-event-modal form').trigger('reset'); return false;" class="btn pull-right btn-primary">
+                      <ht key="indicator_event.actions.new" count="1">
+                        New Hoshin
+                      </ht>
+                    </a:indicator_events>
 				</div>
 			</header>
 			<div class="panel-body">
-				<rtable:indicator_events columns="Day, Description, Actions"/>
+				<rtable:indicator_events columns="Day, Description#{', Actions' if can_delete?}"/>
 				<else><ht key='indicator_event.collection.empty_message'/></else>
 			</div>
 		</section>
@@ -107,7 +109,7 @@
 			</div>
 			</modal:>
 		</modal>
-		<form class="hide" action="/indicator_histories/#" id="delete-form" method="delete" data-confirm-orig="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
+		<form if="&can_delete?" class="hide" action="/indicator_histories/#" id="delete-form" method="delete" data-confirm-orig="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
 		</form>
 		<div id="dynamic-js" data-remove="#{t 'hobo.actions.remove'}" data-columns="#{IndicatorHistory.human_attribute_name('day')},#{IndicatorHistory.human_attribute_name('value')},#{IndicatorHistory.human_attribute_name('objective')},#{IndicatorHistory.human_attribute_name('previous')}">
 		</div>

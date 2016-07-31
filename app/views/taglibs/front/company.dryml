@@ -16,12 +16,11 @@
 			<div id="health-popover"></div>
 		</prepend-main-content: >
 		<prepend-content-header: >
-			<% new_hoshin_url = object_url @this.hoshins, :action => :new %>
-		        <a href="#{new_hoshin_url}" class="btn pull-right">
-		          <ht key="hoshin.actions.new" count="1">
-		            New Hoshin #{@this.hoshins}
-		          </ht>
-		        </a>
+		    <a:hoshins action="new" if="&can_create?(@company.hoshins)"  class="btn pull-right">
+              <ht key="hoshin.actions.new" count="1">
+                New Hoshin
+              </ht>
+            </a:hoshins>
 		</prepend-content-header: >
 		<collection-heading: replace>
 			<h3 class="collection-heading">
@@ -61,4 +60,20 @@
 	    <field-list: fields="name"/>
 	    <cancel: href="&href"/>
 	</old-form>
+</extend>
+
+<extend tag="edit-page" for="Company">
+	<old-edit-page merge>
+		<append-content-header:>
+			<transition-buttons class="form-horizontal pull-buttons-right"/>
+			<div class="form-horizontal">
+			</div>
+		</append-content-header:>
+		<main-content: replace>
+            <main-content restore if="&can_edit?"/>
+            <else>
+                <read-only-ask-for-permission show-close="&false"/>
+            </else>
+        </main-content:>
+	</old-edit-page>
 </extend>

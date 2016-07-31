@@ -39,3 +39,6 @@
 	</div>
 	<modal-form-footer />
 </form>
+<else>
+    <read-only-ask-for-permission/>
+</else>
