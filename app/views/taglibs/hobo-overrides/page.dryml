@@ -24,7 +24,7 @@
 				</div>
 			</header>
 			<div id="sidenav" class="navbar-collapse collapse">
-			<main-nav class="main-nav" current="&title" if="&logged_in?"/>
+			<main-nav class="main-nav" current="&title"/>
 			<account-nav/>
 			</div>
 			<modal id="login" unless="&logged_in?">

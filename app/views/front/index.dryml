@@ -1,15 +1,10 @@
 <page title="Home">
-  
+
   <body: class="front-page"/>
 
   <content:>
-    
-  <cms key="custom_fragments/home_no_logged_#{locale}" />
-    
-  </content:>
-  
-  <append-footer:>
-  	<div id="footer-logos" if="&show_footer_logos"><a href="https://mixpanel.com/f/partner"><img width="114" height="36" alt="Mobile Analytics" src="#{request.protocol}cdn.mxpnl.com/site_media/images/partner/badge_light.png"/></a><a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=hoshinplan.com','SiteLock','width=600,height=600,left=160,top=170');" ><img alt="SiteLock" title="SiteLock" src="https://shield.sitelock.com/shield/hoshinplan.com"/></a></div>
-  </append-footer:>
 
+  <cms key="custom_fragments/home_no_logged_#{locale}" />
+
+  </content:>
 </page>

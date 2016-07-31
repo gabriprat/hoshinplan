@@ -3,6 +3,8 @@
         <content-header: replace/>
                 <content-body:>
                 <h1><t key="pricing_plans.title"/></h1>
+                <h2 class="sub-header" unless="&Company.current_id"><t key="pricing_plans.subtitle"/></h2>
                 <pricing/>
+                <cms key="custom_fragments/pricing_#{locale}"/>
         </content-body:>
 </page>

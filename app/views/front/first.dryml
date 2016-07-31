@@ -18,8 +18,6 @@
         </form>
     </content-body:>
 
-    <main-nav: replace />
-
     <aside-column:>
         <cms class="flex" key="custom_fragments/front_first_v2_#{locale}"/>
     </aside-column:>

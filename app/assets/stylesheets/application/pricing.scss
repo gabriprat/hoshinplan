@@ -45,10 +45,115 @@ $accent-color: $secondary-color;
 $feature-color: #666;
 
 
-.pricing-page h1 {
-        font-size: 50px;
-        font-weight: 400;
-        text-align: center;
+.pricing-page {
+  h1 {
+    font-size: 50px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .main-column, .container {
+    padding: 0;
+  }
+
+  .sub-header {
+    max-width: 600px;
+    font-family: $secondary-font-stack;
+    font-size: 1.6em;
+    text-align: center;
+    margin: 3em auto 3em auto;
+    font-weight: 400;
+  }
+
+  #cms {
+    padding: 0;
+
+    h2 {
+      font-size: 2.5em;
+      margin: 1.5em auto 1em auto;
+    }
+
+    blockquote {
+      &:before {
+        content: '"';
+      }
+
+      font-size: inherit;
+      margin: 0;
+
+      * + div {
+        margin-top: 1em;
+      }
+    }
+  }
+
+  .section-highlight {
+    width: 100%;
+    background: $secondary-background-color;
+    padding: 4px 0 0;
+    color: #fff;
+  }
+
+  .section-highlight.alt {
+    background: $alt-color;
+  }
+
+  .section-frame {
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 20px;
+    padding: 0 0 0;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &.block {
+      display: block;
+    }
+
+    &.margin {
+      margin: 2em auto 2em auto;
+    }
+
+    .columns {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0;
+
+      &.center {
+        justify-content: center;
+      }
+
+      &>* {
+        max-width: 50%;
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-frame .columns {
+      padding: 15px;
+      display: block;
+      text-align: center;
+
+      &>* {
+        max-width: none;
+        display: inline-block;
+      }
+    }
+  }
+
+  .wide {
+    max-width: 1000px;
+  }
+
+  .narrow {
+    max-width: 800px;
+  }
 }
 
 #collapsed-pricing.in {
@@ -77,7 +182,7 @@ ul.promos.collection {
         color: $header-color;
         text-align: center;
 
-        @include breakpoint(40em) {
+        @include breakpoint(768px) {
                 display: inline;
                 float: left;
                 width: 33%;
@@ -141,7 +246,7 @@ ul.promos.collection {
                 padding    : .25em 0;
                 background : transparent;
                 color      : $header-color;
-                height     : 8em;
+                min-height     : 8em;
                 background     : rgba(0,0,0,.1);
                 .amount {
                         font-size: 250%;

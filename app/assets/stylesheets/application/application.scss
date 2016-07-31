@@ -442,7 +442,7 @@ body .navbar a.navbar-brand, body .navbar a.navbar-brand:visited,  body .navbar 
 	color: $inverse-secondary-color;
 	margin: 0;
 	text-shadow: none;
-	
+
         -o-transition: color 1s ease-in-out;
         -moz-transition: color 1s ease-in-out;
         -webkit-transition: color 1s ease-in-out;
@@ -568,7 +568,7 @@ body.compact h5 {
 }
 body .content-header:not(.well) {
 	margin: 0 auto;
-        max-width: 740px; 
+        max-width: 740px;
 	.btn-danger {
 		margin-top: -3em;
 	}
@@ -583,7 +583,7 @@ body h2.heading {
        font-weight: 200;
        font-family: $primary-font-stack;
        line-height: 1em;
-       font-size: 3.5em;       
+       font-size: 3.5em;
        >a, >a:hover, >a:active, >a:visited {
 	       color: $secondary-color;
        }
@@ -652,11 +652,11 @@ body h2.heading a.title-action {
 	float: right;
 }
 
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
 	.health-indicator .title-action {
 		margin-right: 6em;
 	}
-	
+
 }
 
 h2.heading .title-action .label, .health-indicator .title-action .label {
@@ -681,7 +681,7 @@ body h2.heading .title-action:hover {
 }
 
 #sec-actions .inline-tooltip {
-	position: relative; 
+	position: relative;
 	display:inline-block;
 	vertical-align: middle;
 }
@@ -692,15 +692,15 @@ body h2.heading .title-action:hover {
 			max-width: 500px;
 			resize: vertical;
 			margin: auto;
-	
+
 			.content-header {
 				margin-bottom: 2em;
 			}
-                        
+
                         .content-body {
                                 overflow-x: initial;
                         }
-	
+
 			form {
 				margin-top: 2em;
 				input.btn {
@@ -716,17 +716,17 @@ body.compact {
 	.parent-link {
 		display: none;
 	}
-	
+
 	.header.well {
 		border-radius: 0;
 		padding-bottom: 20px;
 	}
-	
+
 	.well {
 		margin-bottom: 5px;
 		padding: 5px 19px;
 	}
-	
+
 	.timer {
 		font-size: 1.2em;
 		background: transparent;
@@ -743,7 +743,7 @@ body.compact {
 			text-align: center;
 		}
 	}
-	
+
 	.area h4 {
 		font-size: 3em;
 	}
@@ -845,7 +845,7 @@ body.hoshin ul.collection.goals .goal {
 }
 
 body.hoshin .collection.areas {
-	display: table; 
+	display: table;
 	width: 100%;
 }
 
@@ -896,7 +896,7 @@ body.hoshin .collection.areas2 {
 
 body.hoshin
 .collection.areas > .item {
-	display: table-cell; 
+	display: table-cell;
 	min-width: 270px;
 	width: 100%;
 }
@@ -1138,7 +1138,7 @@ span.arrow {
 	display: inline-block;
 	width: .1em;
 	text-align: center;
-	
+
 	&.positive:after {
 		color: #008b00;
 		display: inline-block;
@@ -1163,7 +1163,7 @@ span.arrow {
 		color: #000;
 		content: "=";
 	}
-	
+
 }
 
 a.tpc {
@@ -1176,7 +1176,7 @@ body .multioverdue, body .overdue {
 	.name a, a.tpc {
 		&, &:hover, &:visited, &:active {
 			color: red;
-		} 
+		}
 	}
 	.autosubmit.overdue input,.autosubmit.multioverdue input,.autosubmit.neglected input,.autosubmit.blind input {
 		color: red;
@@ -1524,7 +1524,7 @@ button.hoshin-tasks.link {
 		span.tpc {
 			height: auto;
 		}
-	}	
+	}
 }
 
 .pull-buttons-right form {
@@ -1565,7 +1565,7 @@ a, a:hover, a:active, a:visited {
 	color: #fff;
 	&:visited, &:link, &:hover, &:active, &:focus {
 		color: #fff;
-	}  
+	}
 }
 
 .modal-footer-delete {
@@ -1595,7 +1595,7 @@ a, a:hover, a:active, a:visited {
 	}
 	&:link, &:hover, &:focus, &:active {
 		color: #fff;
-	} 
+	}
 }
 
 form.history-upload {
@@ -1753,7 +1753,7 @@ body .column.feeling {
 		background-image: -webkit-gradient(linear, right top, left top, color-stop(10, transparent), color-stop(10, rgb(206, 250, 151)), color-stop(90, rgb(206, 250, 151)), color-stop(90, transparent));
 		background-image: -webkit-linear-gradient(right, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
 		background-image: linear-gradient(to left, transparent 10%, rgb(206, 250, 151) 10%, rgb(206, 250, 151) 90%, transparent 90%);
-		
+
 	}
 	&.wondering {
 		color: rgb(255, 100, 0);
@@ -1807,7 +1807,7 @@ body .column.feeling {
 }
 
 .kb-frame.dots {
-	
+
 	.kb-lane {
 		min-height: 120px;
 		padding-bottom: 0;
@@ -1997,25 +1997,25 @@ form#delete-history, form#delete-history input {
 	color: #e1e4e7;
 }
 @media (max-width: 767px) {
-	
+
 	#btn-present {
 		display:none;
 	}
-	
+
 	.content-header #sec-actions {
 		float: none;
 		display: block;
 		margin: .5em 0 1em 0;
 	}
-	
+
 	.content-header a.hoshin-link {
 		float: none;
 		display: block;
 		width: 100%;
 	}
-	
+
 	body .content-header {
-		
+
 		#create-buttons {
 			position: absolute;
 			bottom: 5px;
@@ -2028,28 +2028,28 @@ form#delete-history, form#delete-history input {
 			bottom: 40px;
 		}
 	}
-	
+
 	body.compact .content-header #bsi-show-mine {
 		bottom: 35px;
 	}
-	
+
 	.navbar-nav > li > .dropdown-menu {
 		-webkit-transition: all 0s;
 		-moz-transition: all 0s;
 		transition: all 0s;
 	}
-	
+
 	.navbar-toggle.hamburger {
 		display: block;
 		margin: 9px 15px 15px 0;
 	}
-	
+
 	.navbar-nav {
 		padding: 0;
 		margin-left: 0;
 		margin-right: 0;
 	}
-	
+
 	body .navbar-collapse {
 		padding: 0;
 		li {
@@ -2072,7 +2072,7 @@ form#delete-history, form#delete-history input {
 	#sidenav.in {
 		right: 0;
 	}
-	
+
 	#sidenav, #sidenav .navbar-collapse {
 		height: auto !important;
 	}
@@ -2091,7 +2091,7 @@ form#delete-history, form#delete-history input {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
 	    color: inherit;
 	}
-	
+
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
 		color: #939daa;
 	}
@@ -2142,9 +2142,9 @@ form#delete-history, form#delete-history input {
 	transform:scaleY(-1);
 }
 
-.navbar .nav li.dropdown > a:link .caret, 
-.navbar .nav li.dropdown > a:visited .caret, 
-.navbar .nav li.dropdown > a:active .caret, 
+.navbar .nav li.dropdown > a:link .caret,
+.navbar .nav li.dropdown > a:visited .caret,
+.navbar .nav li.dropdown > a:active .caret,
 .navbar .nav li.dropdown > a:focus .caret {
 	border-top-color: $tertiary-color;
 	border-bottom-color: $tertiary-color;
@@ -2236,7 +2236,7 @@ form#delete-history, form#delete-history input {
 
 .panel.user .panel-heading .hoshin-tasks:hover span {
 	color: #fff;
-} 
+}
 
 @media (min-width:640px) {
 .compact .icons .hoshin-tasks span {
@@ -2267,7 +2267,7 @@ body.collaborators td.controls button {
         -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
         box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
 	background: $background-color;
-	
+
 }
 
 .panel-body {
@@ -2334,12 +2334,12 @@ ul.timeline li {
   position: relative;
   float: left;
   margin: 10px 0;
- 
+
 }
 
 ul.timeline li.box {
   background-color: #eee;
-  padding: 20px;	
+  padding: 20px;
 }
 
 ul.timeline li {
@@ -2476,7 +2476,7 @@ ul.timeline li.highlight:hover:after {
 }
 
 .inline + .inline {
-	margin-left: 15px;	
+	margin-left: 15px;
 }
 
 .user .edit-image  {
@@ -2579,7 +2579,7 @@ form.indicator-value input[type=radio] {
 
 .column[data-label=Value] .wrapper {
 	position: relative;
-} 
+}
 
 .autosubmit form.inline-form.indicator .input-append {
 	position: absolute;
@@ -2606,7 +2606,7 @@ form.indicator-value input[type=radio] {
 	display: inline;
 	vertical-align: text-bottom;
 	white-space: nowrap;
-	
+
 	label,.bootstrap-switch {
 		display: inline-block;
 		vertical-align: middle;
@@ -2621,7 +2621,7 @@ form.indicator-value input[type=radio] {
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 
-.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default, 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default,
 .bootstrap-switch .bootstrap-switch-label {
 	background-image: none;
@@ -2678,7 +2678,7 @@ form.indicator-value input[type=radio] {
 	height: 1em;
 	clip: rect(0px,1em,1em,0.5em);
 	margin: -.1em 0em 0em -.1em;
-	
+
 }
 
 .timer > .slice.gt50s {
@@ -2906,7 +2906,7 @@ form.indicator-value input[type=radio] {
 	width: 100vw;
 	white-space: nowrap;
 	overflow-x: scroll;
-	
+
 	.lane {
 		display: inline-block;
 		width: 100vw;
@@ -2939,7 +2939,7 @@ form.indicator-value input[type=radio] {
 	display: inline;
 }
 
-.postit {    
+.postit {
 	width: 100%;
 	margin: .4em 0;
 	min-height: 7em;
@@ -2948,7 +2948,7 @@ form.indicator-value input[type=radio] {
 	border: 1px solid #E8E8E8;
 	border-bottom-right-radius: 6em .5em;
 	display: inline-block;
-	box-sizing: border-box;   
+	box-sizing: border-box;
 	background-color: rgb(255, 251, 223);
 }
 
@@ -3103,7 +3103,7 @@ body .charts-tabs {
 	float: left;
 	box-sizing: border-box;
 	background: #fff;
-		
+
 	.panel-body {
 		background: #fff;
 		padding: 0 3px 0 0;
@@ -3422,7 +3422,7 @@ ul {
 
 .content-header {
 	box-sizing: content-box;
-	position: relative;	
+	position: relative;
 	#bsi-show-mine {
 		position: absolute;
 		bottom: 10px;
@@ -3615,7 +3615,7 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 		color: #666;
 		background: transparent;
 		outline: none;
-	} 
+	}
 }
 
 .show-page.company .collection.hoshins li {
@@ -3637,7 +3637,7 @@ body .delete-button.delete-user-company-button, .btn.btn-danger.remove-item {
 			margin-right: 1em;
 		}
 	}
-	
+
 }
 
 @media (max-width:767px) {
@@ -3788,7 +3788,7 @@ body.column-form {
 
 @media (max-width: 768px) {
         body.column-form {
-                .aside-column { 
+                .aside-column {
                         display: none;
                 }
                 .main-column{
@@ -3815,14 +3815,14 @@ body.column-form {
         .content-body {
                 font-size: 1.3em;
         }
-        
+
         .btn, ul.input-many > li > div.buttons button {
                 font-size: 1em;
         }
         textarea:not(.handsontableInput), textarea.form-control, input.form-control, input[type=text], input[type=password], input[type=email], input[type=number], [type=text].form-control, [type=password].form-control, [type=email].form-control, [type=tel].form-control, [contenteditable].form-control {
                 font-size: 1.2em;
         }
-        
+
         .content-body > .form-horizontal  {
                 margin-left: 0;
                 margin-right: 0;
@@ -3836,7 +3836,7 @@ body.column-form {
 
 .wf-loading,
 .wf-loading,
-.wf-loading { 
+.wf-loading {
         p, h1, h2, h3, h4, h5, .app-name {
                 visibility: hidden
         }
@@ -3913,4 +3913,25 @@ body.column-form {
 .complete-purchase {
   margin-top: 5em;
   text-align: center;
+}
+
+.btn.btn-outlined {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px 10px 0 10px;
+  background: transparent;
+  border: 2px solid #f8faff;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  color: #f8faff;
+}
+
+.two-columns {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+
+  -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 40px; /* Firefox */
+  column-gap: 40px;
 }

@@ -34,12 +34,7 @@ class FrontController < ApplicationController
   
   def pitch
   end
-  
-  def pricing
-    @freq = params[:freq]
-    @freq ||= :MONTH
-  end
-  
+
   def invitation_accepted
     flash[:notice] = nil
   end

@@ -42,7 +42,11 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller billing_plans
-  resources :billing_plans, :only => [:index]
+  resources :billing_plans, :only => [:index] do
+    collection do
+      get 'pricing'
+    end
+  end
 
 
   # Resource routes for controller client_applications

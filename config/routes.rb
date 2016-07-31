@@ -105,7 +105,7 @@ Hoshinplan::Application.routes.draw do
   
   match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
   
-  get 'pricing' => 'billing_plans#index'
+  get 'pricing' => 'billing_plans#pricing'
   
   get "/payments/test-paypal-ipn" => "payment_notifications#index"
   

@@ -471,8 +471,8 @@ en:
     developers_link: developers site
     rest_link: REST API
   pricing_plans: 
-    title: Pricing plans
-    pending: 'Your plan''s activation is pending PayPal''s confirmation, please try again in a minute or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Sorry for the inconvenience.'
+    title: Plans and pricing
+    title: Try it for free for 30. No credit cards. Without time commitment. Change or cancel your plan anytime.
     try_it: Try it for free
     free: 'Free!'
     single_user: Single user

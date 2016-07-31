@@ -1,5 +1,4 @@
 <def tag="pricing">
-        <script src="https://checkout.stripe.com/checkout.js"></script>
         <collection class="promos clearfix"/>
 </def>
 
@@ -26,9 +25,7 @@
                                     <pay-button if="&this.amount_value &gt; 0"/>
                             </if>
                             <else>
-                                    <li class="buy">
-                                            <button><a href="/login"><ht key="user.actions.signup"/></a></button>
-                                    </li>   
+                                    <a class="button" href="/users/signup"><t key="pricing_plans.try_it"/></a>
                             </else>
                     </else>
                 </div>
