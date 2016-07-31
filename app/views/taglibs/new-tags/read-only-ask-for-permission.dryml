@@ -1,0 +1,36 @@
+
+ <def tag="read-only-ask-for-permission" attrs="show-close">
+    <% show_close = show_close.nil? ? true : show_close %>
+     <section class="modal-header">
+             <h2 class="heading heading-icn warning">
+                     <small class="ic-lock icon text-danger"></small>
+                     <span><t key="read_only.heading"/></span>
+            </h2>
+     </section>
+     <section class="modal-body">
+                    <div class="message-large">
+                        <p><t key="read_only.ask_for_permission"/></p>
+                        <collection with="&User.current_company_admins" class="loose">
+                            <span class="ic-envelope-o"/>
+                            <a href="mailto:#{this.email_address}?subject=#{t 'read_only.mail_subject', name: Company.current_company.name}" target="_blank">#{this.name} (#{this.email_address})</a>
+                        </collection>
+                    </div>
+    </section>
+    <section class="modal-footer">
+        <a class="cancel btn" href="#" rel="nofollow" onclick="$('.modal').modal('hide');" if="&show_close"><t key="hobo.actions.close"/></a>
+        <else>
+            <%
+                obj = nil
+                if this.present?
+                  if this.instance_of? Hoshin
+                    obj = this
+                  elsif this.respond_to? :hoshin
+                    obj = this.hoshin
+                  end
+                end
+            %>
+            <a with="&obj" class="cancel btn" rel="nofollow"><ht key="hoshin.actions.back_to_parent" parent="&Hoshin.model_name.human" name="&this._?.name"/></a>
+        </else>
+    </section>
+</def>
+

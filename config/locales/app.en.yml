@@ -130,12 +130,15 @@ en:
     invalid_credit_card: The credit card details were invalid. Pleas check them and try again.
     invitation_code_does_not_exist: The provided invitation code was not valid.
   hobo:
+    actions:
+      close: Close
     area:
       child_models: '%{model} from children hoshin plans'
     actions:
       submit: Submit
       upgrade: Upgrade
-    dashboard:  
+      close: Close
+    dashboard:
       no_kpis: "You don't have any %{model} to update"
       no_tasks: "You don't have any %{model} with a close due date"
     hoshin:
@@ -572,6 +575,10 @@ en:
       other: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, we have %{count} days left on the trial account and only administrators can upgrade the subscription. Thank you.
     expired_email_subject: Our Hoshinplan trial account is expired
     expired_email_body: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, our trial account is already expired and only administrators can upgrade the subscription. Thank you.
+  read_only:
+    heading: You  have read-only access
+    ask_for_permission: If you need to be allowed to update you can contact one of the administrators for this company.
+    mail_subject: "[Hoshinplan] Update permission for the company %{name}"
   log_in_with: Log in with %{provider}
   new_child_for_parent: New %{child} for %{parent}
   invite_collaborators: Invite collaborators

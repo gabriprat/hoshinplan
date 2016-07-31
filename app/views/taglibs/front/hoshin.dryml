@@ -153,6 +153,12 @@
 			<div class="form-horizontal">
 			</div>
 		</append-content-header:>
+		<main-content: replace>
+            <main-content restore if="&can_edit?"/>
+            <else>
+                <read-only-ask-for-permission show-close="&false"/>
+            </else>
+        </main-content:>
 	</old-edit-page>
 </extend>
 

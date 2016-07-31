@@ -1,11 +1,11 @@
 
  <section class="modal-header">
-         <h2 class="heading">
-                 <small class="ic-paper-plane-o icon"></small>
+         <h2 class="heading heading-icn">
+                 <small class="ic-paper-plane-o icon text-info"></small>
                  <span><t key="company.invite_collaborators"/></span>
         </h2>
  </section>
- <form submit="sdf">
+ <form>
          <section class="modal-body">
                         <div class="row">
                                 <div class='form-group'>

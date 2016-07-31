@@ -16,5 +16,8 @@
 					</field-list:>
 					</div>
 					 <modal-form-footer-delete />
-				 </form> 
+				 </form>
+				 <else>
+				 <read-only-ask-for-permission/>
+				 </else>
 	  			

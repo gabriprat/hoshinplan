@@ -191,10 +191,10 @@ class User < ActiveRecord::Base
   }
 
   scope :current_company_admins, lambda {
-    where(:id => UserCompany.select(:user_id)
-                     .where('company_id=? and user_companies.state = ?',
-                            Company.current_id, :admin) ) }
-  
+    joins(:user_companies).where("company_id = ? and " + UserCompany::IS_ADMIN_SQL,
+        Company.current_id).references(:user_companies)
+  }
+
   def next_tutorial
     ret = (User.values_for_tutorial_step - tutorial_step).first
     ret.nil? ? [] : ret 

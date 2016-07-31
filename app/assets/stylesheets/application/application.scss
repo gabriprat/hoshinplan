@@ -1662,14 +1662,26 @@ form#add-collaborators {
 	margin: 0;
 }
 
-.collaborators .heading {
+.heading-icn {
         text-align: center;
         .icon {
-                color: $secondary-color;
+          font-size: 1em;
+        }
+        .text-info {
+          color: $secondary-color;
         }
         * {
-                vertical-align: baseline;
+                vertical-align: middle;
         }
+}
+
+.message-large {
+  padding: 0 3em;
+  font-size: 1.3em;
+}
+
+.loose {
+  line-height: 1.75em;
 }
 
 .collaborators code {
@@ -3362,7 +3374,7 @@ select {
 	appearance: none;
 	padding-left: 0;
 	padding-right: 0\9;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEUhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISF8S9ewAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEUhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISF8S9ewAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
 	-webkit-background-size: 13px 13px;
 	background-size: 13px;
 	background-repeat: no-repeat;

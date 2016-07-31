@@ -56,3 +56,15 @@
 	    <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>
+
+
+<extend tag="edit-page" for="Area">
+	<old-edit-page merge>
+		<main-content: replace>
+            <main-content restore if="&can_edit?"/>
+            <else>
+                <read-only-ask-for-permission show-close="&false"/>
+            </else>
+        </main-content:>
+	</old-edit-page>
+</extend>

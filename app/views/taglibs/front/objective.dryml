@@ -48,3 +48,14 @@
 	</old-form>
 </extend>
 
+
+<extend tag="edit-page" for="Objective">
+	<old-edit-page merge>
+		<main-content: replace>
+            <main-content restore if="&can_edit?"/>
+            <else>
+                <read-only-ask-for-permission show-close="&false"/>
+            </else>
+        </main-content:>
+	</old-edit-page>
+</extend>
