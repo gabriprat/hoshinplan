@@ -3,12 +3,14 @@ module Jobs
     @queue = :jobs
 
     def self.perform(options)
-      hour = options.present? && options["hour"].present? ? options["hour"].to_i : 8
+      hour = options.present? && options[:hour].present? ? options[:hour].to_i : 8
       ret = ""
       begin
+        User.current_user = nil
+        User.current_id = -1
         ret += Jobs::say "Initiating subscription billing job (at #{hour})!" + "\n"
-        subscriptions = SubscriptionStripe.at_hour(hour)
-                            .where("status = 'Active' and next_payment_at = #{User::TODAY_SQL}")
+        subscriptions = SubscriptionStripe.unscoped
+                            .where("status = 'Active' and next_payment_at = date_trunc('day',now())")
 
         subscriptions.each {|s|
           begin
@@ -28,7 +30,10 @@ module Jobs
             s.save
             Jobs::say "Subscription updated" + "\n"
           rescue => e
-            UserCompanyMailer.admin_payment_error(s, e).deliver_now
+            text = "Payment error for subscription #{s.id}!"
+              + e.message + "\n"
+              + e.backtrace.join("\n")
+            UserCompanyMailer.admin_payment_error(s, text).deliver_later
             Jobs::say "==== Error processing charge!!! #{e.message}" + "\n"
             s.payment_error = e.message.to_s + " ==== " + e.backtrace.to_s
             s.save
