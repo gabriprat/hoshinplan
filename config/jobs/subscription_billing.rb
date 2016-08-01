@@ -30,9 +30,7 @@ module Jobs
             s.save
             Jobs::say "Subscription updated" + "\n"
           rescue => e
-            text = "Payment error for subscription #{s.id}!"
-              + e.message + "\n"
-              + e.backtrace.join("\n")
+            text = "Payment error for subscription #{s.id}!" + e.message + e.backtrace.join("\n")
             UserCompanyMailer.admin_payment_error(s, text).deliver_later
             Jobs::say "==== Error processing charge!!! #{e.message}" + "\n"
             s.payment_error = e.message.to_s + " ==== " + e.backtrace.to_s

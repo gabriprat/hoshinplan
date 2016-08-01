@@ -132,8 +132,7 @@ class BillingDetailsController < ApplicationController
   def charge(old_remaining_amount=0, old_period=nil)
     subscription = self.this.active_subscription
     subscription.billing_detail_id = self.this.id
-    amount = subscription.charge(full_amount=false, old_remaining_amount)
-    track_charge(amount)
+    amount = subscription.charge(full_amount=false, old_remaining_amount, request._?.remote_ip)
     return amount
   end
 end

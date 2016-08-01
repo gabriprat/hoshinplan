@@ -173,7 +173,7 @@ class SubscriptionStripe < Subscription
     self.save!
   end
 
-  def charge(full_amount=true, old_remaining_amount=0)
+  def charge(full_amount=true, old_remaining_amount=0, remote_ip='')
     c = Company.unscoped.find(company_id)
     b = BillingDetail.unscoped.find(billing_detail_id)
     credit = c.credit || 0;
@@ -190,6 +190,7 @@ class SubscriptionStripe < Subscription
       )
       c.credit = 0
       c.save
+      Mp.track_charge(user, remote_ip, pay_now)
     else
       c.credit = -pay_now
       c.save

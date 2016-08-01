@@ -70,6 +70,12 @@ module ModelBase
       return true
     end
 
+    if self.is_a?(Company)
+      cid = self.id if cid.nil?
+    else
+      cid = self.company_id if cid.nil?
+    end
+
     ret = RequestStore.store[rs_key :sc, cid]
     if ret.nil?
       ret = _user_companies_company(user, cid)
@@ -88,11 +94,6 @@ module ModelBase
   end
   
   def _user_companies_company(user, cid=nil)
-    if self.is_a?(Company)
-      cid = self.id if cid.nil?
-    else
-      cid = company_id ? company_id : Company.current_id if cid.nil?
-    end
     ret = user.all_active_user_companies_and_hoshins._?.select {|uc| uc.company.id == cid }
     ret
   end
