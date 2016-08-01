@@ -70,10 +70,10 @@ module ModelBase
       return true
     end
 
-    if self.is_a?(Company)
+    if self.instance_of?(Company)
       cid = self.id if cid.nil?
     else
-      cid = self.company_id if cid.nil?
+      cid = self.company_id if cid.nil? && self.respond_to?(:company_id)
     end
 
     ret = RequestStore.store[rs_key :sc, cid]
