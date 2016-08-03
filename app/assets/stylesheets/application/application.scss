@@ -479,12 +479,23 @@ ul.navbar-nav {
       vertical-align: baseline;
     }
 
+    &.btn-outline {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      margin: 5px 11px 0 11px;
+      background: transparent;
+      border: 1px solid #a5a6b0;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    }
+
     &.btn-raised {
       padding-top: 5px;
       padding-bottom: 5px;
       margin: 5px 10px 0 10px;
-      background: transparent;
-      border: 2px solid $inverse-primary-color;
       box-shadow: none;
       -webkit-box-shadow: none;
     }
@@ -3823,6 +3834,12 @@ body.column-form {
         .main-column, .aside-column {
                 padding-left: 2em;
                 padding-right: 2em;
+        }
+        @media (max-width: 768px) {
+          .main-column, .aside-column {
+            padding-left: 1em;
+            padding-right: 1em;
+          }
         }
         .content-body {
                 font-size: 1.3em;

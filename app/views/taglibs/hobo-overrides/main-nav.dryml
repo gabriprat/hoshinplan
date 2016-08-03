@@ -68,15 +68,5 @@
     <nav-item href="#{base_url}/admin" if="&current_user.administrator?">Admin</nav-item>
 
   </navigation>
-  <else>
-  <navigation class="main-nav" merge-attrs param="default">
-  <nav-item href="/features">
-  	<t key="features">Features</t>
-  </nav-item>
-  <nav-item href="/pricing">
-  	<t key="pricing">Pricing</t>
-  </nav-item>
-  </navigation>
-  </else>
   </else>
 </def>
