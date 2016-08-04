@@ -1,4 +1,4 @@
-		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
+		<form ajax success="$('#update-area-modal-#{this.id}').modal('hide'); $('#add-area-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-area-#{this.id}" updates="#areas,#tutorial,#tutorial,#sec-actions">
 		   <div class="modal-body">
 		    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
 		    <field-list: fields="name, description, hoshin"/>

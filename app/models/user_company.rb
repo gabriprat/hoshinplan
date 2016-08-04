@@ -108,7 +108,9 @@ class UserCompany < ActiveRecord::Base
        end
      end
      
-     create :new_company, :params => [ :company, :user ], :become => :active
+     create :new_company, :params => [ :company, :user ], :become => :active do
+       self.roles << :admin
+     end
      
      transition :accept, { :invited => :active }, :available_to => :accept_available do
        #user = self.user

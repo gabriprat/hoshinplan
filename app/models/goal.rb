@@ -45,7 +45,6 @@ class Goal < ActiveRecord::Base
     user.tutorial_step << :goal
     user.save!
   end
-  
 
   # --- Permissions --- #
 

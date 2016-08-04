@@ -20,16 +20,16 @@
 		<prepend-content-header: >
 		<if test="&params['action']=='show'">
 		<span id="create-buttons" if="&can_create?">
-		<a href="#{hoshin_path this}/areas/new" onclick="$('#add-area-modal').modal('show'); $('#add-area-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
+		<rmodal href-url="#{hoshin_path this}/areas/new" url="#{area_path Area.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.id}" target-id="add-area-modal" class="btn pull-right btn-default">
             <ht key="area.actions.new" name="#{name(:no_wrapper => true)}">
               Add new area
             </ht>
-		</a>
-	    <a href="#{hoshin_path this}/goals/new" onclick="$('#add-goal-modal').modal('show'); $('#add-goal-modal form').trigger('reset'); return false;" class="btn pull-right btn-default">
+		</rmodal>
+		<rmodal href-url="#{hoshin_path this}/goals/new" url="#{goal_path Goal.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.id}" target-id="add-goal-modal" class="btn pull-right btn-default">
 	            <ht key="goal.actions.new" name="#{name(:no_wrapper => true)}">
 	              Add new goal
 	            </ht>
-			</a>
+		</rmodal>
 		</span>
 		<bootstrap-switch id="show-mine" data-user="#{current_user.id}" onSwitchChange="filterPostits" size="mini">
 			<label:><t key="hoshin.show_only_mine"/></label:>
@@ -94,36 +94,6 @@
 			</sortable-collection>
 			<%# /swept-cache %>
 			<div id="health-popover"></div>
-			<modal id="add-goal-modal">
-				<modal:>
-				<set hid="#{this.id}"/>
-			<set compid="&this.company_id"/>
-				<div class="modal-dialog">
-				<form with="&Goal.new" success="$('#add-goal-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" updates="#goals,#tutorial,#tutorial,#sec-actions" class="modal-content">
-					<div class="modal-body">
-						<field-list: fields="name" />
-						<hidden-field:hoshin_id value="#{hid}"/>
-						<hidden-field:company_id value="#{compid}"/>
-					</div>
-					<modal-form-footer/>
-				</form>
-				</div>
-				</modal:>
-			</modal>
-			<modal id="add-area-modal">
-				<modal:>
-				<set hid="#{this.id}"/>
-				<div class="modal-dialog">
-				<form with="&Area.new" success="$('#add-area-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" updates="#areas,#tutorial,#tutorial,#sec-actions" class="modal-content">
-					<div class="modal-body">
-						<field-list: fields="name, description" />
-						<hidden-field:hoshin_id value="#{hid}"/>
-					</div>
-					<modal-form-footer/>
-				</form>
-				</div>
-				</modal:>
-			</modal>
 			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help" html-safe/></div>
 		</content-body:>
 		<field-list: fields=""/>

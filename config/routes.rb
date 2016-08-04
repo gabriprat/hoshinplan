@@ -96,9 +96,13 @@ Hoshinplan::Application.routes.draw do
   post "/tasks/reorder_lane/:key/:task_id" => "tasks#reorder_lane"
 
   post "/indicators/form" => "indicators#form", :as => 'indicators_form'
-  
+
   post "/objectives/form" => "objectives#form", :as => 'objectives_form'
-  
+
+  post "/areas/form" => "areas#form", :as => 'areas_form'
+
+  post "/goals/form" => "goals#form", :as => 'goals_form'
+
   get "/pitch" => "front#pitch"
   
   match '/fail', to: 'front#test_fail', via: :all

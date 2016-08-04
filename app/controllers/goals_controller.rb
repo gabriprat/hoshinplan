@@ -29,9 +29,17 @@ class GoalsController < ApplicationController
       redirect_to this.hoshin if valid? && !request.xhr?
     end
   end
-  
+
+
   def form
-    @this = find_instance
+    if (params[:id])
+      @this = find_instance
+    else
+      @this = Goal.new
+      @this.company_id = params[:company_id]
+      @this.hoshin_id = params[:hoshin_id]
+    end
   end
+
 
 end

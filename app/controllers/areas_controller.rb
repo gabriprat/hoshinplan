@@ -44,9 +44,17 @@ class AreasController < ApplicationController
       .where(:id => params[:id]).order('indicators.ind_pos, indicator_histories.day').references(:indicators).first
     hobo_show
   end
-  
+
   def form
-    @this = find_instance
+    if (params[:id])
+      @this = find_instance
+    else
+      @this = Area.new
+      @this.company_id = params[:company_id]
+      @this.hoshin_id = params[:hoshin_id]
+    end
   end
-  
+
+
+
 end
