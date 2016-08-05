@@ -88,6 +88,7 @@ class IndicatorsController < ApplicationController
       if (d)
         ih = @this.indicator_histories.find_or_initialize_by(day: d)
         ih.value = h["value"]; ih.goal = h["goal"]; ih.previous = h["previous"]
+        ih.company_id = Company.current_id
         ih.user_save(current_user)
         ihs.push(ih)
         if !h["value"].nil? && (last["last_update"].nil? || d > last["last_update"])
