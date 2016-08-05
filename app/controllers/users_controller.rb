@@ -62,8 +62,8 @@ class UsersController < ApplicationController
     begin
       transition_page_action :accept_invitation 
     rescue Hobo::PermissionDeniedError => e
-      unless request.xhr? || this.lifecycle.valid_key? 
-        render template: 'users/invalid_invitation_key'  
+      unless request.xhr? || this.lifecycle.valid_key?
+        render template: 'users/invalid_invitation_key'
       else
         fail e
       end
@@ -104,8 +104,13 @@ class UsersController < ApplicationController
     begin
       transition_page_action :activate 
     rescue Hobo::PermissionDeniedError => e
-      unless request.xhr? || this.lifecycle.valid_key? 
-        render template: 'users/invalid_activation_key'  
+      unless request.xhr? || this.lifecycle.valid_key?
+        if @this.state.to_s == 'active'
+          flash[:info] = I18n.translate('user.messages.already_active') unless logged_in?
+          redirect_to "/login"
+        else
+          render template: 'users/invalid_activation_key'
+        end
       else
         fail e
       end

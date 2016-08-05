@@ -425,6 +425,7 @@ es:
     messages:
       end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
       activation_mail_resent: El email de activación ha sido reenviado.
+      already_active: Tu usuario ya estaba activo. Por favor inicia sesión.
   hoshin:
     how_to_improve: ¿Cómo mejorar la salud de mi hoshinplan?
     finish_tutorial: Finalizar el tutorial
