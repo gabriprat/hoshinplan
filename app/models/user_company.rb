@@ -8,7 +8,7 @@ class UserCompany < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    roles_mask :integer, null: false, default: 3
+    roles_mask :integer, null: false, default: 7
     timestamps
   end
 
@@ -107,11 +107,9 @@ class UserCompany < ActiveRecord::Base
          UserCompanyMailer.invite(self, company, lifecycle.key, acting_user, acting_user.language.to_s).deliver_later
        end
      end
-     
-     create :new_company, :params => [ :company, :user ], :become => :active do
-       self.roles << :admin
-     end
-     
+
+     create :new_company, :params => [ :company, :user, :roles ], :become => :active
+
      transition :accept, { :invited => :active }, :available_to => :accept_available do
        #user = self.user
        #user.lifecycle.activate!(user)

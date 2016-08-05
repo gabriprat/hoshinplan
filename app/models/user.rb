@@ -323,9 +323,12 @@ class User < ActiveRecord::Base
   
   def all_active_user_companies_and_hoshins
     return @all_active_user_companies_and_hoshins unless @all_active_user_companies_and_hoshins.nil?
+    cid = User.current_id
+    User.current_id = self.id
     @all_active_user_companies_and_hoshins = self.active_user_companies_and_hoshins
-    ActiveRecord::Associations::Preloader.new.preload(@all_active_user_companies_and_hoshins, 
+    ActiveRecord::Associations::Preloader.new.preload(@all_active_user_companies_and_hoshins,
       [company: :active_hoshins])
+    User.current_id = cid
     @all_active_user_companies_and_hoshins
   end
   
