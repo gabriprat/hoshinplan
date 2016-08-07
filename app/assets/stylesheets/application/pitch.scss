@@ -407,24 +407,99 @@ a.brand strong {
 	background: #eee url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTUvMzIvNzA2L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 0;
 	padding:140px 0 100px;
 }
-.product-block{
-	overflow:hidden;
-	padding:24px 0 0 56px;
+.product-block {
+  overflow: hidden;
+  padding: 24px 56px 0 56px;
+
+  .feature-block + .feature-block {
+    padding-top: 6em;
+    border-top: 1px solid #eee;
+  }
+  .feature-block {
+    padding-bottom: 6em;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &.odd {
+      flex-direction: row-reverse;
+    }
+
+    a {
+      img {
+        -webkit-transform: translateX(0px) perspective(600px) rotateY(10deg);
+        -moz-transform: translateX(0px) perspective(600px) rotateY(10deg);
+        -ms-transform: translateX(0px) perspective(600px) rotateY(10deg);
+        -o-transform: translateX(0px) perspective(600px) rotateY(10deg);
+        transform: translateX(0px) perspective(600px) rotateY(10deg);
+        opacity: 0;
+        -webkit-transition: all 1250ms ease 500ms;
+        -moz-transition: all 1250ms ease 500ms;
+        -ms-transition: all 1250ms ease 500ms;
+        -o-transition: all 1250ms ease 500ms;
+        transition: all 1250ms ease 500ms;
+      }
+    }
+
+    &.inViewPort a img {
+      -webkit-transform: translateX(0px) perspective( 600px ) rotateY( 0deg );
+      -moz-transform: translateX(0px) perspective( 600px ) rotateY( 0deg );
+      -ms-transform: translateX(0px) perspective( 600px ) rotateY( 0deg );
+      -o-transform: translateX(0px) perspective( 600px ) rotateY( 0deg );
+      transform: translateX(0px) perspective( 600px ) rotateY( 0deg );
+      opacity: 1;
+    }
+
+    .feature-desc {
+      display: table-cell;
+      opacity: 0;
+      -webkit-transform: translateX(-100px);
+      -moz-transform: translateX(-100px);
+      -ms-transform: translateX(-100px);
+      -o-transform: translateX(-100px);
+      transform: translateX(-100px);
+      -webkit-transition: all 1250ms ease 150ms;
+      -moz-transition: all 1250ms ease 150ms;
+      -ms-transition: all 1250ms ease 150ms;
+      -o-transition: all 1250ms ease 150ms;
+      transition: all 1250ms ease 150ms;
+      padding: 0 10em 0 5em;
+    }
+
+    &.inViewPort .feature-desc {
+      opacity: 1;
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      -ms-transform: translateX(0px);
+      -o-transform: translateX(0px);
+      transform: translateX(0px);
+    }
+
+
+    @media only screen and (max-width: 1023px){
+      display: block;
+      .feature-desc, img {
+        margin: 0 1em;
+        padding: 0;
+      }
+
+      img {
+        display:block;
+        margin:0 auto 20px;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: 767px){
+      display: block;
+      .feature-desc {
+        font-size: .7em;
+      }
+    }
+  }
 }
-.product-block img{
-	display:inline;
-	float:left;
-	vertical-align:top;
-	margin:0 53px 0 0;
-}
-.product-block img.right {
-	float: right;
-}
-.product-block .list{
-	overflow:hidden;
-	padding:24px 0 0;
-}
-.product-block .list li{margin:0 0 75px;}
+
 #slide8{
 	padding:140px 0 100px;
 	background:url(//staticdoc.hoshinplan.com/system/images/W1siZiIsIjIwMTQvMTEvMDIvMjEvNTUvMzIvNzA2L2JnX3NoYWRvdy5wbmciXV0/bg-shadow.png) repeat-x 0 104px;
@@ -585,24 +660,6 @@ a.brand strong {
 	}
 	.statistic-block{
 		padding:0;
-	}
-	.product-block{
-		padding:24px 0 0;
-	}
-	.product-block img{
-		float:none;
-		display:block;
-		margin:0 auto 20px;
-	}
-	.product-block img.right {
-		float:none;
-	}
-	.product-block .list{
-		margin-top: 0;
-		padding-left:50px;
-	}
-	.product-block .list li{
-		margin:0 0 45px;
 	}
 	.model-block{
 		margin:0;

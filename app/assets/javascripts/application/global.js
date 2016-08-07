@@ -558,3 +558,35 @@ $(window).load(function () {
 		mixpanel.identify(userId);
 	}
 });
+
+
+if (document.body.classList.contains('tr-hd')) {
+    var header = $(".navbar-default");
+    var start = $( window ).height() / 2;
+    var range = $( window ).height() / 4;
+
+    $(window).on('scroll', function() {
+        var scrollTop = $(this).scrollTop() - start;
+        if (scrollTop < 0) scrollTop = 0;
+        /* avoid unnecessary call to jQuery function */
+        if (scrollTop <= range+start) {
+            header.css({ 'background-color' : 'rgba(29,44,65, ' + scrollTop/range + ')'});
+        }
+    });
+}
+
+if (document.body.classList.contains('tr-hd')) {
+    var header = $(".navbar-default");
+    var start = $( window ).height() / 2;
+    var range = $( window ).height() / 4;
+
+    $(window).on('scroll', function() {
+        var scrollTop = $(this).scrollTop() - start;
+        if (scrollTop < 0) scrollTop = 0;
+        /* avoid unnecessary call to jQuery function */
+        if (scrollTop <= range+start) {
+            header.css({ 'background-color' : 'rgba(29,44,65, ' + scrollTop/range + ')'});
+        }
+    });
+}
+

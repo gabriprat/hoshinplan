@@ -2,7 +2,7 @@
 //(see https://github.com/davidhalford/DivPeek)
 //===============================================================================
 //CONFIG: 
-var elementsToTrack = ["#scrollfx1","#scrollfx2","#scrollfx3","#scrollfx4","#scrollfx5","#scrollfx6","#scrollfx7"];
+var elementsToTrack = ".appear";
 
 var pixelOffset = -24;
 var inClassName = "inViewPort";
@@ -22,10 +22,9 @@ function recalcVars(){
 	viewPortHeight = $(window).height();
 	scrollFromTop = $(window).scrollTop();
 	scrollFromBottom = (parseInt(scrollFromTop)+parseInt(viewPortHeight));
-	for (var i = 0; i < elementsToTrack.length; i++) {
-		if ($(elementsToTrack[i]).exists()) {
-			checkInViewport(scrollFromBottom, elementsToTrack[i]);
-		}
+    var elems = $(elementsToTrack);
+	for (var i = 0; i < elems.length; i++) {
+        checkInViewport(scrollFromBottom, elems[i]);
    	}
 }
 

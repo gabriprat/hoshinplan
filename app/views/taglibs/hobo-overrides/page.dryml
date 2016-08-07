@@ -20,7 +20,13 @@
 				  <span>toggle menu</span>
 				</button>
 				<div param='app-name'>
-					<a class="navbar-brand" href="/"><strong>Hoshin</strong><span>plan</span></a>
+
+					<a class="navbar-brand" href="/">
+					    <image src="hoshinplan-logo.svg" title="Hoshinplan" alt="Hoshinplan" class="logo" if="&params[:new_logo]"/>
+					    <else>
+					        <strong>Hoshin</strong><span>plan</span>
+                        </else>
+					</a>
 				</div>
 			</header>
 			<div id="sidenav" class="navbar-collapse collapse">

@@ -1,3 +1,5 @@
+@import "colors.scss";
+
 #cms {
 	padding: 0 20px;
 }
@@ -34,32 +36,59 @@ body.legal #cms ul {
 }
 
 #cms #enum {
-        background: #fff;
-        display: block;
-        text-align: center;
-        margin: 0 -50px 0 -50px;
-        padding: 40px 0;
+  background: $inverse-background-color;
+  color: $inverse-primary-color;
+  display: block;
+  text-align: center;
+  margin: 0 -50px;
+  padding: 150px 0;
+
+  h2 {
+    margin: 0 auto 3em auto;
+    font-size: 3em;
+    text-align: center;
+    font-family: $secondary-font-stack;
+    font-weight: 800;
+    color: $inverse-primary-color;
+
+    &:after {
+      content: "";
+      width: 10%;
+      display: block;
+      margin: 10px auto 0 auto;
+      border-bottom: 4px solid $secondary-color;
+    }
+  }
+}
+
+@media screen and (max-width: 979px) {
+  #cms #enum {
+    margin: 0 -35px;
+  }
 }
 
 #cms #enum ol {
-	margin: 0;
-	text-align: center;
-	display: inline-block;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: inline-block;
 }
 
 #cms #enum li {
-	position: relative;
-	background-image: none;
-	margin: 0px 0 0 0;
-	padding: 0 30px;
-	list-style-type: none;
-	min-height: 40px;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	display: inline-block;
-	width: 24em;
+  margin: 15px;
+  position: relative;
+  background-image: none;
+  list-style-type: none;
+  min-height: 40px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  display: inline-block;
+  width: 25%;
+  max-width: 24em;
+  min-width: 16em;
+  vertical-align: text-top;
 }
 
 #cms #enum li h3 {
@@ -76,7 +105,6 @@ body.legal #cms ul {
 	color: #25A9E0;
 	font-size: 150px;
 	top: 7px;
-	opacity: 0.3;
 }
 
 #cms #enum a {
@@ -89,14 +117,63 @@ body.legal #cms ul {
 }
 
 .claim {
-	margin: 0 -50px 0 -50px;
-	text-align: center;
-	color: #fff;
-	background: #2b372b image-url("bg2.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+  margin: 0 -50px 0 -50px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(
+                  rgba(0, 0, 0, 0.7),
+                  rgba(0, 0, 0, 0.7)
+  ), image-url('hoshinplan-header.jpg') no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body.front-page .navbar-default {
+  a {
+    color: #fff;
+    &.btn {
+      border: 2px solid transparent;
+      &.btn-raised {
+        border-color: #fff;
+        background: transparent;
+      }
+    }
+  }
+}
+
+.claim .span12 {
+  position: relative;
+  min-height: 1px;
+}
+
+@media all and (min-width: 750px) {
+  .claim {
+    height: 100vh;
+    min-height: 500px;
+    background: linear-gradient(122deg,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0) 60%,
+            rgba(0, 0, 0, 1)),
+      image-url('hoshinplan-header.jpg') no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+  }
+
+  .claim .span12 {
+    width: 40%;
+    max-width: 600px;
+    position: absolute;
+    left: 60%;
+    right: 0;
+    top: 170px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .claim .btn {
@@ -127,54 +204,143 @@ body.legal #cms ul {
 }
 
 #cms .quotes {
-	margin: 0 -50px 0 -50px;
-	background: #f8faff asset-url("bg-shadow.png") repeat-x 0 0;
-	padding: 40px 0;
+  margin: 0 -50px 0 -50px;
+  background: #f8faff asset-url("bg-shadow.png") repeat-x 0 0;
+  padding: 40px 0;
+
+  h2 {
+    margin: 3em auto;
+    font-size: 3em;
+    text-align: center;
+    font-family: $secondary-font-stack;
+    font-weight: 800;
+
+    &:after {
+      content: "";
+      width: 10%;
+      display: block;
+      margin: 10px auto 0 auto;
+      border-bottom: 4px solid $secondary-color;
+    }
+  }
 }
 
 #cms .quotes footer {
 	bottom: -40px;
 }
 
+#cms blockquote {
+  font-size: 1.5em;
+}
+
 #cms blockquote p {
-	position: relative;
-	width: 260px;
-	padding: 0px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	padding: 20px;
-	-moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-	-webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-        -webkit-transition: .5s ease-out;
-        -moz-transition: .5s ease-out;
-        -o-transition: .5s ease-out;
-	font-size: .9em;
-	padding-top: 2em;	
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  padding: 0px;
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+  font-size: .9em;
+  padding-top: 1em;
+  padding-bottom: 13em;
+  overflow: hidden;
+  background-color: $secondary-background-color;
+  color: $inverse-primary-color;
+
+  &:before, &:after {
+    content: open-quote;
+    position: absolute;
+    z-index: 1;
+    font-size: 200px;
+    color: rgba(0, 0, 0, 0.1);
+    left: -39px;
+    top: -100px;
+    font-family: Arial;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  &:after {
+    content: close-quote;
+    left: initial;
+    top: initial;
+    right: 0;
+    bottom: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 2;
+    font-family: serif;
+    font-size: 1.2em;
+    font-style: italic;
+  }
+
+  cite {
+    display: block;
+    position: absolute;
+    width: 400%;
+    height: 400%;
+    background: $background-color;
+    border-radius: 50%;
+    bottom: -360%;
+    left: -150%;
+    z-index: 4;
+    padding-top: 5em;
+    color: $primary-color;
+    -webkit-transition: all 1250ms ease 500ms;
+    -moz-transition: all 1250ms ease 500ms;
+    -ms-transition: all 1250ms ease 500ms;
+    -o-transition: all 1250ms ease 500ms;
+    transition: all 1250ms ease 500ms;
+    -ms-transform: scale(4);
+    -moz-transform: scale(4);
+    -webkit-transform: scale(4);
+    transform: scale(4);
+  }
+
+  img {
+    position: absolute;
+    left: 50%;
+    bottom: 40%;
+    border-radius: 50%;
+    z-index: 5;
+    width: 100px;
+    border: 3px solid #fff;
+    -ms-transform: translateX(-50%) translateY(50px) scale(0);
+    -moz-transform: translateX(-50%) translateY(50px) scale(0);
+    -webkit-transform: translateX(-50%) translateY(50px) scale(0);
+    transform: translateX(-50%) translateY(50px) scale(0);
+    -webkit-transition: all 1250ms ease 1500ms;
+    -moz-transition: all 1250ms ease 1500ms;
+    -ms-transition: all 1250ms ease 1500ms;
+    -o-transition: all 1250ms ease 1500ms;
+    transition: all 1250ms ease 1500ms;
+    opacity: 0;
+  }
 }
 
-#cms .quotes.outViewPort blockquote p {
-	-ms-transform: scale(0); 
-	-moz-transform: scale(0); 
-	-webkit-transform: scale(0); 
-	transform: scale(0);
-}
+#cms .quotes blockquote.inViewPort {
+  img {
+    -ms-transform: translateX(-50%) translateY(50px) scale(1);
+    -moz-transform: translateX(-50%) translateY(50px) scale(1);
+    -webkit-transform: translateX(-50%) translateY(50px) scale(1);
+    transform: translateX(-50%) translateY(50px) scale(1);
+    opacity: 1;
+  }
 
-#cms blockquote p:after {
-  content: "";
-  position: absolute;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px ;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px ;
-  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px ;
-  -moz-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  bottom: -10px;
-  left: 20%;
-  border-width: 10px;
-  border-style: solid;
-  border-color: transparent #FFF #FFF transparent;
+  cite {
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 
 #cms blockquote {
@@ -185,8 +351,42 @@ body.legal #cms ul {
 }
 #cms .product-pitch {
   margin: 0em -50px;
-  padding: 4em 0;
-  background: #eee asset-url("bg-shadow.png") repeat-x 0 0;
+  padding: 0;
+  background: #fff;
+
+  h2 {
+    margin: 3em auto;
+    font-size: 3em;
+    text-align: center;
+    font-family: $secondary-font-stack;
+    font-weight: 800;
+
+    &:after {
+      content: "";
+      width: 10%;
+      display: block;
+      margin: 10px auto 0 auto;
+      border-bottom: 4px solid $secondary-color;
+    }
+  }
+
+  h3 {
+    font-size: 2.5em;
+    font-weight: 800;
+    font-family: $secondary-font-stack;
+    display: flex;
+    align-items: center;
+
+    em {
+      color: $secondary-color;
+      font-size: 2.4em;
+      margin-right: 0.5em;
+    }
+  }
+
+  p {
+    font-size: 1.5em;
+  }
 }
 #cms .pitch #slide3.team {
 	padding: 0;
@@ -202,15 +402,15 @@ body.tutorial #tutorial-close {
 }
 
 @media all and (max-width: 640px) {
-	
+
 	#cms .quotes {
 		margin: 0;
 	}
-	
+
 	#cms .claim, #cms .product-pitch, #cms .quotes, #cms #enum {
 		margin: 0;
 	}
-	
+
 	#cms .product-pitch {
 		padding: 0 10px;
 	}
@@ -227,11 +427,11 @@ body.tutorial #tutorial-close {
 	#cms .claim h2 {
 		padding: 0 20px;
 	}
-	
+
 	#cms {
 		padding: 0;
 	}
-	
+
 	#cms img {
 		width: 100%;
 	}

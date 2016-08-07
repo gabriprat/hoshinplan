@@ -429,24 +429,27 @@ html body.presenting input {
 }
 
 body .navbar a.navbar-brand {
-	float: none;
-	padding: 5px 15px;
-	line-height: 1em;
-	font-weight: 100;
-	vertical-align: text-top;
+  padding: 5px 15px;
+  height: auto;
+  line-height: 1em;
+  font-weight: 100;
+  vertical-align: text-top;
+  img {
+    width: 200px;
+  }
 }
 
 body .navbar a.navbar-brand, body .navbar a.navbar-brand:visited,  body .navbar a.navbar-brand strong,  body .navbar a.navbar-brand span {
-	font-family: $primary-font-stack;
-	font-size: 35px;
-	color: $inverse-secondary-color;
-	margin: 0;
-	text-shadow: none;
+  font-family: $primary-font-stack;
+  font-size: 35px;
+  color: $inverse-secondary-color;
+  margin: 0;
+  text-shadow: none;
 
-        -o-transition: color 1s ease-in-out;
-        -moz-transition: color 1s ease-in-out;
-        -webkit-transition: color 1s ease-in-out;
-        -ms-transition: color 1s ease-in-out;
+  -o-transition: color 1s ease-in-out;
+  -moz-transition: color 1s ease-in-out;
+  -webkit-transition: color 1s ease-in-out;
+  -ms-transition: color 1s ease-in-out;
 }
 
 ul.navbar-nav {
@@ -495,7 +498,7 @@ ul.navbar-nav {
     &.btn-raised {
       padding-top: 5px;
       padding-bottom: 5px;
-      margin: 5px 10px 0 10px;
+      margin: 4px 10px 0 10px;
       box-shadow: none;
       -webkit-box-shadow: none;
     }
@@ -3965,3 +3968,31 @@ body.column-form {
   -moz-column-gap: 40px; /* Firefox */
   column-gap: 40px;
 }
+
+.tr-hd .navbar-default {
+  position: fixed;
+  background: transparent;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+  .tr-hd {
+    .navbar-right {
+      margin-right: 0;
+    }
+    .navbar-collapse {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .tr-hd .navbar-default {
+    position: absolute;
+  }
+}
+

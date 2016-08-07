@@ -1,10 +1,10 @@
 <page title="Home">
 
-  <body: class="front-page"/>
+  <body: class="front-page tr-hd"/>
 
   <content:>
 
-  <cms key="custom_fragments/home_no_logged_#{locale}" />
+  <cms key="custom_fragments/home_no_logged_v2_#{locale}" />
 
   </content:>
 </page>
