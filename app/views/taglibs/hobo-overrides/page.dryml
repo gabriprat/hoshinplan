@@ -33,18 +33,6 @@
 			<main-nav class="main-nav" current="&title"/>
 			<account-nav/>
 			</div>
-			<modal id="login" unless="&logged_in?">
-			<modal:>
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<modal-header><ht key="hoshin.actions.login">Login</ht></modal-header>
-						<div class="modal-body">
-							<login-form />
-						</div>
-					</div>
-				</div>
-			</modal:>
-			</modal>
 		</navbar:>
 		<scripts: replace>
 			<if test="#{@pdf?'true':''}">
@@ -62,9 +50,22 @@
 				<stylesheet name='#{subsite || &apos;front&apos;}' param='app-stylesheet'/>
 			</else>
 		</stylesheets:>
-		<prepend-body:>
-			<google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' unless="&@pdf"/>
-		</prepend-body:>
+		<body: replace>
+		            <google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' unless="&@pdf"/>
+		            <body restore/>
+		            <modal id="login" unless="&logged_in?">
+        			<modal:>
+        				<div class="modal-dialog">
+        					<div class="modal-content">
+        						<modal-header><ht key="hoshin.actions.login">Login</ht></modal-header>
+        						<div class="modal-body">
+        							<login-form />
+        						</div>
+        					</div>
+        				</div>
+        			</modal:>
+        			</modal>
+		</body:>
 		<head:>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                         <param-content for="head"/>
