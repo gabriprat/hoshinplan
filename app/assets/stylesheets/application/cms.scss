@@ -146,9 +146,11 @@ body.front-page .navbar-default {
 .claim .span12 {
   position: relative;
   min-height: 1px;
+  margin-top: 5em;
 }
 
 @media all and (min-width: 750px) {
+
   .claim {
     height: 100vh;
     min-height: 500px;
@@ -170,9 +172,10 @@ body.front-page .navbar-default {
     position: absolute;
     left: 60%;
     right: 0;
-    top: 170px;
+    top: 18%;
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 0;
   }
 }
 
@@ -436,4 +439,16 @@ body.tutorial #tutorial-close {
 		width: 100%;
 	}
 
+}
+
+
+@media only screen and (max-width: 750px) {
+  #cms .product-pitch, #cms #enum, #cms .quotes {
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 2em;
+    }
+  }
 }

@@ -410,6 +410,9 @@ a.brand strong {
 .product-block {
   overflow: hidden;
   padding: 24px 56px 0 56px;
+  @media only screen and (max-width: 750px) {
+    padding: 24px 6px 0 6px;
+  }
 
   .feature-block + .feature-block {
     padding-top: 6em;
