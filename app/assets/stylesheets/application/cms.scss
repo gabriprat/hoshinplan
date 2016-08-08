@@ -280,7 +280,7 @@ body.front-page .navbar-default {
   span:before, span:after {
     content: open-quote;
     position: absolute;
-    z-index: 1;
+    z-index: -1;
     font-size: 200px;
     color: rgba(0, 0, 0, 0.1);
     left: -39px;
@@ -306,6 +306,9 @@ body.front-page .navbar-default {
     font-style: italic;
     display: block;
     background-color: $secondary-background-color;
+    @media only screen and (max-width: 400px) {
+      padding: 2em 1em 12em 1em;
+    }
     padding: 2em 2em 12em 2em;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

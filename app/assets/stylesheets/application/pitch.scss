@@ -485,7 +485,7 @@ a.brand strong {
 
     @media only screen and (max-width: 1023px){
       display: block;
-      .feature-desc, img {
+      .feature-desc, &.odd .feature-desc, img {
         margin: 0 1em;
         padding: 0;
       }
@@ -501,7 +501,7 @@ a.brand strong {
     @media only screen and (max-width: 767px){
       display: block;
       .feature-desc {
-        font-size: .7em;
+        font-size: .9em;
       }
     }
   }
