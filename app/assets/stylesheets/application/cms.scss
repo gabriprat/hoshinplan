@@ -168,14 +168,13 @@ body.front-page .navbar-default {
 
   .claim .span12 {
     width: 40%;
-    max-width: 600px;
+    max-width: 450px;
     position: absolute;
     left: 60%;
     right: 0;
-    top: 18%;
+    top: 7.5vw;
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 0;
   }
 }
 
@@ -234,29 +233,51 @@ body.front-page .navbar-default {
 
 #cms blockquote {
   font-size: 1.5em;
+  margin: 0 1em 60px 1em;
+  padding: 0;
+  position: relative;
+  display: inline-block;
+  border: 0;
+  opacity: 0;
+  &.inViewPort {
+    opacity: 1;
+  }
+}
+
+#cms blockquote:after {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 500ms ease-in-out 1s;
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+}
+
+#cms blockquote.inViewPort:after {
+  opacity: 1;
 }
 
 #cms blockquote p {
+
   position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 350px;
   padding: 0px;
   background: #fff;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 20px;
-  -moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
   font-size: .9em;
-  padding-top: 1em;
-  padding-bottom: 13em;
   overflow: hidden;
-  background-color: $secondary-background-color;
+  clip-path: padding-box;
+  background: transparent;
   color: $inverse-primary-color;
+  border-radius: 10px;
 
-  &:before, &:after {
+  span:before, span:after {
     content: open-quote;
     position: absolute;
     z-index: 1;
@@ -269,7 +290,7 @@ body.front-page .navbar-default {
     font-weight: bold;
   }
 
-  &:after {
+  span:after {
     content: close-quote;
     left: initial;
     top: initial;
@@ -283,6 +304,13 @@ body.front-page .navbar-default {
     font-family: serif;
     font-size: 1.2em;
     font-style: italic;
+    display: block;
+    background-color: $secondary-background-color;
+    padding: 2em 2em 12em 2em;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: .1px; //Fixing bug in safari that showed a small border
   }
 
   cite {
@@ -297,11 +325,11 @@ body.front-page .navbar-default {
     z-index: 4;
     padding-top: 5em;
     color: $primary-color;
-    -webkit-transition: all 1250ms ease 500ms;
-    -moz-transition: all 1250ms ease 500ms;
-    -ms-transition: all 1250ms ease 500ms;
-    -o-transition: all 1250ms ease 500ms;
-    transition: all 1250ms ease 500ms;
+    -webkit-transition: all 1250ms ease 150ms;
+    -moz-transition: all 1250ms ease 150ms;
+    -ms-transition: all 1250ms ease 150ms;
+    -o-transition: all 1250ms ease 150ms;
+    transition: all 1250ms ease 150ms;
     -ms-transform: scale(4);
     -moz-transform: scale(4);
     -webkit-transform: scale(4);
@@ -320,11 +348,11 @@ body.front-page .navbar-default {
     -moz-transform: translateX(-50%) translateY(50px) scale(0);
     -webkit-transform: translateX(-50%) translateY(50px) scale(0);
     transform: translateX(-50%) translateY(50px) scale(0);
-    -webkit-transition: all 1250ms ease 1500ms;
-    -moz-transition: all 1250ms ease 1500ms;
-    -ms-transition: all 1250ms ease 1500ms;
-    -o-transition: all 1250ms ease 1500ms;
-    transition: all 1250ms ease 1500ms;
+    -webkit-transition: all 1250ms ease 500ms;
+    -moz-transition: all 1250ms ease 500ms;
+    -ms-transition: all 1250ms ease 500ms;
+    -o-transition: all 1250ms ease 500ms;
+    transition: all 1250ms ease 500ms;
     opacity: 0;
   }
 }
@@ -346,12 +374,6 @@ body.front-page .navbar-default {
   }
 }
 
-#cms blockquote {
-	position: relative;
-	display: inline-block;
-	border: 0;
-	margin-bottom: 60px;
-}
 #cms .product-pitch {
   margin: 0em -50px;
   padding: 0;

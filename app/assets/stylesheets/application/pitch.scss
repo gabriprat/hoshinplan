@@ -426,6 +426,9 @@ a.brand strong {
 
     &.odd {
       flex-direction: row-reverse;
+      .feature-desc {
+        padding: 0 10em 0 0;
+      }
     }
 
     a {
@@ -461,12 +464,13 @@ a.brand strong {
       -ms-transform: translateX(-100px);
       -o-transform: translateX(-100px);
       transform: translateX(-100px);
-      -webkit-transition: all 1250ms ease 150ms;
-      -moz-transition: all 1250ms ease 150ms;
-      -ms-transition: all 1250ms ease 150ms;
-      -o-transition: all 1250ms ease 150ms;
-      transition: all 1250ms ease 150ms;
-      padding: 0 10em 0 5em;
+      -webkit-transition: transform 1250ms ease 150ms, opacity 1250ms ease 150ms;
+      -moz-transition: transform 1250ms ease 150ms, opacity 1250ms ease 150ms;
+      -ms-transition: transform 1250ms ease 150ms, opacity 1250ms ease 150ms;
+      -o-transition: transform 1250ms ease 150ms, opacity 1250ms ease 150ms;
+      transition: transform 1250ms ease 150ms, opacity 1250ms ease 150ms;
+      padding: 0 0 0 10em;
+      max-width: 700px;
     }
 
     &.inViewPort .feature-desc {
