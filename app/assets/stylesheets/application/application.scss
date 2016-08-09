@@ -1273,9 +1273,10 @@ body button.close {
 	padding-bottom: .2em;
 }
 .front-page .alert {
-	position: fixed;
-	right: 2em;
-	top: 4em;
+  position: fixed;
+  right: 2em;
+  top: 4em;
+  z-index: 1060;
 }
 
 .front-page .navbar-default {
