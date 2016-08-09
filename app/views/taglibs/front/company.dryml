@@ -64,11 +64,6 @@
 
 <extend tag="edit-page" for="Company">
 	<old-edit-page merge>
-		<append-content-header:>
-			<transition-buttons class="form-horizontal pull-buttons-right"/>
-			<div class="form-horizontal">
-			</div>
-		</append-content-header:>
 		<main-content: replace>
             <main-content restore if="&can_edit?"/>
             <else>
