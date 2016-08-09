@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
      :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, 
      :accept_invitation, :do_accept_invitation, :check_corporate_login, :pricing]
   
-  around_filter :set_user_time_zone,  :except => [:activate_from_email, :activate]
+  around_filter :set_user_time_zone
 
   around_filter :scope_current_user, :except => [:activate_from_email, :activate]
 
@@ -199,7 +199,7 @@ class ApplicationController < ActionController::Base
     private
     
     def set_user_time_zone(&block)
-      tz = current_user.try.timezone || @cookie_time_zone || Time.zone
+      tz = current_user.try.timezone || cookies["tz"] || Time.zone
       Time.use_zone(tz, &block);
     end
     

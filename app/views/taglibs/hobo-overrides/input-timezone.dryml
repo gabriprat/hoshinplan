@@ -1,11 +1,3 @@
 <def tag='input' for="HoboFields::Types::Timezone">
-	<%
-	 require 'hoshinplan/timezone'
-	 zone = @cookie_time_zone
-	 zones = Hoshinplan::Timezone.get(zone)
-	 unless zones.nil? 
-	 	zone = zones.name
-	 end
-	%>
-	<%= time_zone_select( param_name_for_this_parent, this_field, nil, {:default => zone, :model => Hoshinplan::Timezone}, {class:"form-control"} ) %>
+	<%= time_zone_select( param_name_for_this_parent, this_field, nil, {default: Time.zone.name}, {class:"form-control"} ) %>
 </def>
