@@ -1,3 +1,3 @@
 <def tag='input' for="HoboFields::Types::Timezone">
-	<%= time_zone_select( param_name_for_this_parent, this_field, nil, {default: Time.zone.name}, {class:"form-control"} ) %>
+	<%= time_zone_select( param_name_for_this_parent, this_field, nil, {default: Time.zone.name, :model => Hoshinplan::Timezone}, {class:"form-control"} ) %>
 </def>

@@ -281,10 +281,9 @@ class UsersController < ApplicationController
     lastName ||= auth['info']['last_name']
     current_user.delay.update_data_from_authorization(provider, uid, email, firstName, lastName, request.remote_ip, cookies[:tz], header_locale) if current_user.signed_up? && current_user.account_active?
   end
-  
+
   def signup
     self.this = User.new
-    self.this.timezone = cookies[:tz]
     self.this.language = header_locale
     hobo_signup
   end

@@ -7,7 +7,7 @@ module Hoshinplan
     end
     
     def to_s
-      "(GMT#{self.formatted_offset}) #{@tz.to_s}"
+      "#{@tz.friendly_identifier(true)} (GMT#{self.formatted_offset})"
     end
     
     def utc_offset
