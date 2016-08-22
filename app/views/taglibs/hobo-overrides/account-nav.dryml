@@ -31,23 +31,25 @@
           </if>
 
           <else>
-            <nav-item href="/features">
-            	<t key="features">Features</t>
-            </nav-item>
-            <nav-item href="/pricing">
-            	<t key="pricing">Pricing</t>
-            </nav-item>
-            <nav-item href="#{locale.to_s=='en'?'https://blog.hoshinplan.com':'https://es-blog.hoshinplan.com'}">
-                <t key="footer.blog"/>
-            </nav-item>
-            <li class='nav-item' param="log-in" unless="&controller.action_name=='login'">
-              <a href="#" onclick="$('#login').modal('show'); return false;" class="btn btn-outline"><ht key="hoshin.actions.login"/></a>
-            </li>
-            <li class='nav-item' unless="&controller.action_name=='signup' or controller.action_name=='login'">
-                    <a href='&signup_url' param='signup' class="dropdown-toggle btn btn-primary btn-raised">
-                            <t key="login_signup"/>
-                    </a>
-            </li>
+            <unless test="controller.action_name=='login'">
+                <nav-item href="/features">
+                    <t key="features">Features</t>
+                </nav-item>
+                <nav-item href="/pricing">
+                    <t key="pricing">Pricing</t>
+                </nav-item>
+                <nav-item href="#{locale.to_s=='en'?'https://blog.hoshinplan.com':'https://es-blog.hoshinplan.com'}">
+                    <t key="footer.blog"/>
+                </nav-item>
+                <li class='nav-item' param="log-in" unless="&controller.action_name=='login'">
+                  <a href="#" onclick="$('#login').modal('show'); return false;" class="btn btn-outline"><ht key="hoshin.actions.login"/></a>
+                </li>
+                <li class='nav-item' unless="&controller.action_name=='signup'">
+                        <a href='&signup_url' param='signup' class="dropdown-toggle btn btn-primary btn-raised">
+                                <t key="login_signup"/>
+                        </a>
+                </li>
+            </unless>
           </else>
         </ul>
       </do>

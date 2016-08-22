@@ -35,7 +35,7 @@
 			</div>
 		</navbar:>
 		<prepend-container:>
-		    <modal id="login" unless="&logged_in?">
+		    <modal id="login" unless="&logged_in? || controller.action_name=='login'">
                 <modal:>
                     <div class="modal-dialog">
                         <div class="modal-content">

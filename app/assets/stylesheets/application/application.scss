@@ -704,7 +704,8 @@ body h2.heading .title-action:hover {
 .simple-message, .lifecycle-transition-page {
 	.main-column {
 		.content {
-			max-width: 500px;
+            width: 500px;
+            max-width: 100vw;
 			resize: vertical;
 			margin: auto;
 
@@ -712,9 +713,9 @@ body h2.heading .title-action:hover {
 				margin-bottom: 2em;
 			}
 
-                        .content-body {
-                                overflow-x: initial;
-                        }
+            .content-body {
+              overflow-x: initial;
+            }
 
 			form {
 				margin-top: 2em;
