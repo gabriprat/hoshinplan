@@ -31,7 +31,7 @@
           </if>
 
           <else>
-            <unless test="controller.action_name=='login'">
+            <unless test="&controller.action_name=='login'">
                 <nav-item href="/features">
                     <t key="features">Features</t>
                 </nav-item>
