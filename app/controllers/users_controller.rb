@@ -299,6 +299,7 @@ class UsersController < ApplicationController
         people_set_with_event "Signup", self.this if valid?
       end
     end
+    session[:just_signed_up] = true
   end
 
   def sign_in(user) 

@@ -63,6 +63,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery except: :omniauth_callback
   
   respond_to :html, :json, :xml
+  
+  before_filter :just_signed_up
     
   before_filter :login_from_cookie
    
@@ -79,6 +81,14 @@ class ApplicationController < ActionController::Base
 
   prepend_around_filter :check_subscription, :scope_current_user, :except => [:activate_from_email, :activate]
 
+
+  def just_signed_up
+    if session[:just_signed_up]
+      session.delete(:just_signed_up)
+      @just_signed_up = true
+    end
+  end
+  
   def check_subscription
     if !request.xhr? && view_context.upgrade_button_visible? && Company.current_company.is_trial_expired?
       redirect_to Company.current_company, action: 'upgrade', trial_expired: Company.current_company.is_trial_expired?

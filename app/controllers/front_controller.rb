@@ -21,7 +21,8 @@ class FrontController < ApplicationController
   end
   
   def test_fail
-    fail "Test fail!"
+          fail session[:just_signed_up].to_yaml
+    
   end
  
   def first
