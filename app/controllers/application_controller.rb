@@ -68,8 +68,6 @@ class ApplicationController < ActionController::Base
     
   before_filter :login_from_cookie
    
-  before_filter :authenticate_client_app
-
   before_filter :my_login_required,  :except => [:login, :sso_login, :signup, :activate, :resend_activation,
      :do_resend_activation, :do_activate, :do_signup, :forgot_password, :reset_password, :do_reset_password, 
      :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, 
@@ -79,7 +77,9 @@ class ApplicationController < ActionController::Base
 
   around_filter :scope_current_user, :except => [:activate_from_email, :activate]
 
-  prepend_around_filter :check_subscription, :scope_current_user, :except => [:activate_from_email, :activate]
+  prepend_around_filter :authenticate_client_app, :scope_current_user
+  
+  prepend_around_filter :check_subscription, :authenticate_client_app, :except => [:activate_from_email, :activate]
 
 
   def just_signed_up
@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
 
   def scope_current_user
    Nr.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
-   if defined?("logged_in?")
+   if defined?("logged_in?") && !params[:app_key].presence
      User.current_id = logged_in? ? current_user.id : nil
      User.current_user = current_user
      if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
@@ -214,22 +214,28 @@ class ApplicationController < ActionController::Base
     end
     
     def authenticate_client_app
-      return unless request.format && (request.format.json? || request.format.xml?)
-      app_key = params[:app_key].presence
-      raise Errors::SecurityError.new(1), "Client application key parameter (app_key) not provided." unless app_key
-      t = Time.xmlschema(params[:timestamp].presence)
-      raise Errors::SecurityError.new(2), "Timestamp parameter (timestamp) not provided." unless t
-      n = Time.now
-      raise Errors::SecurityError.new(3), "Timestamp in the future" if t > n
-      raise Errors::SecurityError.new(4), "Timestamp too old." if (n - t) > TIMESTAMP_MAX_AGE_SEC
-      path,notused,signature = request.fullpath.rpartition("&signature=")
-      app = ClientApplication.unscoped.find_by_key(app_key)
-      raise Errors::SecurityError.new(5), "No client application found with the given key." unless app
-      signature2 = app.sign(path)
-      raise Errors::SecurityError.new(6), "Invalid signature" unless signature == signature2
-      ClientApplication.current_app = app
-      self.current_user = app.user
-      User.current_id = app.user.id
+      Rails.logger.debug "Authenticating client_app! (" + (request.format.json? || request.format.xml?).to_s + ")"
+      if request.format && (request.format.json? || request.format.xml?)
+        app_key = params[:app_key].presence
+        raise Errors::SecurityError.new(1), "Client application key parameter (app_key) not provided." unless app_key
+        t = Time.xmlschema(params[:timestamp].presence)
+        raise Errors::SecurityError.new(2), "Timestamp parameter (timestamp) not provided." unless t
+        n = Time.now
+        raise Errors::SecurityError.new(3), "Timestamp in the future" if t > n
+        raise Errors::SecurityError.new(4), "Timestamp too old." if (n - t) > TIMESTAMP_MAX_AGE_SEC
+        path,notused,signature = request.fullpath.rpartition("&signature=")
+        app = ClientApplication.unscoped.find_by_key(app_key)
+        raise Errors::SecurityError.new(5), "No client application found with the given key." unless app
+        signature2 = app.sign(path)
+        raise Errors::SecurityError.new(6), "Invalid signature" unless signature == signature2
+        ClientApplication.current_app = app
+        self.current_user = app.user
+        User.current_user = app.user
+        User.current_id = app.user.id
+        Rails.logger.debug "Scoping current user from client_app (" + User.current_id.to_s + ")"
+        request.env['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+      end
+      yield
     end
   
 end
