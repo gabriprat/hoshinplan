@@ -6,6 +6,7 @@ end
 
 Hoshinplan::Application.routes.draw do
   
+  apipie
   #adding www. to the beginning of any URL that doesn't already have it
   constraints RedirectWww.new do
     get ':any', to: redirect(subdomain: 'www', path: '/%{any}'), any: /.*/

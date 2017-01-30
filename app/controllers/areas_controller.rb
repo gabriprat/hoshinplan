@@ -14,6 +14,11 @@ class AreasController < ApplicationController
   
   cache_sweeper :areas_sweeper
   
+  def_param_group :area do
+    param :name, String
+    param :description, String
+  end
+  
   def create
     hobo_create do
       redirect_to this.hoshin if valid? && !request.xhr?
@@ -21,6 +26,8 @@ class AreasController < ApplicationController
     log_event("Create area", {objid: @this.id, name: @this.name})
   end
   
+  api :POST, '/hoshins/:hoshin_id/areas', 'Create an area for the given Hoshin'
+  param_group :area
   def create_for_hoshin
     hobo_create_for :hoshin do
       redirect_to this.hoshin if valid? && !request.xhr?
@@ -28,15 +35,24 @@ class AreasController < ApplicationController
     log_event("Create area", {objid: @this.id, name: @this.name})
   end
   
+  api :PUT, '/areas/:id', 'Edit an area'
+  param_group :area
   def update
     hobo_update do
       redirect_to this.hoshin if valid? && !request.xhr?
     end
   end
   
+  api :DELETE, '/areas/:id', 'Delete an area'
+  param_group :area
   def destroy
     hobo_destroy
     log_event("Delete area", {objid: @this.id, name: @this.name})
+  end
+  
+  api :GET, '/areas/:id', 'Get an area'
+  def show
+    hobo_show
   end
   
   def charts

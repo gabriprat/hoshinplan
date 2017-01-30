@@ -12,6 +12,20 @@ class TasksController < ApplicationController
   
   include RestController
   
+  def_param_group :task do
+    param :name, String
+    param :description, String
+    param :deadline, Date
+    param :show_on_parent, :boolean, 'Show this indicator in the parent Hoshin'
+    param :reminder, :boolean, 'Send email reminders to the owner when the next update date comes'
+    param :feeling, [:smile, :wondering, :sad], 'How you are feeling about completing this task as planned'
+  end
+  
+  api :GET, '/tasks/:id', 'Get a task'
+  def show
+    hobo_show
+  end
+  
   def reorder_lane
     con  = ActiveRecord::Base.connection.raw_connection
     values = [params[:task_ordering]].concat(params[:task_ordering].split(","))
@@ -44,6 +58,8 @@ class TasksController < ApplicationController
     log_event("Create task", {objid: @this.id, name: @this.name})
   end
   
+  api :POST, '/objectives/:objective_id/tasks', 'Create a task for the given objective'
+  param_group :task
   def create_for_objective
     hobo_create_for :objective do
       if params[:status].present? && params[:status] == 'active'
@@ -58,11 +74,15 @@ class TasksController < ApplicationController
     log_event("Create task", {objid: @this.id, name: @this.name})
   end
   
+  api :DELETE, '/tasks/:id', 'Delete a task'
+  param_group :task
   def destroy
     hobo_destroy
     log_event("Delete task", {objid: @this.id, name: @this.name})
   end
   
+  api :PUT, '/tasks/:id', 'Update a task'
+  param_group :task
   def update
     delocalize_config = { deadline: :date }
     self.this = find_instance

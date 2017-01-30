@@ -32,7 +32,7 @@
 				<%= t("client_app.here_you_can", :rest_link => link_to(t("client_app.rest_link", :default=>'REST API'), "https://en.wikipedia.org/wiki/Representational_state_transfer")) %>
 				</p>
 				<p>
-				<%= t("client_app.to_learn", :developers_link => link_to(t("client_app.developers_link", :default=>'developers site'), "https://doc.hoshinplan.com/developers")) %>
+				<%= t("client_app.to_learn", :developers_link => link_to(t("client_app.developers_link", :default=>'developers site'), "https://staticdoc.hoshinplan.com/developers")) %>
 				</p>
 			</else>
 		</append-content-body:>

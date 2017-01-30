@@ -20,6 +20,26 @@ class IndicatorsController < ApplicationController
   
   include RestController
   
+  
+  def_param_group :indicator do
+    param :name, String
+    param :value, :number, 'The current value for this indicator'
+    param :description, String
+    param :frequency, [:weekly, :monthly, :quarterly], 'The update frequency for this indicator'
+    param :next_update, Date, 'The date of the next desired update'
+    param :goal, :number, 'The value that would set this indicator to 100%'
+    param :worst_value, :number, 'The value that would set this indicator to 0%'
+    param :reminder, :boolean, 'Send email reminders to the owner when the next update date comes'
+    param :show_on_parent, :boolean, 'Show this indicator in the parent Hoshin'
+    param :show_on_charts, :boolean, 'Show this indicator in the Hoshin charts view'
+  end
+  
+  
+  api :GET, '/indicators/:id', 'Get an indicator'
+  def show
+    hobo_show
+  end
+  
   def create
     delocalize_config = { last_update: :date, next_update: :date, value: :number, last_value: :number, goal: :number, worst_value: :number }
     obj = params["indicator"]
@@ -31,6 +51,8 @@ class IndicatorsController < ApplicationController
     log_event("Create indicator", {objid: @this.id, name: @this.name})
   end
   
+  api :POST, '/objectives/:objective_id/indicators', 'Create an indicator for the given objective'
+  param_group :indicator
   def create_for_objective
     hobo_create_for :objective do
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
@@ -38,11 +60,15 @@ class IndicatorsController < ApplicationController
     log_event("Create indicator", {objid: @this.id, name: @this.name})
   end
   
+  api :DELETE, '/indicators/:id', 'Delete an indicator'
+  param_group :indicator
   def destroy
     hobo_destroy
     log_event("Delete indicator", {objid: @this.id, name: @this.name})
   end
   
+  api :PUT, '/indicators/:id', 'Update an indicator'
+  param_group :indicator
   def update
       delocalize_config = { last_update: :date, next_update: :date, value: :number, last_value: :number, goal: :number, worst_value: :number }
       old_value = nil

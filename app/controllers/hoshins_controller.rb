@@ -14,6 +14,13 @@ class HoshinsController < ApplicationController
   
   cache_sweeper :hoshins_sweeper
   
+  def_param_group :hoshin do
+    param :name, String
+    param :header, String, 'Can be used to write the mission/vision or some description of the Hoshin'
+  end
+  
+  
+
   def create
     if params["new-company-name"]
       company = Company.new
@@ -25,16 +32,22 @@ class HoshinsController < ApplicationController
     log_event("Create hoshin", {objid: @this.id, name: @this.name})
   end
   
+  api :DELETE, '/hoshins/:id', 'Delete a hoshin'
+  param_group :hoshin
   def destroy
     hobo_destroy
     log_event("Delete hoshin", {objid: @this.id, name: @this.name})
   end
   
+  api :POST, '/companies/:company_id/hoshins', 'Create a hoshin for the given company'
+  param_group :hoshin
   def create_for_company
     hobo_create
     log_event("Create hoshin", {objid: @this.id, name: @this.name})
   end
   
+  api :PUT, '/hoshins/:id', 'Update a hoshin'
+  param_group :hoshin
   def update
     begin
       hobo_update
@@ -44,6 +57,7 @@ class HoshinsController < ApplicationController
     log_event("Update hoshin", {objid: @this.id, name: @this.name})
   end
   
+  api :GET, '/hoshins/:id', 'Get a hoshin'
   def show
     if request.xhr?
       hobo_ajax_response

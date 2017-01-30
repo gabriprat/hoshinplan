@@ -13,6 +13,15 @@ class ObjectivesController < ApplicationController
   
   include RestController
   
+  def_param_group :objective do
+    param :name, String
+    param :description, String
+  end
+  
+  api :GET, '/objectives/:id', 'Get an objective'
+  def show
+    hobo_show
+  end
   
   def create
     obj = params["objective"]
@@ -23,6 +32,8 @@ class ObjectivesController < ApplicationController
     log_event("Create objective", {objid: @this.id, name: @this.name})
   end
   
+  api :POST, '/areas/:area_id/objectives', 'Create an objective for the given area'
+  param_group :objective
   def create_for_area
     hobo_create_for :area do
       redirect_to this.area.hoshin if valid? && !request.xhr?
@@ -30,11 +41,15 @@ class ObjectivesController < ApplicationController
     log_event("Create objective", {objid: @this.id, name: @this.name})
   end
   
+  api :DELETE, '/objectives/:id', 'Delete an objective'
+  param_group :objective
   def destroy
     hobo_destroy
     log_event("Delete objective", {objid: @this.id, name: @this.name})
   end
   
+  api :PUT, '/objectives/:id', 'Update an objective'
+  param_group :objective
   def update
     obj = params["objective"]
     select_responsible(obj)

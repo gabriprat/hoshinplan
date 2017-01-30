@@ -27,11 +27,16 @@ class CompaniesController < ApplicationController
   show_action :collaborators
   show_action :upgrade
   web_method  :invite
+  
+  def_param_group :company do
+    param :name, String
+  end
     
   def first
     hobo_new
   end
   
+  api :GET, '/companies/:id', 'Get a company'
   def show
     current_user.all_companies
     self.this = find_instance
@@ -85,11 +90,15 @@ class CompaniesController < ApplicationController
           .paginate(:page => params[:page], :per_page => 15).load
   end
   
+  api :POST, '/companies', 'Create a company'
+  param_group :company
   def create
     hobo_create
     log_event("Create company", {objid: @this.id, name: @this.name})
   end
 
+  api :DELETE, '/companies/:id', 'Delete a company'
+  param_group :company
   def destroy
     hobo_destroy do
       redirect_to "/" if valid? && !request.xhr?
@@ -97,6 +106,8 @@ class CompaniesController < ApplicationController
     log_event("Delete company", {objid: @this.id, name: @this.name})
   end
   
+  api :PUT, '/companies/:id', 'Update a company'
+  param_group :company
   def update
     roles = [params[:role]]
     if params[:collaborators]
