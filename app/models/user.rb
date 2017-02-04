@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     invitation_code :string
     initial_task_state HoboFields::Types::EnumString.for(:backlog, :active), default: :backlog, null: false
   end
-
+  
   set_search_columns :name, '"firstName"', '"lastName"', :email_address
 
   bitmask :tutorial_step, :as => [:company, :hoshin, :goal, :area, :objective, :indicator, :task, :followup]
@@ -81,6 +81,9 @@ class User < ActiveRecord::Base
     if user.lifecycle.state.name == :invited
       user.from_invitation = true
     end
+    if user.email_address_changed? && user.email_address_was.present?
+      raise "Can't change email address"
+    end
   end
   
   before_destroy do |user|
@@ -96,7 +99,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :image, :less_than => 10.megabytes   
     
-  attr_accessible :firstName, :lastName, :email_address, :password, :password_confirmation, :companies, :image,
+  attr_accessible :firstName, :lastName, :email_address, :current_password, :password, :password_confirmation, :companies, :image,
      :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
      :trial_ends_at, :initial_task_state
   
@@ -167,7 +170,7 @@ class User < ActiveRecord::Base
       errors.add(:invitation_code,  I18n.t("errors.invitation_code_does_not_exist"))
     end
   end
-    
+  
   def self.find_by_email_address(email)
     if email.kind_of?(Array)
       User.find_by email_address: email.map{ |s| s.downcase }
@@ -406,16 +409,18 @@ class User < ActiveRecord::Base
     # Only the initial admin user can be created
     self.class.count == 0 || acting_user.administrator?
   end
-
-  def update_permitted?
+  
+  def update_permitted?    
     f = none_changed?(:administrator)
-    acting_user.administrator? or 
-    (lifecycle.signup_in_progress? && (state == 'invited' || state == 'inactive')) or
-    (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) or 
-    (changing_password? && state == 'invited') or
-    ((acting_user == self || same_company_admin) && f)
+    ret = (
+      acting_user.administrator? or 
+      (lifecycle.signup_in_progress? && (state == 'invited' || state == 'inactive')) or
+      (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) or 
+      ((acting_user == self || same_company_admin) && f)
+    )
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
+    ret
   end
 
   def destroy_permitted?
@@ -434,13 +439,11 @@ class User < ActiveRecord::Base
 
   def view_permitted?(field)
     ret = (lifecycle.activate_in_progress? || lifecycle.valid_key? && (state == 'invited' || state == 'inactive')) ||
-    changing_password? ||
     acting_user.administrator? || 
     self.new_record? || 
     self.guest? || 
     same_company ||
-    field == :password || field == :password_confirmation
-
+    (field == :password || field == :password_confirmation && lifecycle.valid_key?)
     ret
   end
   

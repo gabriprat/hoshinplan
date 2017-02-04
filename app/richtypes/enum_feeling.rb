@@ -1,5 +1,5 @@
 
 class EnumFeeling < EnumBase
-  self.for(:smile, :wondering, :sad)
+  self.for(:neutral, :smile, :wondering, :sad)
 end
   

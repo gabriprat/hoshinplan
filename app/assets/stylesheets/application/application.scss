@@ -938,6 +938,10 @@ body.hoshin div.indicators tr, body.hoshin div.indicators th {
 }
 
 .content-body > .form-horizontal {
+  ul.nav.nav-tabs {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2em;
+  }
 	max-width: 740px;
 	background: #fff;
 	padding: 1em;
@@ -3994,3 +3998,8 @@ body.column-form {
   }
 }
 
+.tareas, .indicators, .objectives {
+   .table-row:hover {
+     box-shadow: 0 1px 0 rgba(0,0,0,.1);
+   }
+}

@@ -297,6 +297,7 @@ class UsersController < ApplicationController
     else
       hobo_do_signup do
         people_set_with_event "Signup", self.this if valid?
+        redirect_to "/confirm-email" if valid?
       end
     end
     session[:just_signed_up] = true

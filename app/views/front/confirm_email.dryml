@@ -1,0 +1,17 @@
+<page title="Confirm your email" content-size="5" aside>
+
+  <body: class="confirm-email-page column-form" />
+
+  <main-nav: replace />
+
+  <content: replace>
+    <cms class="flex" key="custom_fragments/confirm_email_#{locale}"/>
+  </content:>
+
+  <aside-column:>
+      <cms class="flex" key="custom_fragments/confirm_email_aside_#{locale}"/>
+  </aside-column:>
+
+  <aside:/>
+
+</page>

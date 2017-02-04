@@ -873,7 +873,7 @@
     <body: class="show-page hoshin" param/>
 
     <content-header: param>
-      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a:company>
+      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Empresa" name="&this">Back to <name/></ht></a:company>
       <h2 param="heading">
         <ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">
           Hoshin <name/>
@@ -2267,7 +2267,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Subscription">
-  <page merge title="#{ht 'subscription.index_for_owner.title', :count=>100, :default=>['Subscriptions for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'subscription.index_for_owner.title', :count=>100, :default=>['Subscription for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user subscription" param/>
     <content-header: param>
       <div param="back-to">

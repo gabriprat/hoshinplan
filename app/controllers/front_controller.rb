@@ -29,6 +29,10 @@ class FrontController < ApplicationController
     
   end
   
+  def confirm_email
+  
+  end
+  
   def cms
     
   end

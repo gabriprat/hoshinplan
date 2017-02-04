@@ -248,6 +248,8 @@ en:
         lastName: Last Name
         password: Password
         current_password: Current password
+        new_password: New password
+        new_password_confirmation: New password confirmation
         password_confirmation: Password confirmation
         email_address: Email
         image: Image
@@ -424,6 +426,9 @@ en:
       end_collaboration_confirm: Are you sure you want to stop collaborating with this company?
       activation_mail_resent: The activation email has been resent successfully.
       already_active: Your user is already active. Please sign in instead.
+    tabs:
+      profile: Profile
+      password: Password
   hoshin:
     how_to_improve: "How to improve my hoshinplan's health?"
     finish_tutorial: Finish tutorial

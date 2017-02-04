@@ -243,7 +243,9 @@ es:
         firstName: Nombre
         lastName: Apellidos
         password: Contraseña
-        current_password: Contraseña Actual
+        current_password: Contraseña actual
+        new_password: Nueva contraseña
+        new_password_confirmation: Confirmación nueva contraseña
         password_confirmation: Confirmación Contraseña
         email_address: Email
         image: Imagen
@@ -426,6 +428,9 @@ es:
       end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
       activation_mail_resent: El email de activación ha sido reenviado.
       already_active: Tu usuario ya estaba activo. Por favor inicia sesión.
+    tabs:
+      profile: Perfil
+      password: Contraseña
   hoshin:
     how_to_improve: ¿Cómo mejorar la salud de mi hoshinplan?
     finish_tutorial: Finalizar el tutorial

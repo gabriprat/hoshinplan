@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
   before_filter :my_login_required,  :except => [:login, :sso_login, :signup, :activate, :resend_activation,
      :do_resend_activation, :do_activate, :do_signup, :forgot_password, :reset_password, :do_reset_password, 
      :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn, 
-     :accept_invitation, :do_accept_invitation, :check_corporate_login, :pricing]
+     :accept_invitation, :do_accept_invitation, :check_corporate_login, :pricing, :confirm_email]
   
   around_filter :set_user_time_zone
 
