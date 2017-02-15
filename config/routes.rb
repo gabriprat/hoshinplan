@@ -1,3 +1,5 @@
+require 'resque/server'
+
 class RedirectWww
   def matches?(request)
     request.subdomain.blank? && !request.path_info.start_with?('/health_check')
@@ -136,7 +138,7 @@ Hoshinplan::Application.routes.draw do
 
   SamlDynamicRouter.load unless Rails.env.development?
   
-  constraints CanAccessFlipperUI do
+  constraints IsAdministrator do
     mount Flipper::UI.app($flipper) => '/admin/flipper'
     mount Resque::Server.new, :at => "/admin/resque"
   end

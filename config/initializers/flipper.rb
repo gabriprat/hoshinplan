@@ -23,10 +23,12 @@ Flipper.register(:enterprise) do |actor|
 end
 
 
-class CanAccessFlipperUI
+class IsAdministrator
   def self.matches?(request)
     request.session[:init] = true
-    current_user = Hobo::Model.find_by_typed_id(request.session[:user])
+    if request.session[:user]
+      current_user = Hobo::Model.find_by_typed_id(request.session[:user])
+    end
     current_user.present? && current_user.respond_to?(:administrator?) && current_user.administrator?
   end
 end
