@@ -138,6 +138,7 @@ Hoshinplan::Application.routes.draw do
   
   constraints CanAccessFlipperUI do
     mount Flipper::UI.app($flipper) => '/admin/flipper'
+    mount Resque::Server.new, :at => "/admin/resque"
   end
   
   # The priority is based upon order of creation:
