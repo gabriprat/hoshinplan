@@ -1,4 +1,4 @@
-class Objective < ActiveRecord::Base
+class Objective < ApplicationRecord
 
   acts_as_paranoid
 

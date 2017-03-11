@@ -1,4 +1,4 @@
-class IndicatorEvent < ActiveRecord::Base
+class IndicatorEvent < ApplicationRecord
 
   hobo_model # Don't put anything above this
   

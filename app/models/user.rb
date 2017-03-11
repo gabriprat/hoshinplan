@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   include ModelBase
   include ColorHelper
@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
     trial_ending_email :datetime
     trial_ended_email :datetime
     invitation_code :string
+    companies_trial_days :integer, default: 0
     initial_task_state HoboFields::Types::EnumString.for(:backlog, :active), default: :backlog, null: false
   end
   
@@ -101,7 +102,7 @@ class User < ActiveRecord::Base
     
   attr_accessible :firstName, :lastName, :email_address, :current_password, :password, :password_confirmation, :companies, :image,
      :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
-     :trial_ends_at, :initial_task_state
+     :trial_ends_at, :initial_task_state, :partner
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true

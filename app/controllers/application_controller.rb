@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     
   helper CmsHelper
-  
+
   helper_method :ssoemail
 
   rescue_from RuntimeError do |exception|
@@ -75,11 +75,11 @@ class ApplicationController < ActionController::Base
   
   around_filter :set_user_time_zone
 
-  around_filter :scope_current_user, :except => [:activate_from_email, :activate]
+  around_filter :check_subscription, :authenticate_client_app, :except => [:activate_from_email, :activate]
+
+  prepend_around_filter :scope_current_user, :check_subscription, :except => [:activate_from_email, :activate]
 
   prepend_around_filter :authenticate_client_app, :scope_current_user
-  
-  prepend_around_filter :check_subscription, :authenticate_client_app, :except => [:activate_from_email, :activate]
 
 
   def just_signed_up
@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
   
   def check_subscription
-    if !request.xhr? && view_context.upgrade_button_visible? && Company.current_company.is_trial_expired?
+    if !request.xhr? && TrialHelper.upgrade_button_visible?(Company.current_company, self) && Company.current_company.is_trial_expired?
       redirect_to Company.current_company, action: 'upgrade', trial_expired: Company.current_company.is_trial_expired?
     else
       yield

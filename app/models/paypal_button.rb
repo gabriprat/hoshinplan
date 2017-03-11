@@ -1,4 +1,4 @@
-class PaypalButton < ActiveRecord::Base
+class PaypalButton < ApplicationRecord
 
   hobo_model # Don't put anything above this
 

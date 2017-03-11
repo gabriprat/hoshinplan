@@ -1,4 +1,4 @@
-class Indicator < ActiveRecord::Base
+class Indicator < ApplicationRecord
 
   acts_as_paranoid
 

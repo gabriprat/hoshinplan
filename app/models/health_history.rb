@@ -1,4 +1,4 @@
-class HealthHistory < ActiveRecord::Base
+class HealthHistory < ApplicationRecord
 
   hobo_model # Don't put anything above this
 

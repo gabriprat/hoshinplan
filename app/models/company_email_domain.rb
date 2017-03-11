@@ -1,4 +1,4 @@
-class CompanyEmailDomain < ActiveRecord::Base
+class CompanyEmailDomain < ApplicationRecord
 
   hobo_model # Don't put anything above this
 

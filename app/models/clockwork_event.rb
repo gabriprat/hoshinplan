@@ -1,4 +1,4 @@
-class ClockworkEvent < ActiveRecord::Base
+class ClockworkEvent < ApplicationRecord
 
   hobo_model # Don't put anything above this
 

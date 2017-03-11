@@ -1,4 +1,4 @@
-class Milestone < ActiveRecord::Base
+class Milestone < ApplicationRecord
 
   hobo_model # Don't put anything above this
 

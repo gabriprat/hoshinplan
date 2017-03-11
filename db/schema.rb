@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804091413) do
+ActiveRecord::Schema.define(version: 20170311094714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "a", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.date    "trial_ends_at"
+  end
 
   create_table "areas", force: :cascade do |t|
     t.string   "name",        null: false
@@ -155,6 +160,7 @@ ActiveRecord::Schema.define(version: 20160804091413) do
     t.datetime "deleted_at"
     t.integer  "subscriptions_count",                         default: 0,     null: false
     t.decimal  "credit",              precision: 8, scale: 2, default: 0.0
+    t.date     "trial_ends_at"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
@@ -564,6 +570,7 @@ ActiveRecord::Schema.define(version: 20160804091413) do
     t.string   "initial_task_state",                   default: "backlog",  null: false
     t.datetime "trial_ending_email"
     t.datetime "trial_ended_email"
+    t.integer  "companies_trial_days",                 default: 0
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

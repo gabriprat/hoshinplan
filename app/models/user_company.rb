@@ -1,4 +1,4 @@
-class UserCompany < ActiveRecord::Base
+class UserCompany < ApplicationRecord
 
   IS_ADMIN_SQL = 'roles_mask & 4 != 0';
 

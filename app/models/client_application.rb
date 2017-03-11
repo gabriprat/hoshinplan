@@ -1,4 +1,4 @@
-class ClientApplication < ActiveRecord::Base
+class ClientApplication < ApplicationRecord
   require 'openssl'
   require 'base64'
 

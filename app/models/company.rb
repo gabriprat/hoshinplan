@@ -1,4 +1,4 @@
-class Company < ActiveRecord::Base
+class Company < ApplicationRecord
 
   acts_as_paranoid
 
@@ -12,11 +12,12 @@ class Company < ActiveRecord::Base
     unlimited :boolean, :default => false, :null => false
     subscriptions_count :integer, :default => 0, :null => false
     credit :decimal, precision: 8, scale: 2, default: 0
+    trial_ends_at   :date
     timestamps
     deleted_at :datetime
   end
   index [:deleted_at]
-  attr_accessible :name, :creator_id, :company_email_domains, :credit
+  attr_accessible :name, :creator_id, :company_email_domains, :trial_ends_at, :credit
     
   belongs_to :creator, :class_name => "User", :creator => true
   
@@ -53,6 +54,14 @@ class Company < ActiveRecord::Base
     domain = cu.email_address.split("@").last
     if domain == 'infojobs.net' || domain == 'scmspain.com' || domain == 'schibsted.com'
       self.unlimited = true
+    end
+  end
+
+  before_create do |company|
+    cu = User.current_user
+    trial_days = cu.companies_trial_days
+    if trial_days > 0
+      self.trial_ends_at = Date.today + trial_days
     end
   end
   
@@ -141,11 +150,17 @@ class Company < ActiveRecord::Base
   end
 
   def trial_days_remaining
-    creator.nil? ? 0 :  creator.trial_days_remaining
+    if trial_ends_at.nil?
+      ret = creator.nil? ? 0 :  creator.trial_days_remaining
+    else
+      ret = (trial_ends_at - Date.today).to_i
+    end
+    ret = 0 if ret < 0
+    ret
   end
 
   def is_trial_expired?
-    creator.nil? || creator.is_trial_expired?
+    trial_days_remaining == 0
   end
 
   # --- Permissions --- #

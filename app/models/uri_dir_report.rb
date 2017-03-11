@@ -1,4 +1,4 @@
-class UriDirReport < ActiveRecord::Base
+class UriDirReport < ApplicationRecord
 
   include ModelBase
 

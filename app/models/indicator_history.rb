@@ -1,4 +1,4 @@
-class IndicatorHistory < ActiveRecord::Base
+class IndicatorHistory < ApplicationRecord
 
   hobo_model # Don't put anything above this
   

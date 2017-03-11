@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
-gem 'rails'
+gem 'rails', '4.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -72,6 +72,7 @@ gem 'protected_attributes'
 gem 'nested_has_many_through'
 gem 'actionmailer_inline_css'
 
+gem 'actionpack'
 gem 'delocalize'
 gem 'wicked_pdf'
 gem 'aws-sdk'

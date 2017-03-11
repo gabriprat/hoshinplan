@@ -1,4 +1,4 @@
-class Hoshin < ActiveRecord::Base
+class Hoshin < ApplicationRecord
   
   acts_as_paranoid
   

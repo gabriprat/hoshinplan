@@ -1,4 +1,4 @@
-class InvitationCode < ActiveRecord::Base
+class InvitationCode < ApplicationRecord
 
   hobo_model # Don't put anything above this
 

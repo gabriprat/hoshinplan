@@ -12,7 +12,7 @@
                 <div class="text-and-button">
                     <span class="trial-days-left text-and-button-text"><t key="trial_days_left"/></span>
                     <a with="&Company.current_company" action="upgrade" class="dropdown-toggle btn btn-primary btn-raised btn-combined">
-                        <span class="days-left btn-combined-inv">#{Company.current_company.creator.trial_days_remaining}</span>
+                        <span class="days-left btn-combined-inv">#{Company.current_company.trial_days_remaining}</span>
                         <span class="upgrade-text">
                             <span class="ic-bolt"></span>
                             <t key="hobo.actions.upgrade"/>

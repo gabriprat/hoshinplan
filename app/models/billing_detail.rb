@@ -1,4 +1,4 @@
-class BillingDetail < ActiveRecord::Base
+class BillingDetail < ApplicationRecord
 
   acts_as_paranoid
 

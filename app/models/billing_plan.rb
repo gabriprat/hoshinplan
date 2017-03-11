@@ -1,4 +1,4 @@
-class BillingPlan < ActiveRecord::Base
+class BillingPlan < ApplicationRecord
 
   hobo_model # Don't put anything above this
 
