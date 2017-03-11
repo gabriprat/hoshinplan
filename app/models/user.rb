@@ -102,7 +102,7 @@ class User < ApplicationRecord
     
   attr_accessible :firstName, :lastName, :email_address, :current_password, :password, :password_confirmation, :companies, :image,
      :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
-     :trial_ends_at, :initial_task_state, :partner
+     :trial_ends_at, :initial_task_state, :companies_trial_days
   
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true

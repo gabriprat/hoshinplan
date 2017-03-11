@@ -3,7 +3,7 @@
 		<collection: replace>
 			<% 
 				fields = model.accessible_attributes.*.to_s.join(",") 
-				fields = "id, created_at, name, language, preferred_view, color, email_address, administrator, tutorial_step, timezone, state, trial_ends_at, initial_task_state" if model == User
+				fields = "id, created_at, name, language, preferred_view, color, email_address, administrator, tutorial_step, timezone, state, trial_ends_at, initial_task_state, companies_trial_days" if model == User
 			%>
 			<table-plus fields="&fields">
 			       <append-controls: >

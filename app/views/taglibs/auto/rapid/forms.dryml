@@ -52,7 +52,7 @@
 <def tag="form" for="Company">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, unlimited, credit, company_email_domains, creator, users" param/>
+    <field-list fields="name, unlimited, credit, trial_ends_at, company_email_domains, creator, users" param/>
     <div param="actions">
       <submit label="#{ht 'company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -483,7 +483,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, firstName, lastName, color, email_address, administrator, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, beta_access, news, from_invitation, trial_ends_at, trial_ending_email, trial_ended_email, invitation_code, initial_task_state, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
+    <field-list fields="name, firstName, lastName, color, email_address, administrator, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, beta_access, news, from_invitation, trial_ends_at, trial_ending_email, trial_ended_email, invitation_code, companies_trial_days, initial_task_state, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
