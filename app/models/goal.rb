@@ -19,7 +19,9 @@ class Goal < ApplicationRecord
   never_show :position
   
   has_many :log, :class_name => "GoalLog", :inverse_of => :goal
-  
+  has_many :goal_comments, :inverse_of => :goal
+
+
   belongs_to :creator, :class_name => "User", :creator => true
   
   belongs_to :hoshin, :inverse_of => :goals, :counter_cache => true, :null => false, :touch => true

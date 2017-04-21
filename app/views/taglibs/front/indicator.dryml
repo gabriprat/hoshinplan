@@ -19,7 +19,7 @@
 		<div class="column" data-label="Area"><view:area/></div>
 	</if>
 	<if test="&column == 'KPI'">
-		  <div class="column name" data-label="Name"><rmodal href-url="#{indicator_path this}/edit" url="#{indicator_path this}/form" target-id="update-kpi-modal-#{this.id}"><name/></rmodal> <if test="&@this.class != User"><user-abbrev:responsible_id paren /></if><hoshin-link:hoshin_id if="&attributes[:parent_object] && attributes[:parent_object].respond_to?(:hoshin_id) && attributes[:parent_object].hoshin_id != this.hoshin_id"><span class="ic-level-up"/></hoshin-link></div>
+		  <div class="column name" data-label="Name"><a href="#{indicator_path this}/edit"><name/></a> <if test="&@this.class != User"><user-abbrev:responsible_id paren /></if><hoshin-link:hoshin_id if="&attributes[:parent_object] && attributes[:parent_object].respond_to?(:hoshin_id) && attributes[:parent_object].hoshin_id != this.hoshin_id"><span class="ic-level-up"/></hoshin-link></div>
   	</if>
 	<if test="&column == 'Value'">
 		  <div class="column nowrap" data-label="Value">
@@ -65,29 +65,41 @@
 
 <extend tag="form" for="Indicator">
 	<old-form merge>
-			            <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts, show_on_parent">
-				    	<area-view:>
-						<select-one options="&this_parent.objective.area.hoshin.areas" />
-					</area-view:>
-				    	<objective-view:>
-						<select-one options="&this_parent.area.objectives.to_a" />
-					</objective-view:>
-				    	<responsible-view:>
-						<name-one-user />
-					</responsible-view:>
-				    </field-list:>
-				    <cancel: href="&session[:return_to] || request.referer"/>
+        <prepend-default:>
+            <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
+        </prepend-default:>
+        <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts, show_on_parent">
+            <area-view:>
+                <select-one options="&this_parent.objective.area.hoshin.areas" />
+            </area-view:>
+            <objective-view:>
+                <select-one options="&this_parent.area.objectives.to_a" />
+            </objective-view:>
+            <responsible-view:>
+                <name-one-user />
+            </responsible-view:>
+        </field-list:>
+        <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>
 
 
 <extend tag="edit-page" for="Indicator">
-	<old-edit-page merge>
+	<old-edit-page aside-location="right" content-size="8" class="with-comments" merge>
 		<main-content: replace>
             <main-content restore if="&can_edit?"/>
             <else>
                 <read-only-ask-for-permission show-close="&false"/>
             </else>
         </main-content:>
+        <append-content-header:>
+            <a:hoshin param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
+        </append-content-header:>
+        <prepend-aside-column:>
+            <h2 class="heading">&nbsp;</h2>
+        </prepend-aside-column:>
+        <aside:>
+            <comments-form/>
+        </aside:>
 	</old-edit-page>
 </extend>

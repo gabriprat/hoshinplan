@@ -1,0 +1,8 @@
+<def tag="togglebutton" attrs="id">
+	<div class="togglebutton no-print" id="bsi-#{id}">
+		<label for="#{id}">
+		    <span><do param="label"/></span>
+		    <input id="#{id}" type="checkbox" merge-attrs/>
+	    </label>
+	</div>
+</def>

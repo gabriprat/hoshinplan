@@ -55,8 +55,8 @@ var loadKanban = function() {
 		for (i=0; i<colors.length; i++) {
 			$('.col-tog-' + colors[i]).toggle();
 		}
-		if (showMine != $("#show-mine").bootstrapSwitch("state")) {
-			$("#show-mine").bootstrapSwitch("toggleState");
+		if (showMine != $("#show-mine").prop("checked")) {
+            $("#show-mine").prop("checked", !$("#show-mine").prop("checked"));
 		}
 		doFilterPostits(colors, showMine);
 	} catch(err) {
@@ -89,14 +89,14 @@ var doFilterPostits = function(colors, showMine) {
 	equalHeightSections();
 }
 
-var filterPostits = function(event) {
-	event.stopPropagation();
-	var clickedColor = $(event.target).data("color");
+var filterPostits = function() {
+	window.event.stopPropagation();
+	var clickedColor = $(window.event.target).data("color");
 	if (clickedColor) {
 		$('.col-tog-' + clickedColor).toggle();
 	}
 	var sm = $("#show-mine");
-	var showMine = sm.bootstrapSwitch("state");
+	var showMine = sm.prop("checked");
 	var selector = "";
 	var hiddenColors = [];
 	$(".filter-color").each(function() {
@@ -267,7 +267,8 @@ var equalHeightSections = function() {
 	equalHeights("div.objectives-wrapper");
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
-	equalHeights(".area .header");
+    equalHeights(".area .header");
+    equalHeights(".kb-lane");
 	eh = false;
 }
 $(window).resize(equalHeightSections);
@@ -593,3 +594,10 @@ if (document.body.classList.contains('tr-hd')) {
     });
 }
 
+$(document).on('rapid:ajax:success', function() {
+    $.material.init();
+});
+
+$(document).ready(function() {
+    $.material.init();
+});

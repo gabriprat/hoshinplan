@@ -31,7 +31,6 @@ TextileEditor.setButtons(
         new TextileEditorButton("ed_justify",    "align-justify",  "<>",   "\n", "j", "Justify"),
         new TextileEditorButtonSeparator(),
         new TextileEditorButtonLink("ed_chain",   "chain",           "\"link text\":",   "", "k", "Link"),
-        new TextileEditorButtonImage("ed_image", "image",          "!",    "", "g", "Image"),
         new TextileEditorButtonSeparator(),
         new TextileEditorButtonGoogleDrive("ed_google_drive",      "google-drive",     "",   "", "", "Google Drive link"),
         new TextileEditorButtonDropBox("ed_dropbox",      "dropbox",     "",   "", "", "Dropbox link"),

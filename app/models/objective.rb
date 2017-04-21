@@ -36,6 +36,7 @@ class Objective < ApplicationRecord
   has_many :child_tasks, :inverse_of => :parent_objective, :class_name => 'Task'
   
   has_many :log, :class_name => "ObjectiveLog", :inverse_of => :objective
+  has_many :objective_comments, :inverse_of => :objective
 
   view_hints.parent  :hoshin
   
@@ -45,7 +46,7 @@ class Objective < ApplicationRecord
   belongs_to :area, :inverse_of => :objectives, :null => false
   belongs_to :hoshin, :inverse_of => :objectives, :counter_cache => false, :null => false, :touch => true
   belongs_to :responsible, :class_name => "User", :inverse_of => :objectives
-  
+
   acts_as_list :scope => :area, :column => "obj_pos"
   
   validate :validate_company

@@ -40,15 +40,15 @@ http {
       default "";
       "~^https?://[^/]+\.hoshinplan\.com(:[0-9]+)?$" "$http_origin";
     }
-    
+
     keepalive_requests 100000;
     sendfile on;
     tcp_nopush on;
     tcp_nodelay on;
-    
+
     client_body_buffer_size      128k;
     client_max_body_size         10m;
-    
+
     client_header_timeout  1m;
     client_body_timeout    1m;
     send_timeout           1m;
@@ -81,9 +81,10 @@ http {
     server {
         <%= include_passenger_internal_template('server.erb', 8, true, binding) %>
         <%#= include_passenger_internal_template('rails_asset_pipeline.erb', 8, false) %>
-       
+
+        include <%= app[:root] %>/config/websockets.conf;
         include <%= app[:root] %>/config/rails_asset_pipeline.conf;
-       
+
         ### BEGIN your own configuration options ###
         # This is a good place to put your own config
         # options. Note that your options must not

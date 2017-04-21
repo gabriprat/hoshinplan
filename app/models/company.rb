@@ -35,9 +35,10 @@ class Company < ApplicationRecord
   has_many :user_companies, :dependent => :destroy
   
   has_many :subscriptions, :dependent => :destroy
-  
+
   has_many :log, :class_name => "CompanyLog", :inverse_of => :company
-  
+  has_many :company_comments, :inverse_of => :company
+
   has_many :billing_details, :inverse_of => :company
   
   children :hoshins

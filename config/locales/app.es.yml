@@ -1,4 +1,7 @@
 es:
+  actions:
+    newer: Más nuevos
+    older: Más antiguos
   price_html: '%{value}%{currency}'
   loading: Cargando...
   saving: Guardando...
@@ -583,6 +586,12 @@ es:
       other: Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nos quedan %{count} días en el periodo de prueba y sólo los administradores pueden actualizar la suscripción. Gracias.
     expired_email_subject: Nuestro periodo de prueba de Hoshinplan ha terminado
     expired_email_body:  Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba ya ha terminado y sólo los administradores pueden actualizar la suscripción. Gracias.
+  comments:
+    ago: hace %{ago}
+    title: Comentarios
+    model_name:
+      singular: comentario
+      plural: comentarios
   read_only:
     heading: Solo tienes permiso de lectura
     ask_for_permission: Si necesitas permisos de edición puedes contactar con uno de los administradores de esta empresa.
@@ -734,3 +743,16 @@ es:
       month: Mes
       second: Segundos
       year: Año
+  will_paginate:
+    page_entries_info:
+      single_page:
+        zero:  "Ningún %{model} encontrado"
+        one:   "Mostrando 1 %{model}"
+        other: "Mostrando todos los %{count} %{model}"
+      single_page_html:
+        zero:  "Ningún %{model} encontrado"
+        one:   "Mostrando <b>1</b> %{model}"
+        other: "Mostrando <b>todos los&nbsp;%{count}</b> %{model}"
+      multi_page: "Mostrando %{model} %{from} - %{to} de %{count}"
+      multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b>"
+  write_comment: Escribe un comentario...

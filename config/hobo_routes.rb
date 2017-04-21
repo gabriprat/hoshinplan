@@ -72,6 +72,108 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller generic_comments
+  resources :generic_comments, :only => [:index, :new, :create]
+
+
+  # Resource routes for controller company_comments
+  resources :company_comments, :only => []
+
+  # Owner routes for controller company_comments
+  resources :companies, :as => :company, :only => [] do
+    resources :company_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_company'
+      collection do
+        post '/', :action => 'create_for_company'
+      end
+    end
+  end
+
+
+  # Resource routes for controller hoshin_comments
+  resources :hoshin_comments, :only => []
+
+  # Owner routes for controller hoshin_comments
+  resources :hoshins, :as => :hoshin, :only => [] do
+    resources :hoshin_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_hoshin'
+      collection do
+        post '/', :action => 'create_for_hoshin'
+      end
+    end
+  end
+
+
+  # Resource routes for controller goal_comments
+  resources :goal_comments, :only => []
+
+  # Owner routes for controller goal_comments
+  resources :goals, :as => :goal, :only => [] do
+    resources :goal_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_goal'
+      collection do
+        post '/', :action => 'create_for_goal'
+      end
+    end
+  end
+
+
+  # Resource routes for controller area_comments
+  resources :area_comments, :only => []
+
+  # Owner routes for controller area_comments
+  resources :areas, :as => :area, :only => [] do
+    resources :area_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_area'
+      collection do
+        post '/', :action => 'create_for_area'
+      end
+    end
+  end
+
+
+  # Resource routes for controller objective_comments
+  resources :objective_comments, :only => []
+
+  # Owner routes for controller objective_comments
+  resources :objectives, :as => :objective, :only => [] do
+    resources :objective_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_objective'
+      collection do
+        post '/', :action => 'create_for_objective'
+      end
+    end
+  end
+
+
+  # Resource routes for controller indicator_comments
+  resources :indicator_comments, :only => []
+
+  # Owner routes for controller indicator_comments
+  resources :indicators, :as => :indicator, :only => [] do
+    resources :indicator_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_indicator'
+      collection do
+        post '/', :action => 'create_for_indicator'
+      end
+    end
+  end
+
+
+  # Resource routes for controller task_comments
+  resources :task_comments, :only => []
+
+  # Owner routes for controller task_comments
+  resources :tasks, :as => :task, :only => [] do
+    resources :task_comments, :only => [] do
+      get '/', :on => :new, :action => 'new_for_task'
+      collection do
+        post '/', :action => 'create_for_task'
+      end
+    end
+  end
+
+
   # Resource routes for controller goals
   resources :goals, :only => [:new, :edit, :show, :create, :update, :destroy] do
     collection do

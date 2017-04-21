@@ -1,0 +1,8 @@
+<extend tag='input' for='boolean'>
+    <div class="checkbox">
+        <label>
+            <% attributes['class'].gsub!('form-control', '') %>
+            <old-input merge />
+        </label>
+    </div>
+</extend>

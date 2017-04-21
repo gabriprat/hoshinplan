@@ -46,6 +46,7 @@ class Area < ApplicationRecord
       :inverse_of => :parent_area, :accessible => true, :class_name => 'Task', :foreign_key => :parent_area_id
   
   has_many :log, :class_name => "AreaLog", :inverse_of => :area
+  has_many :area_comments, :inverse_of => :area
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false, :touch => true
   belongs_to :company, :inverse_of => :areas, :null => false

@@ -68,6 +68,7 @@
 		            <google-analytics tracking='UA-47284244-1' domain='hoshinplan.com' unless="&@pdf"/>
 		</append-body:>
 		<head:>
+            <meta name="access-token" content="#{controller.access_token}" />
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                         <param-content for="head"/>
                         <script src="https://use.typekit.net/oxz6ytt.js"></script>

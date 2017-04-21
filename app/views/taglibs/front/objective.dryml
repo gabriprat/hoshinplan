@@ -8,7 +8,7 @@
 		</if>
 		<if test="&column == 'Objective'">
 			<div class="column name" data-label="Name" part="obj-name" id="obj-name-#{this.id}">
-				<rmodal title="#{ht('objective.health.' + this.status + '_objectives', kpi: Indicator.model_name.human(:count => 100), task: Task.model_name.human(:count => 100)) unless this.status.blank?}" href-url="#{objective_path this}/edit" url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}" class="#{this.status}"><name/> </rmodal> <user-abbrev:responsible_id paren/>	
+				<a title="#{ht('objective.health.' + this.status + '_objectives', kpi: Indicator.model_name.human(:count => 100), task: Task.model_name.human(:count => 100)) unless this.status.blank?}" href="#{objective_path this}/edit" class="#{this.status}"><name/> </a> <user-abbrev:responsible_id paren/>
 			</div>
 		</if>
 		<if test="&column == 'Resp.' || column == 'Responsible'">
@@ -35,27 +35,39 @@
 	<set options="&this.parent_objectives"/>
 	<set parent=", parent" if="&options.size>0"/>
 	<old-form merge>
-	<field-list: fields="name, description, responsible #{parent}, area">
-		<parent-tag: options="&options" />
-		<area-view:>
-			<select-one options="&this_parent.area.hoshin.areas.to_a" />
-		</area-view:>
-		<responsible-view:>
-			<name-one-user />
-		</responsible-view:>
-	</field-list:>
-	<cancel: href="&session[:return_to] || request.referer"/>
+        <prepend-default:>
+            <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
+        </prepend-default:>
+        <field-list: fields="name, description, responsible #{parent}, area">
+            <parent-tag: options="&options" />
+            <area-view:>
+                <select-one options="&this_parent.area.hoshin.areas.to_a" />
+            </area-view:>
+            <responsible-view:>
+                <name-one-user />
+            </responsible-view:>
+        </field-list:>
+        <cancel: href="&session[:return_to] || request.referer"/>
 	</old-form>
 </extend>
 
 
 <extend tag="edit-page" for="Objective">
-	<old-edit-page merge>
+	<old-edit-page aside-location="right" content-size="8" class="with-comments" merge>
 		<main-content: replace>
             <main-content restore if="&can_edit?"/>
             <else>
                 <read-only-ask-for-permission show-close="&false"/>
             </else>
         </main-content:>
+        <append-content-header:>
+            <a:hoshin param="parent-link">&laquo; <ht key="objective.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
+        </append-content-header:>
+        <prepend-aside-column:>
+            <h2 class="heading">&nbsp;</h2>
+        </prepend-aside-column:>
+        <aside:>
+            <comments-form/>
+        </aside:>
 	</old-edit-page>
 </extend>

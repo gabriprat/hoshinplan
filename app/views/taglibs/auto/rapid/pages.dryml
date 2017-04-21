@@ -24,6 +24,140 @@
 
 
 
+<!-- ====== AreaComment Pages ====== -->
+
+<def tag="index-page" for="AreaComment">
+  <page merge title="#{ht 'area_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page area-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="area_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="area_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="AreaComment">
+  <page merge title="#{ht 'area_comment.new.title', :default=>[' New Area comment'] }">
+    <body: class="new-page area-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="area_comment.new.heading">
+          New Area comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'area_comment.actions.create', :default=>['Create Area comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="AreaComment">
+  <page merge title="#{ht 'area_comment.show.title', :default=>['Area comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page area-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="area_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Area comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="area, company, creator" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="AreaComment">
+  <page merge title="#{ht 'area_comment.edit.title', :default=>['Edit Area comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page area-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="area_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Area comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'area_comment.actions.delete', :default=>['Remove This Area comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-area-page" polymorphic/>
+<def tag="new-for-area-page" for="AreaComment">
+  <page merge title="#{ht 'area_comment.new_for_owner.title', :default=>['New Area comment for']} #{name :with => @area}">
+    <body: class="new-for-owner-page  area-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="area_comment.new_for_owner.heading">
+          New Area Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="area_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@area"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="area" method="post" param>
+        <field-list: skip="area"/>
+        <submit: label="#{ht 'area_comment.actions.create', :default=>['Create Area comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Area Pages ====== -->
 
 <def tag="index-page" for="Area">
@@ -205,7 +339,7 @@
 
       <div param="new-form">
         <h3 param="new-form-heading">
-          <ht key="billing_detail.form.new.heading">New Billing detail</ht>
+          <ht key="billing_detail.form.new.heading">New Billing details</ht>
         </h3>
         <form with="&@invalid_record || new_for_current_user(BillingDetail)" param/>
       </div>
@@ -216,20 +350,20 @@
 
 
 <def tag="new-page" for="BillingDetail">
-  <page merge title="#{ht 'billing_detail.new.title', :default=>[' New Billing detail'] }">
+  <page merge title="#{ht 'billing_detail.new.title', :default=>[' New Billing details'] }">
     <body: class="new-page billing-detail" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="billing_detail.new.heading">
-          New Billing detail
+          New Billing details
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'billing_detail.actions.create', :default=>['Create Billing detail']}"/>
+        <submit: label="#{ht 'billing_detail.actions.create', :default=>['Create Billing details']}"/>
       </form>
     </content-body:>
   </page>
@@ -237,14 +371,14 @@
 
 
 <def tag="show-page" for="BillingDetail">
-  <page merge title="#{ht 'billing_detail.show.title', :default=>['Billing detail'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'billing_detail.show.title', :default=>['Billing details'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page billing-detail" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="billing_detail.show.heading" name="#{name(:no_wrapper => true)}">
-          Billing detail <name/>
+          Billing details <name/>
         </ht>
       </h2>
 
@@ -254,7 +388,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="billing_detail.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Billing detail
+          Edit Billing details
         </ht>
       </a>
     </content-header:>
@@ -268,17 +402,17 @@
 
 
 <def tag="edit-page" for="BillingDetail">
-  <page merge title="#{ht 'billing_detail.edit.title', :default=>['Edit Billing detail'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'billing_detail.edit.title', :default=>['Edit Billing details'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page billing-detail" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="billing_detail.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Billing detail
+          Edit Billing details
         </ht>
       </h2>
-      <delete-button label="#{ht 'billing_detail.actions.delete', :default=>['Remove This Billing detail']}" param/>
+      <delete-button label="#{ht 'billing_detail.actions.delete', :default=>['Remove This Billing details']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -292,7 +426,7 @@
 
 <def tag="new-for-company-page" polymorphic/>
 <def tag="new-for-company-page" for="BillingDetail">
-  <page merge title="#{ht 'billing_detail.new_for_owner.title', :default=>['New Billing detail for']} #{name :with => @company}">
+  <page merge title="#{ht 'billing_detail.new_for_owner.title', :default=>['New Billing details for']} #{name :with => @company}">
     <body: class="new-for-owner-page  billing-detail" param/>
 
     <content-header: param>
@@ -312,7 +446,7 @@
     <content-body: param>
       <form owner="company" method="post" param>
         <field-list: skip="company"/>
-        <submit: label="#{ht 'billing_detail.actions.create', :default=>['Create Billing detail']}"/>
+        <submit: label="#{ht 'billing_detail.actions.create', :default=>['Create Billing details']}"/>
       </form>
     </content-body:>
   </page>
@@ -664,6 +798,380 @@
 
 
 
+<!-- ====== CompanyComment Pages ====== -->
+
+<def tag="index-page" for="CompanyComment">
+  <page merge title="#{ht 'company_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page company-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="company_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="CompanyComment">
+  <page merge title="#{ht 'company_comment.new.title', :default=>[' New Company comment'] }">
+    <body: class="new-page company-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company_comment.new.heading">
+          New Company comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'company_comment.actions.create', :default=>['Create Company comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="CompanyComment">
+  <page merge title="#{ht 'company_comment.show.title', :default=>['Company comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page company-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Company comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company, creator" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="CompanyComment">
+  <page merge title="#{ht 'company_comment.edit.title', :default=>['Edit Company comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page company-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Company comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'company_comment.actions.delete', :default=>['Remove This Company comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-company-page" polymorphic/>
+<def tag="new-for-company-page" for="CompanyComment">
+  <page merge title="#{ht 'company_comment.new_for_owner.title', :default=>['New Company comment for']} #{name :with => @company}">
+    <body: class="new-for-owner-page  company-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company_comment.new_for_owner.heading">
+          New Company Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="company_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@company"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="company" method="post" param>
+        <field-list: skip="company"/>
+        <submit: label="#{ht 'company_comment.actions.create', :default=>['Create Company comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== GenericComment Pages ====== -->
+
+<def tag="index-page" for="GenericComment">
+  <page merge title="#{ht 'generic_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page generic-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="generic_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="generic_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="GenericComment">
+  <page merge title="#{ht 'generic_comment.new.title', :default=>[' New Generic comment'] }">
+    <body: class="new-page generic-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="generic_comment.new.heading">
+          New Generic comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'generic_comment.actions.create', :default=>['Create Generic comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="GenericComment">
+  <page merge title="#{ht 'generic_comment.show.title', :default=>['Generic comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page generic-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="generic_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Generic comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a:creator param="creator-link"/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="GenericComment">
+  <page merge title="#{ht 'generic_comment.edit.title', :default=>['Edit Generic comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page generic-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="generic_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Generic comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'generic_comment.actions.delete', :default=>['Remove This Generic comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== GoalComment Pages ====== -->
+
+<def tag="index-page" for="GoalComment">
+  <page merge title="#{ht 'goal_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page goal-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="goal_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="GoalComment">
+  <page merge title="#{ht 'goal_comment.new.title', :default=>[' New Goal comment'] }">
+    <body: class="new-page goal-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal_comment.new.heading">
+          New Goal comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'goal_comment.actions.create', :default=>['Create Goal comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="GoalComment">
+  <page merge title="#{ht 'goal_comment.show.title', :default=>['Goal comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page goal-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Goal comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company, creator, goal" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="GoalComment">
+  <page merge title="#{ht 'goal_comment.edit.title', :default=>['Edit Goal comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page goal-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Goal comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'goal_comment.actions.delete', :default=>['Remove This Goal comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-goal-page" polymorphic/>
+<def tag="new-for-goal-page" for="GoalComment">
+  <page merge title="#{ht 'goal_comment.new_for_owner.title', :default=>['New Goal comment for']} #{name :with => @goal}">
+    <body: class="new-for-owner-page  goal-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="goal_comment.new_for_owner.heading">
+          New Goal Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="goal_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@goal"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="goal" method="post" param>
+        <field-list: skip="goal"/>
+        <submit: label="#{ht 'goal_comment.actions.create', :default=>['Create Goal comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Goal Pages ====== -->
 
 <def tag="index-page" for="Goal">
@@ -686,7 +1194,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="goal.actions.new">New Goal</ht>
+        <ht key="goal.actions.new">New Long term goal</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -702,20 +1210,20 @@
 
 
 <def tag="new-page" for="Goal">
-  <page merge title="#{ht 'goal.new.title', :default=>[' New Goal'] }">
+  <page merge title="#{ht 'goal.new.title', :default=>[' New Long term goal'] }">
     <body: class="new-page goal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="goal.new.heading">
-          New Goal
+          New Long term goal
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'goal.actions.create', :default=>['Create Goal']}"/>
+        <submit: label="#{ht 'goal.actions.create', :default=>['Create Long term goal']}"/>
       </form>
     </content-body:>
   </page>
@@ -723,7 +1231,7 @@
 
 
 <def tag="show-page" for="Goal">
-  <page merge title="#{ht 'goal.show.title', :default=>['Goal'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'goal.show.title', :default=>['Long term goal'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page goal" param/>
 
@@ -731,7 +1239,7 @@
       <a:hoshin param="parent-link">&laquo; <ht key="goal.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
       <h2 param="heading">
         <ht key="goal.show.heading" name="#{name(:no_wrapper => true)}">
-          Goal <name/>
+          Long term goal <name/>
         </ht>
       </h2>
 
@@ -741,7 +1249,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="goal.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Goal
+          Edit Long term goal
         </ht>
       </a>
     </content-header:>
@@ -755,17 +1263,17 @@
 
 
 <def tag="edit-page" for="Goal">
-  <page merge title="#{ht 'goal.edit.title', :default=>['Edit Goal'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'goal.edit.title', :default=>['Edit Long term goal'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page goal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="goal.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Goal
+          Edit Long term goal
         </ht>
       </h2>
-      <delete-button label="#{ht 'goal.actions.delete', :default=>['Remove This Goal']}" param/>
+      <delete-button label="#{ht 'goal.actions.delete', :default=>['Remove This Long term goal']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -779,7 +1287,7 @@
 
 <def tag="new-for-hoshin-page" polymorphic/>
 <def tag="new-for-hoshin-page" for="Goal">
-  <page merge title="#{ht 'goal.new_for_owner.title', :default=>['New Goal for']} #{name :with => @hoshin}">
+  <page merge title="#{ht 'goal.new_for_owner.title', :default=>['New Long term goal for']} #{name :with => @hoshin}">
     <body: class="new-for-owner-page  goal" param/>
 
     <content-header: param>
@@ -799,7 +1307,141 @@
     <content-body: param>
       <form owner="hoshin" method="post" param>
         <field-list: skip="hoshin"/>
-        <submit: label="#{ht 'goal.actions.create', :default=>['Create Goal']}"/>
+        <submit: label="#{ht 'goal.actions.create', :default=>['Create Long term goal']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== HoshinComment Pages ====== -->
+
+<def tag="index-page" for="HoshinComment">
+  <page merge title="#{ht 'hoshin_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page hoshin-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="hoshin_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="hoshin_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="HoshinComment">
+  <page merge title="#{ht 'hoshin_comment.new.title', :default=>[' New Hoshin comment'] }">
+    <body: class="new-page hoshin-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="hoshin_comment.new.heading">
+          New Hoshin comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'hoshin_comment.actions.create', :default=>['Create Hoshin comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="HoshinComment">
+  <page merge title="#{ht 'hoshin_comment.show.title', :default=>['Hoshin comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page hoshin-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="hoshin_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Hoshin comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company, creator, hoshin" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="HoshinComment">
+  <page merge title="#{ht 'hoshin_comment.edit.title', :default=>['Edit Hoshin comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page hoshin-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="hoshin_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Hoshin comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'hoshin_comment.actions.delete', :default=>['Remove This Hoshin comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-hoshin-page" polymorphic/>
+<def tag="new-for-hoshin-page" for="HoshinComment">
+  <page merge title="#{ht 'hoshin_comment.new_for_owner.title', :default=>['New Hoshin comment for']} #{name :with => @hoshin}">
+    <body: class="new-for-owner-page  hoshin-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="hoshin_comment.new_for_owner.heading">
+          New Hoshin Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="hoshin_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@hoshin"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="hoshin" method="post" param>
+        <field-list: skip="hoshin"/>
+        <submit: label="#{ht 'hoshin_comment.actions.create', :default=>['Create Hoshin comment']}"/>
       </form>
     </content-body:>
   </page>
@@ -873,7 +1515,7 @@
     <body: class="show-page hoshin" param/>
 
     <content-header: param>
-      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a:company>
+      <a:company param="parent-link">&laquo; <ht key="hoshin.actions.back_to_parent" parent="Empresa" name="&this">Back to <name/></ht></a:company>
       <h2 param="heading">
         <ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}">
           Hoshin <name/>
@@ -1032,6 +1674,140 @@
 
 
 
+<!-- ====== IndicatorComment Pages ====== -->
+
+<def tag="index-page" for="IndicatorComment">
+  <page merge title="#{ht 'indicator_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page indicator-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="indicator_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="IndicatorComment">
+  <page merge title="#{ht 'indicator_comment.new.title', :default=>[' New Indicator comment'] }">
+    <body: class="new-page indicator-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_comment.new.heading">
+          New Indicator comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'indicator_comment.actions.create', :default=>['Create Indicator comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="IndicatorComment">
+  <page merge title="#{ht 'indicator_comment.show.title', :default=>['Indicator comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page indicator-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Indicator comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company, creator, indicator" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="IndicatorComment">
+  <page merge title="#{ht 'indicator_comment.edit.title', :default=>['Edit Indicator comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page indicator-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Indicator comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'indicator_comment.actions.delete', :default=>['Remove This Indicator comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-indicator-page" polymorphic/>
+<def tag="new-for-indicator-page" for="IndicatorComment">
+  <page merge title="#{ht 'indicator_comment.new_for_owner.title', :default=>['New Indicator comment for']} #{name :with => @indicator}">
+    <body: class="new-for-owner-page  indicator-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="indicator_comment.new_for_owner.heading">
+          New Indicator Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="indicator_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@indicator"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="indicator" method="post" param>
+        <field-list: skip="indicator"/>
+        <submit: label="#{ht 'indicator_comment.actions.create', :default=>['Create Indicator comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== IndicatorEvent Pages ====== -->
 
 <def tag="index-page" for="IndicatorEvent">
@@ -1063,7 +1839,7 @@
 
       <div param="new-form">
         <h3 param="new-form-heading">
-          <ht key="indicator_event.form.new.heading">New Indicator event</ht>
+          <ht key="indicator_event.form.new.heading">New Event</ht>
         </h3>
         <form with="&@invalid_record || new_for_current_user(IndicatorEvent)" param/>
       </div>
@@ -1074,20 +1850,20 @@
 
 
 <def tag="new-page" for="IndicatorEvent">
-  <page merge title="#{ht 'indicator_event.new.title', :default=>[' New Indicator event'] }">
+  <page merge title="#{ht 'indicator_event.new.title', :default=>[' New Event'] }">
     <body: class="new-page indicator-event" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="indicator_event.new.heading">
-          New Indicator event
+          New Event
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'indicator_event.actions.create', :default=>['Create Indicator event']}"/>
+        <submit: label="#{ht 'indicator_event.actions.create', :default=>['Create Event']}"/>
       </form>
     </content-body:>
   </page>
@@ -1095,14 +1871,14 @@
 
 
 <def tag="show-page" for="IndicatorEvent">
-  <page merge title="#{ht 'indicator_event.show.title', :default=>['Indicator event'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'indicator_event.show.title', :default=>['Event'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page indicator-event" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="indicator_event.show.heading" name="#{name(:no_wrapper => true)}">
-          Indicator event <name/>
+          Event <name/>
         </ht>
       </h2>
 
@@ -1112,7 +1888,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="indicator_event.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Indicator event
+          Edit Event
         </ht>
       </a>
     </content-header:>
@@ -1126,17 +1902,17 @@
 
 
 <def tag="edit-page" for="IndicatorEvent">
-  <page merge title="#{ht 'indicator_event.edit.title', :default=>['Edit Indicator event'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'indicator_event.edit.title', :default=>['Edit Event'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page indicator-event" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="indicator_event.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Indicator event
+          Edit Event
         </ht>
       </h2>
-      <delete-button label="#{ht 'indicator_event.actions.delete', :default=>['Remove This Indicator event']}" param/>
+      <delete-button label="#{ht 'indicator_event.actions.delete', :default=>['Remove This Event']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -1150,7 +1926,7 @@
 
 <def tag="new-for-indicator-page" polymorphic/>
 <def tag="new-for-indicator-page" for="IndicatorEvent">
-  <page merge title="#{ht 'indicator_event.new_for_owner.title', :default=>['New Indicator event for']} #{name :with => @indicator}">
+  <page merge title="#{ht 'indicator_event.new_for_owner.title', :default=>['New Event for']} #{name :with => @indicator}">
     <body: class="new-for-owner-page  indicator-event" param/>
 
     <content-header: param>
@@ -1170,7 +1946,7 @@
     <content-body: param>
       <form owner="indicator" method="post" param>
         <field-list: skip="indicator"/>
-        <submit: label="#{ht 'indicator_event.actions.create', :default=>['Create Indicator event']}"/>
+        <submit: label="#{ht 'indicator_event.actions.create', :default=>['Create Event']}"/>
       </form>
     </content-body:>
   </page>
@@ -1695,6 +2471,140 @@
       <form param/>
     </content-body:>
 
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== ObjectiveComment Pages ====== -->
+
+<def tag="index-page" for="ObjectiveComment">
+  <page merge title="#{ht 'objective_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page objective-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="objective_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="objective_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ObjectiveComment">
+  <page merge title="#{ht 'objective_comment.new.title', :default=>[' New Objective comment'] }">
+    <body: class="new-page objective-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="objective_comment.new.heading">
+          New Objective comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'objective_comment.actions.create', :default=>['Create Objective comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ObjectiveComment">
+  <page merge title="#{ht 'objective_comment.show.title', :default=>['Objective comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page objective-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="objective_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Objective comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company, creator, objective" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ObjectiveComment">
+  <page merge title="#{ht 'objective_comment.edit.title', :default=>['Edit Objective comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page objective-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="objective_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Objective comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'objective_comment.actions.delete', :default=>['Remove This Objective comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-objective-page" polymorphic/>
+<def tag="new-for-objective-page" for="ObjectiveComment">
+  <page merge title="#{ht 'objective_comment.new_for_owner.title', :default=>['New Objective comment for']} #{name :with => @objective}">
+    <body: class="new-for-owner-page  objective-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="objective_comment.new_for_owner.heading">
+          New Objective Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="objective_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@objective"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="objective" method="post" param>
+        <field-list: skip="objective"/>
+        <submit: label="#{ht 'objective_comment.actions.create', :default=>['Create Objective comment']}"/>
+      </form>
+    </content-body:>
   </page>
 </def>
 
@@ -2267,7 +3177,7 @@
 
 <def tag="index-for-user-page" polymorphic/>
 <def tag="index-for-user-page" for="Subscription">
-  <page merge title="#{ht 'subscription.index_for_owner.title', :count=>100, :default=>['Subscriptions for']} #{name :with => @user, :no_wrapper => true}">
+  <page merge title="#{ht 'subscription.index_for_owner.title', :count=>100, :default=>['Subscription for']} #{name :with => @user, :no_wrapper => true}">
     <body: class="index-for-owner-page user subscription" param/>
     <content-header: param>
       <div param="back-to">
@@ -2297,6 +3207,140 @@
 </def>
 
 
+
+
+
+
+
+<!-- ====== TaskComment Pages ====== -->
+
+<def tag="index-page" for="TaskComment">
+  <page merge title="#{ht 'task_comment.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page task-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task_comment.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="task_comment.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="TaskComment">
+  <page merge title="#{ht 'task_comment.new.title', :default=>[' New Task comment'] }">
+    <body: class="new-page task-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task_comment.new.heading">
+          New Task comment
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'task_comment.actions.create', :default=>['Create Task comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="TaskComment">
+  <page merge title="#{ht 'task_comment.show.title', :default=>['Task comment'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page task-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task_comment.show.heading" name="#{name(:no_wrapper => true)}">
+          Task comment <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:body param="description" />
+      <field-list fields="company, creator, task" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="TaskComment">
+  <page merge title="#{ht 'task_comment.edit.title', :default=>['Edit Task comment'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page task-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task_comment.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Task comment
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'task_comment.actions.delete', :default=>['Remove This Task comment']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-task-page" polymorphic/>
+<def tag="new-for-task-page" for="TaskComment">
+  <page merge title="#{ht 'task_comment.new_for_owner.title', :default=>['New Task comment for']} #{name :with => @task}">
+    <body: class="new-for-owner-page  task-comment" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="task_comment.new_for_owner.heading">
+          New Task Comment
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="task_comment.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@task"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="task" method="post" param>
+        <field-list: skip="task"/>
+        <submit: label="#{ht 'task_comment.actions.create', :default=>['Create Task comment']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
 
 
 

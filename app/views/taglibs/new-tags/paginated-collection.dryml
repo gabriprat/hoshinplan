@@ -1,0 +1,17 @@
+<def attrs='list-tag,page,per-page,model' tag='paginated-collection'>
+    <%
+        page ||= params[:pc] || 1
+        per_page ||= 5
+        model ||= this
+    %>
+    <do with="&this.paginate({page: page}).per_page(per_page)">
+        <page-nav
+            param="collection-nav"
+            page-links="&false"
+            param-name="pc"
+            previous-label="&t 'actions.newer'"
+            next-label="&t 'actions.older'"
+        />
+        <collection with="&this.reverse" merge-attrs/>
+    </do>
+</def>

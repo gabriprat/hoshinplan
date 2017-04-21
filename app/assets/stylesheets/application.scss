@@ -6,9 +6,11 @@
  *
  *= require_self
  *= require morris
- *= require bootstrap2-switch
  *= require jquery.jcrop
+ *= require hobo_bootstrap
  *= require bootstrap-tokenfield
+ *= require bootstrap-material-customized
+ *= require _colors
  *= require_tree ./application
  *= require_tree ./picker
 */

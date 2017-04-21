@@ -35,7 +35,8 @@ class Task < ApplicationRecord
     :hoshin_id, :feeling, :confidence, :impact, :effort
 
   has_many :log, :class_name => "TaskLog", :inverse_of => :task
-  
+  has_many :task_comments, :inverse_of => :task
+
   belongs_to :creator, :class_name => "User", :creator => true
   
   belongs_to :company, :null => false

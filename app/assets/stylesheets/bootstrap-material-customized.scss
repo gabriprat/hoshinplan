@@ -1,0 +1,35 @@
+$brand-primary: #25a8e0;
+$mdb-checkbox-checked-color: #25a8e0;
+
+@import 'bootstrap-material-design/sass/_variables';
+@import 'bootstrap-material-design/sass/_mixins';
+@import 'bootstrap-material-design/sass/_icons-material-design';
+@import 'bootstrap-material-design/sass/_shadows';  // these are mixins only, and must be placed at the top before use (sass requiremnt)
+@import 'bootstrap-material-design/sass/_bootstrap-material-design'; // include the material content given the mixins above (sass requirement for inclusion order of mixins)
+@import 'bootstrap-material-design/sass/ripples';
+
+
+.togglebutton label {
+  text-align: left;
+
+  span {
+    margin-right: 1em;
+  }
+  input, span {
+    vertical-align: middle;
+  }
+
+  input[type=checkbox]:checked {
+    & + .toggle {
+      background-color: rgba($brand-primary, (50/100)); // Switch bg on
+    }
+
+    & + .toggle:after {
+      background-color: $brand-primary; // Handle on
+    }
+
+    & + .toggle:active:after {
+      box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba($brand-primary, (10/100)); // Ripple on
+    }
+  }
+}

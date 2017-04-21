@@ -12,6 +12,14 @@
   </card>
 </def>
 
+<def tag="card" for="AreaComment">
+  <card class="area-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="AreaLog">
   <card class="area-log" param="default" merge>
     <header: param>
@@ -110,6 +118,14 @@
   </card>
 </def>
 
+<def tag="card" for="CompanyComment">
+  <card class="company-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="CompanyEmailDomain">
   <card class="company-email-domain" param="default" merge>
     <header: param>
@@ -129,6 +145,15 @@
   </card>
 </def>
 
+<def tag="card" for="GenericComment">
+  <card class="generic-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
+      <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Goal">
   <card class="goal" param="default" merge>
     <header: param>
@@ -136,6 +161,14 @@
     </header:>
     <body: param>
       <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="GoalComment">
+  <card class="goal-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>
@@ -173,6 +206,14 @@
   </card>
 </def>
 
+<def tag="card" for="HoshinComment">
+  <card class="hoshin-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="HoshinLog">
   <card class="hoshin-log" param="default" merge>
     <header: param>
@@ -191,6 +232,14 @@
     </header:>
     <body: param>
       <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="IndicatorComment">
+  <card class="indicator-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>
@@ -263,6 +312,14 @@
     </header:>
     <body: param>
       <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="ObjectiveComment">
+  <card class="objective-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>
@@ -350,6 +407,14 @@
     </header:>
     <body: param>
       <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="TaskComment">
+  <card class="task-comment" param="default" merge>
+    <body: param>
+      <view:body param="description"/>
     </body:>
   </card>
 </def>

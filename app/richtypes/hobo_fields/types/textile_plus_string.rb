@@ -25,7 +25,7 @@ module HoboFields
           textilized = textilized.gsub(@@user_regex) do |match|
             user = Company.current_company.comp_users[$1.to_i] 
             if user.present?
-              user =  (link_to user.name, user) + ": "
+              user =  (link_to "@" + user.name, user) + " "
             else
               user = match
             end

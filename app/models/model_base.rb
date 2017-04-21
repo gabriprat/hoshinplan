@@ -2,9 +2,9 @@ module ModelBase
   extend ActiveSupport::Concern
   
   included do
-      after_destroy do log_operation(true) end
-      after_save :log_operation
-      after_save :notify
+    after_destroy do log_operation(true) end
+    after_save :log_operation
+    after_save :notify
   end
     
   def log_operation(destroyed=false)

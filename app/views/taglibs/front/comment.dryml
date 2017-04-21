@@ -1,0 +1,34 @@
+<def tag="card" for="GenericComment">
+   <div class="comment" id="comment-#{this.typed_id}">
+    <a:creator /> <span class="ago"><t key="comments.ago" ago="#{time_ago_in_words(this.created_at)}" /></span>
+    <view:body />
+   </div>
+</def>
+
+<def tag="card" for="CompanyComment">
+    <card for-type="GenericComment" />
+</def>
+
+<def tag="card" for="HoshinComment">
+    <card for-type="GenericComment" />
+</def>
+
+<def tag="card" for="GoalComment">
+    <card for-type="GenericComment" />
+</def>
+
+<def tag="card" for="AreaComment">
+    <card for-type="GenericComment" />
+</def>
+
+<def tag="card" for="ObjectiveComment">
+    <card for-type="GenericComment" />
+</def>
+
+<def tag="card" for="IndicatorComment">
+    <card for-type="GenericComment" />
+</def>
+
+<def tag="card" for="TaskComment">
+    <card for-type="GenericComment" />
+</def>

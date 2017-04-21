@@ -1,6 +1,18 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
 
+<def tag="form" for="AreaComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, area, company, creator" param/>
+    <div param="actions">
+      <submit label="#{ht 'area_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Area">
   <form merge param="default">
     <error-messages param/>
@@ -61,12 +73,60 @@
 
 
 
+<def tag="form" for="CompanyComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator" param/>
+    <div param="actions">
+      <submit label="#{ht 'company_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="GenericComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator" param/>
+    <div param="actions">
+      <submit label="#{ht 'generic_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="GoalComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator, goal" param/>
+    <div param="actions">
+      <submit label="#{ht 'goal_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Goal">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="name, company, creator, hoshin" param/>
     <div param="actions">
       <submit label="#{ht 'goal.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="HoshinComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator, hoshin" param/>
+    <div param="actions">
+      <submit label="#{ht 'hoshin_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -117,6 +177,18 @@
     </div>
   </form>
 </def>
+
+<def tag="form" for="IndicatorComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator, indicator" param/>
+    <div param="actions">
+      <submit label="#{ht 'indicator_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
 
 <def tag="form" for="IndicatorEvent">
   <form merge param="default">
@@ -178,6 +250,18 @@
 
 
 
+<def tag="form" for="ObjectiveComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator, objective" param/>
+    <div param="actions">
+      <submit label="#{ht 'objective_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Objective">
   <form merge param="default">
     <error-messages param/>
@@ -232,6 +316,18 @@
     <field-list fields="id_paypal, status, sandbox, plan_name, amount_value, monthly_value, amount_currency, users, billing_period, last_payment_at, next_payment_at, paying_at, payment_error, per_user, deleted_by, billing_detail, billing_plan, company, user" param/>
     <div param="actions">
       <submit label="#{ht 'subscription.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="TaskComment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="body, company, creator, task" param/>
+    <div param="actions">
+      <submit label="#{ht 'task_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

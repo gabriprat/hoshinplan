@@ -31,9 +31,9 @@
 	            </ht>
 		</rmodal>
 		</span>
-		<bootstrap-switch id="show-mine" data-user="#{current_user.id}" onSwitchChange="filterPostits" size="mini">
+		<togglebutton id="show-mine" data-user="#{current_user.id}" onChange="filterPostits()">
 			<label:><t key="hoshin.show_only_mine"/></label:>
-		</bootstrap-switch>
+		</togglebutton>
 		</if>
 		</prepend-content-header:>
 		

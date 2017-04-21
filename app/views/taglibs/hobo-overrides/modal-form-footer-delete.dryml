@@ -1,9 +1,15 @@
 <def tag="modal-form-footer-delete" >
     <div class='modal-footer modal-footer-delete' param='default'>
-    <a class="view-log" href="/log/#{this.class.model_name.to_s.downcase.pluralize}/#{this.id}" title="#{t 'view_log'}" unless="&this.new_record?"><span class="ic-file-text-o"><t key="view_log"/></span></a>
-       <submit label='&t(&apos;hobo.actions.submit&apos;, :default => &apos;Submit&apos;)' param onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
-       <input class='btn btn-default' aria-hidden='true' param='cancel' type='button' value='&t(&apos;hobo.actions.cancel&apos;, :default => &apos;Cancel&apos;)' data-dismiss='modal'/>
- 	  <input class="btn btn-danger button delete-button" onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');" type="submit" value="&t('hobo.actions.remove', :default=>'Remove')" if="&can_delete? && !this.new_record?"/>
-	   <span class="author" unless="&this.creator.blank?"><t key="created_by"/> <view:creator/></span>
+        <a class="view-log" href="/log/#{this.class.model_name.to_s.downcase.pluralize}/#{this.id}" title="#{t 'view_log'}" unless="&this.new_record?"><span class="ic-file-text-o"></span><t key="view_log"/></a>
+        <button class='btn btn-primary' type="submit" param onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');">
+            <t key="hobo.actions.submit"/>
+        </button>
+        <button class='btn btn-default' aria-hidden='true' param='cancel' type='submit' data-dismiss='modal'>
+            <t key="hobo.actions.cancel"/>
+        </button>
+        <button class="btn btn-danger button delete-button" onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');" type="submit" if="&can_delete? && !this.new_record?">
+            <t key="hobo.actions.remove"/>
+        </button>
+	    <span class="author" unless="&this.creator.blank?"><t key="created_by"/> <view:creator/></span>
 	</div>
 </def>

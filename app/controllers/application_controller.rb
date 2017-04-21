@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
 
   prepend_around_filter :scope_current_user, :check_subscription, :except => [:activate_from_email, :activate]
 
-  prepend_around_filter :authenticate_client_app, :scope_current_user
+  prepend_around_filter :authenticate_client_app, :scope_current_user, :except => [:faye_auth]
 
 
   def just_signed_up
@@ -97,8 +97,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def access_token
+    @access_token
+  end
+
+  def access_token=(access_token)
+    @access_token = access_token
+  end
+
   def scope_current_user
-   Nr.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
+    Rails.logger.debug "Scoping current user..."
+    Nr.add_custom_parameters({ http_referer: request.env["HTTP_REFERER"] }) unless request.nil?
    if defined?("logged_in?") && !params[:app_key].presence
      User.current_id = logged_in? ? current_user.id : nil
      User.current_user = current_user
@@ -113,6 +122,7 @@ class ApplicationController < ActionController::Base
      end
    end
    Rails.logger.debug "Scoping current user (" + User.current_id.to_s + ")"
+   self.access_token = JWT.encode({:id => User.current_id}, ENV['WS_SECRET'])
    Nr.add_custom_parameters({ user_id: User.current_id }) unless User.current_id.nil?
    if request.method == 'POST' && self.respond_to?("model") && model && params[model.model_name.singular]
        params[:company_id] ||= params[model.model_name.singular]["company_id"]
@@ -215,7 +225,7 @@ class ApplicationController < ActionController::Base
     
     def authenticate_client_app
       Rails.logger.debug "Authenticating client_app! (" + (request.format.json? || request.format.xml?).to_s + ")"
-      if request.format && (request.format.json? || request.format.xml?)
+      if request.format && (request.format.json? || request.format.xml?) && !User.current_id
         app_key = params[:app_key].presence
         raise Errors::SecurityError.new(1), "Client application key parameter (app_key) not provided." unless app_key
         t = Time.xmlschema(params[:timestamp].presence)

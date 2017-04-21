@@ -135,6 +135,8 @@ Hoshinplan::Application.routes.draw do
 
   post "/vat_validator/validate_vat" => "vat_validator#validate_vat"
 
+  post "/faye/auth" => "faye_auth#faye_auth", :as => 'faye_auth'
+
 
   SamlDynamicRouter.load unless Rails.env.development?
   
