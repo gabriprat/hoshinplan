@@ -10,7 +10,7 @@ class FayeCommentControllerHelper
       link = url_for(c.creator)
       message = {
           typed_id: c.typed_id,
-          body: c.body,
+          body: c.body.to_html,
           created_at: c.created_at,
           creator_id: c.creator_id,
           creator_name: c.creator.name,
@@ -28,8 +28,9 @@ end
 
 
 class FayeCommentController < FayeRails::Controller
-  observe GenericComment, :after_create do |c|
+  observe ::ObjectiveComment, :after_create do |c|
     Rails.logger.debug "FAYECOMMENT: Generic comment created! "
     FayeCommentControllerHelper.new.run(c)
   end
 end
+

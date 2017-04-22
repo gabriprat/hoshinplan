@@ -25,7 +25,9 @@ module RestController
         self.this ||= find_or_paginate(finder, options)
         render :xml => self.this.to_xml
       }
-      format.html {super}
+      format.html {
+        super
+      }
     end
   end
 end

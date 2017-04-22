@@ -7,8 +7,8 @@ class FayeAuthController < ApplicationController
       response = params[:messages].values.map do |message|
         message.delete 'signature'
         if message['channel'] =~ /\/comment\/\w+\/\d+/
-          model, id = message['channel'].split('/').last(2)
-          typed_id = "#{model}:#{id}"
+          model, id, comment_model = message['channel'].split('/').last(2)
+          typed_id = "#{model.singularize}:#{id}"
           inst = Hobo::Model.find_by_typed_id(typed_id) rescue nil
           if inst
             inst.with_acting_user(current_user) do

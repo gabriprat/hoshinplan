@@ -13,6 +13,10 @@ class GenericComment < ApplicationRecord
 
   after_initialize :add_defaults
   after_save :notify
+  after_create do |c|
+    ::FayeCommentControllerHelper.new.run(c)
+  end
+
 
   belongs_to :company, :null => false, :inverse_of => :company_comments
   belongs_to :creator, :class_name => "User", :creator => true
@@ -78,12 +82,6 @@ end
 class GoalComment < GenericComment
   belongs_to :goal, :inverse_of => :goal_comments
   index [:goal_id, :created_at]
-end
-
-class ObjectiveComment < GenericComment
-  attr_accessible :body, :creator_id, :objective_id
-  belongs_to :objective, :inverse_of => :objective_comments
-  index [:objective_id, :created_at]
 end
 
 class IndicatorComment < GenericComment

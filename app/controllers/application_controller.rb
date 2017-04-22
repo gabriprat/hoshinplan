@@ -239,11 +239,11 @@ class ApplicationController < ActionController::Base
         signature2 = app.sign(path)
         raise Errors::SecurityError.new(6), "Invalid signature" unless signature == signature2
         ClientApplication.current_app = app
-        self.current_user = app.user
-        User.current_user = app.user
-        User.current_id = app.user.id
+        Rails.logger.debug "Scoping current client_app (" + app.to_yaml + ")"
+        self.current_user = User.unscoped.find(app.user_id)
+        User.current_user = self.current_user
+        User.current_id = self.current_user.id
         Rails.logger.debug "Scoping current user from client_app (" + User.current_id.to_s + ")"
-        request.env['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
       end
       yield
     end

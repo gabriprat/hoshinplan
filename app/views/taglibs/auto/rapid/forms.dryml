@@ -4,7 +4,7 @@
 <def tag="form" for="AreaComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="area, company, creator" param/>
+    <field-list fields="body, area, company, creator" param/>
     <div param="actions">
       <submit label="#{ht 'area_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -76,7 +76,7 @@
 <def tag="form" for="CompanyComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator" param/>
+    <field-list fields="body, company, creator" param/>
     <div param="actions">
       <submit label="#{ht 'company_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -88,7 +88,7 @@
 <def tag="form" for="GenericComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator" param/>
+    <field-list fields="body, company, creator" param/>
     <div param="actions">
       <submit label="#{ht 'generic_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -100,7 +100,7 @@
 <def tag="form" for="GoalComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator, goal" param/>
+    <field-list fields="body, company, creator, goal" param/>
     <div param="actions">
       <submit label="#{ht 'goal_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -124,7 +124,7 @@
 <def tag="form" for="HoshinComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator, hoshin" param/>
+    <field-list fields="body, company, creator, hoshin" param/>
     <div param="actions">
       <submit label="#{ht 'hoshin_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -181,7 +181,7 @@
 <def tag="form" for="IndicatorComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator, indicator" param/>
+    <field-list fields="body, company, creator, indicator" param/>
     <div param="actions">
       <submit label="#{ht 'indicator_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -253,7 +253,7 @@
 <def tag="form" for="ObjectiveComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator, objective" param/>
+    <field-list fields="body, company, creator, objective" param/>
     <div param="actions">
       <submit label="#{ht 'objective_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -325,7 +325,7 @@
 <def tag="form" for="TaskComment">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company, creator, task" param/>
+    <field-list fields="body, company, creator, task" param/>
     <div param="actions">
       <submit label="#{ht 'task_comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
