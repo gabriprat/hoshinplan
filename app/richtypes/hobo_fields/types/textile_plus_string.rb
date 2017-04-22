@@ -21,11 +21,11 @@ module HoboFields
             src = 'https://d4i78hkg1rdv3.cloudfront.net/assets/emoji/' + emoji.image_filename
             %Q(<img src="#{src}" class="emoji" width="24" height="24">).html_safe
           end
-          
+
           textilized = textilized.gsub(@@user_regex) do |match|
-            user = Company.current_company.comp_users[$1.to_i] 
+            user = Company.current_company.comp_users[$1.to_i]
             if user.present?
-              user =  (link_to "@" + user.name, user) + " "
+              user =  (link_to "==@==" + user.name, user) + " "
             else
               user = match
             end
