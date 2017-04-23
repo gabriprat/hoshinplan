@@ -81,7 +81,7 @@
             methods.calcPrice();
         },
         calcTaxes: function() {
-            var taxes = $("#billing_detail_country").data("taxes");
+            var taxes = $("#billing_detail_country").val().length > 0 ? $("#billing_detail_country").find("option[value=" + $("#billing_detail_country").val() + "]").data("taxes") : 0;
             var validVatNumber = $("#billing_detail_vat_number").data("valid");
             if (validVatNumber && $("#billing_detail_country").val() != "ES") {
                 taxes = 0;

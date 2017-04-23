@@ -145,7 +145,9 @@ class Subscription < ApplicationRecord
   end
 
   def pay_now(full_amount=true, old_remaining_amount=0)
-    credit = c.credit || 0;
+    b = BillingDetail.unscoped.find(billing_detail_id)
+    c = Company.unscoped.find(company_id)
+    credit = c.credit || 0
     charge_amount = full_amount ? total_amount : remaining_amount
     ret = charge_amount - old_remaining_amount
     ret = ret * (1.0 + b.tax_tpc.to_f/100.0)

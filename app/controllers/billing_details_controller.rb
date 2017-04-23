@@ -78,7 +78,7 @@ class BillingDetailsController < ApplicationController
           if (new_subscription)
             log_event("Create subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: @billing_plan.name, plan_id: @billing_plan.id})
           else
-            log_event("Update subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: @billing_plan.name, plan_id: @billing_plan.id})
+            log_event("Update subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: s.plan_name, plan_id: s.billing_plan_id})
           end
           redirect_to this.company, action: :collaborators
         rescue Stripe::CardError => _

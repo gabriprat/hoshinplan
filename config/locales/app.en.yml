@@ -18,7 +18,6 @@ en:
   insert_box_link: Insert Box link
   created_by: Created by
   view_log: View log
-  view_log: View log
   older: Older
   newer: Newer
   email_placeholder: name@company.com
@@ -180,7 +179,6 @@ en:
   attributes:
     created_at: Created at
     updated_at: Updated at
-
   activerecord:
     errors:
       models:
@@ -193,13 +191,17 @@ en:
             objective:
               blank: You have to select the objective which this task belongs
         user:
-          password_confirmation:
-              confirmation: Password confirmation doesn't match Password
           attributes:
+            password_confirmation:
+              confirmation: Password confirmation doesn't match Password
             email_address:
               taken: The email address is already taken
               too_short: is too short
               blank: is blank
+        billing_detail:
+          attributes:
+            country:
+              blank: está vacío
       messages:
         record_invalid: Invalid record
       template:
@@ -392,6 +394,11 @@ en:
         zip: Zip
         country: Country
         vat_number: VAT Number
+      subscription:
+        company: Company
+        plan_name: Plan
+        next_payment_at: Next payment
+        total_amount: Total amount
     attribute_help:
       hoshin:
         lifecycle:
@@ -754,3 +761,6 @@ en:
       multi_page: "Displaying %{model} %{from} - %{to} of %{count}"
       multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b>"
   write_comment: Write comment...
+  country:
+    messages:
+      no_country: "(Select country)"

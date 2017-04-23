@@ -11,13 +11,15 @@
             var options = this.hjq('getOptions', annotations);
             ajax_attrs = annotations.ajax_attrs;
             country_input = $(options.country_input);
-            if (country_input.data('taxes') > 0) {
+            var taxes = country_input.val().length > 0 ? country_input.find("option[value=" + country_input.val() + "]").data("taxes") : 0;
+            if (taxes > 0) {
                 that.prev().html(country_input.val() || "&middot;&middot;");
             } else {
                 that.prev().html("&nbsp;&nbsp;");
             }
             country_input.on("change", function() {
-                if (country_input.data('taxes') > 0) {
+                var taxes2 = $(this).val().length > 0 ? $(this).find("option[value=" + $(this).val() + "]").data("taxes") : 0;
+                if (taxes2 > 0) {
                     that.prev().html(country_input.val() || "&middot;&middot;");
                 } else {
                     that.prev().html("&nbsp;&nbsp;");

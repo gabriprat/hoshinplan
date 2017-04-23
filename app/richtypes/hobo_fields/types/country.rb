@@ -1,7 +1,7 @@
 module HoboFields
   module Types
     class Country < String
-  
+
       require 'countries/global'
   
     	COLUMN_TYPE = :string

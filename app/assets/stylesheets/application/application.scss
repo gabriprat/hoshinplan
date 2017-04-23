@@ -3939,6 +3939,11 @@ body.column-form {
   box-shadow: inset 0 -2px 0 red;
 }
 
+.is-focused .input-group .input-group-addon {
+  background-image: linear-gradient(#25a8e0, #25a8e0), linear-gradient(#D2D2D2, #D2D2D2);
+  background-size: 100% 2px, 100% 1px;
+}
+
 .input-group .input-group-addon {
   vertical-align: baseline;
   -webkit-font-smoothing: antialiased;
@@ -3948,8 +3953,12 @@ body.column-form {
   border: none;
   border-radius: 0;
   -webkit-appearance: none;
-  -webkit-box-shadow: inset 0 -1px 0 #ddd;
-  box-shadow: inset 0 -1px 0 #ddd;
+  background-image: linear-gradient(#25a8e0, #25a8e0), linear-gradient(#D2D2D2, #D2D2D2);
+  background-size: 0 2px, 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center bottom, center calc(100% - 1px);
+  background-color: transparent;
+  transition: background 0s ease-out;
   font-size: 16px;
   line-height: 1.846;
 }
@@ -4165,4 +4174,18 @@ input, button, select {
       border-bottom: 3px solid $secondary-color;
     }
   }
+}
+
+.update-kpi-modal {
+  .radio label {
+    text-align: left;
+    span.view {
+      display: inline;
+      position: static;
+    }
+  }
+}
+
+.slider {
+  background: transparent;
 }

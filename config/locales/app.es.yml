@@ -132,6 +132,8 @@ es:
     invalid_credit_card: Los detalles de la tarjeta de crédito eran inválidos. Por favor, revísalos y prueba otra vez.
     invitation_code_does_not_exist: El código de invitación proporcionado no es válido.
   hobo:
+    actions:
+      close: Cerrar
     area:
       child_models: '%{model} de hoshin plans hijos'
     actions:
@@ -195,6 +197,10 @@ es:
             email_address:
               taken: La dirección de email ya pertenece a otro usuario
               too_short: es demasiado corto
+              blank: está vacío
+        billing_detail:
+          attributes:
+            country:
               blank: está vacío
       messages:
         record_invalid: Registro incorrecto
@@ -407,7 +413,6 @@ es:
             resend_activation: Reenviar email de activación de usuario
       company:
         name: Escoge un nombre en función del grupo de gente que utilizará Hoshinplan.
-
   index:
     title: Haz que tu estrategia de negocio funcione
   user:
@@ -756,3 +761,6 @@ es:
       multi_page: "Mostrando %{model} %{from} - %{to} de %{count}"
       multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b>"
   write_comment: Escribe un comentario...
+  country:
+    messages:
+      no_country: "(Seleccionar país)"

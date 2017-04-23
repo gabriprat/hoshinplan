@@ -1,0 +1,18 @@
+<def tag="input" for="HoboFields::Types::Country" attrs="blank-message,include-none">
+        <% 
+                options, attributes = attributes.partition_hash(%w(minLength items source))
+                events, attributes = attributes.partition_hash(%w(source matcher sorter updater highlighter))
+                attributes["name"] = param_name_for_this + "_completer"
+                attributes["value"] ||= name(:no_wrapper => true, :if_present => true)
+                countries = ISO3166::Country.all.map {|c| { key: c.alpha2, value: c.translation(I18n.locale), taxes: ISO3166::Country(c.alpha2).vat_rates._?['standard'] || 0}}
+                include_none ||= true
+                blank_message ||= t('country.messages.no_country')
+                countries.insert(0, {key: "", value: blank_message, taxes: 0}) if include_none
+        %>
+        <select id="billing_detail_country" name="#{param_name_for_this(true)}" merge-attrs="&attributes.except :name" required="required">
+            <repeat with="&countries">
+                <% selected = attributes["value"] == this[:key] ? {selected: :selected} : {} %>
+                <call-tag tag="option" value="&this[:key]" data-taxes="&this[:taxes]" merge-attrs="&selected">#{this[:value]}</call-tag>
+            </repeat>
+        </select>
+</def>
