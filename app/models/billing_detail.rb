@@ -19,6 +19,7 @@ class BillingDetail < ApplicationRecord
     vies_valid :boolean, :default => false
     country HoboFields::Types::Country, :required
     stripe_client_id :string
+    sage_one_contact_id :string
     card_brand :string
     card_last4 :string
     card_exp_month :integer
@@ -32,7 +33,7 @@ class BillingDetail < ApplicationRecord
   
   attr_accessible :company_name, :contact_name, :contact_email, :address_line_1, :address_line_2, :city, :state, :zip, :country,
     :vat_number, :stripe_client_id, :card_brand, :card_last4, :card_exp_month, :card_exp_year, :card_stripe_token, :plan_name, 
-    :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid
+    :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid, :sage_one_contact_id
     
   validates :company_id, :presence => true, :uniqueness => true
   validates :vat_number, vat: {country_method: :country, message: proc {I18n.t('errors.not_expected_format')}}, allow_blank: true

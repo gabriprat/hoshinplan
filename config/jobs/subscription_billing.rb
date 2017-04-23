@@ -14,12 +14,7 @@ module Jobs
 
         subscriptions.each {|s|
           begin
-            days_to_add = case s.billing_period
-              when 'annual' then 1.year
-              when 'monthly' then 1.month
-              else raise TypeError, "Unknown billing period #{s.billing_period}"
-            end
-            s.next_payment_at = s.next_payment_at + days_to_add
+            s.next_payment_at = s.compute_next_payment_at
             s.paying_at = Time.now
             s.save
             Jobs::say "Initiating a charge to company=#{s.company_id}" + "\n"

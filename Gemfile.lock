@@ -60,6 +60,15 @@ GIT
       resque-scheduler (>= 4.0.0)
 
 GIT
+  remote: git@github.com:Sage/sageone_api_signer.git
+  revision: 55d33ecc4651efa6e6a44aee9e283c271090670f
+  ref: 55d33ecc4651efa6e6a44aee9e283c271090670f
+  specs:
+    sageone_api_signer (1.3.0)
+      activesupport
+      rack
+
+GIT
   remote: https://github.com/gabriprat/morrisjs-rails
   revision: 7d335581fd20cf12504959b924e244c8709f9035
   specs:
@@ -639,6 +648,7 @@ DEPENDENCIES
   role_model
   ruby-hmac
   ruby-openid
+  sageone_api_signer!
   sass-rails
   secure_headers
   sendgrid

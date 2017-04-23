@@ -359,6 +359,14 @@
   </card>
 </def>
 
+<def tag="card" for="SageOne">
+  <card class="sage-one" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="SamlProvider">
   <card class="saml-provider" param="default" merge>
     <header: param>

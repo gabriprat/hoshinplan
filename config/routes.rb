@@ -137,6 +137,9 @@ Hoshinplan::Application.routes.draw do
 
   post "/faye/auth" => "faye_auth#faye_auth", :as => 'faye_auth'
 
+  get "/sage_one/auth" => "sage_one#auth"
+
+  get "/sage_one/callback" => "sage_one#callback"
 
   SamlDynamicRouter.load unless Rails.env.development?
   
