@@ -14,8 +14,14 @@ class ApplicationController < ActionController::Base
     error[:stack_trace] = exception.backtrace if Rails.env.development? 
     respond_to do |format|
       format.html { raise exception }
-      format.json { render :json => error, status: error[:status] }
-      format.xml { render :xml => error, status: error[:status] }
+      format.json {
+        track_exception(exception, request)
+        render :json => error, status: error[:status]
+      }
+      format.xml {
+        track_exception(exception, request)
+        render :xml => error, status: error[:status]
+      }
     end
   end
   
@@ -33,8 +39,14 @@ class ApplicationController < ActionController::Base
     else
     respond_to do |format|
       format.html { raise exception }
-      format.json { render :json => error, status: error[:status] }
-      format.xml { render :xml => error, status: error[:status] }
+      format.json {
+        track_exception(exception, request)
+        render :json => error, status: error[:status]
+      }
+      format.xml {
+        track_exception(exception, request)
+        render :xml => error, status: error[:status]
+      }
     end
   end
   end
