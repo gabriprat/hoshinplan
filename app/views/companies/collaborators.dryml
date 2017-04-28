@@ -48,7 +48,7 @@
                     <form with="&this_parent" updates="#user-#{pid},#roles-#{pid},#collab-num" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
                         <field-list fields="roles">
                             <roles-field:>
-                                <radio-group id="#{pid}" onclick="$('#roles-#{pid} form').submit()"/>
+                                <radio-group horizontal="true" onclick="$('#roles-#{pid} form').submit()"/>
                             </roles-field:>
                         </field-list>
                     </form>

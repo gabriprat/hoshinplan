@@ -6,15 +6,18 @@
 deunderscore_attributes(attributes)) %>
 </def> 
 
-<def tag="radio-button-item" attrs="option, id, label-class" polymorphic> 
+<def tag="radio-button-item" attrs="option, id, label-class, horizontal" polymorphic>
    <% 
       label_class ||= ""
       label_class += " active" if (attributes[:selected_option] || this)==option
-   %> 
+      div_class = horizontal ? 'horizontal' : 'vertical'
+   %>
+   <div class="radio radio-primary #{div_class}">
    <label for="&id" class="#{label_class}" param>
             <radio-button option="&option" id="&id" merge param />
    </label>
-</def> 
+   </div>
+</def>
 
 <def tag="radio-group" attrs="options, labels, label-class, append-id" polymorphic>
    <% labels ||= [] 

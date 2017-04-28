@@ -3911,6 +3911,17 @@ body.column-form {
     visibility: hidden
   }
 }
+.tokenfield.form-control {
+  height: auto;
+  .token-label {
+    height: 100%;
+    vertical-align: middle;
+  }
+  .token .close {
+    line-height: 1em;
+    vertical-align: middle;
+  }
+}
 
 .tokenfield {
   border: none;
@@ -4191,4 +4202,20 @@ input, button, select {
 
 .slider {
   background: transparent;
+}
+
+.form-group.large {
+  margin-bottom: 4em;
+}
+
+.radio label {
+  margin-top: 2px;
+}
+
+.radio.horizontal {
+  display: inline-block;
+  margin: 0 2em 0 0;
+  label {
+    padding-left: 30px;
+  }
 }

@@ -8,7 +8,7 @@
  <form>
          <section class="modal-body">
                         <div class="row">
-                                <div class='form-group'>
+                                <div class='form-group large'>
 
                                         <label class='col-sm-2 control-label' for='collaborators'>
                                           <t key="company.email_addresses"/>
@@ -27,13 +27,13 @@
                                     </label>
 
                                     <div class='col-sm-8'>
-                                    <radio-button-item name="role" option="reader" selected-option="&@this.collaborator_limits_reached? ? 'reader' : ''">
+                                    <radio-button-item horizontal="true" name="role" option="reader" selected-option="&@this.collaborator_limits_reached? ? 'reader' : ''">
                                         <append-label:><t key="activerecord.attributes.user_company.valid_roles.reader"/></append-label>
                                     </radio-button-item>
-                                    <radio-button-item name="role" option="editor" selected-option="&@this.collaborator_limits_reached? ? '' : 'editor'" disabled="&@this.collaborator_limits_reached?">
+                                    <radio-button-item horizontal="true" name="role" option="editor" selected-option="&@this.collaborator_limits_reached? ? '' : 'editor'" disabled="&@this.collaborator_limits_reached?">
                                         <append-label:><t key="activerecord.attributes.user_company.valid_roles.editor"/></append-label>
                                     </radio-button-item>
-                                    <radio-button-item name="role" option="admin" disabled="&@this.collaborator_limits_reached?">
+                                    <radio-button-item horizontal="true" name="role" option="admin" disabled="&@this.collaborator_limits_reached?">
                                         <append-label:><t key="activerecord.attributes.user_company.valid_roles.admin"/></append-label>
                                     </radio-button-item>
                                 </div>
