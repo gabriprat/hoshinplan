@@ -1,5 +1,5 @@
 <def tag="scard" for="Objective" attrs="columns">
-<scard class="objective table-row #{this.blind ? 'blind' : ''} #{this.neglected ? 'neglected' : ''}" param="default" merge>
+<scard class="objective table-row #{this.blind ? 'blind' : ''} #{this.neglected ? 'neglected' : ''}" data-tags="&this.taglist" param="default" merge>
   	<% columns.each do |column| %>
 		<if test="&column == 'Id'">
 			<div class="column" data-label="Id" id="objective_#{this.id}_position">
@@ -38,7 +38,7 @@
         <prepend-default:>
             <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
         </prepend-default:>
-        <field-list: fields="name, description, responsible #{parent}, area">
+        <field-list: fields="name, description, responsible #{parent}, area, objective_tags">
             <parent-tag: options="&options" />
             <area-view:>
                 <select-one options="&this_parent.area.hoshin.areas.to_a" />

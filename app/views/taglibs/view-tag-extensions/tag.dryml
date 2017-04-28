@@ -1,0 +1,12 @@
+<def tag="input-many" for="Tag"><tags merge/></def>
+
+<def tag="tags" attrs='options, value'><%
+      autocomplete = {
+          source: this_parent.hoshin.tags.map { |l| l.label }.uniq,
+          delay: 100
+        }
+      tokens ||= this.map { |l| { value: l.id, label: l.label } }
+      delimiters = [' ', ',']
+      %>
+      <tokenfield with="&nil" delimiter="&delimiters" name="&param_name_for_this" tokens="&tokens" autocomplete="&autocomplete" createTokensOnBlur="true" relation="true"/>
+</def>

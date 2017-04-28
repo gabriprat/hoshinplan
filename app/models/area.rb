@@ -44,8 +44,9 @@ class Area < ApplicationRecord
         .except(:order)
         .reorder('CASE WHEN (status in (\'backlog\', \'active\')) THEN 0 ELSE 1 END, tsk_pos')},
       :inverse_of => :parent_area, :accessible => true, :class_name => 'Task', :foreign_key => :parent_area_id
-  
+
   has_many :log, :class_name => "AreaLog", :inverse_of => :area
+  has_many :area_tags, :inverse_of => :area, accessible: true, dependent: :destroy
   has_many :area_comments, :inverse_of => :area
 
   belongs_to :hoshin, :inverse_of => :areas, :counter_cache => true, :null => false, :touch => true

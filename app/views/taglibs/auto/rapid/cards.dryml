@@ -31,6 +31,14 @@
   </card>
 </def>
 
+<def tag="card" for="AreaTag">
+  <card class="area-tag" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="AuthProvider">
   <card class="auth-provider" param="default" merge>
     <header: param>
@@ -184,6 +192,14 @@
   </card>
 </def>
 
+<def tag="card" for="GoalTag">
+  <card class="goal-tag" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="HealthHistory">
   <card class="health-history" param="default" merge>
     <header: param>
@@ -277,6 +293,14 @@
   </card>
 </def>
 
+<def tag="card" for="IndicatorTag">
+  <card class="indicator-tag" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="InvitationCode">
   <card class="invitation-code" param="default" merge>
     <header: param>
@@ -332,6 +356,14 @@
     <body: param>
       <view:body param="description"/>
     </body:>
+  </card>
+</def>
+
+<def tag="card" for="ObjectiveTag">
+  <card class="objective-tag" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
   </card>
 </def>
 
@@ -408,6 +440,17 @@
   </card>
 </def>
 
+<def tag="card" for="Tag">
+  <card class="tag" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <a:creator param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Task">
   <card class="task" param="default" merge>
     <header: param>
@@ -435,6 +478,14 @@
     <body: param>
       <view:body param="description"/>
     </body:>
+  </card>
+</def>
+
+<def tag="card" for="TaskTag">
+  <card class="task-tag" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
   </card>
 </def>
 

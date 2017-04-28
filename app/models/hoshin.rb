@@ -68,6 +68,7 @@ class Hoshin < ApplicationRecord
   has_many :tasks, -> { readonly }, :through => :objectives, :accessible => true
   has_many :goals, -> { order :position }, :dependent => :destroy, :inverse_of => :hoshin
   has_many :log, :class_name => "HoshinLog", :inverse_of => :hoshin
+  has_many :tags, -> { order :label }, :inverse_of => :hoshin
   has_many :hoshin_comments, :inverse_of => :hoshin
   has_many :health_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :hoshin
   

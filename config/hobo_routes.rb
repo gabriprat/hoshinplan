@@ -332,6 +332,24 @@ Hoshinplan::Application.routes.draw do
   resources :subscription_stripes, :only => [:new, :destroy]
 
 
+  # Resource routes for controller task_tags
+  resources :task_tags, :only => [] do
+    collection do
+      get 'complete_label'
+    end
+  end
+
+  # Owner routes for controller task_tags
+  resources :tasks, :as => :task, :only => [] do
+    resources :task_tags, :only => [] do
+      get '/', :on => :new, :action => 'new_for_task'
+      collection do
+        post '/', :action => 'create_for_task'
+      end
+    end
+  end
+
+
   # Resource routes for controller tasks
   resources :tasks, :only => [:edit, :show, :create, :update, :destroy] do
     collection do

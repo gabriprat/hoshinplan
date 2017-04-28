@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422230552) do
+ActiveRecord::Schema.define(version: 20170428100238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,8 @@ ActiveRecord::Schema.define(version: 20170422230552) do
     t.integer  "creator_id"
     t.integer  "company_id"
     t.datetime "deleted_at"
-    t.boolean  "vies_valid",        default: false
+    t.boolean  "vies_valid",          default: false
+    t.string   "sage_one_contact_id"
   end
 
   add_index "billing_details", ["company_id"], name: "index_billing_details_on_company_id", unique: true, using: :btree
@@ -511,6 +512,30 @@ ActiveRecord::Schema.define(version: 20170422230552) do
   add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at", using: :btree
   add_index "subscriptions", ["type"], name: "index_subscriptions_on_type", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "hoshin_id",    null: false
+    t.integer  "creator_id"
+    t.integer  "area_id"
+    t.integer  "goal_id"
+    t.integer  "objective_id"
+    t.integer  "indicator_id"
+    t.integer  "task_id"
+    t.string   "type"
+  end
+
+  add_index "tags", ["area_id"], name: "index_tags_on_area_id", using: :btree
+  add_index "tags", ["creator_id"], name: "index_tags_on_creator_id", using: :btree
+  add_index "tags", ["goal_id"], name: "index_tags_on_goal_id", using: :btree
+  add_index "tags", ["hoshin_id"], name: "index_tags_on_hoshin_id", using: :btree
+  add_index "tags", ["indicator_id"], name: "index_tags_on_indicator_id", using: :btree
+  add_index "tags", ["label"], name: "index_tags_on_label", using: :btree
+  add_index "tags", ["objective_id"], name: "index_tags_on_objective_id", using: :btree
+  add_index "tags", ["task_id"], name: "index_tags_on_task_id", using: :btree
+  add_index "tags", ["type"], name: "index_tags_on_type", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name",                                    null: false

@@ -1,9 +1,9 @@
 <def tag="tokenfield">
         <%
-		options, attrs = attributes.partition_hash(['tokens','limit','minLength','minWidth','autocomplete','showAutocompleteOnFocus','typeahead','createTokensOnBlur','delimiter','beautify','inputType']);
+		options, attrs = attributes.partition_hash(['name','tokens','limit','minLength','minWidth','autocomplete','showAutocompleteOnFocus','typeahead','createTokensOnBlur','delimiter','beautify','inputType','relation']);
 		events, html_attrs = attrs.partition_hash(['tokenfield:initialize','tokenfield:createtoken','tokenfield:createdtoken','tokenfield:edittoken','tokenfield:editedtoken','tokenfield:removetoken','tokenfield:removedtoken'])
                 ajax_attrs, html_attrs = attrs.partition_hash(HoboRapidHelper::AJAX_CALLBACKS)
 		add_data_rapid!(html_attrs, "tokenfield", :options => options, :events => events, :ajax_attrs => ajax_attrs)
         %>
-	<input for-type="HoboFields::Types::Text" merge-attrs="&html_attrs" merge-params/>
+	<input for-type="HoboFields::Types::Text" class="tokenfield" merge-attrs="&html_attrs" merge-params/>
 </def>

@@ -17,8 +17,9 @@ class Goal < ApplicationRecord
     
   attr_accessible :name, :hoshin, :hoshin_id, :company_id, :creator_id
   never_show :position
-  
+
   has_many :log, :class_name => "GoalLog", :inverse_of => :goal
+  has_many :goal_tags, :inverse_of => :goal, accessible: true, dependent: :destroy
   has_many :goal_comments, :inverse_of => :goal
 
 

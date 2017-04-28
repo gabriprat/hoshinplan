@@ -3911,6 +3911,12 @@ body.column-form {
     visibility: hidden
   }
 }
+
+textarea.tokenfield {
+  position: absolute;
+  left: -10000px;
+}
+
 .tokenfield.form-control {
   height: auto;
   .token-label {

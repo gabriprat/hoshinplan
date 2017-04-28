@@ -28,13 +28,13 @@ class Task < ApplicationRecord
   index [:hoshin_id, :status]
     
   validates_presence_of :name
-  
-  
+
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, 
-    :hoshin_id, :feeling, :confidence, :impact, :effort
+    :hoshin_id, :feeling, :confidence, :impact, :effort, :task_tags
 
   has_many :log, :class_name => "TaskLog", :inverse_of => :task
+  has_many :task_tags, :inverse_of => :task, accessible: true, dependent: :destroy
   has_many :task_comments, :inverse_of => :task
 
   belongs_to :creator, :class_name => "User", :creator => true

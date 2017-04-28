@@ -1,5 +1,5 @@
 $(document).ready ->
-  form = $('.comment-form')
+  form = $('.comment-form.subscribe')
   if form.length < 1
     return;
   channel = '/comment' + form.attr('action').replace(/\/[a-z]+_comments/,'')

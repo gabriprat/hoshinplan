@@ -246,6 +246,21 @@ es:
       billing_detail:
         one: Detalles de facturación
         other: Detalles de facturación
+      area_tags:
+        one: Etiqueta
+        other: Etiquetas
+      goal_tags:
+        one: Etiqueta
+        other: Etiquetas
+      objective_tags:
+        one: Etiqueta
+        other: Etiquetas
+      indicator_tags:
+        one: Etiqueta
+        other: Etiquetas
+      task_tags:
+        one: Etiqueta
+        other: Etiquetas
     attributes:
       user:
         name: Nombre
@@ -275,6 +290,7 @@ es:
         description: Descripción
         responsible: Responsable
         parent: Padre
+        objective_tags: Etiquetas
       company:
         name: Empresa
         Company: Empresa
@@ -295,10 +311,12 @@ es:
             archive: Archivar
             clone: Clonar
       goal:
-        name: Nombre
+        name: Name
+        goal_tags: Etiquetas
       area:
         name: Nombre
         description: Descripción
+        area_tags: Etiquetas
       indicator:
         name: Nombre
         description: Descripción
@@ -316,6 +334,7 @@ es:
         objective: Objetivo
         show_on_charts: Mostrar en vista gráficos
         show_on_parent: Mostrar en Hoshin padre
+        indicator_tags: Etiquetas
       indicator/frequencys:
         weekly: Semanal
         monthly: Mensual
@@ -339,6 +358,7 @@ es:
         effort: Esfuerzo
         confidence: Confianza
         impact: Impacto
+        task_tags: Etiquetas
         lifecycle:
           states:
             active: Activa

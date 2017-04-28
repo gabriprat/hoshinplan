@@ -246,6 +246,21 @@ en:
       billing_detail:
         one: Billing details
         other: Billing details
+      area_tags:
+        one: Tag
+        other: Tags
+      goal_tags:
+        one: Tag
+        other: Tags
+      objective_tags:
+        one: Tag
+        other: Tags
+      indicator_tags:
+        one: Tag
+        other: Tags
+      task_tags:
+        one: Tag
+        other: Tags
     attributes:
       user:
         name: Name
@@ -275,6 +290,7 @@ en:
         description: Description
         responsible: Responsible
         parent: Parent
+        objective_tags: Tags
       company:
         name: Company
         Company: Company
@@ -296,9 +312,11 @@ en:
             clone: Clone
       goal:
         name: Name
+        goal_tags: Tags
       area:
         name: Name
         description: Description
+        area_tags: Tags
       indicator:
         name: Name
         description: Description
@@ -316,6 +334,7 @@ en:
         objective: Objective
         show_on_charts: Show on charts
         show_on_parent: Show on parent
+        indicator_tags: Tags
       indicator/frequencys:
         weekly: Weekly
         monthly: Monthly
@@ -339,6 +358,7 @@ en:
         effort: Effort
         confidence: Confidence
         impact: Impact
+        task_tags: Tags
         lifecycle:
           states:
             active: Active

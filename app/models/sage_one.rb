@@ -8,7 +8,7 @@ class SageOne < ActiveRecord::Base
 
   fields do
     access_token :string
-    expires_at :datetime, default: Time.now
+    expires_at :datetime
     refresh_token :string
     scopes :string
     requested_by_id :string
@@ -17,6 +17,10 @@ class SageOne < ActiveRecord::Base
   end
   attr_accessible :access_token, :expires_at, :refresh_token, :scopes, :requested_by_id, :resource_owner_id
   validate :validate_single_row
+
+  before_create do
+    self.expires_at ||= Time.now
+  end
 
   def self.call_api(request_method, endpoint, body_params={})
     SageOne.get.call_api(request_method, endpoint, body_params)
