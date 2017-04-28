@@ -77,7 +77,7 @@
 				<view:header class="well" title="&Hoshin.human_attribute_name('header')" unless="&this.header.blank?"/>
 				<div id="goals" part="goals">
 					<div class="goals well" if="&this.goals">
-						<h3 title="#{Goal.model_name.human(:count => 100).to_s}" class="ic-bullseye"></h3>
+						<h3 title="#{Goal.model_name.human(:count => 100).to_s}"><i class="ic-bullseye"></i></h3>
 						<sortable-collection:goals />
 					</div>
 				</div>

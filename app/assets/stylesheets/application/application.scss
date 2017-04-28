@@ -821,6 +821,9 @@ body.hoshin.presenting {
       &:before {
         content: attr(title);
       }
+      i {
+        display: none;
+      }
     }
     ul {
       padding: 1em;
