@@ -13,20 +13,13 @@
                 }
             }
             var that = $(this);
-            that.one('focus.autoExpand', function(){
-                    var savedValue = this.value;
-                    this.value = '';
-                    this.baseScrollHeight = this.scrollHeight;
-                    this.value = savedValue;
-                })
-                .on('input.autoExpand focus.autoExpand', function(){
-                    var minRows = this.getAttribute('data-min-rows')|0, rows;
-                    var maxRows = this.getAttribute('data-max-rows')|20, rows;
-                    this.rows = minRows;
-                    rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
-                    rows = rows > maxRows ? maxRows : rows;
-                    this.rows = minRows + rows;
-                });
+            autosize(that);
+            that.focus(function() {
+                var val = this.value;
+                this.value = '';
+                this.value = val;
+                autosize.update(that);
+            });
             var cid = that.closest("form[data-company]").data("company");
             var csrf = $("meta[name=csrf-token]").attr("content");
             var users = null;

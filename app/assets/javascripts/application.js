@@ -8,6 +8,7 @@
 //= require jquery
 //= require jquery.cookie
 //= require jquery.jcrop
+//= require autosize/dist/autosize
 //= require papercrop
 //= require jquery_ujs
 //= require jquery-ui

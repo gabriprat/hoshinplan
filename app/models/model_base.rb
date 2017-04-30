@@ -26,10 +26,9 @@ module ModelBase
     l.save!
   end
 
+
   def taglist
-    if self.respond_to? self.model_name.singular + "_tags"
-      self.send(self.model_name.singular + "_tags").*.label.join(" ")
-    end
+    Hoshin.current_hoshin._?.all_tags_hashes[self.typed_id]
   end
 
   def notify

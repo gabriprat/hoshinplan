@@ -78,8 +78,11 @@
             <responsible-view:>
                 <name-one-user />
             </responsible-view:>
+            <description-view:>
+                <my-click-editor id="indicator-description-#{this_parent.id}"/>
+            </description-view:>
         </field-list:>
-        <cancel: href="&session[:return_to] || request.referer"/>
+        <cancel: href="&session[:return_to] || request.referer || hoshin_path(this.hoshin)"/>
 	</old-form>
 </extend>
 

@@ -11,7 +11,7 @@
 
 <extend tag="form" for="Goal">
 	<old-form merge>
-		<cancel: href="&session[:return_to] || request.referer"/>
+		<cancel: href="&session[:return_to] || request.referer || hoshin_path(this.hoshin)"/>
 	</old-form>
 </extend>
 

@@ -6,7 +6,14 @@ class Tag < ActiveRecord::Base
     label :string, name: true
     timestamps
   end
-  index [:label]
+  index [:hoshin_id, :label]
+
+  validate :validate_label
+
+  def validate_label
+    valid = (label =~ /^[a-zA-Z0-9]+[-a-zA-Z0-9]*$/)
+    errors.add(:label, "Label must only contain letters, numbers and hyphens and not start with a hyphen") unless valid
+  end
 
   attr_accessible :label
 

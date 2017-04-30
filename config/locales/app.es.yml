@@ -471,6 +471,7 @@ es:
     see_detailed_health: Ver un informe de salud detallado
     presentation_help: Utiliza las teclas de cursor <kbd>←</kbd> / <kbd>→</kbd> para moverte entre secciones y <kbd>esc</kbd> para salir del modo presentación.
     show_only_mine: Ver solo míos
+    filter_items: Filtrar elementos
   health:
     health_for: Salud para %{name}
     top_users_with_pending: Ranking de usuarios con más acciones pendientes

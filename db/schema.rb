@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428100238) do
+ActiveRecord::Schema.define(version: 20170429164500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -529,10 +529,9 @@ ActiveRecord::Schema.define(version: 20170428100238) do
 
   add_index "tags", ["area_id"], name: "index_tags_on_area_id", using: :btree
   add_index "tags", ["creator_id"], name: "index_tags_on_creator_id", using: :btree
-  add_index "tags", ["goal_id"], name: "index_tags_on_goal_id", using: :btree
+  add_index "tags", ["hoshin_id", "label"], name: "index_tags_on_hoshin_id_and_label", using: :btree
   add_index "tags", ["hoshin_id"], name: "index_tags_on_hoshin_id", using: :btree
   add_index "tags", ["indicator_id"], name: "index_tags_on_indicator_id", using: :btree
-  add_index "tags", ["label"], name: "index_tags_on_label", using: :btree
   add_index "tags", ["objective_id"], name: "index_tags_on_objective_id", using: :btree
   add_index "tags", ["task_id"], name: "index_tags_on_task_id", using: :btree
   add_index "tags", ["type"], name: "index_tags_on_type", using: :btree

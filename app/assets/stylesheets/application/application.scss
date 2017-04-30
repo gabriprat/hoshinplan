@@ -2838,6 +2838,11 @@ form.indicator-value input[type=radio] {
   text-indent: 1em;
 }
 
+#filters-popover .popover {
+  color: inherit;
+  background: #fff;
+}
+
 .timeline.checked li.done:before {
   font-family: 'hoshinplan';
   content: "\f00c";
@@ -4224,4 +4229,24 @@ input, button, select {
   label {
     padding-left: 30px;
   }
+}
+
+textarea.form-control {
+  padding: 15px 0;
+}
+
+.tag-list {
+  display: flex;
+  flex-flow: column wrap;
+  .checkbox {
+    flex: 0 0 0;
+    margin-top: 0;
+  }
+}
+
+.filters-modal .modal-dialog {
+  max-width: 400px;
+  max-height: 400px;
+  left: 0;
+  margin: auto;
 }

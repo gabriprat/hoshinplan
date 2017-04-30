@@ -1,15 +1,16 @@
 /* hjq-tokenfield */
 (function ($) {
 
-    var addEmailValidation = function (that) {
-        var checkErrors = function (e) {
-            var errors = $(e.target).parent().find(".token.invalid");
-            if (errors.length > 0) {
-                $(e.target).closest("form").addClass("has-errors");
-            } else {
-                $(e.target).closest("form").removeClass("has-errors");
-            }
+    var checkErrors = function (e) {
+        var errors = $(e.target).parent().find(".token.invalid");
+        if (errors.length > 0) {
+            $(e.target).closest("form").addClass("has-errors");
+        } else {
+            $(e.target).closest("form").removeClass("has-errors");
         }
+    };
+
+    var addEmailValidation = function (that) {
         that.on('tokenfield:createdtoken', function (e) {
             //Email without name
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -21,16 +22,30 @@
                 checkErrors(e);
             }
         })
+        .on('tokenfield:edittoken', function (e) {
+            checkErrors(e);
+        })
+        .on('tokenfield:removedtoken', function (e) {
+            checkErrors(e);
+        });
+    };
 
-            .on('tokenfield:edittoken', function (e) {
+    var addTagValidation = function(that) {
+        that.on('tokenfield:createdtoken', function (e) {
+            var re = /^[a-zA-Z0-9]+[-a-zA-Z0-9]*$/;
+            var valid = re.test(e.attrs.value);
+            if (!valid) {
+                $(e.relatedTarget).addClass('invalid');
                 checkErrors(e);
-            })
-
-            .on('tokenfield:removedtoken', function (e) {
-                checkErrors(e);
-            });
-
-    }
+            }
+        })
+        .on('tokenfield:edittoken', function (e) {
+            checkErrors(e);
+        })
+        .on('tokenfield:removedtoken', function (e) {
+            checkErrors(e);
+        });
+    };
 
     var methods = {
         init: function (annotations) {
@@ -38,7 +53,7 @@
             var that = $(this);
             var form = that.parents("form");
             for (var event in annotations.events) {
-                this.on(event, this.hjq('createFunction', annotations.events[event]));
+                this.on(event, this.hjq('createFunction', 'tokenfield:' + annotations.events[event]));
             }
             // Fix autofocus until this is resolved: https://github.com/sliptree/bootstrap-tokenfield/issues/84
             that.on("tokenfield:initialize", function (e) {
@@ -50,9 +65,12 @@
                         input.focus();
                     }, 50);
                 }
-
                 if (options["inputType"] == "email") {
                     addEmailValidation(that);
+                }
+                if (options["inputType"] == "tag") {
+                    addTagValidation(that);
+                    options["inputType"] == "text";
                 }
             });
 

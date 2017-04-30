@@ -1,0 +1,16 @@
+<def tag="filters"><%
+      options, attrs = attributes.partition_hash(['container'])
+      add_data_rapid!(attrs, 'filters', options: options)
+      tags = this.all_tags_hashes[this.typed_id].split(' ')
+      return if tags.length == 0
+-%>
+    <a
+        data-toggle="modal"
+        data-target=".filters-modal"
+        role="button"
+        class="filters-modal-toggle"
+        merge-attrs="&attrs"
+    >
+        <span class="ic-filter-list"></span>
+    </a>
+</def>
