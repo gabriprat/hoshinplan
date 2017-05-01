@@ -10,7 +10,9 @@ class EmailTemplate
     trial_ending_es: '0f140d29-e5f1-4969-8d25-0813df9e5634',
     trial_ending_en: 'c262611d-b702-4584-8e78-3c7d65fb0ce6',
     trial_ended_es: '965c4ef2-b92b-49f7-9ffe-d587edea4d80',
-    trial_ended_en: '0ea51c05-edaa-40cc-a23b-7c0d8c79d026'
+    trial_ended_en: '0ea51c05-edaa-40cc-a23b-7c0d8c79d026',
+    assign_responsible_es: '8cce4e0a-18ad-4cf8-a6f6-1885d69542bb',
+    assign_responsible_en: '4c556176-1775-4926-9e1c-ce3808d38ccb'
   }
 
   def initialize(template)

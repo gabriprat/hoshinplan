@@ -214,27 +214,41 @@ en:
         one: User
         other: Users
       company:
+        article_one: the
+        article_other: the
         one: Company
         other: Companies
       area:
+        article_one: the
+        article_other: the
         one: Area
         other: Areas
       objective:
+        article_one: the
+        article_other: the
         one: Objective
         other: Objectives
       indicator:
+        article_one: the
+        article_other: the
         one: Indicator
         other: Indicators
       task:
+        article_one: the
+        article_other: the
         one: Task
         other: Tasks
       goal:
+        article_one: the
+        article_other: the
         one: Long term goal
         other: Long term goals
       client_application:
         one: Client application
         other: Client applications
       hoshin:
+        article_one: the
+        article_other: the
         one: Hoshin
         other: Hoshins
       payment:
@@ -786,4 +800,4 @@ en:
     messages:
       no_country: "(Select country)"
   tooltip:
-    assign_responsible: Enable/disable notifications when assigning a responsible person. Hoshinplan will remember your preferences.
+    assign_responsible: Enable/disable sending emails to responsible people when assignig them. Hoshinplan will remember your preferences.

@@ -6,7 +6,8 @@ module ModelBase
       log_operation(true)
     end
     after_save :log_operation
-    after_save :notify
+    after_save :notify_mentions
+    after_save :notify_responsible
   end
 
   def log_operation(destroyed=false)
@@ -26,16 +27,26 @@ module ModelBase
     l.save!
   end
 
-
   def taglist
     Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
   end
 
-  def notify
+  def notify_mentions
     return unless self.respond_to?(:deleted_at) && self.respond_to?(:name) && self.respond_to?(:description)
     mentions = Differ.diff(description || '', description_was || '').new_mentions
     mentions.each do |user, message|
       UserCompanyMailer.mention(User.current_user, user, self, message).deliver_later
+    end
+  end
+
+  def notify_responsible
+    user = acting_user ? acting_user : User.current_user
+    if self.respond_to?(:responsible) &&
+        self.responsible_id != self.responsible_id_was &&
+        user &&
+        user.respond_to?(:notify_on_assign) &&
+        user.notify_on_assign
+      UserCompanyMailer.assign_responsible(user, self).deliver_later
     end
   end
 

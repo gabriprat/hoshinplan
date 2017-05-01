@@ -214,27 +214,41 @@ es:
         one: Usuario
         other: Usuarios
       company:
+        article_one: la
+        article_other: las
         one: Empresa
         other: Empresas
       area:
+        article_one: el
+        article_other: las
         one: Area
         other: Areas
       objective:
+        article_one: el
+        article_other: los
         one: Objetivo
         other: Objetivos
       indicator:
+        article_one: el
+        article_other: los
         one: Indicador
         other: Indicadores
       task:
+        article_one: la
+        article_other: las
         one: Tarea
         other: Tareas
       goal:
+        article_one: el
+        article_other: los
         one: Objetivo a largo plazo
         other: Objetivos a largo plazo
       client_application:
         one: Aplicación cliente
         other: Aplicaciones cliente
       hoshin:
+        article_one: el
+        article_other: los
         one: Hoshin
         other: Hoshins
       payment:
@@ -786,4 +800,4 @@ es:
     messages:
       no_country: "(Seleccionar país)"
   tooltip:
-    assign_responsible: Activa/desactiva las notificaciones al asignar un responsable. Hoshinplan recordará tus preferencias.
+    assign_responsible: Activa/desactiva el envío de emails a las personas responsables cuando las asignes. Hoshinplan recordará tus preferencias.
