@@ -1,0 +1,25 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - apt-get install postgresql-9.4
+      - apt-get install redis
+  pre_build:
+    commands:
+      - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - psql -c 'create database travis_ci_test;' -U postgres
+      - export REPO=gabriprat/hoshinplan
+      - export TAG=latest
+      - bundle exec rake db:test:prepare
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $REPO:$TAG $REPO:$TAG
+  post_build:
+    commands:
+      - docker push $REPO
+      - echo Build completed on `date`
+
