@@ -43,18 +43,16 @@ class User < ApplicationRecord
 
   has_attached_file :image, {
     :styles => {
-      :blur => "104x104#",
-      :thumb2x => "208x208#",
-      :thumb => "104x104#",
-      :mini2x => "58x58#",
-      :mini => "29x29#"
+      :blur => '104x104#',
+      :original => '208x208#',
+      :thumb2x => '208x208#',
+      :thumb => '104x104#',
+      :mini2x => '58x58#',
+      :mini => '29x29#'
     },
-    :convert_options => {
-      :blur => "-blur 0x12 -fill black -colorize 20% -quality 80 -interlace Plane",
-      :mini => "-quality 80 -interlace Plane",
-      :mini2x => "-quality 80 -interlace Plane",
-      :thumb => "-quality 80 -interlace Plane",
-      :thumb2x => "-quality 80 -interlace Plane"
+    convert_options: {
+        :all => '-alpha remove -background white -quality 80 -interlace Plane',
+        :blur => '-blur 0x12 -fill black -colorize 20% -alpha remove -background white -quality 80 -interlace Plane'
     },
     :s3_headers => { 
       'Cache-Control' => 'public, max-age=315576000', 
@@ -63,6 +61,9 @@ class User < ApplicationRecord
     :default_url => "/assets/default.jpg"
   }
   crop_attached_file :image
+
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :image, :less_than => 10.megabytes
 
   before_create do |user|
     trial_days = DEFAULT_TRIAL_DAYS
@@ -97,10 +98,7 @@ class User < ApplicationRecord
   validates :email_address, uniqueness: { case_sensitive: false }, presence: true, email: true
 
   validate :invitation_code_exists
-  
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  validates_attachment_size :image, :less_than => 10.megabytes   
-    
+
   attr_accessible :firstName, :lastName, :email_address, :current_password, :password, :password_confirmation, :companies, :image,
      :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
      :trial_ends_at, :initial_task_state, :companies_trial_days, :notify_on_assign
@@ -472,12 +470,35 @@ class User < ApplicationRecord
       self.save!(validate: false) #Password validation would fail
     end
   end
+
+  def file_from_url(url)
+    uri = URI.parse(url)
+    extname = File.extname(uri.path)
+    basename = File.basename(uri.path, extname)
+
+    file = Tempfile.new([basename, extname])
+    file.binmode
+
+    open(uri) do |data|
+      file.write data.read
+    end
+
+    file.rewind
+
+    file
+  end
   
   def update_data_from_authorization(provider, uid, email, firstName, lastName, remote_ip, tz, header_locale)
     authorization = Authorization.find_by_provider_and_uid(provider, uid)
     authorization ||= Authorization.find_by_email_address(email)
     atts = authorization.attributes.slice(*User.accessible_attributes.to_a)
-    atts['image'].sub!('sz=50', 'sz=416') if atts['image']
+    if atts['image']
+      begin
+        atts['image'] = file_from_url(atts['image'].sub('sz=50', 'sz=416'))
+      rescue
+        atts.delete('image')
+      end
+    end
     domain = authorization.email_address.split("@").last  
     atts.each { |k, v| 
       atts.delete(k) if !self.attributes[k].blank? || v.nil?

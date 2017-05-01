@@ -78,12 +78,18 @@ var doFilterPostits = function(colors, showMine) {
     $("[data-tags]").show();
 	var selector = "";
     for (var i=0; i<colors.length; i++) {
+        if (colors[i].trim() == "") {
+            continue;
+        }
         if (selector.length>0) {
             selector += ", ";
         }
         selector +=  ".kb-color-" + colors[i];
     }
     for (var i=0; i<tags.length; i++) {
+        if (tags[i].trim() == "") {
+            continue;
+        }
         if (selector.length>0) {
             selector += ", ";
         }

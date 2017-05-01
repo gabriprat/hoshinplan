@@ -3,12 +3,21 @@ version: 0.1
 phases:
   install:
     commands:
-      - apt-get install postgresql-9.4
-      - apt-get install redis
+      - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+      - echo "deb https://get.docker.com/ubuntu docker main" | sudo tee -a /etc/apt/sources.list
+      - sudo apt-get update
+      - apt-cache policy docker-engine
+      - sudo apt-get install -y docker-engine
+      - sudo apt-get -y --no-install-recommends install postgresql postgresql-contrib
+      - sudo service postgresql restart
+      - sudo apt-get -y --no-install-recommends install redis-server
+      - ruby -v
+      - sudo gem install bundler
+      - bundle install
   pre_build:
     commands:
       - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - psql -c 'create database travis_ci_test;' -U postgres
+      - sudo -u postgres psql -c 'create database amazon_codebuild_test;'
       - export REPO=gabriprat/hoshinplan
       - export TAG=latest
       - bundle exec rake db:test:prepare
