@@ -5,7 +5,7 @@
         <unless test="&@provider.present? || params[:login].present?">
 		<div class="social-login">
 			<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
-			            <i class="ic-google-plus"></i> <t key="log_in_with" provider="Google"/>
+			            <i class="ic-google"></i> <t key="log_in_with" provider="Google"/>
 			</a>
 		</div>
                 <div class="email-login">

@@ -35,7 +35,7 @@
 					<autosubmit:value human updates="#neglected,#sec-actions">
 						<div class="input-append">
 							<input />
-							<button class="btn btn-raised ic-check" type="submit"></button>
+							<button class="btn btn-raised btn-primary ic-check" type="submit"></button>
 						</div>
 					</autosubmit>
 				 </else>
