@@ -320,7 +320,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -544,7 +544,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
     </content-body:>
 
   </page>
@@ -646,7 +646,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="administrator, beta_access, news, from_invitation" param/>
+      <record-flags fields="administrator, beta_access, news, from_invitation, notify_on_assign" param/>
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">

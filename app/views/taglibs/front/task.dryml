@@ -99,6 +99,23 @@
             </objective-view:>
             <responsible-view:>
                 <name-one-user />
+                <call-tag
+                    tag="div"
+                    with="&current_user"
+                    class="resp-notify"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="&t 'tooltip.assign_responsible'"
+                    part="notify"
+                >
+                    <formlet update="notify">
+                        <hidden-field:notify_on_assign value="&!this.notify_on_assign" />
+                        <button
+                            class="#{this.notify_on_assign ? 'ic-bell-o' : 'ic-bell-slash-o light'}"
+                            onclick="$(this).closest('.formlet').hjq_formlet('submit'); return false;"
+                        />
+                    </formlet>
+                </call-tag>
             </responsible-view:>
             <effort-view:>
                 <slider min="0" max="100"/>

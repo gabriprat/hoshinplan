@@ -2177,6 +2177,10 @@ form#delete-history, form#delete-history input {
   }
 }
 
+.account-nav {
+  margin-top: 2px;
+}
+
 @media (max-width: 767px) {
   .navbar-nav > li.open > .dropdown-menu {
     margin-top: 0 !important;
@@ -4037,7 +4041,7 @@ textarea.tokenfield {
   column-gap: 40px;
 }
 
-.tr-hd .navbar-default {
+body.tr-hd .navbar.navbar-default {
   position: fixed;
   background: transparent;
   top: 0;
@@ -4254,4 +4258,54 @@ textarea.form-control {
 .inline-form .btn.ic-check {
   margin: -3px 0 0 0;
   padding: 6px 12px;
+}
+
+.btn-login-google {
+  background-color: #4285F4;
+  padding: 9.5px 15px 9.5px 52px;
+  &:not(.btn-raised):not(.btn-link):hover, &:not(.btn-raised):not(.btn-link):focus, &:not(.btn-raised):not(.btn-link):visited {
+    background-color: #4285F4;
+    box-shadow: 0 0 3px 3px rgba(66,133,244,.3);
+  }
+  &:not(.btn-raised):not(.btn-link):active {
+    background-color: #3367D6;
+  }
+  .ripple-container {
+    display: none;
+  }
+  & > * {
+    vertical-align: middle;
+  }
+  span {
+    color: #fff;
+    text-transform: none;
+    font-weight: 500;
+  }
+  img {
+    width: 38px;
+    padding: 10.5px;
+    background: #fff;
+    border-radius: 1px;
+    margin: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    line-height: 34px;
+    font-size: 1.6em;
+    text-align: center;
+  }
+}
+
+.resp-notify {
+  position: absolute;
+  right: 20px;
+  top: 7px;
+  button {
+    background-color: #fff;
+    border: 0
+  }
+  .light {
+    color: #BDBDBD;
+  }
 }

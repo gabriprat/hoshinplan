@@ -4,8 +4,9 @@
         <do part="login-form-part" part-locals="all_parameters, attributes">
         <unless test="&@provider.present? || params[:login].present?">
 		<div class="social-login">
-			<a class="btn btn-social btn-google-plus" href="/auth/google_oauth2">
-			            <i class="ic-google"></i> <t key="log_in_with" provider="Google"/>
+			<a class="btn btn-login-google" href="/auth/google_oauth2">
+			            <image src="google-logo.svg" title="Google" alt="Google" />
+			            <span><t key="log_in_with" provider="Google"/></span>
 			</a>
 		</div>
                 <div class="email-login">

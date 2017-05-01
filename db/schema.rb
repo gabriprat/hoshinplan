@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429164500) do
+ActiveRecord::Schema.define(version: 20170501102406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -638,6 +638,7 @@ ActiveRecord::Schema.define(version: 20170429164500) do
     t.datetime "trial_ending_email"
     t.datetime "trial_ended_email"
     t.integer  "companies_trial_days",                 default: 0
+    t.boolean  "notify_on_assign"
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree

@@ -785,3 +785,5 @@ es:
   country:
     messages:
       no_country: "(Seleccionar país)"
+  tooltip:
+    assign_responsible: Activa/desactiva las notificaciones al asignar un responsable. Hoshinplan recordará tus preferencias.

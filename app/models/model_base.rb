@@ -28,7 +28,7 @@ module ModelBase
 
 
   def taglist
-    Hoshin.current_hoshin._?.all_tags_hashes[self.typed_id]
+    Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
   end
 
   def notify
