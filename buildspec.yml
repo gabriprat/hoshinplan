@@ -3,32 +3,31 @@ version: 0.1
 phases:
   install:
     commands:
-      - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-      - echo "deb https://get.docker.com/ubuntu docker main" | sudo tee -a /etc/apt/sources.list
       - sudo apt-get update
-      - apt-cache policy docker-engine
-      - sudo apt-get install -y docker-engine
+      - sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+      - git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+      - git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+      - ~/.rbenv/bin/rbenv install 2.3.1
+      - ~/.rbenv/bin/rbenv global 2.3.1
       - sudo apt-get -y --no-install-recommends install postgresql postgresql-contrib
       - sudo service postgresql restart
       - sudo apt-get -y --no-install-recommends install redis-server
-      - ruby -v
-      - sudo gem install bundler
-      - bundle install
+      - sudo ~/.rbenv/versions/2.3.1/bin/gem install bundler
+      - sudo ~/.rbenv/versions/2.3.1/bin/gem which bundler
+      - ~/.rbenv/versions/2.3.1/bin/gem env
+      - ~/.rbenv/versions/2.3.1/bin/bundle install
   pre_build:
     commands:
-      - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - sudo -u postgres psql -c 'create database amazon_codebuild_test;'
-      - export REPO=gabriprat/hoshinplan
-      - export TAG=latest
-      - bundle exec rake db:test:prepare
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $REPO:$TAG $REPO:$TAG
+      - docker build -t gabriprat/hoshinplan:latest .
+      - docker tag gabriprat/hoshinplan:latest gabriprat/hoshinplan:latest
   post_build:
     commands:
-      - docker push $REPO
+      - docker push gabriprat/hoshinplan:latest
       - echo Build completed on `date`
 
