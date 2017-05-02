@@ -655,11 +655,16 @@ body h2 {
   vertical-align: text-bottom;
 }
 
-body h2.heading a.title-action {
+body h2.heading .title-action {
   font-size: 0.4em;
   margin: 0 15px;
   color: #aaa;
   position: relative;
+  border: 0;
+  background: transparent;
+  display: inline;
+  height: 19px;
+  padding: 0;
 }
 
 .health-indicator .title-action {
@@ -4246,6 +4251,10 @@ textarea.form-control {
     flex: 0 0 0;
     margin-top: 0;
   }
+}
+
+.filters-modal-toggle {
+  cursor: pointer;
 }
 
 .filters-modal .modal-dialog {

@@ -4,13 +4,12 @@
       tags = this.all_tags_hashes[this.typed_id].split(' ')
       return if tags.length == 0
 -%>
-    <a
+    <span
         data-toggle="modal"
         data-target=".filters-modal"
-        role="button"
         class="filters-modal-toggle"
         merge-attrs="&attrs"
     >
         <span class="ic-filter-list"></span>
-    </a>
+    </span>
 </def>

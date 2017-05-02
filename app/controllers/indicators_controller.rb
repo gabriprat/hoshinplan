@@ -23,12 +23,12 @@ class IndicatorsController < ApplicationController
 
   def_param_group :indicator do
     param :name, String
-    param :value, :number, 'The current value for this indicator'
+    param :value, :decimal, 'The current value for this indicator'
     param :description, String
     param :frequency, [:weekly, :monthly, :quarterly], 'The update frequency for this indicator'
     param :next_update, Date, 'The date of the next desired update'
-    param :goal, :number, 'The value that would set this indicator to 100%'
-    param :worst_value, :number, 'The value that would set this indicator to 0%'
+    param :goal, :decimal, 'The value that would set this indicator to 100%'
+    param :worst_value, :decimal, 'The value that would set this indicator to 0%'
     param :reminder, :boolean, 'Send email reminders to the owner when the next update date comes'
     param :show_on_parent, :boolean, 'Show this indicator in the parent Hoshin'
     param :show_on_charts, :boolean, 'Show this indicator in the Hoshin charts view'
