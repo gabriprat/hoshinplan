@@ -1,6 +1,6 @@
 <def tag="tokenfield">
         <%
-		options, attrs = attributes.partition_hash(['name','tokens','limit','minLength','minWidth','autocomplete','showAutocompleteOnFocus','typeahead','createTokensOnBlur','delimiter','beautify','inputType','relation']);
+		options, attrs = attributes.partition_hash(['tokens','limit','minLength','minWidth','autocomplete','showAutocompleteOnFocus','typeahead','createTokensOnBlur','delimiter','beautify','inputType','relation','relationInputName']);
 		events, html_attrs = attrs.partition_hash(['initialize','createtoken','createdtoken','edittoken','editedtoken','removetoken','removedtoken'])
                 ajax_attrs, html_attrs = attrs.partition_hash(HoboRapidHelper::AJAX_CALLBACKS)
 		add_data_rapid!(html_attrs, "tokenfield", :options => options, :events => events, :ajax_attrs => ajax_attrs)

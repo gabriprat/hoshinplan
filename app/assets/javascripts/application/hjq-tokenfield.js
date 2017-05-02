@@ -75,7 +75,7 @@
             });
 
             var addHidden = function (value, idx, name) {
-                var inputName = options.name;
+                var inputName = options.relationInputName;
                 inputName += name !== undefined ? "[" + idx + "][" + name + "]" : "";
                 $('<input>').attr({
                     type: 'hidden',
@@ -97,7 +97,7 @@
                         addHidden(t.label, i, "label");
                     });
                     if (form.find(".tokeninput-hidden").length === 0) {
-                        addHidden(options.name); //Blank value to remove all tags
+                        addHidden(options.relationInputName); //Blank value to remove all tags
                     }
                 });
             }

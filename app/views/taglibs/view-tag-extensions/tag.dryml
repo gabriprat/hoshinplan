@@ -11,11 +11,11 @@
       <tokenfield
           with="&nil"
           delimiter="&delimiters"
-          name="&param_name_for_this"
           tokens="&tokens"
           autocomplete="&autocomplete"
           createTokensOnBlur="true"
           relation="true"
+          relationInputName="&param_name_for_this"
           inputType="tag"
       />
 </def>
