@@ -86,11 +86,12 @@
 
 
 <extend tag="form" for="Task">
+    <set show-on-parent=", show_on_parent" if="&this.area.hoshin.parent_id"/>
 	<old-form merge>
 		<prepend-default:>
 		    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
 		</prepend-default:>
-        <field-list: fields="name, objective, description, responsible, deadline, feeling, reminder, show_on_parent, task_tags">
+        <field-list: fields="name, objective, description, responsible, deadline, feeling, #{@this.new_record? ? 'status,' : ''} impact, confidence, effort, reminder #{show_on_parent}, task_tags">
             <area-view:>
                 <select-one options="&this_parent.objective.area.hoshin.areas.to_a" />
             </area-view:>
