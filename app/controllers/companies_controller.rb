@@ -179,7 +179,7 @@ class CompaniesController < ApplicationController
     else
       hobo_update
       log_event("Update company", {objid: @this.id, name: @this.name})
-      
+
     end
   end
 end

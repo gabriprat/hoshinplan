@@ -135,11 +135,12 @@ class UserCompany < ApplicationRecord
   def create_permitted?
     return true unless company_id
     company = Company.unscoped.find(company_id)
-    !company.collaborator_limits_reached?
+    roles_mask == 1 || !company.collaborator_limits_reached?
   end
 
   def update_permitted?
     acting_user.administrator? || acting_user.user_companies.where('company_id = ? and ' + IS_ADMIN_SQL, company_id).exists?
+    roles_mask == 1 || roles_mask_was != 1 || !company.collaborator_limits_reached?
   end
 
   def destroy_permitted?
