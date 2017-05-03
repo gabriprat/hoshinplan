@@ -12,7 +12,7 @@
 	
 		<body: class="fixed-headers #{current_user.preferred_view if params['action']=='show'}"/>
 		<navbar: />
-		        
+
 		<collection-heading: replace />
 		<parent-link: replace>
 			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
@@ -122,6 +122,7 @@
 			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help" html-safe/></div>
 		</content-body:>
 		<field-list: fields=""/>
+		<page-scripts: pageName="h-#{this.typed_id._?.sub(':','-')}"/>
 	 </old-show-page>
 </extend>
 

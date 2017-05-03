@@ -37,4 +37,5 @@
 			<kanban-lane:discarded_tasks lane="discarded"/>
 		</div>
 	</content-body:>
+	<page-scripts: pageName="k-#{this.typed_id._?.sub(':','-')}"/>
 </show-page>

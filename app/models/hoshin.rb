@@ -171,7 +171,7 @@ class Hoshin < ApplicationRecord
     Tag.where(hoshin_id: self.id).each { |t|
       obj = t.type.sub('Tag', '').downcase
       tid = obj + ':' + t.send(obj + '_id').to_s
-      h[tid] = h[tid].blank? ? t.label : ' ' + t.label
+      h[tid] = h[tid].blank? ? t.label : h[tid] + ' ' + t.label
       all_tags[t.label] = ''
     }
     h["hoshin:#{self.id}"] = all_tags.keys.sort.join(' ')

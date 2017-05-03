@@ -38,6 +38,10 @@ var validateDate = function(formElem) {
 }
 var loadKanban = function() {
 	try {
+        var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
+        if (pageName && window.location.hash.length == 0 && $.cookie(pageName)) {
+            window.location.hash = $.cookie(pageName);
+        }
 		if ($("#show-mine").length < 1) {
 			return;
 		}
@@ -72,7 +76,7 @@ $(document).ready(function() {
 });
 
 
-var doFilterPostits = function(colors, showMine) {
+var doFilterPostits = function(colors, showMine, tags) {
     $(".postit").show();
     $(".kb-not-mine").show();
     $("[data-tags]").show();
@@ -101,6 +105,11 @@ var doFilterPostits = function(colors, showMine) {
 		$(".kb-not-mine").hide();
 	}
 	equalHeightSections();
+    var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
+    if (pageName && window.location.hash.length > 1) {
+        var domain = document.domain.replace(/^.+?\./, '.');
+        $.cookie(pageName, window.location.hash, {domain: domain, path: '/', expires: 600});
+    }
 }
 
 var filterPostits = function() {
