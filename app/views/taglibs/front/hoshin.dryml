@@ -15,7 +15,7 @@
 
 		<collection-heading: replace />
 		<parent-link: replace>
-			<a with="&this" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
+			<a with="&this.company" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
 		</parent-link:>
 		<prepend-content-header: >
 		<if test="&params['action']=='show'">
@@ -95,30 +95,7 @@
 			</sortable-collection>
 			<%# /swept-cache %>
 			<div id="health-popover"></div>
-			<div class="filters-modal modal fade" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title"><t key="hoshin.filter_items"/></h4>
-                        </div>
-                        <div class="modal-body tag-list">
-                            <% n = 1 %>
-                            <repeat with="&this.all_tags_hashes[this.typed_id].split(' ')">
-                                <checkbox id="tag-#{n}" class="filter-tag" value="&this">
-                                    <label for="tag-#{n}">#{this}</label>
-                                </checkbox>
-                                <% n += 1 %>
-                            </repeat>
-                        </div>
-                        <div class="modal-footer">
-                            <button class='btn btn-default' type='submit' data-dismiss='modal'>
-                                <t key="hobo.actions.close"/>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<filters-modal />
 			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help" html-safe/></div>
 		</content-body:>
 		<field-list: fields=""/>

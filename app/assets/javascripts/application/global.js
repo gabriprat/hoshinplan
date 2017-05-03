@@ -36,38 +36,55 @@ var validateDate = function(formElem) {
 	}
 	return true;
 }
+
+var cpv = "v2";
 var loadKanban = function() {
 	try {
         var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
         if (pageName && window.location.hash.length == 0 && $.cookie(pageName)) {
-            window.location.hash = $.cookie(pageName);
+            var c = $.cookie(pageName).split("#");
+            if (c.length == 2 && c[0] == cpv) {
+                window.location.hash = c[1];
+            }
         }
-		if ($("#show-mine").length < 1) {
-			return;
-		}
-		var showMine = false;
-		var colors = [];
-		if (window.location.hash.length > 1) {
-			var h = window.location.hash.substring(1).split(";");
-			if (h.length==3) {
-				showMine = h[1]=="true";
-                colors = h[0].split(",");
-                tags = h[2].split(",");
-			}
-		}
-		$(".ic-eye").show();
-		$(".ic-eye-slash").hide();
-		for (i=0; i<colors.length; i++) {
-			$('.col-tog-' + colors[i]).toggle();
-		}
-		if (showMine != $("#show-mine").prop("checked")) {
-            $("#show-mine").prop("checked", !$("#show-mine").prop("checked"));
-		}
-		doFilterPostits(colors, showMine, tags);
+		doFilterPostitsFromHash();
 	} catch(err) {
 		window.location.hash = "";
 	}
 }
+
+var doFilterPostitsFromHash = function() {
+    if ($("#show-mine").length < 1) {
+        return;
+    }
+    var showMine = false;
+    var colors = [];
+    var tags = [];
+    if (window.location.hash.length > 1) {
+        var h = window.location.hash.substring(1).split(";");
+        if (h.length==3) {
+            showMine = h[1]=="true";
+            colors = h[0].split(",");
+            tags = h[2].split(",");
+            $(".filter-tag").each(function() {
+                $(this).prop("checked", tags.indexOf($(this).val()) < 0);
+            });
+        }
+    }
+    $(".ic-eye").show();
+    $(".ic-eye-slash").hide();
+    for (i=0; i<colors.length; i++) {
+        $('.col-tog-' + colors[i]).toggle();
+    }
+    if (showMine != $("#show-mine").prop("checked")) {
+        $("#show-mine").prop("checked", !$("#show-mine").prop("checked"));
+    }
+    var shownTags = $(".filter-tag:checked").map(function() {
+        return $(this).val();
+    }).get();
+    doFilterPostits(colors, showMine, shownTags);
+}
+
 $(document).ready(function() {
 	if ($("#show-mine").length >= 1) {
 		$(window).on("popstate", loadKanban);
@@ -79,17 +96,9 @@ $(document).ready(function() {
 var doFilterPostits = function(colors, showMine, tags) {
     $(".postit").show();
     $(".kb-not-mine").show();
-    $("[data-tags]").show();
+    $("[data-tags]:not([data-tags='']").hide();
 	var selector = "";
-    for (var i=0; i<colors.length; i++) {
-        if (colors[i].trim() == "") {
-            continue;
-        }
-        if (selector.length>0) {
-            selector += ", ";
-        }
-        selector +=  ".kb-color-" + colors[i];
-    }
+
     for (var i=0; i<tags.length; i++) {
         if (tags[i].trim() == "") {
             continue;
@@ -98,6 +107,18 @@ var doFilterPostits = function(colors, showMine, tags) {
             selector += ", ";
         }
         selector +=  "[data-tags~=" + tags[i] + "]";
+    }
+    $(selector).show();
+
+    selector = "";
+    for (var i=0; i<colors.length; i++) {
+        if (colors[i].trim() == "") {
+            continue;
+        }
+        if (selector.length>0) {
+            selector += ", ";
+        }
+        selector +=  ".kb-color-" + colors[i];
     }
 	$(selector).hide();
 	if (showMine) {
@@ -108,7 +129,7 @@ var doFilterPostits = function(colors, showMine, tags) {
     var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
     if (pageName && window.location.hash.length > 1) {
         var domain = document.domain.replace(/^.+?\./, '.');
-        $.cookie(pageName, window.location.hash, {domain: domain, path: '/', expires: 600});
+        $.cookie(pageName, cpv + window.location.hash, {domain: domain, path: '/', expires: 600});
     }
 }
 
@@ -129,7 +150,10 @@ var filterPostits = function() {
 			hiddenColors.push(col);
 		}
 	});
-	var hiddenTags = $(".filter-tag:not(:checked)").map(function() { return $(this).val() }).get();
+	var hiddenTags = [];
+    hiddenTags = $(".filter-tag:not(:checked)").map(function () {
+        return $(this).val()
+    }).get();
 	window.location.hash = hiddenColors.join(",") + ";" + showMine + ";" + hiddenTags.join(',');
 	return false;
 }
