@@ -141,6 +141,8 @@ Hoshinplan::Application.routes.draw do
 
   get "/sage_one/callback" => "sage_one#callback"
 
+  get "/hoshins/:id/charts/:area" => "hoshins#charts"
+
   SamlDynamicRouter.load unless Rails.env.development?
   
   constraints IsAdministrator do

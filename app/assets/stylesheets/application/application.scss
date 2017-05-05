@@ -620,11 +620,15 @@ body h2 {
 @media (min-width: 1100px) {
   .hoshin.show-page h2 {
     white-space: nowrap;
+    margin-bottom: 15px;
     a.hoshin-link {
       text-overflow: ellipsis;
       overflow: hidden;
       max-width: 35%;
       display: inline-block;
+    }
+    * {
+      vertical-align: text-bottom;
     }
   }
   .hoshin.show-page.expanded h2 {

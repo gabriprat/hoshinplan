@@ -58,6 +58,7 @@ class AreasController < ApplicationController
   def charts
     @this = Area.includes(:indicators, {:indicators => :indicator_histories})
       .where(:id => params[:id]).order('indicators.ind_pos, indicator_histories.day').references(:indicators).first
+    Hoshin.current_hoshin = @this.hoshin
     hobo_show
   end
 

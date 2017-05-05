@@ -18,14 +18,21 @@
 <a href="#add-chart-modal#{this.id}" data-toggle='modal' class="add-chart ic-plus-square-o" unless="&hidden_indicators.empty?"></a>
 <modal id="add-chart-modal#{this.id}">
 	<modal:>
-		<div class="modal-body">
-			<repeat with="&hidden_indicators">
-				<t key="charts.select_indicator_to_add" />
-				<form success="window.location.reload();" ajax>
-					<hidden-field:show_on_charts value="&true"/>
-					<button type="submit">#{this.name}</button>
-				</form>
-			</repeat>
+	    <div class="modal-dialog">
+	        <div class="modal-content" role="document">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><t key="charts.select_indicator_to_add" /></h4>
+                </div>
+                <div class="modal-body">
+                    <repeat with="&hidden_indicators">
+                        <form success="window.location.reload();" ajax>
+                            <hidden-field:show_on_charts value="&true"/>
+                            <button type="submit">#{this.name}</button>
+                        </form>
+                    </repeat>
+                </div>
+            </div>
 		</div>
 	</modal:>
 </modal>

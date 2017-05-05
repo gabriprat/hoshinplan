@@ -2,39 +2,57 @@
 	<custom-javascript:>
 		$(document).ready(function () {
 			$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-			  var url = $(e.target).data('url');
-			  var dest = $(e.target).attr('href');
-			  window.location.hash = this.hash;
-			  if ($(dest).html().trim() == "") {
-			  	  $(dest).html( "#{t 'loading'}" );
+			  var tab = $(e.target);
+			  var url = tab.data('url');
+			  var href = tab.attr('href') + window.location.hash;
+			  var target = $(tab.data('target'));
+			  if (target.html().trim() == "") {
+			  	  target.html( "#{t 'loading'}" );
 				  $.get( url, function( data ) {
-				    $(dest).html( data );
-				    $(dest).hjq().init();
+				    window.history.pushState( {"target": tab.data('target')}, "", href );
+				    target.html(data);
+				    target.hjq().init();
+				    doFilterPostitsFromHash();
 				  }, "html");
+			  } else {
+			    window.history.pushState( {"target": tab.data('target')}, "", href );
 			  }
 			});
-			var active = window.location.hash;
-			if (!active) {
+			var active = window.location.pathname.split("/").pop();
+            var activeMatch = active.match(/^area([\\d]+)/);
+			if (!activeMatch) {
 			    $('.nav-tabs a').first().tab('show');
 			} else {
-			    $('.nav-tabs a[href='+active+']').tab('show');
+			    $('.nav-tabs a[data-target=#'+activeMatch[0]+']').tab('show');
 			}
 		});
+
+		window.onpopstate = function(e){
+            if(e.state){
+                $('.nav-tabs a[data-target='+e.state.target+']').tab('show');
+            }
+        };
 	</custom-javascript:>
 	<content-header: >
       		<a>&laquo; <ht key="hoshin.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a>
-	        <h2>
-	        	<ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}"> Hoshin <name/></ht>
-		</h2>
+	        <h2 class="heading" style="margin-bottom:15px">
+	        	<span><ht key="hoshin.show.heading" name="#{name(:no_wrapper => true)}"> Hoshin <name/></ht></span>
+	        	<do part="sec-actions" id="sec-actions"><filters class="title-action"/></do>
+		    </h2>
+		    <togglebutton id="show-mine" data-user="#{current_user.id}" onChange="filterPostits()">
+                <label:><t key="hoshin.show_only_mine"/></label:>
+            </togglebutton>
 	</content-header:>
 	
 	<content-body:>
 		<chart-legend labels="#{t 'value_goal_previous_long'}" colors="#008f00,#b1c978,#ff7c00,#999999"/>
 		<bootstrap-tab-list:areas class="charts-tabs clearfix">
-			<a: data-url="#{object_url this}/charts" href="#area#{this.id}"><name/></a:>
+			<a: data-url="#{object_url this}/charts" data-target="#area#{this.id}" href="#{hoshin_path(this.hoshin)}/charts/area#{this.id}"><name/></a:>
 			<body: id="area#{this.id}">
 				
 			</body:>
 		</bootstrap-tab-list>
+		<filters-modal />
 	</content-body:>
+	<page-scripts: pageName="c-#{this.typed_id._?.sub(':','-')}"/>
 </show-page:>

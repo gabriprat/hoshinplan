@@ -100,10 +100,16 @@ class IndicatorsController < ApplicationController
         end
       end
     else
-      hobo_update do |format|
-          format.json {render :json => find_instance.to_json}
-          format.xml {render :xml => find_instance.to_xml}
-          format.html {redirect_to this.objective.area.hoshin if valid? && !request.xhr?}
+      hobo_update do
+        if request.xhr?
+          hobo_ajax_response
+        else
+          respond_to do |format|
+            format.json {render :json => find_instance.to_json}
+            format.xml {render :xml => find_instance.to_xml}
+            format.html {redirect_to this.objective.area.hoshin if valid? && !request.xhr?}
+          end
+        end
       end
   end
 

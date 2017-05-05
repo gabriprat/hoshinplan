@@ -129,7 +129,7 @@ var doFilterPostits = function(colors, showMine, tags) {
     var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
     if (pageName && window.location.hash.length > 1) {
         var domain = document.domain.replace(/^.+?\./, '.');
-        $.cookie(pageName, cpv + window.location.hash, {domain: domain, path: '/', expires: 600});
+        $.cookie(pageName, cpv + window.location.hash, {domain: domain, path: '/', expires: 0});
     }
 }
 
