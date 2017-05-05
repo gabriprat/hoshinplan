@@ -37,7 +37,7 @@ var validateDate = function(formElem) {
 	return true;
 }
 
-var cpv = "v2";
+var cpv = "v3";
 var loadKanban = function() {
 	try {
         var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
