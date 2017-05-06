@@ -180,6 +180,7 @@ class UserCompanyMailer < ActionMailer::Base
       format.html {
         render_email("mention", {
             mentioning_user: mentioning_user, user: @user, app_name: @app_name,
+            article: I18n.translate("activerecord.models.#{object.model_name.singular}.article_one"),
             model: object.class.model_name.human, name: object.name, url: url_for(object) + "/edit",
             hoshin_name: hoshin.name, hoshin_url: url_for(hoshin), message: message
         })

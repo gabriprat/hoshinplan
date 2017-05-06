@@ -1,265 +1,270 @@
+---
 es:
+  error_message: "Oh, no! Ha habido un error, nos ponemos a areglarlo de inmediato. Por favor inténtalo de nuevo."
+  trial_days_left: "Días de prueba restantes:"
+  cookie_msg_link:
+    body: "política de cookies"
+    title: "Más información sobre nuestras cookies"
   actions:
-    newer: Más nuevos
-    older: Más antiguos
-  price_html: '%{value}%{currency}'
+    newer: "Más nuevos"
+    older: "Más antiguos"
+  cookie_msg: "Este sitio web utiliza cookies propias y de terceros para dar un mejor servicio. Al usar nuestro servicio, está aceptando nuestra %{cookie_msg_link}."
   loading: Cargando...
   saving: Guardando...
-  trial_days_left: 'Días de prueba restantes:'
-  error_message: 'Oh, no! Ha habido un error, nos ponemos a areglarlo de inmediato. Por favor inténtalo de nuevo.'
-  cookie_msg: 'Este sitio web utiliza cookies propias y de terceros para dar un mejor servicio. Al usar nuestro servicio, está aceptando nuestra <a href="{{cookiePolicyLink}}" title="Más información sobre nuestras cookies">Política de cookies</a>.'
+  price_html: "%{value}%{currency}"
   i_agree: Entendido
   new: Nuevo
+  copy_of: "Copia de"
+  drag_a_file: "Arrastra una foto aquí"
   beta: Beta
-  copy_of: Copia de
-  drag_a_file: Arrastra una foto aquí
-  value_goal_previous: 'Valor, Objetivo, Previo, Incremento'
-  value_goal_previous_long: 'Valor actual, Objetivo, Valor periodo anterior, Incremento sobre el periodo anterior (%)'
-  insert_box_link: Insertar enlace a Box
-  created_by: Creado por
-  view_log: Ver cambios
-  older: Más antiguas
-  newer: Más recientes
+  value_goal_previous_long: "Valor actual, Objetivo, Valor periodo anterior, Incremento sobre el periodo anterior (%)"
+  insert_box_link: "Insertar enlace a Box"
+  value_goal_previous: "Valor, Objetivo, Previo, Incremento"
+  created_by: "Creado por"
+  view_log: "Ver cambios"
+  newer: "Más recientes"
+  older: "Más antiguas"
   email_placeholder: nombre@empresa.com
   legal:
-    legal_documents: Documentos legales
-    terms_of_use: Términos de Uso
-    privacy: Política de privacidad
-    cookies: Política de cookies
+    legal_documents: "Documentos legales"
+    terms_of_use: "Términos de Uso"
+    privacy: "Política de privacidad"
+    cookies: "Política de cookies"
   footer:
     github: GitHub
-    about: Nosotros
     blog: Blog
+    about: Nosotros
     developers: Desarrolladores
     privacy: Privacidad
-    terms_of_use: Términos de uso
+    terms_of_use: "Términos de uso"
     contact_us: Contáctanos
   emails:
+    thank_you: "Gracias,"
     from:
-      gabriel: Gabriel de Hoshinplan
-    thank_you: 'Gracias,'
-    claim: 'Haz que la estrategia de tu empresa funcione'
-    the_team: El equipo de %{app_name}
-    hi: '¡Hola %{name}!'
-    footer: 'Recibes este e-mail porque te has registrado en Hoshinplan.com. Si no es así, utiliza el siguiente link y no volveremos a molestarte.'
-    unsubscribe: Cancelar suscripción
+      gabriel: "Gabriel de Hoshinplan"
+    the_team: "El equipo de %{app_name}"
+    claim: "Haz que la estrategia de tu empresa funcione"
+    hi: "¡Hola %{name}!"
+    footer: "Recibes este e-mail porque te has registrado en Hoshinplan.com. Si no es así, utiliza el siguiente link y no volveremos a molestarte."
     mention:
-      subject: '[Hoshinplan] Te han mencionado en el hoshin %{name}'
-      message: '%{mentioning_user} te ha mencionado de en el %{model} <a href="%{url}">%{name}</a> para el hoshin <a href="%{hoshin_url}">%{hoshin_name}</a>.'
-      view: Ver el %{model}
+      subject: "[Hoshinplan] Te han mencionado en el hoshin %{name}"
+      view: "Ver el %{model}"
+      message: "%{mentioning_user} te ha mencionado de en %{article} %{model} <a href=\"%{url}\">%{name}</a> para el hoshin <a href=\"%{hoshin_url}\">%{hoshin_name}</a>."
     reminder:
-      subject: '[Hoshinplan] Tienes indicadores o tareas pendientes'
-      message: 'Puedes acceder a todos los indicadores y tareas pendientes en tu <a href="%{url}">panel de control</a>. Te falta actualizar:'
-      update: Panel de control
+      subject: "[Hoshinplan] Tienes indicadores o tareas pendientes"
+      message: "Puedes acceder a todos los indicadores y tareas pendientes en tu <a href=\"%{url}\">panel de control</a>. Te falta actualizar:"
+      update: "Panel de control"
+    unsubscribe: "Cancelar suscripción"
     welcome:
-      subject: '%{name}, ¡Te damos la bienvenida a Hoshinplan!'
-      title: '¡Hola %{name}!'
-      thank_you: Gracias por llegar hasta aquí. Nos encanta que quieras darle vida a tu estrategia.
-      do_you_know_html: '¿Sabes qué es un %{link}? En el fondo, importa poco. Hoshinplan.com existe porque sabemos lo difícil que es conectar la estrategia a largo plazo de una compañía con las actividades del día a día. Planes estratégicos en Powerpoint que nadie mira, proyectos que nunca cumplen la fecha de entrega, cuadros de mando que no sirven... ¿Te suena?'
-      it_does: 'A nosotros sí, porque lo hemos vivido en primera persona. Y probablemente hayas tenido los mismos dolores de cabeza que nosotros. Por eso estás aquí.'
-      lets_try: Vamos a intentar resolver todo esto creando un Hoshin Plan.
+      subject: "%{name}, ¡Te damos la bienvenida a Hoshinplan!"
+      title: "¡Hola %{name}!"
+      thank_you: "Gracias por llegar hasta aquí. Nos encanta que quieras darle vida a tu estrategia."
+      do_you_know_html: "¿Sabes qué es un %{link}? En el fondo, importa poco. Hoshinplan.com existe porque sabemos lo difícil que es conectar la estrategia a largo plazo de una compañía con las actividades del día a día. Planes estratégicos en Powerpoint que nadie mira, proyectos que nunca cumplen la fecha de entrega, cuadros de mando que no sirven... ¿Te suena?"
+      it_does: "A nosotros sí, porque lo hemos vivido en primera persona. Y probablemente hayas tenido los mismos dolores de cabeza que nosotros. Por eso estás aquí."
       start: ¿Empezamos?
-      doubts: 'Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte.'
-      gabri_and_anna: Gabri y Anna
+      doubts: "Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte."
       founders: Fundadores
+      lets_try: "Vamos a intentar resolver todo esto creando un Hoshin Plan."
+      gabri_and_anna: "Gabri y Anna"
     invited_welcome:
-      subject: '%{name}, ¡Bienvenido a Hoshinplan!'
-      title: Bienvenido a Hoshinplan.com
-      message: 'Has aceptado una invitación y ya estás listo para utilizar Hosninplan. Cuando entres verás la pestaña "Tutorial", ahí tienes información sobre cómo utilizar la aplicación. Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte.'
-      gabri_and_anna: Gabri y Anna
+      subject: "%{name}, ¡Bienvenido a Hoshinplan!"
+      message: "Has aceptado una invitación y ya estás listo para utilizar Hosninplan. Cuando entres verás la pestaña \"Tutorial\", ahí tienes información sobre cómo utilizar la aplicación. Y si a lo largo del proceso tienes cualquier duda, en hello@hoshinplan.com estaremos encantados de ayudarte."
+      title: "Bienvenido a Hoshinplan.com"
+      gabri_and_anna: "Gabri y Anna"
       founders: Fundadores
     invite:
-      subject: Únete al Hoshin plan de %{company}
-      title: '¡Hola! %{name} quiere que te unas a Hoshinplan.com'
-      message: Si aceptas esta invitación podrás colaborar junto con %{name} en el plan estratégico de %{company}. ¡Sólo faltas tú!
+      subject: "Únete al Hoshin plan de %{company}"
+      message: "Si aceptas esta invitación podrás colaborar junto con %{name} en el plan estratégico de %{company}. ¡Sólo faltas tú!"
       call_to_action: Aceptar
+      title: "¡Hola! %{name} quiere que te unas a Hoshinplan.com"
     new_invite:
-      subject: '%{name} te invita a unirte a Hoshinplan'
-      title: '¡Hola! %{name} quiere que te unas a Hoshinplan.com'
-      message: 'Hoshin es la manera más efectiva de construir tu estrategia, monitorizar el rendimiento y enfocarse inexorablemente en la ejecución. Si aceptas esta invitación podrás colaborar con los planes estratégicos de %{name}. ¡Sólo faltas tú!'
+      title: "¡Hola! %{name} quiere que te unas a Hoshinplan.com"
+      subject: "%{name} te invita a unirte a Hoshinplan"
       call_to_action: Aceptar
+      message: "Hoshin es la manera más efectiva de construir tu estrategia, monitorizar el rendimiento y enfocarse inexorablemente en la ejecución. Si aceptas esta invitación podrás colaborar con los planes estratégicos de %{name}. ¡Sólo faltas tú!"
     accept:
-      subject: Invitación aceptada
-      message: '%{user2} ahora colabora con el Hoshinplan de %{company}'
-    admin:
-      subject: Ahora administras el Hoshin Plan de %{company}
-      message: '%{user2} acaba de darte permisos de administración del Hoshin Plan de %{company}. ¡Qué responsabilidad! <p>Ahora podrás: <ul><li>Invitar nuevos usuarios a colaborar</li><li>Borrar cualquier elemento aunque no te pertenezca</li><li>Convertir a los colaboradores en administradores</li></ul></p>'
+      subject: "Invitación aceptada"
+      message: "%{user2} ahora colabora con el Hoshinplan de %{company}"
     no_admin:
-      subject: Ya no administras el Hoshin Plan de %{company}
-      message: '%{user2} ha revocado los permisos de administración que tenías del Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle. Recuerda que sigues teniendo acceso al Hoshin Plan de %{company} con permisos de usuario normal.'
+      subject: "Ya no administras el Hoshin Plan de %{company}"
+      message: "%{user2} ha revocado los permisos de administración que tenías del Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle. Recuerda que sigues teniendo acceso al Hoshin Plan de %{company} con permisos de usuario normal."
+    admin:
+      subject: "Ahora administras el Hoshin Plan de %{company}"
+      message: "%{user2} acaba de darte permisos de administración del Hoshin Plan de %{company}. ¡Qué responsabilidad! <p>Ahora podrás: <ul><li>Invitar nuevos usuarios a colaborar</li><li>Borrar cualquier elemento aunque no te pertenezca</li><li>Convertir a los colaboradores en administradores</li></ul></p>"
     removed:
-      subject: Colaboración cancelada
-      message: '%{user2} ha cancelado tu colaboración y ya no tendrás acceso al Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle.'
+      subject: "Colaboración cancelada"
+      message: "%{user2} ha cancelado tu colaboración y ya no tendrás acceso al Hoshin Plan de %{company}. Si se trata de un error, deberías contactarle."
     forgot_password:
-      subject: 'Restablecer tu contraseña de Hoshinplan'
-      message: Para cambiar tu contraseña de Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas.
+      subject: "Restablecer tu contraseña de Hoshinplan"
+      message: "Para cambiar tu contraseña de Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas."
     activation:
-      subject: Valida tu dirección de email en Hoshinplan
-      message: Ya casi has terminado tu registro en Hoshinplan. Para validar tu email en Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas.
-  show_all: Mostrar todo...
-  you_can_use_textile: 'Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: "Texto":http://www.hoshinplan.com'
+      subject: "Valida tu dirección de email en Hoshinplan"
+      message: "Ya casi has terminado tu registro en Hoshinplan. Para validar tu email en Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas."
+  show_all: "Mostrar todo..."
+  click_to_edit: "&lt;Haz clic para editar&gt;"
+  you_can_use_textile: "Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: \"Texto\":http://www.hoshinplan.com"
   textile: Textile
-  click_to_edit: '&lt;Haz clic para editar&gt;'
   hoshin_actions:
+    export_as_pdf: "Exportar cómo PDF"
     presentation: Presentación
-    export_as_pdf: Exportar cómo PDF
-    charts: Gráficos de indicadores
-    compact: Vista expandida o compacta
-    map: Vista mapa
-  no_oid_url: No existe un login corporativo para el email introducido
+    charts: "Gráficos de indicadores"
+    compact: "Vista expandida o compacta"
+    map: "Vista mapa"
+  no_oid_url: "No existe un login corporativo para el email introducido"
   errors:
+    service_unavailable: "¡Lo sentimos! Estamos en mantenimiento.  <br/>Estamos trabajando duro para hacer mejoras en nuestra aplicación y para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar."
+    not_found: "La página que estás buscando no existe. <br/>Comprueba la URL. Si crees que es un error puedes ponerte en contacto con nosotros."
+    internal_server_error: "¡Oh no! Ha habido algún problema técnico en tu última operación. <br/>Hemos recibido el error y nos pondremos a trabajar inmediatamente para resolverlo."
     messages:
-      invalid: es inválido
-    internal_server_error: '¡Oh no! Ha habido algún problema técnico en tu última operación. <br/>Hemos recibido el error y nos pondremos a trabajar inmediatamente para resolverlo.'
-    not_found: 'La página que estás buscando no existe. <br/>Comprueba la URL. Si crees que es un error puedes ponerte en contacto con nosotros.'
-    service_unavailable: '¡Lo sentimos! Estamos en mantenimiento.  <br/>Estamos trabajando duro para hacer mejoras en nuestra aplicación y para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar.'
-    error_home: Vuelve a la página principal
-    error_contact: Infórmanos del error
-    permission_denied: Permiso denegado
-    parent_hoshin_same_company: El hoshin padre tiene que ser de la misma empresa
-    different_parent: Un hoshin no puede ser su propio padre
-    row_invalid_length: 'La fila %{row} tiene un número de columnas no válido. Se esperaban %{expected} y se han encontrado %{found}. Recuerda que se espera %{sep} para separar las columnas.'
-    date_format_error: 'La fila %{row} contiene una fecha incorrecta. La fecha "%{found}" no estaba en el formato esperado "%{expected}".'
-    value_format_error: 'La fila %{row} contiene un valor incorrecto "%{found}".'
-    goal_format_error: 'La fila %{row} contiene un objetivo incorrecto "%{found}".'
-    last_format_error: 'La fila %{row} contiene un valor previo incorrecto "%{found}".'
-    invalid_credentials: 'Las credenciales proporcionadas no son válidas.'
-    provider_said: 'El mensaje del proveedor de autenticación fue: '
-    unknown: 'Error desconocido.'
-    invalid_locale: Idioma no soportado.
-    user_limit_reached: 'Has llegado al límite de colaboradores de tu plan actual. Por favor, mejora tu plan o contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>'
-    not_expected_format: no tiene el formato esperado
-    invalid_credit_card: Los detalles de la tarjeta de crédito eran inválidos. Por favor, revísalos y prueba otra vez.
-    invitation_code_does_not_exist: El código de invitación proporcionado no es válido.
+      invalid: "es inválido"
+    error_home: "Vuelve a la página principal"
+    error_contact: "Infórmanos del error"
+    permission_denied: "Permiso denegado"
+    parent_hoshin_same_company: "El hoshin padre tiene que ser de la misma empresa"
+    different_parent: "Un hoshin no puede ser su propio padre"
+    row_invalid_length: "La fila %{row} tiene un número de columnas no válido. Se esperaban %{expected} y se han encontrado %{found}. Recuerda que se espera %{sep} para separar las columnas."
+    value_format_error: "La fila %{row} contiene un valor incorrecto \"%{found}\"."
+    last_format_error: "La fila %{row} contiene un valor previo incorrecto \"%{found}\"."
+    date_format_error: "La fila %{row} contiene una fecha incorrecta. La fecha \"%{found}\" no estaba en el formato esperado \"%{expected}\"."
+    provider_said: "El mensaje del proveedor de autenticación fue: "
+    goal_format_error: "La fila %{row} contiene un objetivo incorrecto \"%{found}\"."
+    invalid_credentials: "Las credenciales proporcionadas no son válidas."
+    unknown: "Error desconocido."
+    user_limit_reached: "Has llegado al límite de colaboradores de tu plan actual. Por favor, mejora tu plan o contáctanos en <a href=\"mailto:hello@hoshinplan.com\">hello@hoshinplan.com</a>"
+    invalid_locale: "Idioma no soportado."
+    not_expected_format: "no tiene el formato esperado"
+    invalid_credit_card: "Los detalles de la tarjeta de crédito eran inválidos. Por favor, revísalos y prueba otra vez."
+    invitation_code_does_not_exist: "El código de invitación proporcionado no es válido."
   hobo:
-    actions:
-      close: Cerrar
-    area:
-      child_models: '%{model} de hoshin plans hijos'
     actions:
       submit: Enviar
       upgrade: Actualizar
       close: Cerrar
+    area:
+      child_models: "%{model} de hoshin plans hijos"
     dashboard:
-      no_kpis: No tienes %{model} pendientes de actualizar
-      no_tasks: No tienes %{model} con una fecha de finalización cercana
+      no_kpis: "No tienes %{model} pendientes de actualizar"
+      no_tasks: "No tienes %{model} con una fecha de finalización cercana"
     hoshin:
-      neglected_objectives: '%{neglected}/%{count} %{model} con %{kpi} con valores bajos y sin %{task} activas.'
-      blind_objectives:  '%{blind}/%{count} %{objective} sin %{kpi}.'
-      outdated_model:  '%{outdated}/%{count} %{model} por actualizar.'
+      neglected_objectives: "%{neglected}/%{count} %{model} con %{kpi} con valores bajos y sin %{task} activas."
+      blind_objectives: "%{blind}/%{count} %{objective} sin %{kpi}."
+      outdated_model: "%{outdated}/%{count} %{model} por actualizar."
     company:
-      active_hoshins: '%{model} activos'
-      archived_hoshins: '%{model} archivados'
+      archived_hoshins: "%{model} archivados"
+      active_hoshins: "%{model} activos"
     health:
       blind_objectives: "%{model} sin %{kpi}"
-      neglected_objectives: "%{model} con %{kpi} por debajo del 100% y sin %{task} activas"
       overdue_model: "%{model} sin actualizar"
-      everything_updated: Ningun %{model} por actualizar.
+      neglected_objectives: "%{model} con %{kpi} por debajo del 100% y sin %{task} activas"
+      everything_updated: "Ningun %{model} por actualizar."
     accept:
-      heading: Aceptar la invitación
-      body: Clicando el botón Aceptar podrás ver y contribuir a los Hoshinplans de %{company}.
+      heading: "Aceptar la invitación"
+      body: "Clicando el botón Aceptar podrás ver y contribuir a los Hoshinplans de %{company}."
     accept_invitation:
-      heading: Aceptar la invitación
-      body: Introduce tu nombre y contraseña y estarás listo para empezar a usar Hoshinplan.com
+      heading: "Aceptar la invitación"
+      body: "Introduce tu nombre y contraseña y estarás listo para empezar a usar Hoshinplan.com"
     activate:
-      heading: Activar cuenta
-      body: ¡Estás a sólo un click de activar tu cuenta! Por favor, confírmalo pulsado el botón más abajo.
+      body: "¡Estás a sólo un click de activar tu cuenta! Por favor, confírmalo pulsado el botón más abajo."
+      heading: "Activar cuenta"
     reset_password:
-      heading: Restablecer contraseña
+      heading: "Restablecer contraseña"
     table_plus:
-      clear_label: Borrar filtro
+      clear_label: "Borrar filtro"
       submit_label: Buscar
   user_company:
-    that_operation_is: Esta operación no está permitida
-    the_invitation: La invitación que estás intentando aceptar se envió a otro usuario. Por favor inicia sesión con el usuario al que se envió la invitación.
-    the_provided_key: ! 'La invitación ya no es válida. Sólo se puede utilizar una vez. Por favor pide a la persona que te invitó que te reenvie la invitación.'
+    that_operation_is: "Esta operación no está permitida"
+    the_invitation: "La invitación que estás intentando aceptar se envió a otro usuario. Por favor inicia sesión con el usuario al que se envió la invitación."
+    the_provided_key: "La invitación ya no es válida. Sólo se puede utilizar una vez. Por favor pide a la persona que te invitó que te reenvie la invitación."
     collection:
       heading: Usuarios
-      
   attributes:
-    created_at: Creado el
-    updated_at: Actualizado el
+    created_at: "Creado el"
+    updated_at: "Actualizado el"
   activerecord:
     errors:
       models:
-        indicator:
-          attributes:
-            objective:
-              blank: Tienes que seleccionar un objetivo al que pertenece este indicador
         task:
           attributes:
             objective:
-              blank: Tienes que seleccionar un objetivo al que pertenece esta tarea
+              blank: "Tienes que seleccionar un objetivo al que pertenece esta tarea"
+        indicator:
+          attributes:
+            objective:
+              blank: "Tienes que seleccionar un objetivo al que pertenece este indicador"
         user:
           attributes:
-            password_confirmation:
-              confirmation: no coincide con la Contraseña
             email_address:
-              taken: La dirección de email ya pertenece a otro usuario
-              too_short: es demasiado corto
-              blank: está vacío
+              taken: "La dirección de email ya pertenece a otro usuario"
+              too_short: "es demasiado corto"
+              blank: "está vacío"
+            password_confirmation:
+              confirmation: "no coincide con la Contraseña"
         billing_detail:
           attributes:
             country:
-              blank: está vacío
+              blank: "está vacío"
+        tag:
+          attributes:
+            label:
+              invalid_format: "La etiqueta sólo puede contener letras, números y guiones y no puede empezar con un guión."
       messages:
-        record_invalid: Registro incorrecto
+        record_invalid: "Registro incorrecto"
       template:
+        body: "Ha habido problemas con los siguientes campos:"
         header:
-          one: Un error ha impedido que este %{model} se guardara
-          other: '%{count} errores han impedido que este %{model} se guardara'
-        body: 'Ha habido problemas con los siguientes campos:'
+          one: "Un error ha impedido que este %{model} se guardara"
+          other: "%{count} errores han impedido que este %{model} se guardara"
     models:
+      company:
+        one: Empresa
+        other: Empresas
+        article_other: las
+        article_one: la
       user:
         one: Usuario
         other: Usuarios
-      company:
-        article_one: la
-        article_other: las
-        one: Empresa
-        other: Empresas
       area:
-        article_one: el
-        article_other: las
         one: Area
         other: Areas
-      objective:
         article_one: el
-        article_other: los
+        article_other: las
+      objective:
         one: Objetivo
         other: Objetivos
-      indicator:
         article_one: el
         article_other: los
+      indicator:
         one: Indicador
         other: Indicadores
+        article_one: el
+        article_other: los
       task:
-        article_one: la
-        article_other: las
         one: Tarea
         other: Tareas
+        article_other: las
+        article_one: la
       goal:
+        one: "Objetivo a largo plazo"
+        other: "Objetivos a largo plazo"
         article_one: el
         article_other: los
-        one: Objetivo a largo plazo
-        other: Objetivos a largo plazo
-      client_application:
-        one: Aplicación cliente
-        other: Aplicaciones cliente
       hoshin:
-        article_one: el
-        article_other: los
         one: Hoshin
         other: Hoshins
-      payment:
-        one: Suscripción
-        other: Suscripciones
+        article_one: el
+        article_other: los
+      client_application:
+        one: "Aplicación cliente"
+        other: "Aplicaciones cliente"
       indicator_event:
         one: Evento
         other: Eventos
       billing_detail:
-        one: Detalles de facturación
-        other: Detalles de facturación
+        one: "Detalles de facturación"
+        other: "Detalles de facturación"
+      payment:
+        one: Suscripción
+        other: Suscripciones
       area_tags:
         one: Etiqueta
         other: Etiquetas
@@ -278,116 +283,116 @@ es:
     attributes:
       user:
         name: Nombre
-        firstName: Nombre
-        lastName: Apellidos
         password: Contraseña
-        current_password: Contraseña actual
-        new_password: Nueva contraseña
-        new_password_confirmation: Confirmación nueva contraseña
-        password_confirmation: Confirmación Contraseña
-        email_address: Email
-        image: Imagen
+        lastName: Apellidos
+        firstName: Nombre
+        current_password: "Contraseña actual"
+        new_password: "Nueva contraseña"
+        new_password_confirmation: "Confirmación nueva contraseña"
+        password_confirmation: "Confirmación Contraseña"
         state: Estado
+        email_address: Email
         language: Idioma
-        timezone: Zona horaria
+        image: Imagen
+        timezone: "Zona horaria"
         lifecycle:
           transitions:
-            accept_invitation: Aceptar la invitación		
-            activate: Activar cuenta
-            reset_password: Restablecer contraseña
-            resend_activation: Reenviar email de activación
+            accept_invitation: "Aceptar la invitación"
+            activate: "Activar cuenta"
+            reset_password: "Restablecer contraseña"
+            resend_activation: "Reenviar email de activación"
       user/languages:
-        es: Español (España)
-        en: English (US)
+        es: "Español (España)"
+        en: "English (US)"
       objective:
+        responsible: Responsable
         name: Nombre
         description: Descripción
-        responsible: Responsable
         parent: Padre
         objective_tags: Etiquetas
       company:
-        name: Empresa
+        company_email_domains: "Dominios de email con acceso automático"
         Company: Empresa
-        company_email_domains: Dominios de email con acceso automático
+        name: Empresa
         actions: Acciones
       company_email_domain:
         domain: Dominio
       hoshin:
+        company: Empresa
+        parent: Padre
+        tasks_visible_days: "Días tareas visibles"
+        creator: Responsable
         name: Nombre
         header: Descripción
-        parent: Padre
-        company: Empresa
-        creator: Responsable
-        tasks_visible_days: Días tareas visibles
         lifecycle:
           transitions:
-            activate: Activar
             archive: Archivar
+            activate: Activar
             clone: Clonar
       goal:
-        name: Name
+        name: Nombre
         goal_tags: Etiquetas
       area:
         name: Nombre
-        description: Descripción
         area_tags: Etiquetas
+        description: Descripción
       indicator:
         name: Nombre
-        description: Descripción
         frequency: Frecuencia
-        last_update: Última Actualiz.
-        next_update: Prox. Actualiz.
+        description: Descripción
+        last_update: "Última Actualiz."
+        next_update: "Prox. Actualiz."
         responsible: Responsable
-        goal: Valor 100%
-        min_value: Valor mínimo
-        max_value: Valor máximo
-        worst_value: Valor 0%
-        higher: Mejor si mayor
+        goal: "Valor 100%"
+        max_value: "Valor máximo"
+        min_value: "Valor mínimo"
+        higher: "Mejor si mayor"
         value: Valor
+        worst_value: "Valor 0%"
         reminder: Recordatorio
         objective: Objetivo
-        show_on_charts: Mostrar en vista gráficos
-        show_on_parent: Mostrar en Hoshin padre
+        show_on_parent: "Mostrar en Hoshin padre"
+        show_on_charts: "Mostrar en vista gráficos"
         indicator_tags: Etiquetas
       indicator/frequencys:
         weekly: Semanal
         monthly: Mensual
-        quarterly: Trimestral	 
+        quarterly: Trimestral
       indicator_history:
         day: Fecha
-        value: Valor actual
         objective: Objetivo
-        previous: Valor periodo anterior
+        value: "Valor actual"
+        previous: "Valor periodo anterior"
       task:
         name: Nombre
         description: Descripción
-        responsible: Responsable
         deadline: Venc.
+        responsible: Responsable
         feeling: Sensación
-        show_on_parent: Subir tarea
         reminder: Recordatorio
+        show_on_parent: "Subir tarea"
         objective: Objetivo
         status: Estado
-        original_deadline: Venc. original
+        original_deadline: "Venc. original"
         effort: Esfuerzo
         confidence: Confianza
         impact: Impacto
-        task_tags: Etiquetas
         lifecycle:
           states:
             active: Activa
-            backlog: En cola
-            discarded: Descartada
             completed: Completada
+            discarded: Descartada
+            backlog: "En cola"
           transitions:
             discard: Descartar
             complete: Completar
             start: Iniciar
             reactivate: Reactivar
             delete: Borrar
+        task_tags: Etiquetas
       user_company:
-        user: Usuario
         state: Estado
+        user: Usuario
         roles: Roles
         valid_roles:
           editor: Editor
@@ -399,293 +404,294 @@ es:
             admin: Administrador
             invited: Invitado
           transitions:
-            make_admin: Hacer administrador
-            revoke_admin: Revocar administrador
+            make_admin: "Hacer administrador"
+            cancel_invitation: "Cancelar invitación"
+            resend_invite: "Reenviar invitación"
+            revoke_admin: "Revocar administrador"
             remove: Eliminar
-            resend_invite: Reenviar invitación
-            cancel_invitation: Cancelar invitación
             accept: Aceptar
       client_application:
-        ClientApplication: Aplicación cliente
-        name: Nombre
-        description: Descripción
+        ClientApplication: "Aplicación cliente"
         key: Clave
+        description: Descripción
+        name: Nombre
         secret: Secreto
-        actions: Acciones
         user: Usuario
+        actions: Acciones
       payment:
-        company: Empresa
         billing_plan_name: Plan
-        id_paypal: Identificador en PayPal
+        company: Empresa
+        id_paypal: "Identificador en PayPal"
       billing_detail:
-        company_name: Nombre empresa
-        contact_name: Nombre persona contacto
-        contact_email: Email persona contacto
+        company_name: "Nombre empresa"
+        contact_name: "Nombre persona contacto"
+        contact_email: "Email persona contacto"
         address_line_1: Dirección
-        address_line_2: Dirección (linea 2)
+        address_line_2: "Dirección (linea 2)"
         city: Ciudad
         state: Provincia
-        zip: Código postal
+        zip: "Código postal"
         country: País
-        vat_number: Identificador fiscal
+        vat_number: "Identificador fiscal"
       subscription:
         company: Empresa
         plan_name: Plan
-        next_payment_at: Próximo cobro
-        total_amount: Importe a cobrar
+        total_amount: "Importe a cobrar"
+        next_payment_at: "Próximo cobro"
     attribute_help:
       hoshin:
         lifecycle:
           transitions:
-            activate: Activar hoshin
-            archive: Archivar hoshin
-            clone: Clonar hoshin
+            activate: "Activar hoshin"
+            archive: "Archivar hoshin"
+            clone: "Clonar hoshin"
       user:
         email_address: "Utiliza tu email de empresa para poder conectarte con tu equipo."
         lifecycle:
           transitions:
-            resend_activation: Reenviar email de activación de usuario
+            resend_activation: "Reenviar email de activación de usuario"
       company:
-        name: Escoge un nombre en función del grupo de gente que utilizará Hoshinplan.
+        name: "Escoge un nombre en función del grupo de gente que utilizará Hoshinplan."
   index:
-    title: Haz que tu estrategia de negocio funcione
+    title: "Haz que tu estrategia de negocio funcione"
   user:
     signup:
-      it_is_ok: Recibir emails de Hoshinplan.
-      by_proceeding: Continuar para crear tu usuario y usar Hoshinplan significa que estás de acuerdo con nuestros %{terms} y %{privacy}. Si no lo estás no puedes usar Hoshinplan.
-      terms_link: Términos de uso
-      privacy_link: Política de privacidad 
-    my_dashboard: Mi panel de control
-    show_all: Mostrar todas
-    show_only_pending: Mostrar sólo las acciones pendientes
-    dashboard_for: Panel de control para %{name}
-    pending_actions_for: Acciones pendientes para %{name}
-    kanban_for: Kanban para %{name}
-    delete_account: Eliminar cuenta
-    collaborating_with: Colaborando con
-    change: Cambiar foto de perfil
-    end_collaboration: Cancelar colaboración
-    activation_sent_button: Ya enviado
+      it_is_ok: "Recibir emails de Hoshinplan."
+      by_proceeding: "Continuar para crear tu usuario y usar Hoshinplan significa que estás de acuerdo con nuestros %{terms} y %{privacy}. Si no lo estás no puedes usar Hoshinplan."
+      terms_link: "Términos de uso"
+      privacy_link: "Política de privacidad"
+    my_dashboard: "Mi panel de control"
+    show_all: "Mostrar todas"
+    dashboard_for: "Panel de control para %{name}"
+    show_only_pending: "Mostrar sólo las acciones pendientes"
+    pending_actions_for: "Acciones pendientes para %{name}"
+    kanban_for: "Kanban para %{name}"
+    delete_account: "Eliminar cuenta"
+    collaborating_with: "Colaborando con"
+    change: "Cambiar foto de perfil"
+    end_collaboration: "Cancelar colaboración"
+    activation_sent_button: "Ya enviado"
     messages:
-      end_collaboration_confirm: ¿Estás seguro de que quieres dejar de colaborar con esta compañía?
-      activation_mail_resent: El email de activación ha sido reenviado.
-      already_active: Tu usuario ya estaba activo. Por favor inicia sesión.
+      end_collaboration_confirm: "¿Estás seguro de que quieres dejar de colaborar con esta compañía?"
+      activation_mail_resent: "El email de activación ha sido reenviado."
+      already_active: "Tu usuario ya estaba activo. Por favor inicia sesión."
     tabs:
       profile: Perfil
       password: Contraseña
   hoshin:
-    how_to_improve: ¿Cómo mejorar la salud de mi hoshinplan?
-    finish_tutorial: Finalizar el tutorial
+    how_to_improve: "¿Cómo mejorar la salud de mi hoshinplan?"
+    finish_tutorial: "Finalizar el tutorial"
     global_health: "Salud global:"
-    full_health: Tu hoshin tiene una salud perfecta. ¡¡Felicicades!!
+    full_health: "Tu hoshin tiene una salud perfecta. ¡¡Felicicades!!"
     objectives_health: "Salud de tus objetivos: %{health}%"
     indicators_health: "Salud de tus indicadores: %{health}%"
+    presentation_help: "Utiliza las teclas de cursor <kbd>←</kbd> / <kbd>→</kbd> para moverte entre secciones y <kbd>esc</kbd> para salir del modo presentación."
+    see_detailed_health: "Ver un informe de salud detallado"
     tasks_health: "Salud de tus tareas: %{health}%"
-    click_to_know: Haz click para saber cómo llevar tu Hoshinplan al 100%
-    see_detailed_health: Ver un informe de salud detallado
-    presentation_help: Utiliza las teclas de cursor <kbd>←</kbd> / <kbd>→</kbd> para moverte entre secciones y <kbd>esc</kbd> para salir del modo presentación.
-    show_only_mine: Ver solo míos
-    filter_items: Filtrar elementos
+    filter_items: "Filtrar elementos"
+    click_to_know: "Haz click para saber cómo llevar tu Hoshinplan al 100%"
+    show_only_mine: "Ver solo míos"
   health:
-    health_for: Salud para %{name}
-    top_users_with_pending: Ranking de usuarios con más acciones pendientes
-    health_history: Historial de salud
+    health_for: "Salud para %{name}"
+    top_users_with_pending: "Ranking de usuarios con más acciones pendientes"
+    health_history: "Historial de salud"
   kanban:
-    show_only_my_tasks: Ver sólo mis tareas
+    show_only_my_tasks: "Ver sólo mis tareas"
     lanes:
-      backlog: En cola
       active: Activas
       completed: Completadas
       discarded: Descartadas
+      backlog: "En cola"
   charts:
-    select_indicator_to_add: Selecciona la gráfica oculta que desees hacer visible de nuevo
+    select_indicator_to_add: "Selecciona la gráfica oculta que desees hacer visible de nuevo"
   first:
-    title: Crea tu compañía
-    heading: ¿Cómo quieres llamar a tu empresa en Hoshinplan?
+    title: "Crea tu compañía"
+    heading: "¿Cómo quieres llamar a tu empresa en Hoshinplan?"
   company:
     email_addresses: Emails
+    manage_collaborators: "Gestionar colaboradores"
     role: Rol
-    manage_collaborators: Gestionar colaboradores
-    invite_collaborators: Invitar colaboradores
-    invite_readers: Invitar colaboradores sólo lectura
-    maximum_collaborators: '(%{used} de %{value})'
+    invite_collaborators: "Invitar colaboradores"
+    invite_readers: "Invitar colaboradores sólo lectura"
     unlimited: Ilimitados
-    add_collaborators: Añadir colaboradores
-    upgrade_to_invite: Mejora tu plan para invitar más colaboradores
-    send_invitations: Envía invitaciones de colaboración escribiendo direcciones de email separadas por comas en la caja de texto. Cada email puede contener el nombre de la persona con la forma <code>Nombre Apellidos &lt;email@empresa.com&gt;</code>.
+    maximum_collaborators: "(%{used} de %{value})"
+    send_invitations: "Envía invitaciones de colaboración escribiendo direcciones de email separadas por comas en la caja de texto. Cada email puede contener el nombre de la persona con la forma %{email_format}."
+    add_collaborators: "Añadir colaboradores"
+    send_invitations_format: "Nombre Apellidos &lt;email@empresa.com&gt;"
+    upgrade_to_invite: "Mejora tu plan para invitar más colaboradores"
   client_app:
-    sign_a_request: Firma una petición al API
-    requests_to_the_restful: Las peticiones al API RESTful tienen que estar firmadas con el campo secreto de la Aplicación Cliente. Este formulario te permitirá firmar una petición. Tienes que entrar la ruta de la petición que quieres firmar sin los parámetros "timestamp" ni "signature". Al clicar en el botón "Firmar" te devolverá la URL con estos parámetros.
-    for_example: ! 'Por ejemplo si entras:'
-    you_will_get: ! 'Obtendrás algo similar a:'
+    sign_a_request: "Firma una petición al API"
+    requests_to_the_restful: "Las peticiones al API RESTful tienen que estar firmadas con el campo secreto de la Aplicación Cliente. Este formulario te permitirá firmar una petición. Tienes que entrar la ruta de la petición que quieres firmar sin los parámetros \"timestamp\" ni \"signature\". Al clicar en el botón \"Firmar\" te devolverá la URL con estos parámetros."
+    for_example: "Por ejemplo si entras:"
+    you_will_get: "Obtendrás algo similar a:"
     sign: Firmar
-    connect_your_apps: Conecta tus aplicaciones a nuestro API
-    here_you_can: Aquí puedes crear aplicaciones cliente que usen el API de Hoshinplan para leer o escribir datos. Hoshinplan dispone de una %{rest_link}.
-    to_learn: Para aprender cómo usarla visita nuestro %{developers_link}.
-    developers_link: site para desarrolladores
-    rest_link: API REST
+    connect_your_apps: "Conecta tus aplicaciones a nuestro API"
+    to_learn: "Para aprender cómo usarla visita nuestro %{developers_link}."
+    here_you_can: "Aquí puedes crear aplicaciones cliente que usen el API de Hoshinplan para leer o escribir datos. Hoshinplan dispone de una %{rest_link}."
+    rest_link: "API REST"
+    developers_link: "site para desarrolladores"
   pricing_plans:
-    title: Planes y precios
-    subtitle: Pruébalo gratis durante 30 días. Sin tarjetas. Sin permanencia. Cambia o cancela tu plan en cualquier momento.
-    try_it: Pruébalo gratis
-    free: '¡Gratis!'
-    single_user: Un usuario
-    email_notifications: Avisos por email
-    unlimited_hoshinplans: Hoshinplans ilimitados
-    pdf_export: Exportación a PDF
-    charts_view: Vista de gráficos
-    kanban_view: Vista Kanban
-    users: '%{users} usuarios'
-    workers: 'Empresas de hasta %{workers} trabajadores'
-    sso:  'Single-sign-on OpenId o SAML'
-    map_view:  'Vista mapa'
+    title: "Planes y precios"
+    subtitle: "Pruébalo gratis durante 30 días. Sin tarjetas. Sin permanencia. Cambia o cancela tu plan en cualquier momento."
+    try_it: "Pruébalo gratis"
+    single_user: "Un usuario"
+    free: ¡Gratis!
+    email_notifications: "Avisos por email"
+    unlimited_hoshinplans: "Hoshinplans ilimitados"
+    pdf_export: "Exportación a PDF"
+    charts_view: "Vista de gráficos"
+    kanban_view: "Vista Kanban"
+    sso: "Single-sign-on OpenId o SAML"
+    workers: "Empresas de hasta %{workers} trabajadores"
+    users: "%{users} usuarios"
+    map_view: "Vista mapa"
     for_companies: "&nbsp;"
+    we_help_you: "Te ayudamos a construir tu hoshinplan"
     for_startups: "&nbsp;"
-    we_help_you: Te ayudamos a construir tu hoshinplan
+    unlimited_users: "Usuarios ilimitados"
     contact_us: Contáctanos
-    unlimited_users: Usuarios ilimitados
-    all_startup_features: Todo lo incluido en la versión startup
-    all_enterprise_features: Todo lo incluido en la versión enterprise
-    support_assistance: Soporte 8/5 vía email o Skpe
-    two_days_workshop: Workshop de dos días para crear los hoshinplan necesarios y formar al equipo
-    invoicing_frequency: Periodo de facturación
+    all_startup_features: "Todo lo incluido en la versión startup"
+    all_enterprise_features: "Todo lo incluido en la versión enterprise"
+    support_assistance: "Soporte 8/5 vía email o Skpe"
+    invoicing_frequency: "Periodo de facturación"
+    two_days_workshop: "Workshop de dos días para crear los hoshinplan necesarios y formar al equipo"
     monthly: Mensual
     annual: Anual
-    includes: '%{name} incluye'
-    billed_annually: por usuario al mes facturado anualmente
-    billed_monthly: '%{amount} por usuario facturado mensualmente'
+    includes: "%{name} incluye"
+    billed_annually: "por usuario al mes facturado anualmente"
+    billed_monthly: "%{amount} por usuario facturado mensualmente"
   billing_details:
-    plan: 'Plan %{name}'
+    plan: "Plan %{name}"
     concept: Concepto
     price: Precio
     quantity: Cantidad
     total: Total
     taxes: Impuestos
-    number_of_users: Número de usuarios
-    payment_frequency: Frecuencia de pago
-    billing_details: Detalles de facturación
-    card_details: Tarjeta de crédito
-    card_number: Número de la tarjeta
-    full_name: Nombre completo
+    number_of_users: "Número de usuarios"
+    billing_details: "Detalles de facturación"
+    payment_frequency: "Frecuencia de pago"
+    card_details: "Tarjeta de crédito"
+    full_name: "Nombre completo"
+    card_number: "Número de la tarjeta"
     mm_yy: MM/YY
+    you_will_pay: "Pagarás %{amount} (impuestos incluidos) ahora por la fracción correspondiente hasta la siguiente renovación por el importe completo que será el %{next}."
     cvc: CVC
-    you_will_pay: Pagarás %{amount} (impuestos incluidos) ahora por la fracción correspondiente hasta la siguiente renovación por el importe completo que será el %{next}.
-    credit: Acumularás %{amount} de crédito para tus próximos pagos.
-    complete_your_purchase: Completar tu compra
+    complete_your_purchase: "Completar tu compra"
+    credit: "Acumularás %{amount} de crédito para tus próximos pagos."
   stripe:
     purchase: Suscribirme
-    panelLabel: 'Pagar {{amount}}/%{frequency}'
-    day: día
+    panelLabel: "Pagar {{amount}}/%{frequency}"
     week: semana
+    day: día
     month: mes
     year: año
   paypal:
     purchase: Comprar
   payments:
-    expired_trial: Tu período de prueba ha acabado, por favor configura un plan para seguir disfrutando de Hoshinplan
+    expired_trial: "Tu período de prueba ha acabado, por favor configura un plan para seguir disfrutando de Hoshinplan"
     correct:
-      heading: La compra se ha realizado correctamente
-      description: Ahora puedes %{link} a la página dónde te encontrabas antes de hacer la compra.
+      heading: "La compra se ha realizado correctamente"
+      description: "Ahora puedes %{link} a la página dónde te encontrabas antes de hacer la compra."
       return: volver
     canceled:
-      heading: La compra se ha cancelado
-      description: Si crees que es un error por favor contáctanos en <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Ahora puedes %{link} a la página dónde te encontrabas antes de hacer la compra.
+      heading: "La compra se ha cancelado"
+      description: "Si crees que es un error por favor contáctanos en <a href=\"mailto:hello@hoshinplan.com\">hello@hoshinplan.com</a>. Ahora puedes %{link} a la página dónde te encontrabas antes de hacer la compra."
       return: volver
     index:
-      cancel_subscription: Cancelar la suscripción
+      cancel_subscription: "Cancelar la suscripción"
   log:
-    log_for: 'Historia del %{model}: %{name}'
-    create: Creado 
-    update: Modificado 
+    log_for: "Historia del %{model}: %{name}"
+    create: Creado
+    update: Modificado
     delete: Borrado
-    operation_date_ago: '%{operation} hace %{date} por %{creator}' 
-    operation_date_at: '%{operation} el %{date} por %{creator}'
-    operation_date_ago_automatic: '%{operation} automáticamente hace %{date}' 
-    operation_date_at_automatic: '%{operation} automáticamente el %{date}' 
+    operation_date_ago: "%{operation} hace %{date} por %{creator}"
+    operation_date_at: "%{operation} el %{date} por %{creator}"
+    operation_date_at_automatic: "%{operation} automáticamente el %{date}"
     changes: Cambios
+    operation_date_ago_automatic: "%{operation} automáticamente hace %{date}"
     from: de
     to: a
   map:
-    minimum_impact_filter: 'Impacto mínimo para mostrar:'
+    minimum_impact_filter: "Impacto mínimo para mostrar:"
   invalid_invitation_key_page:
-    title: Link de invitación inválido
-    heading: Link de invitación inválido
-    text: Puede ser que ya hubieras usado el link anteriormente (sólo se puede usar una vez) o que se haya generado otro posteriormente. Si no tienes el último mail de invitación necesitarás pedir a quién te invitó que lo haga de nuevo.
+    title: "Link de invitación inválido"
+    heading: "Link de invitación inválido"
+    text: "Puede ser que ya hubieras usado el link anteriormente (sólo se puede usar una vez) o que se haya generado otro posteriormente. Si no tienes el último mail de invitación necesitarás pedir a quién te invitó que lo haga de nuevo."
   invalid_activation_key_page:
-    title: Link de activación inválido
-    heading: Link de activación inválido
-    text: Puede ser que el link que has usado esté caducado (caducan a las 24h) o que se haya generado otro posteriormente. Si no tienes el último mail de activación puedes generar otro clicando el botón más abajo.
+    title: "Link de activación inválido"
+    heading: "Link de activación inválido"
+    text: "Puede ser que el link que has usado esté caducado (caducan a las 24h) o que se haya generado otro posteriormente. Si no tienes el último mail de activación puedes generar otro clicando el botón más abajo."
   contact_admin_page:
-    heading: Contacta con un administrador
-    text: Sólo los administradores de la empresa pueden actualizar la suscripción. Puedes contactar con ellos para pedirles que lo hagan.
-    email_subject:
-      one: Nuestro periodo de prueba de Hoshinplan caduca mañana
-      other: Nos quedan %{count} días de prueba de Hoshinplan
+    text: "Sólo los administradores de la empresa pueden actualizar la suscripción. Puedes contactar con ellos para pedirles que lo hagan."
+    heading: "Contacta con un administrador"
     email_body:
-      one: Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba termina mañana y sólo los administradores pueden actualizar la suscripción. Gracias.
-      other: Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nos quedan %{count} días en el periodo de prueba y sólo los administradores pueden actualizar la suscripción. Gracias.
-    expired_email_subject: Nuestro periodo de prueba de Hoshinplan ha terminado
-    expired_email_body:  Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba ya ha terminado y sólo los administradores pueden actualizar la suscripción. Gracias.
+      one: "Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba termina mañana y sólo los administradores pueden actualizar la suscripción. Gracias."
+      other: "Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nos quedan %{count} días en el periodo de prueba y sólo los administradores pueden actualizar la suscripción. Gracias."
+    email_subject:
+      one: "Nuestro periodo de prueba de Hoshinplan caduca mañana"
+      other: "Nos quedan %{count} días de prueba de Hoshinplan"
+    expired_email_subject: "Nuestro periodo de prueba de Hoshinplan ha terminado"
+    expired_email_body: "Hola, Te escribo porque eres administrador de nuestra cuenta de Hoshinplan, nuestro periodo de prueba ya ha terminado y sólo los administradores pueden actualizar la suscripción. Gracias."
   comments:
-    ago: hace %{ago}
+    ago: "hace %{ago}"
     title: Comentarios
     model_name:
       singular: comentario
       plural: comentarios
   read_only:
-    heading: Solo tienes permiso de lectura
-    ask_for_permission: Si necesitas permisos de edición puedes contactar con uno de los administradores de esta empresa.
+    heading: "Solo tienes permiso de lectura"
+    ask_for_permission: "Si necesitas permisos de edición puedes contactar con uno de los administradores de esta empresa."
     mail_subject: "[Hoshinplan] Permisos de edición para la empresa %{name}"
-  log_in_with: Accede con %{provider}
-  new_child_for_parent: Nuevo %{child} para %{parent}
-  invite_collaborators: Invitar colaboradores
+  log_in_with: "Accede con %{provider}"
+  new_child_for_parent: "Nuevo %{child} para %{parent}"
   tutorial: Tutorial
   subscriptions: Suscripciones
+  invite_collaborators: "Invitar colaboradores"
   pricing: Precios
+  use_your_user: "Utiliza tu usuario de hoshinplan.com"
   features: Funcionalidades
-  use_your_corporate: Utiliza tus credenciales corporativas
-  use_your_user: Utiliza tu usuario de hoshinplan.com
-  use_your_email_address: Utiliza tu dirección de email
-  dont_have_an_account: ¿Aún no tienes cuenta?
+  use_your_corporate: "Utiliza tus credenciales corporativas"
+  use_your_email_address: "Utiliza tu dirección de email"
+  dont_have_an_account: "¿Aún no tienes cuenta?"
   login_signup: Regístrate
+  locale_en_US: "English (US)"
   change_locale: Idioma
-  locale_en_US: English (US)
-  locale_es_ES: Español (España)
+  locale_es_ES: "Español (España)"
   home: Inicio
-  choose_file: Escoje una foto de tu ordenador
+  choose_file: "Escoje una foto de tu ordenador"
   area:
-    no_xx_defined: No hay %{xx} en esta %{model}
+    no_xx_defined: "No hay %{xx} en esta %{model}"
   indicator:
-    show_chart: Mostrar gráfico
+    show_chart: "Mostrar gráfico"
     upload: Enviar
-    upload_values: Editar tabla de valores
-    delete_values: Borrar todos los valores
-    upload_values_by: '<span class="label label-success">¡NUEVO!</span> Ahora puedes copiar y pegar directamente datos de Excel<br/>Las fechas deben tener el formato: dd/mm/yyy <br/>Usa el carácter "," para separar decimales.'
+    upload_values: "Editar tabla de valores"
+    delete_values: "Borrar todos los valores"
     value_form:
-      this_indicator_doesnt: Este indicador no necesita ser actualizado. ¿Qué quieres hacer?
-      overwrite_the_value: Sobreescribir el valor de la última actualización 
-      set_a_value_for_today: Añadir un valor para hoy 
-      anticipate_the_value: Anticipar el valor para la próxima actualización
-      this_indicator_is_missing: Hay varios valores pendientes para este indicador. ¿Qué quieres hacer?
-      set_the_first: Introducir el primer valor pendiente 
-      set_the_last: Introducir el último valor pendiente
+      this_indicator_doesnt: "Este indicador no necesita ser actualizado. ¿Qué quieres hacer?"
+      overwrite_the_value: "Sobreescribir el valor de la última actualización"
+      set_a_value_for_today: "Añadir un valor para hoy"
+      this_indicator_is_missing: "Hay varios valores pendientes para este indicador. ¿Qué quieres hacer?"
+      anticipate_the_value: "Anticipar el valor para la próxima actualización"
+      set_the_first: "Introducir el primer valor pendiente"
+      set_the_last: "Introducir el último valor pendiente"
+    upload_values_by: "<span class=\"label label-success\">¡NUEVO!</span> Ahora puedes copiar y pegar directamente datos de Excel<br/>Las fechas deben tener el formato: dd/mm/yyy <br/>Usa el carácter \",\" para separar decimales."
   history:
-    historic_values: Valores históricos
+    historic_values: "Valores históricos"
     messages:
-      confirm_delete: ¿Estás seguro de querer borrar el valor para la fecha XXX? 
-      confirm_delete_all: ¿Estás seguro de querer borrar TODOS los valores para este indicador? 
+      confirm_delete: "¿Estás seguro de querer borrar el valor para la fecha XXX?"
+      confirm_delete_all: "¿Estás seguro de querer borrar TODOS los valores para este indicador?"
   rtable:
     column:
-      Id: ! '#'
+      Id: "#"
       Objective: Obj.
       KPI: Indicador
       Responsible: Resp.
       Value: Valor
       Goal: Obj.
-      Deadline: Venc.
       Dev: Des.
-      Feeling: Sen.
       Status: Acciones
+      Deadline: Venc.
+      Feeling: Sen.
       Task: Tarea
       Company: Empresa
       Area: Área
@@ -698,106 +704,104 @@ es:
   date:
     input:
       formats:
-        - :default
-        - :long
-        - :short
+        - default
+        - long
+        - short
     formats:
-      short: ! '%d/%m'
-      default: ! '%d/%m/%Y'
+      short: "%d/%m"
+      default: "%d/%m/%Y"
   time:
     formats:
-      long: ! '%d/%m/%Y %H:%M'
-      default: ! '%d/%m/%Y %H:%M'
+      long: "%d/%m/%Y %H:%M"
+      default: "%d/%m/%Y %H:%M"
   number:
     format:
-      delimiter: .
+      delimiter: "."
       precision: 2
-      separator: ','
+      separator: ","
       significant: false
       strip_insignificant_zeros: true
     currency:
       format:
-        delimiter: .
         format: "%n%u"
+        delimiter: "."
         precision: 2
         separator: ","
         significant: false
         strip_insignificant_zeros: false
-        unit: "$"
+        unit: $
     human:
       decimal_units:
         format: "%n%u"
         units:
-          unit: ""
           thousand: K
+          unit: ""
           million: M
           billion: B
-          trillion: T
           quadrillion: Q
+          trillion: T
       format:
-        unit: ''
-        delimiter: .
+        unit: ""
+        delimiter: "."
         precision: 1
-        significant: false
         strip_insignificant_zeros: true
+        significant: false
   datetime:
     distance_in_words:
       about_x_hours:
-        one: alrededor de 1 hora
-        other: alrededor de %{count} horas
-      about_x_months:
-        one: alrededor de 1 mes
-        other: alrededor de %{count} meses
+        one: "alrededor de 1 hora"
+        other: "alrededor de %{count} horas"
       about_x_years:
-        one: alrededor de 1 año
-        other: alrededor de %{count} años
+        one: "alrededor de 1 año"
+        other: "alrededor de %{count} años"
+      about_x_months:
+        one: "alrededor de 1 mes"
+        other: "alrededor de %{count} meses"
       almost_x_years:
-        one: casi 1 año
-        other: casi %{count} años
-      half_a_minute: medio minuto
-      less_than_x_minutes:
-        one: menos de 1 minuto
-        other: menos de %{count} minutos
+        one: "casi 1 año"
+        other: "casi %{count} años"
+      half_a_minute: "medio minuto"
       less_than_x_seconds:
-        one: menos de 1 segundo
-        other: menos de %{count} segundos
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      less_than_x_minutes:
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
       over_x_years:
-        one: más de 1 año
-        other: más de %{count} años
+        one: "más de 1 año"
+        other: "más de %{count} años"
       x_days:
-        one: 1 día
+        one: "1 día"
         other: "%{count} días"
       x_minutes:
-        one: 1 minuto
+        one: "1 minuto"
         other: "%{count} minutos"
       x_months:
-        one: 1 mes
+        one: "1 mes"
         other: "%{count} meses"
       x_seconds:
-        one: 1 segundo
+        one: "1 segundo"
         other: "%{count} segundos"
     prompts:
-      day: Día
       hour: Hora
       minute: Minutos
+      day: Día
       month: Mes
       second: Segundos
       year: Año
   will_paginate:
     page_entries_info:
       single_page:
-        zero:  "Ningún %{model} encontrado"
-        one:   "Mostrando 1 %{model}"
+        one: "Mostrando 1 %{model}"
         other: "Mostrando todos los %{count} %{model}"
-      single_page_html:
-        zero:  "Ningún %{model} encontrado"
-        one:   "Mostrando <b>1</b> %{model}"
-        other: "Mostrando <b>todos los&nbsp;%{count}</b> %{model}"
       multi_page: "Mostrando %{model} %{from} - %{to} de %{count}"
+      single_page_html:
+        one: "Mostrando <b>1</b> %{model}"
+        other: "Mostrando <b>todos los&nbsp;%{count}</b> %{model}"
       multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b>"
-  write_comment: Escribe un comentario...
   country:
     messages:
       no_country: "(Seleccionar país)"
+  write_comment: "Escribe un comentario..."
   tooltip:
-    assign_responsible: Activa/desactiva el envío de emails a las personas responsables cuando las asignes. Hoshinplan recordará tus preferencias.
+    assign_responsible: "Activa/desactiva el envío de emails a las personas responsables cuando las asignes. Hoshinplan recordará tus preferencias."

@@ -1,265 +1,270 @@
+---
 en:
+  error_message: "Oh, no! There has been an error, we will work to fix it immediately. Please try again."
+  trial_days_left: "Days left on trial:"
+  cookie_msg_link:
+    body: "cookie policy"
+    title: "More information about our cookies"
   actions:
     newer: Newer
     older: Older
-  price_html: '%{currency}%{value}'
+  cookie_msg: "This site uses its own and third-party cookies to provide a better browsing experience. By using our service, you are agreeing on our %{cookie_msg_link}."
   loading: Loading...
   saving: Saving...
-  trial_days_left: 'Days left on trial:'
-  error_message: 'Oh, no! There has been an error, we will work to fix it immediately. Please try again.'
-  cookie_msg: 'This site uses its own and third-party cookies to provide a better browsing experience. By using our service, you are agreeing on our <a href="{{cookiePolicyLink}}" title="More information about our cookies">cookie policy</a>.'
-  i_agree: I agree
+  price_html: "%{currency}%{value}"
+  i_agree: "I agree"
   new: NEW
+  copy_of: "Copy of"
+  drag_a_file: "Drag a photo here"
   beta: Beta
-  copy_of: Copy of
-  drag_a_file: Drag a photo here
-  value_goal_previous: 'Value,Goal,Previous,Increment'
-  value_goal_previous_long: 'Current value,Goal,Previous value,Increment over previous value (%)'
-  insert_box_link: Insert Box link
-  created_by: Created by
-  view_log: View log
-  older: Older
+  value_goal_previous_long: "Current value,Goal,Previous value,Increment over previous value (%)"
+  insert_box_link: "Insert Box link"
+  value_goal_previous: "Value,Goal,Previous,Increment"
+  created_by: "Created by"
+  view_log: "View log"
   newer: Newer
+  older: Older
   email_placeholder: name@company.com
   legal:
-    legal_documents: Legal documents
-    terms_of_use: Terms of use
-    privacy: Privacy policy
-    cookies: Cookie policy
+    legal_documents: "Legal documents"
+    terms_of_use: "Terms of use"
+    privacy: "Privacy policy"
+    cookies: "Cookie policy"
   footer:
     github: GitHub
-    about: About
     blog: Blog
+    about: About
     developers: Developers
     privacy: Privacy
-    terms_of_use: Terms of use
-    contact_us: Contact us	  
+    terms_of_use: "Terms of use"
+    contact_us: "Contact us"
   emails:
+    thank_you: "Thank you,"
     from:
-      gabriel: Gabriel from Hoshinplan
-    thank_you: 'Thank you,'
-    claim: 'Make your business strategy work'
-    the_team: The %{app_name} team
-    hi: Hi %{name}!
-    footer: 'You are receiving this email because you are a Hoshinplan.com user. Want to be removed? No problem, click below and we won''t bug you again.'
-    unsubscribe: Unsubscribe
+      gabriel: "Gabriel from Hoshinplan"
+    the_team: "The %{app_name} team"
+    claim: "Make your business strategy work"
+    hi: "Hi %{name}!"
+    footer: "You are receiving this email because you are a Hoshinplan.com user. Want to be removed? No problem, click below and we won't bug you again."
     mention:
-      subject: '[Hoshinplan] You have been mentioned at the hoshin %{name}'
-      message: '%{mentioning_user} has mentioned you in the %{model} <a href="%{url}">%{name}</a> for the hoshin <a href="%{hoshin_url}">%{hoshin_name}</a>.'
-      view: View the %{model}
+      subject: "[Hoshinplan] You have been mentioned at the hoshin %{name}"
+      view: "View the %{model}"
+      message: "%{mentioning_user} has mentioned you in %{article} %{model} <a href=\"%{url}\">%{name}</a> for the hoshin <a href=\"%{hoshin_url}\">%{hoshin_name}</a>."
     reminder:
-      subject: '[Hoshinplan] You have KPIs or tasks to update'
-      message: 'You can access all the KPIs and tasks you have to update at your <a href="%{url}">dashboard</a>. You should update:'
+      subject: "[Hoshinplan] You have KPIs or tasks to update"
+      message: "You can access all the KPIs and tasks you have to update at your <a href=\"%{url}\">dashboard</a>. You should update:"
       update: Dashboard
+    unsubscribe: Unsubscribe
     welcome:
-      subject: '%{name}, Welcome to Hoshinplan!'
-      title: Welcome to Hoshinplan.com
-      thank_you: Thank you for getting here. We love that you want to give live to your strategy.
-      do_you_know_html: 'Do you know what a %{link} is? At the end of the day, it''s not very important. Hoshinplan.com exists because we know how difficult it is to connect a companiy''s long term strategy with day to day activities. Strategic plans in Powerpoints that no one looks at, projects that do not meet deadlines, dashboards that are not useful... ¿Rings a bell?'
-      it_does: 'It does to us, because we have experienced it first-hand. And problably you have the same headaches as we had. That''s why you are here.'
-      lets_try: Let''s try to solve all this by creating a Hoshin Plan.
-      start: Shall we start?
-      doubts: 'If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
-      gabri_and_anna: Gabri and Anna
+      subject: "%{name}, Welcome to Hoshinplan!"
+      title: "Hello %{name}!"
+      thank_you: "Thank you for getting here. We love that you want to give live to your strategy."
+      do_you_know_html: "Do you know what a %{link} is? At the end of the day, it's not very important. Hoshinplan.com exists because we know how difficult it is to connect a companiy's long term strategy with day to day activities. Strategic plans in Powerpoints that no one looks at, projects that do not meet deadlines, dashboards that are not useful... ¿Rings a bell?"
+      it_does: "It does to us, because we have experienced it first-hand. And problably you have the same headaches as we had. That's why you are here."
+      start: "Shall we start?"
+      doubts: "If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you."
       founders: Founders
+      lets_try: "Let's try to solve all this by creating a Hoshin Plan."
+      gabri_and_anna: "Gabri and Anna"
     invited_welcome:
-      subject: '%{name}, Welcome to Hoshinplan!'
-      title: Welcome to Hoshinplan.com
-      message: 'You have accepted an invitation and are ready to use Hosninplan. Once in the application you will see a "Tutorial" tab, there you have information on how to use the application. If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you.'
-      gabri_and_anna: Gabri and Anna
+      subject: "%{name}, Welcome to Hoshinplan!"
+      message: "You have accepted an invitation and are ready to use Hosninplan. Once in the application you will see a \"Tutorial\" tab, there you have information on how to use the application. If during the process you have any doubts, at hello@hoshinplan.com we will be delighted to help you."
+      title: "Welcome to Hoshinplan.com"
+      gabri_and_anna: "Gabri and Anna"
       founders: Founders
     invite:
-      subject: '%{name} has invited you to Hoshinplan'
-      title: '%{name} invites you to collaborate to Hoshinplan'
-      message: By accepting this invitation you will start collaborating to the Hoshinplan of %{company}.
+      subject: "Join %{company} Hoshin plan"
+      message: "If you accept this invitation you will start collaborating with %{name} to the Hoshinplan of %{company}."
       call_to_action: Accept
+      title: "%{name} invites you to collaborate to Hoshinplan"
     new_invite:
-      subject: '%{name} invites you to join Hoshinplan'
-      title: '%{name} invites you to join Hoshinplan'
-      message: 'Hoshin is the easiest and most effective way to build your strategy, monitor performance and relentlessly focus on execution. By accepting this invitation you will start collaborating to the Hoshinplan''s of %{name}.'
+      title: "%{name} invites you to join Hoshinplan"
+      subject: "%{name} invites you to join Hoshinplan"
       call_to_action: Accept
+      message: "Hoshin is the easiest and most effective way to build your strategy, monitor performance and relentlessly focus on execution. By accepting this invitation you will start collaborating to the Hoshinplan's of %{name}."
     accept:
-      subject: Invitation accepted
-      message: '%{user2} is now a collaborator of the Hoshinplan of %{company}'
-    admin:
-      subject: You are administrator
-      message: '%{user}, you are now administrator of the Hoshinplan of %{company}'
+      subject: "Invitation accepted"
+      message: "%{user2} is now a collaborator of the Hoshinplan of %{company}"
     no_admin:
-      subject: No longer administrator
-      message: '%{user2} has revoked you the administration rights of the Hoshinplan of %{company}'
+      subject: "You are no longer administrator of the Hoshin Plan of %{company}"
+      message: "%{user2} has revoked you the administration rights of the Hoshinplan of %{company}. If you think this may be a mistake you should contact him/her. Keep in mind that you still have access to the Hoshin Plan of %{company} with regular user permissions."
+    admin:
+      subject: "%{user}, you are now administrator of the Hoshinplan of %{company}"
+      message: "%{user2} just gave you administration rights for the Hoshinplan of %{company}. <p>Now you will be able to: <ul><li>Invite new collaborators</li><li>Delete any item even if you are not the owner</li><li>Give administration rights to collaborators</li></ul></p>"
     removed:
-      subject: Collaboration canceled
-      message: '%{user2} has canceled your collaboration to the Hoshinplan of  %{company}.'
+      subject: "Collaboration canceled"
+      message: "%{user2} has canceled your collaboration to the Hoshinplan of  %{company}."
     forgot_password:
-      subject: 'Reset your Hoshinplan password'
-      message: In order to reset your Hoshinplan password you only need to use the following link during the next 24 hours.
+      subject: "Reset your Hoshinplan password"
+      message: "In order to reset your Hoshinplan password you only need to use the following link during the next 24 hours."
     activation:
-      subject: Confirm your email address at Hoshinplan
-      message: You are almost done signing up at Hoshinplan. In order to validate your email address at Hoshinplan you only need to use the following link during the next 24 hours.
-  show_all: Show all...
-  you_can_use_textile: 'You can use %{textile} markup to include format this text. For example, you can include a link like this: "Text":http://www.hoshinplan.com'
+      subject: "Confirm your email address at Hoshinplan"
+      message: "You are almost done signing up at Hoshinplan. In order to validate your email address at Hoshinplan you only need to use the following link during the next 24 hours."
+  show_all: "Show all..."
+  click_to_edit: "&lt;Click to edit&gt;"
+  you_can_use_textile: "You can use %{textile} markup to include format this text. For example, you can include a link like this: \"Text\":http://www.hoshinplan.com"
   textile: Textile
-  click_to_edit: '&lt;Click to edit&gt;'
   hoshin_actions:
+    export_as_pdf: "Export as PDF"
     presentation: Presentation
-    export_as_pdf: Export as PDF
-    charts: KPI charts
-    compact: Expanded or compact view
-    map: Map view
-  no_oid_url: No corporate login for the given email
-  errors: 
+    charts: "KPI charts"
+    compact: "Expanded or compact view"
+    map: "Map view"
+  no_oid_url: "No corporate login for the given email"
+  errors:
+    service_unavailable: "Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again."
+    not_found: "The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us."
+    internal_server_error: "Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately."
     messages:
-      invalid: is invalid
-    internal_server_error: 'Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately.'
-    not_found: 'The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us.'
-    service_unavailable: 'Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again.'
-    error_home: Return to the home page
-    error_contact: Get in contact with us
-    permission_denied: Permission denied
-    parent_hoshin_same_company: Parent hoshin must be from the same company
-    different_parent: A hoshin can not be its own parent
-    row_invalid_length: 'Row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remember that %{sep} is expected to separate columns.'
-    date_format_error: 'Row %{row} contains an invalid date. The date "%{found}" does not follow the expected format "%{expected}".'
-    value_format_error: 'Row %{row} contains an incorrect value "%{found}".'
-    goal_format_error: 'Row %{row} contains an incorrect objective "%{found}".'
-    last_format_error: 'Row %{row} contains an incorrect previous value "%{found}".'
-    invalid_credentials: 'The credentials you used were not valid.'
-    provider_said: 'The message from your authentication provider was: '
-    unknown: 'Unknown error.'
-    invalid_locale: Invalid language.
-    user_limit_reached: You have reached the maximum number of collaborators for your current plan. Please upgrade your plan or contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>
-    not_expected_format: does not have the expected format
-    invalid_credit_card: The credit card details were invalid. Pleas check them and try again.
-    invitation_code_does_not_exist: The provided invitation code was not valid.
+      invalid: "is invalid"
+    error_home: "Return to the home page"
+    error_contact: "Get in contact with us"
+    permission_denied: "Permission denied"
+    parent_hoshin_same_company: "Parent hoshin must be from the same company"
+    different_parent: "A hoshin can not be its own parent"
+    row_invalid_length: "Row %{row} has an invalid number of columns. Expected %{expected} and found %{found}. Remember that %{sep} is expected to separate columns."
+    value_format_error: "Row %{row} contains an incorrect value \"%{found}\"."
+    last_format_error: "Row %{row} contains an incorrect previous value \"%{found}\"."
+    date_format_error: "Row %{row} contains an invalid date. The date \"%{found}\" does not follow the expected format \"%{expected}\"."
+    provider_said: "The message from your authentication provider was: "
+    goal_format_error: "Row %{row} contains an incorrect objective \"%{found}\"."
+    invalid_credentials: "The credentials you used were not valid."
+    unknown: "Unknown error."
+    user_limit_reached: "You have reached the maximum number of collaborators for your current plan. Please upgrade your plan or contact us at <a href=\"mailto:hello@hoshinplan.com\">hello@hoshinplan.com</a>"
+    invalid_locale: "Invalid language."
+    not_expected_format: "does not have the expected format"
+    invalid_credit_card: "The credit card details were invalid. Pleas check them and try again."
+    invitation_code_does_not_exist: "The provided invitation code was not valid."
   hobo:
-    actions:
-      close: Close
-    area:
-      child_models: '%{model} from children hoshin plans'
     actions:
       submit: Submit
       upgrade: Upgrade
       close: Close
+    area:
+      child_models: "%{model} from children hoshin plans"
     dashboard:
       no_kpis: "You don't have any %{model} to update"
       no_tasks: "You don't have any %{model} with a close due date"
     hoshin:
-      neglected_objectives: '%{neglected}/%{count} %{model} with low %{kpi} and no active %{task}.'
-      blind_objectives: '%{blind}/%{count} %{objective} without %{kpi}.'
-      outdated_model: '%{outdated}/%{count} outdated %{model}.'
+      neglected_objectives: "%{neglected}/%{count} %{model} with low %{kpi} and no active %{task}."
+      blind_objectives: "%{blind}/%{count} %{objective} without %{kpi}."
+      outdated_model: "%{outdated}/%{count} outdated %{model}."
     company:
-      active_hoshins: Active %{model}
-      archived_hoshins: Archived %{model}
+      archived_hoshins: "Archived %{model}"
+      active_hoshins: "Active %{model}"
     health:
       blind_objectives: "%{model} wihtout %{kpi}"
-      neglected_objectives: "%{model} with %{kpi} under 100% and no active %{task}"
       overdue_model: "Overdue %{model}"
-      everything_updated: No %{model} to update.
+      neglected_objectives: "%{model} with %{kpi} under 100% and no active %{task}"
+      everything_updated: "No %{model} to update."
     accept:
-      heading: Accept invitation
-      body: By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}.
+      heading: "Accept invitation"
+      body: "By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}."
     accept_invitation:
-      heading: Accept invitation
-      body: Fill in your name and password and you will be ready to start using Hoshinplan.com
+      heading: "Accept invitation"
+      body: "Fill in your name and password and you will be ready to start using Hoshinplan.com"
     activate:
-      heading: Activate account
-      body: Just one click away from your activation! Please confirm by pushing the button below.
+      body: "Just one click away from your activation! Please confirm by pushing the button below."
+      heading: "Activate account"
     reset_password:
-      heading: Reset password
+      heading: "Reset password"
     table_plus:
       clear_label: Clear
       submit_label: Search
   user_company:
-    that_operation_is: This operation is not allowed
-    the_invitation: The invitation you are trying to accept was sent to a different user. Please log with the user the invitation was sent to.
-    the_provided_key: The provided invitation is not valid. It can only be used once. Please ask the person that invited you to resend the invitation.
+    that_operation_is: "This operation is not allowed"
+    the_invitation: "The invitation you are trying to accept was sent to a different user. Please log with the user the invitation was sent to."
+    the_provided_key: "The provided invitation is not valid. It can only be used once. Please ask the person that invited you to resend the invitation."
     collection:
       heading: Users
-          
   attributes:
-    created_at: Created at
-    updated_at: Updated at
+    created_at: "Created at"
+    updated_at: "Updated at"
   activerecord:
     errors:
       models:
-        indicator:
-          attributes:
-            objective:
-              blank: You have to select the objective which this indicator belongs
         task:
           attributes:
             objective:
-              blank: You have to select the objective which this task belongs
+              blank: "You have to select the objective which this task belongs"
+        indicator:
+          attributes:
+            objective:
+              blank: "You have to select the objective which this indicator belongs"
         user:
           attributes:
-            password_confirmation:
-              confirmation: Password confirmation doesn't match Password
             email_address:
-              taken: The email address is already taken
-              too_short: is too short
-              blank: is blank
+              taken: "The email address is already taken"
+              too_short: "is too short"
+              blank: "is blank"
+            password_confirmation:
+              confirmation: "Password confirmation doesn't match Password"
         billing_detail:
           attributes:
             country:
-              blank: está vacío
+              blank: "está vacío"
+        tag:
+          attributes:
+            label:
+              invalid_format: "Label must only contain letters, numbers and hyphens and not start with a hyphen."
       messages:
-        record_invalid: Invalid record
+        record_invalid: "Invalid record"
       template:
+        body: "There have been problems with the following fields:"
         header:
-          one: An error prevented this %{model} to be saved
-          other: '%{count} errors prevented this %{model} to be saved'
-        body: 'There have been problems with the following fields:'
+          one: "An error prevented this %{model} to be saved"
+          other: "%{count} errors prevented this %{model} to be saved"
     models:
+      company:
+        one: Company
+        other: Companies
+        article_other: the
+        article_one: the
       user:
         one: User
         other: Users
-      company:
-        article_one: the
-        article_other: the
-        one: Company
-        other: Companies
       area:
-        article_one: the
-        article_other: the
         one: Area
         other: Areas
-      objective:
         article_one: the
         article_other: the
+      objective:
         one: Objective
         other: Objectives
-      indicator:
         article_one: the
         article_other: the
+      indicator:
         one: Indicator
         other: Indicators
-      task:
         article_one: the
         article_other: the
+      task:
         one: Task
         other: Tasks
+        article_other: the
+        article_one: the
       goal:
+        one: "Long term goal"
+        other: "Long term goals"
         article_one: the
         article_other: the
-        one: Long term goal
-        other: Long term goals
-      client_application:
-        one: Client application
-        other: Client applications
       hoshin:
-        article_one: the
-        article_other: the
         one: Hoshin
         other: Hoshins
-      payment:
-        one: Subscription
-        other: Subscriptions
+        article_one: the
+        article_other: the
+      client_application:
+        one: "Client application"
+        other: "Client applications"
       indicator_event:
         one: Event
         other: Events
       billing_detail:
-        one: Billing details
-        other: Billing details
+        one: "Billing details"
+        other: "Billing details"
+      payment:
+        one: Subscription
+        other: Subscriptions
       area_tags:
         one: Tag
         other: Tags
@@ -278,76 +283,76 @@ en:
     attributes:
       user:
         name: Name
-        firstName: First Name
-        lastName: Last Name
         password: Password
-        current_password: Current password
-        new_password: New password
-        new_password_confirmation: New password confirmation
-        password_confirmation: Password confirmation
-        email_address: Email
-        image: Image
+        lastName: "Last Name"
+        firstName: "First Name"
+        current_password: "Current password"
+        new_password: "New password"
+        new_password_confirmation: "New password confirmation"
+        password_confirmation: "Password confirmation"
         state: Status
+        email_address: Email
         language: Language
+        image: Image
         timezone: Timezone
         lifecycle:
           transitions:
-            accept_invitation: Accept invitation
-            activate: Activate account
-            reset_password: Reset password
-            resend_activation: Resend activation email
+            accept_invitation: "Accept invitation"
+            activate: "Activate account"
+            reset_password: "Reset password"
+            resend_activation: "Resend activation email"
       user/languages:
-        es: Español (España)
-        en: English (US)
+        es: "Español (España)"
+        en: "English (US)"
       objective:
+        responsible: Responsible
         name: Name
         description: Description
-        responsible: Responsible
         parent: Parent
         objective_tags: Tags
       company:
-        name: Company
+        company_email_domains: "Email domains with automatic access"
         Company: Company
-        company_email_domains: Email domains with automatic access
+        name: Company
         actions: Actions
       company_email_domain:
         domain: Domain
       hoshin:
+        company: Company
+        parent: Parent
+        tasks_visible_days: "Tasks visible days"
+        creator: Responsible
         name: Name
         header: Description
-        parent: Parent
-        company: Company
-        creator: Responsible
-        tasks_visible_days: Tasks visible days
         lifecycle:
           transitions:
-            activate: Activate
             archive: Archive
+            activate: Activate
             clone: Clone
       goal:
         name: Name
         goal_tags: Tags
       area:
         name: Name
-        description: Description
         area_tags: Tags
+        description: Description
       indicator:
         name: Name
-        description: Description
         frequency: Frequency
-        last_update: Last update
-        next_update: Next update
+        description: Description
+        last_update: "Last update"
+        next_update: "Next update"
         responsible: Responsible
-        goal: 100% value
-        min_value: Minimum value
-        max_value: Maximum value
-        worst_value: 0% value
-        higher: Better if higher
+        goal: "100% value"
+        max_value: "Maximum value"
+        min_value: "Minimum value"
+        higher: "Better if higher"
         value: Value
+        worst_value: "0% value"
         reminder: Reminder
         objective: Objective
-        show_on_charts: Show on charts
-        show_on_parent: Show on parent
+        show_on_parent: "Show on parent"
+        show_on_charts: "Show on charts"
         indicator_tags: Tags
       indicator/frequencys:
         weekly: Weekly
@@ -355,39 +360,39 @@ en:
         quarterly: Quarterly
       indicator_history:
         day: Date
-        value: Value
         objective: Objective
-        previous: Previous value
+        value: Value
+        previous: "Previous value"
       task:
         name: Name
         description: Description
-        responsible: Responsible
         deadline: DL
+        responsible: Responsible
         feeling: Feeling
-        show_on_parent: Show on parent
         reminder: Reminder
+        show_on_parent: "Show on parent"
         objective: Objective
         status: Status
-        original_deadline: Original Deadline
+        original_deadline: "Original Deadline"
         effort: Effort
         confidence: Confidence
         impact: Impact
-        task_tags: Tags
         lifecycle:
           states:
             active: Active
-            backlog: Backlog
-            discarded: Discarded
             completed: Completed
+            discarded: Discarded
+            backlog: Backlog
           transitions:
             discard: Discard
             complete: Complete
             start: Start
             reactivate: Reactivate
             delete: Delete
+        task_tags: Tags
       user_company:
-        user: User
         state: Status
+        user: User
         roles: Roles
         valid_roles:
           editor: Editor
@@ -399,233 +404,234 @@ en:
             admin: Admin
             invited: Invited
           transitions:
-            make_admin: Make admin
-            revoke_admin: Revoke admin
+            make_admin: "Make admin"
+            cancel_invitation: "Cancel invitation"
+            resend_invite: "Resend invite"
+            revoke_admin: "Revoke admin"
             remove: Remove
-            resend_invite: Resend invite
-            cancel_invitation: Cancel invitation
             accept: Accept
       client_application:
-        ClientApplication: Client application
-        name: Name
-        description: Description
+        ClientApplication: "Client application"
         key: Key
+        description: Description
+        name: Name
         secret: Secret
-        actions: Actions
         user: User
+        actions: Actions
       payment:
-        company: Company
         billing_plan_name: Plan
-        id_paypal: PayPal ID
+        company: Company
+        id_paypal: "PayPal ID"
       billing_detail:
-        company_name: Company name
-        contact_name: Contact person name
-        contact_email: Contact person email
+        company_name: "Company name"
+        contact_name: "Contact person name"
+        contact_email: "Contact person email"
         address_line_1: Address
-        address_line_2: Address (line 2)
+        address_line_2: "Address (line 2)"
         city: City
         state: State
         zip: Zip
         country: Country
-        vat_number: VAT Number
+        vat_number: "VAT Number"
       subscription:
         company: Company
         plan_name: Plan
-        next_payment_at: Next payment
-        total_amount: Total amount
+        total_amount: "Total amount"
+        next_payment_at: "Next payment"
     attribute_help:
       hoshin:
         lifecycle:
           transitions:
-            activate: Activate hoshin
-            archive: Archive hoshin
-            clone: Clone hoshin
+            activate: "Activate hoshin"
+            archive: "Archive hoshin"
+            clone: "Clone hoshin"
       user:
         email_address: "Use your work email address to connect you with your team."
         lifecycle:
           transitions:
-            resend_activation: Resend user activation email
+            resend_activation: "Resend user activation email"
       company:
-        name: Pick a name based on the group of pepople that will use Hoshinplan.
+        name: "Pick a name based on the group of pepople that will use Hoshinplan."
   index:
-    title: Make your business strategy work
+    title: "Make your business strategy work"
   user:
     signup:
-      it_is_ok: Receive emails from Hoshinplan.
-      by_proceeding: By proceeding to create your account and use Hoshinplan, you are agreeing to our %{terms} and %{privacy}. If you do not agree, you cannot use Hoshinplan.
-      terms_link: Terms of use 
-      privacy_link: Pivacy policy
-    my_dashboard: My dashboard
-    show_all: Show all
-    show_only_pending: Show only pending actions
-    dashboard_for: Dashboard for %{name}
-    pending_actions_for: Pending actions for %{name}
-    kanban_for: Kanban for %{name}
-    delete_account: Delete account
-    collaborating_with: Collaborating with
-    end_collaboration: End collaboration
-    change: Change profile photo
-    activation_sent_button: Already sent
+      it_is_ok: "Receive emails from Hoshinplan."
+      by_proceeding: "By proceeding to create your account and use Hoshinplan, you are agreeing to our %{terms} and %{privacy}. If you do not agree, you cannot use Hoshinplan."
+      terms_link: "Terms of use"
+      privacy_link: "Pivacy policy"
+    my_dashboard: "My dashboard"
+    show_all: "Show all"
+    dashboard_for: "Dashboard for %{name}"
+    show_only_pending: "Show only pending actions"
+    pending_actions_for: "Pending actions for %{name}"
+    kanban_for: "Kanban for %{name}"
+    delete_account: "Delete account"
+    collaborating_with: "Collaborating with"
+    change: "Change profile photo"
+    end_collaboration: "End collaboration"
+    activation_sent_button: "Already sent"
     messages:
-      end_collaboration_confirm: Are you sure you want to stop collaborating with this company?
-      activation_mail_resent: The activation email has been resent successfully.
-      already_active: Your user is already active. Please sign in instead.
+      end_collaboration_confirm: "Are you sure you want to stop collaborating with this company?"
+      activation_mail_resent: "The activation email has been resent successfully."
+      already_active: "Your user is already active. Please sign in instead."
     tabs:
       profile: Profile
       password: Password
   hoshin:
     how_to_improve: "How to improve my hoshinplan's health?"
-    finish_tutorial: Finish tutorial
-    full_health: Congratualtions! Your Hoshin is in perfect health!
+    finish_tutorial: "Finish tutorial"
     global_health: "Global health:"
+    full_health: "Congratualtions! Your Hoshin is in perfect health!"
     objectives_health: "Objectives' health: %{health}%"
     indicators_health: "Indicators' health: %{health}%"
+    presentation_help: "Use arrow keys <kbd>←</kbd> / <kbd>→</kbd> to move between sections and <kbd>esc</kbd> to exit presentation mode."
+    see_detailed_health: "Show detailed health report"
     tasks_health: "Tasks' health: %{health}%"
-    click_to_know: Click to find out how to bring your Hoshinplan to 100%
-    see_detailed_health: Show detailed health report
-    presentation_help: Use arrow keys <kbd>←</kbd> / <kbd>→</kbd> to move between sections and <kbd>esc</kbd> to exit presentation mode.
-    show_only_mine: Show only mine
-    filter_items: Filter items
+    filter_items: "Filter items"
+    click_to_know: "Click to find out how to bring your Hoshinplan to 100%"
+    show_only_mine: "Show only mine"
   health:
-    health_for: Health for %{name}
-    top_users_with_pending: Users with pending actions in descending order
-    health_history: Health history
+    health_for: "Health for %{name}"
+    top_users_with_pending: "Users with pending actions in descending order"
+    health_history: "Health history"
   kanban:
-    show_only_my_tasks: Show only my tasks
+    show_only_my_tasks: "Show only my tasks"
     lanes:
-      backlog: Backlog
       active: Active
       completed: Completed
       discarded: Discarded
+      backlog: Backlog
   charts:
-    select_indicator_to_add: Select the hidden chart you want to show again
+    select_indicator_to_add: "Select the hidden chart you want to show again"
   first:
-    title: Create your company
-    heading: What do you want to call your company at Hoshinplan?
+    title: "Create your company"
+    heading: "What do you want to call your company at Hoshinplan?"
   company:
-    email_addresses: Email addresses
+    email_addresses: "Email addresses"
+    manage_collaborators: "Manage collaborators"
     role: Role
-    manage_collaborators: Manage collaborators
-    invite_collaborators: Invite collaborators
-    invite_readers: Invite read-only collaborators
-    maximum_collaborators: '(%{used} out of %{value})'
+    invite_collaborators: "Invite collaborators"
+    invite_readers: "Invite read-only collaborators"
     unlimited: Unlimited
-    add_collaborators: Add collaborators
-    upgrade_to_invite: Upgrade your plan to invite more collaborators
-    send_invitations: Send invitations to collaborators by writing email addresses separeted by commas. Each email address may contain the person's name in the form <code>Name LastName &lt;email@company.com&gt;</code>.
+    maximum_collaborators: "(%{used} out of %{value})"
+    send_invitations: "Send invitations to collaborators by writing email addresses separeted by commas. Each email address may contain the person's name in the form %{email_format}."
+    add_collaborators: "Add collaborators"
+    send_invitations_format: "Name LastName &lt;email@company.com&gt;"
+    upgrade_to_invite: "Upgrade your plan to invite more collaborators"
   client_app:
-    sign_a_request: Sign a request to the API
-    requests_to_the_restful: Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters.
-    for_example: 'For example, if you enter:'
-    you_will_get: 'You will get something similar to'
+    sign_a_request: "Sign a request to the API"
+    requests_to_the_restful: "Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the \"Sign\" button you will have the same url with the timestamp and signature parameters."
+    for_example: "For example, if you enter:"
+    you_will_get: "You will get something similar to"
     sign: Sign
-    connect_your_apps: Connect your applications to our API
-    here_you_can: Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a %{rest_link}.
-    to_learn: To learn how to use it please visit our %{developers_link}.
-    developers_link: developers site
-    rest_link: REST API
-  pricing_plans: 
-    title: Plans and pricing
-    subtitle: Try it for free for 30. No credit cards. No time commitment. Change or cancel your plan anytime.
-    try_it: Try it for free
-    free: 'Free!'
-    single_user: Single user
-    email_notifications: Email notifications
-    unlimited_hoshinplans: Unlimited Hoshinplans
-    pdf_export: PDF export
-    charts_view: Charts view
-    kanban_view: Kanban view
-    users: '%{users} users'
-    workers: 'Companies up to %{workers} workers'
-    sso:  'SAML & OpenId Single-sign-on'
-    map_view:  'Map view'
+    connect_your_apps: "Connect your applications to our API"
+    to_learn: "To learn how to use it please visit our %{developers_link}."
+    here_you_can: "Here you can create client applications that use Hoshinplan's API to read or write data. Hoshinplan provides a %{rest_link}."
+    rest_link: "REST API"
+    developers_link: "developers site"
+  pricing_plans:
+    title: "Plans and pricing"
+    subtitle: "Try it for free for 30. No credit cards. No time commitment. Change or cancel your plan anytime."
+    try_it: "Try it for free"
+    single_user: "Single user"
+    free: Free!
+    email_notifications: "Email notifications"
+    unlimited_hoshinplans: "Unlimited Hoshinplans"
+    pdf_export: "PDF export"
+    charts_view: "Charts view"
+    kanban_view: "Kanban view"
+    sso: "SAML & OpenId Single-sign-on"
+    workers: "Companies up to %{workers} workers"
+    users: "%{users} users"
+    map_view: "Map view"
     for_companies: "&nbsp;"
+    we_help_you: "We help you build your hoshinplan"
     for_startups: "&nbsp;"
-    we_help_you: We help you build your hoshinplan
-    contact_us: Contact us
-    unlimited_users: Unlimited users
-    all_startup_features: Everything in the startup version
-    all_enterprise_features: Everything in the enterprise version
-    support_assistance: 8/5 email o Skype support
-    two_days_workshop: Two days workshop to create the hoshinplans and train the team
-    invoicing_frequency: Invoicing frequency
+    unlimited_users: "Unlimited users"
+    contact_us: "Contact us"
+    all_startup_features: "Everything in the startup version"
+    all_enterprise_features: "Everything in the enterprise version"
+    support_assistance: "8/5 email o Skype support"
+    invoicing_frequency: "Invoicing frequency"
+    two_days_workshop: "Two days workshop to create the hoshinplans and train the team"
     monthly: Monthly
     annual: Annual
-    includes: '%{name} includes'
-    billed_annually: per user per month billed annually
-    billed_monthly: '%{amount} per user billed monthly'
+    includes: "%{name} includes"
+    billed_annually: "per user per month billed annually"
+    billed_monthly: "%{amount} per user billed monthly"
   billing_details:
-    plan: '%{name} plan'
+    plan: "%{name} plan"
     concept: Concept
     price: Price
     quantity: Quantity
     total: Total
     taxes: Taxes
-    number_of_users: Number of users
-    payment_frequency: Payment frequency
-    billing_details: Billing details
-    card_details: Card details
-    card_number: Card number
-    full_name: Full name
+    number_of_users: "Number of users"
+    billing_details: "Billing details"
+    payment_frequency: "Payment frequency"
+    card_details: "Card details"
+    full_name: "Full name"
+    card_number: "Card number"
     mm_yy: MM/YY
+    you_will_pay: "You will pay %{amount} (taxes included) now for the fraction remaining until the next subscription renewal with full payment that will be on %{next}."
     cvc: CVC
-    you_will_pay: You will pay %{amount} (taxes included) now for the fraction remaining until the next subscription renewal with full payment that will be on %{next}.
-    credit: You will save %{amount} as credit for your next payments.
-    complete_your_purchase: Complete your purchase
+    complete_your_purchase: "Complete your purchase"
+    credit: "You will save %{amount} as credit for your next payments."
   stripe:
     purchase: Subscribe
     panelLabel: "Pay {{amount}}/%{frequency}"
-    day: day
     week: week
+    day: day
     month: month
     year: year
   paypal:
     purchase: Purchase
   payments:
-    expired_trial: Your trial period has expired, please choose a plan to continue using Hoshinplan
+    expired_trial: "Your trial period has expired, please choose a plan to continue using Hoshinplan"
     correct:
-      heading: The purchase has been made successfully
-      description: Now you can %{link} to the page you initiated the purchase.
-      return: go back
+      heading: "The purchase has been made successfully"
+      description: "Now you can %{link} to the page you initiated the purchase."
+      return: "go back"
     canceled:
-      heading: The purchase has been canceled
-      description: If you think this is an error please contact us at <a href="mailto:hello@hoshinplan.com">hello@hoshinplan.com</a>. Now you can %{link} to the page you initiated the purchase.
-      return: go back
+      heading: "The purchase has been canceled"
+      description: "If you think this is an error please contact us at <a href=\"mailto:hello@hoshinplan.com\">hello@hoshinplan.com</a>. Now you can %{link} to the page you initiated the purchase."
+      return: "go back"
     index:
-      cancel_subscription: Cancel subscription
+      cancel_subscription: "Cancel subscription"
   log:
-    log_for: 'Log for %{model}: %{name}'
-    create: Created 
-    update: Updated 
-    delete: Deleted 
-    operation_date_ago: '%{operation} %{date} ago by %{creator}' 
-    operation_date_at: '%{operation} at %{date} by %{creator}'
-    operation_date_ago_automatic: '%{operation} automatically %{date} ago' 
-    operation_date_at_automatic: '%{operation} automatically at %{date}'
+    log_for: "Log for %{model}: %{name}"
+    create: Created
+    update: Updated
+    delete: Deleted
+    operation_date_ago: "%{operation} %{date} ago by %{creator}"
+    operation_date_at: "%{operation} at %{date} by %{creator}"
+    operation_date_at_automatic: "%{operation} automatically at %{date}"
     changes: Changes
+    operation_date_ago_automatic: "%{operation} automatically %{date} ago"
     from: from
     to: to
   map:
-    minimum_impact_filter: 'Minimum impact to show:'
+    minimum_impact_filter: "Minimum impact to show:"
   invalid_invitation_key_page:
-    title: Invalid invitation link
-    heading: Invalid invitation link
-    text: Either you already used the link (they can only be used once) or another one has been generated after it. If you don't have the last invitation email you should ask the person that invited you to do it again.
+    title: "Invalid invitation link"
+    heading: "Invalid invitation link"
+    text: "Either you already used the link (they can only be used once) or another one has been generated after it. If you don't have the last invitation email you should ask the person that invited you to do it again."
   invalid_activation_key_page:
-    title: Invalid activation link
-    heading: Invalid activation link
-    text: Either the link you used is expired (they expire in 24h) or another one has been generated after it. If you don't have the last activation email you can generate a new one by clicking at the button below.
+    title: "Invalid activation link"
+    heading: "Invalid activation link"
+    text: "Either the link you used is expired (they expire in 24h) or another one has been generated after it. If you don't have the last activation email you can generate a new one by clicking at the button below."
   contact_admin_page:
-    heading: Contact an administrator
-    text: Only company administrators can upgrade subscription. You can contact them and ask them to do so.
-    email_subject:
-      one: Our Hoshinplan trial account expires tomorrow
-      other: We have %{count} days left on the Hoshinplan trial account
+    text: "Only company administrators can upgrade subscription. You can contact them and ask them to do so."
+    heading: "Contact an administrator"
     email_body:
-      one: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, tomorrow the trial account will expire and only administrators can upgrade the subscription. Thank you.
-      other: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, we have %{count} days left on the trial account and only administrators can upgrade the subscription. Thank you.
-    expired_email_subject: Our Hoshinplan trial account is expired
-    expired_email_body: Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, our trial account is already expired and only administrators can upgrade the subscription. Thank you.
+      one: "Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, tomorrow the trial account will expire and only administrators can upgrade the subscription. Thank you."
+      other: "Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, we have %{count} days left on the trial account and only administrators can upgrade the subscription. Thank you."
+    email_subject:
+      one: "Our Hoshinplan trial account expires tomorrow"
+      other: "We have %{count} days left on the Hoshinplan trial account"
+    expired_email_subject: "Our Hoshinplan trial account is expired"
+    expired_email_body: "Hello, I'm reaching you because you are an administrator of our account at Hoshinplan, our trial account is already expired and only administrators can upgrade the subscription. Thank you."
   comments:
     ago: "%{ago} ago"
     title: Comments
@@ -633,59 +639,59 @@ en:
       singular: comentario
       plural: comentarios
   read_only:
-    heading: You  have read-only access
-    ask_for_permission: If you need to be allowed to update you can contact one of the administrators for this company.
+    heading: "You  have read-only access"
+    ask_for_permission: "If you need to be allowed to update you can contact one of the administrators for this company."
     mail_subject: "[Hoshinplan] Update permission for the company %{name}"
-  log_in_with: Log in with %{provider}
-  new_child_for_parent: New %{child} for %{parent}
-  invite_collaborators: Invite collaborators
+  log_in_with: "Log in with %{provider}"
+  new_child_for_parent: "New %{child} for %{parent}"
   tutorial: Tutorial
   subscriptions: Subscriptions
+  invite_collaborators: "Invite collaborators"
   pricing: Pricing
+  use_your_user: "Use your hoshinplan.com user"
   features: Features
-  use_your_corporate: Use your corporate credentials
-  use_your_user: Use your hoshinplan.com user
-  use_your_email_address: Use your email address
-  dont_have_an_account: Still don't have an account?
+  use_your_corporate: "Use your corporate credentials"
+  use_your_email_address: "Use your email address"
+  dont_have_an_account: "Still don't have an account?"
   login_signup: Signup
+  locale_en_US: "English (US)"
   change_locale: Language
-  locale_en_US: English (US)
-  locale_es_ES: Español (España)
+  locale_es_ES: "Español (España)"
   home: Home
-  choose_file: Select a photo from your computer
+  choose_file: "Select a photo from your computer"
   area:
-    no_xx_defined: There are no %{xx} in this %{model}
+    no_xx_defined: "There are no %{xx} in this %{model}"
   indicator:
-    show_chart: Show chart
+    show_chart: "Show chart"
     upload: Upload
-    upload_values: Edit value table
-    delete_values: Delete all values
-    upload_values_by: '<span class="label label-success">NEW!</span> Now you can copy & paste Excel data<br/>Dates are in the format: mm/dd/yyy <br/>Use the "." character as the decimal separator.'    
+    upload_values: "Edit value table"
+    delete_values: "Delete all values"
     value_form:
-      this_indicator_doesnt: This indicator doesn't need an update. What would you like to do?
-      overwrite_the_value: Overwrite the value from last update
-      set_a_value_for_today: Set a value for today
-      anticipate_the_value: Anticipate the value for next update
-      this_indicator_is_missing: This indicator is missing multiple values. What would you like to do?
-      set_the_first: Set the first missing value
-      set_the_last: Set the last missing value
+      this_indicator_doesnt: "This indicator doesn't need an update. What would you like to do?"
+      overwrite_the_value: "Overwrite the value from last update"
+      set_a_value_for_today: "Set a value for today"
+      this_indicator_is_missing: "This indicator is missing multiple values. What would you like to do?"
+      anticipate_the_value: "Anticipate the value for next update"
+      set_the_first: "Set the first missing value"
+      set_the_last: "Set the last missing value"
+    upload_values_by: "<span class=\"label label-success\">NEW!</span> Now you can copy & paste Excel data<br/>Dates are in the format: mm/dd/yyy <br/>Use the \".\" character as the decimal separator."
   history:
-    historic_values: Historical values
+    historic_values: "Historical values"
     messages:
-      confirm_delete: Are you sure you want to delete the values for the date XXX?
-      confirm_delete_all: Are you sure you want to delete ALL values for this indicator?
+      confirm_delete: "Are you sure you want to delete the values for the date XXX?"
+      confirm_delete_all: "Are you sure you want to delete ALL values for this indicator?"
   rtable:
     column:
-      Id: ! '#'
+      Id: "#"
       Objective: Obj.
       KPI: Indicator
       Responsible: Resp.
       Value: Value
       Goal: Obj.
-      Deadline: DL.
       Dev: Dev.
-      Feeling: Feel
       Status: Actions
+      Deadline: DL.
+      Feeling: Feel
       Task: Task
       Company: Company
       Area: Area
@@ -698,106 +704,104 @@ en:
   date:
     input:
       formats:
-        - :default
-        - :long
-        - :short
+        - default
+        - long
+        - short
     formats:
-      short: ! '%m/%d'
-      default: ! '%m/%d/%Y'
+      short: "%m/%d"
+      default: "%m/%d/%Y"
   time:
     formats:
-      long: ! '%m/%d/%Y %H:%M'
-      default: ! '%m/%d/%Y %H:%M'
+      long: "%m/%d/%Y %H:%M"
+      default: "%m/%d/%Y %H:%M"
   number:
     format:
-      delimiter: ','
+      delimiter: ","
       precision: 2
-      separator: .
+      separator: "."
       significant: false
       strip_insignificant_zeros: true
     currency:
       format:
-        delimiter: ","
         format: "%u%n"
+        delimiter: ","
         precision: 2
         separator: "."
         significant: false
         strip_insignificant_zeros: false
-        unit: "€"
+        unit: €
     human:
       decimal_units:
         format: "%n%u"
         units:
-          unit: ""
           thousand: K
+          unit: ""
           million: M
           billion: B
-          trillion: T
           quadrillion: Q
+          trillion: T
       format:
-        unit: ''
-        delimiter: ','
+        unit: ""
+        delimiter: ","
         precision: 1
-        significant: false
         strip_insignificant_zeros: true
+        significant: false
   datetime:
     distance_in_words:
       about_x_hours:
-        one: about 1 hour
-        other: about %{count} hours
-      about_x_months:
-        one: about 1 month
-        other: about %{count} months
+        one: "about 1 hour"
+        other: "about %{count} hours"
       about_x_years:
-        one: about 1 year
-        other: about %{count} years
+        one: "about 1 year"
+        other: "about %{count} years"
+      about_x_months:
+        one: "about 1 month"
+        other: "about %{count} months"
       almost_x_years:
-        one: almost 1 year
-        other: almost %{count} years
-      half_a_minute: half a minute
-      less_than_x_minutes:
-        one: less than a minute
-        other: less than %{count} minutes
+        one: "almost 1 year"
+        other: "almost %{count} years"
+      half_a_minute: "half a minute"
       less_than_x_seconds:
-        one: less than 1 second
-        other: less than %{count} seconds
+        one: "less than 1 second"
+        other: "less than %{count} seconds"
+      less_than_x_minutes:
+        one: "less than a minute"
+        other: "less than %{count} minutes"
       over_x_years:
-        one: over 1 year
-        other: over %{count} years
+        one: "over 1 year"
+        other: "over %{count} years"
       x_days:
-        one: 1 day
+        one: "1 day"
         other: "%{count} days"
       x_minutes:
-        one: 1 minute
+        one: "1 minute"
         other: "%{count} minutes"
       x_months:
-        one: 1 month
+        one: "1 month"
         other: "%{count} months"
       x_seconds:
-        one: 1 second
+        one: "1 second"
         other: "%{count} seconds"
     prompts:
-      day: Day
       hour: Hour
       minute: Minute
+      day: Day
       month: Month
       second: Seconds
       year: Year
   will_paginate:
     page_entries_info:
       single_page:
-        zero:  "No %{model} found"
-        one:   "Displaying 1 %{model}"
+        one: "Displaying 1 %{model}"
         other: "Displaying all %{count} %{model}"
-      single_page_html:
-        zero:  "No %{model} found"
-        one:   "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
       multi_page: "Displaying %{model} %{from} - %{to} of %{count}"
+      single_page_html:
+        one: "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
       multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b>"
-  write_comment: Write comment...
   country:
     messages:
       no_country: "(Select country)"
+  write_comment: "Write comment..."
   tooltip:
-    assign_responsible: Enable/disable sending emails to responsible people when assignig them. Hoshinplan will remember your preferences.
+    assign_responsible: "Enable/disable sending emails to responsible people when assignig them. Hoshinplan will remember your preferences."

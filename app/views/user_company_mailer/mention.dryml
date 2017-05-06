@@ -1,6 +1,6 @@
 <email user="&user" app-name="#{app_name}">
 							<h2>#{ I18n.translate "emails.hi", name: user.name.empty? ? user.email_address : user.name } </h2>
-							<p><%= I18n.translate('emails.mention.message', mentioning_user: mentioning_user, url: url, model: model, name: name, hoshin_name: hoshin_name, hoshin_url: hoshin_url).html_safe %></p>
+							<p><%= I18n.translate('emails.mention.message', article: article, mentioning_user: mentioning_user, url: url, model: model, name: name, hoshin_name: hoshin_name, hoshin_url: hoshin_url).html_safe %></p>
 							
 							<blockquote if="&message">#{message}</blockquote>
 							

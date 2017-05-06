@@ -12,7 +12,7 @@ class Tag < ActiveRecord::Base
 
   def validate_label
     valid = (label =~ /^[a-zA-Z0-9]+[-a-zA-Z0-9]*$/)
-    errors.add(:label, "Label must only contain letters, numbers and hyphens and not start with a hyphen") unless valid
+    errors.add(:label, message: :invalid_format) unless valid
   end
 
   attr_accessible :label

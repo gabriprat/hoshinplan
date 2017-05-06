@@ -17,7 +17,7 @@
                                         <div class='col-sm-8'>
                                                 <tokenfield with="&nil" name="collaborators" id="collaborators" autofocus="autofocus" inputType="email" createTokensOnBlur="true"/>
                                                 <p class='help-block'>
-                                                        <t key="company.send_invitations"/>
+                                                    <t key="company.send_invitations" email-format="&content_tag(:code, t('company.send_invitations_format'))" />
                                                 </p>
                                         </div>
                                 </div>
