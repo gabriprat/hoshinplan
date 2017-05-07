@@ -310,6 +310,7 @@ es:
         description: Descripción
         parent: Padre
         objective_tags: Etiquetas
+        hidden: Oculto
       company:
         company_email_domains: "Dominios de email con acceso automático"
         Company: Empresa
@@ -354,6 +355,7 @@ es:
         show_on_parent: "Mostrar en Hoshin padre"
         show_on_charts: "Mostrar en vista gráficos"
         indicator_tags: Etiquetas
+        hidden: Oculto
       indicator/frequencys:
         weekly: Semanal
         monthly: Mensual
@@ -377,6 +379,7 @@ es:
         effort: Esfuerzo
         confidence: Confianza
         impact: Impacto
+        hidden: Oculta
         lifecycle:
           states:
             active: Activa
@@ -452,6 +455,12 @@ es:
             resend_activation: "Reenviar email de activación de usuario"
       company:
         name: "Escoge un nombre en función del grupo de gente que utilizará Hoshinplan."
+      objective:
+        hidden: "Determina si este objetivo estará oculto por defecto sin aplicar ningún filtro."
+      indicator:
+        hidden: "Determina si este indicador estará oculto por defecto sin aplicar ningún filtro."
+      task:
+        hidden: "Determina si esta tarea estará oculto por defecto sin aplicar ningún filtro."
   index:
     title: "Haz que tu estrategia de negocio funcione"
   user:
@@ -489,6 +498,7 @@ es:
     see_detailed_health: "Ver un informe de salud detallado"
     tasks_health: "Salud de tus tareas: %{health}%"
     filter_items: "Filtrar elementos"
+    show_hidden: "Mostrar ocultos"
     click_to_know: "Haz click para saber cómo llevar tu Hoshinplan al 100%"
     show_only_mine: "Ver solo míos"
   health:

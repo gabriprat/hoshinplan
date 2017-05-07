@@ -1,6 +1,6 @@
 <def tag="scard" for="Task" attrs="columns">
 <%# swept-cache route-on suffix="scard" path="&request.fullpath" %>
-<scard class="task table-row" id="task-#{this.id}" data-tags="&this.taglist" param="default" merge>
+<scard class="task table-row" id="task-#{this.id}" param="default" merge>
   <% columns.each do |column| %>
   	<if test="&column == '#'">
 		<% obj_id = (attributes[:parent_object] && attributes[:parent_object].respond_to?(:hoshin_id) && attributes[:parent_object].hoshin_id != this.hoshin_id) ? this.parent_objective_id : this.objective_id %>
@@ -99,24 +99,25 @@
                 <select-one options="&this_parent.area.objectives.to_a" />
             </objective-view:>
             <responsible-view:>
-                <name-one-user />
-                <call-tag
-                    tag="div"
-                    with="&current_user"
-                    class="resp-notify"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="&t 'tooltip.assign_responsible'"
-                    part="notify"
-                >
-                    <formlet update="notify">
-                        <hidden-field:notify_on_assign value="&!this.notify_on_assign" />
-                        <button
-                            class="#{this.notify_on_assign ? 'ic-bell-o' : 'ic-bell-slash-o light'}"
-                            onclick="$(this).closest('.formlet').hjq_formlet('submit'); return false;"
-                        />
-                    </formlet>
-                </call-tag>
+                <div class="input-group">
+                    <name-one-user />
+                    <div class="input-group-addon">
+                        <do with="&current_user"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            title="&t 'tooltip.assign_responsible'"
+                            part="notify"
+                        >
+                            <formlet update="notify">
+                                <hidden-field:notify_on_assign value="&!this.notify_on_assign" />
+                                <button
+                                    class="#{this.notify_on_assign ? 'ic-bell-o' : 'ic-bell-slash-o light'}"
+                                    onclick="$(this).closest('.formlet').hjq_formlet('submit'); return false;"
+                                />
+                            </formlet>
+                        </do>
+                    </div>
+                </div>
             </responsible-view:>
             <effort-view:>
                 <slider min="0" max="100"/>
@@ -130,6 +131,22 @@
             <description-view:>
                 <my-click-editor id="task-description-#{this_parent.id}"/>
             </description-view:>
+            <task-tags-view:>
+                <div class="input-group">
+                    <input/>
+                    <div class="input-group-addon">
+                        <do with="&this_parent" part="hiddenDefault">
+                            <formlet update="hiddenDefault">
+                                <hidden-field:hidden />
+                                <button
+                                    class="#{this.hidden ? 'ic-eye-slash light' : 'ic-eye'}"
+                                    onclick="$(this).prev().val(($(this).prev().val() === 'true') ? '0' : '1');$(this).closest('.formlet').hjq_formlet('submit'); return false;"
+                                />
+                            </formlet>
+                         </do>
+                    </div>
+                </div>
+            </task-tags-view:>
         </field-list:>
         <cancel: href="&session[:return_to] || request.referer || hoshin_path(this.hoshin)"/>
 	</old-form>

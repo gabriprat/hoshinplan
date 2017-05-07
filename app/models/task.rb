@@ -19,6 +19,7 @@ class Task < ApplicationRecord
     impact            :percentage
     effort            :percentage
     visible_days      :integer, default: 110, null: false
+    hidden :boolean, :default => false, :null => false
     timestamps
     deleted_at    :datetime
   end
@@ -31,7 +32,7 @@ class Task < ApplicationRecord
 
   attr_accessible :name, :objective, :objective_id, :description, :responsible, :responsible_id, :reminder, :status,
     :deadline, :original_deadline, :area, :area_id, :show_on_parent, :company, :company_id, :creator_id, :hoshin, 
-    :hoshin_id, :feeling, :confidence, :impact, :effort, :task_tags
+    :hoshin_id, :feeling, :confidence, :impact, :effort, :task_tags, :hidden
 
   has_many :log, :class_name => "TaskLog", :inverse_of => :task
   has_many :task_tags, :inverse_of => :task, accessible: true, dependent: :destroy

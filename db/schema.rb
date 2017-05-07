@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501102406) do
+ActiveRecord::Schema.define(version: 20170507181655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -369,6 +369,7 @@ ActiveRecord::Schema.define(version: 20170501102406) do
     t.integer  "parent_area_id"
     t.integer  "parent_objective_id"
     t.datetime "deleted_at"
+    t.boolean  "hidden",              default: false, null: false
   end
 
   add_index "indicators", ["area_id"], name: "index_indicators_on_area_id", using: :btree
@@ -442,6 +443,7 @@ ActiveRecord::Schema.define(version: 20170501102406) do
     t.boolean  "neglected",      default: false
     t.boolean  "blind",          default: true
     t.datetime "deleted_at"
+    t.boolean  "hidden",         default: false, null: false
   end
 
   add_index "objectives", ["area_id"], name: "index_objectives_on_area_id", using: :btree
@@ -529,6 +531,7 @@ ActiveRecord::Schema.define(version: 20170501102406) do
 
   add_index "tags", ["area_id"], name: "index_tags_on_area_id", using: :btree
   add_index "tags", ["creator_id"], name: "index_tags_on_creator_id", using: :btree
+  add_index "tags", ["goal_id"], name: "index_tags_on_goal_id", using: :btree
   add_index "tags", ["hoshin_id", "label"], name: "index_tags_on_hoshin_id_and_label", using: :btree
   add_index "tags", ["hoshin_id"], name: "index_tags_on_hoshin_id", using: :btree
   add_index "tags", ["indicator_id"], name: "index_tags_on_indicator_id", using: :btree
@@ -564,6 +567,7 @@ ActiveRecord::Schema.define(version: 20170501102406) do
     t.float    "impact"
     t.float    "effort"
     t.integer  "visible_days",        default: 110,       null: false
+    t.boolean  "hidden",              default: false,     null: false
   end
 
   add_index "tasks", ["area_id", "status"], name: "index_tasks_on_area_id_and_status", using: :btree

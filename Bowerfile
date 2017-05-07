@@ -1,6 +1,6 @@
 # A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
-asset 'bootstrap', '3.3.5'
-asset 'bootstrap-material-design', '0.5.2'
+asset 'bootstrap', '3.3.7'
+asset 'bootstrap-material-design', '0.5.10'
 asset 'autosize', '3.0.20'

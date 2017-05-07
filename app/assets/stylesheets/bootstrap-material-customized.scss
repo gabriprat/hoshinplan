@@ -3,9 +3,8 @@ $mdb-checkbox-checked-color: #25a8e0;
 
 @import 'bootstrap-material-design/sass/_variables';
 @import 'bootstrap-material-design/sass/_mixins';
-@import 'bootstrap-material-design/sass/_icons-material-design';
 @import 'bootstrap-material-design/sass/_shadows';  // these are mixins only, and must be placed at the top before use (sass requiremnt)
-@import 'bootstrap-material-design/sass/_bootstrap-material-design'; // include the material content given the mixins above (sass requirement for inclusion order of mixins)
+@import 'bootstrap-material-design/sass/_core';
 @import 'bootstrap-material-design/sass/ripples';
 
 

@@ -310,6 +310,7 @@ en:
         description: Description
         parent: Parent
         objective_tags: Tags
+        hidden: Hidden
       company:
         company_email_domains: "Email domains with automatic access"
         Company: Company
@@ -354,6 +355,7 @@ en:
         show_on_parent: "Show on parent"
         show_on_charts: "Show on charts"
         indicator_tags: Tags
+        hidden: Hidden
       indicator/frequencys:
         weekly: Weekly
         monthly: Monthly
@@ -377,6 +379,7 @@ en:
         effort: Effort
         confidence: Confidence
         impact: Impact
+        hidden: Hidden
         lifecycle:
           states:
             active: Active
@@ -452,6 +455,12 @@ en:
             resend_activation: "Resend user activation email"
       company:
         name: "Pick a name based on the group of pepople that will use Hoshinplan."
+      objective:
+        hidden: "Determines if this objective will be hidden by default without applying any filter."
+      indicator:
+        hidden: "Determines if this indicator will be hidden by default without applying any filter."
+      task:
+        hidden: "Determines if this task will be hidden by default without applying any filter."
   index:
     title: "Make your business strategy work"
   user:
@@ -489,6 +498,7 @@ en:
     see_detailed_health: "Show detailed health report"
     tasks_health: "Tasks' health: %{health}%"
     filter_items: "Filter items"
+    show_hidden: "Show hidden"
     click_to_know: "Click to find out how to bring your Hoshinplan to 100%"
     show_only_mine: "Show only mine"
   health:

@@ -22,14 +22,20 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><t key="hoshin.filter_items"/></h4>
                 </div>
-                <div class="modal-body tag-list">
-                    <% n = 1 %>
-                    <repeat with="&this.all_tags_hashes[this.typed_id].split(' ')">
-                        <checkbox id="tag-#{n}" class="filter-tag" value="&this">
-                            <label for="tag-#{n}">#{this}</label>
-                        </checkbox>
-                        <% n += 1 %>
-                    </repeat>
+                <div class="modal-body">
+                    <div class="tag-list">
+                        <% n = 1 %>
+                        <repeat with="&this.all_tags_hashes[this.typed_id].split(' ')">
+                            <checkbox id="tag-#{n}" class="filter-tag" value="&this">
+                                <label for="tag-#{n}">#{this}</label>
+                            </checkbox>
+                            <% n += 1 %>
+                        </repeat>
+                    </div>
+                    <hr/>
+                    <checkbox id="show-hidden" class="show-hidden" value="">
+                        <label for="show-hidden"><t key="hoshin.show_hidden" /></label>
+                    </checkbox>
                 </div>
                 <div class="modal-footer">
                     <button class='btn btn-default' type='submit' data-dismiss='modal'>

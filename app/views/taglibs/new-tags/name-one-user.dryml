@@ -9,7 +9,7 @@
 		comp = this_parent.company
 	end	
 	%>
-	<div style="position:relative">
+	<div class="completer">
 	<name-one completer="users" value="#{value}" complete-target="&comp" autocomplete='off' class="form-control" merge/>
 	</div>
 </def>

@@ -4266,6 +4266,9 @@ textarea.form-control {
   max-height: 400px;
   left: 0;
   margin: auto;
+  hr {
+    margin: 10px 0;
+  }
 }
 
 .inline-form .btn.ic-check {
@@ -4310,10 +4313,7 @@ textarea.form-control {
   }
 }
 
-.resp-notify {
-  position: absolute;
-  right: 20px;
-  top: 7px;
+.input-group-addon {
   button {
     background-color: #fff;
     border: 0
@@ -4321,4 +4321,12 @@ textarea.form-control {
   .light {
     color: #BDBDBD;
   }
+}
+
+.completer {
+  position: relative;
+}
+
+.input-group .completer {
+  display: table-cell;
 }

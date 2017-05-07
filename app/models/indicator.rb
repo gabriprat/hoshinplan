@@ -19,6 +19,7 @@ class Indicator < ApplicationRecord
     reminder :boolean, :default => true, :null => false
     show_on_parent :boolean, :default => false, :null => false
     show_on_charts :boolean, :default => true, :null => false
+    hidden :boolean, :default => false, :null => false
     timestamps
     deleted_at :datetime
   end
@@ -29,7 +30,7 @@ class Indicator < ApplicationRecord
   attr_accessible :name, :objective, :objective_id, :value, :description, :responsible, :responsible_id, :reminder,
                   :frequency, :next_update, :goal, :worst_value, :area, :area_id, :trend, :company, :company_id,
                   :show_on_parent, :creator_id, :last_update, :last_missing_value, :hoshin, :hoshin_id, :show_on_charts,
-                  :indicator_tags
+                  :indicator_tags, :hidden
 
   belongs_to :creator, :class_name => "User", :creator => true
 

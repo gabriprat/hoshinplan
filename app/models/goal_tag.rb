@@ -1,5 +1,5 @@
 class GoalTag < Tag
-  belongs_to :objective, :inverse_of => :goal_tags
+  belongs_to :goal, :inverse_of => :goal_tags
 
   before_save :add_defaults
 

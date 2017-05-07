@@ -11,6 +11,7 @@ class Objective < ApplicationRecord
     description HoboFields::Types::TextilePlusString
     neglected :boolean, :default => false, :required => true
     blind :boolean, :default => true, :required => true
+    hidden :boolean, :default => false, :null => false
     timestamps
     deleted_at :datetime
   end
@@ -26,7 +27,7 @@ class Objective < ApplicationRecord
 
   attr_accessible :name, :area, :area_id, :description, :responsible, :responsible_id,
                   :indicators, :tasks, :hoshin, :hoshin_id, :parent, :parent_id, :company, :company_id, :creator_id,
-                  :objective_tags
+                  :objective_tags, :hidden
 
   belongs_to :creator, :class_name => "User", :creator => true
 

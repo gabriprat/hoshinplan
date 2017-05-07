@@ -1,5 +1,5 @@
 <def tag="scard" for="Objective" attrs="columns">
-<scard class="objective table-row #{this.blind ? 'blind' : ''} #{this.neglected ? 'neglected' : ''}" data-tags="&this.taglist" param="default" merge>
+<scard class="objective table-row #{this.blind ? 'blind' : ''} #{this.neglected ? 'neglected' : ''}" param="default" merge>
   	<% columns.each do |column| %>
 		<if test="&column == 'Id'">
 			<div class="column" data-label="Id" id="objective_#{this.id}_position">
@@ -44,28 +44,45 @@
                 <select-one options="&this_parent.area.hoshin.areas.to_a" />
             </area-view:>
             <responsible-view:>
-                <name-one-user />
-                <call-tag
-                    tag="div"
-                    with="&current_user"
-                    class="resp-notify"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="&t 'tooltip.assign_responsible'"
-                    part="notify"
-                >
-                    <formlet update="notify">
-                        <hidden-field:notify_on_assign value="&!this.notify_on_assign" />
-                        <button
-                            class="#{this.notify_on_assign ? 'ic-bell-o' : 'ic-bell-slash-o light'}"
-                            onclick="$(this).closest('.formlet').hjq_formlet('submit'); return false;"
-                        />
-                    </formlet>
-                </call-tag>
+                <div class="input-group">
+                    <name-one-user />
+                    <div class="input-group-addon">
+                        <do with="&current_user"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            title="&t 'tooltip.assign_responsible'"
+                            part="notify"
+                        >
+                            <formlet update="notify">
+                                <hidden-field:notify_on_assign value="&!this.notify_on_assign" />
+                                <button
+                                    class="#{this.notify_on_assign ? 'ic-bell-o' : 'ic-bell-slash-o light'}"
+                                    onclick="$(this).closest('.formlet').hjq_formlet('submit'); return false;"
+                                />
+                            </formlet>
+                        </do>
+                    </div>
+                </div>
             </responsible-view:>
             <description-view:>
                 <my-click-editor id="objective-description-#{this_parent.id}"/>
             </description-view:>
+            <objective-tags-view:>
+                <div class="input-group">
+                    <input/>
+                    <div class="input-group-addon">
+                        <do with="&this_parent" part="hiddenDefault">
+                            <formlet update="hiddenDefault">
+                                <hidden-field:hidden />
+                                <button
+                                    class="#{this.hidden ? 'ic-eye-slash light' : 'ic-eye'}"
+                                    onclick="$(this).prev().val(($(this).prev().val() === 'true') ? '0' : '1');$(this).closest('.formlet').hjq_formlet('submit'); return false;"
+                                />
+                            </formlet>
+                        </do>
+                    </div>
+                </div>
+            </objective-tags-view:>
         </field-list:>
         <cancel: href="&session[:return_to] || request.referer || hoshin_path(this.hoshin)"/>
 	</old-form>
