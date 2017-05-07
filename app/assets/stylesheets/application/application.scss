@@ -960,7 +960,7 @@ body.hoshin div.indicators tr, body.hoshin div.indicators th {
   padding: 5px;
 }
 
-.content-body > .form-horizontal {
+.content-body > .form-horizontal, #sign-part {
   ul.nav.nav-tabs {
     border-bottom: 1px solid #ddd;
     margin-bottom: 2em;
@@ -974,6 +974,10 @@ body.hoshin div.indicators tr, body.hoshin div.indicators th {
     margin: 2em 0;
     text-align: right;
   }
+}
+
+#sign-part textarea {
+  width: 100%;
 }
 
 body.hoshin form.inline-form {

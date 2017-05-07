@@ -5,11 +5,13 @@ class ClientApplicationsController < ApplicationController
 
   auto_actions :all
   
-  show_action :sign do
-    timestamp = Time.new.xmlschema
-    data =  params[:data] + "&timestamp=" + CGI::escape(timestamp.to_s)
-    signature = find_instance.sign(data)
-    render :json => "alert('" + data + "&signature=" + signature + "');"
+  web_method :sign
+
+  def sign
+    @uri = params[:uri]
+    @uri += "?app_key=#{params[:key]}" unless @uri.include? '?'
+    @signed = find_instance.sign_uri(@uri)
+    hobo_ajax_response
   end
 
 end

@@ -37,6 +37,13 @@ class ClientApplication < ApplicationRecord
   def sign(data)
    Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha256'), secret, data)).strip()
   end
+
+  def sign_uri(uri)
+    timestamp = Time.new.xmlschema
+    data =  uri + "&timestamp=" + CGI::escape(timestamp.to_s)
+    signature = self.sign(data)
+    "#{data}&signature=#{signature}"
+  end
   
   default_scope lambda { 
     where(:user_id =>  

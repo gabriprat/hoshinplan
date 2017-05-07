@@ -9,14 +9,29 @@
 		<t key="client_app.requests_to_the_restful">Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the "Sign" button you will have the same url with the timestamp and signature parameters.</t>
 		</p>
 		<p> <t key="client_app.for_example">For example, if you enter:"</t>
-			<ul><li>/companies/15-asdf?app_key=3623cff0f924c50fb582fead9aff8669</li></ul>
+		    <%
+		        uri = "/companies?app_key=#{this.key}"
+		        signed = this.sign_uri(uri)
+		    %>
+			<ul><li><%= uri %></li></ul>
 		    <t key="client_app.you_will_get">You will get something like:</t>
-		    	<ul><li>/companies?app_key=3623cff0f924c50fb582fead9aff8669&amp;timestamp=2013-11-17T09%3A15%3A28%2B01%3A00&amp;signature=tYTBSCyejDzLOxGMfa0jzwpfyNnw2PDGAvxnmKSSXgc=</li></ul>
+		    	<ul><li><%= signed %></li></ul>
 		</p>
-		<form method="GET" web-method="sign" ajax>
-			<input name="data" type="text" />
-			<input type="submit" value="#{t :key => 'client_app.sign', :default => 'Sign'}" />
-		</form>
+		<do part="sign-part">
+            <div class="col-sm-6">
+                <form method="POST" web-method="sign" ajax>
+                    <label for="uri">URI to be signed</label>
+                    <textarea id="uri" name="uri"><%= @uri %></textarea>
+                    <input name="key" type="hidden" value="&this.key"/>
+                    <input type="submit" value="#{t :key => 'client_app.sign', :default => 'Sign'}" />
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <label for="signed-uri">Signed URI</label>
+                <textarea name="signed-uri"><%= @signed %></textarea>
+            </div>
+            <div class="clearfix"></div>
+		</do>
 		</append-content-body:>
 	</old-show-page>
 </extend>

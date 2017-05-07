@@ -52,7 +52,7 @@ Hoshinplan::Application.routes.draw do
   # Resource routes for controller client_applications
   resources :client_applications do
     member do
-      get 'sign'
+      post 'sign'
     end
   end
 
