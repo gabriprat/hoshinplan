@@ -101,6 +101,7 @@ $(document).ready(function() {
 var doFilterPostits = function(colors, showMine, tags, showHidden) {
     $(".postit").show();
     $(".kb-not-mine").show();
+    $("[data-hidden-def]").show();
     $("[data-tags]:not([data-tags='']").hide();
 	var selector = "";
 
