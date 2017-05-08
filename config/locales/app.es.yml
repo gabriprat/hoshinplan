@@ -714,16 +714,16 @@ es:
   date:
     input:
       formats:
-        - default
-        - long
-        - short
+        - :default
+        - :long
+        - :short
     formats:
-      short: "%d/%m"
-      default: "%d/%m/%Y"
+      short: ! '%d/%m'
+      default: ! '%d/%m/%Y'
   time:
     formats:
-      long: "%d/%m/%Y %H:%M"
-      default: "%d/%m/%Y %H:%M"
+      long: ! '%d/%m/%Y %H:%M'
+      default: ! '%d/%m/%Y %H:%M'
   number:
     format:
       delimiter: "."

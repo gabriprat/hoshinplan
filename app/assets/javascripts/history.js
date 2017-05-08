@@ -18,6 +18,7 @@ var hover = function(index, options, content) {
 }
 
 var loadData = function() {
+    initNumeral();
 	var decChar = numeral.languageData().delimiters.decimal == "," ? "," : "\\.";
 	var numRegEx = new RegExp("^\\s*[+-]?\\s*(?:(?:\\d+(?:" + decChar + "\\d+)?(?:e[+-]?\\d+)?)|(?:0x[a-f\\d]+))\\s*$", "i");
 	var isNumeric = function(n) {
@@ -137,4 +138,32 @@ function deleteHistory(id, date) {
 	var conf = form.data("confirm-orig");
 	form.data("confirm", conf.replace("XXX", date));
 	form.submit();
+}
+
+function initNumeral() {
+    if (typeof(numeral) == "undefined") {
+        return;
+    }
+    // load a language
+    numeral.language('es', {
+        delimiters: {
+            thousands: '.',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'K',
+            million: 'M',
+            billion: 'B',
+            trillion: 'T'
+        },
+        ordinal : function (number) {
+            return 'o';
+        },
+        currency: {
+            symbol: '€'
+        }
+    });
+
+    // switch between languages
+    numeral.language(document.documentElement.lang);
 }
