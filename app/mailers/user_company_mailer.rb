@@ -189,20 +189,22 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def assign_responsible(assigner, object)
-    user = object.responsible
-    hoshin = Hoshin.unscoped.find(object.hoshin_id)
-    sendgrid_category "assign_responsible"
-    I18n.locale = user.language.to_s.blank? ? (I18n.locale || I18n.default_locale) : user.language.to_s
-    mail_from_template(EmailTemplate.assign_responsible, user, {
-        name: user.name,
-        assigner_name: assigner.name,
-        article: I18n.translate("activerecord.models.#{object.model_name.singular}.article_one"),
-        object_model_name: object.model_name.human,
-        object_name: object.name,
-        object_url: url_for(object) + '/edit',
-        hoshin_name: hoshin.name,
-        hoshin_url: url_for(hoshin)
-    })
+    user = User.unscoped.find(object.responsible_id)
+    if user.present?
+      hoshin = Hoshin.unscoped.find(object.hoshin_id)
+      sendgrid_category "assign_responsible"
+      I18n.locale = user.language.to_s.blank? ? (I18n.locale || I18n.default_locale) : user.language.to_s
+      mail_from_template(EmailTemplate.assign_responsible, user, {
+          name: user.name,
+          assigner_name: assigner.name,
+          article: I18n.translate("activerecord.models.#{object.model_name.singular}.article_one"),
+          object_model_name: object.model_name.human,
+          object_name: object.name,
+          object_url: url_for(object) + '/edit',
+          hoshin_name: hoshin.name,
+          hoshin_url: url_for(hoshin)
+      })
+    end
   end
 
   def admin_payment_error(subscription, text)
