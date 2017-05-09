@@ -94,7 +94,7 @@ class Company < ApplicationRecord
   
   def self.current_company
     ret = RequestStore.store[:company]
-    if (ret.nil? && !self.current_id.nil?) 
+    if (ret.nil? && !self.current_id.nil? && User.current_id)
       ret = Company.find(self.current_id)
       self.current_company = ret
     end

@@ -5,7 +5,6 @@
    <modal-form-footer-delete />
  </form>
 				 <else>
-				 asdf
 				 <read-only-ask-for-permission/>
 				 </else>
 
