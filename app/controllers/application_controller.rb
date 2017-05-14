@@ -148,10 +148,14 @@ class ApplicationController < ActionController::Base
        # Let the specific controller deal with this
      end
      self.this = inst
-     inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
-     inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
-     inst = Company.find(params[:company_id]) unless (inst || params[:company_id].blank?)
-     inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
+     begin
+       inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
+       inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
+       inst = Company.find(params[:company_id]) unless (inst || params[:company_id].blank?)
+       inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
+     rescue ActiveRecord::RecordNotFound
+        #Do nothing
+     end
      Rails.logger.debug inst.to_yaml
      if inst.respond_to?(:company_id)
        Company.current_id = inst.company_id
