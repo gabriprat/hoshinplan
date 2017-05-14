@@ -101,7 +101,7 @@ class Objective < ApplicationRecord
 
   def update_counter_cache
     h = self.hoshin
-    h.indicators_count = h.indicators.count
+    h.objectives_count = h.objectives.count
     h.save!
   end
 

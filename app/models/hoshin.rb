@@ -356,7 +356,7 @@ class Hoshin < ApplicationRecord
     end
     ret = ret || {:action => "none"}
     ret[:value] = value
-    if ret[:action] == "goal" && ret[:value] > 80
+    if ret[:action] == "goal" && ret[:value] > 20
       ret[:action] = "none"
       ret[:value] = 100
     end
