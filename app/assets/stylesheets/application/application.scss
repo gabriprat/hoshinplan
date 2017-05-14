@@ -879,6 +879,9 @@ body.hoshin .collection.areas {
   width: 100%;
   border-collapse: separate;
   border-spacing: 10px;
+  .area-part {
+    border-spacing: 0px;
+  }
   li {
     vertical-align: top;
   }
