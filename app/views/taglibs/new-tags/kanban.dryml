@@ -7,7 +7,7 @@
 		list_tag = tag == 'postit' ? 'ul' : 'div'
 	%>
 	<div class="connected-sortable-wrapper panel panel-default lane" id="lane-#{lane}" part="lane" part-locals="lane,headings,tag,collection_tag,list_tag">
-	<div class="panel-heading" if="&headings"><h2><view with="#{t 'kanban.lanes.' + lane}"/> (<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.count}</div>)</h2></div>
+	<div class="panel-heading" if="&headings"><h2><view with="#{t 'kanban.lanes.' + lane}"/> (<div part="cs-size" class="cs-size-kb-lane" id="cs-size-kb-lane-#{lane}">#{this.size}</div>)</h2></div>
 <call-tag tag="#{collection_tag}" list-tag="#{list_tag}" connectWith=".kb-lane" title="#{lane}" class="kb-lane panel-body" show-empty="true" placeholder="sortable-placeholder kanban-card #{tag}" stop="postitDrop" over="laneOver" out="laneOut" update="" items=".kanban-card:not(.not-draggable)" data-list-id="#{lane}" id="lane-#{lane}">
 	<empty-message: replace/>
 	<item: replace>

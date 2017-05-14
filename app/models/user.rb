@@ -104,7 +104,12 @@ class User < ApplicationRecord
      :trial_ends_at, :initial_task_state, :companies_trial_days, :notify_on_assign
   
   has_many :hoshins, :through => :companies
-  has_many :active_hoshins, -> { active.order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
+  has_many :active_hoshins, -> { active.where(deleted_at: nil).order "company_id, name" }, :through => :companies, :class_name => "Hoshin", unscoped: true
+
+  has_many :backlog_tasks, -> { includes(area: :hoshin).backlog.reorder(:lane_pos).references(area: :hoshin)}, :class_name => "Task", foreign_key: :responsible_id
+  has_many :active_tasks, -> { includes(area: :hoshin).active.reorder(:lane_pos).references(area: :hoshin)}, :class_name => "Task", foreign_key: :responsible_id
+  has_many :completed_tasks, -> { includes(area: :hoshin).completed.visible.reorder(:lane_pos).references(area: :hoshin)}, :class_name => "Task", foreign_key: :responsible_id
+  has_many :discarded_tasks, -> { includes(area: :hoshin).discarded.visible.reorder(:lane_pos).references(area: :hoshin)}, :class_name => "Task", foreign_key: :responsible_id
 
   has_many :objectives, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
   has_many :indicators, -> { order :next_update }, :dependent => :nullify, :inverse_of => :responsible, foreign_key: :responsible_id
@@ -209,19 +214,6 @@ class User < ApplicationRecord
   
   def available_logged_in
     acting_user unless acting_user.guest?
-  end
-  
-  def backlog_tasks
-    tasks.backlog.reorder(:lane_pos)
-  end
-  def active_tasks
-    tasks.active.reorder(:lane_pos)
-  end
-  def completed_tasks
-    tasks.completed.visible.reorder(:lane_pos)
-  end
-  def discarded_tasks
-    tasks.discarded.visible.reorder(:lane_pos)
   end
   
   # --- Signup lifecycle --- #

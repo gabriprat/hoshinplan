@@ -142,10 +142,17 @@ class UsersController < ApplicationController
       redirect_to "/login?force=true"
     end
   end
-  
+
   def kanban
     @this = find_instance
     @lanes = Task::Lifecycle.states.keys
+    @referenced_hoshins = {}
+    [@this.backlog_tasks, @this.active_tasks, @this.completed_tasks, @this.discarded_tasks].each {|tasks|
+      tasks.each {|t|
+        @referenced_hoshins[t.area.hoshin_id] = t.area.hoshin unless @referenced_hoshins[t.area.hoshin_id]
+      }
+    }
+    @referenced_hoshins = @referenced_hoshins.values
     if request.xhr?
       hobo_ajax_response
     end
