@@ -31,18 +31,6 @@ GIT
       savon (>= 0.9.7)
 
 GIT
-  remote: git://github.com/informatom/hobo_bootstrap.git
-  revision: 9a3564f8b16748dc7d6936f2179f188d7a47eb6a
-  branch: bootstrap3
-  specs:
-    hobo_bootstrap (2.1.0)
-      bootstrap-sass (~> 3.3.5.1)
-      hobo_jquery (>= 2.0)
-      hobo_will_paginate-bootstrap
-      sass-rails (>= 5.0.3)
-      sprockets-rails (>= 2.1.4)
-
-GIT
   remote: git://github.com/informatom/hobo_bootstrap_ui.git
   revision: d562647bf5916b141690838055e3eb966e0e6459
   branch: bootstrap3
@@ -75,6 +63,18 @@ GIT
   specs:
     morrisjs-rails (0.5.1.2)
       railties (> 3.1, < 6)
+
+GIT
+  remote: https://github.com/informatom/hobo_bootstrap
+  revision: 9a3564f8b16748dc7d6936f2179f188d7a47eb6a
+  branch: bootstrap3
+  specs:
+    hobo_bootstrap (2.1.0)
+      bootstrap-sass (~> 3.3.5.1)
+      hobo_jquery (>= 2.0)
+      hobo_will_paginate-bootstrap
+      sass-rails (>= 5.0.3)
+      sprockets-rails (>= 2.1.4)
 
 GEM
   remote: https://rubygems.org/

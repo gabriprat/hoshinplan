@@ -512,6 +512,7 @@ es:
       completed: Completadas
       discarded: Descartadas
       backlog: "En cola"
+    confirm_order_lane: "Al pulsar \"Aceptar\" sobreescribirás el orden actual de las tareas de esta columna y quedarán ordenadas por fecha de vencimiento."
   charts:
     select_indicator_to_add: "Selecciona la gráfica oculta que desees hacer visible de nuevo"
   first:
@@ -815,3 +816,6 @@ es:
   write_comment: "Escribe un comentario..."
   tooltip:
     assign_responsible: "Activa/desactiva el envío de emails a las personas responsables cuando las asignes. Hoshinplan recordará tus preferencias."
+  messages:
+    accept: Aceptar
+    cancel: Cancelar

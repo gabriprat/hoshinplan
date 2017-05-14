@@ -371,6 +371,29 @@ class Hoshin < ApplicationRecord
     end
   end
 
+  def sort_by_deadline(lane)
+    sql = <<~END_SQL
+      update tasks
+      set lane_pos = t.seqnum
+      from (
+        select t.*, row_number() over (order by deadline) as seqnum
+        from tasks t
+        where t.hoshin_id = $1 and t.status = $2
+      ) t
+      where tasks.id = t.id and
+          tasks.status = t.status
+    END_SQL
+
+    connection = ActiveRecord::Base.connection.raw_connection
+
+    begin
+      connection.describe_prepared('sort_by_deadline')
+    rescue PG::InvalidSqlStatementName
+      connection.prepare('sort_by_deadline', sql)
+    end
+    connection.exec_prepared('sort_by_deadline',  [ self.id, lane ] )
+  end
+
   def self.current_hoshin
     RequestStore.store[:hoshin]
   end

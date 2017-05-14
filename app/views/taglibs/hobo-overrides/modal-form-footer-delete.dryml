@@ -7,7 +7,7 @@
         <button class='btn btn-default' aria-hidden='true' param='cancel' type='submit' data-dismiss='modal'>
             <t key="hobo.actions.cancel"/>
         </button>
-        <button class="btn btn-danger button delete-button" onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');" type="submit" if="&can_delete? && !this.new_record?">
+        <button class="btn btn-danger button delete-button" onclick="$(this).closest('form').find('.hidden-fields input[value=PUT]').attr('value','DELETE');" type="submit" data-confirm="#{t('hobo.messages.confirm_delete', name: this.name)}" if="&can_delete? && !this.new_record?">
             <t key="hobo.actions.remove"/>
         </button>
 	    <span class="author" unless="&this.creator.blank?"><t key="created_by"/> <view:creator/></span>

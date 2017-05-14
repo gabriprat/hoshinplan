@@ -512,6 +512,7 @@ en:
       completed: Completed
       discarded: Discarded
       backlog: Backlog
+    confirm_order_lane: "By clicking \"Accept\" you will overwrite the current order of the tasks in this column and will be ordered by deadline."
   charts:
     select_indicator_to_add: "Select the hidden chart you want to show again"
   first:
@@ -815,3 +816,6 @@ en:
   write_comment: "Write comment..."
   tooltip:
     assign_responsible: "Enable/disable sending emails to responsible people when assignig them. Hoshinplan will remember your preferences."
+  messages:
+    accept: Accept
+    cancel: Cancel

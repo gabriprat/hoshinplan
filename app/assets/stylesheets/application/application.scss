@@ -584,7 +584,7 @@ body.hoshin .area h5 {
 body .content-header:not(.well) {
   margin: 0 auto;
   max-width: 740px;
-  .btn-danger {
+  .btn {
     margin-top: -3em;
   }
   h2, h3 {
@@ -4336,4 +4336,45 @@ textarea.form-control {
 
 .input-group .completer {
   display: table-cell;
+}
+
+.bootstrap-dialog {
+  @media (min-width: 767px) {
+    .modal-dialog {
+      width: 40vw;
+      left: 30vw;
+      top: 5vh;
+    }
+  }
+  .modal-header {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  &.type-success .modal-header {
+    background-color: #4caf50;
+  }
+  &.type-danger .modal-header {
+    background-color: #f44336;
+  }
+  &.type-warning .modal-header {
+    background-color: #ff5722;
+  }
+  &.type-info .modal-header {
+    background-color: #03a9f4;
+  }
+  &[style*='1050'] {
+    z-index: 1060 !important;
+  }
+}
+
+.modal-backdrop.in[style*='1040'] {
+  z-index: 1050 !important;
+}
+
+.btn-kanban-sort {
+  position: absolute;
+  right: 0;
+  top: -.5em;
 }

@@ -25,6 +25,24 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-sort-time-asc:before, .fa-sort-time-asc:before {
+  content: "\e90c";
+}
+.ic-sort-time-desc:before, .fa-sort-time-desc:before {
+  content: "\e90d";
+}
+.ic-smile:before, .fa-smile:before {
+  content: "\e600";
+}
+.ic-sad:before, .fa-sad:before {
+  content: "\e601";
+}
+.ic-neutral:before, .fa-neutral:before {
+  content: "\e90a";
+}
+.ic-wondering:before, .fa-wondering:before {
+  content: "\e602";
+}
 .ic-asterisk:before, .fa-asterisk:before {
   content: "\f069";
 }
@@ -2422,16 +2440,3 @@
 .ic-kanban:before, .fa-kanban:before {
   content: "\e604";
 }
-.ic-smile:before, .fa-smile:before {
-  content: "\e600";
-}
-.ic-sad:before, .fa-sad:before {
-  content: "\e601";
-}
-.ic-neutral:before, .fa-neutral:before {
-  content: "\e90a";
-}
-.ic-wondering:before, .fa-wondering:before {
-  content: "\e602";
-}
-

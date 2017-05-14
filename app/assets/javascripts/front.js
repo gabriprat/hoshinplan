@@ -8,16 +8,4 @@
 // the the compiled file.
 //
 //= require application
-//= require hobo_rapid
-//= require hobo_jquery
-//= require hobo_bootstrap
-//= require hobo_jquery_ui
-//= require hobo_bootstrap_ui
-//= require hobo_omniauth
-//= require bootbox
-//= require textile-editor
-//= require ./textile-editor-config
-//= require_tree ./hobo_simple_color
-//= require moment
-//= require moment/es.js
 //= require_tree ./front

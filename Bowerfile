@@ -4,3 +4,4 @@
 asset 'bootstrap', '3.3.7'
 asset 'bootstrap-material-design', '0.5.10'
 asset 'autosize', '3.0.20'
+asset 'bootstrap3-dialog', '1.35.4'

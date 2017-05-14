@@ -122,9 +122,8 @@
 <extend tag="edit-page" for="Hoshin">
 	<old-edit-page merge>
 		<append-content-header:>
-			<transition-buttons class="form-horizontal pull-buttons-right"/>
-			<div class="form-horizontal">
-			</div>
+			<transition-button class="btn btn-primary pull-right" transition="archive" />
+			<transition-button class="btn btn-primary pull-right" transition="clone" />
 		</append-content-header:>
 	</old-edit-page>
 </extend>

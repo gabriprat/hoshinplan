@@ -102,6 +102,9 @@
 		    spinner-at="body"
 		    cookiemsg="#{t('cookie_msg', {cookie_msg_link: link_to( t('cookie_msg_link.body'), '/legal/cookies/', { title: t('cookie_msg_link.title') })})}"
 		    agreemsg="#{t('i_agree')}"
+		    confirmmsg="#{t('hobo.messages.confirm')}"
+		    acceptmsg="#{t('messages.accept')}"
+		    cancelmsg="#{t('messages.cancel')}"
 		    user-id="#{User.current_id}"
 		    company-id="#{Company.current_id}"
 		/>

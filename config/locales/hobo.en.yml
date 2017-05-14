@@ -134,6 +134,7 @@ en:
       you_signed_up: "You have signed up"
       none: "(No %{model})"
       confirm: "Are you sure?"
+      confirm_delete: "Are you sure that you want to delete %{name}?"
 
     # default hobo collection translation
     collection:

@@ -141,7 +141,8 @@ es:
       you_are_site_admin: "Ahora usted es el administrador del sitio."
       you_signed_up: "Usted se registró."
       none: "(Sin %{model})"
-      confirm: "¿Está seguro?"
+      confirm: "¿Estás seguro?"
+      confirm_delete: "¿Estás seguro de querer borrar %{name}?"
 
     # default hobo collection translation
     collection:

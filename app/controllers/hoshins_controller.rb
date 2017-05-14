@@ -9,6 +9,7 @@ class HoshinsController < ApplicationController
   show_action :health, :kanban, :charts, :map
   
   web_method :kanban_update
+  web_method :sort_by_deadline
   
   include RestController
   
@@ -111,6 +112,7 @@ class HoshinsController < ApplicationController
   
   def kanban
     @this = find_instance
+    Hoshin.current_hoshin = @this
     @lanes = Task::Lifecycle.states.keys
     if request.xhr?
       hobo_ajax_response
@@ -137,6 +139,16 @@ class HoshinsController < ApplicationController
       if valid?
         redirect_to self.this.company
       end
+    end
+  end
+
+  def sort_by_deadline
+    @this = find_instance
+    @this.sort_by_deadline(params[:lane]) if params[:lane]
+    if request.xhr?
+      hobo_ajax_response
+    else
+      redirect_to @this, action: :kanban
     end
   end
 

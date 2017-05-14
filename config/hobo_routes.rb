@@ -203,6 +203,7 @@ Hoshinplan::Application.routes.draw do
       get 'charts'
       get 'map'
       post 'kanban_update'
+      post 'sort_by_deadline'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'archive', :action => 'do_archive'
