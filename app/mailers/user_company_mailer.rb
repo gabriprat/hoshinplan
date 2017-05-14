@@ -189,7 +189,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def assign_responsible(assigner, object)
-    user = User.unscoped.find(object.responsible_id)
+    user = User.unscoped.find(object.responsible_id) if object.responsible_id
     if user.present?
       hoshin = Hoshin.unscoped.find(object.hoshin_id)
       sendgrid_category "assign_responsible"
