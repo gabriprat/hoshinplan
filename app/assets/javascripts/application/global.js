@@ -559,7 +559,7 @@ var mapImpactFilterEnable = function() {
 };
 
 var mapImpactFilterChange = function(event) {
-	var min = parseInt($(this).attr("data-value"));
+	var min = parseInt($(this).val());
 	$(".dot").each(function() {
 		var that = $(this);
 		var impact = parseInt(that.data("impact"));

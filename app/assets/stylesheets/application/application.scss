@@ -1882,6 +1882,8 @@ body .column.feeling {
 }
 
 .map {
+  max-width: 300px;
+  margin: auto;
   label {
     margin-right: 2em;
   }

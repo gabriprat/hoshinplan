@@ -4,13 +4,9 @@
 	</parent-link:>
 	<heading: class="only-print"/>
 	<content-body:>
-		<script type="text/javascript" nonce="#{@content_security_policy_nonce}">
-			$(document).ready(loadKanban);
-			$(window).on("popstate", loadKanban);
-		</script>
 		<set headings="true"/>
 		<div class="kb-colors map">
-			<label><t key="map.minimum_impact_filter"/></label><slider min="0" max="100" type="text" slideStop="mapImpactFilterAnchor" change="mapImpactFilterChange" create="mapImpactFilterEnable" id="map-impact-filter"/>
+			<label><t key="map.minimum_impact_filter"/></label><slider min="0" max="100" value="0" slideStop="mapImpactFilterAnchor" change="mapImpactFilterChange" create="mapImpactFilterEnable" id="map-impact-filter"/>
 		</div>
 		<div class="kb-frame dots">
 			<div style="display:table-row">
