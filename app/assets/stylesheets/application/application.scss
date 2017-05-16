@@ -1876,8 +1876,9 @@ body .column.feeling {
   }
 }
 
-.slider.slider-horizontal {
+.slider.noUi-horizontal {
   width: 100%;
+  padding-top: 14px;
 }
 
 .map {
@@ -4377,4 +4378,22 @@ textarea.form-control {
   position: absolute;
   right: 0;
   top: -.5em;
+}
+
+.noUi-connect {
+  height: 2px;
+}
+
+.noUi-horizontal .noUi-tooltip {
+  display: block;
+  position: absolute;
+  border: 1px solid #D9D9D9;
+  border-radius: 3px;
+  background: #fff;
+  color: #000;
+  padding: 0 5px;
+  text-align: center;
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 120%;
 }

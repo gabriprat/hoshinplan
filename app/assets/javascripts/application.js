@@ -35,4 +35,5 @@
 //= require_tree ./hobo_simple_color
 //= require moment
 //= require moment/es.js
+//= require nouislider
 //= require_tree ./application
