@@ -101,7 +101,7 @@ en:
       subject: "Confirm your email address at Hoshinplan"
       message: "You are almost done signing up at Hoshinplan. In order to validate your email address at Hoshinplan you only need to use the following link during the next 24 hours."
     request_access:
-      subject: "[Hoshinplan] Access requests"
+      subject: "[Hoshinplan] Access request"
       message: "%{requester} requests access to the company %{name}."
       give_access: "Give access"
   show_all: "Show all..."
