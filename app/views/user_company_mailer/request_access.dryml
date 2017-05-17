@@ -1,0 +1,7 @@
+<email user="&user" app-name="#{app_name}">
+    <h2>#{ I18n.translate "emails.hi", name: user.name.empty? ? user.email_address : user.name } </h2>
+    <p> #{ I18n.translate 'emails.request_access.message', requester: requester, name: name }</p>
+    <p><center><div class="btn"><a href="#{url}"><%= I18n.translate('emails.request_access.give_access') %></a></div></center></p>
+    <p>#{ I18n.translate "emails.thank_you" }<br/>
+    #{ I18n.translate "emails.the_team", app_name: app_name }</p>
+</email>

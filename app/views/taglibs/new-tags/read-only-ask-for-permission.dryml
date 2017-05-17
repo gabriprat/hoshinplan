@@ -1,37 +1,55 @@
 
- <def tag="read-only-ask-for-permission" attrs="show-close">
-    <% show_close = show_close.nil? ? true : show_close %>
+ <def tag="read-only-ask-for-permission">
+    <ask-for-permission translation-prefix="read_only" merge />
+ </def>
+
+  <def tag="not-allowed-ask-for-permission">
+     <ask-for-permission translation-prefix="not_allowed" merge />
+  </def>
+
+ <def tag="ask-for-permission" attrs="show-close,hide-return,translation-prefix">
+    <%
+        show_close = show_close.nil? ? true : show_close
+        translation_prefix ||= 'read_only'
+
+        obj = nil
+        if this.present?
+          if this.instance_of? Hoshin
+            obj = this
+          elsif this.instance_of? Company
+            obj = this
+          elsif this.respond_to? :hoshin
+            obj = this.hoshin
+          end
+        end
+        obj ||= Hoshin.current_hoshin
+    %>
      <section class="modal-header">
              <h2 class="heading heading-icn warning">
                      <small class="ic-lock icon text-danger"></small>
-                     <span><t key="read_only.heading"/></span>
+                     <span><t key="#{translation_prefix}.heading"/></span>
             </h2>
      </section>
      <section class="modal-body">
                     <div class="message-large">
-                        <p><t key="read_only.ask_for_permission"/></p>
-                        <collection with="&User.current_company_admins" class="loose">
-                            <span class="ic-envelope-o"/>
-                            <a href="mailto:#{this.email_address}?subject=#{t 'read_only.mail_subject', name: Company.current_company.name}" target="_blank">#{this.name} (#{this.email_address})</a>
-                        </collection>
+                        <p><t key="permission.ask_for_permission"/></p>
+                        <p><t key="permission.you_are_signed_in_as" email="&current_user.email_address"/></p>
+                        <form with="&obj" method="POST" web-method="request_access" if="&obj" update="permission-ask">
+                            <do part="permission-ask">
+                                <button type="submit" class="btn btn-raised btn-primary" unless="&@done"><t key="permission.ask_for_permission_button"/></button>
+                                <else>
+                                    <button class="btn btn-raised btn-primary" disabled><t key="permission.email_sent"/></button>
+                                </else>
+                            </do>
+                        </form>
                     </div>
     </section>
     <section class="modal-footer">
         <a class="cancel btn" href="#" rel="nofollow" onclick="$('.modal').modal('hide');" if="&show_close"><t key="hobo.actions.close"/></a>
         <else>
-            <%
-                obj = nil
-                if this.present?
-                  if this.instance_of? Hoshin
-                    obj = this
-                  elsif this.instance_of? Company
-                    obj = this
-                  elsif this.respond_to? :hoshin
-                    obj = this.hoshin
-                  end
-                end
-            %>
-            <a with="&obj" class="cancel btn" rel="nofollow"><ht key="hoshin.actions.back_to_parent" parent="&obj.class.model_name.human" name="&this._?.name"/></a>
+            <if test="&obj && !hide_return">
+                <a with="&obj" class="cancel btn" rel="nofollow"><ht key="hoshin.actions.back_to_parent" parent="&obj.class.model_name.human" name="&this._?.name"/></a>
+            </if>
         </else>
     </section>
 </def>

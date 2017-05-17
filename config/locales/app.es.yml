@@ -100,6 +100,10 @@ es:
     activation:
       subject: "Valida tu dirección de email en Hoshinplan"
       message: "Ya casi has terminado tu registro en Hoshinplan. Para validar tu email en Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas."
+    request_access:
+      subject: "[Hoshinplan] Solicitud de acceso"
+      message: "%{requester} solicita acceso a la compañía %{name}."
+      give_access: "Dar acceso"
   show_all: "Mostrar todo..."
   click_to_edit: "&lt;Haz clic para editar&gt;"
   you_can_use_textile: "Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: \"Texto\":http://www.hoshinplan.com"
@@ -651,8 +655,13 @@ es:
       plural: comentarios
   read_only:
     heading: "Solo tienes permiso de lectura"
-    ask_for_permission: "Si necesitas permisos de edición puedes contactar con uno de los administradores de esta empresa."
-    mail_subject: "[Hoshinplan] Permisos de edición para la empresa %{name}"
+  not_allowed:
+    heading: "Necesitas permiso"
+  permission:
+    ask_for_permission: "¿Quieres acceder? Solicita acceso o usa una cuenta que tenga los permisos necesarios."
+    you_are_signed_in_as: "Has iniciado sesión como %{email}"
+    ask_for_permission_button: "Solicitar acceso"
+    email_sent: "Email enviado"
   log_in_with: "Accede con %{provider}"
   new_child_for_parent: "Nuevo %{child} para %{parent}"
   tutorial: Tutorial

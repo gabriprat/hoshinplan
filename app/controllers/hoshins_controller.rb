@@ -10,7 +10,8 @@ class HoshinsController < ApplicationController
   
   web_method :kanban_update
   web_method :sort_by_deadline
-  
+  web_method :request_access
+
   include RestController
   
   cache_sweeper :hoshins_sweeper
@@ -60,6 +61,16 @@ class HoshinsController < ApplicationController
   
   api :GET, '/hoshins/:id', 'Get a hoshin'
   def show
+    begin
+      self.this = find_instance
+    rescue ActiveRecord::RecordNotFound => e
+      Hoshin.current_hoshin = Hoshin.unscoped.find(params[:id])
+      if Hoshin.current_hoshin
+        raise Hobo::PermissionDeniedError
+      else
+        raise e
+      end
+    end
     Hoshin.current_hoshin = self.this
     if request.xhr?
       hobo_ajax_response
@@ -150,6 +161,13 @@ class HoshinsController < ApplicationController
     else
       redirect_to @this, action: :kanban
     end
+  end
+
+  def request_access
+    @this = Hoshin.unscoped.find(params[:id])
+    @done = true
+    UserCompanyMailer.request_access(User.current_user, @this.creator, @this).deliver_later if @this
+    hobo_ajax_response
   end
 
 end

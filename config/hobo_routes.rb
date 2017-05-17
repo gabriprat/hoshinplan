@@ -204,6 +204,7 @@ Hoshinplan::Application.routes.draw do
       get 'map'
       post 'kanban_update'
       post 'sort_by_deadline'
+      post 'request_access'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'archive', :action => 'do_archive'

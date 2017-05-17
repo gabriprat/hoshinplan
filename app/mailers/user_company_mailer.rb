@@ -218,6 +218,22 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
 
+  def request_access(requester, user, hoshin)
+    sendgrid_category "request_access"
+    I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
+    @user = user
+    company = Company.unscoped.find(hoshin.company_id)
+    mail(:subject => I18n.translate("emails.request_access.subject", name: hoshin.name),
+         :to => @user.email_address) do |format|
+      format.html {
+        render_email("request_access", {
+            requester: requester, user: @user, app_name: @app_name,
+            name: company.name, url: url_for(company) + "/collaborators"
+        })
+      }
+    end
+  end
+
   private
 
   def mail_from_template(template, user, vars={})

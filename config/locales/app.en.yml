@@ -100,6 +100,10 @@ en:
     activation:
       subject: "Confirm your email address at Hoshinplan"
       message: "You are almost done signing up at Hoshinplan. In order to validate your email address at Hoshinplan you only need to use the following link during the next 24 hours."
+    request_access:
+      subject: "[Hoshinplan] Access requests"
+      message: "%{requester} requests access to the company %{name}."
+      give_access: "Give access"
   show_all: "Show all..."
   click_to_edit: "&lt;Click to edit&gt;"
   you_can_use_textile: "You can use %{textile} markup to include format this text. For example, you can include a link like this: \"Text\":http://www.hoshinplan.com"
@@ -651,8 +655,13 @@ en:
       plural: comentarios
   read_only:
     heading: "You  have read-only access"
+  not_allowed:
+    heading: "You need permission"
+  permission:
     ask_for_permission: "If you need to be allowed to update you can contact one of the administrators for this company."
-    mail_subject: "[Hoshinplan] Update permission for the company %{name}"
+    you_are_signed_in_as: "You are signed in as %{email}"
+    ask_for_permission_button: "Request access"
+    email_sent: "Email sent"
   log_in_with: "Log in with %{provider}"
   new_child_for_parent: "New %{child} for %{parent}"
   tutorial: Tutorial
