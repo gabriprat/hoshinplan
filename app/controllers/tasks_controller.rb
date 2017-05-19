@@ -105,6 +105,7 @@ class TasksController < ApplicationController
     else
       @this = Task.new
       @this.company_id = params[:company_id]
+      @this.hoshin_id = params[:hoshin_id]
       @this.objective_id = params[:objective_id]
       @this.area_id = params[:area_id]
     end

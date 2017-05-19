@@ -1,37 +1,13 @@
-	      		 <% update = @this.new_record? ? "#objectives-#{this.area.id},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#objectives-#{this.area.id},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
-			<form updates="&update" ajax success="$('.modal.in').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();" data-company="&this.company_id">
-		   	   <set show-on-parent=", show_on_parent" if="&this.area.hoshin.parent_id"/>
-			
-	      		   <div class="modal-body">
-	      			    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
-	      			    <field-list: fields="name, objective, description, responsible, deadline, feeling, #{@this.new_record? ? 'status,' : ''} impact, confidence, effort, reminder #{show_on_parent}">
-    			    	<description-view: >
-					<my-click-editor id="task-description-#{this_parent.id}"/>
-    				</description-view:>
-				
-	      			    	<objective-view:>
-	      					<select-one options="&this_parent.area.objectives.to_a" required="required"/>
-	      				</objective-view:>
-	      			    	<responsible-view:>
-	      					<name-one-user />
-	      				</responsible-view:>
-					
-	      			    	<effort-view:>
-	      					<slider min="0" max="100"/>
-	      				</effort-view:>
-	      			    	<confidence-view:>
-	      					<slider min="0" max="100"/>
-	      				</confidence-view:>
-	      			    	<impact-view:>
-	      					<slider min="0" max="100"/>
-	      				</impact-view:>
-	      				<status-view:>
-                           <%= select_tag "status", options_for_select([[t('activerecord.attributes.task.lifecycle.states.backlog'), :backlog], [t('activerecord.attributes.task.lifecycle.states.active'), :active]], selected: current_user.initial_task_state), {class: 'form-control'} %>
-                        </status-view:>
-	      			    </field-list:>
-	      		    </div>
-	      		    <modal-form-footer-delete/>
-	      		</form>
-						 <else>
-        				 <read-only-ask-for-permission/>
-        				 </else>
+ <% update = @this.new_record? ? "#objectives-#{this.area.id},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#objectives-#{this.area.id},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
+<form updates="&update" ajax success="$('.modal.in').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();" data-company="&this.company_id">
+    <default: replace>
+        <div class="modal-body">
+            <default restore/>
+        </div>
+        <modal-form-footer-delete />
+    </default:>
+    <actions: replace />
+</form>
+<else>
+    <read-only-ask-for-permission/>
+</else>

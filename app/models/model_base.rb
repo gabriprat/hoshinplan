@@ -31,6 +31,10 @@ module ModelBase
     Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
   end
 
+  def has_tags
+    Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
+  end
+
   def notify_mentions
     return unless self.respond_to?(:deleted_at) && self.respond_to?(:name) && self.respond_to?(:description)
     mentions = Differ.diff(description || '', description_was || '').new_mentions

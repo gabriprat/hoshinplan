@@ -401,6 +401,10 @@ class Hoshin < ApplicationRecord
   def self.current_hoshin=(hoshin)
     RequestStore.store[:hoshin] = hoshin
   end
+
+  def get_tags(typed_id = self.typed_id)
+    all_tags_hashes[typed_id]
+  end
   
   # --- Permissions --- #
   

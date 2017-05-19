@@ -64,16 +64,18 @@
 
 
 <extend tag="form" for="Indicator">
+	<set show-on-parent=", show_on_parent" if="&this.area.hoshin.parent_id"/>
+    <set show-tags=", indicator_tags" unless="&@this.new_record? && this.area.hoshin.get_tags.blank?" />
 	<old-form merge>
         <prepend-default:>
             <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
         </prepend-default:>
-        <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts, show_on_parent, indicator_tags">
+        <field-list: fields="name, objective, description, frequency, next_update, responsible, goal, worst_value, reminder, show_on_charts #{show_on_parent} #{show_tags}">
             <area-view:>
                 <select-one options="&this_parent.objective.area.hoshin.areas" />
             </area-view:>
             <objective-view:>
-                <select-one options="&this_parent.area.objectives.to_a" />
+                <select-one options="&this_parent.area.objectives.to_a"  required="required" />
             </objective-view:>
             <responsible-view:>
                 <div class="input-group">

@@ -4345,8 +4345,9 @@ textarea.form-control {
   @media (min-width: 767px) {
     .modal-dialog {
       width: 40vw;
-      left: 30vw;
+      left: 0;
       top: 5vh;
+      margin: auto;
     }
   }
   .modal-header {

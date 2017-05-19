@@ -88,7 +88,11 @@
             if (options.relation && form.length === 1) {
                 //Bug in bootstrap-tokenfield.js makes options with value!=label to display value instead of label when editing
                 options.allowEditing = false;
-                form.on("submit.tokeninput", function (event) {
+                var event = "submit.tokeninput";
+                if (form.data("rapid") && form.data("rapid").form && form.data("rapid").form.ajax_attrs && form.data("rapid").form.ajax_attrs.ajax) {
+                    event = "rapid:ajax:before.tokeninput";
+                }
+                form.on(event, function (event) {
                     form.find(".tokeninput-hidden").remove();
                     $.each(that.tokenfield('getTokens'), function (i, t) {
                         if (t.value != t.label) {

@@ -1,4 +1,5 @@
 <def tag="modal-form-footer-delete" >
+    <% lif = Dryml.last_if %>
     <div class='modal-footer modal-footer-delete' param='default'>
         <a class="view-log" href="/log/#{this.class.model_name.to_s.downcase.pluralize}/#{this.id}" title="#{t 'view_log'}" unless="&this.new_record?"><span class="ic-file-text-o"></span><t key="view_log"/></a>
         <button class='btn btn-primary' type="submit" param onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');">
@@ -12,4 +13,5 @@
         </button>
 	    <span class="author" unless="&this.creator.blank?"><t key="created_by"/> <view:creator/></span>
 	</div>
+	<% Dryml.last_if = lif %>
 </def>

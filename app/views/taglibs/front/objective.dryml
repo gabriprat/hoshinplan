@@ -34,12 +34,13 @@
 <extend tag="form" for="Objective">
 	<set options="&this.parent_objectives"/>
 	<set parent=", parent" if="&options.size>0"/>
+	<set show-tags=", objective_tags" unless="&@this.new_record? && this.area.hoshin.get_tags.blank?" />
 	<old-form merge>
         <prepend-default:>
             <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
         </prepend-default:>
-        <field-list: fields="name, description, responsible #{parent}, area, objective_tags">
-            <parent-tag: options="&options" />
+        <field-list: fields="name, description, responsible #{parent}, area #{show_tags}">
+            <parent-tag: options="&options" text_method="name_with_area" />
             <area-view:>
                 <select-one options="&this_parent.area.hoshin.areas.to_a" />
             </area-view:>
