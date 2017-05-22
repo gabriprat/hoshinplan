@@ -157,23 +157,27 @@
                     <div class='row form-group'>
                             <div class="card-wrapper"></div>
                             <div class='col-xs-6 col-xs-offset-3'>
-                                    <input id="ccnumber" name="cardnumber" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore' autocomplete="cc-number"/>
+                                    <label for="ccnumber" class="hide"><t key='billing_details.card_number'/></label>
+                                    <input id="ccnumber" name="ccnumber" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore' autocomplete="cc-number"/>
                             </div>
                     </div>
                     <div class="row form-group">
                             <div class='col-xs-6 col-xs-offset-3'>
+                                    <label for="ccname" class="hide"><t key='billing_details.full_name'/></label>
                                     <input id="ccname" name="ccname" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control inspectletIgnore' autocomplete="cc-name"/>
                             </div>
                     </div>
                     <div class="row">
                             <div class='col-xs-3 col-xs-offset-3'>
                                     <div class="form-group" style="margin: auto">
-                                        <input id="ccexpiry" name="cc-exp" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore" autocomplete="cc-exp"/>
+                                        <label for="expdate" class="hide"><t key='billing_details.mm_yy'/></label>
+                                        <input id="expdate" name="expdate" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore" autocomplete="cc-exp"/>
                                     </div>
                             </div>
                             <div class='col-xs-3'>
                                 <div class="form-group" style="margin: auto">
-                                    <input id="cccvc" name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
+                                    <label for="cc-csc" class="hide"><t key='billing_details.cvc'/></label>
+                                    <input id="cc-csc" name="cc-csc" value="&params[:cc-csc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
                                 </div>
                             </div>
                     </div>

@@ -13,7 +13,7 @@
                 // Strings for translation - optional
                 messages: {
                     validDate: '',
-                    monthYear: $('input[name=cc-exp]').attr('placeholder'), // optional - default 'month/year'
+                    monthYear: $('input[name=expdate]').attr('placeholder'), // optional - default 'month/year'
                 },
 
                 // Default placeholders for rendered fields - optional
@@ -25,9 +25,9 @@
                 },
 
                 formSelectors: {
-                    numberInput: 'input[name="cardnumber"]',
-                    expiryInput: 'input[name="cc-exp"]',
-                    cvcInput: 'input[name="cvc"]',
+                    numberInput: 'input[name="ccnumber"]',
+                    expiryInput: 'input[name="expdate"]',
+                    cvcInput: 'input[name="cc-csc"]',
                     nameInput: 'input[name="ccname"]'
                 },
 
@@ -44,7 +44,7 @@
                     Stripe.card.createToken({
                         name: $('#ccname').val(),
                         number: $('#ccnumber').val(),
-                        cvc: $('#cccvc').val(),
+                        cvc: $('#cc-csc').val(),
                         exp_month: exp[0],
                         exp_year: exp[1],
                         address_line1: $('.billing-detail-address-line-1').val(),
