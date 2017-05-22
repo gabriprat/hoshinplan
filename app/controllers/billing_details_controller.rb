@@ -13,9 +13,7 @@ class BillingDetailsController < ApplicationController
   end
 
   def create
-    @billing_plan = BillingPlan.find(params[:plan_id])
-    hobo_create
-    log_event("Checkout", {plan_name: @billing_plan.name, plan_id: @billing_plan.id})
+    create_for_company
   end
 
   def edit

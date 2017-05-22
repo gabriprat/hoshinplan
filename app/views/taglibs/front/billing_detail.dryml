@@ -153,7 +153,7 @@
         <form action="/" id="cc-container" class="form-horizontal" onsubmit="$(this).prev('form').submit(); return false;">
             <div class='row card-details form-group'>
                 <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
-                <div class="col-sm-9" style="#{this.card_stripe_token.nil? ? '' : 'display:none;'}">
+                <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? '' : 'display:none;'}">
                     <div class='row form-group'>
                             <div class="card-wrapper"></div>
                             <div class='col-xs-6 col-xs-offset-3'>
@@ -182,7 +182,7 @@
                             </div>
                     </div>
                 </div>
-                <div class="col-sm-9" style="#{this.card_stripe_token.nil? ? 'display:none' : ''}">
+                <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? 'display:none' : ''}">
                     <div class="input-group">
                         <input:card_last4 name="last4" value="#{this.card_brand}: •••• #{this.card_last4}" disabled class="form-control" />
                         <span class="input-group-btn">
