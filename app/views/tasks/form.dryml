@@ -1,12 +1,9 @@
  <% update = @this.new_record? ? "#objectives-#{this.area.id},#tutorial,#sec-actions,#htasks,#neglected,#tasks-" + this.area.id.to_s : "#objectives-#{this.area.id},#tutorial,#sec-actions,#neglected,#postit-#{this.id}" %>
 <form updates="&update" ajax success="$('.modal.in').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();updateColors();loadKanban();" data-company="&this.company_id">
-    <default: replace>
-        <div class="modal-body">
-            <default restore/>
-        </div>
+    <field-list: class="modal-body" />
+    <actions: replace>
         <modal-form-footer-delete />
-    </default:>
-    <actions: replace />
+    </actions:>
 </form>
 <else>
     <read-only-ask-for-permission/>

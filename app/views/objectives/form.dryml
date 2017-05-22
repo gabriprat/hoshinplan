@@ -1,13 +1,10 @@
 <set options="&this.parent_objectives"/>
 <set parent=", parent" if="&options.size>0"/>
 <form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-obj-#{this.id}" updates="#area-#{this.area_id.to_s}, #tutorial,#sec-actions" data-company="&this.company_id">
-    <default: replace>
-        <div class="modal-body">
-            <default restore/>
-        </div>
+    <field-list: class="modal-body" />
+    <actions: replace>
         <modal-form-footer-delete />
-    </default:>
-    <actions: replace />
+    </actions:>
 </form>
 <else>
     <read-only-ask-for-permission/>

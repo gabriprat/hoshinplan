@@ -1,12 +1,12 @@
 <form ajax success="$('#update-goal-modal-#{this.id}').modal('hide'); $('#add-goal-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();" class="modal-content" id="upd-goal-#{this.id}" updates="#goals,#tutorial,#sec-actions" data-company="&this.company_id">
-   <div class="modal-body">
-    <field-list: fields="name"/>
-   </div>
-   <modal-form-footer-delete />
- </form>
-				 <else>
-				 <read-only-ask-for-permission/>
-				 </else>
+    <div class="modal-body">
+        <field-list: class="modal-body" fields="name"/>
+    </div>
+    <modal-form-footer-delete />
+</form>
+<else>
+    <read-only-ask-for-permission/>
+</else>
 
 				 
 				
