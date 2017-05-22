@@ -208,6 +208,10 @@ es:
           attributes:
             country:
               blank: "está vacío"
+        subscription_stripe:
+          attributes:
+            users:
+              greater_than_or_equal_to: "Tiene que ser mayor o igual que %{count}"
         tag:
           attributes:
             label:
