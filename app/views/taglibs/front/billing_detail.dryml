@@ -177,7 +177,7 @@
                             <div class='col-xs-3'>
                                 <div class="form-group" style="margin: auto">
                                     <label for="cc-csc" class="hide"><t key='billing_details.cvc'/></label>
-                                    <input id="cc-csc" name="cc-csc" value="&params[:cc-csc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
+                                    <input id="cc-csc" name="cc-csc" value="&params[:cc_csc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
                                 </div>
                             </div>
                     </div>
