@@ -212,10 +212,10 @@ class SubscriptionStripe < Subscription
   def charge(full_amount=true, old_remaining_amount=0, remote_ip='')
     c = Company.unscoped.find(company_id)
     b = BillingDetail.unscoped.find(billing_detail_id)
-    pay_now_ammount = pay_now(full_amount, old_remaining_amount)
-    if pay_now_ammount > 0
+    pay_now_amount = pay_now(full_amount, old_remaining_amount).round(2)
+    if pay_now_amount > 0
       order = Stripe::Charge.create(
-          amount: (pay_now_ammount * 100).round.to_i,
+          amount: (pay_now_amount * 100).to_i,
           currency: amount_currency,
           customer: b.stripe_client_id,
           description: billing_description
@@ -224,7 +224,7 @@ class SubscriptionStripe < Subscription
       c.save
       Mp.track_charge(user, remote_ip, pay_now)
     else
-      c.credit = -pay_now
+      c.credit = -pay_now_amount
       c.save
     end
     pay_now

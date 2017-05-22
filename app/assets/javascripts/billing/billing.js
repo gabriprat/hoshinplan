@@ -3,7 +3,7 @@
     var methods = {
         init: function() {
             var card = new Card({
-                form: '#form-payment-container', // *required*
+                form: '#cc-container', // *required*
                 // a selector or DOM element for the container
                 // where you want the card to appear
                 container: '.card-wrapper', // *required*
@@ -13,15 +13,22 @@
                 // Strings for translation - optional
                 messages: {
                     validDate: '',
-                    monthYear: $('input[name=expiry]').attr('placeholder'), // optional - default 'month/year'
+                    monthYear: $('input[name=cc-exp]').attr('placeholder'), // optional - default 'month/year'
                 },
 
                 // Default placeholders for rendered fields - optional
                 placeholders: {
                     number: '•••• •••• •••• ••••',
-                    name: $('input[name=name]').attr('placeholder'),
+                    name: $('input[name=ccname]').attr('placeholder'),
                     expiry: '••/••',
                     cvc: '•••'
+                },
+
+                formSelectors: {
+                    numberInput: 'input[name="cardnumber"]',
+                    expiryInput: 'input[name="cc-exp"]',
+                    cvcInput: 'input[name="cvc"]',
+                    nameInput: 'input[name="ccname"]'
                 },
 
                 // if true, will log helpful messages for setting up Card

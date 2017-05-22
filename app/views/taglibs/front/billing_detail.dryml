@@ -129,9 +129,10 @@
 
 
 <def tag="form" for="BillingDetail">
-    <div class="paper" id="form-payment-container">
+    <div class="paper">
         <form merge param="default">
             <error-messages param/>
+            <input type="submit" class="hide"/>
             <h3><t key="billing_details.number_of_users"/></h3>
             <% users_param = params[:billing_detail][:active_subscription][:users] if params[:billing_detail] && params[:billing_detail][:active_subscription] %>
             <slider:active_subscription.users value="#{users_param || this.active_subscription._?.users || 10}" id="users" min="1" max="200" style="width: 100%" tooltip="always"/>
@@ -142,35 +143,37 @@
              %>
             <btn-radio-group:active_subscription.billing_period selected-option="#{period_param || 'monthly'}" data-monthly-price="#{monthly_price}" data-annual-price="#{annual_price}"/>
             <h3><t key="billing_details.billing_details"/></h3>
-            <field-list fields="company_name, contact_name, contact_email, address_line_1, address_line_2, city, state, zip, country, vat_number" param/>
+            <field-list fields="company_name, contact_name, contact_email, address_line_1, address_line_2, city, state, zip, country, vat_number" param>
+                <vat-number-view: replace><input class="form-control" autocomplete="vat-number"/></vat-number-view:>
+            </field-list>
             <input type="hidden" name="total" id="calc-total"/>
             <input type="hidden" name="taxes" id="calc-taxes"/>
             <input name="plan_id" type="hidden" value="&@billing_plan.id" unless="&@billing_plan.nil?"/>
         </form>
-        <div class="form-horizontal">
+        <div id="cc-container" class="form-horizontal" onkeyup="if (event.which == 13) {$(this).prev('form').submit();}">
             <div class='row card-details form-group'>
                 <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
                 <div class="col-sm-9" style="#{this.card_stripe_token.nil? ? '' : 'display:none;'}">
                     <div class='row form-group'>
                             <div class="card-wrapper"></div>
                             <div class='col-xs-6 col-xs-offset-3'>
-                                    <input id="ccnumber" name="number" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore'/>
+                                    <input id="ccnumber" name="cardnumber" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore' autocomplete="cc-number"/>
                             </div>
                     </div>
                     <div class="row form-group">
                             <div class='col-xs-6 col-xs-offset-3'>
-                                    <input id="ccname" name="name" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control inspectletIgnore'/>
+                                    <input id="ccname" name="ccname" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control inspectletIgnore' autocomplete="cc-name"/>
                             </div>
                     </div>
                     <div class="row">
                             <div class='col-xs-3 col-xs-offset-3'>
                                     <div class="form-group" style="margin: auto">
-                                        <input id="ccexpiry" name="expiry" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore"/>
+                                        <input id="ccexpiry" name="cc-exp" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore" autocomplete="cc-exp"/>
                                     </div>
                             </div>
                             <div class='col-xs-3'>
                                 <div class="form-group" style="margin: auto">
-                                    <input id="cccvc" name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore"/>
+                                    <input id="cccvc" name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
                                 </div>
                             </div>
                     </div>
