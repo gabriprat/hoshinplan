@@ -320,7 +320,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
+      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
     </content-body:>
 
   </page>
@@ -544,7 +544,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="issuer, sso_url, cert, fingerprint, id_format, openid_url" param/>
+      <field-list fields="openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
     </content-body:>
 
   </page>

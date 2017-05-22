@@ -139,6 +139,7 @@ es:
     not_expected_format: "no tiene el formato esperado"
     invalid_credit_card: "Los detalles de la tarjeta de crédito eran inválidos. Por favor, revísalos y prueba otra vez."
     invitation_code_does_not_exist: "El código de invitación proporcionado no es válido."
+    invalid_subscription: "Error validando la suscripción."
   hobo:
     actions:
       submit: Enviar

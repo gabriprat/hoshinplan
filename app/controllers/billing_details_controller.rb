@@ -71,6 +71,7 @@ class BillingDetailsController < ApplicationController
         begin
           update_stripe_billing_details
           self.this.active_subscription = subscription_params
+          self.this.active_subscription.save! # using save! to raise validation errors
           amount = charge(old_remaining_amount, old_period)
           s = self.this.active_subscription
           if (new_subscription)
@@ -81,6 +82,11 @@ class BillingDetailsController < ApplicationController
           redirect_to this.company, action: :collaborators
         rescue Stripe::CardError => _
           flash.now[:error] = I18n.t('errors.invalid_credit_card')
+          update_response(false)
+          log_event("Payment error", {message: _.message})
+          raise ActiveRecord::Rollback
+        rescue ActiveRecord::RecordInvalid => _
+          flash.now[:error] = I18n.t('errors.invalid_subscription')
           update_response(false)
           log_event("Payment error", {message: _.message})
           raise ActiveRecord::Rollback

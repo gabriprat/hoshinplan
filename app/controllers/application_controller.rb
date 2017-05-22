@@ -169,7 +169,7 @@ class ApplicationController < ActionController::Base
    Nr.add_custom_parameters({ referrer: request.referrer }) unless !request || request.referrer.nil?
    yield
   rescue ActiveRecord::RecordInvalid => invalid
-     fail invalid, invalid.message.to_s + ' Details: ' + invalid.record.errors.to_yaml
+    raise $!, "#{$!}. Details: #{invalid.record.errors.to_yaml}", $!.backtrace
   end
              
   before_filter :is_pdf

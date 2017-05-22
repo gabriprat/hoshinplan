@@ -32,10 +32,7 @@ class Subscription < ApplicationRecord
 
   validate :only_one_active_subscription
 
-  after_validation do |s|
-    fail s.errors.to_yaml if !errors.blank?
-  end
-
+  validates :users, numericality: { greater_than_or_equal_to: 10 }
 
   attr_accessible :user, :user_id, :status, :token, :sandbox, :amount_value, :monthly_value,
                   :amount_currency, :plan_name, :company, :company_id, :users, :billing_period
@@ -199,14 +196,14 @@ class SubscriptionPaypal < Subscription
       agreement.cancel(note: "Canceled through Hoshinplan.com by " + acting_user.email_address)
     end
     self.status = 'Canceled'
-    self.save!
+    self.save!(validate: false)
   end
 end
 
 class SubscriptionStripe < Subscription
   def cancel
     self.status = 'Canceled'
-    self.save!
+    self.save!(validate: false)
   end
 
   def charge(full_amount=true, old_remaining_amount=0, remote_ip='')
