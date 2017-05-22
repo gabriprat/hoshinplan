@@ -10,6 +10,31 @@
 <def tag="billing-page">
 <page title="#{t 'checkout.title', :default=>['Checkout'] }" aside-size="4" content-size="8" aside-position="left">
 
+    <prepend-head:>
+    <!-- Begin Inspectlet Embed Code -->
+    <script type="text/javascript" id="inspectletjs">
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 834974118]);
+    __insp.push(['tagSession', {id: '#{User.current_id}'}]);
+    (function () {
+        function ldinsp() {
+            if (typeof window.__inspld != "undefined") return;
+            window.__inspld = 1;
+            var insp = document.createElement('script');
+            insp.type = 'text/javascript';
+            insp.async = true;
+            insp.id = "inspsync";
+            insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(insp, x);
+        };
+        setTimeout(ldinsp, 500);
+        document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+    })();
+    </script>
+    <!-- End Inspectlet Embed Code -->
+    </prepend-head:>
+
     <body: class="checkout"/>
     
     <custom-javascript:>
@@ -119,20 +144,20 @@
             <div class='row'>
                     <div class="card-wrapper"></div>
                     <div class='col-xs-6 col-xs-offset-3'>
-                            <input name="number" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control'/>
+                            <input name="number" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore'/>
                     </div>
             </div>
             <div class="row">
                     <div class='col-xs-6 col-xs-offset-3'>
-                            <input name="name" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control'/>
+                            <input name="name" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control inspectletIgnore'/>
                     </div>
             </div>
             <div class="row">
                     <div class='col-xs-3 col-xs-offset-3'>
-                            <input name="expiry" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control"/>
+                            <input name="expiry" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore"/>
                     </div>
                     <div class='col-xs-3'>
-                            <input name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control"/>
+                            <input name="cvc" value="&params[:cvc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore"/>
                     </div>
             </div>
       </div>
