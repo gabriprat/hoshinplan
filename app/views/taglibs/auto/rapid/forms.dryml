@@ -28,7 +28,7 @@
 <def tag="form" for="BillingDetail">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="company_name, address_line_1, address_line_2, city, state, zip, contact_name, contact_email, vat_number, vies_valid, country, card_brand, card_last4, card_exp_month, card_exp_year, card_stripe_token, company, creator" param/>
+    <field-list fields="company_name, address_line_1, address_line_2, city, state, zip, contact_name, contact_email, vat_number, vies_valid, country, card_name, card_brand, card_last4, card_exp_month, card_exp_year, card_stripe_token, company, creator" param/>
     <div param="actions">
       <submit label="#{ht 'billing_detail.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

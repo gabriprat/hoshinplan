@@ -36,7 +36,7 @@
             });
 
             $("form.payment").on("submit", function(event) {
-                var exp = $("#ccexpiry").val().split("/").map(function (s) { return s.trim() });
+                var exp = $("#expdate").val().split("/").map(function (s) { return s.trim() });
                 $("#calc-total").val(getValue("total-row"));
                 $("#calc-taxes").val(getValue("tax-tpc"));
                 if (exp.length == 2) {

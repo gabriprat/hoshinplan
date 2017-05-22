@@ -1878,7 +1878,7 @@ body .column.feeling {
 
 .slider.noUi-horizontal {
   width: 100%;
-  padding-top: 14px;
+  margin-top: 13px;
 }
 
 .map {
@@ -4176,6 +4176,7 @@ body.tr-hd .navbar.navbar-default {
   line-height: 1.07142857;
   color: inherit;
   font-weight: bold;
+  margin: 0;
 }
 
 .modal-footer input.btn {
@@ -4399,4 +4400,5 @@ textarea.form-control {
   transform: translate(-50%, 0);
   left: 50%;
   bottom: 120%;
+  line-height: 16px;
 }

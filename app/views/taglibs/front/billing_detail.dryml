@@ -150,7 +150,7 @@
             <input type="hidden" name="taxes" id="calc-taxes"/>
             <input name="plan_id" type="hidden" value="&@billing_plan.id" unless="&@billing_plan.nil?"/>
         </form>
-        <div id="cc-container" class="form-horizontal" onkeyup="if (event.which == 13) {$(this).prev('form').submit();}">
+        <form action="/" id="cc-container" class="form-horizontal" onsubmit="$(this).prev('form').submit(); return false;">
             <div class='row card-details form-group'>
                 <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
                 <div class="col-sm-9" style="#{this.card_stripe_token.nil? ? '' : 'display:none;'}">
@@ -199,6 +199,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </def>

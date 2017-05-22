@@ -69,7 +69,7 @@ class BillingDetailsController < ApplicationController
       old_remaining_amount = s.remaining_amount
       old_period = s.billing_period
       new_subscription = s.new_record?
-      #ActiveRecord::Base.transaction do
+      ActiveRecord::Base.transaction do
         begin
           update_stripe_billing_details
           self.this.active_subscription = subscription_params
@@ -87,7 +87,7 @@ class BillingDetailsController < ApplicationController
           log_event("Payment error", {message: _.message})
           raise ActiveRecord::Rollback
         end
-      #end
+      end
     end
   end
 

@@ -590,7 +590,7 @@ es:
     card_number: "Número de la tarjeta"
     mm_yy: MM/YY
     you_will_pay: "Pagarás %{amount} (impuestos incluidos) ahora por la fracción correspondiente hasta la siguiente renovación por el importe completo que será el %{next}."
-    cvc: CVC
+    cvc: CVV
     complete_your_purchase: "Completar tu compra"
     credit: "Acumularás %{amount} de crédito para tus próximos pagos."
     edit_card: "Modificar tarjeta"
