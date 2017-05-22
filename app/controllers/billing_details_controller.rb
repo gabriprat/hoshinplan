@@ -69,7 +69,7 @@ class BillingDetailsController < ApplicationController
       old_remaining_amount = s.remaining_amount
       old_period = s.billing_period
       new_subscription = s.new_record?
-      ActiveRecord::Base.transaction do
+      #ActiveRecord::Base.transaction do
         begin
           update_stripe_billing_details
           self.this.active_subscription = subscription_params
@@ -87,7 +87,7 @@ class BillingDetailsController < ApplicationController
           log_event("Payment error", {message: _.message})
           raise ActiveRecord::Rollback
         end
-      end
+      #end
     end
   end
 
@@ -95,38 +95,23 @@ class BillingDetailsController < ApplicationController
     if @this.stripe_client_id.nil?
       customer = Stripe::Customer.create(
           :description => current_user.name,
-          :source => params[:stripeToken],
+          :source => @this.card_stripe_token,
           :email => @this.contact_email
       )
-      @this.stripe_client_id = customer.id
-      @this.save
     else
       customer = Stripe::Customer.retrieve(@this.stripe_client_id)
+      if params[:billing_detail]._?[:card_stripe_token].present?
+        customer.source = params[:billing_detail][:card_stripe_token]
+        customer.save
+      end
     end
-    if params[:number].present? && params[:expiry].present? && params[:name].present? && params[:cvc].present?
-      exp_month,exp_year = params[:expiry].split("/").map {|v| v.strip}
-
-      card = customer.sources.create({source: {
-          object: 'card',
-          exp_month: exp_month,
-          exp_year: exp_year,
-          number: params[:number].gsub(' ', ''),
-          cvc: params[:cvc],
-          name: params[:name],
-          address_city: @this.city,
-          address_country: @this.country,
-          address_line1: @this.address_line_1,
-          address_line2: @this.address_line_2,
-          address_state: @this.state,
-          address_zip: @this.zip
-      }})
-      @this.card_brand = card.brand
-      @this.card_last4 = card.last4
-      @this.card_exp_month = card.exp_month
-      @this.card_exp_year = card.exp_year
-      @this.card_stripe_token = card.id
-      @this.save
-    end
+    @this.stripe_client_id = customer.id
+    @this.card_brand = customer.sources.data[0].brand
+    @this.card_last4 = customer.sources.data[0].last4
+    @this.card_exp_month = customer.sources.data[0].exp_month
+    @this.card_exp_year = customer.sources.data[0].exp_year
+    @this.card_stripe_token = customer.sources.data[0].id
+    @this.save
   end
 
   def charge(old_remaining_amount=0, old_period=nil)

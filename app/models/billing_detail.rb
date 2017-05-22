@@ -20,6 +20,7 @@ class BillingDetail < ApplicationRecord
     country HoboFields::Types::Country, :required
     stripe_client_id :string
     sage_one_contact_id :string
+    card_name :string
     card_brand :string
     card_last4 :string
     card_exp_month :integer
@@ -32,7 +33,7 @@ class BillingDetail < ApplicationRecord
   index [:company_id], :unique => true
   
   attr_accessible :company_name, :contact_name, :contact_email, :address_line_1, :address_line_2, :city, :state, :zip, :country,
-    :vat_number, :stripe_client_id, :card_brand, :card_last4, :card_exp_month, :card_exp_year, :card_stripe_token, :plan_name, 
+    :vat_number, :stripe_client_id, :card_brand, :card_name, :card_last4, :card_exp_month, :card_exp_year, :card_stripe_token, :plan_name,
     :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid, :sage_one_contact_id
     
   validates :company_id, :presence => true, :uniqueness => true

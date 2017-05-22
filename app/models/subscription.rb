@@ -122,11 +122,11 @@ class Subscription < ApplicationRecord
   end
 
   def period_start_at
-    last_payment_at.nil? ? next_payment_at : last_payment_at
+    last_payment_at.nil? ? Date.today : last_payment_at
   end
 
   def period_ends_at
-    last_payment_at.nil? ? compute_next_payment_at : next_payment_at
+    next_payment_at
   end
 
   def total_days
@@ -212,9 +212,10 @@ class SubscriptionStripe < Subscription
   def charge(full_amount=true, old_remaining_amount=0, remote_ip='')
     c = Company.unscoped.find(company_id)
     b = BillingDetail.unscoped.find(billing_detail_id)
-    if pay_now(full_amount, old_remaining_amount) > 0
+    pay_now_ammount = pay_now(full_amount, old_remaining_amount)
+    if pay_now_ammount > 0
       order = Stripe::Charge.create(
-          amount: (pay_now * 100).round.to_i,
+          amount: (pay_now_ammount * 100).round.to_i,
           currency: amount_currency,
           customer: b.stripe_client_id,
           description: billing_description

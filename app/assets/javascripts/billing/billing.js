@@ -3,7 +3,7 @@
     var methods = {
         init: function() {
             var card = new Card({
-                form: '.payment', // *required*
+                form: '#form-payment-container', // *required*
                 // a selector or DOM element for the container
                 // where you want the card to appear
                 container: '.card-wrapper', // *required*
@@ -28,9 +28,26 @@
                 debug: false // optional - default false
             });
 
-            $("form.payment").on("submit", function() {
+            $("form.payment").on("submit", function(event) {
+                var exp = $("#ccexpiry").val().split("/").map(function (s) { return s.trim() });
                 $("#calc-total").val(getValue("total-row"));
                 $("#calc-taxes").val(getValue("tax-tpc"));
+                if (exp.length == 2) {
+                    event.preventDefault();
+                    Stripe.card.createToken({
+                        name: $('#ccname').val(),
+                        number: $('#ccnumber').val(),
+                        cvc: $('#cccvc').val(),
+                        exp_month: exp[0],
+                        exp_year: exp[1],
+                        address_line1: $('.billing-detail-address-line-1').val(),
+                        address_line2: $('.billing-detail-address-line-2').val(),
+                        address_state: $('.billing-detail-state').val(),
+                        address_zip: $('.billing-detail-zip').val(),
+                        address_city: $('.billing-detail-city').val(),
+                        address_country: $('.billing-detail-country').val()
+                    }, stripeResponseHandler);
+                }
             });
 
             $("#billing_detail_country").on("change", function(event, value) {
@@ -153,6 +170,48 @@
     
     function getSelector(name) {
             return "#bill-" + name + "-value";
+    }
+
+    function stripeResponseHandler(status, response) {
+
+        // Grab the form:
+        var $form = $('form.payment');
+
+        if (response.error) { // Problem!
+            // Show the errors on the form
+            if (response.error.param){
+                var errorField = response.error.param.indexOf("exp_") == 0 ? 'expiry' : response.error.param;
+                errorField =  $('#cc' + errorField);
+                if (errorField.length == 1) {
+                    errorField.closest(".form-group").addClass("has-error is-focused");
+                    errorField.focus();
+                } else {
+                    $('.card-details .form-group').addClass("has-error is-focused");
+                    $('.card-details .form-group input:first').focus();
+                }
+            }
+            $form.find('.payment-errors').text(response.error.message);
+            $form.find('button').prop('disabled', false); // Re-enable submission
+
+        } else { // Token was created!
+
+            // Get the token ID:
+            var token = response.id;
+
+            // Insert the token into the form so it gets submitted to the server:
+            $form.append($('<input type="hidden" name="billing_detail[card_stripe_token]" />').val(token));
+
+            // Insert card details
+            $form.append($('<input type="hidden" name="billing_detail[card_name]" />').val(response.card.name));
+            $form.append($('<input type="hidden" name="billing_detail[card_brand]" />').val(response.card.brand));
+            $form.append($('<input type="hidden" name="billing_detail[card_last4]" />').val(response.card.last4));
+            $form.append($('<input type="hidden" name="billing_detail[card_exp_month]" />').val(response.card.exp_month));
+            $form.append($('<input type="hidden" name="billing_detail[card_exp_year]" />').val(response.card.exp_year));
+
+            // Submit the form:
+            $form.get(0).submit();
+
+        }
     }
 
     $.billing = function( method ) {

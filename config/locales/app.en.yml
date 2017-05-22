@@ -593,6 +593,7 @@ en:
     cvc: CVC
     complete_your_purchase: "Complete your purchase"
     credit: "You will save %{amount} as credit for your next payments."
+    edit_card: "Edit card"
   stripe:
     purchase: Subscribe
     panelLabel: "Pay {{amount}}/%{frequency}"

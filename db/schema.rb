@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507181655) do
+ActiveRecord::Schema.define(version: 20170522113714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170507181655) do
     t.datetime "deleted_at"
     t.boolean  "vies_valid",          default: false
     t.string   "sage_one_contact_id"
+    t.string   "card_name"
   end
 
   add_index "billing_details", ["company_id"], name: "index_billing_details_on_company_id", unique: true, using: :btree
