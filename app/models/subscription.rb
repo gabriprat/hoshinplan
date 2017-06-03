@@ -42,6 +42,8 @@ class Subscription < ApplicationRecord
   belongs_to :billing_detail, :inverse_of => :subscriptions
   belongs_to :billing_plan, :inverse_of => :subscriptions
 
+  has_many :invoices, :inverse_of => :subscription
+
   after_save :update_counter_cache
   after_destroy :update_counter_cache
   after_create :update_counter_cache
@@ -133,7 +135,7 @@ class Subscription < ApplicationRecord
     else
       start = last_payment_at
     end
-    (next_payment_at.to_date - start).to_i
+    (next_payment_at.to_date - start.to_date).to_i
   end
 
   def remaining_days
@@ -219,6 +221,13 @@ class SubscriptionStripe < Subscription
       )
       c.credit = 0
       c.save
+      i = invoices.create
+      i.total_amount = pay_now_amount
+      i.description = billing_description
+      i.tax_tpc = b.tax_tpc
+      i.net_amount = pay_now_amount / (1.0 + b.tax_tpc.to_f/100.0)
+      i.save
+
       Mp.track_charge(user, remote_ip, pay_now)
     else
       c.credit = -pay_now_amount

@@ -311,6 +311,14 @@
   </card>
 </def>
 
+<def tag="card" for="Invoice">
+  <card class="invoice" param="default" merge>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Log">
   <card class="log" param="default" merge>
     <header: param>

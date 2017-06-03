@@ -53,8 +53,8 @@ class SageOne < ActiveRecord::Base
       api_call = RestClient.method(request_method)
       response = put_or_post?(request_method) ? api_call.call(url, payload, header) : api_call.call(url, header)
       request_method == "delete" ? response : JSON.parse(response.to_s)
-    rescue => e
-      raise IOError, e.response.to_s
+    rescue
+      raise IOError, "#{$!}: #{$!.response}", $!.backtrace
     end
   end
 
@@ -68,8 +68,8 @@ class SageOne < ActiveRecord::Base
   end
 
 
-  def create_sales_invoice(subscription, amount)
-    billing_detail = subscription.billing_detail
+  def self.create_sales_invoice(invoice)
+    billing_detail = invoice.subscription.billing_detail
     response = SageOne.call_api(
         "post",
         "accounts/v3/sales_invoices",
@@ -77,21 +77,23 @@ class SageOne < ActiveRecord::Base
             {
                 sales_invoice: {
                     contact_id: billing_detail.sage_one_contact_id,
-                    date: Date.today,
-                    due_date: Date.today,
+                    date: invoice.created_at.to_date,
+                    due_date: invoice.created_at.to_date,
+                    reference: "INV#{invoice.id.to_s.rjust(5, '0')}",
                     main_address: {
                         address_line_1: billing_detail.address_line_1,
-                        city: billing_detail.address_line_1,
+                        address_line_2: billing_detail.address_line_2,
+                        city: billing_detail.city,
                         region: billing_detail.state,
                         postal_code: billing_detail.zip,
                         country_id: billing_detail.country
                     },
                     invoice_lines: [
                         {
-                            description: subscription.billing_description,
-                            ledger_account_id: 'eb76db49279511e7bb3b065b8ec10ed1', #Ventas de mercaderías (70000000)
+                            description: invoice.description,
+                            ledger_account_id: '2ce906040ffc11e7bb3b065b8ec10ed1', #Ventas de mercaderías (70000000)
                             quantity: 1,
-                            unit_price: amount,
+                            unit_price: invoice.net_amount,
                             discount_amount: 0,
                             tax_rate_id: billing_detail.country == 'ES' ? 'ES_STANDARD' : 'ES_NO_TAX' #EX_EXCEMPT, ES_LOWER_1, ES_LOWER_2
                         }
@@ -100,6 +102,96 @@ class SageOne < ActiveRecord::Base
             }
         )
     )
+  end
+
+  def self.contacts(page=1, items_per_page=20, search=nil, email=nil)
+    endpoint = "accounts/v3/contacts?page=#{page}&items_per_page=#{items_per_page}"
+    endpoint += "&search=#{search}" if search
+    endpoint += "&email=#{email}" if email
+    response = SageOne.call_api(
+        "get",
+        endpoint)
+  end
+
+
+  def self.contact(id)
+    response = SageOne.call_api(
+        "get",
+        "accounts/v3/contacts/#{id}")
+  end
+
+  def self.ledger_accounts(page=1, items_per_page=20)
+    response = SageOne.call_api(
+        "get",
+        "accounts/v3/ledger_accounts?page=#{page}&items_per_page=#{items_per_page}")
+  end
+
+  def self.tax_rates(page=1, items_per_page=20)
+    response = SageOne.call_api(
+        "get",
+        "accounts/v3/tax_rates?page=#{page}&items_per_page=#{items_per_page}")
+  end
+
+  def self.create_invoices
+    company_ids = User.current_user.all_companies.map {|c| c.id}
+    subscriptions = Subscription.includes(:billing_plan).where(company_id: company_ids, status: 'Active').references(:billing_plan)
+    invoices = Invoice.where(sage_one_invoice_id: nil, subscription_id: subscriptions.map {|s| s.id})
+    invoices.each {|invoice|
+      create_sales_invoice(invoice)
+    }
+  end
+
+  def self.create_contact
+    bd = BillingDetail.find_by(creator_id: User.current_id)
+    response = SageOne.call_api(
+        "post",
+        "accounts/v3/contacts",
+        JSON.generate(
+            {
+                contact: {
+                    contact_type_ids: [
+                        'CUSTOMER'
+                    ],
+                    product_sales_price_type_id: '2cf1d2fa0ffc11e7bb3b065b8ec10ed1', #Precio de venta
+                    name: bd.company_name,
+                    reference: "HP-#{bd.id}",
+                    default_sales_ledger_account_id: '2ce906040ffc11e7bb3b065b8ec10ed1', #Ventas de mercaderías (70000000)
+                    default_purchase_ledger_account_id: '2ce8db5c0ffc11e7bb3b065b8ec10ed1', #Compras de mercaderías (60000000)
+                    tax_number: bd.country + bd.vat_number,
+                    credit_terms_and_conditions: '',
+                    currency_id: 'EUR',
+                    main_address: {
+                        name: 'Default',
+                        address_line_1: bd.address_line_1,
+                        address_line_2: bd.address_line_2,
+                        city: bd.city,
+                        region: bd.state,
+                        postal_code: bd.zip,
+                        country_id: bd.country,
+                    },
+                    main_contact_person: {
+                        name: bd.contact_name,
+                        email: bd.contact_email
+                    },
+                }
+            }
+        )
+    )
+    bd.sage_one_contact_id = response['id']
+    bd.save!
+    response
+  end
+
+  def self.sales_invoices(page=1, items_per_page=20)
+    call_api(
+        "get",
+        "accounts/v3/sales_invoices?page=#{page}&items_per_page=#{items_per_page}")
+  end
+
+  def self.sales_invoice(id)
+    call_api(
+        "get",
+        "accounts/v3/sales_invoices/#{id}")
   end
 
   # --- Permissions --- #

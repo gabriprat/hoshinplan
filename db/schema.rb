@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522113714) do
+ActiveRecord::Schema.define(version: 20170603165429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -394,6 +394,19 @@ ActiveRecord::Schema.define(version: 20170522113714) do
     t.date     "start_at",   null: false
     t.date     "end_at",     null: false
   end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string   "sage_one_invoice_id"
+    t.string   "description"
+    t.decimal  "total_amount",        precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "subscription_id"
+    t.decimal  "net_amount",          precision: 8, scale: 2
+    t.decimal  "tax_tpc",             precision: 8, scale: 2
+  end
+
+  add_index "invoices", ["subscription_id"], name: "index_invoices_on_subscription_id", using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.string   "title"

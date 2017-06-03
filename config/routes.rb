@@ -137,10 +137,6 @@ Hoshinplan::Application.routes.draw do
 
   post "/faye/auth" => "faye_auth#faye_auth", :as => 'faye_auth'
 
-  get "/sage_one/auth" => "sage_one#auth"
-
-  get "/sage_one/callback" => "sage_one#callback"
-
   get "/hoshins/:id/charts/:area" => "hoshins#charts"
 
   SamlDynamicRouter.load unless Rails.env.development?
@@ -148,6 +144,17 @@ Hoshinplan::Application.routes.draw do
   constraints IsAdministrator do
     mount Flipper::UI.app($flipper) => '/admin/flipper'
     mount Resque::Server.new, :at => "/admin/resque"
+
+    get "/sage_one/auth" => "sage_one#auth"
+    get "/sage_one/callback" => "sage_one#callback"
+    get "/sage_one/sales_invoices" => "sage_one#sales_invoices"
+    get "/sage_one/sales_invoices/:id" => "sage_one#sales_invoice"
+    get "/sage_one/contacts" => "sage_one#contacts"
+    get "/sage_one/contacts/:id" => "sage_one#contact"
+    get "/sage_one/create_contact" => "sage_one#create_contact"
+    get "/sage_one/create_invoices" => "sage_one#create_invoices"
+    get "/sage_one/ledger_accounts" => "sage_one#ledger_accounts"
+    get "/sage_one/tax_rates" => "sage_one#tax_rates"
   end
   
   # The priority is based upon order of creation:

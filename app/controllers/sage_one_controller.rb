@@ -13,4 +13,35 @@ class SageOneController < ApplicationController
     render text: 'OK!'
   end
 
+  def sales_invoices
+    render json: SageOne.sales_invoices(params[:page], params[:items_per_page])
+  end
+
+  def sales_invoice
+    render json: SageOne.sales_invoice(params[:id])
+  end
+
+  def contacts
+    render json: SageOne.contacts(params[:page], params[:items_per_page], params[:search], params[:email])
+  end
+
+  def contact
+    render json: SageOne.contact(params[:id])
+  end
+
+  def create_contact
+    render json: SageOne.create_contact
+  end
+
+  def create_invoices
+    render json: SageOne.create_invoices
+  end
+
+  def ledger_accounts
+    render json: SageOne.ledger_accounts(params[:page], params[:items_per_page])
+  end
+
+  def tax_rates
+    render json: SageOne.tax_rates(params[:page], params[:items_per_page])
+  end
 end
