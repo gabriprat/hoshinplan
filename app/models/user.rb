@@ -371,7 +371,7 @@ class User < ApplicationRecord
 
   def self.current_user
     ret = RequestStore.store[:user]
-    if (ret.nil? && !self.current_id.nil?)
+    if ret.nil? && !self.current_id.nil? && self.current_id > 0
       ret = User.find(self.current_id)
       User.current_user = ret
     end

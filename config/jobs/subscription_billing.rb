@@ -10,7 +10,7 @@ module Jobs
         User.current_id = -1
         ret += Jobs::say "Initiating subscription billing job (at #{hour})!" + "\n"
         subscriptions = SubscriptionStripe.unscoped
-                            .where("status = 'Active' and next_payment_at = date_trunc('day',now())")
+                            .where("status = 'Active' and next_payment_at <= date_trunc('day',now())")
 
         subscriptions.each {|s|
           begin
