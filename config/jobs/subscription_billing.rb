@@ -10,24 +10,24 @@ module Jobs
         User.current_id = -1
         ret += Jobs::say "Initiating subscription billing job (at #{hour})!" + "\n"
         subscriptions = SubscriptionStripe.unscoped
-                            .where("status = 'Active' and next_payment_at <= date_trunc('day',now())")
+                            .where("status = 'Active' and next_payment_at <= date_trunc('day',now()) and payment_error is null and paying_at is null")
 
         subscriptions.each {|s|
           begin
             s.next_payment_at = s.compute_next_payment_at
             s.paying_at = Time.now
-            s.save
-            Jobs::say "Initiating a charge to company=#{s.company_id}" + "\n"
+            s.save(false)
+            ret += Jobs::say "Initiating a charge to company=#{s.company_id}" + "\n"
             amount = s.charge
-            Jobs::say "Charge done (#{s.amount_currency}#{amount})" + "\n"
+            ret += Jobs::say "Charge done (#{s.amount_currency}#{amount})" + "\n"
             s.paying_at=nil
             s.last_payment_at = Time.now
-            s.save
-            Jobs::say "Subscription updated" + "\n"
+            s.save(false)
+            ret += Jobs::say "Subscription updated" + "\n"
           rescue => e
             text = "Payment error for subscription #{s.id}!" + e.message + e.backtrace.join("\n")
             UserCompanyMailer.admin_payment_error(s, text).deliver_later
-            Jobs::say "==== Error processing charge!!! #{e.message}" + "\n"
+            ret += Jobs::say "==== Error processing charge!!! #{e.message}" + "\n"
             s.payment_error = e.message.to_s + " ==== " + e.backtrace.to_s
             s.save
           end
