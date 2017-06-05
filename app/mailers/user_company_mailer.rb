@@ -212,8 +212,11 @@ class UserCompanyMailer < ActionMailer::Base
     mail(:subject => "Payment error for subscription #{subscription.id}!",
          :to => User.administrator.pluck(:email_address),
          :from => "Hoshinplan Jobs <no-reply@hoshinplan.com>") do |format|
+      format.html {
+        render html: "<pre>#{text}</pre>".html_safe
+      }
       format.text {
-        render text: text
+        render plain: text.gsub('\t', '    ')
       }
     end
   end

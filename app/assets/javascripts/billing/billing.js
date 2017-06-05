@@ -105,6 +105,9 @@
             methods.calcPrice();
         },
         calcTaxes: function() {
+            if ($("#billing_detail_country").length == 0) {
+                return;
+            }
             var taxes = $("#billing_detail_country").val().length > 0 ? $("#billing_detail_country").find("option[value=" + $("#billing_detail_country").val() + "]").data("taxes") : 0;
             var validVatNumber = $("#billing_detail_vat_number").data("valid");
             if (validVatNumber && $("#billing_detail_country").val() != "ES") {
@@ -134,6 +137,9 @@
             var remaining_days = next.diff(moment().startOf('day'), 'days');
             var total_days = next.diff(last, 'days');
             if (total_days == 366) total_days = 365;
+            if (remaining_days < 0) {
+                remaining_days = total_days;
+            }
             var subscription_remaining = $("#subscription-prorate").data("remaining");
             var pay_now = rowTotal * remaining_days / total_days;
             var credit = $("#subscription-prorate").data("credit");

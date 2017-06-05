@@ -1,5 +1,6 @@
 ---
 en:
+  here: "here"
   error_message: "Oh, no! There has been an error, we will work to fix it immediately. Please try again."
   trial_days_left: "Days left on trial:"
   cookie_msg_link:
@@ -140,6 +141,8 @@ en:
     invalid_credit_card: "The credit card details were invalid. Pleas check them and try again."
     invitation_code_does_not_exist: "The provided invitation code was not valid."
     invalid_subscription: "Error validating the subscription."
+    payment_error_html: "There was an error while processing last payment, please update your payment details below."
+    payment_error_here_html: "There was an error while processing last payment, please update your payment details %{link}."
   hobo:
     actions:
       submit: Submit
@@ -289,6 +292,9 @@ en:
       task_tags:
         one: Tag
         other: Tags
+      subscription:
+        one: Subscription
+        other: Subscriptions
     attributes:
       user:
         name: Name
@@ -580,6 +586,12 @@ en:
     includes: "%{name} includes"
     billed_annually: "per user per month billed annually"
     billed_monthly: "%{amount} per user billed monthly"
+    your_plan: "Your %{name} plan"
+    includes_up_to: "Includes up to %{num} %{users}"
+    for: "for %{amount}/%{period}"
+    next_payment_will_be: "next payment will be at %{next_payment_at}"
+    payment_methods: "Payment methods"
+    change_card: "Change card"
   billing_details:
     plan: "%{name} plan"
     concept: Concept

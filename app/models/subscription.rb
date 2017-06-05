@@ -56,6 +56,12 @@ class Subscription < ApplicationRecord
 
   }
 
+  before_destroy do |s|
+    s.status = 'Canceled'
+    s.deleted_by = User.current_user.email_address
+    s.save!(validate: false)
+  end
+
   before_save do |s|
     if s.status_changed? && s.status == 'Canceled'
       s.deleted_by = User.current_user.email_address
@@ -140,7 +146,8 @@ class Subscription < ApplicationRecord
 
   def remaining_days
     return 0 if self.new_record?
-    (next_payment_at.to_date - Date.today).to_i
+    ret = (next_payment_at.to_date - Date.today).to_i
+    ret < 0 ? total_days : ret
   end
 
   def pay_now(full_amount=true, old_remaining_amount=0)
@@ -233,7 +240,7 @@ class SubscriptionStripe < Subscription
       c.credit = -pay_now_amount
       c.save
     end
-    pay_now
+    pay_now_amount
   end
 end
 

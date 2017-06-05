@@ -119,7 +119,33 @@
     </aside-column:>
     
     <content-body:>
+        <div class="paper" param="outer">
             <form class="payment" owner="&'company' if params[:action] == 'new_for_company'"/>
+            <form action="/" id="cc-container" class="form-horizontal" onsubmit="$(this).prev('form').submit(); return false;">
+                <div class='row card-details form-group'>
+                    <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
+                    <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? '' : 'display:none;'}">
+                        <credit-card-form-fields />
+                    </div>
+                    <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? 'display:none' : ''}">
+                        <div class="input-group">
+                            <input:card_last4 name="last4" value="#{this.card_brand}: •••• #{this.card_last4}" disabled class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="$(this).closest('.col-sm-9').toggle();$(this).closest('.col-sm-9').prev().toggle();"><t key="billing_details.edit_card" /></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="complete-purchase">
+                        <submit class="btn-raised btn-lg" label="#{t 'billing_details.complete_your_purchase'}" onclick="$('form.payment').submit()" param/>
+                        <div class="powered-stripe">
+                            <span class="ic-powered-stripe"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </content-body:>
     
     <aside:/>
@@ -129,10 +155,11 @@
 
 
 <def tag="form" for="BillingDetail">
-    <div class="paper">
-        <form merge param="default">
-            <error-messages param/>
-            <input type="submit" class="hide"/>
+    <form merge param="default">
+        <error-messages param/>
+        <input type="submit" class="hide"/>
+        <input type="hidden" name="r" value="#{params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/,'')}" />
+        <do param="number-of-users">
             <h3><t key="billing_details.number_of_users"/></h3>
             <% users_param = params[:billing_detail][:active_subscription][:users] if params[:billing_detail] && params[:billing_detail][:active_subscription] %>
             <slider:active_subscription.users value="#{users_param || this.active_subscription._?.users || 10}" id="users" min="10" max="200" style="width: 100%" tooltip="always"/>
@@ -142,6 +169,8 @@
                annual_price = (params[:billing_detail][:active_subscription][:amount_value] if params[:billing_detail] && params[:billing_detail][:active_subscription]) || this.active_subscription._?.amount_value || @billing_plan._?.amount_value
              %>
             <btn-radio-group:active_subscription.billing_period selected-option="#{period_param || 'monthly'}" data-monthly-price="#{monthly_price}" data-annual-price="#{annual_price}"/>
+        </do>
+        <do param="billing-details">
             <h3><t key="billing_details.billing_details"/></h3>
             <field-list fields="company_name, contact_name, contact_email, address_line_1, address_line_2, city, state, zip, country, vat_number" param>
                 <vat-number-view: replace><input class="form-control" autocomplete="vat-number"/></vat-number-view:>
@@ -149,56 +178,36 @@
             <input type="hidden" name="total" id="calc-total"/>
             <input type="hidden" name="taxes" id="calc-taxes"/>
             <input name="plan_id" type="hidden" value="&@billing_plan.id" unless="&@billing_plan.nil?"/>
-        </form>
-        <form action="/" id="cc-container" class="form-horizontal" onsubmit="$(this).prev('form').submit(); return false;">
-            <div class='row card-details form-group'>
-                <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
-                <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? '' : 'display:none;'}">
-                    <div class='row form-group'>
-                            <div class="card-wrapper"></div>
-                            <div class='col-xs-6 col-xs-offset-3'>
-                                    <label for="ccnumber" class="hide"><t key='billing_details.card_number'/></label>
-                                    <input id="ccnumber" name="ccnumber" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore' autocomplete="cc-number"/>
-                            </div>
-                    </div>
-                    <div class="row form-group">
-                            <div class='col-xs-6 col-xs-offset-3'>
-                                    <label for="ccname" class="hide"><t key='billing_details.full_name'/></label>
-                                    <input id="ccname" name="ccname" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control inspectletIgnore' autocomplete="cc-name"/>
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class='col-xs-3 col-xs-offset-3'>
-                                    <div class="form-group" style="margin: auto">
-                                        <label for="expdate" class="hide"><t key='billing_details.mm_yy'/></label>
-                                        <input id="expdate" name="expdate" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore" autocomplete="cc-exp"/>
-                                    </div>
-                            </div>
-                            <div class='col-xs-3'>
-                                <div class="form-group" style="margin: auto">
-                                    <label for="cc-csc" class="hide"><t key='billing_details.cvc'/></label>
-                                    <input id="cc-csc" name="cc-csc" value="&params[:cc_csc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? 'display:none' : ''}">
-                    <div class="input-group">
-                        <input:card_last4 name="last4" value="#{this.card_brand}: •••• #{this.card_last4}" disabled class="form-control" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" onclick="$(this).closest('.col-sm-9').toggle();$(this).closest('.col-sm-9').prev().toggle();"><t key="billing_details.edit_card" /></button>
-                        </span>
-                    </div>
-                </div>
+        </do>
+    </form>
+</def>
+
+<def tag="credit-card-form-fields">
+    <div class='row form-group'>
+        <div class="card-wrapper"></div>
+        <div class='col-xs-6 col-xs-offset-3'>
+            <label for="ccnumber" class="hide"><t key='billing_details.card_number'/></label>
+            <input id="ccnumber" name="ccnumber" value="&params[:number]" type="text" maxlength="20" placeholder="#{t 'billing_details.card_number'}" class='form-control inspectletIgnore' autocomplete="cc-number"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class='col-xs-6 col-xs-offset-3'>
+            <label for="ccname" class="hide"><t key='billing_details.full_name'/></label>
+            <input id="ccname" name="ccname" value="&params[:name]" type="text" placeholder="#{t 'billing_details.full_name'}" class='form-control inspectletIgnore' autocomplete="cc-name"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-xs-3 col-xs-offset-3'>
+            <div class="form-group" style="margin: auto">
+                <label for="expdate" class="hide"><t key='billing_details.mm_yy'/></label>
+                <input id="expdate" name="expdate" value="&params[:expiry]" type="text" placeholder="#{t 'billing_details.mm_yy'}" maxlength="7" class="form-control inspectletIgnore" autocomplete="cc-exp"/>
             </div>
-            <div class="row">
-                <div class="complete-purchase">
-                    <submit class="btn-raised btn-lg" label="#{t 'billing_details.complete_your_purchase'}" onclick="$('form.payment').submit()" param/>
-                    <div class="powered-stripe">
-                        <span class="ic-powered-stripe"></span>
-                    </div>
-                </div>
+        </div>
+        <div class='col-xs-3'>
+            <div class="form-group" style="margin: auto">
+                <label for="cc-csc" class="hide"><t key='billing_details.cvc'/></label>
+                <input id="cc-csc" name="cc-csc" value="&params[:cc_csc]" type="text" placeholder="#{t 'billing_details.cvc'}" maxlength="4" class="form-control inspectletIgnore" autocomplete="cc-csc"/>
             </div>
-        </form>
+        </div>
     </div>
 </def>

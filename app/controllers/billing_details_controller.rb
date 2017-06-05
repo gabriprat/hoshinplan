@@ -44,6 +44,10 @@ class BillingDetailsController < ApplicationController
 
   def update
     @this = find_instance
+    if @this.company.payment_error && params[:billing_detail] && params[:billing_detail][:card_stripe_token]
+      @this.company.payment_error = nil
+      @this.company.save!(validate: false)
+    end
     subscription_params = params[:billing_detail][:active_subscription]
     params[:billing_detail].delete(:active_subscription)
     if params[:plan_id]
@@ -56,11 +60,15 @@ class BillingDetailsController < ApplicationController
       })
     end
     hobo_update do
-      _update_subscription(subscription_params)
+      if subscription_params
+        _update_subscription(subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/,''))
+      else
+        redirect_to params[:page_path] if valid?
+      end
     end
   end
 
-  def _update_subscription(subscription_params)
+  def _update_subscription(subscription_params, redirect_uri=nil)
     if valid?
       self.this.save
       s = self.this.active_subscription
@@ -73,13 +81,21 @@ class BillingDetailsController < ApplicationController
           self.this.active_subscription = subscription_params
           self.this.active_subscription.save! # using save! to raise validation errors
           amount = charge(old_remaining_amount, old_period)
+          if amount > 0 && self.this.company.payment_error
+            self.this.company.payment_error = nil
+            self.this.company.save!(validate: false)
+          end
           s = self.this.active_subscription
           if (new_subscription)
             log_event("Create subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: @billing_plan.name, plan_id: @billing_plan.id})
           else
             log_event("Update subscription", {users: s.users, period: s.billing_period, charged_amount: amount, total_amount: s.total_amount, plan_name: s.plan_name, plan_id: s.billing_plan_id})
           end
-          redirect_to this.company, action: :collaborators
+          if redirect_uri.present?
+            redirect_to redirect_uri
+          else
+            redirect_to this.company, action: :collaborators
+          end
         rescue Stripe::CardError => _
           flash.now[:error] = I18n.t('errors.invalid_credit_card')
           update_response(false)

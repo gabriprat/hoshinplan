@@ -11,6 +11,7 @@ class Company < ApplicationRecord
     hoshins_count :integer, :default => 0, :null => false
     unlimited :boolean, :default => false, :null => false
     subscriptions_count :integer, :default => 0, :null => false
+    payment_error :boolean
     credit :decimal, precision: 8, scale: 2, default: 0
     trial_ends_at   :date
     timestamps

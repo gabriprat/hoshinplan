@@ -1,18 +1,98 @@
 <extend tag="index-for-user-page" for="Subscription">
 	<old-index-for-user-page merge>
-		<collection: replace>
-			<table-plus fields="company, plan_name, next_payment_at, total_amount">
-			       <plan-name-view:>
-			            #{this} <t key="pricing_plans.#{this_parent.billing_period}"/>
-			            (#{this_parent.users} <%= User.model_name.human(count:this_parent.users).downcase %>)
-			       </plan-name-view:>
-			       <total-amount-view:>
-			         <%= number_to_currency(this, unit: get_unit(this_parent.amount_currency)) %>
-			       </total-amount-view:>
-			       <controls: >
-			       	<delete-button label="#{t 'payments.index.cancel_subscription'}"/>
-			       </controls:>
-			   </table-plus>
-		</collection:>
+	    <prepend-head:>
+            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+            <script type="text/javascript">
+                Stripe.setPublishableKey('#{Rails.configuration.stripe[:publishable_key]}');
+            </script>
+        </prepend-head:>
+	    <custom-javascript:>
+                getScript('<%= asset_path('billing.js')%>', function() { $.billing(); });
+        </custom-javascript:>
+	    <append-stylesheets:>
+	        <stylesheet name='card/card' param='app-stylesheet'/>
+	    </append-stylesheets:>
+	    <collection: class="subscription" />
 	</old-index-for-user-page>
 </extend>
+
+
+<def tag="card" for="SubscriptionStripe">
+  <card class="subscription" param="default" merge>
+    <header: param>
+      <h4 param="heading"><ht key="company.show.heading" name="#{this.company.name}" /></h4>
+    </header:>
+    <body:>
+        <div class="subscription-details">
+            <div class="plan-details">
+                <h5><t key="pricing_plans.your_plan" name="#{this.plan_name}" /></h5>
+                <div class="credit-card-item">
+                    <div class="credit-card-item__row">
+                        <h6>
+                            <t key="pricing_plans.includes_up_to" num="#{this.users}" users="#{User.model_name.human(count:this.users).downcase}" />
+                        </h6>
+                        <em>
+                            <t key="pricing_plans.for" amount="#{number_to_currency(this.total_amount, unit: get_unit(this.amount_currency))}" period="&t('pricing_plans.' + this.billing_period)" />
+                        </em>
+                        <p><t key="pricing_plans.next_payment_will_be" next-payment-at="#{this.next_payment_at}" /></p>
+                    </div>
+                    <div class="credit-card-item__row">
+                        <div class="credit-card-item__change-card">
+                          <a:billing_detail action="edit" if="&can_edit?" params="&{r: request.path}" param="edit-link">
+                            <ht key="subscription.actions.edit" name="#{name(:no_wrapper => true)}" />
+                          </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-details">
+                <h5><t key="pricing_plans.payment_methods"/></h5>
+                <div class="credit-card-item">
+                    <div class="credit-card-item__row">
+                        <%
+                           card_img = ['americanexpress','diners','discover','maestro','mastercard','visa'].include?(this.billing_detail.card_brand.gsub(/ /,'').downcase) ? this.billing_detail.card_brand.gsub(/ /,'').downcase : 'card'
+                        %>
+                        <image witdh="48" height="30" src="cards/#{card_img}.svg" />
+                        <div class="credit-card-item__number">•••• •••• •••• #{this.billing_detail.card_last4}</div>
+                    </div>
+                    <div class="credit-card-item__row">
+                        <div class="credit-card-item__expiration">
+                            <span>Expiration</span>
+                            <p>#{this.billing_detail.card_exp_month}/#{this.billing_detail.card_exp_year.to_s.last 2}</p>
+                        </div>
+                    </div>
+                    <div class="credit-card-item__row">
+                        <div class="credit-card-item__change-card">
+                            <a data-toggle="modal" href="#update-cc" role="button">
+                                <t key="pricing_plans.change_card" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <modal id="update-cc">
+                    <modal:>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form with="&this.billing_detail" class="payment">
+                                    <field-list: fields="" />
+                                    <number-of-users: replace />
+                                    <billing-details: replace />
+                                </form>
+                                <form action="/" id="cc-container" onsubmit="$(this).prev('form').submit(); return false;">
+                                    <div class="modal-body">
+                                        <credit-card-form-fields />
+                                    </div>
+                                    <modal-form-footer />
+                                </form>
+                            </div>
+                        </div>
+                    </modal:>
+                </modal>
+            </div>
+        </div>
+        <div param="actions">
+            <delete-button label="#{t 'payments.index.cancel_subscription'}" param/>
+        </div>
+    </body:>
+  </card>
+</def>

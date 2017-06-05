@@ -41,11 +41,11 @@
         <% else %>
         <% plan_id = this.id %>
         <do with="&Company.current_company">
-        <a:billing_details class="button" action="new" params="&{plan: plan_id}" if="billing_details.empty?">
+        <a:billing_details class="button" action="new" params="&{plan: plan_id, r: params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/,'')}" if="billing_details.empty?">
                 <t key="stripe.purchase"/>
         </a>
         <else>
-                 <a with="&Company.current_company.billing_details.first" class="button" action="edit" params="&{plan: plan_id}"><t key="stripe.purchase"/></a>
+                 <a with="&Company.current_company.billing_details.first" class="button" action="edit" params="&{plan: plan_id, r: params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/,'')}"><t key="stripe.purchase"/></a>
         </else>
         </do>
         <% end %>
