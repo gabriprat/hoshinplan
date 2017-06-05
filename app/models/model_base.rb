@@ -44,8 +44,8 @@ module ModelBase
   end
 
   def notify_responsible
+    user = acting_user ? acting_user : User.current_user
     if self.respond_to?(:responsible) &&
-        user = acting_user ? acting_user : User.current_user
         self.responsible_id != self.responsible_id_was &&
         user &&
         user.respond_to?(:notify_on_assign) &&
