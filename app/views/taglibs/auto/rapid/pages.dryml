@@ -739,7 +739,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="unlimited" param/>
+      <record-flags fields="unlimited, payment_error" param/>
 
       <a:creator param="creator-link"/>
 
