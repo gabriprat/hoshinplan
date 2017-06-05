@@ -280,6 +280,19 @@ Hoshinplan::Application.routes.draw do
   end
 
 
+  # Resource routes for controller invoices
+  resources :invoices, :only => [:show]
+
+  # Owner routes for controller invoices
+  resources :subscriptions, :as => :subscription, :only => [] do
+    resources :invoices, :only => [] do
+      collection do
+        get '/', :action => 'index_for_subscription'
+      end
+    end
+  end
+
+
   # Resource routes for controller log
   resources :log, :only => [:index]
 

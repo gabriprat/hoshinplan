@@ -295,6 +295,9 @@ es:
       subscription:
         one: Suscripción
         other: Suscripciones
+      invoice:
+        one: Factura
+        other: Facturas
     attributes:
       user:
         name: Nombre
@@ -456,6 +459,11 @@ es:
         plan_name: Plan
         total_amount: "Importe a cobrar"
         next_payment_at: "Próximo cobro"
+      invoice:
+        description: "Descripción"
+        net_amount: "Base imponible"
+        total_amount: "Total"
+        tax_tpc: "% Impuestos"
     attribute_help:
       hoshin:
         lifecycle:

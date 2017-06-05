@@ -32,7 +32,7 @@ class Subscription < ApplicationRecord
 
   validate :only_one_active_subscription
 
-  validates :users, numericality: { greater_than_or_equal_to: 10 }
+  validates :users, numericality: {greater_than_or_equal_to: 10}
 
   attr_accessible :user, :user_id, :status, :token, :sandbox, :amount_value, :monthly_value,
                   :amount_currency, :plan_name, :company, :company_id, :users, :billing_period
@@ -48,6 +48,12 @@ class Subscription < ApplicationRecord
   after_destroy :update_counter_cache
   after_create :update_counter_cache
 
+  default_scope lambda {
+    where(:company_id => UserCompany.select(:company_id)
+                             .where('user_id=?',
+                                    User.current_id)
+    )
+  }
 
   scope :at_hour, lambda {|*hour|
     joins(:user)

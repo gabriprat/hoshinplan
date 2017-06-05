@@ -10,9 +10,13 @@ class Invoice < ActiveRecord::Base
     total_amount :decimal, :required, :precision => 8, :scale => 2
     timestamps
   end
-  attr_accessible
+  attr_accessible :description, :net_amount, :tax_tpc, :total_amount
 
   belongs_to :subscription, :inverse_of => :invoices
+
+  default_scope lambda {
+    joins(:subscription)
+  }
 
   # --- Permissions --- #
 

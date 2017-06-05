@@ -4292,7 +4292,7 @@ textarea.form-control {
   padding: 9.5px 15px 9.5px 52px;
   &:not(.btn-raised):not(.btn-link):hover, &:not(.btn-raised):not(.btn-link):focus, &:not(.btn-raised):not(.btn-link):visited {
     background-color: #4285F4;
-    box-shadow: 0 0 3px 3px rgba(66,133,244,.3);
+    box-shadow: 0 0 3px 3px rgba(66, 133, 244, .3);
   }
   &:not(.btn-raised):not(.btn-link):active {
     background-color: #3367D6;
@@ -4420,6 +4420,7 @@ textarea.form-control {
     }
   }
 }
+
 .credit-card-item {
   border: 1px solid #eee;
   border-radius: 5px;
@@ -4497,5 +4498,21 @@ ul.collection.subscription {
     .card {
       text-align: left;
     }
+  }
+}
+
+a.invoice-pdf {
+  text-decoration: none;
+  * {
+    vertical-align: text-bottom;
+  }
+  i {
+    font-size: 1.5em;
+    margin-left: 1em;
+  }
+  .text {
+    text-indent: -9999px;
+    overflow: hidden;
+    display: inline-block;
   }
 }

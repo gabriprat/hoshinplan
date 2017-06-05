@@ -7,6 +7,7 @@ module RestController
         format.json {render :json => find_instance.to_json}
         format.xml {render :xml => find_instance.to_xml}
         format.html {super}
+        format.pdf {render :layout => false}
       end
     end
   end

@@ -2260,6 +2260,147 @@
 
 
 
+<!-- ====== Invoice Pages ====== -->
+
+<def tag="index-page" for="Invoice">
+  <page merge title="#{ht 'invoice.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="invoice.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Invoice">
+  <page merge title="#{ht 'invoice.new.title', :default=>[' New Invoice'] }">
+    <body: class="new-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.new.heading">
+          New Invoice
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'invoice.actions.create', :default=>['Create Invoice']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Invoice">
+  <page merge title="#{ht 'invoice.show.title', :default=>['Invoice'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.show.heading" name="#{name(:no_wrapper => true)}">
+          Invoice <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="net_amount, tax_tpc, total_amount, subscription" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Invoice">
+  <page merge title="#{ht 'invoice.edit.title', :default=>['Edit Invoice'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Invoice
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'invoice.actions.delete', :default=>['Remove This Invoice']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+<def tag="index-for-subscription-page" polymorphic/>
+<def tag="index-for-subscription-page" for="Invoice">
+  <page merge title="#{ht 'invoice.index_for_owner.title', :count=>100, :default=>['Invoices for']} #{name :with => @subscription, :no_wrapper => true}">
+    <body: class="index-for-owner-page subscription invoice" param/>
+    <content-header: param>
+      <h2 param="heading" if="&@owner">
+        <ht key="invoice.index_for_owner.heading" count="&@subscription.invoices.count">
+          <human-collection-name with="&@subscription" collection="invoices" your/>
+        </ht>
+      </h2>
+
+      <h3 param="subheading">
+        <ht key="invoice.index_for_owner.subheading">
+          For:
+        </ht>
+        <name with="&@subscription"/>
+      </h3>
+      <p param="count" if>
+        <ht key="invoice.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+    </content-body:>
+  </page>
+</def>
+
+
+
+
+
+
+
 <!-- ====== Log Pages ====== -->
 
 <def tag="index-page" for="Log">

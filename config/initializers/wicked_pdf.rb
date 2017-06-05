@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.middleware.use WickedPdf::Middleware
+  config.middleware.use WickedPdf::Middleware, {}, except: [ %r[^/invoice] ]
 end
 
 WickedPdf.config = {

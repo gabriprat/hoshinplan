@@ -1,4 +1,4 @@
-<extend tag="page" attrs="title">
+<extend tag="page">
 	<old-page merge class="#{@pdf?'pdf':''}" lang="#{locale}" bottom-load-javascript>
 		<ajax-progress: replace>
 			<div id="ajax-progress-wrapper">
@@ -30,7 +30,7 @@
 				</div>
 			</header>
 			<div id="sidenav" class="navbar-collapse collapse">
-			<main-nav class="main-nav" current="&title"/>
+			<main-nav class="main-nav" current="&attributes[:title]"/>
 			<account-nav/>
 			</div>
 		</navbar:>

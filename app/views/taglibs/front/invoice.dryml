@@ -1,0 +1,24 @@
+<extend tag="index-for-subscription-page" for="Invoice">
+  <old-index-for-subscription-page merge>
+    <content-header: class="well" param>
+        <h2 class="heading"><model-name-human model="&model" count="10"/></h2>
+    </content-header>
+    <content-body:>
+        <table class='table table-striped table-bordered' fields="description, net_amount, tax_tpc, total_amount">
+            <description-view:>
+                <view/>
+                <a title="#{t 'hoshin_actions.export_as_pdf'}" with="&this_parent" class="invoice-pdf" format="pdf">
+                    <i class="ic-file-pdf-o"></i>
+                    <span class="text"><t key="hoshin_actions.export_as_pdf"/></span>
+                </a>
+            </description-view>
+            <actions-label:>
+              <t key='hobo.messages.actions'>Actions</t>
+            </actions-label:>
+            <actions-view:>
+              <bootstrap-table-actions/>
+            </actions-view:>
+        </table>
+    </content-body:>
+  </old-index-for-subscription-page>
+</extend>
