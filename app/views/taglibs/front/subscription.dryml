@@ -96,3 +96,31 @@
     </body:>
   </card>
 </def>
+
+
+<def tag="card" for="SubscriptionPaypal">
+  <card class="subscription" param="default" merge>
+    <header: param>
+      <h4 param="heading"><ht key="company.show.heading" name="#{this.company.name}" /></h4>
+    </header:>
+    <body:>
+        <div class="subscription-details">
+            <div class="plan-details">
+                <h5><t key="pricing_plans.your_plan" name="#{this.plan_name}" /></h5>
+                <div>
+                    <h6>
+                        <t key="pricing_plans.includes_up_to" num="#{this.users}" users="#{User.model_name.human(count:this.users).downcase}" />
+                    </h6>
+                    <em>
+                        <t key="pricing_plans.for" amount="#{number_to_currency(this.total_amount, unit: get_unit(this.amount_currency))}" period="&t('pricing_plans.' + this.billing_period)" />
+                    </em>
+                    <p><t key="pricing_plans.next_payment_will_be" next-payment-at="#{this.next_payment_at}" /></p>
+                </div>
+            </div>
+        </div>
+        <div param="actions">
+            <delete-button label="#{t 'payments.index.cancel_subscription'}" param/>
+        </div>
+    </body:>
+  </card>
+</def>

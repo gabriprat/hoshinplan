@@ -206,12 +206,22 @@ end
 
 class SubscriptionPaypal < Subscription
   def cancel
-    if (self.id_paypal)
+    if self.id_paypal
       agreement = PaypalAccess.find_agreement(self.id_paypal)
       agreement.cancel(note: "Canceled through Hoshinplan.com by " + acting_user.email_address)
     end
     self.status = 'Canceled'
     self.save!(validate: false)
+  end
+
+  def next_payment_at
+    today = Date.today
+    if today.day > created_at.day
+      next_payment = today + 1.month
+    else
+      next_payment = today
+    end
+    next_payment.change(day: created_at.day)
   end
 end
 
