@@ -23,7 +23,7 @@
 			if (!activeMatch) {
 			    $('.nav-tabs a').first().tab('show');
 			} else {
-			    $('.nav-tabs a[data-target=#'+activeMatch[0]+']').tab('show');
+			    $('.nav-tabs a[data-target="#'+activeMatch[0]+'"]').tab('show');
 			}
 		});
 

@@ -163,7 +163,7 @@ class ApplicationController < ActionController::Base
         inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
         inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
         inst = Company.find(params[:company_id]) unless (inst || params[:company_id].blank?)
-        inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || !params[:area]
+        inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || params[:area].blank? || !params[:area].is_a?(Hash) || params[:area][:hoshin_id].blank?
       rescue ActiveRecord::RecordNotFound
         #Do nothing
       end
