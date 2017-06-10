@@ -208,7 +208,7 @@ class SubscriptionPaypal < Subscription
   def cancel
     if self.id_paypal
       agreement = PaypalAccess.find_agreement(self.id_paypal)
-      agreement.cancel(note: "Canceled through Hoshinplan.com by " + acting_user.email_address)
+      agreement.cancel(note: "Canceled through Hoshinplan.com by " + User.current_user.email_address)
     end
     self.status = 'Canceled'
     self.save!(validate: false)
