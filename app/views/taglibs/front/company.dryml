@@ -74,13 +74,13 @@
             <div class="form-horizontal">
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab"><model-name-human/></a></li>
-                    <li role="presentation"><a href="#authentication" aria-controls="authentication" role="tab" data-toggle="tab"><ht key="company.tabs.authentication"/></a></li>
+                    <li role="presentation"><a href="#authentication" aria-controls="authentication" role="tab" data-toggle="tab" if="&this.enterprise?"><ht key="company.tabs.authentication"/></a></li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="company">
                         <form param/>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="authentication">
+                    <div role="tabpanel" class="tab-pane" id="authentication" if="&this.enterprise?">
                         <do part="authprovider">
                             <do with="&SamlProvider.where(company_id: this.id).first_or_initialize">
                                 <div class="#{'toggle ' + (this.new_record? ? 'hide' : '')}">

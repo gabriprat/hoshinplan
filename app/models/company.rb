@@ -165,6 +165,10 @@ class Company < ApplicationRecord
     trial_days_remaining == 0
   end
 
+  def enterprise?
+    @enterprise ||= !is_trial_expired? || Subscription.where(company_id: id, status: 'Active', plan_name: 'Enterprise')
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
