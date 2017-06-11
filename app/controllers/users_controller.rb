@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     user = model.where(email_address: email) if domain.present?
     prov = AuthProvider.where(:email_domain => domain).first
     prov ||= AuthProvider.where(:company_id => UserCompany.unscoped.where(user_id: user.first.id).*.company_id).first if user.present?
-    user = user.exists?
+    user = user.present?
     exists = user & prov
     if exists
       if prov.type == 'OpenidProvider' 

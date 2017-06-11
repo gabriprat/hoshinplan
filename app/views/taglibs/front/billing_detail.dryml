@@ -121,7 +121,7 @@
     <content-body:>
         <div class="paper" param="outer">
             <form class="payment" owner="&'company' if params[:action] == 'new_for_company'"/>
-            <form action="/" id="cc-container" class="form-horizontal" onsubmit="$(this).prev('form').submit(); return false;">
+            <form action="/" id="cc-container" class="form-horizontal" onsubmit="$('form.payment').submit(); return false;">
                 <div class='row card-details form-group'>
                     <label class="col-sm-3 control-label card-label"><t key="billing_details.card_details"/></label>
                     <div class="col-sm-9" style="#{this.stripe_client_id.nil? && this.card_stripe_token.nil? ? '' : 'display:none;'}">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="row">
                     <div class="complete-purchase">
-                        <submit class="btn-raised btn-lg" label="#{t 'billing_details.complete_your_purchase'}" onclick="$('form.payment').submit()" param/>
+                        <submit class="btn-raised btn-lg" label="#{t 'billing_details.complete_your_purchase'}" param/>
                         <div class="powered-stripe">
                             <span class="ic-powered-stripe"></span>
                         </div>

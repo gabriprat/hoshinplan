@@ -180,7 +180,12 @@ class Subscription < ApplicationRecord
   end
 
   def billing_description
-    plan_name + " plan #{billing_period} (#{users} users) from #{period_start_at} to #{period_ends_at}"
+    start_at = period_start_at.to_date
+    end_at = period_ends_at.to_date
+    if start_at == end_at
+      end_at =  compute_next_payment_at
+    end
+    plan_name + " plan #{billing_period} (#{users} users) from #{start_at} to #{end_at}"
   end
 
   # --- Permissions --- #

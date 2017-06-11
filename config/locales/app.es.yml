@@ -106,6 +106,9 @@ es:
       subject: "[Hoshinplan] Solicitud de acceso"
       message: "%{requester} solicita acceso a la compañía %{name}."
       give_access: "Dar acceso"
+    invoice:
+      subject: "[Hoshinplan] Factura %{id}"
+      message: "Adjunta encontrarás la factura de tu suscripción"
   show_all: "Mostrar todo..."
   click_to_edit: "&lt;Haz clic para editar&gt;"
   you_can_use_textile: "Puedes usar código %{textile} para incluir formato en este texto. Por ejemplo, puedes incluir un enlace así: \"Texto\":http://www.hoshinplan.com"

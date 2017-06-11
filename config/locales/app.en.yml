@@ -106,6 +106,9 @@ en:
       subject: "[Hoshinplan] Access request"
       message: "%{requester} requests access to the company %{name}."
       give_access: "Give access"
+    invoice:
+      subject: "[Hoshinplan] Invoice %{id}"
+      message: "Please find attached the invoice for your subscription."
   show_all: "Show all..."
   click_to_edit: "&lt;Click to edit&gt;"
   you_can_use_textile: "You can use %{textile} markup to include format this text. For example, you can include a link like this: \"Text\":http://www.hoshinplan.com"

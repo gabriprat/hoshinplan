@@ -188,6 +188,28 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
 
+  def invoice(invoice)
+    sendgrid_category "invoice"
+    subscription = Subscription.unscoped.find(invoice.subscription_id)
+    user = User.unscoped.find(subscription.user_id)
+    I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
+    @user = user
+    pdf = PrawnRails::Document.new
+    invoice.render_pdf(pdf)
+    attachments["invoice-#{invoice.sage_one_invoice_id}.pdf"] = {
+        mime_type: 'application/pdf',
+        content: pdf.render
+    }
+    mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
+         :to => @user.email_address) do |format|
+      format.html {
+        render_email("invoice", {
+            user: @user, app_name: @app_name
+        })
+      }
+    end
+  end
+
   def assign_responsible(assigner, object)
     user = User.unscoped.find(object.responsible_id) if object.responsible_id
     if user.present?

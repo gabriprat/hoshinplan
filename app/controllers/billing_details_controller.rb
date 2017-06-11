@@ -32,7 +32,8 @@ class BillingDetailsController < ApplicationController
                                      plan_name:  @billing_plan.name,
                                      amount_value: @billing_plan.amount_value,
                                      monthly_value: @billing_plan.monthly_value,
-                                     amount_currency: @billing_plan.amount_currency
+                                     amount_currency: @billing_plan.amount_currency,
+                                     billing_plan_id: @billing_plan.id
                                  })
     end
     hobo_create_for :company do

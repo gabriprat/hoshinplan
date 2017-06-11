@@ -133,7 +133,7 @@ class FrontController < ApplicationController
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
 
-    @text = Jobs::SubscriptionBilling.perform({})
+    @text = Jobs::SageOneSync.perform({})
     render :text => @text, :content_type => Mime::TEXT
   end
 

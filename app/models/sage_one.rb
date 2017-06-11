@@ -69,7 +69,11 @@ class SageOne < ActiveRecord::Base
 
 
   def self.create_sales_invoice(invoice)
-    billing_detail = invoice.subscription.billing_detail
+    subscription = Subscription.unscoped.find(invoice.subscription_id)
+    billing_detail = BillingDetail.unscoped.find(subscription.billing_detail_id)
+    unless billing_detail.sage_one_contact_id
+      response = self.create_contact(billing_detail)
+    end
     response = SageOne.call_api(
         "post",
         "accounts/v3/sales_invoices",
@@ -141,8 +145,8 @@ class SageOne < ActiveRecord::Base
     }
   end
 
-  def self.create_contact
-    bd = BillingDetail.find_by(creator_id: User.current_id)
+  def self.create_contact(bd)
+    bd ||= BillingDetail.find_by(creator_id: User.current_id)
     response = SageOne.call_api(
         "post",
         "accounts/v3/contacts",
@@ -210,6 +214,10 @@ class SageOne < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+  def expired?
+    expires_at < DateTime.now
   end
 
   def renew_token!

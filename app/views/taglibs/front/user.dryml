@@ -10,11 +10,10 @@
     <field-list fields="email_address, news" param>
             <email-address-tag: required="required" autofocus="autofocus"/>
             <news-field:>
-                   <div class='control-group text-center'>
-                   <input/>
-                   <label for="#{param_name_for_this.gsub('[', '_').gsub(']', '')}">
-                           <t key="user.signup.it_is_ok"/>
-                   </label>
+                   <div class="text-center">
+                       <checkbox>
+                            <t key="user.signup.it_is_ok"/>
+                       </checkbox>
                    </div>
             </news-field:>
     </field-list>
