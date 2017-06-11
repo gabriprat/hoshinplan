@@ -5,9 +5,10 @@ class SamlProvidersController  < ApplicationController
   auto_actions :all
   
   def create
-    fail "No company" if Company.current_id.blank?
     self.this = new_for_create {}
-    self.this.company_id = Company.current_id
+    fail "No company" if  params[:saml_provider]._?[:company_id].blank?
+    comp = Company.find(params[:saml_provider][:company_id])
+    raise Hobo::PermissionDeniedError unless comp.update_permitted?
     self.this.metadata_xml = params[:metadata_xml].read.to_s
     self.this.email_domain ||= SecureRandom.uuid
     hobo_create
@@ -15,6 +16,7 @@ class SamlProvidersController  < ApplicationController
 
   def update
     self.this = find_instance
+    raise Hobo::PermissionDeniedError unless self.this.company.update_permitted?
     self.this.metadata_xml = params[:metadata_xml].read.to_s
     self.this.save!
     update_response
