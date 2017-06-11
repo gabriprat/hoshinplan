@@ -1,0 +1,19 @@
+<extend tag="form" for="SamlProvider">
+	<old-form: multipart merge>
+		<field-list: fields="metadata_xml">
+		<metadata-xml-view: >
+            <div data-rapid='#{data_rapid(:image_input, options: {filetype: ".*", autoUpload: false})}' class="image-input">
+                <input type="file" name="metadata_xml" class="hide"/>
+                <div class="placeholder preview">
+                <span class="big ic-file-o ic-pointer-small"></span>
+                <p><t key="drag_a_file"/></p>
+                <p>– <ht key="hoshin.support.or">or</ht> –</p>
+                <a class="btn btn-raised" href="#"><t key="choose_file">Choose file</t></a>
+                </div>
+            </div>
+		</metadata-xml-view:>
+		</field-list:>
+	</old-form:>
+</extend>
+
+

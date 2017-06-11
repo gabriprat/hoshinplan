@@ -8,7 +8,9 @@ class AuthProvider < ActiveRecord::Base
   end
   
   index [:email_domain, :type], unique: true
-  
+
+  belongs_to :company
+
   attr_accessible :email_domain
 
   # --- Permissions --- #

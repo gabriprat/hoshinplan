@@ -354,6 +354,8 @@ GEM
       multi_json (~> 1.3)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.3.1)
+    omniauth-multi-provider (0.2.0)
+      omniauth
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
@@ -629,6 +631,7 @@ DEPENDENCIES
   nested_has_many_through
   newrelic_rpm
   omniauth-google-oauth2
+  omniauth-multi-provider
   omniauth-openid
   omniauth-saml
   paperclip

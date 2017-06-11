@@ -40,6 +40,7 @@ gem 'debase', group: :development
 
 gem 'omniauth-openid'
 gem 'omniauth-saml'
+gem 'omniauth-multi-provider'
 gem 'omniauth-google-oauth2'
 
 gem 'hobo', '>= 2.2.6'

@@ -5,9 +5,9 @@
 	<else>
 		<div class="placeholder preview">
 		<span class="big ic-image ic-pointer-small"></span>
-		<p><t key="drag_a_file"/></p>
+		<p><t key="drag_a_photo"/></p>
 		<p>– <ht key="hoshin.support.or">or</ht> –</p>
-		<a class="btn btn-raised" href="#"><t key="choose_file">Choose file</t></a>
+		<a class="btn btn-raised" href="#"><t key="choose_photo" /></a>
 		</div>
 	</else>
 	</div>

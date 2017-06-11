@@ -70,5 +70,53 @@
                 <read-only-ask-for-permission show-close="&false"/>
             </else>
         </main-content:>
+        <content-body: param>
+            <div class="form-horizontal">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab"><model-name-human/></a></li>
+                    <li role="presentation"><a href="#authentication" aria-controls="authentication" role="tab" data-toggle="tab"><ht key="company.tabs.authentication"/></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="company">
+                        <form param/>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="authentication">
+                        <do part="authprovider">
+                            <do with="&SamlProvider.where(company_id: this.id).first_or_initialize">
+                                <div class="#{'toggle ' + (this.new_record? ? 'hide' : '')}">
+                                    <div class="saml-provider">
+                                        <div class="form-horizontal">
+                                            <div class="form-group   callback-url-field" style="margin-bottom: 4em;">
+                                                <label class="col-sm-3 control-label callback-url-label" for="callback_url">
+                                                    URL
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <view:login-url/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group   callback-url-field" style="margin-bottom: 4em;">
+                                                <label class="col-sm-3 control-label callback-url-label" for="callback_url">
+                                                    Service Provider Metadata
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <a href="#{this.metadata_url}"><t key="company.view" /></a>
+                                                </div>
+                                            </div>
+                                            <delete-button ajax class="inline" />
+                                            <input type="button" class="btn pull-right" value="&ht 'saml_provider.actions.edit'" onclick="$(this).closest('.tab-pane').find('.toggle').toggleClass('hide'); return false;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="#{'toggle ' + (this.new_record? ? '' : 'hide')}">
+                                    <form>
+                                        <actions: replace />
+                                    </form>
+                                </div>
+                            </do>
+                        </do>
+                    </div>
+                </div>
+            </div>
+        </content-body:>
 	</old-edit-page>
 </extend>

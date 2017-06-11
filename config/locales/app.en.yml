@@ -16,7 +16,8 @@ en:
   i_agree: "I agree"
   new: NEW
   copy_of: "Copy of"
-  drag_a_file: "Drag a photo here"
+  drag_a_file: "Drag a file here"
+  drag_a_photo: "Drag a photo here"
   beta: Beta
   value_goal_previous_long: "Current value,Goal,Previous value,Increment over previous value (%)"
   insert_box_link: "Insert Box link"
@@ -553,6 +554,9 @@ en:
     add_collaborators: "Add collaborators"
     send_invitations_format: "Name LastName &lt;email@company.com&gt;"
     upgrade_to_invite: "Upgrade your plan to invite more collaborators"
+    tabs:
+      authentication: "SAML authentication"
+    view: "View"
   client_app:
     sign_a_request: "Sign a request to the API"
     requests_to_the_restful: "Requests to the RESTful API have to be signed with a Client Application's secret. This form allows you to sign a request. You have to enter the path of the request you want to sign without the timestamp and signature parameters. When you click the \"Sign\" button you will have the same url with the timestamp and signature parameters."
@@ -704,7 +708,8 @@ en:
   change_locale: Language
   locale_es_ES: "Español (España)"
   home: Home
-  choose_file: "Select a photo from your computer"
+  choose_file: "Select a file from your computer"
+  choose_photo: "Select a photo from your computer"
   area:
     no_xx_defined: "There are no %{xx} in this %{model}"
   indicator:

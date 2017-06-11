@@ -16,7 +16,8 @@ es:
   i_agree: Entendido
   new: Nuevo
   copy_of: "Copia de"
-  drag_a_file: "Arrastra una foto aquí"
+  drag_a_file: "Arrastra un fichero aquí"
+  drag_a_photo: "Arrastra una foto aquí"
   beta: Beta
   value_goal_previous_long: "Valor actual, Objetivo, Valor periodo anterior, Incremento sobre el periodo anterior (%)"
   insert_box_link: "Insertar enlace a Box"
@@ -553,6 +554,9 @@ es:
     add_collaborators: "Añadir colaboradores"
     send_invitations_format: "Nombre Apellidos &lt;email@empresa.com&gt;"
     upgrade_to_invite: "Mejora tu plan para invitar más colaboradores"
+    tabs:
+      authentication: "Autenticación SAML"
+    view: "Ver"
   client_app:
     sign_a_request: "Firma una petición al API"
     requests_to_the_restful: "Las peticiones al API RESTful tienen que estar firmadas con el campo secreto de la Aplicación Cliente. Este formulario te permitirá firmar una petición. Tienes que entrar la ruta de la petición que quieres firmar sin los parámetros \"timestamp\" ni \"signature\". Al clicar en el botón \"Firmar\" te devolverá la URL con estos parámetros."
@@ -704,7 +708,8 @@ es:
   change_locale: Idioma
   locale_es_ES: "Español (España)"
   home: Inicio
-  choose_file: "Escoje una foto de tu ordenador"
+  choose_file: "Escoje un fichero de tu ordenador"
+  choose_photo: "Escoje una foto de tu ordenador"
   area:
     no_xx_defined: "No hay %{xx} en esta %{model}"
   indicator:

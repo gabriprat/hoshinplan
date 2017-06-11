@@ -28,7 +28,7 @@
 <def tag="form" for="OpenidProvider">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="email_domain, openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+    <field-list fields="email_domain, issuer, sso_url, cert, fingerprint, id_format, openid_url, company" param/>
     <div param="actions">
       <submit label="#{ht 'openid_provider.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -52,7 +52,7 @@
 <def tag="form" for="SamlProvider">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="email_domain, openid_url, issuer, sso_url, cert, fingerprint, id_format" param/>
+    <field-list fields="email_domain, issuer, sso_url, cert, fingerprint, id_format, openid_url, company" param/>
     <div param="actions">
       <submit label="#{ht 'saml_provider.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

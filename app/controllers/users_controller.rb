@@ -23,8 +23,10 @@ class UsersController < ApplicationController
   def check_corporate_login
     email = params[:email]
     domain = email.split("@").last if email.present? and email.include?("@")
-    user = model.where(email_address: email).exists? if domain.present?
+    user = model.where(email_address: email) if domain.present?
     prov = AuthProvider.where(:email_domain => domain).first
+    prov ||= AuthProvider.where(:company_id => UserCompany.unscoped.where(user_id: user.first.id).*.company_id).first if user.present?
+    user = user.exists?
     exists = user & prov
     if exists
       if prov.type == 'OpenidProvider' 

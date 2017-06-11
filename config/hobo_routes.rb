@@ -326,6 +326,10 @@ Hoshinplan::Application.routes.draw do
   resources :payment_notifications, :only => []
 
 
+  # Resource routes for controller saml_providers
+  resources :saml_providers
+
+
   # Resource routes for controller subscriptions
   resources :subscriptions, :only => [:new, :create, :destroy]
 

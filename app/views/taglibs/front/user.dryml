@@ -250,36 +250,34 @@
 </extend>
 
 <extend tag="edit-page" for="User">
-  <old-edit-page merge>
-
-    <content-body: param>    
-      <% password_tab_class = (this.errors.include?(:current_password) || @this.errors.include?(:password)) ? 'active'  : '' %>
-      <% profile_tab_class = password_tab_class == 'active' ? ''  : 'active' %>
-      <div class="form-horizontal">
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="#{profile_tab_class}"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><ht key="user.tabs.profile"/></a></li>
-          <li role="presentation" class="#{password_tab_class}"><a href="#password" aria-controls="password" role="tab" data-toggle="tab"><ht key="user.tabs.password"/></a></li>
-        </ul>
-       <div class="tab-content">
-         <div role="tabpanel" class="tab-pane #{profile_tab_class}" id="profile">
-           <form param/>
-         </div>
-         <div role="tabpanel" class="tab-pane #{password_tab_class}" id="password">
-           <form param>
-             <field-list: fields="email_address, #{ this.crypted_password.present? ? 'current_password,' : '' } password, password_confirmation">
-               <email-address-field:><input class="hide"/></email-address-field:>
-               <password-label:>
-                 <%=User.human_attribute_name(:new_password)%>
-               </password-label:>
-               <password-confirmation-label:>
-                 <%=User.human_attribute_name(:new_password_confirmation)%>
-               </password-confirmation-label:>
-             </field-list:>
-           </form>
-         </div>
-       </div>
-     </div>
-    </content-body:>
-
-  </old-edit-page>
+    <old-edit-page merge>
+        <content-body: param>
+            <% password_tab_class = (this.errors.include?(:current_password) || @this.errors.include?(:password)) ? 'active'  : '' %>
+            <% profile_tab_class = password_tab_class == 'active' ? ''  : 'active' %>
+            <div class="form-horizontal">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="#{profile_tab_class}"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><ht key="user.tabs.profile"/></a></li>
+                    <li role="presentation" class="#{password_tab_class}"><a href="#password" aria-controls="password" role="tab" data-toggle="tab"><ht key="user.tabs.password"/></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane #{profile_tab_class}" id="profile">
+                        <form param/>
+                    </div>
+                    <div role="tabpanel" class="tab-pane #{password_tab_class}" id="password">
+                        <form param>
+                            <field-list: fields="email_address, #{ this.crypted_password.present? ? 'current_password,' : '' } password, password_confirmation">
+                                <email-address-field:><input class="hide"/></email-address-field:>
+                                <password-label:>
+                                    <%=User.human_attribute_name(:new_password)%>
+                                </password-label:>
+                                <password-confirmation-label:>
+                                    <%=User.human_attribute_name(:new_password_confirmation)%>
+                                </password-confirmation-label:>
+                            </field-list:>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </content-body:>
+    </old-edit-page>
 </extend>

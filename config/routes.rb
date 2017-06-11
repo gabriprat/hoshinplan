@@ -111,9 +111,25 @@ Hoshinplan::Application.routes.draw do
   get "/pitch" => "front#pitch"
   
   match '/fail', to: 'front#test_fail', via: :all
-  
-  match "/auth/:provider/callback" => "users#omniauth_callback", via: :all, provider: /[^\/]+/
-  
+
+  match '/auth/:identity_provider_id/callback',
+        constraints: { identity_provider_id: /[^\/]+/ },
+        via: [:get, :post],
+        to: 'users#omniauth_callback',
+        as: 'user_omniauth_callback'
+
+  match '/auth/:identity_provider_id',
+        constraints: { identity_provider_id: /[^\/]+/ },
+        via: [:get, :post],
+        to: 'omniauth_callbacks#passthru',
+        as: 'user_omniauth_authorize'
+
+  match '/auth/:provider/metadata',
+        constraints: { provider: /[^\/]+/ },
+        via: [:get, :post],
+        to: 'users#omniauth_callback',
+        as: 'user_omniauth_metadata'
+
   get 'pricing' => 'billing_plans#pricing'
   
   get "/payments/test-paypal-ipn" => "payment_notifications#index"
@@ -139,7 +155,7 @@ Hoshinplan::Application.routes.draw do
 
   get "/hoshins/:id/charts/:area" => "hoshins#charts"
 
-  SamlDynamicRouter.load unless Rails.env.development?
+  SamlDynamicRouter.load
   
   constraints IsAdministrator do
     mount Flipper::UI.app($flipper) => '/admin/flipper'

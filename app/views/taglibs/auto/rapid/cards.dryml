@@ -42,7 +42,7 @@
 <def tag="card" for="AuthProvider">
   <card class="auth-provider" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
   </card>
 </def>
@@ -378,7 +378,7 @@
 <def tag="card" for="OpenidProvider">
   <card class="openid-provider" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
   </card>
 </def>
@@ -410,7 +410,7 @@
 <def tag="card" for="SamlProvider">
   <card class="saml-provider" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
   </card>
 </def>

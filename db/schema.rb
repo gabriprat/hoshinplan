@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604212904) do
+ActiveRecord::Schema.define(version: 20170610183641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(version: 20170604212904) do
     t.text     "cert"
     t.string   "fingerprint"
     t.string   "id_format"
+    t.integer  "company_id"
   end
 
+  add_index "auth_providers", ["company_id"], name: "index_auth_providers_on_company_id", using: :btree
   add_index "auth_providers", ["email_domain", "type"], name: "index_auth_providers_on_email_domain_and_type", unique: true, using: :btree
   add_index "auth_providers", ["type"], name: "index_auth_providers_on_type", using: :btree
 
