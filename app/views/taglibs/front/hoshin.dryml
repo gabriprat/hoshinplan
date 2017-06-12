@@ -15,7 +15,7 @@
 
 		<collection-heading: replace />
 		<parent-link: replace>
-			<a with="&this.company" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
+			<a with="&Company.current_company" class="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="&Company.model_name.human" name="&this.to_s" /></a>
 		</parent-link:>
 		<prepend-content-header: >
 		<if test="&params['action']=='show'">

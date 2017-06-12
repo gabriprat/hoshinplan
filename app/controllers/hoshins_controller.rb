@@ -92,6 +92,7 @@ class HoshinsController < ApplicationController
               end
               Company.current_company = current_user.all_companies.find { |c| c.id == self.this.company_id }
               Company.current_company.comp_users
+              self.this.all_tags_hashes
               hobo_show
             }
       end
