@@ -17,7 +17,7 @@
 		</ul>		
 		<call-tag with="&items.to_a" tag="&tag" merge-attrs merge-params class="table-body" if="&items.size > 0">
 			<handle: replace><div class="column ordering"><handle restore/></div></handle:>
-			<item: data-tags="#{this.taglist if this.respond_to?(:taglist)}" data-hidden-def="#{(this.hidden ? 'true' : '') if this.respond_to?(:hidden)}" class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''} #{this.respond_to?(:responsible_id) && this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" />
+			<item: data-tags="#{this.taglist if this.respond_to?(:taglist)}" data-hidden-def="#{(this.hidden ? 'true' : '') if this.respond_to?(:hidden)}" class="table-row #{this.respond_to?(:status) ? this.status : ''} #{this.respond_to?(:deadline_status) ? this.deadline_status : ''} kb-resp kb-resp-#{this.try.responsible_id}" />
 			<default: replace>
 				<scard param columns="&columns" parent-object="&orig_parent"/>
 			</default>

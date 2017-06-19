@@ -1,5 +1,5 @@
 <def tag="indicator-chart-panel">
-	<section id="chart-panel#{this.id}" class="panel chart-panel #{this.respond_to?(:responsible_id) && this.responsible_id == current_user.id ? '' : 'kb-not-mine'}" data-hidden-def="&this.hidden" data-tags="&this.taglist" if="&this.indicator_histories" merge>
+	<section id="chart-panel#{this.id}" class="panel chart-panel kb-resp kb-resp-#{this.try.responsible_id}" data-hidden-def="&this.hidden" data-tags="&this.taglist" if="&this.indicator_histories" merge>
 	        <color-tpc:tpc tag="div" precision="1" class="header panel-heading">
 			<default: replace>
 				<a with="&this_parent.becomes(Indicator)" action="history"/> <span>(#{number_with_precision this}%)</span>

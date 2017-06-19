@@ -100,9 +100,9 @@ $(document).ready(function() {
 
 var doFilterPostits = function(colors, showMine, tags, showHidden) {
     $(".postit").show();
-    $(".kb-not-mine").show();
+    $(".kb-resp").show();
     $("[data-hidden-def]").show();
-    $("[data-tags]:not([data-tags='']").hide();
+    $("[data-tags]:not([data-tags=''])").hide();
 	var selector = "";
 
     for (var i=0; i<tags.length; i++) {
@@ -129,7 +129,7 @@ var doFilterPostits = function(colors, showMine, tags, showHidden) {
 	$(selector).hide();
     if (showMine) {
         var sm = $("#show-mine");
-        $(".kb-not-mine").hide();
+        $(".kb-resp:not(.kb-resp-" + userId + ")").hide();
     }
     if (!showHidden) {
         $("[data-hidden-def='true']").hide();
