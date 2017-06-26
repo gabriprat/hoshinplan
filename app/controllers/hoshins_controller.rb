@@ -167,7 +167,7 @@ class HoshinsController < ApplicationController
   def request_access
     @this = Hoshin.unscoped.find(params[:id])
     @done = true
-    UserCompanyMailer.request_access(User.current_user, @this.creator, @this).deliver_later if @this
+    UserCompanyMailer.request_access(User.current_id, @this.id).deliver_later if @this
     hobo_ajax_response
   end
 

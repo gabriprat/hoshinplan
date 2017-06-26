@@ -201,7 +201,7 @@ class UserCompanyMailer < ActionMailer::Base
         content: pdf.render
     }
     mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
-         :to => @user.email_address) do |format|
+         :to => @user.email_address, :bcc => User.administrator.first.pluck(:email_address)) do |format|
       format.html {
         render_email("invoice", {
             user: @user, app_name: @app_name
@@ -243,11 +243,23 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
 
-  def request_access(requester, user, hoshin)
+  def request_access(requester_id, hoshin_id)
     sendgrid_category "request_access"
+    requester = User.unscoped.find(requester_id)
+    hoshin = Hoshin.unscoped.find(hoshin_id)
+    if hoshin.creator_id
+      user = User.unscoped.where(id: hoshin.creator_id).first # Don't use find, User may be deleted
+    end
+    unless user
+      uc = UserCompany.unscoped
+               .where('company_id = ? and ' + UserCompany::IS_ADMIN_SQL, hoshin.company_id)
+      user = User.unscoped.where(id: uc.pluck(:user_id)).order(last_seen_at: :desc).first if uc # Don't use find, User may be deleted
+    end
+    raise "User (#{requester_id}) requested access to a hoshin without owners (#{hoshin_id})." if user.blank?
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
     company = Company.unscoped.find(hoshin.company_id)
+    raise "User (#{requester_id}) requested access to a hoshin without company (#{hoshin_id})." if company.blank?
     mail(:subject => I18n.translate("emails.request_access.subject", name: hoshin.name),
          :to => @user.email_address) do |format|
       format.html {
