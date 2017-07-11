@@ -29,7 +29,7 @@ class BillingDetailsController < ApplicationController
     if params[:plan_id]
       @billing_plan = BillingPlan.find(params[:plan_id])
       subscription_params.merge!({
-                                     plan_name:  @billing_plan.name,
+                                     plan_name: @billing_plan.name,
                                      amount_value: @billing_plan.amount_value,
                                      monthly_value: @billing_plan.monthly_value,
                                      amount_currency: @billing_plan.amount_currency,
@@ -54,15 +54,15 @@ class BillingDetailsController < ApplicationController
     if params[:plan_id]
       @billing_plan = BillingPlan.find(params[:plan_id])
       subscription_params.merge!({
-           plan_name:  @billing_plan.name,
-           amount_value: @billing_plan.amount_value,
-           monthly_value: @billing_plan.monthly_value,
-           amount_currency: @billing_plan.amount_currency
-      })
+                                     plan_name: @billing_plan.name,
+                                     amount_value: @billing_plan.amount_value,
+                                     monthly_value: @billing_plan.monthly_value,
+                                     amount_currency: @billing_plan.amount_currency
+                                 })
     end
     hobo_update do
       if subscription_params
-        _update_subscription(subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/,''))
+        _update_subscription(subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/, ''))
       else
         redirect_to params[:page_path] if valid?
       end
@@ -102,6 +102,11 @@ class BillingDetailsController < ApplicationController
           update_response(false)
           log_event("Payment error", {message: _.message})
           raise ActiveRecord::Rollback
+        rescue Stripe::InvalidRequestError => _
+          flash.now[:error] = I18n.t('errors.invalid_credit_card')
+          update_response(false)
+          log_event("Payment error", {message: _.message})
+          raise ActiveRecord::Rollback
         rescue ActiveRecord::RecordInvalid => _
           flash.now[:error] = I18n.t('errors.invalid_subscription')
           update_response(false)
@@ -113,6 +118,9 @@ class BillingDetailsController < ApplicationController
   end
 
   def update_stripe_billing_details
+    if params[:billing_detail]._?[:card_stripe_token].blank?
+      return
+    end
     if @this.stripe_client_id.nil?
       customer = Stripe::Customer.create(
           :description => current_user.name,
@@ -127,6 +135,7 @@ class BillingDetailsController < ApplicationController
       end
     end
     @this.stripe_client_id = customer.id
+
     @this.card_brand = customer.sources.data[0].brand
     @this.card_last4 = customer.sources.data[0].last4
     @this.card_exp_month = customer.sources.data[0].exp_month

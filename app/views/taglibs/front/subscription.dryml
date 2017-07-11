@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="payment-details">
+            <div class="payment-details" if="billing_detail">
                 <h5><t key="pricing_plans.payment_methods"/></h5>
                 <div class="credit-card-item">
                     <div class="credit-card-item__row">
