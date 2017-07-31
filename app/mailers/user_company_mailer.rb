@@ -219,7 +219,7 @@ class UserCompanyMailer < ActionMailer::Base
         content: pdf.render
     }
     mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
-         :to => 'gabri@hoshinplan.com', :bcc => User.administrator.first.email_address) do |format|
+         :to => @user.email_address, :bcc => User.administrator.first.email_address) do |format|
       format.html {
         render_email("invoice", {
             user: @user, app_name: @app_name
