@@ -516,8 +516,6 @@ GEM
       wasabi (~> 3.4)
     secure_headers (3.6.4)
       useragent
-    sendgrid (1.2.4)
-      json
     sendgrid4r (1.15.0)
       rest-client (>= 1.8.0, < 3.0)
     sinatra (1.4.8)
@@ -665,7 +663,6 @@ DEPENDENCIES
   sageone_api_signer!
   sass-rails
   secure_headers
-  sendgrid
   sendgrid4r
   sprockets-rails
   stripe

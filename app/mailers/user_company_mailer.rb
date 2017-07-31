@@ -1,9 +1,26 @@
 class UserCompanyMailer < ActionMailer::Base
+
+  DEFAULT_XSMTPAPI_HEADER = {
+      category: ['Hoshinplan'],
+      filters: {
+          subscriptiontrack: {
+              settings: {
+                  replace: '#unsubscribe_url#',
+                  enable: 1
+              }
+          }
+      }
+  }
+
   include Rails.application.routes.url_helpers
-  include SendGrid
+
+  def sendgrid_category(*args)
+    category = DEFAULT_XSMTPAPI_HEADER[:category].concat(args)
+    headers['X-SMTPAPI'] = DEFAULT_XSMTPAPI_HEADER.merge({category: category}).to_json
+  end
 
   default :from => "Hoshinplan Team <hello@hoshinplan.com>",
-          'X-SMTPAPI' => '{"filters": { "subscriptiontrack": { "settings": {"replace": "#unsubscribe_url#", "enable": 1} } } }'
+          'X-SMTPAPI' => DEFAULT_XSMTPAPI_HEADER.to_json
 
   @@renderer = {}
 
@@ -202,9 +219,14 @@ class UserCompanyMailer < ActionMailer::Base
         content: pdf.render
     }
     mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
-         :to => @user.email_address, :bcc => User.administrator.first.email_address) do |format|
+         :to => 'gabri@hoshinplan.com', :bcc => User.administrator.first.email_address) do |format|
       format.html {
         render_email("invoice", {
+            user: @user, app_name: @app_name
+        })
+      }
+      format.text {
+        render_email("invoice.txt", {
             user: @user, app_name: @app_name
         })
       }
