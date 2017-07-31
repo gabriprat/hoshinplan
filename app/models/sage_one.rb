@@ -161,7 +161,7 @@ class SageOne < ActiveRecord::Base
                     reference: "HP-#{bd.id}",
                     default_sales_ledger_account_id: '2ce906040ffc11e7bb3b065b8ec10ed1', #Ventas de mercaderías (70000000)
                     default_purchase_ledger_account_id: '2ce8db5c0ffc11e7bb3b065b8ec10ed1', #Compras de mercaderías (60000000)
-                    tax_number: bd.country + bd.vat_number,
+                    tax_number: bd.vat_number.present? && bd.country && bd.country.in_eu? ? bd.country + bd.vat_number : nil,
                     credit_terms_and_conditions: '',
                     currency_id: 'EUR',
                     main_address: {
