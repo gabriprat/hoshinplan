@@ -188,8 +188,9 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
 
-  def invoice(invoice)
+  def invoice(invoice_id)
     sendgrid_category "invoice"
+    invoice = Invoice.unscoped.find(invoice_id)
     subscription = Subscription.unscoped.find(invoice.subscription_id)
     user = User.unscoped.find(subscription.user_id)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
@@ -201,7 +202,7 @@ class UserCompanyMailer < ActionMailer::Base
         content: pdf.render
     }
     mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
-         :to => @user.email_address, :bcc => User.administrator.first.pluck(:email_address)) do |format|
+         :to => @user.email_address, :bcc => User.administrator.first.email_address) do |format|
       format.html {
         render_email("invoice", {
             user: @user, app_name: @app_name

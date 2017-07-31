@@ -37,11 +37,20 @@ class SageOneController < ApplicationController
     render json: SageOne.create_invoices
   end
 
+  def send_invoice
+    UserCompanyMailer.invoice(params[:id]).deliver_later
+    render text: 'OK!'
+  end
+
   def ledger_accounts
     render json: SageOne.ledger_accounts(params[:page], params[:items_per_page])
   end
 
   def tax_rates
     render json: SageOne.tax_rates(params[:page], params[:items_per_page])
+  end
+
+  def renew_token
+    render json: SageOne.renew_token!
   end
 end

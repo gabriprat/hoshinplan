@@ -22,7 +22,7 @@ module Jobs
               invoice.sage_one_invoice_id = resp['invoice_number']
               invoice.save!(validate: false)
               ret += Jobs::say " ==== Sending invoice #{invoice.id} + #{subscription.billing_description}\n"
-              UserCompanyMailer.invoice(invoice).deliver_later
+              UserCompanyMailer.invoice(invoice.id).deliver_later
             end
           rescue
             ret += Jobs::say "Error synchronizing invoice #{invoice.id}\n" + $!.inspect + "\n" + $!.backtrace.to_yaml + "\n"

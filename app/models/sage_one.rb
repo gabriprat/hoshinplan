@@ -81,8 +81,7 @@ class SageOne < ActiveRecord::Base
             {
                 sales_invoice: {
                     contact_id: billing_detail.sage_one_contact_id,
-                    date: invoice.created_at.to_date,
-                    due_date: invoice.created_at.to_date,
+                    date: Date.today,
                     reference: "INV#{invoice.id.to_s.rjust(5, '0')}",
                     main_address: {
                         address_line_1: billing_detail.address_line_1,
@@ -99,7 +98,7 @@ class SageOne < ActiveRecord::Base
                             quantity: 1,
                             unit_price: invoice.net_amount,
                             discount_amount: 0,
-                            tax_rate_id: billing_detail.country == 'ES' ? 'ES_STANDARD' : 'ES_NO_TAX' #EX_EXCEMPT, ES_LOWER_1, ES_LOWER_2
+                            tax_rate_id: billing_detail.country == 'ES' ? 'ES_STANDARD' : 'ES_EXEMPT' #ES_NO_TAX, ES_LOWER_1, ES_LOWER_2
                         }
                     ]
                 }
@@ -222,8 +221,8 @@ class SageOne < ActiveRecord::Base
 
   def renew_token!
     body_params = SageOne.token_request_body
-    body_params << ["refresh_token", self.refresh_token]
     body_params << ["grant_type", "refresh_token"]
+    body_params << ["refresh_token", self.refresh_token]
 
     SageOne.save_token(body_params)
   end
@@ -243,6 +242,10 @@ class SageOne < ActiveRecord::Base
       end
     end
     @singleton
+  end
+
+  def self.renew_token!
+    SageOne.get.renew_token!
   end
 
   def validate_single_row

@@ -171,6 +171,8 @@ Hoshinplan::Application.routes.draw do
     get "/sage_one/create_invoices" => "sage_one#create_invoices"
     get "/sage_one/ledger_accounts" => "sage_one#ledger_accounts"
     get "/sage_one/tax_rates" => "sage_one#tax_rates"
+    get "/sage_one/renew_token" => "sage_one#renew_token"
+    get "/sage_one/send_invoice/:id" => "sage_one#send_invoice"
   end
   
   # The priority is based upon order of creation:
