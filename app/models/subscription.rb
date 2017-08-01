@@ -95,10 +95,10 @@ class Subscription < ApplicationRecord
 
   def update_counter_cache
     u = User.unscoped.find(user_id)
-    u.subscriptions_count = u.subscriptions.where(:status => :Active).count
+    u.subscriptions_count = Subscription.unscoped.where(user_id: user_id, status: :Active).count
     u.save!
     c = Company.unscoped.find(company_id)
-    c.subscriptions_count = c.subscriptions.where(:status => :Active).count
+    c.subscriptions_count = Subscription.unscoped.where(company_id: company_id, status: :Active).count
     c.save!
   end
 
