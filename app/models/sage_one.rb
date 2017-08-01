@@ -100,7 +100,10 @@ class SageOne < ActiveRecord::Base
                             discount_amount: 0,
                             tax_rate_id: billing_detail.country == 'ES' ? 'ES_STANDARD' : 'ES_EXEMPT' #ES_NO_TAX, ES_LOWER_1, ES_LOWER_2
                         }
-                    ]
+                    ],
+                    net_amount: invoice.net_amount,
+                    tax_amount: invoice.total_amount - invoice.net_amount,
+                    total_amount: invoice.total_amount
                 }
             }
         )
