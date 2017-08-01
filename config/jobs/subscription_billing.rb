@@ -4,12 +4,11 @@ module Jobs
     @queue = :jobs
 
     def self.perform(options)
-      hour = options.present? && options[:hour].present? ? options[:hour].to_i : 8
       ret = ""
       begin
         User.current_user = nil
         User.current_id = -1
-        ret += Jobs::say "Initiating subscription billing job (at #{hour})!" + "\n"
+        ret += Jobs::say "Initiating subscription billing job!" + "\n"
         subscriptions = SubscriptionStripe.unscoped.includes(:company)
                             .where("status = 'Active' and next_payment_at <= date_trunc('day',now()) and subscriptions.payment_error is null and paying_at is null and companies.payment_error is null")
                             .references(:company)
