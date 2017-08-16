@@ -82,7 +82,7 @@ gem 'hobo_paperclip', :git => 'git://github.com/Hobo/hobo_paperclip.git', :branc
 gem 'redis-rails'
 gem 'redis-store'
 gem 'request_store'
-gem 'newrelic_rpm', :group => :production
+gem 'newrelic_rpm' #, :group => :production
 gem 'redcloth-rails'
 gem 'bitmask_attributes'
 gem 'detect_timezone_rails'
