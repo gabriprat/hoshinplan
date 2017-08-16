@@ -3,8 +3,8 @@
 
 <def tag="health" for="Hoshin" attrs="suffix,updates,inline">
 	<% updates ||= "" %>
-		<!-- ajax-load id="health-counter#{suffix}" updates="#{updates}" inline="&inline" -->
-			<!--content:-->
+		<ajax-load id="health-counter#{suffix}" updates="#{updates}">
+			<content:>
 			<% health = this.health %>	
 			<if test="&health[:action]=='none'">
 			<% badge_count = this.neglected_objectives_count + this.blind_objectives_count + this.outdated_indicators_count + this.outdated_tasks_count %>
@@ -32,7 +32,7 @@
 				</else>
 			</div>
 			</if>
-			<!-- /content: -->
+			</content:>
 			
-		<!-- /ajax-load -->
+		</ajax-load>
 </def>

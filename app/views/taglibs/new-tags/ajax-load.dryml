@@ -3,6 +3,10 @@
 			<a href="#{hoshin_path this}?ajax_load=true" action="show" updates="#{updates}" id="update-#{id}" ajax data-rapid='{"ajax-load":{}}' no-spinner></a>
 		</unless>
 		<else>
+		    <%
+		        new_relic_name = NewRelic::Agent.get_transaction_name
+		        NewRelic::Agent.set_transaction_name("#{new_relic_name}::AjaxLoad::#{id}")
+		    %>
 			<do param="content"/>
 		</else>
 </def>
