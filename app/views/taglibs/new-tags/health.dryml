@@ -9,7 +9,6 @@
 			<% health = this.health %>
 			<if test="&health[:action]=='none'">
 			<% badge_count = this.neglected_objectives_count + this.blind_objectives_count + this.outdated_indicators_count + this.outdated_tasks_count %>
-			<script type="text/javascript">document.getElementById('health#{suffix}_badge').innerHTML = #{badge_count};</script>
 			<div class="hide" id="health-report#{suffix}">
 				<p if="&health[:value]==100">
 					<t key="hoshin.full_health">Your hoshin has full health! Congratulations!!</t>
@@ -32,6 +31,7 @@
 					<a action="health"><t key="hoshin.see_detailed_health">See detailed health report</t></a>
 				</else>
 			</div>
+			<script type="text/javascript">document.getElementById('health#{suffix}_badge').innerHTML = #{badge_count};</script>
 			</if>
 			</content:>
 			
