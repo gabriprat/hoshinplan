@@ -119,6 +119,7 @@ en:
     charts: "KPI charts"
     compact: "Expanded or compact view"
     map: "Map view"
+    messaging: "Messaging"
   no_oid_url: "No corporate login for the given email"
   errors:
     service_unavailable: "Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again."

@@ -119,6 +119,7 @@ es:
     charts: "Gráficos de indicadores"
     compact: "Vista expandida o compacta"
     map: "Vista mapa"
+    messaging: "Mensajería"
   no_oid_url: "No existe un login corporativo para el email introducido"
   errors:
     service_unavailable: "¡Lo sentimos! Estamos en mantenimiento.  <br/>Estamos trabajando duro para hacer mejoras en nuestra aplicación y para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar."
