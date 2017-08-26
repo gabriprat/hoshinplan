@@ -56,6 +56,8 @@ es:
       subject: "[Hoshinplan] Tienes indicadores o tareas pendientes"
       message: "Puedes acceder a todos los indicadores y tareas pendientes en tu <a href=\"%{url}\">panel de control</a>. Te falta actualizar:"
       update: "Panel de control"
+      action: "Abrir panel de control"
+      description: "Abrir panel de control"
     unsubscribe: "Cancelar suscripción"
     welcome:
       subject: "%{name}, ¡Te damos la bienvenida a Hoshinplan!"

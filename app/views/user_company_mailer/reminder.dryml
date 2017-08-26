@@ -14,8 +14,17 @@
 								<li>#{this[:name]} (#{this[:hoshin_name]} - #{this[:company_name]})</li>
 							</repeat></ul>
 							</div>
-							
-							<p><center><div class="btn"><a href="#{url}"><%= I18n.translate('emails.reminder.update') %></a></div></center></p>
+
+							<p itemscope itemtype="http://schema.org/EmailMessage">
+                                <meta itemprop="description" content="#{I18n.translate('emails.reminder.description')}"/>
+                                <center>
+                                    <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction" class="btn">
+                                        <link itemprop="target" href="#{url}" />
+                                        <meta itemprop="name" content="#{I18n.translate('emails.reminder.action')}" />
+                                        <a href="#{url}"><%= I18n.translate('emails.reminder.update') %></a>
+                                    </div>
+                                </center>
+							</p>
 							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}<br/>
 							#{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>
 </email>
