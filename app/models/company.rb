@@ -135,7 +135,7 @@ class Company < ApplicationRecord
     users = 1
     if unlimited
       users = 1000000
-    elsif subscriptions_count == 0 && creator.present? && creator.trial_days_remaining > 0
+    elsif subscriptions_count == 0 && creator.present? && trial_days_remaining > 0
       users = 200
     else
       subscriptions.where(status: 'Active').each { |subscription|
