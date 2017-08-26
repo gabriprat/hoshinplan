@@ -125,9 +125,14 @@
 			<transition-button class="btn btn-primary pull-right" transition="archive" />
 			<transition-button class="btn btn-primary pull-right" transition="clone" />
 		</append-content-header:>
+		<main-content: replace>
+            <main-content restore if="&can_edit?"/>
+            <else>
+                <read-only-ask-for-permission show-close="&false"/>
+            </else>
+        </main-content:>
 	</old-edit-page>
 </extend>
-
 
 <extend tag="form" for="Hoshin">
 	<set parent="&this.company.hoshins.size > 0 ? ', parent_id' : ''" if="&this.company"/>

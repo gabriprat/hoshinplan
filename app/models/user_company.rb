@@ -139,8 +139,8 @@ class UserCompany < ApplicationRecord
   end
 
   def update_permitted?
-    acting_user.administrator? || acting_user.user_companies.where('company_id = ? and ' + IS_ADMIN_SQL, company_id).exists?
-    roles_mask == 1 || roles_mask_was != 1 || !company.collaborator_limits_reached?
+    ret = acting_user.administrator? || acting_user.user_companies.where('company_id = ? and ' + IS_ADMIN_SQL, company_id).exists?
+    ret && (!roles_mask_changed? || (roles_mask == 1 || roles_mask_was != 1 || !company.collaborator_limits_reached?))
   end
 
   def destroy_permitted?

@@ -71,7 +71,7 @@ module ModelBase
     user = acting_user ? acting_user : User.current_user
     return false if user.id == 557 && !user.administrator?
     return true if user.administrator?
-    if respond_to?("creator_id") && (user.id == creator_id)
+    if respond_to?("creator_id") && (user.id == creator_id) && !self.is_a?(Company) #prevent non-admin creators to act as admins
       return true
     end
     if self.is_a?(Company)

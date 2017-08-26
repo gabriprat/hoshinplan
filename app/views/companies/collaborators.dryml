@@ -1,87 +1,101 @@
-<page title="#{ht 'hoshin.show.title', :default=>['Hoshin'], :name => name(:no_wrapper => true) }" without-aside>
+<def tag="collaborators-page">
+    <page title="#{ht 'company.show.title', :name => this.name } - #{t 'company.manage_collaborators'}" without-aside>
 
-    <body: class="show-page hoshin collaborators" />
-    
-    <content-header: class="well">
-     <if test="&this.same_company_admin">
-             <if test="&@limit_reached">
-                <a action="upgrade" class="btn btn-primary btn-raised pull-right"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
-                <rmodal title="#{t 'company.invite_readers'}" url="#{company_path this}/invite" class="btn pull-right" target-id="invite-collaborators-modal">
-                    <span class="ic-envelope-o ic-fw"></span>
-                    <view with=" #{t 'company.invite_readers'}"/>
-                </rmodal>
-             </if>
-             <else>
-                 <rmodal title="#{t 'company.invite_collaborators'}" url="#{company_path this}/invite" class="btn btn-primary btn-raised pull-right" target-id="invite-collaborators-modal">
-                     <span class="ic-envelope-o ic-fw"></span>
-                     <view with=" #{t 'company.invite_collaborators'}"/>
-                 </rmodal>
-             </else>
-     </if>
-     <a>&laquo; <ht key="company.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a>
-     <h2>
-        <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
-          Company <name/>
-        </ht> - 
-	<t key="company.manage_collaborators">Manage collaborators</t>
-	<do part="collab-num">
-	<t key="company.maximum_collaborators" used="#{this.users.size}" value="#{this.user_limit==1000000 ? t('company.unlimited') : number_with_precision(this.user_limit, :precision => 0)}"/>
-    </do>
-     </h2>
-    </content-header:>
-    
-    
-    <content-body: class="well">
-		<set pid="&1"/>
-		<table-plus with="&@collaborators" fields="user, roles">
-			<user-view: >
-				<do part="user" id="user-#{pid}" part-locals="pid">
-				<a action="show" if="&can_view?">#{this.name} (#{this.email_address})</a>
-				<else >
-					<view >#{this.name} (#{this.email_address})</view>
-				</else >
-				<a action="edit" if="&can_update?"><span class="ic-cog"></span></a>
-				</do>
-			</user-view: >
-			<roles-view:>
-				<do part="roles" id="roles-#{pid}" part-locals="this_parent,this_field,pid">
-                    <form with="&this_parent" updates="#user-#{pid},#roles-#{pid},#collab-num" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
-                        <field-list fields="roles">
-                            <roles-field:>
-                                <radio-group horizontal="true" onclick="$('#roles-#{pid} form').submit()"/>
-                            </roles-field:>
-                        </field-list>
-                    </form>
-                    <else>
-                        <view/>
-                    </else>
-                </do>
-			</roles-view:>
-			<controls:>
-				<do part="controls"  id="controls-#{pid}" part-locals="pid">
-				<if test="&this.state == 'invited'">		
-					<transition-button transition="resend_invite" updates="#user-#{pid},#state-#{pid},#controls-#{pid}">
-						<form: class="inline-form"/>
-						<button: replace>
-							<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.resend_invite', :default=>:resend_invite.to_s.titleize)}">
-								<span class="ic-envelope-o ic-fw"></span>
-							</button>
-						</button:>
-					</transition-button>
-				</if>
-				<transition-button transition="remove" success="window.location.reload()">
-					<form: class="inline-form"/>
-					<button: replace>
-						
-						<button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.remove', :default=>:remove.to_s.titleize)}">
-							<span class="ic-trash-o ic-fw"></span>
-						</button>
-					</button:>
-				</transition-button>
-				</do>
-				<set pid="&pid + 1"/>
-			</controls>
-		</table-plus>
-		<page-nav with="&@collaborators" />
-    </content-body: >
-</page>
+        <body: class="show-page hoshin collaborators" />
+
+        <content-header: class="well">
+         <if test="&this.same_company_admin">
+                 <if test="&@limit_reached">
+                    <a action="upgrade" class="btn btn-primary btn-raised pull-right"><t key="company.upgrade_to_invite">Upgrade to invite more collaborators</t></a>
+                    <rmodal title="#{t 'company.invite_readers'}" url="#{company_path this}/invite" class="btn pull-right" target-id="invite-collaborators-modal">
+                        <span class="ic-envelope-o ic-fw"></span>
+                        <view with=" #{t 'company.invite_readers'}"/>
+                    </rmodal>
+                 </if>
+                 <else>
+                     <rmodal title="#{t 'company.invite_collaborators'}" url="#{company_path this}/invite" class="btn btn-primary btn-raised pull-right" target-id="invite-collaborators-modal">
+                         <span class="ic-envelope-o ic-fw"></span>
+                         <view with=" #{t 'company.invite_collaborators'}"/>
+                     </rmodal>
+                 </else>
+         </if>
+         <a>&laquo; <ht key="company.actions.back_to_parent" parent="Company" name="&this">Back to <name/></ht></a>
+         <h2>
+            <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
+              Company <name/>
+            </ht> -
+        <t key="company.manage_collaborators">Manage collaborators</t>
+        <do part="collab-num">
+        <t key="company.maximum_collaborators" used="#{this.users.size}" value="#{this.user_limit==1000000 ? t('company.unlimited') : number_with_precision(this.user_limit, :precision => 0)}"/>
+        </do>
+         </h2>
+        </content-header:>
+
+
+        <content-body: class="well">
+            <set pid="&1"/>
+            <table-plus with="&@collaborators" fields="user, roles">
+                <user-view: >
+                    <do part="user" id="user-#{pid}" part-locals="pid">
+                    <a action="show" if="&can_view?">#{this.name} (#{this.email_address})</a>
+                    <else >
+                        <view >#{this.name} (#{this.email_address})</view>
+                    </else >
+                    <a action="edit" if="&can_update?"><span class="ic-cog"></span></a>
+                    </do>
+                </user-view: >
+                <roles-view:>
+                    <do part="roles" id="roles-#{pid}" part-locals="this_parent,this_field,pid">
+                        <do with="&this_parent">
+                            <form updates="#user-#{pid},#roles-#{pid},#collab-num" success="&this_parent.user_id == current_user.id ? 'window.location.reload()' : ''">
+                                <field-list fields="roles">
+                                    <roles-field:>
+                                        <radio-group horizontal="true" onclick="$('#roles-#{pid} form').submit()"/>
+                                    </roles-field:>
+                                </field-list>
+                            </form>
+                            <else>
+                                <view:roles />
+                            </else>
+                        </do>
+                    </do>
+                </roles-view:>
+                <controls:>
+                    <do part="controls"  id="controls-#{pid}" part-locals="pid">
+                    <if test="&this.state == 'invited'">
+                        <transition-button transition="resend_invite" updates="#user-#{pid},#state-#{pid},#controls-#{pid}">
+                            <form: class="inline-form"/>
+                            <button: replace>
+                                <button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.resend_invite', :default=>:resend_invite.to_s.titleize)}">
+                                    <span class="ic-envelope-o ic-fw"></span>
+                                </button>
+                            </button:>
+                        </transition-button>
+                    </if>
+                    <transition-button transition="remove" success="window.location.reload()">
+                        <form: class="inline-form"/>
+                        <button: replace>
+
+                            <button type="submit" class="link" title="#{t('activerecord.attributes.user_company.lifecycle.transitions.remove', :default=>:remove.to_s.titleize)}">
+                                <span class="ic-trash-o ic-fw"></span>
+                            </button>
+                        </button:>
+                    </transition-button>
+                    </do>
+                    <set pid="&pid + 1"/>
+                </controls>
+            </table-plus>
+            <page-nav with="&@collaborators" />
+        </content-body: >
+    </page>
+</def>
+
+<collaborators-page>
+    <main-content: replace>
+        <main-content restore if="&can_edit?"/>
+        <else>
+            <read-only-ask-for-permission show-close="&false"/>
+        </else>
+    </main-content:>
+</collaborators-page>
+
