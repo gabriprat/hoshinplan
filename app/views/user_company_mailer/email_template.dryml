@@ -1,4 +1,4 @@
-<def tag="email" attrs="message, url, user, app-name">
+<def tag="email" attrs="message, url, user, app-name, view-action">
 <html>
 <head>
 <!-- If you delete this meta tag, Half Life 3 will never be released. -->
@@ -42,7 +42,7 @@
 
 
 <!-- BODY -->
-<table class="body-wrap one-col">
+<table class="body-wrap one-col" itemscope itemtype="http://schema.org/EmailMessage">
 	<tr>
 		<td></td>
 		<td class="container">
@@ -53,8 +53,15 @@
 					<td>
 						<do param="default">
 							<h2 param="header">#{ I18n.translate "emails.hi", :name => user.name.blank? ? user.email_address : user.name } </h2>
-							<p><%= message.html_safe %></p>
-							<p param="link" unless="&url.blank?"><a href="#{url}">#{url}</a></p>
+							<p itemprop="description" if="&message"><%= message.html_safe %></p>
+							<if test="&view_action.present? && url.present?">
+							    <p param="link" itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction">
+							        <a itemprop="target url" href="#{url}"><span itemprop="name">#{view_action}</span></a>
+							    </p>
+							</if>
+							<else>
+							    <p param="link" unless="&url.blank?"><a href="#{url}">#{url}</a></p>
+							</else>
 							<do param="footer">
 							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}<br/>
 							#{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>

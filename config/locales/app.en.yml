@@ -54,10 +54,9 @@ en:
       message: "%{mentioning_user} has mentioned you in %{article} %{model} <a href=\"%{url}\">%{name}</a> for the hoshin <a href=\"%{hoshin_url}\">%{hoshin_name}</a>."
     reminder:
       subject: "[Hoshinplan] You have KPIs or tasks to update"
-      message: "You can access all the KPIs and tasks you have to update at your <a href=\"%{url}\">dashboard</a>. You should update:"
+      message: "You can access all of them at your <a href=\"%{url}\">dashboard</a>. You should update:"
       update: Dashboard
-      action: "Open dashboard"
-      description: "Open dashboard"
+      description: "You have KPIs or tasks to update."
     unsubscribe: Unsubscribe
     welcome:
       subject: "%{name}, Welcome to Hoshinplan!"
@@ -101,9 +100,11 @@ en:
     forgot_password:
       subject: "Reset your Hoshinplan password"
       message: "In order to reset your Hoshinplan password you only need to use the following link during the next 24 hours."
+      action: "Reset password"
     activation:
       subject: "Confirm your email address at Hoshinplan"
       message: "You are almost done signing up at Hoshinplan. In order to validate your email address at Hoshinplan you only need to use the following link during the next 24 hours."
+      action: "Confirm email address"
     request_access:
       subject: "[Hoshinplan] Access request"
       message: "%{requester} requests access to the company %{name}."

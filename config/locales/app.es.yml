@@ -54,10 +54,9 @@ es:
       message: "%{mentioning_user} te ha mencionado de en %{article} %{model} <a href=\"%{url}\">%{name}</a> para el hoshin <a href=\"%{hoshin_url}\">%{hoshin_name}</a>."
     reminder:
       subject: "[Hoshinplan] Tienes indicadores o tareas pendientes"
-      message: "Puedes acceder a todos los indicadores y tareas pendientes en tu <a href=\"%{url}\">panel de control</a>. Te falta actualizar:"
-      update: "Panel de control"
-      action: "Abrir panel de control"
-      description: "Abrir panel de control"
+      message: "Puedes acceder a todos ellos en tu <a href=\"%{url}\">panel de control</a>. Te falta actualizar:"
+      update: "Abrir panel de control"
+      description: "Tienes indicadores o tareas pendientes."
     unsubscribe: "Cancelar suscripción"
     welcome:
       subject: "%{name}, ¡Te damos la bienvenida a Hoshinplan!"
@@ -101,9 +100,11 @@ es:
     forgot_password:
       subject: "Restablecer tu contraseña de Hoshinplan"
       message: "Para cambiar tu contraseña de Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas."
+      action: "Restablecer contraseña"
     activation:
       subject: "Valida tu dirección de email en Hoshinplan"
       message: "Ya casi has terminado tu registro en Hoshinplan. Para validar tu email en Hoshinplan sólo tienes que utlizar el enlace más abajo durante las siguientes 24 horas."
+      action: "Validar email"
     request_access:
       subject: "[Hoshinplan] Solicitud de acceso"
       message: "%{requester} solicita acceso a la compañía %{name}."

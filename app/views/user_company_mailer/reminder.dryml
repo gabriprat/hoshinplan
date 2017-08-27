@@ -1,30 +1,30 @@
 <email user="&user" app-name="#{app_name}">
-							<h2>#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h2>
-							<p><%= I18n.translate('emails.reminder.message', :url => url).html_safe %></p>
-							<div if="&kpis">
-							<h3><%= kpis.size.to_s + ' ' + Indicator.model_name.human(:count => kpis.size) %></h3>
-							<ul><repeat with="&kpis">
-								<li>#{this[:name]} (#{this[:hoshin_name]} - #{this[:company_name]})</li>
-							</repeat></ul>
-							</div>
-							<div if="&tasks">
-							<h3><%= tasks.size.to_s + ' ' + Task.model_name.human(:count => tasks.size) %></h3>
-							
-							<ul><repeat with="&tasks">
-								<li>#{this[:name]} (#{this[:hoshin_name]} - #{this[:company_name]})</li>
-							</repeat></ul>
-							</div>
+    <h2>#{ I18n.translate "emails.hi", :name => user.name.empty? ? user.email_address : user.name } </h2>
+    <p>
+        <span itemprop="description"><%= I18n.translate('emails.reminder.description') %></span>
+        <%= I18n.translate('emails.reminder.message', :url => url).html_safe %>
+    </p>
+    <div if="&kpis">
+    <h3><%= kpis.size.to_s + ' ' + Indicator.model_name.human(:count => kpis.size) %></h3>
+    <ul><repeat with="&kpis">
+        <li>#{this[:name]} (#{this[:hoshin_name]} - #{this[:company_name]})</li>
+    </repeat></ul>
+    </div>
+    <div if="&tasks">
+    <h3><%= tasks.size.to_s + ' ' + Task.model_name.human(:count => tasks.size) %></h3>
 
-							<p itemscope itemtype="http://schema.org/EmailMessage">
-                                <meta itemprop="description" content="#{I18n.translate('emails.reminder.description')}"/>
-                                <center>
-                                    <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction" class="btn">
-                                        <link itemprop="target" href="#{url}" />
-                                        <meta itemprop="name" content="#{I18n.translate('emails.reminder.action')}" />
-                                        <a href="#{url}"><%= I18n.translate('emails.reminder.update') %></a>
-                                    </div>
-                                </center>
-							</p>
-							<p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}<br/>
-							#{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>
+    <ul><repeat with="&tasks">
+        <li>#{this[:name]} (#{this[:hoshin_name]} - #{this[:company_name]})</li>
+    </repeat></ul>
+    </div>
+
+    <div>
+        <center>
+            <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction" class="btn">
+                <a itemprop="target url" href="#{url}"><span itemprop="name"><%= I18n.translate('emails.reminder.update') %></span></a>
+            </div>
+        </center>
+    </div>
+    <p>#{ I18n.translate "emails.thank_you", :default => "Thank you,"}<br/>
+    #{ I18n.translate "emails.the_team", :default => "The " + app_name + " team.", :app_name => app_name}</p>
 </email>
