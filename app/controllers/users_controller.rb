@@ -304,7 +304,7 @@ class UsersController < ApplicationController
     if self.this.present? && (self.this.state == 'invited' || self.this.state == 'inactive')
       self.this.lifecycle.resend_activation!(self.this)
       flash[:notice] = ht(:"#{model.to_s.underscore}.messages.signup.success")
-      redirect_to home_page
+      redirect_to "/confirm-email"
     else
       hobo_do_signup do
         people_set_with_event "Signup", self.this if valid?
