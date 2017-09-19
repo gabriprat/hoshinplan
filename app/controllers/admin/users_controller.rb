@@ -15,7 +15,29 @@ class Admin::UsersController < Admin::AdminSiteController
       @this[u.login.to_s] = u.id 
     }
   end
-  
+
+  def show
+    @this = User.unscoped.find(params[:id])
+    hobo_show
+  end
+
+  def edit
+    @this = User.unscoped.find(params[:id])
+    hobo_edit
+  end
+
+  def update
+    @this = User.unscoped.find(params[:id])
+    if params[:user][:password].present?
+      @this.update_attribute(:crypted_password, nil) # No validations
+      @this.update_attribute(:salt, nil) # No validations
+      @this.password = params[:user][:password]
+      @this.save!(validate: false) #Password validation would fail
+    end
+    params[:user].delete(:password)
+    hobo_update
+  end
+
   def supplant
     self.current_user = find_instance
     redirect_to home_page
