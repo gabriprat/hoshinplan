@@ -39,7 +39,7 @@ class Admin::UsersController < Admin::AdminSiteController
   end
 
   def supplant
-    self.current_user = find_instance
+    self.current_user = User.unscoped.find_by_id(params[:id])
     redirect_to home_page
   end
   
