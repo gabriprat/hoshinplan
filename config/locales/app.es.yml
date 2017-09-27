@@ -563,6 +563,7 @@ es:
     upgrade_to_invite: "Mejora tu plan para invitar más colaboradores"
     tabs:
       authentication: "Autenticación SAML"
+      domains: "Dominios con permisos automáticos"
     view: "Ver"
   client_app:
     sign_a_request: "Firma una petición al API"

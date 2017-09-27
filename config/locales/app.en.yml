@@ -563,6 +563,7 @@ en:
     upgrade_to_invite: "Upgrade your plan to invite more collaborators"
     tabs:
       authentication: "SAML authentication"
+      domains: "Automatic permission domains"
     view: "View"
   client_app:
     sign_a_request: "Sign a request to the API"

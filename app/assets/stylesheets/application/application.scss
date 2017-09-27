@@ -4520,3 +4520,12 @@ a.invoice-pdf {
 .saml-provider form.button_to {
   display: inline-block;
 }
+
+ul.input-many > li > div.input-many-item {
+  border-right: 0;
+  border-bottom: 0;
+}
+
+ul.input-many > li > div.buttons button {
+  margin: 5px;
+}

@@ -75,6 +75,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab"><model-name-human/></a></li>
                     <li role="presentation"><a href="#authentication" aria-controls="authentication" role="tab" data-toggle="tab" if="&this.enterprise?"><ht key="company.tabs.authentication"/></a></li>
+                    <li role="presentation"><a href="#domains" aria-controls="domain" role="tab" data-toggle="tab" if="&this.enterprise?"><ht key="company.tabs.domains"/></a></li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="company">
@@ -114,6 +115,11 @@
                                 </div>
                             </do>
                         </do>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="domains">
+                        <form param>
+                            <field-list: fields="company_email_domains" />
+                        </form>
                     </div>
                 </div>
             </div>

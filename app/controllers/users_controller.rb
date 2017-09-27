@@ -26,14 +26,17 @@ class UsersController < ApplicationController
     user = model.where(email_address: email) if domain.present?
     prov = AuthProvider.where(:email_domain => domain).first
     prov ||= AuthProvider.where(:company_id => UserCompany.unscoped.where(user_id: user.first.id).*.company_id).first if user.present?
+    prov ||= AuthProvider.where(company_id: (CompanyEmailDomain.where(:domain => domain).*.company_id)).first
     user = user.present?
-    exists = user & prov
-    if exists
-      if prov.type == 'OpenidProvider' 
+    exists = false
+    if prov
+      if prov.type == 'OpenidProvider' and user
+        exists = true
         oi = prov.openid_url
         url = oi.gsub('{user}', user)
         render js: "window.location.href = '/auth/openid?openid_url=#{url}'"
       elsif prov.type == 'SamlProvider'
+        exists = true
         render js: "window.location.href = '/auth/saml_#{prov.email_domain}'"
       else
         flash[:error] = "Unknown provider: " + prov.type.to_s

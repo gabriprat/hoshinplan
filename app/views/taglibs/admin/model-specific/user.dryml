@@ -16,3 +16,16 @@
 		</collection:>
 	</old-index-page>
 </extend>
+
+<extend tag="edit-page" for="User">
+    <%
+       field_names = with_fields_helper({fields: User, skip_associations: true})
+       field_names = field_names.select {|f| can_view?(this, f)}
+       field_names.push('password')
+    %>
+    <old-edit-page merge>
+        <form:>
+            <field-list: fields="&field_names.join(',')" />
+        </form:>
+    </old-edit-page>
+</extend>
