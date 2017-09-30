@@ -340,6 +340,9 @@ class UsersController < ApplicationController
   alias_method :original_omniauth_callback, :omniauth_callback
   def omniauth_callback
     email = request.env["omniauth.auth"]["info"]["email"]
+    if (email.blank?)
+      raise "Email was not present in SSO request"
+    end
     existed = model.find_by_email_address(email).present?
     original_omniauth_callback
     if current_user.present? && !existed
