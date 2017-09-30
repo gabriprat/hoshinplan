@@ -227,7 +227,7 @@ class SageOne < ActiveRecord::Base
     body_params << ["grant_type", "refresh_token"]
     body_params << ["refresh_token", self.refresh_token]
 
-    SageOne.save_token(body_params)
+    save_token(body_params)
   end
 
   def self.config
@@ -238,17 +238,16 @@ class SageOne < ActiveRecord::Base
 
   def self.get
     @singleton ||= SageOne.first_or_create
-    if @singleton.expires_at < Time.now
-      @singleton = SageOne.first_or_create
-      if @singleton.expires_at < Time.now
-        @singleton.renew_token!
-      end
+    if @singleton.expires_at < Time.now + 30.minutes
+      @singleton.renew_token!
     end
     @singleton
   end
 
   def self.renew_token!
-    SageOne.get.renew_token!
+    so = SageOne.get
+    so.renew_token!
+    return so
   end
 
   def validate_single_row
@@ -263,6 +262,11 @@ class SageOne < ActiveRecord::Base
   end
 
   def self.save_token(body_params)
+    s = SageOne.first_or_create
+    s.save_token(body_params)
+  end
+
+  def save_token(body_params)
     begin
       response = RestClient.post SageOne.config[:token_endpoint], URI.encode_www_form(body_params)
     rescue => e
@@ -270,14 +274,14 @@ class SageOne < ActiveRecord::Base
     end
 
     parsed = JSON.parse(response.to_str)
-    s = SageOne.first_or_create
-    s.access_token = parsed["access_token"]
-    s.expires_at = Time.now + parsed["expires_in"].to_i
-    s.refresh_token = parsed["refresh_token"]
-    s.scopes = parsed["scopes"]
-    s.requested_by_id = parsed["requested_by_id"]
-    s.resource_owner_id = parsed["resource_owner_id"]
-    s.save!
+
+    self.access_token = parsed["access_token"]
+    self.expires_at = Time.now + parsed["expires_in"].to_i
+    self.refresh_token = parsed["refresh_token"]
+    self.scopes = parsed["scopes"]
+    self.requested_by_id = parsed["requested_by_id"]
+    self.resource_owner_id = parsed["resource_owner_id"]
+    self.save!
   end
 
   def put_or_post?(method)

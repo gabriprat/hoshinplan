@@ -10,6 +10,9 @@ module Jobs
         ret += Jobs::say "Initiating sage one sync job!" + "\n"
         invoices = Invoice.unscoped.where({sage_one_invoice_id: nil})
         ret += Jobs::say "Executing SQL: #{invoices.to_sql}" + "\n"
+
+        # Try one simple operation to test credentials
+        # ret += Jobs::say SageOne.tax_rates.to_s
         if so.expired?
           so.renew_token!
         end
