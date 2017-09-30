@@ -60,6 +60,8 @@ Hoshinplan::Application.routes.draw do
 
   get 'healthupdate' => 'front#healthupdate', :as => 'health_update'
 
+  get 'sendtrial' => 'front#sendtrial', :as => 'sendtrial'
+
   get 'updatepeoplemixpanel' => 'front#updatepeoplemixpanel', :as => 'update_people_mixpanel'
 
   get 'colorize' => 'front#colorize', :as => 'colorize'

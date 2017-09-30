@@ -23,7 +23,7 @@ module Jobs
                                  " and unlimited = false" +
                                  " and users.trial_ends_at between ? and ?" +
                                  " and trial_ended_email is null",
-                             Date.today - 3.days, Date.today)
+                             Date.today - 30.days, Date.today)
         end
 
         Jobs::say users.to_sql
@@ -41,11 +41,13 @@ module Jobs
             Mp.log_event( (days > 0 ? "Trial -3d email" : "Trial expired email"),
                           u, '', {company_id: c.id, company_name: c.name} )
           rescue => e
+            Nr.track_exception e
             ret += Jobs::say "==== Error sending email #{e.message}" + "\n"
           end
         }
         ret += Jobs::say "End trial notifications  job!" + "\n"
       rescue
+        Nr.track_exception $!
         ret += Jobs::say $!.inspect + "\n"
         ret += Jobs::say $@.to_s
       end

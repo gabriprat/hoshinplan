@@ -137,6 +137,16 @@ class FrontController < ApplicationController
     render :text => @text, :content_type => Mime::TEXT
   end
 
+
+  def sendtrial
+    require File.expand_path('config/jobs/base_job.rb')
+    Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
+    params[:hour] ||= Time.new.hour
+    params[:days] ||= 0
+    @text = Jobs::TrialNotifications.perform(params)
+    render :text => @text, :content_type => Mime::TEXT
+  end
+
   def resetcounters
     @text = exec_sqls("
       update hoshins set goals_count = (select count(*) from goals where hoshin_id = hoshins.id) where goals_count != (select count(*) from goals where hoshin_id = hoshins.id);
