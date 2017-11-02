@@ -115,6 +115,7 @@ var doFilterPostits = function(colors, showMine, tags, showHidden) {
         selector +=  "[data-tags~=" + tags[i] + "]";
     }
     $(selector).show();
+    $('.areas .area').show();
 
     selector = "";
     for (var i=0; i<colors.length; i++) {
@@ -129,10 +130,13 @@ var doFilterPostits = function(colors, showMine, tags, showHidden) {
 	$(selector).hide();
     if (showMine) {
         var sm = $("#show-mine");
-        $(".kb-resp:not(.kb-resp-" + userId + ")").hide();
+        $(".kb-resp:not(.kb-resp-" + getUserId() + ")").hide();
     }
     if (!showHidden) {
         $("[data-hidden-def='true']").hide();
+    }
+    if (showMine) {
+        $(".areas .area:not(:has(.kb-resp:visible))").hide();
     }
 	equalHeightSections();
     var pageName = $('body').find("[data-rapid-page-data]").data("rapid-page-data").pageName;
@@ -236,10 +240,15 @@ function updateColors() {
 $(document).ready(updateColors);
 
 var userId = '';
+function getUserId() {
+    userId = userId || $("[data-rapid-page-data]").data('rapid-page-data')["user-id"];
+    return userId;
+}
+
 $(document).ready(function () {
 	var msg = $("[data-rapid-page-data]").data('rapid-page-data').cookiemsg;
 	var agree = $("[data-rapid-page-data]").data('rapid-page-data').agreemsg;
-	userId = $("[data-rapid-page-data]").data('rapid-page-data')["user-id"];
+    getUserId();
 	$.cookieCuttr({
 		"cookieAnalytics": false,
 		"cookieMessage": msg,
@@ -617,8 +626,8 @@ function addAreaUpdate(elem) {
 }
 
 $(window).load(function () {
-	if (userId && typeof mixpanel === "object" && typeof mixpanel.identify === "function") {
-		mixpanel.identify(userId);
+	if (getUserId() && typeof mixpanel === "object" && typeof mixpanel.identify === "function") {
+		mixpanel.identify(getUserId());
 	}
 });
 
