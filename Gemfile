@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.1'
 
-gem 'rails', '4.2.6'
+gem 'rails', '=4.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -76,7 +76,7 @@ gem 'actionpack'
 gem 'delocalize'
 gem 'wicked_pdf'
 gem 'prawn-rails'
-gem 'aws-sdk'
+gem 'aws-sdk-s3'
 gem 'paperclip'
 gem 'hobo_paperclip', :git => 'git://github.com/Hobo/hobo_paperclip.git', :branch => 'master'
 gem 'redis-rails'
