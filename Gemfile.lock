@@ -554,9 +554,6 @@ GEM
     thread_safe (0.3.6-java)
     tilt (2.0.8)
     ttfunk (1.5.1)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.3)
     turn (0.9.6)
       ansi
     tzinfo (1.2.4)
@@ -685,7 +682,6 @@ DEPENDENCIES
   sendgrid4r
   sprockets-rails
   stripe
-  turbolinks (~> 5.0.0)
   turn
   uglifier
   unscoped_associations
