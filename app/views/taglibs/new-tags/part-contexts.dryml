@@ -1,0 +1,5 @@
+<def tag="part-contexts"><%=
+    attributes = {}
+    add_data_rapid!(attributes, "part-contexts", part_contexts_storage_uncoded)
+    tag('span', deunderscore_attributes(attributes))
+%></def>

@@ -1,7 +1,17 @@
 <set options="&this.parent_objectives"/>
 <set parent=", parent" if="&options.size>0"/>
+<h2 class="heading">&nbsp;</h2>
 <form ajax success="$('#update-objective-modal-#{this.id}').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" id="upd-obj-#{this.id}" updates="#area-#{this.area_id.to_s}, #tutorial,#sec-actions" data-company="&this.company_id">
-    <field-list: class="modal-body" />
+    <field-list: replace>
+        <div class="row">
+            <div class="col-sm-7">
+                <field-list restore/>
+            </div>
+            <div class="col-sm-5 comments-modal">
+                <comments-form/>
+            </div>
+        </div>
+    </field-list:>
     <actions: replace>
         <modal-form-footer-delete />
     </actions:>
@@ -9,3 +19,4 @@
 <else>
     <read-only-ask-for-permission/>
 </else>
+<part-contexts/>

@@ -78,6 +78,7 @@ var endPresentation = function() {
 	presenting = false;
 	setTimeout(equalHeightSections,500);
 	exitFullscreen();
+	doFilterPostitsFromHash();
 }
 
 function isFullscreen() {

@@ -1,8 +1,9 @@
-<def attrs='list-tag,page,per-page,model' tag='paginated-collection'>
+<def attrs='list-tag,page,per-page,model,update' tag='paginated-collection'>
     <%
         page ||= params[:pc] || 1
         per_page ||= 5
         model ||= this
+        link_options = update ? {update: update} : {}
     %>
     <do with="&this.paginate({page: page}).per_page(per_page)">
         <page-nav
@@ -11,6 +12,8 @@
             param-name="pc"
             previous-label="&t 'actions.newer'"
             next-label="&t 'actions.older'"
+            link-options="&link_options"
+            renderer='&AjaxPagination::Rails'
         />
         <collection with="&this.reverse" merge-attrs/>
     </do>

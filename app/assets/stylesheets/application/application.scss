@@ -400,6 +400,10 @@ html body.presenting, html body.presenting input {
   font-size: 23px;
 }
 
+html body.presenting .modal, html body.presenting .modal input {
+  font-size: 16px;
+}
+
 html body .presentation-help {
   display: none;
   position: fixed;
@@ -953,10 +957,6 @@ ul.collection.sortable li.item {
   outline: 1px solid transparent;
 }
 
-body.hoshin .collection.indicators .part-wrapper {
-  display: inline-block;
-}
-
 body.hoshin div.indicators td, body.hoshin div.indicators tbody, body.hoshin div.indicators thead,
 body.hoshin div.indicators tr, body.hoshin div.indicators th {
   margin: 0;
@@ -1226,6 +1226,11 @@ body .multioverdue, body .overdue {
   }
   .autosubmit.overdue input, .autosubmit.multioverdue input, .autosubmit.neglected input, .autosubmit.blind input {
     color: red;
+  }
+  .name .modal a, .modal a.tpc {
+    &, &:hover, &:visited, &:active {
+      color: inherit;
+    }
   }
 }
 
@@ -4528,4 +4533,12 @@ ul.input-many > li > div.input-many-item {
 
 ul.input-many > li > div.buttons button {
   margin: 5px;
+}
+
+.comments-modal {
+  padding: 0 5%;
+}
+
+.comments-modal .comment-form .form-group {
+  margin: 0;
 }

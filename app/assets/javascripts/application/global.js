@@ -654,6 +654,7 @@ $(document).ready(function() {
 
 $(document).on('rapid:ajax:success', function() {
     $.material.init();
+    doFilterPostitsFromHash();
 });
 
 $(document).ready(function() {
