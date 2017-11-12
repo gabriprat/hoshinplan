@@ -27,12 +27,24 @@ module ModelBase
     l.save!
   end
 
+  def loadCurrentHoshin
+    if !Hoshin.current_hoshin
+      if self.instance_of?(Hoshin)
+        Hoshin.current_hoshin = self
+      elsif self.respond_to?(:hoshin)
+        Hoshin.current_hoshin = self.hoshin
+      end
+    end
+  end
+
   def taglist
-    Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
+    loadCurrentHoshin
+    Hoshin.current_hoshin._?.all_tags_hashes[self.typed_id]
   end
 
   def has_tags
-    Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
+    loadCurrentHoshin
+    Hoshin.current_hoshin._?.all_tags_hashes[self.typed_id]
   end
 
   def notify_mentions
