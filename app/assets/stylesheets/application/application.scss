@@ -1545,6 +1545,10 @@ div.table .table-row div.column[data-label="Name"] {
   min-width: 54%;
 }
 
+.compact div.table .table-row div.column[data-label="Name"] {
+  word-break: break-word;
+}
+
 @media (min-width: 640px) {
   .compact div.table .table-row div.column[data-label="Name"] {
     width: auto;
