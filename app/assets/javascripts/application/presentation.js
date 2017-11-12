@@ -2,7 +2,7 @@
 var PRESENTATION_SELECTOR = '.slide-page,div.navbar,div.content-header,.footer';
 
 var presenting = false;
-var currentSlide = 1;
+var currentSlide = -1;
 var sliding = false;
 
 var navigatePrev = function() {
@@ -35,14 +35,14 @@ var slideAreas = function(current, next, reverse) {
 	var mw = "-" + w;
 	$($('.slide-page')[next]).css({left: (reverse?mw:w)});
 	$($('.slide-page')[next]).animate({left:0}, "slow").toggle();
-	$($('.slide-page')[current]).animate({"left":(reverse?w:mw)}, "slow", 
+	$($('.slide-page')[current]).animate({"left":(reverse?w:mw)}, "slow",
 		function() {
-			$($('.slide-page')[current]).toggle(); 
+			$($('.slide-page')[current]).toggle();
 			currentSlide = next;
 			sliding = false;
 		}
 	);
-} 
+}
 
 var showSlide = function(num) {
 	var nslides = $('.slide-page').length;
@@ -59,8 +59,10 @@ var startPresentation = function() {
 	$(PRESENTATION_SELECTOR).hide();
 	$('body').addClass('presenting');
 	$("div.objectives-wrapper,div.indicators-wrapper,div.tasks-wrapper").height("auto");
-	currentSlide = $('.slide-page').length - $('div.area').length;
-	currentSlide = currentSlide < 0 ? 0 : currentSlide;
+	if (currentSlide < 0) {
+        currentSlide = $('.slide-page').length - $('div.area').length;
+        currentSlide = currentSlide < 0 ? 0 : currentSlide;
+    }
 	presenting = true;
 	$('.slide-page').width("100%");
 	$('.slide-page').css({position:'absolute', left:0, top:0, outline: '1px solid transparent'});
@@ -166,3 +168,9 @@ var attachKeyEvents = function() {
 	$(document).on("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", fsChange );
 }
 $(document).ready(attachKeyEvents);
+
+$(document).on('rapid:ajax:success', function() {
+    if (presenting) {
+        startPresentation();
+    }
+});
