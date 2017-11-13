@@ -39,12 +39,12 @@ module ModelBase
 
   def taglist
     loadCurrentHoshin
-    Hoshin.current_hoshin._?.all_tags_hashes[self.typed_id]
+    Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
   end
 
   def has_tags
     loadCurrentHoshin
-    Hoshin.current_hoshin._?.all_tags_hashes[self.typed_id]
+    Hoshin.current_hoshin ? Hoshin.current_hoshin.all_tags_hashes[self.typed_id] : nil
   end
 
   def notify_mentions
