@@ -55,7 +55,7 @@ class Mp
   end
 
   def self.log_event(event, user, ip, opts = {})
-    opts.merge!({:event => event, :id => user.id, :ip => ip})
+    opts.merge!({:event => event, :id => user.guest? ? 'Guest' : user.id, :ip => ip})
     logged_event = Mp.new(user, opts)
     Rails.logger.debug "Mixpanel: #{logged_event.inspect}, #{logged_event.options}"
     logged_event.track!
