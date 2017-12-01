@@ -229,7 +229,6 @@
     <body: class="show-page area" param/>
 
     <content-header: param>
-      <a:hoshin param="parent-link">&laquo; <ht key="area.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
       <h2 param="heading">
         <ht key="area.show.heading" name="#{name(:no_wrapper => true)}">
           Area <name/>
@@ -249,7 +248,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="color, company" param/>
+      <field-list fields="color, company, hoshin" param/>
     </content-body:>
 
   </page>

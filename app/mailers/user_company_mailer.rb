@@ -140,7 +140,7 @@ class UserCompanyMailer < ActionMailer::Base
     template = EmailTemplate.welcome
     mail(:subject => template.render_subject(vars),
          :to => user.email_address,
-         :from => t("emails.from.gabriel") + " <gabri@hoshinplan.com>") do |format|
+         :from => t("emails.from.gabriel") + " <hello@hoshinplan.com>") do |format|
       format.html {
         template.render_content(vars)
       }
@@ -209,6 +209,12 @@ class UserCompanyMailer < ActionMailer::Base
     sendgrid_category "invoice"
     invoice = Invoice.unscoped.find(invoice_id)
     subscription = Subscription.unscoped.find(invoice.subscription_id)
+    begin
+      billing_details = BillingDetail.unscoped.find(subscription.billing_detail_id)
+      to = billing_details.contact_email
+    rescue
+      to = nil
+    end
     user = User.unscoped.find(subscription.user_id)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
@@ -219,7 +225,7 @@ class UserCompanyMailer < ActionMailer::Base
         content: pdf.render
     }
     mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
-         :to => @user.email_address, :bcc => User.administrator.first.email_address) do |format|
+         :to => to, :cc => @user.email_address, :bcc => User.administrator.first.email_address) do |format|
       format.html {
         render_email("invoice", {
             user: @user, app_name: @app_name
