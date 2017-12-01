@@ -209,12 +209,6 @@ class UserCompanyMailer < ActionMailer::Base
     sendgrid_category "invoice"
     invoice = Invoice.unscoped.find(invoice_id)
     subscription = Subscription.unscoped.find(invoice.subscription_id)
-    begin
-      billing_details = BillingDetail.unscoped.find(subscription.billing_detail_id)
-      to = billing_details.contact_email
-    rescue
-      to = nil
-    end
     user = User.unscoped.find(subscription.user_id)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
