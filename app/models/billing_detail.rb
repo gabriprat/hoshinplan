@@ -40,7 +40,7 @@ class BillingDetail < ApplicationRecord
   validates :vat_number, vat: {country_method: :country, message: proc {I18n.t('errors.not_expected_format')}}, allow_blank: true
   
   belongs_to :creator, :class_name => "User", :creator => true
-  belongs_to :company, :inverse_of => :billing_details
+  belongs_to :company, inverse_of: :billing_details, primary_key: :id
   
   has_many :subscriptions, inverse_of: :billing_detail
 
