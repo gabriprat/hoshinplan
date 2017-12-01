@@ -9,7 +9,7 @@ class UserCompanyMailerTest < ActionController::TestCase
       assert_not ActionMailer::Base.deliveries.empty?
  
       # Test the body of the sent email contains what we expect it to
-      assert_equal ['gabri@hoshinplan.com'], email.from
+      assert_equal ['hello@hoshinplan.com'], email.from
       assert_equal [user.email_address], email.to      
   end
 end
