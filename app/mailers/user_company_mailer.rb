@@ -209,15 +209,19 @@ class UserCompanyMailer < ActionMailer::Base
     sendgrid_category "invoice"
     invoice = Invoice.unscoped.find(invoice_id)
     subscription = Subscription.unscoped.find(invoice.subscription_id)
-    begin
-      billing_details = BillingDetail.unscoped.find(subscription.billing_detail_id)
-      to = billing_details.contact_email
-    rescue
-      to = nil
-    end
     user = User.unscoped.find(subscription.user_id)
     I18n.locale = user.language.to_s.blank? ? I18n.default_locale : user.language.to_s
     @user = user
+    begin
+      billing_details = BillingDetail.unscoped.find(subscription.billing_detail_id)
+      cc = billing_details.contact_email.to_s
+    rescue
+      cc = nil
+    end
+    to = @user.email_address.to_s
+    if to == cc
+      cc = nil
+    end
     pdf = PrawnRails::Document.new
     invoice.render_pdf(pdf)
     attachments["invoice-#{invoice.sage_one_invoice_id}.pdf"] = {
@@ -225,7 +229,7 @@ class UserCompanyMailer < ActionMailer::Base
         content: pdf.render
     }
     mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
-         :to => to, :cc => @user.email_address, :bcc => User.administrator.first.email_address) do |format|
+         :to => to, :cc => cc, :bcc => User.unscoped.administrator.*.email_address) do |format|
       format.html {
         render_email("invoice", {
             user: @user, app_name: @app_name

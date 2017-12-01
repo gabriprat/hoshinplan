@@ -6,6 +6,8 @@ class BillingDetail < ApplicationRecord
 
   hobo_model # Don't put anything above this
 
+  self.primary_key = "id"
+
   fields do
     company_name :string, :required
     address_line_1 :string, :required
