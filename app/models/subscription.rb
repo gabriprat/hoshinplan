@@ -39,7 +39,7 @@ class Subscription < ApplicationRecord
 
   belongs_to :user, :inverse_of => :subscriptions
   belongs_to :company, :inverse_of => :subscriptions
-  belongs_to :billing_detail, :inverse_of => :subscriptions, primary_key: id
+  belongs_to :billing_detail, :inverse_of => :subscriptions, primary_key: "id"
   belongs_to :billing_plan, :inverse_of => :subscriptions
 
   has_many :invoices, :inverse_of => :subscription
