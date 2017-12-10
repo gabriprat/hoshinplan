@@ -191,11 +191,11 @@ class Subscription < ApplicationRecord
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_company_admin
   end
 
   def update_permitted?
-    acting_user.administrator? || same_company
+    acting_user.administrator? || same_company_admin
   end
 
   def destroy_permitted?

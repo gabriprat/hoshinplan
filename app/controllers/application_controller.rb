@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
         flash[:error] = t('errors.payment_error_html').html_safe
         redirect_to url
       else
-        flash.now[:error] = t('errors.payment_error_here_html', link: link).html_safe if User.current_user_id == subscription.user_id || Company.current_company.same_company_admin
+        flash.now[:error] = t('errors.payment_error_here_html', link: link).html_safe if User.current_id == subscription.user_id || Company.current_company.same_company_admin
         yield
       end
     else

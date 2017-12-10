@@ -63,7 +63,7 @@
                     </div>
                     <div class="credit-card-item__row">
                         <div class="credit-card-item__change-card">
-                            <a data-toggle="modal" href="#update-cc" role="button">
+                            <a data-toggle="modal" href="#update-cc" role="button" if="&can_edit?">
                                 <t key="pricing_plans.change_card" />
                             </a>
                         </div>
