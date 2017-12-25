@@ -64,32 +64,3 @@ class GenericComment < ApplicationRecord
   end
 
 end
-
-class CompanyComment < GenericComment
-  index [:company_id, :created_at]
-end
-
-class AreaComment < GenericComment
-  belongs_to :area, :inverse_of => :area_comments
-  index [:area_id, :created_at]
-end
-
-class HoshinComment < GenericComment
-  belongs_to :hoshin, :inverse_of => :hoshin_comments
-  index [:hoshin_id, :created_at]
-end
-
-class GoalComment < GenericComment
-  belongs_to :goal, :inverse_of => :goal_comments
-  index [:goal_id, :created_at]
-end
-
-class IndicatorComment < GenericComment
-  belongs_to :indicator, :inverse_of => :indicator_comments
-  index [:indicator_id, :created_at]
-end
-
-class TaskComment < GenericComment
-  belongs_to :task, :inverse_of => :task_comments
-  index [:task_id, :created_at]
-end

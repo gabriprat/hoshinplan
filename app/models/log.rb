@@ -61,30 +61,3 @@ class Log < ApplicationRecord
   end
 
 end
-
-class CompanyLog < Log
-end
-
-class HoshinLog < Log
-  belongs_to :hoshin, :inverse_of => :log
-end
-
-class AreaLog < Log
-  belongs_to :area, :inverse_of => :log
-end
-
-class GoalLog < Log
-  belongs_to :goal, :inverse_of => :log
-end
-
-class ObjectiveLog < Log
-  belongs_to :objective, :inverse_of => :log
-end
-
-class IndicatorLog < Log
-  belongs_to :indicator, :inverse_of => :log
-end
-
-class TaskLog < Log
-  belongs_to :task, :inverse_of => :log
-end
