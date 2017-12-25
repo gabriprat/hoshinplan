@@ -7,7 +7,26 @@
 		</prepend-content-header:>
 		<heading:><t key="log.log_for" model="#{@model.model_name.human}" name="&@source.name"/></heading:>
 		<content-body:>
-		        <page-nav previous-label="#{t 'newer'}" next-label="#{t 'older'}"/>
+            <div class="panel panel-default" if="&@model.name == 'Hoshin'">
+              <div class="panel-body">
+                <search-filter>
+                    <search-form: remove-class='form-horizontal' />
+                    <clear-form: remove-class='form-horizontal' />
+                    <label: replace />
+                    <input: replace>
+                        <div class="col-lg-10">
+                            <input class="form-control" restore />
+                        </div>
+                    </input:>
+                    <search-submit: replace>
+                        <div class="col-lg-2">
+                            <search-submit restore />
+                        </div>
+                    </search-submit>
+                </search-filter>
+              </div>
+            </div>
+		    <page-nav previous-label="#{t 'newer'}" next-label="#{t 'older'}"/>
 			<% page = (params[:page] || 1).to_i; first = page==1; last = page==this.total_pages; %>
 			<collection class="log #{first ? '' : 'continued'} #{last ? '' : 'more'}">
 				<card:>

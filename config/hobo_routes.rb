@@ -14,7 +14,11 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller indicator_histories
-  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy]
+  resources :indicator_histories, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    member do
+      post 'recover'
+    end
+  end
 
   # Owner routes for controller indicator_histories
   resources :indicators, :as => :indicator, :only => [] do
@@ -37,6 +41,7 @@ Hoshinplan::Application.routes.draw do
       get 'activate_ij'
     end
     member do
+      post 'recover'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'resend_invite', :action => 'do_resend_invite'
@@ -58,6 +63,7 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       post 'form'
+      post 'recover'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'complete', :action => 'do_complete'
@@ -102,7 +108,11 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller invoices
-  resources :invoices, :only => [:show]
+  resources :invoices, :only => [:show] do
+    member do
+      post 'recover'
+    end
+  end
 
   # Owner routes for controller invoices
   resources :subscriptions, :as => :subscription, :only => [] do
@@ -138,6 +148,7 @@ Hoshinplan::Application.routes.draw do
       post 'kanban_update'
       post 'sort_by_deadline'
       post 'request_access'
+      post 'recover'
       put 'activate', :action => 'do_activate'
       get 'activate'
       put 'archive', :action => 'do_archive'
@@ -196,6 +207,7 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       post 'form'
+      post 'recover'
     end
   end
 
@@ -242,6 +254,7 @@ Hoshinplan::Application.routes.draw do
       get 'pending'
       get 'unsubscribe'
       get 'kanban'
+      post 'recover'
       put 'resend_activation', :action => 'do_resend_activation'
       get 'resend_activation'
       put 'resend_activation', :action => 'do_resend_activation'
@@ -279,6 +292,7 @@ Hoshinplan::Application.routes.draw do
       get 'collaborators'
       get 'upgrade'
       post 'checkout'
+      post 'recover'
       post 'invite'
     end
   end
@@ -295,6 +309,7 @@ Hoshinplan::Application.routes.draw do
       post 'value_form'
       post 'delete_history'
       post 'data_update'
+      post 'recover'
     end
   end
 
@@ -406,6 +421,7 @@ Hoshinplan::Application.routes.draw do
     member do
       get 'charts'
       post 'form'
+      post 'recover'
     end
   end
 
@@ -427,6 +443,7 @@ Hoshinplan::Application.routes.draw do
     end
     member do
       post 'form'
+      post 'recover'
     end
   end
 
@@ -458,6 +475,9 @@ Hoshinplan::Application.routes.draw do
     collection do
       get 'complete_label'
     end
+    member do
+      post 'recover'
+    end
   end
 
   # Owner routes for controller task_tags
@@ -472,7 +492,11 @@ Hoshinplan::Application.routes.draw do
 
 
   # Resource routes for controller indicator_events
-  resources :indicator_events, :only => [:edit, :show, :create, :update, :destroy]
+  resources :indicator_events, :only => [:edit, :show, :create, :update, :destroy] do
+    member do
+      post 'recover'
+    end
+  end
 
   # Owner routes for controller indicator_events
   resources :indicators, :as => :indicator, :only => [] do

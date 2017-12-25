@@ -154,16 +154,16 @@ class ApplicationController < ActionController::Base
       begin
         inst = current_user if self.is_a?(UsersController) && params[:id] && logged_in? && params[:id].to_i == current_user.id
         inst = Hobo::Model.find_by_typed_id(params[:type].singularize + ":" + params[:id]) if inst.nil? && !params[:id].nil? && !params[:type].nil?
-        inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
+        inst = model.user_find_with_deleted(current_user, params[:id]) if inst.nil? && !params[:id].nil?
       rescue ActiveRecord::RecordNotFound => e
         # Let the specific controller deal with this
       end
       self.this = inst
       begin
-        inst = Area.find(params[:area_id]) unless (inst || params[:area_id].nil?)
-        inst = Objective.find(params[:objective_id]) unless (inst || params[:objective_id].nil?)
-        inst = Company.find(params[:company_id]) unless (inst || params[:company_id].blank?)
-        inst = Hoshin.find(params[:area][:hoshin_id]) unless inst || params[:area].blank? || !params[:area].is_a?(Hash) || params[:area][:hoshin_id].blank?
+        inst = Area.user_find_with_deleted(current_user,params[:area_id]) unless (inst || params[:area_id].nil?)
+        inst = Objective.user_find_with_deleted(current_user,params[:objective_id]) unless (inst || params[:objective_id].nil?)
+        inst = Company.user_find_with_deleted(current_user,params[:company_id]) unless (inst || params[:company_id].blank?)
+        inst = Hoshin.user_find_with_deleted(current_user,params[:area][:hoshin_id]) unless inst || params[:area].blank? || !params[:area].is_a?(Hash) || params[:area][:hoshin_id].blank?
       rescue ActiveRecord::RecordNotFound
         #Do nothing
       end

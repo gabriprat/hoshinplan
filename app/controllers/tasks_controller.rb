@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   cache_sweeper :tasks_sweeper
     
   web_method :form
-  
+
   include RestController
   
   def_param_group :task do
@@ -80,6 +80,11 @@ class TasksController < ApplicationController
     hobo_destroy
     log_event("Delete task", {objid: @this.id, name: @this.name})
   end
+
+  def edit
+    self.this = find_instance_with_deleted
+    hobo_edit
+  end
   
   api :PUT, '/tasks/:id', 'Update a task'
   param_group :task
@@ -110,4 +115,5 @@ class TasksController < ApplicationController
       @this.area_id = params[:area_id]
     end
   end
+
 end

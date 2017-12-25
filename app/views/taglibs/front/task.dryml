@@ -87,18 +87,18 @@
 
 
 <extend tag="form" for="Task">
-    <set show-on-parent=", show_on_parent" if="&this.area.hoshin.parent_id"/>
-    <set show-tags=", task_tags" unless="&@this.new_record? && this.area.hoshin.get_tags.blank?" />
+    <set show-on-parent=", show_on_parent" if="&this.hoshin.parent_id"/>
+    <set show-tags=", task_tags" unless="&@this.new_record? && this.hoshin.get_tags.blank?" />
 	<old-form merge>
 		<prepend-default:>
 		    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
 		</prepend-default:>
         <field-list: fields="name, objective, description, responsible, deadline, feeling, #{@this.new_record? ? 'status,' : ''} impact, confidence, effort, reminder #{show_on_parent} #{show_tags}">
             <area-view:>
-                <select-one options="&this_parent.objective.area.hoshin.areas.to_a" />
+                <select-one options="&this_parent.hoshin.areas.to_a" />
             </area-view:>
             <objective-view:>
-                <select-one options="&this_parent.area.objectives.to_a" required="required"/>
+                <select-one options="&this_parent.area._?.objectives.to_a || this_parent.hoshin.objectives.to_a" required="required"/>
             </objective-view:>
             <responsible-view:>
                 <div class="input-group">
@@ -162,9 +162,19 @@
                 <read-only-ask-for-permission show-close="&false"/>
             </else>
         </main-content:>
-        <append-content-header:>
-            <a:hoshin param="parent-link">&laquo; <ht key="task.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
-        </append-content-header:>
+        <content-header: param>
+              <h2 param="heading">
+                <ht key="task.edit.heading" name="#{name(:no_wrapper => true)}">
+                  Edit Task
+                </ht>
+              </h2>
+              <delete-button class="pull-right" label="#{ht 'task.actions.delete', :default=>['Remove This Task']}" unless="&this.deleted?"/>
+              <else>
+                <recover-button class="pull-right" label="#{ht 'task.actions.recover', :default=>['Recover This Task']}" />
+              </else>
+              <br class="clearfix" />
+              <a:hoshin param="parent-link">&laquo; <ht key="task.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
+        </content-header:>
         <prepend-aside-column:>
             <h2 class="heading">&nbsp;</h2>
         </prepend-aside-column:>

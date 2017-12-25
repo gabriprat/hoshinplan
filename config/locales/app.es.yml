@@ -657,6 +657,7 @@ es:
     create: Creado
     update: Modificado
     delete: Borrado
+    recover: Recuperado
     operation_date_ago: "%{operation} hace %{date} por %{creator}"
     operation_date_at: "%{operation} el %{date} por %{creator}"
     operation_date_at_automatic: "%{operation} automáticamente el %{date}"

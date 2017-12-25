@@ -95,6 +95,7 @@ es:
       add: "Añadir"
       show_all: "Muestra todos %{model}..."
       delete: "Borrar %{model}"
+      recover: "Recuperar %{model}"
       save: "Guardar %{model}"
       cancel: "Cancelar"
       edit: "Editar %{model}"
@@ -124,7 +125,7 @@ es:
         success: "Los cambios a %{model} han sido guardados"
         error: "Ha habido un problema con ese cambio.\n%{errors}"
       destroy:
-        success: "La eliminación de %{model} ha sido tenido éxito."
+        success: "La eliminación de %{model} ha sido exitosa."
       signup:
         success: "¡Gracias por registrarte! Tienes que activar la cuenta antes de iniciar la sesión. Por favor verifica tu correo eléctronico."
         must_activate: "Tienes que activar la cuenta antes de iniciar la sesión. Por favor verifique su correo eléctronico."

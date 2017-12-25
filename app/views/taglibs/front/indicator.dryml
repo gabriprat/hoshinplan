@@ -131,9 +131,19 @@
                 <read-only-ask-for-permission show-close="&false"/>
             </else>
         </main-content:>
-        <append-content-header:>
-            <a:hoshin param="parent-link">&laquo; <ht key="indicator.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
-        </append-content-header:>
+        <content-header: param>
+              <h2 param="heading">
+                <ht key="indicator.edit.heading" name="#{name(:no_wrapper => true)}">
+                  Edit Indicator
+                </ht>
+              </h2>
+              <delete-button class="pull-right" label="#{ht 'indicator.actions.delete', :default=>['Remove This Indicator']}" unless="&this.deleted?"/>
+              <else>
+                <recover-button class="pull-right" label="#{ht 'indicator.actions.recover', :default=>['Recover This Indicator']}" />
+              </else>
+              <br class="clearfix" />
+              <a:hoshin param="parent-link">&laquo; <ht key="task.actions.back_to_parent" parent="Hoshin" name="&this">Back to <name/></ht></a:hoshin>
+        </content-header:>
         <prepend-aside-column:>
             <h2 class="heading">&nbsp;</h2>
         </prepend-aside-column:>

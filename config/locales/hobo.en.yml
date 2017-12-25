@@ -87,6 +87,7 @@ en:
       add: "Add"
       show_all: "Show all %{model}..."
       delete: "Delete %{model}"
+      recover: "Recover %{model}"
       save: "Save %{model}"
       cancel: "Cancel"
       edit: "Edit %{model}"

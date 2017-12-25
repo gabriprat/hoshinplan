@@ -40,7 +40,7 @@ ul.log {
 		display: block;
 		color: #25a9e0;
 		position: absolute;
-		top: -5px;
+		top: -2px;
 		left: 0;
 		text-align: center;
 	}
@@ -61,7 +61,7 @@ ul.log {
 	}
 	&:after {
 		top: auto;
-		bottom: 4px;
+		bottom: 2px;
 	}
 	li {
 		position: relative;
@@ -114,12 +114,11 @@ ul.log {
 			font-family: "hoshinplan";
 			color: rgba(255,255,255,.9);
 			display: block;
-			float: left;
 			width: 2em;
 			height: 2em;
 			border-radius: 1em;
 			text-align: center;
-			padding: 1px 0 0 1px;
+            line-height: 2em;
 		}
 		&.operation-create:before {
 			background: #41db00;
@@ -133,7 +132,10 @@ ul.log {
 			background: #d04b36;
 			content: "\f00d";
 		}
-
+        &.operation-recover:before {
+          background: #41db00;
+          content: "\f1b8";
+        }
 	}
 	dl {
 		margin: 0;

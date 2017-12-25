@@ -7,7 +7,7 @@ class Log < ApplicationRecord
   fields do
     title :string
     body  :text
-    operation   HoboFields::Types::EnumString.for(:create, :update, :delete), :null => false
+    operation   HoboFields::Types::EnumString.for(:create, :update, :delete, :recover), :null => false
     timestamps
   end
   attr_accessible :title, :body, :creator_id
@@ -40,6 +40,10 @@ class Log < ApplicationRecord
         ret
       }
     end
+  end
+
+  def search_columns
+    ['title']
   end
 
   # --- Permissions --- #

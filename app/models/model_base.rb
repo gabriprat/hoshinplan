@@ -1,24 +1,42 @@
-module ModelBase
-  extend ActiveSupport::Concern
+module ModelBase extend ActiveSupport::Concern
 
-  included do
-    after_destroy do
-      log_operation(true)
+  def self.included(klass)
+    klass.class_eval do
+      extend ClassMethods
+
+      after_destroy do
+        log_operation(true)
+      end
+      if self.respond_to? :after_restore
+        after_restore do
+          log_operation(false, true)
+        end
+      end
+      after_save :log_operation
+      after_save :notify_mentions
+      after_save :notify_responsible
     end
-    after_save :log_operation
-    after_save :notify_mentions
-    after_save :notify_responsible
   end
 
-  def log_operation(destroyed=false)
+  module ClassMethods
+    def user_find_with_deleted(user, *args)
+      record = (self.respond_to?(:with_deleted) ? self.with_deleted : self).find(*args)
+      yield(record) if block_given?
+      record.user_view user
+      record
+    end
+  end
+
+  def log_operation(destroyed=false, recovered=false)
     return unless self.respond_to?(:deleted_at) && self.respond_to?(:name)
     changed = self.changes & self.class.accessible_attributes
-    return unless self.id_changed? || changed.present? || destroyed
+    return unless self.id_changed? || changed.present? || destroyed || recovered
     operation = :create if self.id_changed?
     operation ||= :delete if destroyed
+    operation ||= :recover if recovered
     operation ||= :update
     title = self.name
-    body = changed.to_json unless self.id_changed? || destroyed
+    body = changed.to_json unless self.id_changed? || destroyed || recovered
     l = Object::const_get(self.class.name + 'Log').new(title: title, body: body)
     l.operation = operation
     l.company_id = self.try.company_id
