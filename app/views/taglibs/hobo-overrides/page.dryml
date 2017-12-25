@@ -15,24 +15,26 @@
 			</div>
 		</ajax-progress:>
 		<navbar:>
-			<header class='navbar-header header'>
-				<button id="navbar-toggle" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#sidenav" aria-expanded="false" aria-controls="sidenav">
-				  <span>toggle menu</span>
-				</button>
-				<div param='app-name'>
+		    <swept-cache title="&attributes[:title]" current-user="&User.current_id" current-company="&Company.current_id" dependencies="&[User.current_user, Company.current_company]">
+                <header class='navbar-header header'>
+                    <button id="navbar-toggle" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#sidenav" aria-expanded="false" aria-controls="sidenav">
+                      <span>toggle menu</span>
+                    </button>
+                    <div param='app-name'>
 
-					<a class="navbar-brand" href="/">
-					    <image src="hoshinplan-logo.svg" title="Hoshinplan" alt="Hoshinplan" class="logo" if="&params[:new_logo]"/>
-					    <else>
-					        <strong>Hoshin</strong><span>plan</span>
-                        </else>
-					</a>
-				</div>
-			</header>
-			<div id="sidenav" class="navbar-collapse collapse">
-			<main-nav class="main-nav" current="&attributes[:title]"/>
-			<account-nav/>
-			</div>
+                        <a class="navbar-brand" href="/">
+                            <image src="hoshinplan-logo.svg" title="Hoshinplan" alt="Hoshinplan" class="logo" if="&params[:new_logo]"/>
+                            <else>
+                                <strong>Hoshin</strong><span>plan</span>
+                            </else>
+                        </a>
+                    </div>
+                </header>
+                <div id="sidenav" class="navbar-collapse collapse">
+                <main-nav class="main-nav" current="&attributes[:title]"/>
+                <account-nav/>
+                </div>
+			</swept-cache>
 		</navbar:>
 		<prepend-container:>
 		    <modal id="login" unless="&logged_in? || controller.action_name=='login'">

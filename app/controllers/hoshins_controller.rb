@@ -62,7 +62,7 @@ class HoshinsController < ApplicationController
   api :GET, '/hoshins/:id', 'Get a hoshin'
   def show
     begin
-      self.this = find_instance
+      self.this ||= find_instance
     rescue ActiveRecord::RecordNotFound => e
       Hoshin.current_hoshin = Hoshin.unscoped.find(params[:id])
       if Hoshin.current_hoshin
