@@ -23,7 +23,7 @@
   	</if>
 	<if test="&column == 'Value'">
 		  <div class="column nowrap" data-label="Value">
-		  	<if test="&@pdf">
+		  	<if test="&@pdf || !can_edit?">
 				<view:value human/>
 			</if>
 			<else>

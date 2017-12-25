@@ -7,7 +7,7 @@
     <do part="comments-part" id="#{pid}" part-locals="pc,relation,pid">
         <h3><t key="comments.title" /></h3>
         <paginated-collection field="&relation" page="&pc" model="&t 'comments.model_name.plural'" update="#{pid}"/>
-        <formlet with="&this.send(relation).new" owner="&this.model_name.singular" method="post" class="comment-form #{Rails.configuration.websockets_disable ? '' : 'subscribe'}" update="#{pid}" data-company="&this.company_id">
+        <formlet with="&this.send(relation).new" owner="&this.model_name.singular" method="post" class="comment-form #{Rails.configuration.websockets_disable ? '' : 'subscribe'}" update="#{pid}" data-company="&this.company_id" if="&can_edit?">
             <div class="comment-send">
                 <input:body class="form-control" no-toolbar="&TRUE" placeholder="&t 'write_comment'"/>
                 <submit label="#{t 'hobo.actions.submit'}" />

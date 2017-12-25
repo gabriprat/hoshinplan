@@ -1,4 +1,5 @@
 <extend tag="show-page" for="Hoshin">
+	<% tag = can_edit? ? "sortable-collection" : "collection" %>
 	<old-show-page merge>
 	
 		<prepend-main-content: >
@@ -76,10 +77,10 @@
 		        <%# swept-cache route-on suffix="view" path="&request.fullpath" canview="&can_view?" %>
 			<div class="fixed-x slide-page">
 				<view:header class="well" title="&Hoshin.human_attribute_name('header')" unless="&this.header.blank?"/>
-				<div id="goals" part="goals">
+				<div id="goals" part="goals" part-locals="tag">
 					<div class="goals well" if="&this.goals">
 						<h3 title="#{Goal.model_name.human(:count => 100).to_s}"><i class="ic-bullseye"></i></h3>
-						<sortable-collection:goals />
+						<call-tag with="&this" tag="&tag" field="goals" />
 					</div>
 				</div>
 			</div>
@@ -90,9 +91,9 @@
 					<% } %>
 				</ol>
 			</div>
-			<sortable-collection:areas part="areas" id="areas" hoshin="&this" class="center-block areas#{this.areas_count}" if="&this.areas_count > 0">
+			<call-tag with="&this" tag="&tag" field="areas" part="areas" part-locals="tag" id="areas" hoshin="&this" class="center-block areas#{this.areas_count}" if="&this.areas_count > 0">
 				<item: style="width: #{100/this.hoshin.areas_count}%" id="view-area-#{this.id}"/>
-			</sortable-collection>
+			</call-tag>
 			<%# /swept-cache %>
 			<div id="health-popover"></div>
 			<filters-modal />

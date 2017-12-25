@@ -1238,15 +1238,30 @@ body .multioverdue, body .overdue {
   color: red;
 }
 
-.completed, .completed .overdue, .completed .multioverdue, .completed a, .completed a:active, .completed a:hover, .completed a:visited {
-  color: #999;
-  font-weight: 200;
+.completed, .completed .overdue, .completed .multioverdue {
+  .name a, .name a:active, .name a:hover, .name a:visited, .deadline, acronym {
+    color: #999;
+    font-weight: 200;
+  }
+  .modal {
+    a, a:active, a:hover, a:visited {
+      color: inherit;
+    }
+  }
 }
 
-.discarded, .discarded .overdue, .discarded .multioverdue, .discarded a, .discarded a:active, .discarded a:hover, .discarded a:visited {
-  color: #999;
-  text-decoration: line-through;
-  font-weight: 200;
+.discarded, .discarded .overdue, .discarded .multioverdue {
+  .name a, .name a:active, .name a:hover, .name a:visited, .deadline, acronym {
+    color: #999;
+    font-weight: 200;
+    text-decoration: line-through;
+  }
+  .modal {
+    a, a:active, a:hover, a:visited {
+      color: inherit;
+      text-decoration: inherit;
+    }
+  }
 }
 
 body .container .well {
@@ -4165,7 +4180,27 @@ body.tr-hd .navbar.navbar-default {
   }
 }
 
+.padded-comments {
+  padding: 24px;
+}
+
 .comment {
+  p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
   .ago {
     color: rgba(0, 0, 0, .5);
   }

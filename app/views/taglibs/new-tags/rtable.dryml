@@ -1,6 +1,7 @@
 <def tag="rtable" attrs="columns, sortable, limit">
 	<% columns ||= "" ; columns = comma_split(columns) -%>
 	<% sortable ||= false %>
+	<% sortable &&= can_edit?(this_parent, nil) %>
 	<% tag = sortable ? "sortable-collection" : "collection" %>
 	<% limit = limit.to_i %>
 	<% count = this.nil? ? 0 : this.size %>

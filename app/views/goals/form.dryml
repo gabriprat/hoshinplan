@@ -5,8 +5,23 @@
     <modal-form-footer-delete />
 </form>
 <else>
-    <read-only-ask-for-permission/>
+    <div class="row">
+        <div class="col-sm-7">
+            <read-only-ask-for-permission show-close="&false" hide-return="&true"/>
+        </div>
+        <div class="col-sm-5">
+            <div class="padded-comments">
+                <comments-form/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="section modal-footer">
+                <a class="cancel btn" href="#" rel="nofollow" onclick="$('.modal').modal('hide');"><t key="hobo.actions.close"/></a>
+            </div>
+        </div>
+    </div>
 </else>
-
 				 
 				
