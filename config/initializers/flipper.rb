@@ -6,8 +6,8 @@ require 'flipper/middleware/memoizer'
 redis = Redis.new(url: ENV['REDIS_URL'])
 memory_adapter = Flipper::Adapters::Memory.new
 adapter = Flipper::Adapters::RedisCache.new(memory_adapter, redis, 4800)
-flipper = Flipper.new(adapter)
-Rails.application.config.middleware.use Flipper::Middleware::SetupEnv, flipper
+$flipper = Flipper.new(adapter)
+Rails.application.config.middleware.use Flipper::Middleware::SetupEnv, $flipper
 Rails.application.config.middleware.use Flipper::Middleware::Memoizer
 
 Flipper.register(:admins) do |actor|
