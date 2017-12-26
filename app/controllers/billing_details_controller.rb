@@ -64,6 +64,9 @@ class BillingDetailsController < ApplicationController
       if subscription_params
         _update_subscription(subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/, ''))
       else
+        if params[:billing_detail][:card_stripe_token]
+          update_stripe_billing_details
+        end
         redirect_to params[:page_path] if valid?
       end
     end
