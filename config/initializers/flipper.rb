@@ -1,10 +1,14 @@
-require 'flipper/adapters/redis'
+require 'flipper/adapters/memory'
+require 'flipper/adapters/redis_cache'
+require 'flipper/middleware/setup_env'
+require 'flipper/middleware/memoizer'
 
-# config/application.rb
-$client = Redis.new
-$adapter = Flipper::Adapters::Redis.new($client)
-$flipper = Flipper.new($adapter)
-Rails.application.config.middleware.use Flipper::Middleware::Memoizer, lambda { $flipper }
+redis = Redis.new(url: ENV['REDIS_URL'])
+memory_adapter = Flipper::Adapters::Memory.new
+adapter = Flipper::Adapters::RedisCache.new(memory_adapter, redis, 4800)
+flipper = Flipper.new(adapter)
+Rails.application.config.middleware.use Flipper::Middleware::SetupEnv, flipper
+Rails.application.config.middleware.use Flipper::Middleware::Memoizer
 
 Flipper.register(:admins) do |actor|
   actor.respond_to?(:admin?) && actor.admin?
