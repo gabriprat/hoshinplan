@@ -1,0 +1,33 @@
+<def tag="recover-button" attrs="label, in-place, subsite">
+    <%
+        url = object_url(this, :recover, :method => :post, :subsite => subsite)
+        if url && can_delete?
+            in_place = !(this == @this && request.method.downcase == "get") if in_place.nil?
+            update_attrs, attributes = attributes.partition_hash(HoboRapidHelper::AJAX_UPDATE_ATTRS)
+            ajax_attrs, attributes = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
+            attributes[:type] ||= 'submit'
+            ajax_attributes, html_attributes = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS)
+
+            add_classes!(attributes, "btn button recover-button recover-#{this.class.name.underscore.dasherize}-button")
+            label ||= t("hobo.actions.remove", :default=>"Recover")
+
+            if in_place && update_attrs.blank?
+              data_rapid = data_rapid(:recover_button)
+              ajax_attrs[:update] ||= ""   # force form ajax
+            elsif !update_attrs.blank?
+              ajax_attrs.merge!(update_attrs)
+              data_rapid = nil
+            else
+              data_rapid = nil
+            end
+        end
+    %>
+    <if test="&url && can_delete?">
+        <form method="post" action="&url" web-method="recover" merge-attrs="&ajax_attrs" data-rapid="&data_rapid" data-rapid-context="&typed_id">
+            <input value="&label" merge/>
+        </form>
+    </if>
+    <else>
+        <%= url.to_yaml + can_delete?.to_yaml %>
+    </else>
+</def>
