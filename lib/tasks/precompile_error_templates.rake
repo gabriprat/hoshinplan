@@ -4,10 +4,11 @@ namespace :app do
   desc 'Compile the static html error templates.'
   task :precompile_error_templates => :environment do
     pages = {
-        '/errors/file_not_found' => '404.html',
-        '/errors/unprocessable' => '422.html',
-        '/errors/internal_server_error' => '500.html',
-        '/errors/service_unavailable' => '503.html'
+        '/errors/file_not_found?locale=en' => '404.html',
+        '/errors/unprocessable?locale=en' => '422.html',
+        '/errors/internal_server_error?locale=en' => '500.html',
+        '/errors/service_unavailable?locale=en' => '503.html',
+    '/errors/maintenance?locale=en' => 'maintenance.html'
     }
     app = ActionDispatch::Integration::Session.new(Rails.application)
 
@@ -16,7 +17,7 @@ namespace :app do
         outpath = File.join ([Rails.root, 'public', output])
         Hoshinplan::Application.config.secret_key_base = 'sadf'
         resp = app.get(route)
-        if resp == output.to_i
+        if resp == output.to_i || output == 'maintenance.html'
             File.delete(outpath) unless not File.exists?(outpath)
             File.open(outpath, 'w') do |f|
                 f.write(app.response.body)

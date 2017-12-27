@@ -1,7 +1,9 @@
 class ErrorsController < ApplicationController
   hobo_controller
   # Do not require the user to be logged in
-  skip_filter *_process_action_callbacks.map(&:filter)
+  skip_filter *_process_action_callbacks.find_all{|x|
+    x.filter != :set_locale
+  }.map(&:filter)
   
   #Response
      respond_to :html, :xml, :json
@@ -32,8 +34,13 @@ class ErrorsController < ApplicationController
       Rails.logger.error("ErrorsController: Internal Server Error for URL " + request.url)
       render status: 500
     end
-    
+
     def service_unavailable
+      Rails.logger.error("ErrorsController: Service Unavailable Error for URL " + request.url)
+      render status: 503
+    end
+
+    def maintenance
       Rails.logger.error("ErrorsController: Service Unavailable Error for URL " + request.url)
       render status: 503
     end

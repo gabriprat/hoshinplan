@@ -183,20 +183,20 @@ class ApplicationController < ActionController::Base
     raise $!, "#{$!}. Details: #{invalid.record.errors.messages.to_yaml}", $!.backtrace
   end
 
-  before_filter :is_pdf
+  before_action :is_pdf
 
   def is_pdf
     @pdf = request.original_url.split('?').first.ends_with?(".pdf")
   end
 
-  before_filter :action_mailer_init
+  before_action :action_mailer_init
 
   def action_mailer_init
     ActionMailer::Base.default_url_options = {:host => request.host_with_port}
     ActionMailer::Base.default_url_options[:only_path] = false
   end
 
-  before_filter :set_locale
+  before_action :set_locale
 
 
   # Get locale code from request subdomain (like http://it.application.local:3000)

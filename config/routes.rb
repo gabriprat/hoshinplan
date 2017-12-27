@@ -19,6 +19,7 @@ Hoshinplan::Application.routes.draw do
   get "errors/unprocessable"
   get "errors/internal_server_error"
   get "errors/service_unavailable"
+  get "errors/maintenance"
 
   get ENV['RAILS_RELATIVE_URL_ROOT'] => 'front#index' if ENV['RAILS_RELATIVE_URL_ROOT']
   

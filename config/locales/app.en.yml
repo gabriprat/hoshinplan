@@ -125,7 +125,9 @@ en:
     messaging: "Messaging"
   no_oid_url: "No corporate login for the given email"
   errors:
-    service_unavailable: "Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again."
+    maintenance: "Sorry! We are currently under maintenance.  <br/>We are working hard upgrading our product to have the service up again as soon as possible. Please wait a moment and try again."
+    maintenance_title: "Maintenance"
+    service_unavailable: "Sorry! Our servers are currently over capacity.<br/>We are working hard to restore the service as soon as possible. Please wait a moment and try again."
     not_found: "The page you were looking for does not exist. <br/>Check the URL. If you think this is an error you can contact us."
     internal_server_error: "Oh no! We had some technical problems during your last operation. <br/>We have been notified of your error and will start working to fix it immediately."
     messages:

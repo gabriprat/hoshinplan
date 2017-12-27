@@ -125,7 +125,9 @@ es:
     messaging: "Mensajería"
   no_oid_url: "No existe un login corporativo para el email introducido"
   errors:
-    service_unavailable: "¡Lo sentimos! Estamos en mantenimiento.  <br/>Estamos trabajando duro para hacer mejoras en nuestra aplicación y para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar."
+    maintenance: "¡Lo sentimos! Estamos en mantenimiento.  <br/>Estamos trabajando duro para hacer mejoras en nuestra aplicación y para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar."
+    maintenance_title: "Mantenimiento"
+    service_unavailable: "¡Lo sentimos! Nuestros servidores están sobrecargados.  <br/>Estamos trabajando duro para volver a tener el servicio disponible tan pronto cómo nos sea posible. Por favor, espera unos momentos y vuelve a probar."
     not_found: "La página que estás buscando no existe. <br/>Comprueba la URL. Si crees que es un error puedes ponerte en contacto con nosotros."
     internal_server_error: "¡Oh no! Ha habido algún problema técnico en tu última operación. <br/>Hemos recibido el error y nos pondremos a trabajar inmediatamente para resolverlo."
     messages:
