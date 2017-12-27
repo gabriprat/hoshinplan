@@ -76,23 +76,22 @@ class ApplicationController < ActionController::Base
 
   respond_to :html, :json, :xml
 
-  before_filter :just_signed_up
+  around_action :set_user_time_zone
 
-  before_filter :login_from_cookie
+  around_action :authenticate_client_app, :except => [:faye_auth]
 
-  before_filter :my_login_required, :except => [:login, :auth, :callback, :sso_login, :signup, :activate, :resend_activation,
+  append_around_action :scope_current_user, :authenticate_client_app, :except => [:activate_from_email, :activate]
+
+  append_around_action :check_subscription, :scope_current_user, :except => [:activate_from_email, :activate]
+
+  before_action :just_signed_up
+
+  before_action :login_from_cookie
+
+  before_action :my_login_required, :except => [:login, :auth, :callback, :sso_login, :signup, :activate, :resend_activation,
                                                 :do_resend_activation, :do_activate, :do_signup, :forgot_password, :reset_password, :do_reset_password,
                                                 :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn,
                                                 :accept_invitation, :do_accept_invitation, :check_corporate_login, :pricing, :confirm_email]
-
-  around_filter :set_user_time_zone
-
-  around_filter :check_subscription, :authenticate_client_app, :except => [:activate_from_email, :activate]
-
-  prepend_around_filter :scope_current_user, :check_subscription, :except => [:activate_from_email, :activate]
-
-  prepend_around_filter :authenticate_client_app, :scope_current_user, :except => [:faye_auth]
-
 
   def just_signed_up
     if session[:just_signed_up]
@@ -154,7 +153,8 @@ class ApplicationController < ActionController::Base
       begin
         inst = current_user if self.is_a?(UsersController) && params[:id] && logged_in? && params[:id].to_i == current_user.id
         inst = Hobo::Model.find_by_typed_id(params[:type].singularize + ":" + params[:id]) if inst.nil? && !params[:id].nil? && !params[:type].nil?
-        inst = model.user_find_with_deleted(current_user, params[:id]) if inst.nil? && !params[:id].nil?
+        inst = model.respond_to?(:user_find_with_deleted) && model.user_find_with_deleted(current_user, params[:id]) if inst.nil? && !params[:id].nil?
+        inst = model.find(params[:id]) if inst.nil? && !params[:id].nil?
       rescue ActiveRecord::RecordNotFound => e
         # Let the specific controller deal with this
       end
