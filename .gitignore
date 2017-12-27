@@ -29,6 +29,7 @@ vendor
 copy_config.sh
 backup_and_restore.sh
 *.dump
+*.dmp
 *.sql
 
 # Elastic Beanstalk Files
