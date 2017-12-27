@@ -8,7 +8,7 @@
 		</if>
 		<if test="&column == 'Objective'">
 			<div class="column name" data-label="Name" part="obj-name" id="obj-name-#{this.id}">
-				<rmodal title="#{ht('objective.health.' + this.status + '_objectives', kpi: Indicator.model_name.human(:count => 100), task: objective.model_name.human(:count => 100)) unless this.status.blank?}" href-url="#{objective_path this}/edit" url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}" class="#{this.status}"><name/> </rmodal> <user-abbrev:responsible_id paren/>
+				<rmodal title="#{ht('objective.health.' + this.status + '_objectives', kpi: Indicator.model_name.human(:count => 100), task: Task.model_name.human(:count => 100)) unless this.status.blank?}" href-url="#{objective_path this}/edit" url="#{objective_path this}/form" target-id="update-objective-modal-#{this.id}" class="#{this.status}"><name/> </rmodal> <user-abbrev:responsible_id paren/>
 			</div>
 		</if>
 		<if test="&column == 'Resp.' || column == 'Responsible'">
@@ -24,7 +24,7 @@
 					<rmodal title="#{ht 'indicator.actions.new'}" href-url="#{objective_path this}/indicators/new" url="#{indicator_path Indicator.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" target-id="add-kpi-modal-#{this.id}" class="hoshin-tasks" if="&can_create? this.indicators"><span class="ic-dashboard ic-plus-small ic-fw"></span></rmodal>
 				</li>
 				<li class="task">
-					<rmodal title="#{ht 'objective.actions.new'}" href-url="#{objective_path this}/tasks/new" url="#{task_path objective.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" target-id="add-task-modal-#{this.id}" class="hoshin-tasks" if="&can_create? this.tasks"><span class="ic-tasks ic-plus-small ic-fw"></span></rmodal>
+					<rmodal title="#{ht 'task.actions.new'}" href-url="#{objective_path this}/tasks/new" url="#{task_path Task.new}/form?company_id=#{this.company_id}&hoshin_id=#{this.hoshin_id}&area_id=#{this.area_id}&objective_id=#{this.id}" target-id="add-task-modal-#{this.id}" class="hoshin-tasks" if="&can_create? this.tasks"><span class="ic-tasks ic-plus-small ic-fw"></span></rmodal>
 				</li>
 			</ul>
 		</div>
