@@ -36,7 +36,7 @@
                         </em>
                         <p if="next_payment_at"><t key="pricing_plans.next_payment_will_be" next-payment-at="#{this.next_payment_at}" /></p>
                     </div>
-                    <div class="credit-card-item__row" if="next_payment_at">
+                    <div class="credit-card-item__row" if="per_user">
                         <div class="credit-card-item__change-card">
                           <a:billing_detail action="edit" if="&can_edit?" params="&{r: request.path}" param="edit-link">
                             <ht key="subscription.actions.edit" name="#{name(:no_wrapper => true)}" />
