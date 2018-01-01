@@ -59,7 +59,9 @@ Hoshinplan::Application.routes.draw do
 
   get 'resetcounters' => 'front#resetcounters', :as => 'reset_counters'
 
-  get 'healthupdate' => 'front#healthupdate', :as => 'health_update'
+  get 'subscriptionbilling' => 'front#subscriptionbilling', :as => 'subscriptionbilling'
+
+  get 'sageonesync' => 'front#sageonesync', :as => 'sageonesync'
 
   get 'sendtrial' => 'front#sendtrial', :as => 'sendtrial'
 
