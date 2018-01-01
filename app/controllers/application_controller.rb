@@ -80,9 +80,9 @@ class ApplicationController < ActionController::Base
 
   around_action :authenticate_client_app, :except => [:faye_auth]
 
-  append_around_action :scope_current_user, :authenticate_client_app, :except => [:activate_from_email, :activate]
+  around_action :scope_current_user, :except => [:activate_from_email, :activate]
 
-  append_around_action :check_subscription, :scope_current_user, :except => [:activate_from_email, :activate]
+  around_action :check_subscription, :except => [:activate_from_email, :activate]
 
   before_action :just_signed_up
 
@@ -230,8 +230,8 @@ class ApplicationController < ActionController::Base
     current_user.language.to_s if (!current_user.nil? && current_user.respond_to?('language') && !current_user.language.blank?)
   end
 
-  # We provide our own method to call the Hobo helper here, so we can check the 
-  # User count. 
+  # We provide our own method to call the Hobo helper here, so we can check the
+  # User count.
   def my_login_required
     #return false if !defined?(logged_in)
     return true if logged_in?
