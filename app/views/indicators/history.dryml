@@ -48,7 +48,7 @@
 	    		<chart 
 	    			id="graph-line" 
 	    			type="line" 
-				data="&ihs.map{|i| {id: i.id, day: months ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}" 
+				data="&ihs.map{|i| {id: i.id, origday: i.day, day: months ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}"
 	    			
 	    			xkey="day"
 				events="&this.indicator_events.map {|event| event.day }"

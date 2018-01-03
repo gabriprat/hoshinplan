@@ -736,7 +736,7 @@ en:
       anticipate_the_value: "Anticipate the value for next update"
       set_the_first: "Set the first missing value"
       set_the_last: "Set the last missing value"
-    upload_values_by: "<span class=\"label label-success\">NEW!</span> Now you can copy & paste Excel data<br/>Dates are in the format: mm/dd/yyy <br/>Use the \".\" character as the decimal separator."
+    upload_values_by: "You can copy & paste Excel data<br/>Dates are in the format: mm/dd/yyy <br/>Use the \".\" character as the decimal separator."
   history:
     historic_values: "Historical values"
     messages:

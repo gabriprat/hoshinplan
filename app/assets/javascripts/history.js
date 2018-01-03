@@ -43,7 +43,7 @@ var loadData = function() {
 	if ($('#graph-line').data('rapid')) {
 		objectData = $('#graph-line').data('rapid').chart.morris_attrs.data.map(function(row) {
 			return {
-				"day": dateFormatDefault(row.day),
+				"day": dateFormatDefault(row.origday),
 				"value": row.value === null ? "" : numeral(row.value).format("0.[00000000]"),
 				"goal": row.goal === null ? "" : numeral(row.goal).format("0.[00000000]"),
 				"previous": row.previous === null ? "" : numeral(row.previous).format("0.[00000000]")

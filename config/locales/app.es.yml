@@ -736,7 +736,7 @@ es:
       anticipate_the_value: "Anticipar el valor para la próxima actualización"
       set_the_first: "Introducir el primer valor pendiente"
       set_the_last: "Introducir el último valor pendiente"
-    upload_values_by: "<span class=\"label label-success\">¡NUEVO!</span> Ahora puedes copiar y pegar directamente datos de Excel<br/>Las fechas deben tener el formato: dd/mm/yyy <br/>Usa el carácter \",\" para separar decimales."
+    upload_values_by: "Puedes copiar y pegar directamente datos de Excel<br/>Las fechas deben tener el formato: dd/mm/yyy <br/>Usa el carácter \",\" para separar decimales."
   history:
     historic_values: "Valores históricos"
     messages:
