@@ -234,8 +234,6 @@ class SageOne < ActiveRecord::Base
     Rails.configuration.sageone
   end
 
-  private
-
   def self.get
     @singleton ||= SageOne.first_or_create
     if @singleton.expires_at < Time.now + 30.minutes
