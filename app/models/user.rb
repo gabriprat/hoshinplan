@@ -149,6 +149,8 @@ class User < ApplicationRecord
   has_many :my_indicators, :class_name => "Indicator", :inverse_of => :creator, :foreign_key => :creator_id
   has_many :my_indicator_histories, :class_name => "IndicatorHistory", :inverse_of => :creator, :foreign_key => :creator_id
 
+  belongs_to :partner, :inverse_of => :users
+
   before_create do |user|
     # This gives admin rights and an :active state to the first sign-up.
     if user.class.count == 0
@@ -240,6 +242,7 @@ class User < ApplicationRecord
 
     create :invite, :params => [:email_address], :become => :invited, :new_key => true do
       self.email_address = email_address
+      self.partner_id = acting_user.partner_id
       UserCompanyMailer.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s).deliver_later
     end
 

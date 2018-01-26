@@ -640,6 +640,7 @@
     <body: class="show-page user" param/>
 
     <content-header: param>
+      <a:partner param="parent-link">&laquo; <ht key="user.actions.back_to_parent" parent="Partner" name="&this">Back to <name/></ht></a:partner>
       <h2 param="heading">
         <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
           User <name/>

@@ -161,7 +161,9 @@ Hoshinplan::Application.routes.draw do
   get "/hoshins/:id/charts/:area" => "hoshins#charts"
 
   SamlDynamicRouter.load
-  
+
+  PartnersDynamicRouter.load
+
   constraints IsAdministrator do
     mount Flipper::UI.app($flipper) => '/admin/flipper'
     mount Resque::Server.new, :at => "/admin/resque"

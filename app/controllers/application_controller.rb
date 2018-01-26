@@ -133,6 +133,7 @@ class ApplicationController < ActionController::Base
     if defined?("logged_in?") && !params[:app_key].presence
       User.current_id = logged_in? ? current_user.id : nil
       User.current_user = current_user
+      @partner = current_user.partner if logged_in? && current_user.partner_id
       if current_user.respond_to?('last_seen_at') && (current_user.last_seen_at.nil? || current_user.last_seen_at < Date.today)
         current_user.last_seen_at = Date.today
         people_set
@@ -159,6 +160,9 @@ class ApplicationController < ActionController::Base
         # Let the specific controller deal with this
       end
       self.this = inst
+      if self.this.is_a?(User) && self.this.partner_id && !logged_in?
+        @partner = self.this.partner
+      end
       begin
         inst = Area.user_find_with_deleted(current_user,params[:area_id]) unless (!logged_in? || inst || params[:area_id].nil?)
         inst = Objective.user_find_with_deleted(current_user,params[:objective_id]) unless (!logged_in? || inst || params[:objective_id].nil?)

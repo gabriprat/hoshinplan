@@ -32,13 +32,13 @@
 
           <else>
             <unless test="&controller.action_name=='login'">
-                <nav-item href="/features">
+                <nav-item href="/features" unless="&@partner">
                     <t key="features">Features</t>
                 </nav-item>
-                <nav-item href="/pricing">
+                <nav-item href="/pricing" unless="&@partner">
                     <t key="pricing">Pricing</t>
                 </nav-item>
-                <nav-item href="#{locale.to_s=='en'?'https://blog.hoshinplan.com':'https://es-blog.hoshinplan.com'}">
+                <nav-item href="#{locale.to_s=='en'?'https://blog.hoshinplan.com':'https://es-blog.hoshinplan.com'}" unless="&@partner">
                     <t key="footer.blog"/>
                 </nav-item>
                 <li class='nav-item' param="log-in" unless="&controller.action_name=='login'">

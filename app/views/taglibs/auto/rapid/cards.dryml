@@ -383,6 +383,20 @@
   </card>
 </def>
 
+<def tag="card" for="Partner">
+  <card class="partner" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:creator param="creator-link"/>
+      <ht key="user.collection.count" count="&this.users.size">
+         <count:users param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="PaymentNotification">
   <card class="payment-notification" param="default" merge>
     <header: param>

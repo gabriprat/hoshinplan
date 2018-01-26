@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225084200) do
+ActiveRecord::Schema.define(version: 20180126200321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -472,6 +472,23 @@ ActiveRecord::Schema.define(version: 20171225084200) do
   add_index "objectives", ["parent_id"], name: "index_objectives_on_parent_id", using: :btree
   add_index "objectives", ["responsible_id"], name: "index_objectives_on_responsible_id", using: :btree
 
+  create_table "partners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "companies_trial_days", default: 90
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "creator_id"
+  end
+
+  add_index "partners", ["creator_id"], name: "index_partners_on_creator_id", using: :btree
+  add_index "partners", ["deleted_at"], name: "index_partners_on_deleted_at", using: :btree
+
   create_table "payment_notifications", force: :cascade do |t|
     t.string   "response"
     t.text     "raw_post"
@@ -661,9 +678,11 @@ ActiveRecord::Schema.define(version: 20171225084200) do
     t.datetime "trial_ended_email"
     t.integer  "companies_trial_days",                 default: 0
     t.boolean  "notify_on_assign"
+    t.integer  "partner_id"
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
+  add_index "users", ["partner_id"], name: "index_users_on_partner_id", using: :btree
   add_index "users", ["state"], name: "index_users_on_state", using: :btree
 
   add_foreign_key "flipper_gates", "flipper_features", on_delete: :cascade

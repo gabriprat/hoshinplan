@@ -614,6 +614,7 @@ es:
     next_payment_will_be: "el próximo pago será el %{next_payment_at}"
     payment_methods: "Métodos de pago"
     change_card: "Cambiar tarjeta"
+    messaging: "Chatea en objetivos, indicadores y tareas"
   billing_details:
     plan: "Plan %{name}"
     concept: Concepto

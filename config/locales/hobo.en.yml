@@ -50,7 +50,7 @@ en:
 
     signup:
       title: "Signup"
-      heading: "Try it 30 days for free"
+      heading: "Try it %{days} days for free"
 
     forgot_password:
       title: *forgot_password

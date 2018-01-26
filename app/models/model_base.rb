@@ -28,7 +28,7 @@ module ModelBase extend ActiveSupport::Concern
   end
 
   def log_operation(destroyed=false, recovered=false)
-    return unless self.respond_to?(:deleted_at) && self.respond_to?(:name)
+    return unless Object.const_defined?(self.class.name + 'Log') && self.respond_to?(:deleted_at) && self.respond_to?(:name)
     changed = self.changes & self.class.accessible_attributes
     return unless self.id_changed? || changed.present? || destroyed || recovered
     operation = :create if self.id_changed?
@@ -157,13 +157,13 @@ module ModelBase extend ActiveSupport::Concern
   end
 
   def hoshin_creator
-    user = acting_user ? acting_user : User.find(User.current_id)
+    user = acting_user ? acting_user : User.current_user
     return false if user.id == 557 && !user.administrator?
     return self.respond_to?("hoshin") && self.hoshin && self.hoshin.creator_id == user.id
   end
 
   def same_creator
-    user = acting_user ? acting_user : User.find(User.current_id)
+    user = acting_user ? acting_user : User.current_user
     return false if user.id == 557 && !user.administrator?
     return self.respond_to?("creator") && self.creator_id == user.id
   end

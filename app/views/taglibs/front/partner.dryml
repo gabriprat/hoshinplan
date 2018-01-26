@@ -1,0 +1,23 @@
+
+<extend tag="form" for="Partner">
+	<old-form merge multipart>
+            <field-list: fields="name, slug, image" no-edit="view">
+                <image-view:>
+                    <do part="user-image">
+                        <image-input/>
+                    </do>
+                </image-view:>
+            </field-list:>
+	</old-form>
+</extend>
+
+<extend tag="show-page" for="Partner">
+    <old-show-page merge>
+          <field-list: fields="name, slug, image">
+            <image-view:>
+                <view class="logo-img" size="logo"/>
+            </image-view:>
+          </field-list>
+    </old-show-page>
+</extend>
+

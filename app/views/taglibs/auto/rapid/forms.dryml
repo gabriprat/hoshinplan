@@ -286,6 +286,18 @@
 
 
 
+<def tag="form" for="Partner">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, slug, companies_trial_days, image_file_name, image_content_type, image_file_size, image_updated_at, creator" param/>
+    <div param="actions">
+      <submit label="#{ht 'partner.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="PaymentNotification">
   <form merge param="default">
     <error-messages param/>
@@ -615,7 +627,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, firstName, lastName, color, email_address, administrator, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, beta_access, news, from_invitation, trial_ends_at, trial_ending_email, trial_ended_email, invitation_code, companies_trial_days, initial_task_state, notify_on_assign, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies" param/>
+    <field-list fields="name, firstName, lastName, color, email_address, administrator, tutorial_step, timezone, language, last_seen_at, last_login_at, preferred_view, beta_access, news, from_invitation, trial_ends_at, trial_ending_email, trial_ended_email, invitation_code, companies_trial_days, initial_task_state, notify_on_assign, image_file_name, image_content_type, image_file_size, image_updated_at, state, companies, partner" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

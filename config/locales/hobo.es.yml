@@ -58,7 +58,7 @@ es:
 
     signup:
       title: "Registro"
-      heading: "Pruébalo 30 días gratis"
+      heading: "Pruébalo %{days} días gratis"
 
     forgot_password:
       title: *forgot_password

@@ -22,9 +22,12 @@
                 <div param='app-name'>
 
                     <a class="navbar-brand" href="/">
-                        <image src="hoshinplan-logo.svg" title="Hoshinplan" alt="Hoshinplan" class="logo" if="&params[:new_logo]"/>
+                        <view with="&@partner.image" size="logo" if="&@partner" />
                         <else>
-                            <strong>Hoshin</strong><span>plan</span>
+                            <image src="hoshinplan-logo.svg" title="Hoshinplan" alt="Hoshinplan" class="logo" if="&params[:new_logo]"/>
+                            <else>
+                                <strong>Hoshin</strong><span>plan</span>
+                            </else>
                         </else>
                     </a>
                 </div>

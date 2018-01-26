@@ -614,6 +614,7 @@ en:
     next_payment_will_be: "next payment will be at %{next_payment_at}"
     payment_methods: "Payment methods"
     change_card: "Change card"
+    messaging: "Chat in objectives, indicators and tasks"
   billing_details:
     plan: "%{name} plan"
     concept: Concept

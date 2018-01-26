@@ -299,6 +299,10 @@ class UsersController < ApplicationController
   def signup
     self.this = User.new
     self.this.language = header_locale
+    if params[:slug]
+      @partner = Partner.find_by_slug params[:slug]
+      self.this.partner = @partner
+    end
     hobo_signup
   end
   

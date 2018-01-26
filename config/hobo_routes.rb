@@ -5,6 +5,10 @@
 Hoshinplan::Application.routes.draw do
 
 
+  # Resource routes for controller partners
+  resources :partners, :only => [:new, :edit, :show, :create, :update, :destroy]
+
+
   # Resource routes for controller client_applications
   resources :client_applications do
     member do

@@ -429,12 +429,12 @@ html body.presenting input {
 }
 
 body .navbar a.navbar-brand {
-  padding: 5px 15px;
+  padding: 0px 15px;
   height: auto;
-  line-height: 1em;
+  line-height: 40px;
   font-weight: 100;
   vertical-align: text-top;
-  img {
+  .logo {
     width: 200px;
   }
 }
@@ -453,13 +453,12 @@ body .navbar a.navbar-brand, body .navbar a.navbar-brand:visited, body .navbar a
 }
 
 ul.navbar-nav {
-  line-height: 1em;
+  line-height: 25px;
 }
 
 .navbar-nav > li {
   float: none;
   display: inline-block;
-  line-height: 1em;
   vertical-align: text-top;
 }
 
@@ -2218,10 +2217,6 @@ form#delete-history, form#delete-history input {
   .navbar-nav.account-nav {
     box-shadow: none;
   }
-}
-
-.account-nav {
-  margin-top: 2px;
 }
 
 @media (max-width: 767px) {
@@ -4579,4 +4574,9 @@ ul.input-many > li > div.buttons button {
 
 .comments-modal .comment-form .form-group {
   margin: 0;
+}
+
+.logo-img {
+  background: $primary-color;
+  display: block;
 }

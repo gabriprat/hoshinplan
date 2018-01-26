@@ -33,7 +33,7 @@
 
     <content-header: param>
       <h2 param="heading">
-        <ht key="user.signup.heading"/>
+        <ht key="user.signup.heading" days="& @partner ? @partner.companies_trial_days : 30"/>
       </h2>
     </content-header:>
 
