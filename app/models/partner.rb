@@ -28,7 +28,7 @@ class Partner < ApplicationRecord
           'Cache-Control' => 'public, max-age=315576000',
           'Expires' => 10.years.from_now.httpdate
       },
-      :default_style => :thumb,
+      :default_style => :logo,
       :default_url => "/assets/hp-logo-white.png"
   }
   crop_attached_file :image, :aspect => "127:30"
