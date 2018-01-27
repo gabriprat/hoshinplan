@@ -1,4 +1,8 @@
 <page title="#{t 'pricing_plans.title'}">
+          <append-head:>
+            <meta name="description" content="#{t 'pricing_plans.subtitle'}" />
+          </append-head:>
+
         <body: class="index-page pricing-page" />
         <content-header: replace/>
                 <content-body:>
