@@ -18,6 +18,9 @@ module Hoshinplan
     config.hobo.dont_emit_deprecated_routes = true
     # Hobo: remove support for ERB templates
     config.hobo.dryml_only_templates = true
+
+    config.hobo.app_name = "Hoshinplan"
+
     # Hobo: the front subsite loads front.css & front.js
     config.assets.precompile += %w(pdf.css front.css front.js history.js history.css billing.js card/card.css)
   
