@@ -1,4 +1,7 @@
-<page>
+<page title="#{t 'cms.page.' + @key.to_s + '.title'}">
+<append-head:>
+    <meta name="description" content="#{t 'cms.page.' + @key.to_s + '.description'}" />
+</append-head:>
 <content:>
 <cms key="#{@key}_#{locale}"/>
 </content:>

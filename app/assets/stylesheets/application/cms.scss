@@ -477,3 +477,35 @@ body.tutorial #tutorial-close {
     }
   }
 }
+
+
+#cms .pitch .product-block  img {
+  float: left;
+}
+
+#cms .pitch .product-block  img.right {
+  float: right;
+}
+
+#cms .pitch .product-block  ul:after {
+  content: '';
+  float: none;
+  clear: both;
+  margin-bottom: 6em;
+  display: table;
+}
+
+#cms .center {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#cms .features-page {
+  h1 {
+    text-align: center;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 8em;
+  }
+}

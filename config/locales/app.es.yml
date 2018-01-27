@@ -871,3 +871,11 @@ es:
   messages:
     accept: Aceptar
     cancel: Cancelar
+  home:
+    title: "Hoshinplan: La estrategia de tu empresa en una sola página"
+    description: Hoshin Kanri es la forma más fácil de construir tu estrategia, monitorizar el rendimiento y enfocarse en la ejecución
+  cms:
+    page:
+      features:
+        title: Funcionalidades
+        description: Lista de funcionalidades de nuestra herramienta para plasmar la estrategia de tu compañía, hacer seguimiento y conseguir más éxitos

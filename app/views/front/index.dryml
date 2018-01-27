@@ -1,4 +1,8 @@
-<page title="Home">
+<page full-title="#{t 'home.title'}">
+
+  <append-head:>
+    <meta name="description" content="#{t 'home.description'}" />
+  </append-head:>
 
   <body: class="front-page tr-hd"/>
 
