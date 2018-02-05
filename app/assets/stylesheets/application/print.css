@@ -10,7 +10,7 @@
 	.table .table-row {
 		page-break-inside: avoid;
 	}
-	
+
 	body {
 		background: white !important;
 	}
@@ -34,30 +34,30 @@
 		-moz-box-shadow: none !important;
 		box-shadow: none !important;
 	}
-	
+
 	div.table div.column[data-label="Feeling"] {
 		text-align: center;
 		width: 1em;
 	}
-	
+
 	div.table div.column[data-label="Actions"], div.table div.column[data-label="Status"] {
 		display: none;
 	}
-	
+
 	.ic-smile:before {
 		font-family: "Courier New", Courier, Fixed, monospace;
 		display: inline-block;
 		content: "\263a";
 		font-size: 1.7em;
 	}
-	
+
 	.ic-wondering:before {
 		font-family: "Courier New", Courier, Fixed, monospace;
 		display: inline-block;
 		content: "\2687";
 		font-size: 1.9em;
 	}
-	
+
 	.ic-sad:before {
 		font-family: "Courier New", Courier, Fixed, monospace;
 		display: inline-block;
@@ -67,11 +67,11 @@
 	.picker {
 		display: none !important;
 	}
-	
+
 	body a.add-chart {
 		display: none;
 	}
-	
+
 	.charts-tabs li {
 		display:none;
 	}
@@ -84,7 +84,7 @@
 	h2 small {
 		display: inline;
 	}
-	
+
 	.well {
 		border-radius: 0 !important;
 		-moz-border-radius: 0 !important;
@@ -94,7 +94,7 @@
 	.no-print, .navbar, div.ordering-handle, body .btn, .parent-link, ul.icons, .title-action, .footer {
 		display: none;
 	}
-	
+
 	div.ordering-handle, .column.ordering {
 		display: none;
 	}
@@ -114,11 +114,11 @@
 	body a, body a:visited {
 		color: #000;
 	}
-	textarea:hover, 
-	input:hover, 
-	textarea:active, 
-	input:active, 
-	textarea:focus, 
+	textarea:hover,
+	input:hover,
+	textarea:active,
+	input:active,
+	textarea:focus,
 	input:focus,
 	button:focus,
 	button:active,
@@ -136,7 +136,7 @@
 	}
 	.tasks-wrapper, .indicators-wrapper{
 		margin-top: 5px;
-		
+
 	}
 	.area h5 {
 		background-color: transparent;
@@ -149,15 +149,12 @@
 	body a:visited {
 		text-decoration: none;
 	}
-	body a[href]:after {
-		content: ""
-	}
-	
+
 	body.hoshin #goals .well {
 		padding: 0;
 		border: 0;
 	}
-	
+
 	body.hoshin .goals h3 {
 		font-size: 1.8em;
 		position: static;
@@ -165,34 +162,39 @@
 		margin: 0 0 0 1em;
 		color: #000;
 	}
-	
-	body.hoshin .goals ul {
-		float: left;
-	}
-	
+
 	body.hoshin h4, body.hoshin h2.heading, body.hoshin .goals h3 {
 		font-weight: 300;
+        color: #000;
 	}
-	
+
 	body.hoshin .area h4 {
 		font-size: 2.5em;
 	}
-	
+
 	body.hoshin .area h5 {
 		font-size: 1.5em;
 	}
-	
+
+    body.hoshin ul.collection.goals {
+        counter-reset: LIST-ITEMS 0;
+    }
+
 	body.hoshin ul.collection.goals > li {
-		float: left;
-		list-style-type: decimal;
-		display: list-item;
-		list-style-position: inside;
+		display: inline;
+        span {
+            white-space: nowrap;
+        }
 	}
-	
+
 	body.hoshin ul.collection.goals > li > div.goal, body.hoshin ul.collection.goals > li > div.goal > div {
 		display: inline;
 	}
-	
+    body.hoshin ul.collection.goals > li:before {
+        content: counter( LIST-ITEMS ) ".";
+        counter-increment: LIST-ITEMS;
+        padding-right: 0.25em;
+    }
 	body.hoshin ul.collection.goals > li:after {
 		margin-left: 1em;
 		content: "|";
@@ -209,18 +211,18 @@
 		border: 0 0 0 1px;
 		border-color: #000;
 	}
-	
+
 	body.hoshin .container
 	.collection.areas > .item {
 		display: table-cell;
 	}
-	
+
 	#sec-actions {
 		display: none;
 	}
-	
-	
-	
+
+
+
 	@page {
 		size: A4 landscape;
 	}
