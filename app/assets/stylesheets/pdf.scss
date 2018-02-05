@@ -844,7 +844,8 @@ a.text-success:focus {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
-  font-family: inherit;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+  color: #000 !important;
   font-weight: bold;
   line-height: 20px;
   color: inherit;
