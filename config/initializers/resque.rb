@@ -7,6 +7,7 @@ Resque.before_first_fork = Proc.new {
   Resque.logger.formatter = Resque::TaggedVeryVerboseFormatter.new
 }
 
+Resque.redis = $redis
 
 #Resque.logger.formatter = Resque::VeryVerboseFormatter.new
 
