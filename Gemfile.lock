@@ -575,6 +575,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
     wicked_pdf (1.1.0)
+    wkhtmltopdf-binary (0.12.3.1)
     xml-simple (1.1.5)
     yui-compressor (0.12.0)
 
@@ -684,6 +685,7 @@ DEPENDENCIES
   unscoped_associations
   vat_validator!
   wicked_pdf
+  wkhtmltopdf-binary
   yui-compressor
 
 RUBY VERSION

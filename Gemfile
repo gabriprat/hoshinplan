@@ -74,6 +74,7 @@ gem 'actionmailer_inline_css'
 
 gem 'actionpack'
 gem 'delocalize'
+gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'prawn-rails'
 gem 'aws-sdk', '~> 2'
