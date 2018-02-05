@@ -103,10 +103,9 @@
 		font-size: 0.8em;
 	}
 	.card.area input {
-		border: 0;
-		font-size: 1em;
-		border-style: none;
-	}
+        font-size: 1em;
+        border: 0 none;
+    }
 	.well, .well .header, .well .header a {
 		background: transparent !important;
 		color: #000 !important;
@@ -123,12 +122,11 @@
 	button:focus,
 	button:active,
 	button:hover {
-		border: 0 !important;
-		border-style: none !important;
-		box-shadow: none !important;
+        border: 0 none !important;
+        box-shadow: none !important;
 		-webkit-box-shadow: none !important;
 		-moz-box-shadow: none !important;
-		outline:0px !important;
+		outline:0 !important;
 		-webkit-appearance:none;
 	}
 	.overdue input {
@@ -182,10 +180,11 @@
 
 	body.hoshin ul.collection.goals > li {
 		display: inline;
-        span {
-            white-space: nowrap;
-        }
 	}
+
+    body.hoshin ul.collection.goals > li span {
+        white-space: nowrap;
+    }
 
 	body.hoshin ul.collection.goals > li > div.goal, body.hoshin ul.collection.goals > li > div.goal > div {
 		display: inline;
@@ -207,13 +206,12 @@
 		margin: 0;
 		padding: 0;
 	}
+
 	body.hoshin .goals .goal {
-		border: 0 0 0 1px;
-		border-color: #000;
+		border: 0;
 	}
 
-	body.hoshin .container
-	.collection.areas > .item {
+	body.hoshin .container .collection.areas > .item {
 		display: table-cell;
 	}
 
@@ -221,7 +219,9 @@
 		display: none;
 	}
 
-
+    #user-feedback {
+        display: none !important;
+    }
 
 	@page {
 		size: A4 landscape;

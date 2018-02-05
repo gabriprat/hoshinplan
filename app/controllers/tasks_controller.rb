@@ -106,7 +106,8 @@ class TasksController < ApplicationController
 
   def form
     if (params[:id]) 
-      @this = find_instance
+      @this = Task.includes(:hoshin).where({id: params[:id]}).first
+      Hoshin.current_hoshin = @this.hoshin
     else
       @this = Task.new
       @this.company_id = params[:company_id]
