@@ -87,8 +87,8 @@
 
 
 <extend tag="form" for="Task">
-    <set show-on-parent=", show_on_parent" if="&Hoshin.current_hoshin.parent_id"/>
-    <set show-tags=", task_tags" unless="&@this.new_record? && Hoshin.current_hoshin.get_tags.blank?" />
+    <set show-on-parent=", show_on_parent" if="&this.hoshin.parent_id"/>
+    <set show-tags=", task_tags" unless="&@this.new_record? && this.hoshin.get_tags.blank?" />
 	<old-form merge>
 		<prepend-default:>
 		    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
