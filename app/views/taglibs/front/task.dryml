@@ -42,7 +42,7 @@
 	</if>
 	<if test="&column == 'Status'">
 	        <div class="column nowrap" data-label="Actions">
-	      	<ul class="icons">
+	      	<ul class="icons" if="&!@pdf">
 	      	  <if test="#{this.status=='active'?'true':''}">
 	      		  <li class="complete">
 	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="discard" class="inline-form">
@@ -87,8 +87,8 @@
 
 
 <extend tag="form" for="Task">
-    <set show-on-parent=", show_on_parent" if="&this.hoshin.parent_id"/>
-    <set show-tags=", task_tags" unless="&@this.new_record? && this.hoshin.get_tags.blank?" />
+    <set show-on-parent=", show_on_parent" if="&(Hoshin.current_hoshin || this.hoshin).parent_id"/>
+    <set show-tags=", task_tags" unless="&@this.new_record? && (Hoshin.current_hoshin || this.hoshin).get_tags.blank?" />
 	<old-form merge>
 		<prepend-default:>
 		    <submit class="hide" onclick="$(this).closest('form').find('.hidden-fields input[value=DELETE]').attr('value','PUT');"/>
