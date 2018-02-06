@@ -3,9 +3,10 @@ Rails.application.configure do
 end
 
 WickedPdf.config = {
-  :page_size => 'A4',
-  :print_media_type => true,
-  :orientation => 'Landscape'
+  page_size: 'A4',
+  print_media_type: true,
+  orientation: 'Landscape',
+  no_outline: true,
+  minimum_font_size: 6,
+  exe_path: './vendor/bundle/bin/wkhtmltopdf',
 }
-
-WickedPdf.config[:exe_path] = '/usr/local/bin/wkhtmltopdf' unless Rails.env.production?
