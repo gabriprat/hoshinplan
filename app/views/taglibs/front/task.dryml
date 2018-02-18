@@ -141,7 +141,7 @@
                             <formlet update="hiddenDefault">
                                 <hidden-field:hidden />
                                 <button
-                                    class="#{this.hidden ? 'ic-eye-slash light' : 'ic-eye'}"
+                                    class="hidden-default #{this.hidden ? 'ic-eye-slash light' : 'ic-eye'}"
                                     onclick="$(this).prev().val(($(this).prev().val() === 'true') ? '0' : '1');$(this).closest('.formlet').hjq_formlet('submit'); return false;"
                                 />
                             </formlet>

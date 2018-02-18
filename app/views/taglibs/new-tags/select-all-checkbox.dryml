@@ -1,0 +1,7 @@
+<def tag="select-all-checkbox" attrs="selector">
+    <%
+        add_data_rapid!(attributes, "select-all-checkbox", options: {selector: selector})
+    %>
+    <checkbox checkbox-class="select-all" merge />
+    <hr />
+</def>

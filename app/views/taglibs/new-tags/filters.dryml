@@ -24,6 +24,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="tag-list">
+                        <select-all-checkbox id="select-all-tags" selector=".filter-tag">
+                            <label for="select-all-tags"><t key="hoshin.select_all_tags"/></label>
+                        </select-all-checkbox>
                         <% n = 1 %>
                         <repeat with="&this.all_tags_hashes[this.typed_id].split(' ')">
                             <checkbox id="tag-#{n}" class="filter-tag" value="&this">

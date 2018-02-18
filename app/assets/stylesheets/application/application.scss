@@ -4580,3 +4580,11 @@ ul.input-many > li > div.buttons button {
   background: $primary-color;
   display: block;
 }
+
+.select-all {
+  margin-bottom: 0;
+}
+
+.hidden-default {
+  display: inline-block !important;
+}

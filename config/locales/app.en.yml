@@ -534,6 +534,7 @@ en:
     show_hidden: "Show hidden"
     click_to_know: "Click to find out how to bring your Hoshinplan to 100%"
     show_only_mine: "Show only mine"
+    select_all_tags: "Select all"
   health:
     health_for: "Health for %{name}"
     top_users_with_pending: "Users with pending actions in descending order"

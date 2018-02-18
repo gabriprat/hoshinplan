@@ -1,6 +1,9 @@
-<extend tag='input' for='boolean'>
-    <% attributes['class'] ||= '' %>
-    <div class="checkbox">
+<extend tag='input' for='boolean' attrs="checkbox-class">
+    <%
+        attributes['class'] ||= ''
+    %>
+
+    <div class="checkbox #{checkbox_class}">
         <label>
             <% attributes['class'].gsub!('form-control', '') %>
             <old-input merge />
