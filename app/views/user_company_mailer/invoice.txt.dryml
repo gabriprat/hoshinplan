@@ -1,4 +1,4 @@
-#{ I18n.translate "emails.hi", name: user.name.empty? ? user.email_address : user.name },
+#{ I18n.translate "emails.hi", name: name.empty? ? email : name },
 
 <%= I18n.translate('emails.invoice.message').html_safe %>
 

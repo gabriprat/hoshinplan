@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126200321) do
+ActiveRecord::Schema.define(version: 20180219203624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "a", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.date    "trial_ends_at"
+  end
 
   create_table "areas", force: :cascade do |t|
     t.string   "name",        null: false
@@ -98,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180126200321) do
     t.boolean  "vies_valid",          default: false
     t.string   "sage_one_contact_id"
     t.string   "card_name"
+    t.string   "send_invoice_cc"
   end
 
   add_index "billing_details", ["company_id"], name: "index_billing_details_on_company_id", unique: true, using: :btree

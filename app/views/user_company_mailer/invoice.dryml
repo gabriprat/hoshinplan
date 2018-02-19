@@ -1,5 +1,5 @@
 <email user="&user" app-name="#{app_name}">
-    <h2>#{ I18n.translate "emails.hi", name: user.name.empty? ? user.email_address : user.name } </h2>
+    <h2>#{ I18n.translate "emails.hi", name: name.empty? ? email : name } </h2>
     <p><%= I18n.translate('emails.invoice.message').html_safe %></p>
     <p>#{ I18n.translate "emails.thank_you" }<br/>
     #{ I18n.translate "emails.the_team", app_name: app_name }</p>

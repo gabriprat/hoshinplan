@@ -4,7 +4,7 @@ class FrontController < ApplicationController
 
   # Require the user to be logged in for every other action on this controller
   # except :index. 
-  skip_before_filter :my_login_required, :only => [:test_fail, :index, :health_check, :pitch, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize, :reprocess_photos]
+  skip_before_filter :my_login_required, :only => [:test_fail, :index, :health_check, :pitch, :sendinvoice, :sendreminders, :updateindicators, :expirecaches, :resetcounters, :healthupdate, :colorize, :reprocess_photos]
 
   def index
     if !current_user.nil? && !current_user.guest? && current_user.user_companies.empty?
@@ -153,6 +153,11 @@ class FrontController < ApplicationController
     params[:days] ||= 0
     @text = Jobs::TrialNotifications.perform(params)
     render :text => @text, :content_type => Mime::TEXT
+  end
+
+  def sendinvoice
+    UserCompanyMailer.invoice(params[:id]).deliver_now
+    render :text => "Sent!", :content_type => Mime::TEXT
   end
 
   def resetcounters

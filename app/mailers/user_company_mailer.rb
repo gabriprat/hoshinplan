@@ -214,12 +214,14 @@ class UserCompanyMailer < ActionMailer::Base
     @user = user
     begin
       billing_details = BillingDetail.unscoped.find(subscription.billing_detail_id)
-      cc = billing_details.contact_email.to_s
+      to = billing_details.contact_email.to_s
+      name = billing_details.contact_name.to_s
     rescue
-      cc = nil
+      to = nil
+      name = ''
     end
-    to = @user.email_address.to_s
-    if to == cc
+    cc = billing_details.send_invoice_cc
+    if cc.blank? || to == cc
       cc = nil
     end
     pdf = PrawnRails::Document.new
@@ -232,12 +234,12 @@ class UserCompanyMailer < ActionMailer::Base
          :to => to, :cc => cc, :bcc => User.unscoped.administrator.*.email_address) do |format|
       format.html {
         render_email("invoice", {
-            user: @user, app_name: @app_name
+            name: name, email: to, user: @user, app_name: @app_name
         })
       }
       format.text {
         render_email("invoice.txt", {
-            user: @user, app_name: @app_name
+            name: name, email: to, user: @user, app_name: @app_name
         })
       }
     end

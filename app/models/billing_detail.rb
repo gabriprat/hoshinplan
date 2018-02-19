@@ -17,6 +17,7 @@ class BillingDetail < ApplicationRecord
     zip :string, :required
     contact_name :string, :required
     contact_email :email_address, :required
+    send_invoice_cc :string
     vat_number HoboFields::Types::Vat
     vies_valid :boolean, :default => false
     country HoboFields::Types::Country, :required

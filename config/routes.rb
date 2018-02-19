@@ -65,6 +65,8 @@ Hoshinplan::Application.routes.draw do
 
   get 'sendtrial' => 'front#sendtrial', :as => 'sendtrial'
 
+  get 'sendinvoice' => 'front#sendinvoice', :as => 'sendinvoice'
+
   get 'updatepeoplemixpanel' => 'front#updatepeoplemixpanel', :as => 'update_people_mixpanel'
 
   get 'colorize' => 'front#colorize', :as => 'colorize'
