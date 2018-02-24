@@ -29,12 +29,12 @@ class EmailTemplate
     end
   end
 
-  def render_content(vars, user, root_url)
+  def render_content(vars, user)
     version = @template.versions.find {|v| v.active == 1}
     ret = Mustache.render(version.html_content, vars)
     ret.sub!("<%body%>", "")
     if (user._?.partner_id)
-      ret.sub!(/https?:\/\/[^\/]+\/assets\/logo.png/, root_url + user.partner.email_logo.url('email_logo'))
+      ret.sub!(/https?:\/\/[^\/]+\/assets\/logo.png/, user.partner.email_logo.url('email_logo'))
       ret.sub!(/alt=.Hoshinplan./, "alt=#{user.partner.name}")
     end
     ret

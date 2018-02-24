@@ -37,7 +37,7 @@ class UserCompanyMailer < ActionMailer::Base
   end
 
   def render_email(key, locals)
-    view = ActionView::Base.new(ActionController::Base.view_paths, {root_url: root_url})
+    view = ActionView::Base.new(ActionController::Base.view_paths, {})
     this = locals.delete(:this) || nil
     ret = get_renderer(key, locals).new(view).render_page(this, locals)
     Rails.logger.debug "================= FINISHED RENDERING EMAIL #{key} =================="
@@ -142,7 +142,7 @@ class UserCompanyMailer < ActionMailer::Base
          :to => user.email_address,
          :from => t("emails.from.gabriel") + " <hello@hoshinplan.com>") do |format|
       format.html {
-        template.render_content(vars, user, root_url)
+        template.render_content(vars, user)
       }
     end
   end
@@ -313,7 +313,7 @@ class UserCompanyMailer < ActionMailer::Base
     mail(:subject => template.render_subject(vars),
          :to => user.email_address) do |format|
       format.html {
-        template.render_content(vars, user, root_url)
+        template.render_content(vars, user)
       }
     end
   end
