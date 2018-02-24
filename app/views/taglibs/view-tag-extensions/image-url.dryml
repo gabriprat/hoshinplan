@@ -6,7 +6,7 @@
   <unless test="&@pdf">
   <% begin 
   	size ||= 'thumb'
-  	size_names = {mini: '29x29', thumb: '104x104', logo: '127x30'}
+  	size_names = {mini: '29x29', thumb: '104x104', logo: '127x30', email_logo: '173x47'}
   	size_attr = size_names[size.to_sym] || '104x104'
   %>
   <image param src="#{this.url(size)}" srcset="#{this.url(size)} 1x, #{this.url(size + '2x')} 2x" size="&size_attr" merge-attrs if="&this.file?"/>

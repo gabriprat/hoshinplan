@@ -289,7 +289,7 @@
 <def tag="form" for="Partner">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, slug, companies_trial_days, image_file_name, image_content_type, image_file_size, image_updated_at, creator" param/>
+    <field-list fields="name, slug, companies_trial_days, image_file_name, image_content_type, image_file_size, image_updated_at, email_logo_file_name, email_logo_content_type, email_logo_file_size, email_logo_updated_at, creator" param/>
     <div param="actions">
       <submit label="#{ht 'partner.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

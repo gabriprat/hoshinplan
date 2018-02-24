@@ -75,15 +75,13 @@
 	    	</section>
 		<div class="col-md-6 col-md-offset-3">
 		<section class="panel" part="events" if="&can_edit? || this.indicator_events.present?">
-			<header class="panel-heading">
-			            <p class="inline"><model-name-human with="&IndicatorEvent" count="100"/></p>
-	    			<div class="history-actions">
-		    		<a:indicator_events action="new" if="&can_create?(this._?.indicator_events)"  onclick="$('#add-event-modal').modal('show'); $('#add-event-modal form').trigger('reset'); return false;" class="btn pull-right btn-primary">
-                      <ht key="indicator_event.actions.new" count="1">
-                        New Hoshin
-                      </ht>
-                    </a:indicator_events>
-				</div>
+			<header class="panel-heading indicator-events-header">
+                <p><model-name-human with="&IndicatorEvent" count="100"/></p>
+                <a:indicator_events action="new" onclick="$('#add-event-modal').modal('show'); $('#add-event-modal form').trigger('reset'); return false;" class="btn btn-primary">
+                  <ht key="indicator_event.actions.new" count="1">
+                    New Hoshin
+                  </ht>
+                </a:indicator_events>
 			</header>
 			<div class="panel-body">
 				<rtable:indicator_events columns="Day, Description#{', Actions' if can_delete?}"/>
@@ -94,15 +92,17 @@
 		<modal id="add-event-modal">
 			<modal:>
 			<set hid="#{this.id}"/>
+			<set cid="#{this.company_id}"/>
 			<div class="modal-dialog">
 			<% iid = this.id %>
-			<form with="&IndicatorEvent.new" success="$('#add-event-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" updates="#chart,#events" class="modal-content">
+			<form with="&this.indicator_events.new" owner="indicator" method="post" success="$('#add-event-modal').modal('hide'); $('body').removeClass('modal-open'); $('.modal-backdrop').remove(); equalHeightSections();" updates="#chart,#events" class="modal-content">
 				<div class="modal-body">
 					<field-list: fields="name, day">
 						<day-view:><input class="form-control" required/></day-view:>
 						<name-view:><input class="form-control" required/></name-view:>
 					</field-list:>
 					<hidden-field:indicator_id value="#{iid}"/>
+					<hidden-field:company_id value="#{cid}"/>
 				</div>
 				<modal-form-footer/>
 			</form>

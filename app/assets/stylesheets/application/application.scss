@@ -1699,10 +1699,6 @@ form.history-upload {
   }
 }
 
-.history-actions {
-  float: right;
-}
-
 .panel.indicator-chart, .charts-tabs {
   margin-bottom: 90px;
 }
@@ -4588,3 +4584,17 @@ ul.input-many > li > div.buttons button {
 .hidden-default {
   display: inline-block !important;
 }
+
+.history-actions {
+  float: right;
+}
+
+.indicator-events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  .new-indicator_event-link {
+    margin: 0;
+  }
+}
+

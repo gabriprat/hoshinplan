@@ -23,10 +23,15 @@ class IndicatorEvent < ApplicationRecord
     ie.company = ie.indicator.company
   end
 
+  alias :__company :company
+  def company
+    this.__company ? this.old_company : this.indicator.company
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator? || same_company_editor
+    same_company_editor(self.indicator.company_id) || acting_user.administrator?
   end
 
   def update_permitted?

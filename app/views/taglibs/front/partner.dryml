@@ -1,22 +1,30 @@
 
 <extend tag="form" for="Partner">
 	<old-form merge multipart>
-            <field-list: fields="name, slug, image" no-edit="view">
+            <field-list: fields="name, slug, image, email_logo" no-edit="view">
                 <image-view:>
                     <do part="user-image">
                         <image-input/>
                     </do>
                 </image-view:>
+                <email-logo-view:>
+                    <do part="user-email-logo">
+                        <image-input/>
+                    </do>
+                </email-logo-view:>
             </field-list:>
 	</old-form>
 </extend>
 
 <extend tag="show-page" for="Partner">
     <old-show-page merge>
-          <field-list: fields="name, slug, image">
+          <field-list: fields="name, slug, image, email_logo">
             <image-view:>
                 <view class="logo-img" size="logo"/>
             </image-view:>
+            <email-logo-view:>
+                <view size="email_logo"/>
+            </email-logo-view:>
           </field-list>
     </old-show-page>
 </extend>

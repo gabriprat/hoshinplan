@@ -1,6 +1,5 @@
 /* image_input */
 (function ($) {
-    var options = {};
     var defaultOptions = {
         retries: 5,
         filetype: 'image.*'
@@ -10,17 +9,18 @@
     var methods = {
         init: function (annotations) {
             var that = $(this);
+            var options = {};
             $.extend(options, defaultOptions, that.hjq('getOptions', annotations));
             var input = that.find('input');
             var button = that.find("a");
 
             options.inputName = options.inputName || input.attr('name');
 
-            input.change(methods.fileSelect);
+            input.change(methods.fileSelect.bind(this, options));
             that.on("dragenter", methods.noopHandler)
                 .on("dragexit", methods.noopHandler)
                 .on("dragover", methods.noopHandler)
-                .on("drop", methods.drop);
+                .on("drop", methods.drop.bind(this, options));
             button.click(function () {
                 input.click()
             });
@@ -30,7 +30,7 @@
             evt.stopPropagation();
             evt.preventDefault();
         },
-        drop: function (e) {
+        drop: function (options, e) {
             var evt = e.originalEvent;
             evt.stopPropagation();
             evt.preventDefault();
@@ -40,9 +40,9 @@
 
             // Only call the handler if 1 or more files was dropped.
             if (count > 0)
-                methods.handleFile.call(this, files[0]);
+                methods.handleFile.call(this, files[0], options);
         },
-        handleFile: function (file) {
+        handleFile: function (file, options) {
 
             var that = $(this);
             if (!file) {
@@ -123,10 +123,10 @@
             };
             $.ajax(form.attr("action"), roptions);
         },
-        fileSelect: function (evt) {
+        fileSelect: function (options, evt) {
             if (window.File && window.FileReader && window.FileList && window.Blob) {
                 var file = evt.originalEvent.target.files[0];
-                methods.handleFile.call(this.closest(".image-input"), file);
+                methods.handleFile.call(this.closest(".image-input"), file, options);
             }
         },
         complete: function () {

@@ -30,7 +30,7 @@ class FrontController < ApplicationController
   end
 
   def confirm_email
-
+    @partner = Partner.find_by_slug(params[:partner]) if params[:partner]
   end
 
   def cms

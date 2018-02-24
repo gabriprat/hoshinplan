@@ -28,7 +28,10 @@
 				<table class="header">
 					<tr>
 						<td class="logo">
-							<img alt="Hoshinplan" src="https://d4i78hkg1rdv3.cloudfront.net/assets/logo.png" />
+							<img alt="Hoshinplan" src="https://d4i78hkg1rdv3.cloudfront.net/assets/logo.png" if="&user.partner_id.blank?"/>
+							<else>
+							    <img alt="#{user.partner.name}" src="#{@root_url}#{user.partner.email_logo_url}" />
+							</else>
 						</td>
 						<td class="claim"><h4 class="collapse">#{ I18n.translate "emails.claim", :default => "Make your company strategy work"}</h4></td>
 					</tr>

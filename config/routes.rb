@@ -38,6 +38,7 @@ Hoshinplan::Application.routes.draw do
   get 'first' => 'front#first', :as => 'front_first'
 
   get 'confirm-email' => 'front#confirm_email', :as => 'confirm_email'
+  get ':partner/confirm-email' => 'front#confirm_email', :as => 'confirm_email_partner'
 
   get 'health_check' => 'front#health_check', :as => 'health_check'
 

@@ -73,6 +73,9 @@ class User < ApplicationRecord
       ic.save
       trial_days = ic.trial_days.days
     end
+    if user.partner
+      trial_days = user.partner.companies_trial_days
+    end
     user.trial_ends_at = Date.today + trial_days
   end
 
@@ -101,7 +104,7 @@ class User < ApplicationRecord
 
   attr_accessible :firstName, :lastName, :email_address, :current_password, :password, :password_confirmation, :companies, :image,
                   :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
-                  :trial_ends_at, :initial_task_state, :companies_trial_days, :notify_on_assign
+                  :trial_ends_at, :initial_task_state, :companies_trial_days, :notify_on_assign, :partner, :partner_id
 
   has_many :hoshins, :through => :companies
   has_many :active_hoshins, -> {active.where(deleted_at: nil).order "company_id, name"}, :through => :companies, :class_name => "Hoshin", unscoped: true
@@ -243,6 +246,7 @@ class User < ApplicationRecord
     create :invite, :params => [:email_address], :become => :invited, :new_key => true do
       self.email_address = email_address
       self.partner_id = acting_user.partner_id
+      self.trial_ends_at = Date.today + self.partner.companies_trial_days if self.partner_id.present?
       UserCompanyMailer.new_invite(lifecycle.key, acting_user, self, acting_user.language.to_s).deliver_later
     end
 
