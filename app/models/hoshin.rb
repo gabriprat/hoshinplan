@@ -72,9 +72,10 @@ class Hoshin < ApplicationRecord
   has_many :hoshin_comments, :inverse_of => :hoshin
   has_many :health_histories, -> { order :day }, :dependent => :destroy, :inverse_of => :hoshin
   
-  
   children :areas
-  
+
+  acts_as_list :scope => [:company_id, :ancestry]
+
   validate :validate_company
   validate :validate_different_parent
   

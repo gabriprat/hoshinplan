@@ -144,6 +144,9 @@ Hoshinplan::Application.routes.draw do
 
   # Resource routes for controller hoshins
   resources :hoshins, :only => [:new, :edit, :show, :create, :update, :destroy] do
+    collection do
+      post 'reorder'
+    end
     member do
       get 'health'
       get 'kanban'

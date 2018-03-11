@@ -2,15 +2,25 @@
     <%
         def tree_ul(acts_as_tree_set, attributes, init=true, &block)
             if acts_as_tree_set.size > 0
-	    	mname = acts_as_tree_set.keys.first.model_name.plural.to_s
-                %><ul class="collection #{mname}" merge-><%
+                mname = acts_as_tree_set.keys.first.model_name.plural.to_s
+                options, attrs = attributes.partition_hash(['disabled', 'appendTo', 'axis', 'cancel', 'connectWith', 'containment', 'cursor', 'cursorAt', 'delay', 'distance', 'dropOnEmpty', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'handle', 'helper', 'items', 'opacity', 'placeholder', 'revert', 'scroll', 'scrollSensitivity', 'scrollSpeed', 'tolerance', 'zIndex'])
+                events, html_attrs = attrs.partition_hash(['create', 'start', 'sort', 'change', 'beforeStop', 'stop', 'update', 'receive', 'remove', 'over', 'out', 'activate', 'deactivate'])
+                ajax_attrs, html_attrs = attrs.partition_hash(HoboRapidHelper::AJAX_CALLBACKS)
+
+                singular_name = acts_as_tree_set.keys.first.model_name.to_s.underscore
+                route_method = subsite ? "reorder_#{subsite}_#{singular_name.pluralize}_url" : "reorder_#{singular_name.pluralize}_url"
+                reorder_url = send(route_method)
+
+                add_classes!(html_attrs, "sortable-collection")
+                add_data_rapid!(html_attrs, "sortable-collection", :options => options, :events => events, :ajax_attrs => ajax_attrs, :reorder_url => reorder_url, :reorder_parameter => "#{singular_name}_ordering")
+                  %><call-tag tag="ul" class="collection #{mname}" merge-attrs="&html_attrs"><%
                 acts_as_tree_set.each do |item, children|
-                    %><li class="item #{'parent' if children.size > 0}"><%
+                    %><call-tag tag="li" class="item #{'parent' if children.size > 0}" data-rapid-context="&item.typed_id"><%
                     yield item
-                    tree_ul(children, false, &block) if children.size > 0
-                    %></li><%
+                    tree_ul(children, attributes, false, &block) if children.size > 0
+                    %></call-tag><%
                 end
-                %></ul><%
+                %></call-tag><%
             else
                 %>(none)<%
             end
