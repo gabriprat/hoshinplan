@@ -524,7 +524,7 @@ es:
     how_to_improve: "¿Cómo mejorar la salud de mi hoshinplan?"
     finish_tutorial: "Finalizar el tutorial"
     global_health: "Salud global:"
-    full_health: "Tu hoshin tiene una salud perfecta. ¡¡Felicicades!!"
+    full_health: "Tu hoshin tiene una salud perfecta. ¡¡Felicidades!!"
     objectives_health: "Salud de tus objetivos: %{health}%"
     indicators_health: "Salud de tus indicadores: %{health}%"
     presentation_help: "Utiliza las teclas de cursor <kbd>←</kbd> / <kbd>→</kbd> para moverte entre secciones y <kbd>esc</kbd> para salir del modo presentación."
