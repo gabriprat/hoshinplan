@@ -10,7 +10,7 @@
 		if (event.target) {
 			target = $(event.target);
 		}
-		target.find('.in-place-edit a, .description-help a, .header-help a').filter(function() {
+		target.find('.hoshin-header a, .in-place-edit a, .description-help a, .header-help a').filter(function() {
 		   return this.hostname && getServerAndTld(this.hostname) !== getServerAndTld(location.hostname);
 		}).each(function () {
 			$(this).addClass("external");

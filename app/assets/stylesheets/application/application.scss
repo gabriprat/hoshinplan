@@ -141,7 +141,7 @@ body {
 }
 
 a.external:after {
-  content: "\00A0\00A0\f08e";
+  content: "\00A0\f08e";
   font-family: 'hoshinplan';
   font-weight: normal;
   font-style: normal;
@@ -4598,3 +4598,20 @@ ul.input-many > li > div.buttons button {
   }
 }
 
+.in-place-edit, body .container .hoshin-header {
+  p {
+    font-weight: normal;
+  }
+  a {
+   text-decoration: underline;
+  }
+  ol {
+    padding-left: 20px;
+  }
+  ul {
+    padding-left: 25px;
+    li {
+      text-indent: -5px;
+    }
+  }
+}
