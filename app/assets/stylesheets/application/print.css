@@ -4,6 +4,9 @@
 	}
 }
 @media print {
+    a[href]:after {
+        content: none;
+    }
 	.cc-cookies {
 		display: none !important;
 	}

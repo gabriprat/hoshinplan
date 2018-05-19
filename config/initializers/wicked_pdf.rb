@@ -9,4 +9,5 @@ WickedPdf.config = {
   no_outline: true,
   minimum_font_size: 6,
   exe_path: './vendor/bundle/bin/wkhtmltopdf',
+  javascript_delay: 10000,
 }

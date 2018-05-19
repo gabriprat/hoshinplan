@@ -1,5 +1,5 @@
 <extend tag="page">
-	<old-page merge class="#{@pdf?'pdf':''}" lang="#{locale}" bottom-load-javascript>
+	<old-page merge class="#{@pdf?'pdf':''}" lang="#{locale}" bottom-load-javascript="&!@pdf">
 		<ajax-progress: replace>
 			<div id="ajax-progress-wrapper">
 				<div class="ajax-progress" id="ajax-progress">

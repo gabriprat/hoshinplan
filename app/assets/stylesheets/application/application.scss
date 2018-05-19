@@ -896,7 +896,7 @@ body.hoshin .collection.areas {
     border-spacing: 1px;
   }
 
-  body.hoshin.expanded .collection.areas li {
+  :not(.pdf) body.hoshin.expanded .collection.areas li {
     width: auto !important;
   }
 

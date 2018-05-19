@@ -326,12 +326,19 @@ $(document).ready( function() {
 });
 
 var eh = false;
-
 var equalHeightSections = function() {
-	if ($("html.pdf").length > 0) { return; }
 	if (eh) return;
 	eh = true;
-	fixedHorizontal();
+    if ($("html.pdf").length > 0) {
+        $("body").css("width", "");
+        li = $("ul.collection.areas > li");
+        iw = li.width() * li.length + (li.length + 1) * 10;
+        bw = $("body").width();
+        $("body").css("width", iw + "px").css("zoom", bw / iw);
+        //$("body").append("IW: " + iw + "<br/>");
+        return;
+    }
+    fixedHorizontal();
 	equalHeights("div.objectives-wrapper");
 	equalHeights("div.indicators-wrapper");
 	equalHeights("div.tasks-wrapper");
@@ -344,19 +351,21 @@ $(document).ready(equalHeightSections);
 $(window).load(equalHeightSections);
 
 var equalHeights = function(elements) {
-	$(elements).height("auto");
-	if (typeof presenting != "undefined" && presenting) return;
-	var maxHeight = 0;
-	//$(elements).css({border: "1px solid red"});
-	$(elements).each(function(){
-        	//$("body").append("Hola: " + $(this).parent().attr("id") + " . " + $(this).innerHeight() + "<br/>");
-    		if ($(this).height() > maxHeight) {
-	 	       maxHeight = $(this).height();
-		}
-	});
-	$(elements).height(maxHeight);
-	//$(elements).height("auto");
-	//$("body").append("MH: " + maxHeight + "<br/>");
+	if ($(elements).length > 0) {
+        $(elements).height("auto");
+        if (typeof presenting != "undefined" && presenting) return;
+        var maxHeight = 0;
+        //$(elements).css({border: "1px solid red"});
+        $(elements).each(function () {
+            //$("body").append("Hola: " + $(this).parent().attr("id") + " . " + $(this).innerHeight() + " - " + $(this).innerWidth() + "<br/>");
+            if ($(this).height() > maxHeight) {
+                maxHeight = $(this).height();
+            }
+        });
+        $(elements).height(maxHeight);
+        //$(elements).height("auto");
+        //$("body").append("MH: " + maxHeight + "<br/>");
+    }
 }
 
 $(document).ready(function() {

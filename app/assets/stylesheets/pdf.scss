@@ -843,11 +843,10 @@ a.text-success:focus {
 
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0;
-  font-family: Arial, sans-serif !important;
-  color: #000 !important;
+  margin: 10px 0 !important;
+  font-family: inherit;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 1.1em !important;
   color: inherit;
   text-rendering: optimizelegibility;
 }
@@ -7049,7 +7048,7 @@ ul.collection {
 
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 
@@ -9659,8 +9658,8 @@ form.well {
     padding-top: 0;
   }
 
-  
-  
+
+
   .quick-links {
     margin: 40px 0 0;
   }
@@ -9838,4 +9837,8 @@ form.well {
     width: 1168px;
     
   }
+}
+
+body {
+  width: 297mm;
 }

@@ -2,7 +2,8 @@
 
 
 <def tag="health" for="Hoshin" attrs="suffix,updates,inline">
-	<% updates ||= "" %>
+    <if test="&!@pdf">
+	    <% updates ||= "" %>
 		<a data-rapid="&data_rapid('health')" href="javascript:void(0);" id="health#{suffix}" data-toggle="popover" role="button" class="title-action health-popover-toggle" data-title="#{t 'hoshin.how_to_improve', :default => 'How to improve my hoshinplan health'}"><span class="ic-heartbeat"></span><span class="health-badge label label-danger label-as-badge" id="health#{suffix}_badge"></span></a>
 		<ajax-load id="health-counter#{suffix}" updates="#{updates}">
 			<content:>
@@ -36,4 +37,5 @@
 			</content:>
 			
 		</ajax-load>
+    </if>
 </def>
