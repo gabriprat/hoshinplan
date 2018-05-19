@@ -136,13 +136,20 @@ GEM
     arel (6.0.4)
     autoprefixer-rails (8.5.0)
       execjs
-    aws-sdk (2.11.53)
-      aws-sdk-resources (= 2.11.53)
-    aws-sdk-core (2.11.53)
+    aws-eventstream (1.0.0)
+    aws-partitions (1.87.0)
+    aws-sdk-core (3.21.1)
+      aws-eventstream (~> 1.0)
+      aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.53)
-      aws-sdk-core (= 2.11.53)
+    aws-sdk-kms (1.5.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.12.0)
+      aws-sdk-core (~> 3, >= 3.21.1)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
     bitmask_attributes (1.0.0)
       activerecord (>= 3.1)
@@ -592,7 +599,7 @@ DEPENDENCIES
   amoeba
   ancestry
   apipie-rails
-  aws-sdk (~> 2)
+  aws-sdk-s3
   bitmask_attributes
   bootbox-rails
   bootstrap-sass
