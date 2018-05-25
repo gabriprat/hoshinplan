@@ -26,7 +26,7 @@ class User < ApplicationRecord
     subscriptions_count :integer, :default => 0, :null => false
     preferred_view EnumView, :required, :default => :expanded
     beta_access :boolean
-    news :boolean, default: true
+    news :boolean, default: false
     from_invitation :boolean, default: false
     trial_ends_at :date
     trial_ending_email :datetime
@@ -36,6 +36,8 @@ class User < ApplicationRecord
     initial_task_state HoboFields::Types::EnumString.for(:backlog, :active), default: :backlog, null: false
     notify_on_assign :boolean
   end
+
+  attr_accessor :terms, :type => :boolean
 
   set_search_columns :name, '"firstName"', '"lastName"', :email_address
 
@@ -103,7 +105,7 @@ class User < ApplicationRecord
   validate :invitation_code_exists
 
   attr_accessible :firstName, :lastName, :email_address, :current_password, :password, :password_confirmation, :companies, :image,
-                  :timezone, :tutorial_step, :created_at, :language, :beta_access, :news, :from_invitation, :invitation_code,
+                  :timezone, :tutorial_step, :created_at, :language, :beta_access, :terms, :news, :from_invitation, :invitation_code,
                   :trial_ends_at, :initial_task_state, :companies_trial_days, :notify_on_assign, :partner, :partner_id
 
   has_many :hoshins, :through => :companies

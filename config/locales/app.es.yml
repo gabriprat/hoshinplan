@@ -31,7 +31,7 @@ es:
     legal_documents: "Documentos legales"
     terms_of_use: "Términos de Uso"
     privacy: "Política de privacidad"
-    cookies: "Acuerdo de procesamiento de datos"
+    dpa: "Acuerdo de procesamiento de datos"
     cookies: "Política de cookies"
   footer:
     github: GitHub
@@ -483,7 +483,7 @@ es:
             archive: "Archivar hoshin"
             clone: "Clonar hoshin"
       user:
-        email_address: "Utiliza tu email de empresa para poder conectarte con tu equipo."
+        email_address: "Utiliza tu email de empresa para conectarte con tu equipo."
         lifecycle:
           transitions:
             resend_activation: "Reenviar email de activación de usuario"
@@ -499,10 +499,10 @@ es:
     title: "Haz que tu estrategia de negocio funcione"
   user:
     signup:
-      it_is_ok: "Recibir emails de Hoshinplan."
-      by_proceeding: "Continuar para crear tu usuario y usar Hoshinplan significa que estás de acuerdo con nuestros %{terms} y %{privacy}. Si no lo estás no puedes usar Hoshinplan."
-      terms_link: "Términos de uso"
-      privacy_link: "Política de privacidad"
+      accept_terms: "Acepto los %{terms} y %{privacy}."
+      terms: "términos de uso"
+      privacy: "política de privacidad"
+      it_is_ok: "Acepto recibir emails informativos sobre novedades y servicios."
     my_dashboard: "Mi panel de control"
     show_all: "Mostrar todas"
     dashboard_for: "Panel de control para %{name}"

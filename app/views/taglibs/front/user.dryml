@@ -5,10 +5,17 @@
 </extend>
 
 <def tag="signup-form" for="User">
-  <form lifecycle="signup" hidden-fields="" merge param="default">
+  <form lifecycle="signup" id="signup-form" hidden-fields="" merge param="default">
     <error-messages param/>
-    <field-list fields="email_address, news" param>
+    <field-list fields="email_address, terms, news" param>
             <email-address-tag: required="required" autofocus="autofocus"/>
+            <terms-field:>
+                   <div class="text-center" style="margin-top: 1em">
+                       <checkbox required="required">
+                            <t key="user.signup.accept_terms" terms="&link_to t('user.signup.terms'), '/legal/terms-of-use'" privacy="&link_to t('user.signup.privacy'), '/legal/privacy'"/>
+                       </checkbox>
+                   </div>
+            </terms-field:>
             <news-field:>
                    <div class="text-center">
                        <checkbox>
@@ -40,24 +47,10 @@
 
     <content-body: param>
       <signup-form param="form"/>
-      <div class="legalese narrow">
-               <%= t("user.signup.by_proceeding", 
-                    terms: link_to(t('user.signup.terms_link'), '/legal/terms-of-use'), 
-                    privacy: link_to(t('user.signup.privacy_link'), '/legal/privacy') 
-                   )
-                %>
-      </div>
     </content-body:>
 
     <aside-column:>
             <cms class="flex" key="custom_fragments/signup_aside_#{locale}"/>
-            <div class="legalese wide">
-                     <%= t("user.signup.by_proceeding", 
-                          terms: link_to(t('user.signup.terms_link'), '/legal/terms-of-use'), 
-                          privacy: link_to(t('user.signup.privacy_link'), '/legal/privacy') 
-                         )
-                      %>
-            </div>
     </aside-column:>
     <aside:/>
   </page>

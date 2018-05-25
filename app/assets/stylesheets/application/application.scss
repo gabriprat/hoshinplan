@@ -3845,36 +3845,6 @@ del.differ {
   margin-right: 0.5em;
 }
 
-.legalese {
-  margin-bottom: 2rem;
-  padding: .5rem 12%;
-  margin: 0 auto 3rem auto;
-  text-align: center;
-  -webkit-align-self: flex-end;
-  -moz-align-self: flex-end;
-  -ms-flex-item-align: flex-end;
-  align-self: flex-end;
-  display: block;
-  text-align: center;
-  font-size: 0.9em;
-  max-width: 675px !important;
-  color: #fff a {
-    color: #fff;
-    font-weight: 600
-  }
-  &.narrow {
-    display: none;
-    width: inherit;
-    margin: 0rem 2rem 1.5rem
-  }
-}
-
-@media (max-width: 1300px) {
-  .legalese {
-    max-width: 500px !important
-  }
-}
-
 body.column-form {
   background: #fff;
   .content-body > .form-horizontal {
@@ -3901,11 +3871,6 @@ body.column-form {
     .main-column {
       width: 100%
     }
-  }
-  .legalese.narrow {
-    display: block !important;
-    padding: 0;
-    margin: 0;
   }
 }
 
@@ -4614,4 +4579,19 @@ ul.input-many > li > div.buttons button {
       text-indent: -5px;
     }
   }
+}
+
+.checkbox {
+  label {
+    display: flex;
+    align-items: baseline;
+    text-align: left;
+    margin: 0 15px;
+  }
+}
+
+.checkbox input[type=checkbox], label.checkbox-inline input[type=checkbox] {
+  width: auto;
+  height: auto;
+  margin: 15px 18px;
 }

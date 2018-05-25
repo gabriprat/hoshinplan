@@ -7,7 +7,7 @@
         <label>
             <% attributes['class'].gsub!('form-control', '') %>
             <old-input merge />
-            <do param="default" />
+            <div class="col-sm-12"><do param="default" /></div>
         </label>
     </div>
 </extend>

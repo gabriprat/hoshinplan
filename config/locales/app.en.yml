@@ -499,10 +499,10 @@ en:
     title: "Make your business strategy work"
   user:
     signup:
-      it_is_ok: "Receive emails from Hoshinplan."
-      by_proceeding: "By proceeding to create your account and use Hoshinplan, you are agreeing to our %{terms} and %{privacy}. If you do not agree, you cannot use Hoshinplan."
-      terms_link: "Terms of use"
-      privacy_link: "Pivacy policy"
+      accept_terms: "I accept the %{terms} and %{privacy}."
+      terms: "terms of use"
+      privacy: "privacy policy"
+      it_is_ok: "I accept receiving informative emails about news and services."
     my_dashboard: "My dashboard"
     show_all: "Show all"
     dashboard_for: "Dashboard for %{name}"
