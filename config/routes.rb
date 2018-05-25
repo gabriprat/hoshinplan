@@ -97,7 +97,11 @@ Hoshinplan::Application.routes.draw do
   get  'cookies', :to => redirect('/legal/cookies')
 
   get  '/legal/cookies' => 'legal#show', :defaults => {:id => 'cookies'}
-  
+
+  get  'dpa', :to => redirect('/legal/dpa')
+
+  get  '/legal/dpa' => 'legal#show', :defaults => {:id => 'dpa'}
+
   get  'users/logout_and_return' => 'users#logout_and_return', :as => 'logout_and_return'
   
   get  'sso_login' => 'front#sso_login', :as => 'sso_login'
