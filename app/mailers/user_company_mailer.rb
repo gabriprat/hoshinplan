@@ -278,6 +278,20 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
 
+  def admin_sage_sync_error(subscription, text)
+    sendgrid_category "sage_sync_error"
+    mail(:subject => "Sage sync error for subscription #{subscription.id}!",
+         :to => User.administrator.pluck(:email_address),
+         :from => "Hoshinplan Jobs <no-reply@hoshinplan.com>") do |format|
+      format.html {
+        render html: "<pre>#{text}</pre>".html_safe
+      }
+      format.text {
+        render plain: text.gsub('\t', '    ')
+      }
+    end
+  end
+
   def request_access(requester_id, hoshin_id)
     sendgrid_category "request_access"
     requester = User.unscoped.find(requester_id)

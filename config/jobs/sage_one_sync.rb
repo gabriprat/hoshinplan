@@ -21,14 +21,14 @@ module Jobs
             resp = SageOne.create_sales_invoice invoice
             subscription = Subscription.unscoped.find(invoice.subscription_id)
             billing_detail = BillingDetail.unscoped.find(subscription.billing_detail_id)
-            if billing_detail.vat_number.present? && billing_detail.vies_valid
-              invoice.sage_one_invoice_id = resp['invoice_number']
-              invoice.save!(validate: false)
-              ret += Jobs::say " ==== Sending invoice #{invoice.id} + #{subscription.billing_description}\n"
-              UserCompanyMailer.invoice(invoice.id).deliver_later
-            end
+            invoice.sage_one_invoice_id = resp['invoice_number']
+            invoice.save!(validate: false)
+            ret += Jobs::say " ==== Sending invoice #{invoice.id} + #{subscription.billing_description}\n"
+            UserCompanyMailer.invoice(invoice.id).deliver_later
           rescue
-            ret += Jobs::say "Error synchronizing invoice #{invoice.id}\n" + $!.inspect + "\n" + $!.backtrace.to_yaml + "\n"
+            text = "Error synchronizing invoice #{invoice.id}\n" + $!.inspect + "\n" + $!.backtrace.to_yaml + "\n"
+            ret += Jobs::say text
+            UserCompanyMailer.admin_sage_sync_error(invoice, text).deliver_later
           end
         end
         ret += Jobs::say "End sage one sync job!" + "\n"
