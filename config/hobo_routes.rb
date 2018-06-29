@@ -518,6 +518,15 @@ Hoshinplan::Application.routes.draw do
   namespace :admin do
 
 
+    # Resource routes for controller admin/subscriptions
+    resources :subscriptions do
+      collection do
+        get 'complete_user'
+        get 'complete_company'
+      end
+    end
+
+
     # Resource routes for controller admin/users
     resources :users do
       collection do
@@ -535,6 +544,10 @@ Hoshinplan::Application.routes.draw do
 
     # Resource routes for controller admin/openid_providers
     resources :openid_providers
+
+
+    # Resource routes for controller admin/subscription_paypals
+    resources :subscription_paypals
 
 
     # Resource routes for controller admin/paypal_buttons
@@ -555,25 +568,12 @@ Hoshinplan::Application.routes.draw do
     end
 
 
-    # Resource routes for controller admin/clockwork_events
-    resources :clockwork_events
-
-
-    # Resource routes for controller admin/subscriptions
-    resources :subscriptions do
-      collection do
-        get 'complete_user'
-        get 'complete_company'
-      end
-    end
-
-
-    # Resource routes for controller admin/subscription_paypals
-    resources :subscription_paypals
-
-
     # Resource routes for controller admin/subscription_stripes
     resources :subscription_stripes
+
+
+    # Resource routes for controller admin/clockwork_events
+    resources :clockwork_events
 
   end
 
