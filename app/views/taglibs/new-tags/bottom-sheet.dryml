@@ -1,0 +1,12 @@
+<def tag="bottom-sheet" attrs="title">
+  <modal remove-class="fade bs-example-modal-lg" class="bottom-sheet" merge-attrs>
+    <modal:>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <modal-header param><%= title %></modal-header>
+            <div class="modal-body" param="default"/>
+          </div>
+        </div>
+    </modal:>
+  </modal>
+</def>

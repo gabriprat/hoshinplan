@@ -421,6 +421,11 @@ en:
             start: Start
             reactivate: Reactivate
             delete: Delete
+            to_backlog: To backlog
+            to_active: Activate
+            to_completed: Completed
+            to_discarded: Discard
+            to_deleted: Delete
         task_tags: Tags
       user_company:
         state: Status

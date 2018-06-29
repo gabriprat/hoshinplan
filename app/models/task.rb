@@ -220,11 +220,11 @@ class Task < ApplicationRecord
     transition :delete, {:completed => :completed}, :available_to => :lifecycle_available do self.destroy! end
     transition :delete, {:discarded => :discarded}, :available_to => :lifecycle_available do self.destroy! end
     
-    transition :to_backlog, {Task::Lifecycle.states.keys => :backlog}, :available_to => :lifecycle_available
-    transition :to_active, {Task::Lifecycle.states.keys => :active}, :available_to => :lifecycle_available
-    transition :to_completed, {Task::Lifecycle.states.keys => :completed}, :available_to => :lifecycle_available
-    transition :to_discarded, {Task::Lifecycle.states.keys => :discarded}, :available_to => :lifecycle_available
-    transition :to_deleted, {Task::Lifecycle.states.keys => :deleted}, :available_to => :lifecycle_available
+    transition :to_backlog, {Task::Lifecycle.states.keys.select {|s| s!= :backlog} => :backlog}, :available_to => :lifecycle_available
+    transition :to_active, {Task::Lifecycle.states.keys.select {|s| s!= :active} => :active}, :available_to => :lifecycle_available
+    transition :to_completed, {Task::Lifecycle.states.keys.select {|s| s!= :completed} => :completed}, :available_to => :lifecycle_available
+    transition :to_discarded, {Task::Lifecycle.states.keys.select {|s| s!= :discarded} => :discarded}, :available_to => :lifecycle_available
+    transition :to_deleted, {Task::Lifecycle.states.keys.select {|s| s!= :deleted} => :deleted}, :available_to => :lifecycle_available
     
       
   end

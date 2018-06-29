@@ -8,7 +8,7 @@ class Subscription < ApplicationRecord
 
   fields do
     id_paypal :string
-    status :string, default: 'Active'
+    status HoboFields::Types::EnumString.for(:Canceled, :Active, :Pending, :Invalid), default: 'Active'
     sandbox :boolean
     plan_name :string, :required
     amount_value :decimal, :required, :precision => 8, :scale => 2

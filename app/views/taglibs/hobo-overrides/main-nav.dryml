@@ -2,6 +2,7 @@
   <if test="&subsite.eql?('admin')">
   <navigation class="main-nav" merge-attrs param="default" if="&logged_in?">
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Subscription"><ht key="subscription.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item href="/admin/clockwork_events">Clockwork events</nav-item>

@@ -1843,6 +1843,9 @@ body .column.feeling {
   margin-right: 5px;
   text-align: center;
   width: 1em;
+  .feeling-ic {
+    vertical-align: sub;
+  }
   &.smile {
     color: rgb(0, 139, 0);
     background-color: rgb(206, 250, 151);
@@ -2330,6 +2333,7 @@ form#delete-history, form#delete-history input {
 .hoshin-tasks span {
   font-size: 1.5em;
   color: #aaa;
+  vertical-align: bottom;
 }
 
 .hoshin-tasks span {
@@ -4594,4 +4598,27 @@ ul.input-many > li > div.buttons button {
   width: auto;
   height: auto;
   margin: 15px 18px;
+}
+
+@media (max-width: 768px) {
+  html body .modal.bottom-sheet {
+    .modal-dialog {
+      display: block !important;
+      position: absolute;
+      margin: 0;
+      width: 100%;
+      max-height: 45%;
+      top: auto;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+      will-change: bottom, opacity;
+      transform: translate(0, 100%);
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    }
+    &.in .modal-dialog {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
 }

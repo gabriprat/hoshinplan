@@ -34,17 +34,20 @@ class BillingDetail < ApplicationRecord
   end
 
   index [:company_id], :unique => true
-  
+
   attr_accessible :company_name, :contact_name, :contact_email, :address_line_1, :address_line_2, :city, :state, :zip, :country,
     :vat_number, :stripe_client_id, :card_brand, :card_name, :card_last4, :card_exp_month, :card_exp_year, :card_stripe_token, :plan_name,
     :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid, :sage_one_contact_id
-    
+
+  set_search_columns :company_name, :contact_name, :contact_email, :vat_number
+
+
   validates :company_id, :presence => true, :uniqueness => true
   validates :vat_number, vat: {country_method: :country, message: proc {I18n.t('errors.not_expected_format')}}, allow_blank: true
-  
+
   belongs_to :creator, :class_name => "User", :creator => true
   belongs_to :company, inverse_of: :billing_details, primary_key: "id"
-  
+
   has_many :subscriptions, inverse_of: :billing_detail
 
   before_save do |record|
@@ -64,11 +67,11 @@ class BillingDetail < ApplicationRecord
     end
     true
   end
-  
+
   def active_subscription
     Subscription.where(status: 'Active', company_id: company_id).first_or_initialize
   end
-  
+
   def active_subscription=(s2)
     s = active_subscription
     s.user = creator

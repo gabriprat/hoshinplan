@@ -1,5 +1,5 @@
 <def tag='view' for="EnumFeeling">
-	<span class="ic-#{this}"></span>
+	<span class="ic-#{this} feeling-ic"></span>
 </def>
 
 <def tag="input" for="EnumFeeling">

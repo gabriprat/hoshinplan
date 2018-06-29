@@ -20,7 +20,9 @@ class Company < ApplicationRecord
   end
   index [:deleted_at]
   attr_accessible :name, :creator_id, :company_email_domains, :trial_ends_at, :credit
-    
+
+  set_search_columns :name
+
   belongs_to :creator, :class_name => "User", :creator => true
   
   has_many :company_email_domains, :accessible => true, :inverse_of => :company, :dependent => :destroy

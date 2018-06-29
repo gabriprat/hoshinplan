@@ -1,15 +1,18 @@
 <extend tag="index-page">
 	<old-index-page merge>
 		<collection: replace>
-			<% 
-				fields = model.accessible_attributes.*.to_s.join(",") 
+			<%
+				fields = model.accessible_attributes.*.to_s.join(",")
 				fields = "id, created_at, name, language, preferred_view, color, email_address, administrator, tutorial_step, timezone, state, trial_ends_at, initial_task_state, companies_trial_days" if model == User
-			%>
+				fields = "id, status, company, user, type, plan_name, total_amount, users, billing_period, last_payment_at, next_payment_at, payment_error, per_user" if model <= Subscription
+    		%>
 			<table-plus fields="&fields">
 			       <append-controls: >
 			       <if test="&User.eql?(this.class)">
-				<%=     button_to("Supplant", object_url(this, "supplant", :method => :post)) %>
-				
+				        <%=     button_to("Supplant", object_url(this, "supplant", :method => :post)) %>
+			       	</if>
+			       	<if test="&this.is_a? Subscription">
+			       	    <%=     button_to("Supplant", object_url(this.user, "supplant", :method => :post)) %>
 			       	</if>
 			       </append-controls:>
 			   </table-plus>

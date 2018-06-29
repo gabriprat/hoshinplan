@@ -43,40 +43,14 @@
 	<if test="&column == 'Status'">
 	        <div class="column nowrap" data-label="Actions">
 	      	<ul class="icons" if="&!@pdf">
-	      	  <if test="#{this.status=='active'?'true':''}">
-	      		  <li class="complete">
-	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="discard" class="inline-form">
-					<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.discard', :default => 'Discard'}">
-						<span class="ic-times-circle ic-fw"></span>
-					</button>
-	      		  </form>
-	      	  	  </li>
-	      		  <li class="discard">
-	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="complete" class="inline-form">
-				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.complete', :default => 'Complete'}">
-					<span class="ic-check-circle ic-fw"></span>
-				</button>
-	      		  </form>
-	      	  	  </li>
-	        	  </if>
-	      	  <else>
-	      		  <li class="reactivate">
-			  <set trans="&this.status=='backlog' ? 'start' : 'reactivate'"/>
-			  <set icon="&this.status=='backlog' ? 'ic-play-circle' : 'ic-recycle'"/>
-	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="#{trans}" class="inline-form">
-				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.' + trans, :default => trans.capitalize}">
-					<span class="fa #{icon} ic-fw"></span>
-				</button>
-	      		  </form>
-	      	  	  </li>
-	      		  <li class="delete">
-	      		  <form ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" success="equalHeightSections();" lifecycle="delete" class="inline-form">
-				<button type="submit" class="hoshin-tasks link" title="#{t key='activerecord.attributes.task.lifecycle.transitions.delete', :default => 'Delete'}">
-					<span class="ic-trash-o ic-fw"></span>
-				</button>
-	      		  </form>
-	      	  	  </li>
-	      	  </else>
+	      	    <modal-open-button modal="task-actions-bs-#{this.id}" remove-class="btn">
+                    <button class="hoshin-tasks link" title="#{t key='tasks.actions', :default => 'Actions...'}">
+                        <span class="ic-dots-horizontal-triple ic-fw"></span>
+                    </button>
+                </modal-open-button>
+                <bottom-sheet id="task-actions-bs-#{this.id}" title="#{this.name}" >
+                    <task-transitions ajax updates="#obj-name-#{this.objective_id},tasks-#{this.area_id},#tutorial,#sec-actions,#neglected" onclick="$('.modal').modal('hide');" success="equalHeightSections();" />
+                </bottom-sheet>
 	        	</ul>
 	        </div>
 	</if>

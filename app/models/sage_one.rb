@@ -84,8 +84,8 @@ class SageOne < ActiveRecord::Base
                     date: Date.today,
                     reference: "INV#{invoice.id.to_s.rjust(5, '0')}",
                     main_address: {
-                        address_line_1: billing_detail.address_line_1,
-                        address_line_2: billing_detail.address_line_2,
+                        address_line_1: billing_detail.address_line_1.truncate(50),
+                        address_line_2: billing_detail.address_line_2.truncate(50),
                         city: billing_detail.city,
                         region: billing_detail.state,
                         postal_code: billing_detail.zip,
@@ -168,8 +168,8 @@ class SageOne < ActiveRecord::Base
                     currency_id: 'EUR',
                     main_address: {
                         name: 'Default',
-                        address_line_1: bd.address_line_1,
-                        address_line_2: bd.address_line_2,
+                        address_line_1: bd.address_line_1.truncate(50),
+                        address_line_2: bd.address_line_2.truncate(50),
                         city: bd.city,
                         region: bd.state,
                         postal_code: bd.zip,

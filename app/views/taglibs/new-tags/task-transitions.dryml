@@ -1,0 +1,16 @@
+<def tag='task-transitions'>
+  <% ajax_attrs, html_attrs = attributes.partition_hash(HoboRapidHelper::AJAX_ATTRS) %>
+  <div class='transitions' merge-attrs='&amp;html_attrs'>
+    <% transitions = this.lifecycle.publishable_transitions_for(current_user) %>
+    <if test='&transitions'>
+      <% transitions.each do |t| %>
+        <% label = t("activerecord.attributes.#{this.class.to_s.underscore}.lifecycle.transitions.#{t.name}", :default => (label || t.name.to_s.titleize)) %>
+        <transition-button class="" transition='&t' merge-attrs='&amp;ajax_attrs' if="&t.name.to_s.start_with?('to_')">
+            <button: replace>
+                <input class="btn button submit-button #{t.name.to_s == 'to_deleted' ? 'btn-danger' : 'btn-primary'}" type="submit" value="&label" />
+            </button:>
+        </transition-button>
+      <% end %>
+    </if>
+  </div>
+</def>

@@ -1,0 +1,25 @@
+<extend tag="form" for="SubscriptionStripe">
+    <old-form merge>
+        <field-list:>
+            <company-view:>
+	            <name-one with="&this_parent" field="company" complete-target="&Subscription" completer="company_admin" />
+            </company-view:>
+            <user-view:>
+	            <name-one with="&this_parent" field="user" complete-target="&Subscription" completer="user_admin" />
+            </user-view:>
+        </field-list:>
+    </old-form>
+</extend>
+
+<extend tag="form" for="SubscriptionPaypal">
+    <old-form merge>
+        <field-list:>
+            <company-view:>
+                <name-one with="&this_parent" field="company" complete-target="&Subscription" completer="company_admin" />
+            </company-view:>
+            <user-view:>
+                <name-one with="&this_parent" field="user" complete-target="&Subscription" completer="user_admin" />
+            </user-view:>
+        </field-list:>
+    </old-form>
+</extend>
