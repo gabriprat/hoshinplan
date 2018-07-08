@@ -17,6 +17,7 @@ class Company < ApplicationRecord
     trial_ends_at   :date
     timestamps
     deleted_at :datetime
+    charts_config :jsonb
   end
   index [:deleted_at]
   attr_accessible :name, :creator_id, :company_email_domains, :trial_ends_at, :credit
@@ -80,7 +81,38 @@ class Company < ApplicationRecord
     where(:id => UserCompany.select(:company_id)
       .where('user_id=? and user_companies.state = ?',  
         User.current_id, :admin) ) }
-          
+
+  def default_charts_config
+    [
+        {'name' => 'value', 'visible' => true, 'lineColor' => '#008f55', 'dashArrays' => '', 'lineWidth' => 3, 'pointSize' => 3},
+        {'name' => 'goal', 'visible' => true, 'lineColor' => '#b1c978', 'dashArrays' => '-', 'lineWidth' => 2, 'pointSize' => 0},
+        {'name' => 'previous', 'visible' => true, 'lineColor' => '#ff7c00', 'dashArrays' => '', 'lineWidth' => 3, 'pointSize' => 0},
+        {'name' => 'increment', 'visible' => true, 'lineColor' => '#999999', 'dashArrays' => '-', 'lineWidth' => 1, 'pointSize' => 3}
+    ]
+  end
+
+  def charts_config
+    self[:charts_config] || default_charts_config
+  end
+
+  def chart_props(prop)
+    def get_prop(x, prop)
+      if !x['visible'] && %w(lineWidth pointSize).include?(prop.to_s)
+        0
+      else
+        x[prop.to_s]
+      end
+    end
+    ret = charts_config.map{|x| get_prop(x, prop)}.join(',')
+    ret
+  end
+
+  def toggle_chart_serie(idx)
+    cc = charts_config
+    cc[idx]['visible'] = !cc[idx]['visible']
+    self.charts_config = cc
+  end
+
   def collaborators=
   end
   

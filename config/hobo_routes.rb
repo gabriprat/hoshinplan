@@ -299,6 +299,7 @@ Hoshinplan::Application.routes.draw do
       get 'collaborators'
       get 'upgrade'
       post 'checkout'
+      post 'toggle_chart_serie'
       post 'recover'
       post 'invite'
     end

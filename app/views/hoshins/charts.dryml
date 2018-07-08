@@ -45,7 +45,7 @@
 	</content-header:>
 	
 	<content-body:>
-		<chart-legend labels="#{t 'value_goal_previous_long'}" colors="#008f00,#b1c978,#ff7c00,#999999"/>
+		<chart-legend labels="#{t 'value_goal_previous_long'}" colors="&Company.current_company.chart_props(:lineColor)" visible="&Company.current_company.chart_props(:visible)"/>
 		<bootstrap-tab-list:areas class="charts-tabs clearfix">
 			<a: data-url="#{object_url this}/charts" data-target="#area#{this.id}" href="#{hoshin_path(this.hoshin)}/charts/area#{this.id}"><name/></a:>
 			<body: id="area#{this.id}">

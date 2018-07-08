@@ -10,7 +10,7 @@
 		<h2>#{this.name}</h2>
 	</content-header:>
 	<content-body:>
-		<chart-legend labels="#{t 'value_goal_previous_long'}" colors="#008f00,#b1c978,#ff7c00,#999999"/>
+		<chart-legend labels="#{t 'value_goal_previous_long'}" colors="&Company.current_company.chart_props(:lineColor)" visible="&Company.current_company.chart_props(:visible)"/>
 		<section class="panel indicator-chart" part="chart">
 		        <header class="panel-heading clearfix">
 		            <p class="inline"><t key="history.historic_values"/></p>
@@ -44,6 +44,7 @@
 		       		 	&& ihs[0].day.month == 1 \
 		       		 	&& ihs[11].day.month == 12 \
 		       			&& ihs[0].day.year == ihs[11].day.year
+		        comp = Company.current_company
 			%>
 	    		<chart 
 	    			id="graph-line" 
@@ -63,12 +64,12 @@
 				xLabels="&months ? 'month' : 'auto'"
 				xLabelFormat="&months ? 'dateFormatMonth' : 'dateFormatDefault'"
 				xLabelAngle="45"
-				lineWidth="3,2,3,1"
-				pointSize="3"
-				lineColors="#008f00,#b1c978,#ff7c00,#999999"
-				trendLineColors="#008f00,#b1c978,#ff7c00,#999999"
-				yLabelFormat="ylabelformat"
-				dashArrays=",-,,-"
+				pointSize="&comp.chart_props(:pointSize)"
+                lineWidth="&comp.chart_props(:lineWidth)"
+                lineColors="&comp.chart_props(:lineColor)"
+                trendLineColors="&comp.chart_props(:lineColor)"
+                yLabelFormat="ylabelformat"
+                dashArrays="&comp.chart_props(:dashArrays)"
 				if="&this.indicator_histories"
 	    		/>
 		        </div>

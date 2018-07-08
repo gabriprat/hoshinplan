@@ -32,6 +32,7 @@
 				data[ii[:day]].merge!(ii) {|key, oldval, newval| newval.blank? ? oldval : newval}
 			end
 		}
+        comp = Company.current_company
 	%>
 	
 	<chart 
@@ -43,12 +44,12 @@
 		yaxes="y,y,y,y2"
 	  	labels="#{t 'value_goal_previous'}"
 		hideHover="true"
-		pointSize="3,0,0,3"
-		lineWidth="3,2,3,1"
-		lineColors="#008f00,#b1c978,#ff7c00,#999999"
-		trendLineColors="#008f00,#b1c978,#ff7c00,#999999"
+		pointSize="&comp.chart_props(:pointSize)"
+        lineWidth="&comp.chart_props(:lineWidth)"
+        lineColors="&comp.chart_props(:lineColor)"
+        trendLineColors="&comp.chart_props(:lineColor)"
 		yLabelFormat="ylabelformat"
-		dashArrays=",-,,-"
+		dashArrays="&comp.chart_props(:dashArrays)"
 		dateFormat="&months ? 'dateFormatMonth' : 'dateFormatDefault'"
 		xLabels="&months ? 'month' : 'auto'"
 		xLabelFormat="&months ? 'dateFormatMonth' : 'dateFormatDefault'"
@@ -69,6 +70,7 @@
 				data[ii[:day]].merge!(ii) {|key, oldval, newval| newval.blank? ? oldval : newval}
 			end
 		}
+		comp = Company.current_company
 	%>
 	
 	<chart 
@@ -79,12 +81,12 @@
 	  	ykeys="value,goal"
 	  	labels="#{t 'value_goal_previous'}"
 		hideHover="true"
-		pointSize="3,0,0,3"
-		lineWidth="3,2,3,1"
-		lineColors="#008f00,#b1c978,#ff7c00,#999999"
-		trendLineColors="#008f00,#b1c978,#ff7c00,#999999"
+		pointSize="&comp.chart_props(:pointSize)"
+		lineWidth="&comp.chart_props(:lineWidth)"
+		lineColors="&comp.chart_props(:lineColor)"
+		trendLineColors="&comp.chart_props(:lineColors)"
 		yLabelFormat="ylabelformat"
-		dashArrays=",-,,-"
+		dashArrays="&comp.chart_props(:dashArrays)"
 		dateFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
 		xLabelFormat="dateFormat('#{date_format_default.gsub('yyyy','yy')}')"
 		axes="false"

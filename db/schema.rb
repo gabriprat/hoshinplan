@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525154450) do
+ActiveRecord::Schema.define(version: 20180708175055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,6 +196,7 @@ ActiveRecord::Schema.define(version: 20180525154450) do
     t.date     "trial_ends_at"
     t.boolean  "payment_error"
     t.integer  "minimum_subscription_users"
+    t.jsonb    "charts_config"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree

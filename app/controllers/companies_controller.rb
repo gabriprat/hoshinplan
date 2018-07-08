@@ -5,7 +5,9 @@ class CompaniesController < ApplicationController
   auto_actions :all
   
   web_method :checkout
-    
+
+  web_method :toggle_chart_serie
+
   autocomplete :users do
     ret = []
     users = find_instance.users.each { |user| 
@@ -31,7 +33,15 @@ class CompaniesController < ApplicationController
   def_param_group :company do
     param :name, String
   end
-    
+
+  def toggle_chart_serie
+    self.this ||= find_instance
+    idx = params[:idx].to_i
+    self.this.toggle_chart_serie idx
+    self.this.save!
+    redirect_to :back
+  end
+
   def first
     hobo_new
   end
