@@ -13,6 +13,9 @@
 	        <stylesheet name='card/card' param='app-stylesheet'/>
 	    </append-stylesheets:>
 	    <collection: class="subscription" />
+	    <aside-column:>
+	        Hola!
+	    </aside-column:>
 	</old-index-for-user-page>
 </extend>
 
@@ -92,6 +95,7 @@
         </div>
         <div param="actions">
             <delete-button label="#{t 'payments.index.cancel_subscription'}" param/>
+            <a:invoices><ht key="invoice.show_link" count="100" /></a>
         </div>
     </body:>
   </card>

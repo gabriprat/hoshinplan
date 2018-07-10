@@ -4429,6 +4429,11 @@ textarea.form-control {
 
   .actions {
     margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+    a {
+      padding: 8px 30px;
+    }
     .form-horizontal input {
       margin: 0;
     }

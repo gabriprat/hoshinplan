@@ -176,6 +176,7 @@ en:
       overdue_model: "Overdue %{model}"
       neglected_objectives: "%{model} with %{kpi} under 100% and no active %{task}"
       everything_updated: "No %{model} to update."
+    show_link: "Show %{model}"
     accept:
       heading: "Accept invitation"
       body: "By clicking the button below you will be able to view and contribute to the Hoshinplans of %{company}."
@@ -476,6 +477,7 @@ en:
         total_amount: "Total amount"
         next_payment_at: "Next payment"
       invoice:
+        created_at: "Date"
         description: "Description"
         net_amount: "Net amount"
         total_amount: "Total amount"
@@ -782,6 +784,7 @@ en:
       default: ! '%m/%d/%Y'
   time:
     formats:
+      short_date: ! '%m/%d/%Y'
       long: ! '%m/%d/%Y %H:%M'
       default: ! '%m/%d/%Y %H:%M'
   number:

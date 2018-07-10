@@ -176,6 +176,7 @@ es:
       overdue_model: "%{model} sin actualizar"
       neglected_objectives: "%{model} con %{kpi} por debajo del 100% y sin %{task} activas"
       everything_updated: "Ningun %{model} por actualizar."
+    show_link: "Ver %{model}"
     accept:
       heading: "Aceptar la invitación"
       body: "Clicando el botón Aceptar podrás ver y contribuir a los Hoshinplans de %{company}."
@@ -476,6 +477,7 @@ es:
         total_amount: "Importe a cobrar"
         next_payment_at: "Próximo cobro"
       invoice:
+        created_at: "Fecha"
         description: "Descripción"
         net_amount: "Base imponible"
         total_amount: "Total"
@@ -782,6 +784,7 @@ es:
       default: ! '%d/%m/%Y'
   time:
     formats:
+      short_date: ! '%d/%m/%Y'
       long: ! '%d/%m/%Y %H:%M'
       default: ! '%d/%m/%Y %H:%M'
   number:

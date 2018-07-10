@@ -4,7 +4,8 @@
         <h2 class="heading"><model-name-human model="&model" count="10"/></h2>
     </content-header>
     <content-body:>
-        <table class='table table-striped table-bordered' fields="description, net_amount, tax_tpc, total_amount">
+        <table class='table table-striped table-bordered' fields="created_at, description, net_amount, tax_tpc, total_amount">
+            <created-at-view:><view format="&:short_date" /></created-at-view:>
             <description-view:>
                 <view/>
                 <a title="#{t 'hoshin_actions.export_as_pdf'}" with="&this_parent" class="invoice-pdf" format="pdf">

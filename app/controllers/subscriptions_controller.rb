@@ -47,7 +47,7 @@ class SubscriptionsController < ApplicationController
   
   def index_for_user
     company_ids =  User.find(params[:user_id]).all_companies.map {|c| c.id }
-    finder = Subscription.includes(:billing_plan, :company).where(company_id: company_ids, status: 'Active').references(:billing_plan, :company)
+    finder = Subscription.includes(:billing_plan, :company, :invoices).where(company_id: company_ids, status: 'Active').references(:billing_plan, :company)
     search = params[:search].strip.upcase if params[:search]
     unless search.blank?
       finder = finder.where("upper(companies.name) LIKE ? OR subscriptions.id_paypal LIKE ? OR upper(billing_plans.name) LIKE ?", "%#{search}%","%#{search}%","%#{search}%")
