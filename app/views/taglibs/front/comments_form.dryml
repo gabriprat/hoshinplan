@@ -3,15 +3,19 @@
         pc = params[:pc]
         relation = this.model_name.singular + '_comments'
         pid = 'comments-part-' + this.model_name.singular + '-' + this.id.to_s
+        options, attrs = attributes.partition_hash([])
+        add_data_rapid!(attrs, 'comments-form', options)
     %>
-    <do part="comments-part" id="#{pid}" part-locals="pc,relation,pid">
-        <h3><t key="comments.title" /></h3>
-        <paginated-collection field="&relation" page="&pc" model="&t 'comments.model_name.plural'" update="#{pid}"/>
-        <formlet with="&this.send(relation).new" owner="&this.model_name.singular" method="post" class="comment-form #{Rails.configuration.websockets_disable ? '' : 'subscribe'}" update="#{pid}" data-company="&this.company_id" if="&can_edit?">
-            <div class="comment-send">
-                <input:body class="form-control" no-toolbar="&TRUE" placeholder="&t 'write_comment'"/>
-                <submit label="#{t 'hobo.actions.submit'}" />
-            </div>
-        </formlet>
-    </do>
+    <call-tag tag="div" merge-attrs="&attrs">
+        <do part="comments-part" id="#{pid}" part-locals="pc,relation,pid">
+            <h3><t key="comments.title" /></h3>
+            <paginated-collection field="&relation" page="&pc" model="&t 'comments.model_name.plural'" update="#{pid}"/>
+            <formlet with="&this.send(relation).new" owner="&this.model_name.singular" method="post" class="comment-form #{Rails.configuration.websockets_disable ? '' : 'subscribe'}" update="#{pid}" data-company="&this.company_id" if="&can_edit?">
+                <div class="comment-send">
+                    <input:body class="form-control" no-toolbar="&TRUE" placeholder="&t 'write_comment'"/>
+                    <submit label="#{t 'hobo.actions.submit'}" />
+                </div>
+            </formlet>
+        </do>
+    </call-tag>
 </def>
