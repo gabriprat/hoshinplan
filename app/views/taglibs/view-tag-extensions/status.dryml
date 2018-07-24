@@ -1,3 +1,7 @@
 <def tag="status-select" attrs="id">
-	<radio-group options="&['active','backlog']" labels="&['Activa', 'En Cola']" selected-option="&User.current_user.initial_task_state" merge />
+    <%
+        options = ['active','backlog']
+        labels = options.map {|o| I18n.t("activerecord.attributes.task.lifecycle.states.#{o}")}
+    %>
+	<radio-group options="&options" labels="&labels" selected-option="&User.current_user.initial_task_state" merge />
 </def>
