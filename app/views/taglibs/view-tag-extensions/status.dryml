@@ -1,0 +1,3 @@
+<def tag="status-select" attrs="id">
+	<radio-group options="&['active','backlog']" labels="&['Activa', 'En Cola']" selected-option="&User.current_user.initial_task_state" merge />
+</def>

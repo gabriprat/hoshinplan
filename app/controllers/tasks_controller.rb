@@ -46,11 +46,11 @@ class TasksController < ApplicationController
     obj.delocalize(delocalize_config)
     select_responsible(obj)
     hobo_create do
-      if params[:status].present? && params[:status] == 'active'
+      if obj[:status].present? && obj[:status] == 'active'
         self.this.lifecycle.to_active!(current_user)
       end
-      if params[:status].present? && current_user.initial_task_state != params[:status]
-        current_user.initial_task_state = params[:status]
+      if obj[:status].present? && current_user.initial_task_state != obj[:status]
+        current_user.initial_task_state = obj[:status]
         current_user.save
       end
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?
@@ -62,11 +62,11 @@ class TasksController < ApplicationController
   param_group :task
   def create_for_objective
     hobo_create_for :objective do
-      if params[:status].present? && params[:status] == 'active'
+      if obj[:status].present? && obj[:status] == 'active'
         self.this.lifecycle.to_active!(current_user)
       end
-      if params[:status].present? && current_user.initial_task_state != params[:status]
-        current_user.initial_task_state = params[:status]
+      if obj[:status].present? && current_user.initial_task_state != obj[:status]
+        current_user.initial_task_state = obj[:status]
         current_user.save
       end
       redirect_to this.objective.area.hoshin if valid? && !request.xhr?

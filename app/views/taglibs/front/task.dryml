@@ -107,6 +107,9 @@
             <description-view:>
                 <my-click-editor id="task-description-#{this_parent.id}"/>
             </description-view:>
+            <status-view:>
+                <status-select id="task[status]-#{this_parent.id}" de/>
+            </status-view:>
             <task-tags-view:>
                 <div class="input-group">
                     <input/>
