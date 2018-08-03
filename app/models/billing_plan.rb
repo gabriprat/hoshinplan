@@ -6,6 +6,7 @@ class BillingPlan < ApplicationRecord
     name            :string
     description     :string
     brief           :string
+    min_users       :integer, :default => 5, :null => false
     users           :integer
     features        :text
     frequency       HoboFields::Types::EnumString.for(:WEEK, :DAY, :YEAR, :MONTH)
