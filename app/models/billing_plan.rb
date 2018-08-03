@@ -21,7 +21,7 @@ class BillingPlan < ApplicationRecord
     stripe_id       :string
     timestamps
   end
-  attr_accessible :name, :description, :brief, :users, :css_class, :features, 
+  attr_accessible :name, :description, :brief, :users, :css_class, :features, :min_users,
     :frequency, :interval, :amount_currency, :amount_value, :monthly_value, :id_paypal, :status_paypal, :workers, :stripe_id
 
   has_many :subscriptions, inverse_of: :billing_plan
