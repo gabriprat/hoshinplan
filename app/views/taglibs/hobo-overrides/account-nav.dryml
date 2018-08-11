@@ -14,7 +14,7 @@
                     <a with="&Company.current_company" action="upgrade" class="dropdown-toggle btn btn-primary btn-raised btn-combined">
                         <span class="days-left btn-combined-inv">#{Company.current_company.trial_days_remaining}</span>
                         <span class="upgrade-text">
-                            <span class="ic-bolt"></span>
+                            <span class="ic-bolt inline"></span>
                             <t key="hobo.actions.upgrade"/>
                         </span>
                     </a>
