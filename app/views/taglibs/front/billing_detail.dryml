@@ -162,7 +162,7 @@
         <do param="number-of-users">
             <h3><t key="billing_details.number_of_users"/></h3>
             <% users_param = params[:billing_detail][:active_subscription][:users] if params[:billing_detail] && params[:billing_detail][:active_subscription] %>
-            <slider:active_subscription.users value="#{users_param || this.active_subscription._?.users || this.company.minimum_subscription_users || billing_plan._?.min_users || 10}" id="users" min="#{this.company.minimum_subscription_users || billing_plan._?.min_users || 10}" max="200" style="width: 100%" tooltip="always"/>
+            <slider:active_subscription.users value="#{users_param || this.active_subscription._?.users || this.company.minimum_subscription_users || @billing_plan._?.min_users || 10}" id="users" min="#{this.company.minimum_subscription_users || @billing_plan._?.min_users || 10}" max="200" style="width: 100%" tooltip="always"/>
             <h3><t key="billing_details.payment_frequency"/></h3>
             <% period_param = (params[:billing_detail][:active_subscription][:billing_period] if params[:billing_detail] && params[:billing_detail][:active_subscription]) || this.active_subscription._?.billing_period
                monthly_price = (params[:billing_detail][:active_subscription][:monthly_value] if params[:billing_detail] && params[:billing_detail][:active_subscription]) || this.active_subscription._?.monthly_value || @billing_plan._?.monthly_value
