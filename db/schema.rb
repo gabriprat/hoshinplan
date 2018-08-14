@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180708175055) do
+ActiveRecord::Schema.define(version: 20180803073302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20180708175055) do
     t.integer  "workers"
     t.string   "stripe_id"
     t.decimal  "monthly_value",   precision: 8, scale: 2
+    t.integer  "min_users",                               default: 5, null: false
   end
 
   create_table "client_applications", force: :cascade do |t|
