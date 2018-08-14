@@ -285,7 +285,12 @@ $(window).scroll(function () {
 
 $(document).ready( function() {
 
-	$("ul.collection.areas").hammer().bind("swipeleft", function(event) {
+    if (Hammer) {
+        // Allow text to be selected. See: https://hammerjs.github.io/tips/#i-cant-select-my-text-anymore
+        delete Hammer.defaults.cssProps.userSelect;
+    }
+
+    $("ul.collection.areas").hammer().bind("swipeleft", function(event) {
 		var cur = $(".carousel-indicators li.active");
 		if (!cur) return;
 		var it = cur.next("li");
