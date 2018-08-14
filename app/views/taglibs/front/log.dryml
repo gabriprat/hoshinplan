@@ -38,9 +38,12 @@
 					key = 'log.' + (ago ? 'operation_date_ago' : 'operation_date_at')
 					key += '_automatic' unless this.creator
 					%>
-					<div class="source">
-					<a href="/#{this.model.name.pluralize.underscore}/#{this.model_id}-#{this.title.parameterize.dasherize}/edit" if="&@model == Hoshin">#{this.model.model_name.human} - #{this.title}</a></div>
-					<time class="created-at" datetime="#{this.created_at.iso8601}"><t key="#{key}" operation="#{operation}" date="#{formatted_date}" creator="#{this.creator}"/></time>
+					<div class="operation-details">
+                        <div class="source">
+                            <a href="/#{this.model.name.pluralize.underscore}/#{this.model_id}-#{this.title.parameterize.dasherize}/edit" if="&@model == Hoshin">#{this.model.model_name.human} - #{this.title}</a>
+                        </div>
+                        <time class="created-at" datetime="#{this.created_at.iso8601}"><t key="#{key}" operation="#{operation}" date="#{formatted_date}" creator="#{this.creator}"/></time>
+					</div>
 					<div class="changes" if="&this.changes">
 						<dl>
 						<repeat:changes>

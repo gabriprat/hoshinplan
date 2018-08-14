@@ -692,8 +692,8 @@ h2.heading .title-action .label, .health-indicator .title-action .label {
   position: absolute;
   font-size: 10px;
   line-height: 1em;
-  top: -1em;
-  left: 1.2em;
+  top: -.5em;
+  right: -.8em;
   min-width: 1.6em;
 }
 
@@ -4002,7 +4002,7 @@ textarea.tokenfield {
   background-color: transparent;
   transition: background 0s ease-out;
   font-size: 16px;
-  line-height: 1.846;
+  line-height: 1;
 }
 
 .vat-errors li {
@@ -4637,4 +4637,8 @@ ul.input-many > li > div.buttons button {
       opacity: 1;
     }
   }
+}
+
+.form-horizontal .checkbox-material {
+  top: -5px;
 }

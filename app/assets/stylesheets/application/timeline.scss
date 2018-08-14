@@ -102,13 +102,13 @@ ul.log {
 
 	.operation {
 		text-indent: 100%;
-		display: block;
-		float: left;
+		display: inline-block;
 		overflow: hidden;
 		text-align: left;
 		width: 2em;
 		height: 2em;
 		margin-right: 1em;
+        vertical-align: middle;
 		&:before {
 			text-indent: 0;
 			font-family: "hoshinplan";
@@ -137,6 +137,12 @@ ul.log {
           content: "\f1b8";
         }
 	}
+
+    .operation-details {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
 	dl {
 		margin: 0;
 	}
@@ -147,7 +153,7 @@ ul.log {
 		text-align: left;
 		clear: both;
 		border-top: 1px dashed;
-		margin: 0 -15px;
+		margin: .5em -15px 0 -15px;
 		padding: 1em 15px 0 15px;
 	}
 	@media (max-width:1020px) {

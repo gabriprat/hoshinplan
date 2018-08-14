@@ -26,9 +26,6 @@
 }
 
 
-.ic-dots-horizontal-triple:before, .fa-dots-horizontal-triple:before  {
-  content: "\e90e";
-}
 .ic-asterisk:before, .fa-asterisk:before  {
   content: "\f069";
 }
@@ -2387,14 +2384,14 @@
 .ic-meetup:before, .fa-meetup:before  {
   content: "\f2e0";
 }
-.ic-more:before, .fa-more:before  {
-  content: "\e90f";
-}
 .ic-sort-time-asc:before, .fa-sort-time-asc:before  {
   content: "\e90c";
 }
 .ic-sort-time-desc:before, .fa-sort-time-desc:before  {
   content: "\e90d";
+}
+.ic-filter-list:before, .fa-filter-list:before  {
+  content: "\e90b";
 }
 .ic-smile:before, .fa-smile:before  {
   content: "\e600";
@@ -2408,8 +2405,8 @@
 .ic-wondering:before, .fa-wondering:before  {
   content: "\e602";
 }
-.ic-filter-list:before, .fa-filter-list:before  {
-  content: "\e90b";
+.ic-dots-horizontal-triple:before, .fa-dots-horizontal-triple:before  {
+  content: "\e90e";
 }
 .ic-car-ln:before, .fa-car-ln:before  {
   content: "\e907";
