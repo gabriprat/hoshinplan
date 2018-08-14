@@ -31,7 +31,13 @@ module HoboFields
             end
             user.html_safe
           end
-          HoboFields::SanitizeHtml.sanitize(textilized.to_html)
+          html = textilized.to_html
+          Rails.logger.debug html
+          html = Rinku.auto_link(html, mode=:all, link_attr='target="_blank"') { |text|
+            text.gsub! /^[\w]+:\/\//, ''
+            text.truncate(50, omission: "...#{text.last(25)}")
+          }
+          HoboFields::SanitizeHtml.sanitize(html)
         end
       end
 
