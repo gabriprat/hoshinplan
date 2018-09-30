@@ -174,3 +174,9 @@ $(document).on('rapid:ajax:success', function() {
         startPresentation();
     }
 });
+
+$(document).on('hoshinplan:contentupdated', function() {
+    if (presenting) {
+        showSlide(currentSlide);
+    }
+});

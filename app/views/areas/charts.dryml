@@ -1,7 +1,8 @@
 <set hidden-indicators="&[]"/>
+<set id-sufix="&this.typed_id"/>
 <repeat:indicators>
 	<if test="&this.show_on_charts">
-		<indicator-chart-panel />
+		<indicator-chart-panel id-sufix="&id_sufix"/>
 	</if>
 	<else>
 		<% hidden_indicators = hidden_indicators << this %>
@@ -9,14 +10,14 @@
 </repeat>
 <repeat:child_indicators>
 	<if test="&this.show_on_charts">
-		<indicator-chart-panel />
+		<indicator-chart-panel id-sufix="&id_sufix"/>
 	</if>
 	<else>
 		<% hidden_indicators = hidden_indicators << this %>
 	</else>
 </repeat>
-<a href="#add-chart-modal#{this.id}" data-toggle='modal' class="add-chart ic-plus-square-o" unless="&hidden_indicators.empty?"></a>
-<modal id="add-chart-modal#{this.id}">
+<a href="#add-chart-modal#{this.id}-&this_parent.typed_id" data-toggle='modal' class="add-chart ic-plus-square-o" unless="&hidden_indicators.empty?"></a>
+<modal id="add-chart-modal#{this.id}-&this_parent.typed_id">
 	<modal:>
 	    <div class="modal-dialog">
 	        <div class="modal-content" role="document">

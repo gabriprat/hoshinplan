@@ -152,6 +152,7 @@ Hoshinplan::Application.routes.draw do
       get 'kanban'
       get 'charts'
       get 'map'
+      get 'all_charts'
       post 'kanban_update'
       post 'sort_by_deadline'
       post 'request_access'

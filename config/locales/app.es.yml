@@ -557,6 +557,7 @@ es:
     confirm_order_lane: "Al pulsar \"Aceptar\" sobreescribirás el orden actual de las tareas de esta columna y quedarán ordenadas por fecha de vencimiento."
   charts:
     select_indicator_to_add: "Selecciona la gráfica oculta que desees hacer visible de nuevo"
+    show_all: "Ver Todas"
   first:
     title: "Crea tu compañía"
     heading: "¿Cómo quieres llamar a tu empresa en Hoshinplan?"

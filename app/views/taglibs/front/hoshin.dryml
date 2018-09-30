@@ -95,6 +95,7 @@
 			</call-tag>
 			<%# /swept-cache %>
 			<div id="health-popover"></div>
+			<filters class="presenting-filters"/>
 			<filters-modal />
 			<div class="presentation-help alert"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><t key="hoshin.presentation_help" html-safe/></div>
 		</content-body:>

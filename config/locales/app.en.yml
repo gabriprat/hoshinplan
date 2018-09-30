@@ -557,6 +557,7 @@ en:
     confirm_order_lane: "By clicking \"Accept\" you will overwrite the current order of the tasks in this column and will be ordered by deadline."
   charts:
     select_indicator_to_add: "Select the hidden chart you want to show again"
+    show_all: "Show All"
   first:
     title: "Create your company"
     heading: "What do you want to call your company at Hoshinplan?"

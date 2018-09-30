@@ -169,7 +169,8 @@ var filterPostits = function() {
     }).get();
     var showHidden = $(".show-hidden:checked").length > 0;
     window.location.hash = hiddenColors.join(",") + ";" + showMine + ";" + hiddenTags.join(',') + ";" + showHidden;
-	return false;
+	$(document).trigger("hoshinplan:contentupdated", ['filters']);
+    return false;
 }
 
 var laneOver = function (event, ui) {

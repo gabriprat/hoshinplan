@@ -6,7 +6,7 @@ class HoshinsController < ApplicationController
   
   auto_actions_for :company, [:new, :create]
   
-  show_action :health, :kanban, :charts, :map
+  show_action :health, :kanban, :charts, :map, :all_charts
   
   web_method :kanban_update
   web_method :sort_by_deadline
@@ -110,6 +110,15 @@ class HoshinsController < ApplicationController
   def charts
     @this = Hoshin.where(id: params[:id]).includes(:areas).first
     hobo_show
+  end
+
+  def all_charts
+    @this = Hoshin.includes(:indicators, {:indicators => :indicator_histories})
+                .where(:id => params[:id]).order('indicators.ind_pos, indicator_histories.day').references(:indicators).first
+    Hoshin.current_hoshin = @this
+    hobo_show do
+      render template: 'areas/charts'
+    end
   end
   
   def kanban_update    

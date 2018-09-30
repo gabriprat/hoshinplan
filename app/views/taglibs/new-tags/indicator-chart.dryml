@@ -1,21 +1,21 @@
-<def tag="indicator-chart-panel">
-	<section id="chart-panel#{this.id}" class="panel chart-panel kb-resp kb-resp-#{this.try.responsible_id}" data-hidden-def="&this.hidden" data-tags="&this.taglist" if="&this.indicator_histories" merge>
+<def tag="indicator-chart-panel" attrs="id-sufix">
+	<section id="chart-panel#{this.id}#{id_sufix}" class="panel chart-panel kb-resp kb-resp-#{this.try.responsible_id}" data-hidden-def="&this.hidden" data-tags="&this.taglist" if="&this.indicator_histories" merge>
 	        <color-tpc:tpc tag="div" precision="1" class="header panel-heading">
 			<default: replace>
 				<a with="&this_parent.becomes(Indicator)" action="history"/> <span>(#{number_with_precision this}%)</span>
-				<form with="&this_parent" ajax success="$('#chart-panel#{this_parent.id}').hide()">
+				<form with="&this_parent" ajax success="$('#chart-panel#{this_parent.id}#{id_sufix}').hide()">
 					<hidden-field:show_on_charts value="false"/>
 					<button type="submit" class="close">&times;</button>
 				</form>
 			</default:>
 		</color-tpc:tpc>
 		 <div class="panel-body">
-			<indicator-chart/>
+			<indicator-chart id-sufix="&id_sufix"/>
 		 </div>
 	</section>
 </def>
 
-<def tag="indicator-chart">
+<def tag="indicator-chart" attrs="id-sufix">
 	<%
 		
 		 data = {}
@@ -36,7 +36,7 @@
 	%>
 	
 	<chart 
-		id="chart#{this.id}" 
+		id="chart#{this.id}#{id_sufix}"
 		type="line" 
 		data="&data.values" 
 		xkey="day"
@@ -59,7 +59,7 @@
 </def>
 
 
-<def tag="mini-indicator-chart">
+<def tag="mini-indicator-chart" attrs="id-sufix">
 	<%
 		 data = {}
 		 this.indicator_histories.each{ |i|
@@ -74,7 +74,7 @@
 	%>
 	
 	<chart 
-		id="chart#{this.id}" 
+		id="chart#{this.id}#{id_sufix}"
 		type="line" 
 		data="&data.values" 
 		xkey="day"

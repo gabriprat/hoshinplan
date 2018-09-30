@@ -19,7 +19,7 @@
 			  }
 			});
 			var active = window.location.pathname.split("/").pop();
-            var activeMatch = active.match(/^area([\\d]+)/);
+            var activeMatch = active.match(/^(area|hoshin)([\\d]+)/);
 			if (!activeMatch) {
 			    $('.nav-tabs a').first().tab('show');
 			} else {
@@ -51,6 +51,15 @@
 			<body: id="area#{this.id}">
 				
 			</body:>
+			<append-ul:>
+			    <li>
+			        <a data-url="#{object_url this_parent}/all_charts" data-toggle="tab" data-target="#hoshin#{this_parent.id}" href="#{hoshin_path(this_parent)}/charts/hoshin#{this_parent.id}"><t key="charts.show_all" /></a>
+			    </li>
+			</append-ul:>
+			<append-content-container:>
+			     <div class="tab-pane" id="hoshin#{this_parent.id}">
+			     </div>
+			</append-content-container:>
 		</bootstrap-tab-list>
 		<filters-modal />
 	</content-body:>

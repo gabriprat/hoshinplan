@@ -4286,6 +4286,18 @@ textarea.form-control {
   cursor: pointer;
 }
 
+.presenting-filters {
+  display: none;
+}
+
+html body.presenting .presenting-filters {
+  position: absolute;
+  right: 2em;
+  top: 1em;
+  display: block;
+  color: #fff;
+}
+
 .filters-modal .modal-dialog {
   max-width: 400px;
   max-height: 400px;
