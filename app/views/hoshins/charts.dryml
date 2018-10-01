@@ -63,5 +63,5 @@
 		</bootstrap-tab-list>
 		<filters-modal />
 	</content-body:>
-	<page-scripts: pageName="c-#{this.typed_id._?.sub(':','-')}"/>
+	<page-scripts: pageName="h-#{this.typed_id._?.sub(':','-')}"/>
 </show-page:>
