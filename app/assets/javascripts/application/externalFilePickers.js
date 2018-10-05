@@ -67,12 +67,30 @@ var launchBoxSelect = function(elem) {
 }
 
 var launchDropBoxSelect = function(elem) {
-	loadJs('https://www.dropbox.com/static/api/2/dropins.js', {"id":"dropboxjs","data-app-key":"810pe0uue1stsz9"}, function() {	
-		Dropbox.choose({
-    		    success: function(response) {
-				var val = '"'+response[0].name+'":'+response[0].link;
-				elem.insertAtCaret(val);
-			}
-		});
-	});
+    loadJs('https://www.dropbox.com/static/api/2/dropins.js', {"id":"dropboxjs","data-app-key":"810pe0uue1stsz9"}, function() {
+        Dropbox.choose({
+            success: function(response) {
+                var val = '"'+response[0].name+'":'+response[0].link;
+                elem.insertAtCaret(val);
+            }
+        });
+    });
+}
+
+
+var launchOneDriveSelect = function(elem) {
+    loadJs('https://js.live.net/v7.2/OneDrive.js', null, function() {
+        OneDrive.open({
+            clientId: '1e14c6de-2bf5-4a47-afdf-987475b57de4',
+            action: 'share',
+            multiSelect: false,
+            advanced: {
+                redirectUri: getAbsoluteUrl("/onedrive.html")
+            },
+            success: function(response) {
+                var val = '"'+response.value[0].name+'":'+response.value[0].webUrl;
+                elem.insertAtCaret(val);
+            }
+        });
+    });
 }

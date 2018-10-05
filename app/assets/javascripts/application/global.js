@@ -675,3 +675,14 @@ $(document).on('rapid:ajax:success', function() {
 $(document).ready(function() {
     $.material.init();
 });
+
+var getAbsoluteUrl = (function() {
+    var a;
+
+    return function(url) {
+        if(!a) a = document.createElement('a');
+        a.href = url;
+
+        return a.href;
+    };
+})();

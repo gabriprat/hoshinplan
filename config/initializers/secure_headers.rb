@@ -8,11 +8,11 @@
   config.csp = {
     :default_src => %w('self' d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com *.userreport.com api.mixpanel.com),
     :report_only => false,
-    :connect_src => %w('self' performance.typekit.net d4i78hkg1rdv3.cloudfront.net *.hoshinplan.com ws://*.hoshinplan.com ws://*.hoshinplandev.com:5000 *.userreport.com api.mixpanel.com sqs.us-east-1.amazonaws.com *.inspectlet.com wss://*.inspectlet.com),
+    :connect_src => %w('self' performance.typekit.net d4i78hkg1rdv3.cloudfront.net *.hoshinplan.com ws://*.hoshinplan.com ws://*.hoshinplandev.com *.userreport.com api.mixpanel.com sqs.us-east-1.amazonaws.com *.inspectlet.com wss://*.inspectlet.com graph.microsoft.com),
     :font_src => %w('self' *.typekit.net fonts.gstatic.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com data:),
     :child_src => %w('self' *.stripe.com accounts.google.com docs.google.com *.userreport.com www.youtube.com www.googletagmanager.com),
     :style_src => %w('self' 'unsafe-inline' *.stripe.com use.typekit.net fonts.googleapis.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com),
-    :script_src => %w('self' 'unsafe-eval' 'unsafe-inline' www.googleadservices.com *.stripe.com use.typekit.net d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com apis.google.com www.dropbox.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com *.mxpnl.com www.googletagmanager.com cdn.inspectlet.com),
+    :script_src => %w('self' 'unsafe-eval' 'unsafe-inline' www.googleadservices.com *.stripe.com use.typekit.net d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com apis.google.com www.dropbox.com app.box.com *.userreport.com settingsbucket.s3.amazonaws.com www.google-analytics.com *.mxpnl.com www.googletagmanager.com cdn.inspectlet.com js.live.net),
     :img_src => %w('self' data: www.googleadservices.com googleads.g.doubleclick.net www.google.com www.google.es q.stripe.com p.typekit.net ping.typekit.net doc.hoshinplan.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com hoshinplan.s3-eu-west-1.amazonaws.com shield.sitelock.com *.mxpnl.com stats.g.doubleclick.net www.google-analytics.com *.userreport.com sqs.us-east-1.amazonaws.com *.inspectlet.com),
     :report_uri => %w(/uri_dir_reports)
   }
