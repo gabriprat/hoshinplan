@@ -11,7 +11,7 @@
 			       <if test="&User.eql?(this.class)">
 				        <%=     button_to("Supplant", object_url(this, "supplant", :method => :post)) %>
 			       	</if>
-			       	<if test="&this.is_a? Subscription">
+			       	<if test="&this.is_a? Subscription and User.eql?(this.user.class)">
 			       	    <%=     button_to("Supplant", object_url(this.user, "supplant", :method => :post)) %>
 			       	</if>
 			       </append-controls:>

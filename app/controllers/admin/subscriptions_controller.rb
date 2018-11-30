@@ -37,8 +37,11 @@ class Admin::SubscriptionsController < Admin::AdminSiteController
 
   def index
     if params[:search].present?
-      bdIds = Hobo.find_by_search(params[:search], [BillingDetail.unscoped])[BillingDetail.name].*.id
-      @subscriptions = Subscription.where(billing_detail_id: bdIds)
+      begin
+        bdIds = Hobo.find_by_search(params[:search], [BillingDetail.unscoped])[BillingDetail.name].*.id
+        @subscriptions = Subscription.where(billing_detail_id: bdIds)
+      rescue
+      end
       @subscriptions ||= Subscription.where('1=0')
     else
       @subscriptions = Subscription.unscoped.all
