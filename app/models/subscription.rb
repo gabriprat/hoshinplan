@@ -32,7 +32,7 @@ class Subscription < ApplicationRecord
 
   validate :only_one_active_subscription
 
-  validates :users, numericality: {greater_than_or_equal_to: 10}
+  validates :users, numericality: {greater_than_or_equal_to: 5}
 
   attr_accessible :user, :user_id, :status, :token, :sandbox, :amount_value, :monthly_value,
                   :amount_currency, :plan_name, :company, :company_id, :users, :billing_period

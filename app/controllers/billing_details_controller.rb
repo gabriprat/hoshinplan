@@ -74,16 +74,17 @@ class BillingDetailsController < ApplicationController
 
   def _update_subscription(subscription_params, redirect_uri=nil)
     if valid?
-      self.this.save
-      s = self.this.active_subscription
-      old_remaining_amount = s.remaining_amount
-      old_period = s.billing_period
-      new_subscription = s.new_record?
       ActiveRecord::Base.transaction do
         begin
+          self.this.save
+          s = self.this.active_subscription
+          old_remaining_amount = s.remaining_amount
+          old_period = s.billing_period
+          new_subscription = s.new_record?
           update_stripe_billing_details
-          self.this.active_subscription = subscription_params
-          self.this.active_subscription.save! # using save! to raise validation errors
+          s.assign_attributes subscription_params
+          s.user_id = User.current_id
+          s.save! # using save! to raise validation errors
           amount = charge(old_remaining_amount, old_period)
           if amount > 0 && self.this.company.payment_error
             self.this.company.payment_error = nil
