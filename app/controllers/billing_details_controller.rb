@@ -38,7 +38,7 @@ class BillingDetailsController < ApplicationController
     end
     hobo_create_for :company do
       if valid?
-        _update_subscription(subscription_params)
+        _update_subscription(@this, subscription_params)
       end
     end
   end
@@ -62,7 +62,7 @@ class BillingDetailsController < ApplicationController
     end
     hobo_update do
       if subscription_params
-        _update_subscription(subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/, ''))
+        _update_subscription(@this, subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/, ''))
       else
         if params[:billing_detail][:card_stripe_token]
           update_stripe_billing_details
@@ -72,7 +72,7 @@ class BillingDetailsController < ApplicationController
     end
   end
 
-  def _update_subscription(subscription_params, redirect_uri=nil)
+  def _update_subscription(billing_detail, subscription_params, redirect_uri=nil)
     if valid?
       ActiveRecord::Base.transaction do
         begin
@@ -83,6 +83,7 @@ class BillingDetailsController < ApplicationController
           new_subscription = s.new_record?
           update_stripe_billing_details
           s.assign_attributes subscription_params
+          s.billing_detail_id = billing_detail.id
           s.user_id = User.current_id
           s.save! # using save! to raise validation errors
           amount = charge(old_remaining_amount, old_period)

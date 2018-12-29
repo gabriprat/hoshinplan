@@ -4523,6 +4523,7 @@ html body.presenting .presenting-filters {
 ul.collection.subscription {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   li {
     flex: 1;
     text-align: center;
