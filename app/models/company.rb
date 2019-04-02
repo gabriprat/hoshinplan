@@ -26,6 +26,8 @@ class Company < ApplicationRecord
 
   belongs_to :creator, :class_name => "User", :creator => true
   
+  belongs_to :partner, :inverse_of => :companies
+
   has_many :company_email_domains, :accessible => true, :inverse_of => :company, :dependent => :destroy
   
   has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company

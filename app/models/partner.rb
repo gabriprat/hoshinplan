@@ -61,6 +61,8 @@ class Partner < ApplicationRecord
 
   has_many :users, :inverse_of => :partner
 
+  has_many :companies, :inverse_of => :partner
+
   has_many :invitation_codes, :inverse_of => :partner
 
   children :users

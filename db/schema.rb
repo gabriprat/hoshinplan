@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190401145531) do
+ActiveRecord::Schema.define(version: 20190402193516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,34 @@ ActiveRecord::Schema.define(version: 20190401145531) do
   add_index "authorizations", ["provider"], name: "index_authorizations_on_provider", using: :btree
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+
+  create_table "bd", id: false, force: :cascade do |t|
+    t.integer  "id",                                  null: false
+    t.string   "company_name"
+    t.string   "address_line_1"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "vat_number"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "stripe_client_id"
+    t.string   "card_brand"
+    t.string   "card_last4"
+    t.integer  "card_exp_month"
+    t.integer  "card_exp_year"
+    t.string   "card_stripe_token"
+    t.integer  "creator_id"
+    t.integer  "company_id"
+    t.datetime "deleted_at"
+    t.boolean  "vies_valid",          default: false
+    t.string   "sage_one_contact_id"
+    t.string   "card_name"
+  end
 
   create_table "billing_details", force: :cascade do |t|
     t.string   "company_name"
@@ -170,10 +198,12 @@ ActiveRecord::Schema.define(version: 20190401145531) do
     t.boolean  "payment_error"
     t.integer  "minimum_subscription_users"
     t.jsonb    "charts_config"
+    t.integer  "partner_id"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
   add_index "companies", ["deleted_at"], name: "index_companies_on_deleted_at", using: :btree
+  add_index "companies", ["partner_id"], name: "index_companies_on_partner_id", using: :btree
 
   create_table "company_email_domains", force: :cascade do |t|
     t.datetime "created_at"
