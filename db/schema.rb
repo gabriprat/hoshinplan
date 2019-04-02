@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180803073302) do
+ActiveRecord::Schema.define(version: 20190401145531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -411,7 +411,10 @@ ActiveRecord::Schema.define(version: 20180803073302) do
     t.integer  "trial_days", null: false
     t.date     "start_at",   null: false
     t.date     "end_at",     null: false
+    t.integer  "partner_id"
   end
+
+  add_index "invitation_codes", ["partner_id"], name: "index_invitation_codes_on_partner_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.string   "sage_one_invoice_id"

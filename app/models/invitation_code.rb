@@ -12,6 +12,10 @@ class InvitationCode < ApplicationRecord
     timestamps
   end
 
+  attr_accessible :name, :total, :used, :trial_days, :start_at, :end_at, :partner, :partner_id
+
+  belongs_to :partner, :inverse_of => :invitation_codes
+
   scope :available, lambda {|*name_param|
     where("name = ? and now() between start_at and end_at and used < total", name_param)
   }
