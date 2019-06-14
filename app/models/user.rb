@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   hobo_user_model # Don't put anything above this
 
-  DEFAULT_TRIAL_DAYS = 30.days
+  DEFAULT_TRIAL_DAYS = 30
 
   include HoboOmniauth::MultiAuth
 
