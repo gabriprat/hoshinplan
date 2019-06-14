@@ -20,12 +20,14 @@ class Company < ApplicationRecord
     charts_config :jsonb
   end
   index [:deleted_at]
-  attr_accessible :name, :creator_id, :unlimited, :company_email_domains, :trial_ends_at, :credit, :payment_error, :subscriptions_count
+  attr_accessible :name, :creator_id, :unlimited, :company_email_domains, :trial_ends_at, :credit, :payment_error, :subscriptions_count, :minimum_subscription_users
 
   set_search_columns :name
 
   belongs_to :creator, :class_name => "User", :creator => true
   
+  belongs_to :partner, :inverse_of => :companies
+
   has_many :company_email_domains, :accessible => true, :inverse_of => :company, :dependent => :destroy
   
   has_many :hoshins, -> { order :name }, :dependent => :destroy, :inverse_of => :company

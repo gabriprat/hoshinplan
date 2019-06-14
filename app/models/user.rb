@@ -69,19 +69,26 @@ class User < ApplicationRecord
 
   before_create do |user|
     trial_days = DEFAULT_TRIAL_DAYS
-    if user.invitation_code.present?
-      ic = InvitationCode.available(self.invitation_code).first
-      ic.used += 1
-      ic.save
-      trial_days = ic.trial_days.days
-    end
     if user.partner
       trial_days = user.partner.companies_trial_days
     end
-    user.trial_ends_at = Date.today + trial_days
+    user.trial_ends_at = Date.today + trial_days.days
   end
 
   before_save do |user|
+    if user.invitation_code.present?
+      ic = InvitationCode.available(self.invitation_code).first
+      if ic
+        ic.used += 1
+        ic.save
+        trial_days = ic.trial_days || ic.partner&.trial_days
+        user.trial_ends_at = user.created_at + trial_days.days if trial_days
+        user.partner = ic.partner if ic.partner
+      else
+        user.invitation_code = nil
+        errors.add(:invitation_code, I18n.t("errors.invitation_code_does_not_exist"))
+      end
+    end
     if user.name.blank?
       n = user.email_address.split('@')[0]
       user.name = n.split(".").join(" ").titleize
@@ -229,6 +236,9 @@ class User < ApplicationRecord
     Company.unscoped.joins(:company_email_domains).where(company_email_domains: {domain: domain}).each do |company|
       ret += 1
       UserCompany::Lifecycle.activate_ij(self, {:user => self, :company => company})
+      if company.partner_id
+        self.update_column(:partner_id, company.partner_id)
+      end
     end
     return ret
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180803073302) do
+ActiveRecord::Schema.define(version: 20190402193516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,10 +170,12 @@ ActiveRecord::Schema.define(version: 20180803073302) do
     t.boolean  "payment_error"
     t.integer  "minimum_subscription_users"
     t.jsonb    "charts_config"
+    t.integer  "partner_id"
   end
 
   add_index "companies", ["creator_id"], name: "index_companies_on_creator_id", using: :btree
   add_index "companies", ["deleted_at"], name: "index_companies_on_deleted_at", using: :btree
+  add_index "companies", ["partner_id"], name: "index_companies_on_partner_id", using: :btree
 
   create_table "company_email_domains", force: :cascade do |t|
     t.datetime "created_at"
@@ -411,7 +413,10 @@ ActiveRecord::Schema.define(version: 20180803073302) do
     t.integer  "trial_days", null: false
     t.date     "start_at",   null: false
     t.date     "end_at",     null: false
+    t.integer  "partner_id"
   end
+
+  add_index "invitation_codes", ["partner_id"], name: "index_invitation_codes_on_partner_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.string   "sage_one_invoice_id"

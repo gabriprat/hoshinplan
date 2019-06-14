@@ -28,9 +28,21 @@
 <def tag="form" for="Company">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, unlimited, minimum_subscription_users, payment_error, credit, trial_ends_at, charts_config, company_email_domains, creator, users" param/>
+    <field-list fields="name, unlimited, minimum_subscription_users, payment_error, credit, trial_ends_at, charts_config, company_email_domains, creator, partner, users" param/>
     <div param="actions">
       <submit label="#{ht 'company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="InvitationCode">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, total, used, trial_days, start_at, end_at, partner" param/>
+    <div param="actions">
+      <submit label="#{ht 'invitation_code.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

@@ -306,7 +306,7 @@
 <def tag="card" for="InvitationCode">
   <card class="invitation-code" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
   </card>
 </def>

@@ -754,7 +754,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="minimum_subscription_users, credit, trial_ends_at, charts_config" param/>
+      <field-list fields="minimum_subscription_users, credit, trial_ends_at, charts_config, partner" param/>
       <section param="collection-section">
         <h3 param="collection-heading">
           <ht key="hoshin.collection.heading" count="&this.hoshins.count" >

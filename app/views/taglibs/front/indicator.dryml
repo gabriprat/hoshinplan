@@ -64,6 +64,9 @@
 
 
 <extend tag="form" for="Indicator">
+<if test="&!this.area.hoshin">
+    <% raise this.to_yaml %>
+</if>
 	<set show-on-parent=", show_on_parent" if="&this.area.hoshin.parent_id"/>
     <set show-tags=", indicator_tags" unless="&@this.new_record? && this.area.hoshin.get_tags.blank?" />
 	<old-form merge>
