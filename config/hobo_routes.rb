@@ -533,6 +533,7 @@ Hoshinplan::Application.routes.draw do
     resources :users do
       collection do
         get 'suplist'
+        get 'complete_email_address'
       end
       member do
         post 'supplant'

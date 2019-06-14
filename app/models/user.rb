@@ -551,4 +551,13 @@ class User < ApplicationRecord
   def authenticated?(password)
     crypted_password == encrypt(password) || crypted_password.blank? && password.blank?
   end
+
+
+  def self.find_by_name(name)
+    if name.include? "@"
+      User.unscoped.find_by_email_address(name)
+    else
+      User.unscoped.where(name: name)
+    end
+  end
 end

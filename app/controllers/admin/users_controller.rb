@@ -7,7 +7,9 @@ class Admin::UsersController < Admin::AdminSiteController
   index_action :suplist
   
   web_method :supplant
-  
+
+  autocomplete :email_address
+
   def suplist
     users = model.load
     @this = { "guest" => 0 }

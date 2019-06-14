@@ -1,0 +1,10 @@
+
+<extend tag="form" for="Company">
+    <old-form merge>
+        <field-list:>
+            <creator-view:>
+                <name-one autocomplete="off" with="&this_parent" field="creator" complete-target="&User" completer="email_address_admin" />
+            </creator-view:>
+        </field-list:>
+    </old-form>
+</extend>
