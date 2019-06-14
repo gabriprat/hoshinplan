@@ -101,6 +101,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_subscription
+    if subsite == 'admin'
+      yield
+      return
+    end
     if !request.xhr? && TrialHelper.upgrade_button_visible?(Company.current_company, self) && Company.current_company.is_trial_expired?
       redirect_to Company.current_company, action: 'upgrade', trial_expired: Company.current_company.is_trial_expired?, r: request.path
     elsif Company.current_company._?.payment_error  && !['billing_details', 'users', 'subscriptions'].include?(controller_name)

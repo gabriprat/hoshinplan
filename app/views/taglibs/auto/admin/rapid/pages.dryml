@@ -9,6 +9,7 @@
     <nav-item with="&AuthProvider"><ht key="auth_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&BillingPlan"><ht key="billing_plan.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ClockworkEvent"><ht key="clockwork_event.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Company"><ht key="company.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PaypalButton"><ht key="paypal_button.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -230,6 +231,129 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'clockwork_event.actions.delete', :default=>['Remove This Clockwork event']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Company Pages ====== -->
+
+<def tag="index-page" for="Company">
+  <page merge title="#{ht 'company.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="company.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="company.actions.new">New Company</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Company">
+  <page merge title="#{ht 'company.new.title', :default=>[' New Company'] }">
+    <body: class="new-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.new.heading">
+          New Company
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'company.actions.create', :default=>['Create Company']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Company">
+  <page merge title="#{ht 'company.show.title', :default=>['Company'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.show.heading" name="#{name(:no_wrapper => true)}">
+          Company <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="unlimited, payment_error" param/>
+
+      <a:creator param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="company.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Company
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="minimum_subscription_users, credit, trial_ends_at, charts_config" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="hoshin.collection.heading" count="&this.hoshins.count" >
+            <human-collection-name collection="hoshins" your/>
+          </ht>
+        </h3>
+
+        <collection:hoshins param/>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Company">
+  <page merge title="#{ht 'company.edit.title', :default=>['Edit Company'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page company" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="company.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Company
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'company.actions.delete', :default=>['Remove This Company']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -601,7 +725,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="subscription_paypal.actions.new">New Subscription paypal</ht>
+        <ht key="subscription_paypal.actions.new">New Subscription</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -617,20 +741,20 @@
 
 
 <def tag="new-page" for="SubscriptionPaypal">
-  <page merge title="#{ht 'subscription_paypal.new.title', :default=>[' New Subscription paypal'] }">
+  <page merge title="#{ht 'subscription_paypal.new.title', :default=>[' New Subscription'] }">
     <body: class="new-page subscription-paypal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_paypal.new.heading">
-          New Subscription paypal
+          New Subscription
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'subscription_paypal.actions.create', :default=>['Create Subscription paypal']}"/>
+        <submit: label="#{ht 'subscription_paypal.actions.create', :default=>['Create Subscription']}"/>
       </form>
     </content-body:>
   </page>
@@ -638,14 +762,14 @@
 
 
 <def tag="show-page" for="SubscriptionPaypal">
-  <page merge title="#{ht 'subscription_paypal.show.title', :default=>['Subscription paypal'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'subscription_paypal.show.title', :default=>['Subscription'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page subscription-paypal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_paypal.show.heading" name="#{name(:no_wrapper => true)}">
-          Subscription paypal <name/>
+          Subscription <name/>
         </ht>
       </h2>
 
@@ -653,7 +777,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="subscription_paypal.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Subscription paypal
+          Edit Subscription
         </ht>
       </a>
     </content-header:>
@@ -667,17 +791,17 @@
 
 
 <def tag="edit-page" for="SubscriptionPaypal">
-  <page merge title="#{ht 'subscription_paypal.edit.title', :default=>['Edit Subscription paypal'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'subscription_paypal.edit.title', :default=>['Edit Subscription'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page subscription-paypal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_paypal.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Subscription paypal
+          Edit Subscription
         </ht>
       </h2>
-      <delete-button label="#{ht 'subscription_paypal.actions.delete', :default=>['Remove This Subscription paypal']}" param/>
+      <delete-button label="#{ht 'subscription_paypal.actions.delete', :default=>['Remove This Subscription']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -713,7 +837,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="subscription_stripe.actions.new">New Subscription stripe</ht>
+        <ht key="subscription_stripe.actions.new">New Subscription</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -729,20 +853,20 @@
 
 
 <def tag="new-page" for="SubscriptionStripe">
-  <page merge title="#{ht 'subscription_stripe.new.title', :default=>[' New Subscription stripe'] }">
+  <page merge title="#{ht 'subscription_stripe.new.title', :default=>[' New Subscription'] }">
     <body: class="new-page subscription-stripe" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_stripe.new.heading">
-          New Subscription stripe
+          New Subscription
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'subscription_stripe.actions.create', :default=>['Create Subscription stripe']}"/>
+        <submit: label="#{ht 'subscription_stripe.actions.create', :default=>['Create Subscription']}"/>
       </form>
     </content-body:>
   </page>
@@ -750,14 +874,14 @@
 
 
 <def tag="show-page" for="SubscriptionStripe">
-  <page merge title="#{ht 'subscription_stripe.show.title', :default=>['Subscription stripe'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'subscription_stripe.show.title', :default=>['Subscription'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page subscription-stripe" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_stripe.show.heading" name="#{name(:no_wrapper => true)}">
-          Subscription stripe <name/>
+          Subscription <name/>
         </ht>
       </h2>
 
@@ -765,7 +889,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="subscription_stripe.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Subscription stripe
+          Edit Subscription
         </ht>
       </a>
     </content-header:>
@@ -779,17 +903,17 @@
 
 
 <def tag="edit-page" for="SubscriptionStripe">
-  <page merge title="#{ht 'subscription_stripe.edit.title', :default=>['Edit Subscription stripe'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'subscription_stripe.edit.title', :default=>['Edit Subscription'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page subscription-stripe" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_stripe.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Subscription stripe
+          Edit Subscription
         </ht>
       </h2>
-      <delete-button label="#{ht 'subscription_stripe.actions.delete', :default=>['Remove This Subscription stripe']}" param/>
+      <delete-button label="#{ht 'subscription_stripe.actions.delete', :default=>['Remove This Subscription']}" param/>
     </content-header:>
 
     <content-body: param>

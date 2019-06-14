@@ -544,6 +544,10 @@ Hoshinplan::Application.routes.draw do
     resources :saml_providers
 
 
+    # Resource routes for controller admin/companies
+    resources :companies
+
+
     # Resource routes for controller admin/openid_providers
     resources :openid_providers
 

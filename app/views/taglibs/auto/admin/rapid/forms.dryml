@@ -25,6 +25,18 @@
 
 
 
+<def tag="form" for="Company">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, unlimited, minimum_subscription_users, payment_error, credit, trial_ends_at, charts_config, company_email_domains, creator, users" param/>
+    <div param="actions">
+      <submit label="#{ht 'company.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="OpenidProvider">
   <form merge param="default">
     <error-messages param/>

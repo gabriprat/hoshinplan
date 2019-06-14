@@ -119,7 +119,7 @@
 <def tag="card" for="Company">
   <card class="company" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
     <body: param>
       <a:creator param="creator-link"/>
