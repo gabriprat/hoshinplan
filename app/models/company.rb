@@ -20,7 +20,7 @@ class Company < ApplicationRecord
     charts_config :jsonb
   end
   index [:deleted_at]
-  attr_accessible :name, :creator_id, :unlimited, :company_email_domains, :trial_ends_at, :credit, :payment_error, :subscriptions_count, :minimum_subscription_users
+  attr_accessible :name, :creator, :creator_id, :unlimited, :company_email_domains, :trial_ends_at, :credit, :payment_error, :subscriptions_count, :minimum_subscription_users
 
   set_search_columns :name
 
