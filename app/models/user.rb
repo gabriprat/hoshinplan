@@ -82,7 +82,7 @@ class User < ApplicationRecord
         ic.used += 1
         ic.save
         trial_days = ic.trial_days || ic.partner&.trial_days
-        user.trial_ends_at = user.created_at + trial_days.days if trial_days
+        user.trial_ends_at = user.created_at + trial_days.days if trial_days && !user.trial_ends_at.changed?
         user.partner = ic.partner if ic.partner
       else
         user.invitation_code = nil
