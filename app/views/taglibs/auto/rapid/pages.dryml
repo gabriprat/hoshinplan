@@ -2041,7 +2041,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="value, goal, day, previous, company, indicator, responsible" param/>
+      <field-list fields="value, goal, day, previous, comment, company, indicator, responsible" param/>
     </content-body:>
 
   </page>

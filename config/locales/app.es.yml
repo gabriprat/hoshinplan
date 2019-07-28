@@ -395,6 +395,7 @@ es:
         objective: Objetivo
         value: "Valor actual"
         previous: "Valor periodo anterior"
+        comment: Comentario
       task:
         name: Nombre
         description: Descripción

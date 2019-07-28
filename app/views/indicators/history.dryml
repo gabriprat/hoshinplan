@@ -49,7 +49,7 @@
 	    		<chart 
 	    			id="graph-line" 
 	    			type="line" 
-				data="&ihs.map{|i| {id: i.id, origday: i.day, day: months ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil}}"
+				data="&ihs.map{|i| {id: i.id, origday: i.day, day: months ? i.day.beginning_of_month : i.day, value: i.value, goal: i.goal, previous: i.previous, inc: i.previous && i.value ? (i.value - i.previous) / i.previous * 100 : nil, comment: i.comment}}"
 	    			
 	    			xkey="day"
 				events="&this.indicator_events.map {|event| event.day }"
@@ -112,7 +112,7 @@
 		</modal>
 		<form if="&can_delete?" class="hide" action="/indicator_histories/#" id="delete-form" method="delete" data-confirm-orig="&t('history.messages.confirm_delete', :default=>'Are you sure you want to delete the value for the date XXX?')">
 		</form>
-		<div id="dynamic-js" data-remove="#{t 'hobo.actions.remove'}" data-columns="#{IndicatorHistory.human_attribute_name('day')},#{IndicatorHistory.human_attribute_name('value')},#{IndicatorHistory.human_attribute_name('objective')},#{IndicatorHistory.human_attribute_name('previous')}">
+		<div id="dynamic-js" data-remove="#{t 'hobo.actions.remove'}" data-columns="#{IndicatorHistory.human_attribute_name('day')},#{IndicatorHistory.human_attribute_name('value')},#{IndicatorHistory.human_attribute_name('objective')},#{IndicatorHistory.human_attribute_name('previous')},#{IndicatorHistory.human_attribute_name('comment')}">
 		</div>
 	</content-body:>
 </show-page:>

@@ -46,7 +46,8 @@ var loadData = function() {
 				"day": dateFormatDefault(row.origday),
 				"value": row.value === null ? "" : numeral(row.value).format("0.[00000000]"),
 				"goal": row.goal === null ? "" : numeral(row.goal).format("0.[00000000]"),
-				"previous": row.previous === null ? "" : numeral(row.previous).format("0.[00000000]")
+				"previous": row.previous === null ? "" : numeral(row.previous).format("0.[00000000]"),
+                "comment": row.comment === null ? "" : row.comment
 			}
 		});
 		if (objectData == null) {
@@ -84,12 +85,17 @@ var loadData = function() {
 			validator: nullOrNumericValidator,
 			data: 'goal'
 		}, {
-			type: 'text',
-			language: l,
-			className: 'htRight',
-			validator: nullOrNumericValidator,
-			data: 'previous'
-		}],
+            type: 'text',
+            language: l,
+            className: 'htRight',
+            validator: nullOrNumericValidator,
+            data: 'previous'
+        }, {
+            type: 'text',
+            language: l,
+            className: 'htRight',
+            data: 'comment'
+        }],
 		dateFormat: $("[data-rapid-page-data]").data('rapid-page-data').dateformat.toUpperCase(),
 		correctFormat: true,
 		contextMenu: ['row_above', 'row_below', 'remove_row', 'undo', 'redo'],
@@ -118,6 +124,7 @@ var data_update = function() {
 			var d = objectData.map(function(o) {
 				return {
 					"day": o.day,
+                    "comment": o.comment,
 					"value": (o.value == null || o.value == "")  ? null : numeral(o.value).value(),
 					"goal": (o.goal == null || o.goal == "") ? null : numeral(o.goal).value(),
 					"previous": (o.previous == null || o.previous == "") ? null :  numeral(o.previous).value()

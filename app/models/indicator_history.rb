@@ -9,11 +9,12 @@ class IndicatorHistory < ApplicationRecord
     goal  :decimal
     day   :date
     previous  :decimal
+    comment :string
     timestamps
   end
   index [:indicator_id, :day], :unique => true
   
-  attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id, :previous
+  attr_accessible :value, :goal, :indicator, :indicator_id, :day, :creator_id, :previous, :comment
   
   belongs_to :creator, :class_name => "User", :creator => true
   

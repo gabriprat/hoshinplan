@@ -395,6 +395,7 @@ en:
         objective: Objective
         value: Value
         previous: "Previous value"
+        comment: Comment
       task:
         name: Name
         description: Description
