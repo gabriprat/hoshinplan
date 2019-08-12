@@ -1,10 +1,10 @@
-<def tag="indicator-chart-panel" attrs="id-sufix">
+<def tag="indicator-chart-panel" attrs="id-sufix,area-name">
 	<section id="chart-panel#{this.id}#{id_sufix}" class="panel chart-panel kb-resp kb-resp-#{this.try.responsible_id}" data-hidden-def="&this.hidden" data-tags="&this.taglist" if="&this.indicator_histories" merge>
 	        <color-tpc:tpc tag="div" precision="1" class="header panel-heading">
 			<default: replace>
-				<a with="&this_parent.becomes(Indicator)" action="history"/> <span>(#{number_with_precision this}%)</span>
-				<form with="&this_parent" ajax success="$('#chart-panel#{this_parent.id}#{id_sufix}').hide()">
-					<hidden-field:show_on_charts value="false"/>
+				<a with="&this_parent.becomes(Indicator)" action="history"/> <span>#{area_name}(#{number_with_precision this}%)</span>
+				<form for-type="Object" with="&this_parent" ajax success="$('#chart-panel#{this_parent.id}#{id_sufix}').remove()">
+					<hidden-field:show_on_charts for-type="Indicator" value="false"/>
 					<button type="submit" class="close">&times;</button>
 				</form>
 			</default:>

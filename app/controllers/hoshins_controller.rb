@@ -113,8 +113,8 @@ class HoshinsController < ApplicationController
   end
 
   def all_charts
-    @this = Hoshin.includes(:indicators, {:indicators => :indicator_histories})
-                .where(:id => params[:id]).order('indicators.ind_pos, indicator_histories.day').references(:indicators).first
+    @this = Hoshin.includes({:indicators => :area}, {:indicators => :indicator_histories})
+                .where(:id => params[:id]).order('areas.position, indicators.ind_pos, indicator_histories.day').references(:indicators).first
     Hoshin.current_hoshin = @this
     hobo_show do
       render template: 'areas/charts'

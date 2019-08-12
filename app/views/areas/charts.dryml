@@ -1,5 +1,5 @@
 <set hidden-indicators="&[]"/>
-<set id-sufix="&this.typed_id"/>
+<set id-sufix="&this.typed_id.gsub(':', '-')"/>
 <repeat:indicators>
 	<if test="&this.show_on_charts">
 		<indicator-chart-panel id-sufix="&id_sufix"/>
@@ -16,8 +16,8 @@
 		<% hidden_indicators = hidden_indicators << this %>
 	</else>
 </repeat>
-<a href="#add-chart-modal#{this.id}-&this_parent.typed_id" data-toggle='modal' class="add-chart ic-plus-square-o" unless="&hidden_indicators.empty?"></a>
-<modal id="add-chart-modal#{this.id}-&this_parent.typed_id">
+<a href="#add-chart-modal#{this.id}-#{id_sufix}" data-toggle='modal' class="add-chart ic-plus-square-o" unless="&hidden_indicators.empty?"></a>
+<modal id="add-chart-modal#{this.id}-#{id_sufix}">
 	<modal:>
 	    <div class="modal-dialog">
 	        <div class="modal-content" role="document">
@@ -27,8 +27,8 @@
                 </div>
                 <div class="modal-body">
                     <repeat with="&hidden_indicators">
-                        <form success="window.location.reload();" ajax>
-                            <hidden-field:show_on_charts value="&true"/>
+                        <form for-type="Object" success="window.location.reload();" ajax>
+                            <hidden-field:show_on_charts for-type="Indicator" value="&true"/>
                             <button type="submit">#{this.name}</button>
                         </form>
                     </repeat>
