@@ -7,6 +7,7 @@ class BillingDetailsController < ApplicationController
   auto_actions_for :company, [:new, :create]
 
   def new_for_company
+    @secret = Stripe::SetupIntent.create.client_secret
     @billing_plan = BillingPlan.find(params[:plan])
     hobo_new_for :company
     log_event("Checkout", {plan_name: @billing_plan.name, plan_id: @billing_plan.id})
@@ -17,6 +18,7 @@ class BillingDetailsController < ApplicationController
   end
 
   def edit
+    @secret = Stripe::SetupIntent.create.client_secret
     @billing_plan = BillingPlan.find(params[:plan]) if params[:plan]
     hobo_show
     log_event("Checkout", {plan_name: @this.active_subscription._?.plan_name, plan_id: @this.active_subscription._?.billing_plan_id})
@@ -64,7 +66,7 @@ class BillingDetailsController < ApplicationController
       if subscription_params
         _update_subscription(@this, subscription_params, params[:r]._?.gsub(/[^0-9A-Za-z_\/-]/, ''))
       else
-        if params[:billing_detail][:card_stripe_token]
+        if params[:billing_detail][:stripe_payment_method]
           update_stripe_billing_details
         end
         redirect_to params[:page_path] if valid?
@@ -103,16 +105,19 @@ class BillingDetailsController < ApplicationController
             redirect_to this.company, action: :collaborators
           end
         rescue Stripe::CardError => _
+          @secret = Stripe::SetupIntent.create.client_secret
           flash.now[:error] = I18n.t('errors.invalid_credit_card')
           update_response(false)
           log_event("Payment error", {message: _.message})
           raise ActiveRecord::Rollback
         rescue Stripe::InvalidRequestError => _
+          @secret = Stripe::SetupIntent.create.client_secret
           flash.now[:error] = I18n.t('errors.invalid_credit_card')
           update_response(false)
           log_event("Payment error", {message: _.message})
           raise ActiveRecord::Rollback
         rescue ActiveRecord::RecordInvalid => _
+          @secret = Stripe::SetupIntent.create.client_secret
           flash.now[:error] = I18n.t('errors.invalid_subscription')
           update_response(false)
           log_event("Payment error", {message: _.message})
@@ -123,29 +128,35 @@ class BillingDetailsController < ApplicationController
   end
 
   def update_stripe_billing_details
-    if params[:billing_detail]._?[:card_stripe_token].blank?
+    if params[:billing_detail]._?[:stripe_payment_method].blank?
       return
     end
     if @this.stripe_client_id.nil?
       customer = Stripe::Customer.create(
           :description => current_user.name,
-          :source => @this.card_stripe_token,
           :email => @this.contact_email
       )
+      payment_method = Stripe::PaymentMethod.attach(
+          @this.stripe_payment_method,
+          {
+              customer: customer.id,
+          }
+      )
     else
-      customer = Stripe::Customer.retrieve(@this.stripe_client_id)
-      if params[:billing_detail]._?[:card_stripe_token].present?
-        customer.source = params[:billing_detail][:card_stripe_token]
-        customer.save
-      end
+      payment_method = Stripe::PaymentMethod.attach(
+          @this.stripe_payment_method,
+          {
+              customer:  @this.stripe_client_id,
+          }
+      )
     end
-    @this.stripe_client_id = customer.id
-
-    @this.card_brand = customer.sources.data[0].brand
-    @this.card_last4 = customer.sources.data[0].last4
-    @this.card_exp_month = customer.sources.data[0].exp_month
-    @this.card_exp_year = customer.sources.data[0].exp_year
-    @this.card_stripe_token = customer.sources.data[0].id
+    card = payment_method.card
+    @this.stripe_client_id = payment_method.customer
+    @this.card_brand = card.brand
+    @this.card_last4 = card.last4
+    @this.card_exp_month = card.exp_month
+    @this.card_exp_year = card.exp_year
+    @this.card_stripe_token = '-'
     @this.save
   end
 

@@ -1,9 +1,9 @@
 <extend tag="index-for-user-page" for="Subscription">
 	<old-index-for-user-page merge>
 	    <prepend-head:>
-            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+            <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
             <script type="text/javascript">
-                Stripe.setPublishableKey('#{Rails.configuration.stripe[:publishable_key]}');
+                var stripe = Stripe('#{Rails.configuration.stripe[:publishable_key]}');
             </script>
         </prepend-head:>
 	    <custom-javascript:>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="credit-card-item__row">
                         <div class="credit-card-item__change-card">
-                            <a data-toggle="modal" href="#update-cc" role="button" if="&can_edit?">
+                            <a data-toggle="modal" href="#update-cc" role="button" if="&can_edit?" onclick="$.billing('initCard');">
                                 <t key="pricing_plans.change_card" />
                             </a>
                         </div>
@@ -76,6 +76,9 @@
                     <modal:>
                         <div class="modal-dialog">
                             <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><t key="billing_details.card_details"/></h4>
+                                </div>
                                 <form with="&this.billing_detail" class="payment">
                                     <field-list: fields="" />
                                     <number-of-users: replace />

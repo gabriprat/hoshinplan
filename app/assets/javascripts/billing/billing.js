@@ -2,61 +2,6 @@
 (function($) {
     var methods = {
         init: function() {
-            var card = new Card({
-                form: '#cc-container', // *required*
-                // a selector or DOM element for the container
-                // where you want the card to appear
-                container: '.card-wrapper', // *required*
-
-                width: 350, // optional — default 350px
-
-                // Strings for translation - optional
-                messages: {
-                    validDate: '',
-                    monthYear: $('input[name=expdate]').attr('placeholder'), // optional - default 'month/year'
-                },
-
-                // Default placeholders for rendered fields - optional
-                placeholders: {
-                    number: '•••• •••• •••• ••••',
-                    name: $('input[name=ccname]').attr('placeholder'),
-                    expiry: '••/••',
-                    cvc: '•••'
-                },
-
-                formSelectors: {
-                    numberInput: 'input[name="ccnumber"]',
-                    expiryInput: 'input[name="expdate"]',
-                    cvcInput: 'input[name="cc-csc"]',
-                    nameInput: 'input[name="ccname"]'
-                },
-
-                // if true, will log helpful messages for setting up Card
-                debug: false // optional - default false
-            });
-
-            $("form.payment").on("submit", function(event) {
-                var exp = $("#expdate").val().split("/").map(function (s) { return s.trim() });
-                $("#calc-total").val(getValue("total-row"));
-                $("#calc-taxes").val(getValue("tax-tpc"));
-                if (exp.length == 2) {
-                    event.preventDefault();
-                    Stripe.card.createToken({
-                        name: $('#ccname').val(),
-                        number: $('#ccnumber').val(),
-                        cvc: $('#cc-csc').val(),
-                        exp_month: exp[0],
-                        exp_year: exp[1],
-                        address_line1: $('.billing-detail-address-line-1').val(),
-                        address_line2: $('.billing-detail-address-line-2').val(),
-                        address_state: $('.billing-detail-state').val(),
-                        address_zip: $('.billing-detail-zip').val(),
-                        address_city: $('.billing-detail-city').val(),
-                        address_country: $('.billing-detail-country').val()
-                    }, stripeResponseHandler);
-                }
-            });
-
             $("#billing_detail_country").on("change", function(event, value) {
                 var taxes = 0;
                 if (value && value.taxes) {
@@ -82,6 +27,34 @@
             methods.updateNextBilling();
             methods.calcTaxes();
             methods.updatePrice();
+        },
+        initCard: function() {
+            var clientSecret = $("#card-element").data('secret');
+            var elements = stripe.elements({locale: $('html').attr('lang')});
+            var cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+            $("form.payment").on("submit", function(event) {
+                $("#calc-total").val(getValue("total-row"));
+                $("#calc-taxes").val(getValue("tax-tpc"));
+                event.preventDefault();
+                stripe.handleCardSetup(
+                    clientSecret, cardElement, {
+                        payment_method_data: {
+                            billing_details: {
+                                name: $('#ccname').val(),
+                                address: {
+                                    city: $('.billing-detail-city').val(),
+                                    country: $('.billing-detail-country').val(),
+                                    line1: $('.billing-detail-address-line-1').val(),
+                                    line2: $('.billing-detail-address-line-2').val(),
+                                    postal_code: $('.billing-detail-zip').val(),
+                                    state: $('.billing-detail-state').val(),
+                                }
+                            }
+                        }
+                    }
+                ).then(stripeResponseHandler);
+            });
         },
         updateNextBilling: function() {
             var newPeriod = $("input[name=billing_detail\\[active_subscription\\]\\[billing_period\\]]:checked").val();
@@ -185,41 +158,22 @@
             return "#bill-" + name + "-value";
     }
 
-    function stripeResponseHandler(status, response) {
+    function stripeResponseHandler(response) {
 
         // Grab the form:
         var $form = $('form.payment');
 
         if (response.error) { // Problem!
-            // Show the errors on the form
-            if (response.error.param){
-                var errorField = response.error.param.indexOf("exp_") == 0 ? 'expiry' : response.error.param;
-                errorField =  $('#cc' + errorField);
-                if (errorField.length == 1) {
-                    errorField.closest(".form-group").addClass("has-error is-focused");
-                    errorField.focus();
-                } else {
-                    $('.card-details .form-group').addClass("has-error is-focused");
-                    $('.card-details .form-group input:first').focus();
-                }
-            }
             $form.find('.payment-errors').text(response.error.message);
             $form.find('button').prop('disabled', false); // Re-enable submission
 
         } else { // Token was created!
 
-            // Get the token ID:
-            var token = response.id;
+            // Get the payment_method:
+            var payment_method = response.setupIntent.payment_method;
 
-            // Insert the token into the form so it gets submitted to the server:
-            $form.append($('<input type="hidden" name="billing_detail[card_stripe_token]" />').val(token));
-
-            // Insert card details
-            $form.append($('<input type="hidden" name="billing_detail[card_name]" />').val(response.card.name));
-            $form.append($('<input type="hidden" name="billing_detail[card_brand]" />').val(response.card.brand));
-            $form.append($('<input type="hidden" name="billing_detail[card_last4]" />').val(response.card.last4));
-            $form.append($('<input type="hidden" name="billing_detail[card_exp_month]" />').val(response.card.exp_month));
-            $form.append($('<input type="hidden" name="billing_detail[card_exp_year]" />').val(response.card.exp_year));
+            // Insert the payment method into the form so it gets submitted to the server:
+            $form.append($('<input type="hidden" name="billing_detail[stripe_payment_method]" />').val(payment_method));
 
             // Submit the form:
             $form.get(0).submit();

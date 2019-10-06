@@ -397,7 +397,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="company_name, address_line_1, address_line_2, city, state, zip, contact_name, contact_email, send_invoice_cc, vat_number, country, card_name, card_brand, card_last4, card_exp_month, card_exp_year, card_stripe_token, company" param/>
+      <field-list fields="company_name, address_line_1, address_line_2, city, state, zip, contact_name, contact_email, send_invoice_cc, vat_number, country, card_name, card_brand, card_last4, card_exp_month, card_exp_year, card_stripe_token, stripe_payment_method, company" param/>
     </content-body:>
 
   </page>

@@ -241,12 +241,25 @@ class SubscriptionStripe < Subscription
     b = BillingDetail.unscoped.find(billing_detail_id)
     pay_now_amount = pay_now(full_amount, old_remaining_amount).round(2)
     if pay_now_amount > 0
-      order = Stripe::Charge.create(
-          amount: (pay_now_amount * 100).to_i,
-          currency: amount_currency,
-          customer: b.stripe_client_id,
-          description: billing_description
-      )
+      if (b.stripe_payment_method.blank?)
+        order = Stripe::Charge.create(
+            amount: (pay_now_amount * 100).to_i,
+            currency: amount_currency,
+            customer: b.stripe_client_id,
+            description: billing_description
+        )
+      else
+        order = Stripe::PaymentIntent.create(
+            amount: (pay_now_amount * 100).to_i,
+            currency: amount_currency,
+            customer: b.stripe_client_id,
+            description: billing_description,
+            payment_method_types: ['card'],
+            payment_method: b.stripe_payment_method,
+            off_session: true,
+            confirm: true,
+            )
+      end
       c.credit = 0
       c.save
       i = invoices.create
