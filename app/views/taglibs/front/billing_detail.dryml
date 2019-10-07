@@ -40,9 +40,13 @@
     </prepend-head:>
 
     <body: class="checkout"/>
-    
     <custom-javascript:>
-            getScript('<%= asset_path('billing.js')%>', function() { $.billing(); });
+            getScript('<%= asset_path('billing.js')%>', function() {
+            $.billing();
+            <% if this.stripe_client_id.nil? && this.card_stripe_token.nil? && this.stripe_payment_method.nil? %>
+            $.billing('initCard');
+            <% end %>
+            });
     </custom-javascript:>
     
     <aside-column:>
