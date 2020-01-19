@@ -93,7 +93,6 @@ var loadData = function() {
         }, {
             type: 'text',
             language: l,
-            className: 'htRight',
             data: 'comment'
         }],
 		dateFormat: $("[data-rapid-page-data]").data('rapid-page-data').dateformat.toUpperCase(),
