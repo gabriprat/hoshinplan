@@ -6,7 +6,6 @@ cache: bundler
 install:
   - gem uninstall bundler
   - gem install bundler --version '1.16.0'
-  - gem install rake
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - export REPO=gabriprat/hoshinplan
@@ -20,6 +19,7 @@ addons:
   postgresql: "9.4"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - bundle install
   - bundle exec rake db:test:prepare
 services:
   - docker
