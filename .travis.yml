@@ -6,6 +6,7 @@ cache: bundler
 install:
   - gem uninstall bundler
   - gem install bundler --version '1.16.0'
+  - gem install rake
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - export REPO=gabriprat/hoshinplan
@@ -22,6 +23,6 @@ before_script:
   - bundle exec rake db:test:prepare
 services:
   - docker
-  - redis
+  - redis-server
 rvm:
   - ruby-2.4.1
