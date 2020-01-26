@@ -151,7 +151,7 @@ class SageOneController < ApplicationController
         JSON.generate(
             {
                 sales_invoice: {
-                    # status_id: 'DRAFT',
+                    status_id: invoice[:status] == 'paid' ? 'PAID': 'UNPAID',
                     reference: invoice[:id],
                     contact_id: sage_id,
                     date: Time.at(invoice[:date]),
