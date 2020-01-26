@@ -171,6 +171,10 @@ Hoshinplan::Application.routes.draw do
 
   PartnersDynamicRouter.load
 
+  constraints HasBasicAuth do
+    post "/chargebee/webhook" => "sage_one#cb_webhook"
+  end
+
   constraints IsAdministrator do
     mount Flipper::UI.app($flipper) => '/admin/flipper'
     mount Resque::Server.new, :at => "/admin/resque"

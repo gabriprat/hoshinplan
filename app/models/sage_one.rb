@@ -188,10 +188,12 @@ class SageOne < ActiveRecord::Base
     response
   end
 
-  def self.sales_invoices(page=1, items_per_page=20)
+  def self.sales_invoices(page=1, items_per_page=20, search=nil)
+    endpoint = "accounts/v3/sales_invoices?page=#{page}&items_per_page=#{items_per_page}"
+    endpoint += "&search=#{search}" if search
     call_api(
         "get",
-        "accounts/v3/sales_invoices?page=#{page}&items_per_page=#{items_per_page}")
+        endpoint)
   end
 
   def self.sales_invoice(id)

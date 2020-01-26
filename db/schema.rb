@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191006104231) do
+ActiveRecord::Schema.define(version: 20200126214056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,34 @@ ActiveRecord::Schema.define(version: 20191006104231) do
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
+  create_table "bd", id: false, force: :cascade do |t|
+    t.integer  "id",                                  null: false
+    t.string   "company_name"
+    t.string   "address_line_1"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "vat_number"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "stripe_client_id"
+    t.string   "card_brand"
+    t.string   "card_last4"
+    t.integer  "card_exp_month"
+    t.integer  "card_exp_year"
+    t.string   "card_stripe_token"
+    t.integer  "creator_id"
+    t.integer  "company_id"
+    t.datetime "deleted_at"
+    t.boolean  "vies_valid",          default: false
+    t.string   "sage_one_contact_id"
+    t.string   "card_name"
+  end
+
   create_table "billing_details", force: :cascade do |t|
     t.string   "company_name"
     t.string   "address_line_1"
@@ -130,6 +158,13 @@ ActiveRecord::Schema.define(version: 20191006104231) do
     t.string   "stripe_id"
     t.decimal  "monthly_value",   precision: 8, scale: 2
     t.integer  "min_users",                               default: 5, null: false
+  end
+
+  create_table "chargebee_customers", force: :cascade do |t|
+    t.string   "sage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "chargebee_id"
   end
 
   create_table "client_applications", force: :cascade do |t|

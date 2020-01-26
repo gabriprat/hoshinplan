@@ -80,6 +80,14 @@
   </card>
 </def>
 
+<def tag="card" for="ChargebeeCustomer">
+  <card class="chargebee-customer" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="ChildIndicator">
   <card class="child-indicator" param="default" merge>
     <header: param>

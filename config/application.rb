@@ -88,6 +88,7 @@ module Hoshinplan
     config.active_record.raise_in_transactional_callbacks = true
     
     config.active_job.queue_adapter = :resque
+    config.chargebee_wh_api_key = ENV['CHARGEBEE_WH_API_KEY']
   end
 end
 

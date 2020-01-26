@@ -37,3 +37,12 @@ class IsAdministrator
   end
 end
 
+class HasBasicAuth
+  def self.matches?(request)
+    user, pass = ActionController::HttpAuthentication::Basic::user_name_and_password(request)
+    puts pass
+    puts Rails.configuration.chargebee_wh_api_key
+    Rails.configuration.chargebee_wh_api_key == pass
+  end
+end
+

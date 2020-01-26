@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
 
   around_action :set_user_time_zone
 
-  around_action :authenticate_client_app, :except => [:faye_auth]
+  around_action :authenticate_client_app, :except => [:faye_auth, :cb_webhook]
 
   around_action :scope_current_user, :except => [:activate_from_email, :activate]
 
@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
 
   before_action :login_from_cookie
 
-  before_action :my_login_required, :except => [:login, :auth, :callback, :sso_login, :signup, :activate, :resend_activation,
+  before_action :my_login_required, :except => [:cb_webhook, :login, :auth, :callback, :sso_login, :signup, :activate, :resend_activation,
                                                 :do_resend_activation, :do_activate, :do_signup, :forgot_password, :reset_password, :do_reset_password,
                                                 :mail_preview, :failure, :activate_from_email, :page, :pricing, :test_paypal_ipn, :paypal_ipn,
                                                 :accept_invitation, :do_accept_invitation, :check_corporate_login, :pricing, :confirm_email]
