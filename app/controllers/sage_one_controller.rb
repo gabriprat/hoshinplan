@@ -114,6 +114,7 @@ class SageOneController < ApplicationController
         21.0 => 'ES_STANDARD'
     }
     invoice = params[:content][:invoice]
+    country = ISO3166::Country.new(invoice[:billing_address][:country])
     response = SageOne.sales_invoices(1, 1, invoice[:id])
     method = response['$total'] == 0 ? 'post': 'put'
     endpoint = "accounts/v3/sales_invoices"
@@ -121,20 +122,28 @@ class SageOneController < ApplicationController
       invoice_id = response['$items'][0]['id']
       endpoint += "/#{invoice_id}"
     end
+    puts endpoint + ' ' + method
     sage_id = ChargebeeCustomer.find_by(chargebee_id: invoice[:customer_id])&.sage_id
     billing_address = invoice[:billing_address]
     prefix, invoice_number = invoice[:id].split('-')
     invoice_lines = invoice[:line_items].map {|line|
-      tax_rate_id = line[:tax_rate]
-      {
+      tax_rate_id = tax_rate_ids[line[:tax_rate]] || 'ES_EXEMPT'
+      if country.in_eu? && country.alpha2 != 'ES' && line[:tax_rate] > 0
+        tax_rate_id = "#{country.alpha2}_STANDARD}"
+      end
+      ret = {
           description: line[:description],
           ledger_account_id: '2ce906040ffc11e7bb3b065b8ec10ed1', #Ventas de mercaderías (70000000)
           quantity: line[:quantity],
           unit_price: line[:unit_amount] / 100,
           net_amount: line[:amount] / 100,
           discount_amount: 0,
-          tax_rate_id: tax_rate_ids[line[:tax_rate]] || 'ES_EXEMPT'
+          tax_rate_id: tax_rate_id
       }
+      if country.in_eu? && country.alpha2 != 'ES'
+        ret['eu_goods_services_type_id'] = 'SERVICES'
+      end
+      ret
     }
     response = SageOne.call_api(
         method,
