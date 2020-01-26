@@ -84,7 +84,7 @@ class SageOneController < ApplicationController
                     credit_terms_and_conditions: '',
                     currency_id: 'EUR',
                     main_address: {
-                        name: billing_address[:company],
+                        name: billing_address[:company] || "#{billing_address[:first_name]} #{billing_address[:last_name]}",
                         address_line_1: billing_address[:line1],
                         address_line_2: billing_address[:line2],
                         city: billing_address[:city],
@@ -93,7 +93,7 @@ class SageOneController < ApplicationController
                         country_id: billing_address[:country],
                     },
                     main_contact_person: {
-                        name: billing_address[:first_name] + ' ' + billing_address[:last_name],
+                        name: "#{billing_address[:first_name]} #{billing_address[:last_name]}",
                         email: customer[:email],
                     },
                 }
