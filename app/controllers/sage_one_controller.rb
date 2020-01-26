@@ -142,7 +142,7 @@ class SageOneController < ApplicationController
         JSON.generate(
             {
                 sales_invoice: {
-                    status_id: 'DRAFT',
+                    # status_id: 'DRAFT',
                     reference: invoice[:id],
                     contact_id: sage_id,
                     date: Time.at(invoice[:date]),
