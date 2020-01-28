@@ -239,7 +239,7 @@ class SageOne < ActiveRecord::Base
   def self.get
     @singleton ||= SageOne.first_or_create
     if @singleton.expires_at < Time.now + 30.minutes
-      @singleton.renew_token!
+      @singleton = renew_token!
     end
     @singleton
   end
@@ -275,6 +275,7 @@ class SageOne < ActiveRecord::Base
 
     parsed = JSON.parse(response.to_str)
 
+    puts parsed
     self.access_token = parsed["access_token"]
     self.expires_at = Time.now + parsed["expires_in"].to_i
     self.refresh_token = parsed["refresh_token"]
