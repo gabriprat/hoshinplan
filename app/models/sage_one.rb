@@ -239,7 +239,10 @@ class SageOne < ActiveRecord::Base
   def self.get
     @singleton ||= SageOne.first_or_create
     if @singleton.expires_at < Time.now + 30.minutes
-      @singleton = renew_token!
+      @singleton = SageOne.first_or_create
+      if @singleton.expires_at < Time.now + 30.minutes
+        @singleton.renew_token!
+      end
     end
     @singleton
   end
