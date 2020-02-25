@@ -189,7 +189,7 @@ class SageOneController < ApplicationController
                       payment_method_id: "CREDIT_DEBIT",
                       contact_id: response[:contact][:id],
                       bank_account_id: CUENTA_CORRIENTE_57200000,
-                      date: Time.now,
+                      date: Time.at(response[:paid_at]),
                       total_amount: response[:total_amount],
                       allocated_artefacts: [
                           {
