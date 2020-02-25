@@ -176,7 +176,7 @@ class SageOneController < ApplicationController
             }
         )
     )
-
+    puts response
     shouldCreatePayment = invoice[:status] == 'paid' && response[:status][:id] == 'UNPAID'
     if (shouldCreatePayment)
       SageOne.call_api(
