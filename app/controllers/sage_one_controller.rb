@@ -1,3 +1,5 @@
+CUENTA_CORRIENTE_57200000 = "2cb8fed00ffc11e7bb3b065b8ec10ed1"
+
 class SageOneController < ApplicationController
 
   hobo_controller
@@ -108,15 +110,15 @@ class SageOneController < ApplicationController
 
   def cb_invoice
     tax_rate_ids = {
-         0.0 =>  'ES_EXEMPT',
-         4.0 =>  'ES_LOWER_1',
+        0.0 => 'ES_EXEMPT',
+        4.0 => 'ES_LOWER_1',
         10.0 => 'ES_LOWER_2',
         21.0 => 'ES_STANDARD'
     }
     invoice = params[:content][:invoice]
     country = ISO3166::Country.new(invoice[:billing_address][:country])
     response = SageOne.sales_invoices(1, 1, invoice[:id])
-    method = response['$total'] == 0 ? 'post': 'put'
+    method = response['$total'] == 0 ? 'post' : 'put'
     endpoint = "accounts/v3/sales_invoices"
     if response['$total'] > 0
       invoice_id = response['$items'][0]['id']
@@ -151,7 +153,7 @@ class SageOneController < ApplicationController
         JSON.generate(
             {
                 sales_invoice: {
-                    status_id: invoice[:status] == 'paid' ? 'PAID': 'UNPAID',
+                    status_id: invoice[:status] == 'paid' ? 'PAID' : 'UNPAID',
                     reference: invoice[:id],
                     contact_id: sage_id,
                     date: Time.at(invoice[:date]),
@@ -174,7 +176,35 @@ class SageOneController < ApplicationController
             }
         )
     )
+
+    shouldCreatePayment = invoice[:status] == 'paid' && response[:status][:id] == 'UNPAID'
+    if (shouldCreatePayment)
+      SageOne.call_api(
+          'post',
+          "accounts/v3/contact_payments",
+          JSON.generate(
+              {
+                  contact_payment: {
+                      transaction_type_id: "CUSTOMER_RECEIPT",
+                      payment_method_id: "CREDIT_DEBIT",
+                      contact_id: response[:contact][:id],
+                      bank_account_id: CUENTA_CORRIENTE_57200000,
+                      date: Time.now,
+                      total_amount: response[:total_amount],
+                      allocated_artefacts: [
+                          {
+                              artefact_id: response[:id],
+                              amount: response[:total_amount]
+                          }
+                      ]
+                  }
+              }
+          )
+      )
+      response = SageOne.sales_invoice(response[:id])
+    end
   end
+
 
   def cb_webhook
     if params[:event_type] == 'customer_changed' || params[:event_type] == 'customer_created'
