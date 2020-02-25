@@ -189,11 +189,11 @@ class SageOneController < ApplicationController
                       contact_id: response['contact']['id'],
                       bank_account_id: CUENTA_CORRIENTE_57200000,
                       date: Time.at(invoice[:paid_at]),
-                      total_amount: invoice[:amount_paid] / 100,
+                      total_amount: invoice[:amount_paid].to_i / 100,
                       allocated_artefacts: [
                           {
                               artefact_id: response['id'],
-                              amount: invoice[:amount_paid] / 100
+                              amount: invoice[:amount_paid].to_i / 100
                           }
                       ]
                   }
