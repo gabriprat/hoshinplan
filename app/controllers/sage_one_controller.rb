@@ -128,7 +128,7 @@ class SageOneController < ApplicationController
     prefix, invoice_number = invoice[:id].split('-')
     invoice_lines = invoice[:line_items].map {|line|
       tax_rate_id = tax_rate_ids[line[:tax_rate]] || 'ES_EXEMPT'
-      if country.in_eu? && country.alpha2 != 'ES' && line[:tax_rate] > 0
+      if country.in_eu? && country.alpha2 != 'ES' && line[:tax_amount] > 0
         tax_rate_id = 'ES_STANDARD'
       end
       ret = {
