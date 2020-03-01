@@ -16,5 +16,4 @@
     :img_src => %w('self' data: www.googleadservices.com googleads.g.doubleclick.net www.google.com www.google.es q.stripe.com p.typekit.net ping.typekit.net doc.hoshinplan.com d4i78hkg1rdv3.cloudfront.net static.hoshinplan.com staticdoc.hoshinplan.com hoshinplan.s3-eu-west-1.amazonaws.com shield.sitelock.com *.mxpnl.com stats.g.doubleclick.net www.google-analytics.com *.userreport.com sqs.us-east-1.amazonaws.com *.inspectlet.com),
     :report_uri => %w(/uri_dir_reports)
   }
-  config.hpkp = SecureHeaders::OPT_OUT
 end
