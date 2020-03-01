@@ -216,7 +216,7 @@ GEM
       tzinfo
     eventmachine (1.0.9.1)
     eventmachine (1.0.9.1-java)
-    excon (0.62.0)
+    excon (0.72.0)
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
