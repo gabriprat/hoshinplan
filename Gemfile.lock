@@ -151,6 +151,7 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
+    bigdecimal (1.4.4)
     bitmask_attributes (1.0.0)
       activerecord (>= 3.1)
     bootbox-rails (0.5.0)
@@ -182,9 +183,9 @@ GEM
     crass (1.0.4)
     css_parser (1.6.0)
       addressable
-    debase (0.2.2)
+    debase (0.2.4.1)
       debase-ruby_core_source (>= 0.10.2)
-    debase-ruby_core_source (0.10.3)
+    debase-ruby_core_source (0.10.9)
     delocalize (1.2.0)
       rails (>= 2)
     detect_timezone_rails (0.0.5)
@@ -192,6 +193,10 @@ GEM
     differ (0.1.2)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     dryml (2.2.6)
       actionpack
       hobo_support (= 2.2.6)
@@ -599,6 +604,7 @@ DEPENDENCIES
   ancestry
   apipie-rails
   aws-sdk-s3
+  bigdecimal (~> 1.4)
   bitmask_attributes
   bootbox-rails
   bootstrap-sass
@@ -611,6 +617,7 @@ DEPENDENCIES
   delocalize
   detect_timezone_rails
   differ
+  dotenv-rails
   excon
   faraday
   faye-authentication
@@ -697,7 +704,7 @@ DEPENDENCIES
   yui-compressor
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.5.7p206
 
 BUNDLED WITH
-   1.16.0
+   1.17.3

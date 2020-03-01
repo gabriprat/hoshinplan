@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.5.7'
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '=4.2.8'
 
@@ -72,6 +73,7 @@ gem 'protected_attributes'
 gem 'nested_has_many_through'
 gem 'actionmailer_inline_css'
 
+gem 'bigdecimal', '~> 1.4'
 gem 'actionpack'
 gem 'delocalize'
 gem 'wkhtmltopdf-binary'
