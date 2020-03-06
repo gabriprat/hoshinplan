@@ -49,8 +49,8 @@ class Invoice < ActiveRecord::Base
       # Company address
       pdf.move_down 67
       pdf.text "Hoshinplan Strategy S.L.", size: 14.4, style: :bold, align: :left
-      pdf.text "Gran Via Corts Catalanes, 655, 6-3", size: 9, align: :left
-      pdf.text "Barcelona, 08010", size: 9, :align => :left
+      pdf.text "Sant Francesc, 4", size: 9, align: :left
+      pdf.text "Cerdanyola del Vallès, 08320", size: 9, :align => :left
       pdf.move_down 5
       pdf.text "NIF ES B66985110", size: 9, :align => :left
       pdf.move_down 5
