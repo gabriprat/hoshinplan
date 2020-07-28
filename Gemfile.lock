@@ -318,8 +318,8 @@ GEM
       sass-rails (>= 3.2.0)
     jquery-ui-themes (0.0.12)
       httparty
-    json (2.1.0)
-    json (2.1.0-java)
+    json (2.3.1)
+    json (2.3.1-java)
     jwt (1.5.6)
     loofah (2.4.0)
       crass (~> 1.0.2)
