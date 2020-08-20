@@ -1,6 +1,6 @@
 <extend tag="form" for="User">
   <old-form merge multipart>
-    <field-list: fields="firstName, lastName, timezone, language, invitation_code"/>
+    <field-list: fields="firstName, lastName, timezone, language"/>
   </old-form>
 </extend>
 
