@@ -85,7 +85,9 @@ class BillingDetail < ApplicationRecord
   end
 
   def tax_tpc
-    country.alpha2 == 'ES' || country.in_eu? && !vies_valid ? country.vat_rates['standard'] : 0
+    is_spain = country.alpha2 == 'ES'
+    is_canary_islands = is_spain && %w[35 38].include?((zip||'')[0..1])
+    is_spain && !is_canary_islands || country.in_eu? && !vies_valid ? country.vat_rates['standard'] : 0
   end
 
   # --- Permissions --- #

@@ -83,7 +83,7 @@
             }
             var taxes = $("#billing_detail_country").val().length > 0 ? $("#billing_detail_country").find("option[value=" + $("#billing_detail_country").val() + "]").data("taxes") : 0;
             var validVatNumber = $("#billing_detail_vat_number").data("valid");
-            if (validVatNumber && $("#billing_detail_country").val() != "ES") {
+            if (validVatNumber && ($("#billing_detail_country").val() != "ES" || $("#billing_detail_zip").val().trim().matches(/^(35|38)[0-9]{3}$/))) {
                 taxes = 0;
             }
             $("#bill-tax-tpc-value").text(taxes);
