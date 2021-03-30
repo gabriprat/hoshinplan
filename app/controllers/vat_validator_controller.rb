@@ -13,12 +13,12 @@ class VatValidatorController < ApplicationController
   def validate_vat_number(country, value)
     valid = false
     errors = []
-    vat_number = ::ActiveModel::Validations::VatNumber.new(value, country)
-    if vat_number.can_validate?
+    vat_number = Valvat.new(value)
+    if Valvat::Utils::country_is_supported? country
       if !vat_number.valid?
         errors << t('errors.not_expected_format')
       else
-        valid = ::VatValidations::ViesChecker.check(value, false)
+        valid = country == 'ES' || vat_number.exist?
       end
     else
       #Consider valids all VAT numbers that we don't know how to validate

@@ -44,7 +44,7 @@ class BillingDetail < ApplicationRecord
 
 
   validates :company_id, :presence => true, :uniqueness => true
-  validates :vat_number, vat: {country_method: :country, message: proc {I18n.t('errors.not_expected_format')}}, allow_blank: true
+  validate :validate_vat_number
 
   belongs_to :creator, :class_name => "User", :creator => true
   belongs_to :company, inverse_of: :billing_details, primary_key: "id"
@@ -54,10 +54,10 @@ class BillingDetail < ApplicationRecord
   before_save do |record|
     if record.country_changed? || record.vat_number_changed?
       country = record.country.alpha2
-      vat_number = ::ActiveModel::Validations::VatNumber.new(country + record.vat_number, country)
-      if vat_number.can_validate?
+      vn = Valvat.new(country + record.vat_number)
+      if record.eu?
         begin
-          vv = ::VatValidations::ViesChecker.check(country + record.vat_number, false)
+          vv = vn.exist?
         rescue VatValidations::ViesContactError
           vv = false
         end
@@ -67,6 +67,17 @@ class BillingDetail < ApplicationRecord
       end
     end
     true
+  end
+
+  def eu?
+    Valvat::Utils::EU_MEMBER_STATES.include?(country)
+  end
+
+  def validate_vat_number
+    if eu? && !vat_number.empty?
+      vn = Valvat.new(country + vat_number)
+      errors.add(:vat_number, I18n.t('errors.not_expected_format')) unless country == 'ES' ? vn.valid? : vn.exist?
+    end
   end
 
   def active_subscription
@@ -87,7 +98,7 @@ class BillingDetail < ApplicationRecord
   def tax_tpc
     is_spain = country.alpha2 == 'ES'
     is_canary_islands = is_spain && %w[35 38].include?((zip||'')[0..1])
-    is_spain && !is_canary_islands || country.in_eu? && !vies_valid ? country.vat_rates['standard'] : 0
+    !is_canary_islands && (is_spain || country.in_eu? && !vies_valid) ? country.vat_rates['standard'] : 0
   end
 
   # --- Permissions --- #

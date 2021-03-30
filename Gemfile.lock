@@ -23,14 +23,6 @@ GIT
       omniauth (~> 1.1)
 
 GIT
-  remote: git://github.com/gabriprat/vat_validator.git
-  revision: c4609e4cdf84db42a9988cf041685d501812b385
-  specs:
-    vat_validator (1.2)
-      activemodel
-      savon (>= 0.9.7)
-
-GIT
   remote: git://github.com/informatom/hobo_bootstrap_ui.git
   revision: d562647bf5916b141690838055e3eb966e0e6459
   branch: bootstrap3
@@ -582,6 +574,8 @@ GEM
     unicode_utils (1.4.0)
     unscoped_associations (0.7.1)
       activerecord (>= 3.2.0, < 5.1.0)
+    valvat (1.1.0)
+      savon (>= 2.3.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     wasabi (3.5.0)
@@ -704,7 +698,7 @@ DEPENDENCIES
   turn
   uglifier
   unscoped_associations
-  vat_validator!
+  valvat
   wicked_pdf
   wkhtmltopdf-binary
   yui-compressor

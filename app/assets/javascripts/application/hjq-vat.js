@@ -3,6 +3,7 @@
     var csrf;
     var form;
     var country_input;
+    var zip_input;
     var ajax_attrs;
 
     var methods = {
@@ -11,12 +12,17 @@
             var options = this.hjq('getOptions', annotations);
             ajax_attrs = annotations.ajax_attrs;
             country_input = $(options.country_input);
+            zip_input = $(options.zip_input);
             var taxes = country_input.val().length > 0 ? country_input.find("option[value=" + country_input.val() + "]").data("taxes") : 0;
             if (taxes > 0) {
                 that.prev().html(country_input.val() || "&middot;&middot;");
             } else {
                 that.prev().html("&nbsp;&nbsp;");
             }
+            zip_input.on("change", function() {
+                console.log('----------change')
+                that.trigger("vat:validate");
+            });
             country_input.on("change", function() {
                 var taxes2 = $(this).val().length > 0 ? $(this).find("option[value=" + $(this).val() + "]").data("taxes") : 0;
                 if (taxes2 > 0) {
