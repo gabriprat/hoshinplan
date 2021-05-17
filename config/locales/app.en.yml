@@ -496,7 +496,7 @@ en:
           transitions:
             resend_activation: "Resend user activation email"
       company:
-        name: "Pick a name based on the group of pepople that will use Hoshinplan."
+        name: "Pick a name based on the group of people that will use Hoshinplan."
       objective:
         hidden: "Determines if this objective will be hidden by default without applying any filter."
       indicator:
