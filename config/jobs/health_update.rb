@@ -33,6 +33,7 @@ module Jobs
           User.current_id = User.current_user.id
           acting_user = User.current_user
         else
+          hoshin.touch(:health_updated_at)
           Jobs::say "Hoshin with no users! #{hoshin.id} -- #{hoshin.name}"
           return 
         end
