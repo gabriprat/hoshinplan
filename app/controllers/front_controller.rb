@@ -129,6 +129,14 @@ class FrontController < ApplicationController
     render :text => "Updated!", :content_type => Mime::TEXT
   end
 
+  def healthupdate
+    require File.expand_path('config/jobs/base_job.rb')
+    Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}
+
+    @text = Jobs::HealthUpdate.perform({})
+    render :text => @text, :content_type => Mime::TEXT
+  end
+
   def subscriptionbilling
     require File.expand_path('config/jobs/base_job.rb')
     Dir['config/jobs/*.rb'].each {|file| require File.expand_path(file)}

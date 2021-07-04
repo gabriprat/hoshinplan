@@ -62,6 +62,8 @@ Hoshinplan::Application.routes.draw do
 
   get 'subscriptionbilling' => 'front#subscriptionbilling', :as => 'subscriptionbilling'
 
+  get 'healthupdate' => 'front#healthupdate', :as => 'healthupdate'
+
   get 'sageonesync' => 'front#sageonesync', :as => 'sageonesync'
 
   get 'sendtrial' => 'front#sendtrial', :as => 'sendtrial'

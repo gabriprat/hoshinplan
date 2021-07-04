@@ -10,7 +10,7 @@ module Jobs
       hoshin_id = options.present? && options["hoshin_id"].present? ? options["hoshin_id"].to_i : nil
       Jobs::say "Initiating healthupdate job!"    
       if hoshin_id.nil?
-        Hoshin.unscoped.all.each{|hoshin|
+        Hoshin.unscoped.where("updated_at > health_updated_at").each{|hoshin|
            perform_one(hoshin)
         }
       else
