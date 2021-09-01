@@ -520,6 +520,14 @@ Hoshinplan::Application.routes.draw do
   namespace :admin do
 
 
+    # Resource routes for controller admin/webhooks
+    resources :webhooks do
+      collection do
+        get 'complete_company'
+      end
+    end
+
+
     # Resource routes for controller admin/subscriptions
     resources :subscriptions do
       collection do
@@ -546,7 +554,11 @@ Hoshinplan::Application.routes.draw do
 
 
     # Resource routes for controller admin/companies
-    resources :companies
+    resources :companies do
+      collection do
+        get 'complete_name'
+      end
+    end
 
 
     # Resource routes for controller admin/invitation_codes

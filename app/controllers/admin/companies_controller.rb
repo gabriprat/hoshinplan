@@ -4,6 +4,8 @@ class Admin::CompaniesController < Admin::AdminSiteController
 
   auto_actions :all
 
+  autocomplete :name
+
   def index
     if params[:search].present?
       @companies = Hobo.find_by_search(params[:search], [Company.unscoped])[Company.name]

@@ -187,3 +187,15 @@
   </form>
 </def>
 
+<def tag="form" for="Webhook">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, url, request_method, headers, company" param/>
+    <div param="actions">
+      <submit label="#{ht 'webhook.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+

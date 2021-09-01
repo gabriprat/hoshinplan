@@ -43,6 +43,7 @@ module ModelBase extend ActiveSupport::Concern
     l.hoshin_id ||= self.try.hoshin_id
     self.log << l
     l.save!
+    Webhook.send!(l.company_id, self.typed_id, l) if l.company_id
   end
 
   def loadCurrentHoshin

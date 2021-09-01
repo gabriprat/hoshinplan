@@ -1,0 +1,9 @@
+<extend tag="form" for="Webhook">
+    <old-form merge>
+        <field-list:>
+            <company-view:>
+	            <name-one with="&this_parent" field="company" complete-target="&Webhook" completer="company_admin" />
+            </company-view:>
+        </field-list:>
+    </old-form>
+</extend>

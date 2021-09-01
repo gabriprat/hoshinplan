@@ -9,6 +9,7 @@
     <nav-item href="/admin/invitation_codes">Invitation codes</nav-item>
     <nav-item href="/admin/clockwork_events">Clockwork events</nav-item>
     <nav-item href="/admin/billing_plans">Billing plans</nav-item>
+    <nav-item href="/admin/webhooks">Webhooks</nav-item>
     <nav-item href="/admin/flipper">Flipper</nav-item>
     <nav-item href="/admin/resque">Resque</nav-item>
   </navigation>

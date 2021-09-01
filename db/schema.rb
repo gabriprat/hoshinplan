@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200126214056) do
+ActiveRecord::Schema.define(version: 20210831212202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,34 @@ ActiveRecord::Schema.define(version: 20200126214056) do
   add_index "authorizations", ["provider"], name: "index_authorizations_on_provider", using: :btree
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+
+  create_table "bd", id: false, force: :cascade do |t|
+    t.integer  "id",                                  null: false
+    t.string   "company_name"
+    t.string   "address_line_1"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "vat_number"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "stripe_client_id"
+    t.string   "card_brand"
+    t.string   "card_last4"
+    t.integer  "card_exp_month"
+    t.integer  "card_exp_year"
+    t.string   "card_stripe_token"
+    t.integer  "creator_id"
+    t.integer  "company_id"
+    t.datetime "deleted_at"
+    t.boolean  "vies_valid",          default: false
+    t.string   "sage_one_contact_id"
+    t.string   "card_name"
+  end
 
   create_table "billing_details", force: :cascade do |t|
     t.string   "company_name"
@@ -716,6 +744,20 @@ ActiveRecord::Schema.define(version: 20200126214056) do
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
   add_index "users", ["partner_id"], name: "index_users_on_partner_id", using: :btree
   add_index "users", ["state"], name: "index_users_on_state", using: :btree
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string   "name",                            null: false
+    t.string   "url",                             null: false
+    t.string   "headers",                                      array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.integer  "company_id",                      null: false
+    t.string   "request_method", default: "post"
+  end
+
+  add_index "webhooks", ["company_id"], name: "index_webhooks_on_company_id", using: :btree
+  add_index "webhooks", ["deleted_at"], name: "index_webhooks_on_deleted_at", using: :btree
 
   add_foreign_key "flipper_gates", "flipper_features", on_delete: :cascade
 end
