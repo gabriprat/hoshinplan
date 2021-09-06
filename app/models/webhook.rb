@@ -25,6 +25,7 @@ class Webhook < ApplicationRecord
 
   def self.api_call(url:, method:, **rest)
     ca_file = Rails.root.join('lib/cacert.pem').to_s
+    Rails.logger.error "======== api call to: " + url
     RestClient::Request.execute(method: method, url: url, ssl_ca_file: ca_file, **rest)
   end
 
@@ -43,7 +44,7 @@ class Webhook < ApplicationRecord
       headers
     end
     Rails.logger.error "=== Webhook request to: " + wh.url
-    args = {url: wh.url, headers: headers}
+    args = {url: wh.url, headers: headers, method: wh.request_method}
     if Webhook.put_or_post?(wh.request_method)
       args[:payload] = JSON.generate(payload)
     end
