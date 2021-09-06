@@ -23,7 +23,7 @@ class Webhook < ApplicationRecord
     %w[put post].include? method
   end
 
-  def self.api_call(method, url, **rest)
+  def self.api_call(url:, method:, **rest)
     ca_file = Rails.root.join('lib/cacert.pem').to_s
     RestClient::Request.execute(method: method, url: url, ssl_ca_file: ca_file, **rest)
   end
