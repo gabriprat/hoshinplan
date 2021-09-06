@@ -23,6 +23,11 @@ class Webhook < ApplicationRecord
     %w[put post].include? method
   end
 
+  def self.api_call(method, url, **rest)
+    ca_file = Rails.root.join('lib/cacert.pem').to_s
+    RestClient::Request.execute(method: method, url: url, ssl_ca_file: ca_file, **rest)
+  end
+
   def self.perform(company, typed_id, log)
     _, name, id = *typed_id.match(/^([^:]+)(?::([^:]+)(?::([^:]+))?)?$/)
     model_class = name.camelize.safe_constantize or raise ArgumentError.new("no such class in typed-id: #{typed_id}")
@@ -32,14 +37,17 @@ class Webhook < ApplicationRecord
     payload[:changes] = log['body'] if log['operation'] == 'update'
     wh = Webhook.find_by(company_id: company)
     return unless wh
-    api_call = RestClient.method(wh.request_method)
     headers = wh.headers.inject({}) do |headers, h|
       key, value = h.split(':', 1)
       headers[key] = value
       headers
     end
     Rails.logger.error "=== Webhook request to: " + wh.url
-    Webhook.put_or_post?(wh.request_method) ? api_call.call(wh.url, JSON.generate(payload), headers) : api_call.call(wh.url, headers)
+    args = {url: wh.url, headers: headers}
+    if Webhook.put_or_post?(wh.request_method)
+      args[:payload] = JSON.generate(payload)
+    end
+    self.api_call(**args)
   end
 
   def self.send!(company, typed_id, event)
