@@ -38,10 +38,7 @@ class Webhook < ApplicationRecord
       headers[key] = value
       headers
     end
-    Rails.logger.error ')))))))))))))))))))))))))))))))))))))))))))))'
-    Rails.logger.error log.to_yaml
-    Rails.logger.error payload.to_yaml
-    Rails.logger.error headers.to_yaml
+    Rails.logger.error "=== Webhook request to: " + wh.url
     Webhook.put_or_post?(wh.request_method) ? api_call.call(wh.url, JSON.generate(payload), headers) : api_call.call(wh.url, headers)
   end
 
