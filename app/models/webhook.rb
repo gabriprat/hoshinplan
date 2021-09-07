@@ -35,10 +35,10 @@ class Webhook < ApplicationRecord
     return nil unless model_class && id
     obj = model_class.unscoped.find(id)
     payload = {type: obj.model_name, value: obj.as_json, operation: log['operation']}
-    payload[:changes] = log['body'] if log['operation'] == 'update'
+    payload[:changes] = JSON.parse(log['body']) if log['operation'] == 'update'
     wh = Webhook.find_by(company_id: company)
     return unless wh
-    headers = wh.headers.inject({}) do |headers, h|
+    headers = wh.headers.inject({content_type: :json, accept: :json}) do |headers, h|
       key, value = h.split(':', 1)
       headers[key] = value
       headers
