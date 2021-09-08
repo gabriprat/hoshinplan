@@ -551,3 +551,11 @@
   </card>
 </def>
 
+<def tag="card" for="WebhookHeader">
+  <card class="webhook-header" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+

@@ -20,7 +20,7 @@ class Company < ApplicationRecord
     charts_config :jsonb
   end
   index [:deleted_at]
-  attr_accessible :id, :name, :creator, :creator_id, :unlimited, :company_email_domains, :trial_ends_at, :credit, :payment_error, :subscriptions_count, :minimum_subscription_users, :partner, :partner_id
+  attr_accessible :id, :name, :creator, :creator_id, :unlimited, :company_email_domains, :trial_ends_at, :credit, :payment_error, :subscriptions_count, :minimum_subscription_users, :partner, :partner_id, :webhooks
 
   set_search_columns :name
 
@@ -47,6 +47,8 @@ class Company < ApplicationRecord
   has_many :company_comments, :inverse_of => :company
 
   has_many :billing_details, :inverse_of => :company
+
+  has_many :webhooks, :accessible => true, :inverse_of => :company, :dependent => :destroy
   
   children :hoshins
   
@@ -225,6 +227,9 @@ class Company < ApplicationRecord
     case field
     when :company_email_domains
       #Only enterprise and unlimited users should be able to set automatic email domains
+      enterprise? || unlimited
+    when :webhooks
+      #Only enterprise and unlimited users should be able to set webhooks
       enterprise? || unlimited
     else
       true

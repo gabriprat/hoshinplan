@@ -1451,7 +1451,7 @@
     </content-header:>
 
     <content-body: param>
-      <field-list fields="url, request_method, headers, company" param/>
+      <field-list fields="url, request_method, company" param/>
     </content-body:>
 
   </page>

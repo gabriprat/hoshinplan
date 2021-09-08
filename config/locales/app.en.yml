@@ -346,6 +346,7 @@ en:
         Company: Company
         name: Company
         actions: Actions
+        webhooks: Webhooks
       company_email_domain:
         domain: Domain
       hoshin:
@@ -577,6 +578,7 @@ en:
     tabs:
       authentication: "SAML authentication"
       domains: "Automatic permission domains"
+      webhooks: "Webhooks"
     view: "View"
   client_app:
     sign_a_request: "Sign a request to the API"

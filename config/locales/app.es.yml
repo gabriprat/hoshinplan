@@ -346,6 +346,7 @@ es:
         Company: Empresa
         name: Empresa
         actions: Acciones
+        webhooks: Webhooks
       company_email_domain:
         domain: Dominio
       hoshin:
@@ -577,6 +578,7 @@ es:
     tabs:
       authentication: "Autenticación SAML"
       domains: "Dominios con permisos automáticos"
+      webhooks: "Webhooks"
     view: "Ver"
   client_app:
     sign_a_request: "Firma una petición al API"
