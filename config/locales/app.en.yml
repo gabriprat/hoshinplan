@@ -602,6 +602,8 @@ en:
     pdf_export: "PDF export"
     charts_view: "Charts view"
     kanban_view: "Kanban view"
+    rest_api: "REST API"
+    webhooks: "Event notifications via Webhooks"
     sso: "SAML & OpenId Single-sign-on"
     workers: "Companies up to %{workers} workers"
     users: "%{users} users"

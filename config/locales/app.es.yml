@@ -603,6 +603,8 @@ es:
     charts_view: "Vista de gráficos"
     kanban_view: "Vista Kanban"
     sso: "Single-sign-on OpenId o SAML"
+    rest_api: "API REST"
+    webhooks: "Envío de eventos vía webhook"
     workers: "Empresas de hasta %{workers} trabajadores"
     users: "%{users} usuarios"
     map_view: "Vista mapa"
