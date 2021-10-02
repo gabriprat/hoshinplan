@@ -895,3 +895,6 @@ es:
       features:
         title: Funcionalidades
         description: Lista de funcionalidades de nuestra herramienta para plasmar la estrategia de tu compañía, hacer seguimiento y conseguir más éxitos
+  apipie:
+    returns: Respuesta
+    code: Código HTTP

@@ -15,7 +15,7 @@ class InvoicesController < ApplicationController
     hobo_show
   end
 
-  api :GET, '/subscriptions/:subscription_id/invoices/:id', 'Get all invoices for a specific subscription'
+  api :GET, '/subscriptions/:subscription_id/invoices', 'Get all invoices for a specific subscription'
   def index_for_subscription
     hobo_index_for :subscription
   end

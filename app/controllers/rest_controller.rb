@@ -77,6 +77,33 @@ module RestController
     end
   end
 
+  def index_response
+    respond_to do |format|
+      format.json {render :json => self.this.to_json}
+      format.xml {render :xml => self.this.to_xml}
+      format.html {super}
+      format.pdf {render :layout => false}
+    end
+  end
+
+  def update_response(valid=nil, options={})
+    respond_to do |format|
+      format.json {render :json => self.this.to_json}
+      format.xml {render :xml => self.this.to_xml}
+      format.html {super}
+      format.pdf {render :layout => false}
+    end
+  end
+
+  def create_response(valid=nil, options={})
+    respond_to do |format|
+      format.json {render :json => self.this.to_json}
+      format.xml {render :xml => self.this.to_xml}
+      format.html {super}
+      format.pdf {render :layout => false}
+    end
+  end
+
   def hobo_index(*args, &b)
     super do |format|
       format.json {

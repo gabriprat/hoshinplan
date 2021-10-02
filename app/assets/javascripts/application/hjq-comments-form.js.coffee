@@ -1,11 +1,11 @@
 methods =
   init: (annotations) ->
     that = $(this)
-    needToConfirm = () ->
+    hasContent = () ->
       val = that.find('.comment-form textarea').val()
       val && val != ''
     window.onbeforeunload = () ->
-      if (needToConfirm())
+      if (hasContent())
         return 'Your unsaved data will be lost.';
     form = that.find('.comment-form')
     if form.length < 1
@@ -13,7 +13,8 @@ methods =
     parentForm = that.closest("form")
     if parentForm.size() > 0
       parentForm.submit(() ->
-        form.hjq_formlet('submit')
+        if hasContent()
+          form.hjq_formlet('submit')
       )
     channel = '/comment' + form.data('rapid').formlet.form_attrs.action.replace(/\/[a-z]+_comments/, '')
     button = form.find("input[type=submit]")

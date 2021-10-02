@@ -37,7 +37,19 @@ class HoshinsController < ApplicationController
   api :DELETE, '/hoshins/:id', 'Delete a hoshin'
   param_group :hoshin
   def destroy
-    hobo_destroy
+    hobo_destroy do
+      respond_to do |format|
+        format.html {
+          destroy_response
+        }
+        format.json {
+          render nothing: true, status: :no_content
+        }
+        format.xml {
+          render nothing: true, status: :no_content
+        }
+      end
+    end
     log_event("Delete hoshin", {objid: @this.id, name: @this.name})
   end
   

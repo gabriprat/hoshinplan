@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :ssoemail
 
-  rescue_from RuntimeError do |exception|
+  rescue_from StandardError do |exception|
     error = {message: exception.message}
     error[:type] = exception.class.name.split('::').last || ''
     error[:code] = :internal_server_error
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
 
   TIMESTAMP_MAX_AGE_SEC = 300.freeze
 
-  protect_from_forgery except: :omniauth_callback
+  protect_from_forgery except: :omniauth_callback, unless: -> { true }
 
   respond_to :html, :json, :xml
 
@@ -296,9 +296,11 @@ def select_responsible(obj)
       user = User.find_by_email_address(email)
       if (!user.nil?)
         obj["responsible_id"] = user.id
-        obj.delete("responsible")
       end
+    else
+      obj["responsible_id"] = nil
     end
+    obj.delete("responsible")
   end
 end
 
