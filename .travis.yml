@@ -3,6 +3,10 @@ language: ruby
 sudo: false
 cache: bundler
 
+before_install:
+  - pyenv global 3.7.1
+  - pip install -U pip
+  - pip install awscli
 install:
   - gem install bundler --version '1.17.3'
 after_success:
@@ -14,6 +18,7 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
+  - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER
 addons:
   postgresql: "9.4"
 before_script:
