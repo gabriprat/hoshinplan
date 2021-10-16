@@ -10,7 +10,7 @@ TASK_DEFINITION_NAME=hoshinplan
 CONTAINER_IMAGE=gabriprat/hoshinplan
 CI_COMMIT_SHA=$1
 
-TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_DEFINITION_NAME" --region "$REGION" --profile hoshinplan)
+TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_DEFINITION_NAME" --region "$REGION")
 
 NAME=$(echo $TASK_DEFINITION | jq -r '.taskDefinition.family')
 
@@ -26,11 +26,10 @@ echo "Registering new task definition <${TASK_DEFINITION_NAME}> with new Docker 
 NEW_TASK_DEFINITION=$(aws ecs register-task-definition \
   --family "$TASK_DEFINITION_NAME" \
   --region "$REGION" \
-  --container-definitions "$CONTAINER_DEFINITIONS" \
-  --profile hoshinplan)
+  --container-definitions "$CONTAINER_DEFINITIONS")
 
 NEW_REVISION=$(echo $NEW_TASK_DEFINITION | jq -r '.taskDefinition.revision')
 
 echo "Updating service <${SERVICE_NAME}> with new task definition <${TASK_DEFINITION_NAME}:${NEW_REVISION}>"
 
-aws ecs update-service --cluster default --service $SERVICE_NAME --task-definition $TASK_DEFINITION_NAME:$NEW_REVISION --region eu-west-1 --profile hoshinplan > /dev/null
+aws ecs update-service --cluster default --service $SERVICE_NAME --task-definition $TASK_DEFINITION_NAME:$NEW_REVISION --region "$REGION" > /dev/null
