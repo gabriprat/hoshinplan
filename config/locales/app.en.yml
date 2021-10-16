@@ -895,3 +895,8 @@ en:
       features:
         title: Features
         description: Features of our tool to visualize your strategy, track current status and achieve greater success
+  apipie:
+    intro: Introduction
+    authentication: Authentication
+    create_client_application: Create client application
+    quick_start: Quick start

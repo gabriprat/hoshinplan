@@ -1,0 +1,17 @@
+<def tag="apipie-page" extends="page">
+    <page merge>
+        <prepend-head:>
+            <%= Apipie.include_stylesheets %>
+        </prepend-head:>
+        <body: class="apipie" />
+        <content:>
+            <div class="body">
+                <%= @sidebar %>
+                <div class="content" param="content" />
+            </div>
+            <% %w[ bundled/jquery.js bundled/prettify.js apipie.js ].each do |file| %>
+              <script type='text/javascript' src='#{Apipie.full_url("javascripts/#{file}")}'></script>
+            <% end %>
+        </content:>
+    </page>
+</def>

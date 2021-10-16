@@ -1,0 +1,23 @@
+<apipie-page>
+    <content:>
+        <h1><%= t('apipie.create_client_application') %></h1>
+
+        <div class="section content-body">
+          <p>
+            Once in de developer area, create a new client application by clicking on the "New client application" button.
+          </p>
+          <p>
+            <%= image_tag("apipie/client_application_new", title: 'New Client Application')  %>
+          </p>
+          <p>Give it a name and a description and click the "Create Client Application" button.</p>
+          <p>
+            <%= image_tag("apipie/client_application_create", title: 'Create Client Application')  %>
+          </p>
+          <p>This will give you your <strong>Key </strong>and your <strong>Secret</strong>:</p>
+          <p>
+            <%= image_tag("apipie/client_application_keys", title: 'Key and Secret')  %>
+          </p>
+          <p>Now you can start developing your application using this credentials.</p>
+        </div>
+    </content:>
+</apipie-page>

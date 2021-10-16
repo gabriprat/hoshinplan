@@ -1,0 +1,61 @@
+<apipie-page>
+    <content:>
+        <h1><%= t('apipie.authentication') %></h1>
+        <div class="section content-body">
+          <div id="main-content">
+            <div class="title">
+              <p><span style="background-color: transparent;">This page provides detailed instructions on how to authenticate your app to make hoshinplan.com API calls.</span>
+              </p>
+            </div>
+
+            <p>Every API request has to be authenticated to ensure the user has access to the recuested resource. Client
+              application authentication is done by adding some parameters to the call URL.</p>
+            <p>If you tried a request without authentication like this:</p>
+            <pre class="prettyprint">
+GET /companies HTTP/1.1
+Host: www.hoshinplan.com</pre>
+            <p>The server response would be something like:</p>
+            <pre class="prettyprint"><span>HTTP/1.1 401 Unauthorized
+Content-Type: application/json; charset=utf-8<br/>Cache-Control: no-cache<br/>Connection: Keep-Alive<br/>Content-Length: 8603<br/>...</span>
+        </pre>
+            <p>For our operations to work you have to provide the following parameters:</p>
+            <dl>
+              <dt>app_key</dt>
+              <dd>The client application key generated when
+                <a href="/apidocs/create-client-application" title="Create a client Application">creating the client
+                  application</a>.
+              </dd>
+              <dt>timestamp</dt>
+              <dd>The current date and time in ISO 8601 format at the moment of the API call. Don't reuse API calls since signatures expire in 5 minutes.</dd>
+              <dt>signature</dt>
+              <dd>The
+                <a href="//en.wikipedia.org/wiki/Hash-based_message_authentication_code" title="http://en.wikipedia.org/wiki/Hash-based_message_authentication_code">hash-based
+                  message authentication code</a>&nbsp;(MAC) for this request using HMAC-SHA256 algorithm. To compute the value
+                for this parameter the whole request string before adding the signature parameter has to be used. For the
+                previuous example could be:
+                <pre class="prettyprint">/companies?app_key=test_application&amp;timestamp=<%= Time.now.iso8601 %></pre>
+              </dd>
+              <dd><p>This is the value that has to be used to calculate the MAC using the secret generated&nbsp;when
+                <a href="/apidocs/create-client-application" title="Create a client Application">creating the client
+                  application</a>.</p>
+              </dd>
+              <dd><p>For example to generate the signature you could use the following Ruby code:</p>
+                <pre class="prettyprint lang-ruby">Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha256'), secret, data)).strip()</pre>
+                <p>For this code to work you have to require openssl and base64 in your class:</p>
+                <pre class="prettyprint">require 'openssl'
+require 'base64'</pre>
+
+              </dd>
+            </dl>
+            <p>Be sure to URL encode the parameter values. Adding the above parameters, the call from the example would end up
+              being (we have added line breaks between parameters to improve readability but they should not be included):</p>
+            <pre class="prettyprint">GET /companies?
+            app_key=bb39caab63c3dd6524bcaa61ec4f3b4c&amp;
+            timestamp=<%= CGI.escape(Time.now.iso8601) %>&amp;
+            signature=x7/8VfSlr0DlSJ+N4xBEaL1+IwtmeunasI+hYtiDjd8= HTTP/1.1
+Host: www.hoshinplan.com</pre>
+          </div>
+          <p>And now the call would succeed for the next 5 minutes.</p>
+        </div>
+    </content:>
+</apipie-page>

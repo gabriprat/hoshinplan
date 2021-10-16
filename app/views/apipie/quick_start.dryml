@@ -1,0 +1,54 @@
+<apipie-page>
+    <content:>
+        <h1><%= t('apipie.quick_start') %></h1>
+        <div class="section content-body">
+          <div id="main-content">
+            <p>
+                Follow these steps to start using hoshinplan.com API in under 5 minutes!
+            </p>
+
+            <ol class="wizard">
+              <li>
+                <h3>
+                  <a href="/" title="http://www.hoshinplan.com">Login into hoshinplan.com</a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a title="Register application" href="/client_applications/new">
+                    Register your application and get your credentials
+                  </a>
+                </h3>
+                <p>
+                  Application credentials are unique identifiers that will help us knowing which developer and application is
+                  making a call. You will receive a <strong>Client ID</strong> and a <strong>Client secret</strong> once you
+                  <a href="/apidocs/create-client-application" title="Create a client Application">
+                    create your client application
+                  </a>.
+                </p>
+              </li>
+              <li>
+                <h3><a href="/apidocs/authentication" title="Client application authentication">Authenticate your calls</a>
+                </h3>
+                <p>
+                  You have to use the previous credentials to sign every API call. Here we provide you with a page with further
+                  information about
+                  <a href="/apidocs/authentication" title="Client application authentication">
+                    client application authentication
+                  </a>.
+                </p>
+              </li>
+              <li>
+                <h3><a href="/apidocs" title="Developers">Choose the operations you want to use</a>
+                </h3>
+                <p>
+                  Go to our <a href="/apidocs" title="Developers">operations list</a> to see which operations we have currently
+                  implemented for you to interact with hoshinplan.com.
+                </p>
+              </li>
+            </ol>
+            <p> You are now ready to start coding your application.</p>
+          </div>
+        </div>
+    </content:>
+</apipie-page>

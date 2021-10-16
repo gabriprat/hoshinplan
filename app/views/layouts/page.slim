@@ -2,7 +2,7 @@ doctype html
 html lang=I18n.locale
   head == param :head
     title == param :full_title
-       = strip_tags full_title(content_for(:title))
+      = strip_tags full_title(content_for(:title))
     == param :stylesheets
       == stylesheet_link_tag(subsite || 'front', media: 'all')
     == param :javascripts
@@ -20,6 +20,6 @@ html lang=I18n.locale
           a[href="#" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"]
             - 3.times do |i|
               span.icon-bar
-          . == param :app_name
+          .app == param :app_name
             a[class="brand" href="#{base_url}/"] = app_name
         == render partial: "test/main_nav"

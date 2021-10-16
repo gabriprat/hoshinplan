@@ -1,0 +1,38 @@
+<apipie-page>
+    <content:>
+        <h1><%= t('apipie.intro') %></h1>
+        <div class="section content-body">
+          <h2>Find everything you need to start using our API</h2>
+          <br/><br/>
+          <div>
+            <p>
+              Our
+              <a
+                href="//www.wikipedia.org/wiki/Representational_State_Transfer"
+                title="http://www.wikipedia.org/wiki/Representational_State_Transfer"
+                target="_blank"
+              >
+                RESTful
+              </a>
+              API allows you to use either JSON or XML to interact with InfoJobs. Below you will find a list of the entities
+              we publish as well as their supported operations.
+            </p>
+            <p>Read more about basic API usage in our
+              <a href="/apidocs/quick-start" title="Quick start guide">quick-start guide</a>.
+            </p>
+            <p>
+              In order to use our API operations you must use the developer credentials issued when you created your client
+              application.
+            </p>
+            <p>
+              Learn how to
+              <a href="/apidocs/create-client-application" title="Create a client Application">create a client application</a>.
+            </p>
+            <p>
+              And then read more about
+              <a href="/apidocs/authentication" title="Client application authentication">client application authentication</a>.
+            </p>
+          </div>
+        </div>
+    </content:>
+</apipie-page>

@@ -896,5 +896,9 @@ es:
         title: Funcionalidades
         description: Lista de funcionalidades de nuestra herramienta para plasmar la estrategia de tu compañía, hacer seguimiento y conseguir más éxitos
   apipie:
+    intro: Introducción
+    authentication: Autenticación
     returns: Respuesta
     code: Código HTTP
+    quick_start: Inicio rápido
+    create_client_application: Crear aplicación cliente

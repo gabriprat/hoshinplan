@@ -7,8 +7,18 @@ class RedirectWww
 end
 
 Hoshinplan::Application.routes.draw do
-  
-  apipie
+
+  scope :path => Apipie.configuration.doc_base_url do
+    get 'intro' => 'apipie#static', :key => :intro
+    get 'quick-start' => 'apipie#static', :key => :quick_start
+    get 'authentication' => 'apipie#static', :key => :authentication
+    get 'create-client-application' => 'apipie#static', :key => :create_client_application
+    get 'apipie_checksum', :to => "apipie#apipie_checksum", :format => "json"
+    constraints(:version => /[^\/]+/, :resource => /[^\/]+/, :method => /[^\/]+/) do
+      get '(:version)/(:resource)/(:method)' => 'apipie#index', :as => :apipie
+    end
+  end
+
   #adding www. to the beginning of any URL that doesn't already have it
   constraints RedirectWww.new do
     get ':any', to: redirect(subdomain: 'www', path: '/%{any}'), any: /.*/

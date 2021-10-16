@@ -1,0 +1,5 @@
+<apipie-page>
+    <content:>
+        <%= @content %>
+    </content:>
+</apipie-page>

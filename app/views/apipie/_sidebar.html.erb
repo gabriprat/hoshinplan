@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <h3>API Docs</h3>
+  <ul class="nav nav-list">
+    <% %w[intro quick_start create_client_application authentication].each do |key| %>
+      <li class="<%= 'active' if @key == key %>"><a href="/apidocs/<%= key.gsub('_','-') %>"><%= t("apipie.#{key}") %></a></li>
+    <% end %>
+    <li class="nav-header"><%= t('apipie.resources') %></li>
+    <% docs = @resource ? Apipie.to_json(@resource[:version])[:docs] : @doc%>
+    <% docs[:resources].sort_by(&:first).each do |key, api| %>
+      <% active = !!(@resource && @resource[:name] == api[:name]) %>
+      <li class="<%= 'active' if active && !@method %>">
+        <a href='<%= api[:doc_url] %><%= @doc[:link_extension] %>'>
+          <%= api[:name] %>
+        </a>
+        <% if active %>
+          <ul class="nav nav-list">
+            <% api[:methods].each do |m| %>
+              <% if !m[:show] %>
+                <% next %>
+              <% end %>
+              <li class="<%= 'active' if @method && @method[:name] == m[:name] %>"><a href='<%= m[:doc_url] %><%= @doc[:link_extension] %>'><%= m[:apis].first[:short_description] %></a></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

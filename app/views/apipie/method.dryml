@@ -1,0 +1,5 @@
+<apipie-page>
+    <content:>
+        <%= render :partial => 'method' %>
+    </content:>
+</apipie-page>

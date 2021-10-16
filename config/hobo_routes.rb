@@ -600,4 +600,8 @@ Hoshinplan::Application.routes.draw do
 
   end
 
+  namespace :apipie do
+
+  end
+
 end
