@@ -40,7 +40,7 @@ class ClientApplication < ApplicationRecord
 
   def sign_uri(uri)
     timestamp = Time.new.xmlschema
-    data =  uri + "&timestamp=" + CGI::escape(timestamp.to_s)
+    data =  uri + (uri.include?('timestamp=') ? '' : "&timestamp=" + CGI::escape(timestamp.to_s))
     signature = self.sign(data)
     "#{data}&signature=#{signature}"
   end
