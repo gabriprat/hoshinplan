@@ -8,6 +8,7 @@ class UriDirReportsController < ApplicationController
     i = model.new
     i.body = request.body.read
     hobo_create i
+    flash.delete(:notice)
   end
 
 end
