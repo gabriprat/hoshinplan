@@ -83,7 +83,8 @@
 		      <li><a href="#{request.protocol}github.com/gabriprat/hoshinplan"><t key="footer.github"/></a></li>
 		      <li><a href="/about/"><t key="footer.about"/></a></li>
 		      <li><a href="#{locale.to_s=='en'?'https://blog.hoshinplan.com':'https://es-blog.hoshinplan.com'}"><t key="footer.blog"/></a></li>
-		      <li><a with="&ClientApplication" subsite=""><t key="footer.developers"/></a></li>
+		      <li if="&logged_in?"><a with="&ClientApplication" subsite=""><t key="footer.developers"/></a></li>
+              <else><li><a href="/apidocs/intro"><t key="footer.developers"/></a></li></else>
 		      <li><a href="/legal/privacy/"><t key="footer.privacy"/></a></li>
 		      <li><a href="/legal/terms-of-use/"><t key="footer.terms_of_use"/></a></li>
 		      <li><a href="mailto:hello@hoshinplan.com"><t key="footer.contact_us"/></a></li>

@@ -4,6 +4,8 @@ class ApipieController < ApplicationController
 
   before_action :get_doc
 
+  skip_before_action :my_login_required
+
   def index
     if !@doc
       render 'apipie/apipies/apipie_404', :status => 404
