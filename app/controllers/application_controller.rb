@@ -268,11 +268,11 @@ class ApplicationController < ActionController::Base
       raise Errors::SecurityError.new(2), "Timestamp parameter (timestamp) not provided." unless t
       n = Time.now
       raise Errors::SecurityError.new(3), "Timestamp in the future" if t > n
-      # raise Errors::SecurityError.new(4), "Timestamp too old." if (n - t) > TIMESTAMP_MAX_AGE_SEC
+      raise Errors::SecurityError.new(4), "Timestamp too old." if (n - t) > TIMESTAMP_MAX_AGE_SEC
       path, notused, signature = request.fullpath.rpartition("&signature=")
       app = ClientApplication.unscoped.find_by_key(app_key)
       raise Errors::SecurityError.new(5), "No client application found with the given key." unless app
-      signature2 = app.sign(CGI.unescape(path))
+      signature2 = app.sign(path)
       raise Errors::SecurityError.new(6), "Invalid signature" unless signature == signature2
       ClientApplication.current_app = app
       Rails.logger.debug "Scoping current client_app (" + app.to_yaml + ")"

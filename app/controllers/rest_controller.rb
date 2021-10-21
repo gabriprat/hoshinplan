@@ -69,6 +69,7 @@ module RestController
       super
     else
       super do |format|
+        format.js {super}
         format.json {render :json => find_instance.to_json}
         format.xml {render :xml => find_instance.to_xml}
         format.html {super}
@@ -79,6 +80,7 @@ module RestController
 
   def index_response
     respond_to do |format|
+      format.js {super}
       format.json {render :json => self.this.to_json}
       format.xml {render :xml => self.this.to_xml}
       format.html {super}
@@ -88,6 +90,7 @@ module RestController
 
   def update_response(valid=nil, options={})
     respond_to do |format|
+      format.js {super}
       format.json {render :json => self.this.to_json}
       format.xml {render :xml => self.this.to_xml}
       format.html {super}
@@ -97,6 +100,7 @@ module RestController
 
   def create_response(valid=nil, options={})
     respond_to do |format|
+      format.js {super}
       format.json {render :json => self.this.to_json}
       format.xml {render :xml => self.this.to_xml}
       format.html {super}
@@ -106,6 +110,7 @@ module RestController
 
   def hobo_index(*args, &b)
     super do |format|
+      format.js {super}
       format.json {
         options = args.extract_options!
         finder = args.first || model

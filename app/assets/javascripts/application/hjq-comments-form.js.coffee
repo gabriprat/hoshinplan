@@ -21,6 +21,9 @@ methods =
     input = form.find("input[name=message]")
     defText = button.val()
 
+    if !parentForm.hasClass('subscribe')
+      return;
+
     client = new Faye.Client('/ws')
     client.addExtension {
       outgoing: (message, callback) ->
