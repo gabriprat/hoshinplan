@@ -14,9 +14,8 @@ after_success:
   - export REPO=gabriprat/hoshinplan
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - export COMMIT=$TRAVIS_COMMIT
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - echo TAGS $REPO:$COMMIT - $REPO:$TAG - $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker build -f Dockerfile -t $REPO:$COMMIT -t $TAG -t $REPO:travis-$TRAVIS_BUILD_NUMBER .
   - docker push $REPO
   - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER
 addons:
