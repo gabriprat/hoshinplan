@@ -236,7 +236,7 @@ class SubscriptionStripe < Subscription
     self.save!(validate: false)
   end
 
-  def charge(full_amount=true, old_remaining_amount=0, remote_ip='')
+  def charge(full_amount=true, old_remaining_amount=0, remote_ip='', off_session=true)
     c = Company.unscoped.find(company_id)
     b = BillingDetail.unscoped.find(billing_detail_id)
     pay_now_amount = pay_now(full_amount, old_remaining_amount).round(2)
@@ -249,6 +249,7 @@ class SubscriptionStripe < Subscription
           payment_method_types: ['card'],
           payment_method: b.stripe_payment_method.present? ? b.stripe_payment_method : b.card_stripe_token,
           setup_future_usage: 'off_session',
+          off_session: off_session,
           confirm: true,
       )
       c.credit = 0
