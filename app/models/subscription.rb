@@ -248,8 +248,6 @@ class SubscriptionStripe < Subscription
           description: billing_description,
           payment_method_types: ['card'],
           payment_method: b.stripe_payment_method.present? ? b.stripe_payment_method : b.card_stripe_token,
-          setup_future_usage: 'off_session',
-          off_session: off_session,
           confirm: true,
       )
       c.credit = 0

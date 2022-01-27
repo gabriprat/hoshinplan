@@ -56,11 +56,7 @@ class BillingDetail < ApplicationRecord
       country = record.country.alpha2
       vn = Valvat.new(country + record.vat_number)
       if record.eu?
-        begin
-          vv = vn.exist?
-        rescue VatValidations::ViesContactError
-          vv = false
-        end
+        vv = vn.exist?(raise_error: true)
         record.vies_valid = vv
       else
         record.vies_valid = true
