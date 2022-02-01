@@ -241,15 +241,19 @@ class SubscriptionStripe < Subscription
     b = BillingDetail.unscoped.find(billing_detail_id)
     pay_now_amount = pay_now(full_amount, old_remaining_amount).round(2)
     if pay_now_amount > 0
-      order = Stripe::PaymentIntent.create(
-          amount: (pay_now_amount * 100).to_i,
-          currency: amount_currency,
-          customer: b.stripe_client_id,
-          description: billing_description,
-          payment_method_types: ['card'],
-          payment_method: b.stripe_payment_method.present? ? b.stripe_payment_method : b.card_stripe_token,
-          confirm: true,
-      )
+      params = {
+        amount: (pay_now_amount * 100).to_i,
+        currency: amount_currency,
+        customer: b.stripe_client_id,
+        description: billing_description,
+        payment_method_types: ['card'],
+        payment_method: b.stripe_payment_method.present? ? b.stripe_payment_method : b.card_stripe_token,
+        off_session: off_session,
+        confirm: true }
+      if !off_session
+        params[:setup_future_usage] = 'off_session'
+      end
+      order = Stripe::PaymentIntent.create(params)
       c.credit = 0
       c.save
       i = invoices.create
