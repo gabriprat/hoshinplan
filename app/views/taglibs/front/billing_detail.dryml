@@ -67,6 +67,24 @@
                                         </tr>
                                 </tbody>
                                 <tfoot>
+                                        <tr if="&this.company.credit">
+                                                <th id="current-credit" scope="row" colspan="3">
+                                                        <t key="billing_details.current_credit"/>
+                                                </th>
+                                                <td headers="current-credit">
+                                                        <span id='bill-current-credit-value'>
+                                                            <%= number_to_currency(-this.company.credit, unit: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')) %>
+                                                        </span>
+                                                </td>
+                                        </tr>
+                                        <tr if="&this.company.credit">
+                                                <th id="subtotal" scope="row" colspan="3">
+                                                        <t key="billing_details.subtotal"/>
+                                                </th>
+                                                <td headers="subtotal">
+                                                    <%= t("price_html", {value: "<span id='bill-subtotal-value'></span>".html_safe, currency: get_unit(@billing_plan._?.amount_currency || @this.active_subscription._?.amount_currency || 'USD')}) %>
+                                                </td>
+                                        </tr>
                                         <tr>
                                                 <th id="bill-taxes" scope="row" colspan="3">
                                                         <t key="billing_details.taxes"/> (<span id="bill-tax-tpc-value">21</span>%)

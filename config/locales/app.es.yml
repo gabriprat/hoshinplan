@@ -649,6 +649,8 @@ es:
     complete_your_purchase: "Completar tu compra"
     credit: "Acumularás %{amount} de crédito para tus próximos pagos."
     edit_card: "Modificar tarjeta"
+    current_credit: "Crédito acumulado"
+    subtotal: "Subtotal"
   stripe:
     purchase: Suscribirme
     panelLabel: "Pagar {{amount}}/%{frequency}"

@@ -232,8 +232,11 @@ end
 
 class SubscriptionStripe < Subscription
   def cancel
+    c = Company.unscoped.find(company_id)
     self.status = 'Canceled'
     self.save!(validate: false)
+    c.credit = c.credit + self.remaining_amount
+    c.save
   end
 
   def charge(full_amount=true, old_remaining_amount=0, remote_ip='', off_session=true)

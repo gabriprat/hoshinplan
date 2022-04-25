@@ -93,9 +93,11 @@
             var price = getValue("price");
             var quantity = getValue("quantity");
             var taxTpc = getValue("tax-tpc");
+            var currentCredit = getValue("current-credit") || 0;
             var rowTotal = quantity * price;
-            var taxes = rowTotal * taxTpc / 100;
-            var total = rowTotal + taxes;
+            var subtotal = rowTotal + currentCredit;
+            var taxes = subtotal * taxTpc / 100;
+            var total = subtotal + taxes;
             var last = moment($("#subscription-prorate").data("last"));
             var next = moment($("#subscription-prorate").data("next"));
             var nr = getValueDate("next-renewal");
@@ -129,6 +131,7 @@
             setValue("total-row", rowTotal);
             setValue("taxes", taxes);
             setValue("total", total);
+            setValue("subtotal", subtotal);
             setValue("month-remaining-days", remaining_days);
             setValue("pay-now", pay_now);
             setValue("credit", credit);
