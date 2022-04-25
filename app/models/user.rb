@@ -235,7 +235,7 @@ class User < ApplicationRecord
     ret = 0
     Company.unscoped.joins(:company_email_domains).where(company_email_domains: {domain: domain}).each do |company|
       ret += 1
-      UserCompany::Lifecycle.activate_ij(self, {:user => self, :company => company})
+      UserCompany::Lifecycle.activate_ij(self, {:user => self, :company => company, :roles => [:reader]})
       if company.partner_id
         self.update_column(:partner_id, company.partner_id)
       end
