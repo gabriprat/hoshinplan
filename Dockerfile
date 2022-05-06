@@ -3,7 +3,7 @@ RUN bundle config --global frozen 1
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock assets.sh ./
+COPY Gemfile Gemfile.lock ./
 
 RUN apt-get update
 RUN apt-get install -y nodejs
