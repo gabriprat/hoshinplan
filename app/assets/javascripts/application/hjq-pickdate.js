@@ -7,6 +7,7 @@
 	    weekdaysShort: [ 'dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb' ],
 	    today: 'hoy',
 	    clear: 'borrar',
+		close: 'cerrar',
 	    firstDay: 1
     }, 'en' : {}};
     var methods = {
