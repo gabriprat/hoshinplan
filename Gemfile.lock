@@ -1,43 +1,11 @@
 GIT
-  remote: git://github.com/Hobo/hobo_paperclip.git
+  remote: https://github.com/Hobo/hobo_paperclip
   revision: abb4e77b849e78be9f1594b7304b71dc5a76157d
   branch: master
   specs:
     hobo_paperclip (0.0.4)
       hobo
       paperclip
-
-GIT
-  remote: git://github.com/ericallam/font_assets
-  revision: eeb6ef435ab064940fdf3cac6283c236c84259c4
-  specs:
-    font_assets (0.1.14)
-      rack
-
-GIT
-  remote: git://github.com/gabriprat/hobo_omniauth.git
-  revision: c6e44f521d40928d472d5534472244dc0d38e040
-  specs:
-    hobo_omniauth (0.0.1)
-      hobo
-      omniauth (~> 1.1)
-
-GIT
-  remote: git://github.com/informatom/hobo_bootstrap_ui.git
-  revision: d562647bf5916b141690838055e3eb966e0e6459
-  branch: bootstrap3
-  specs:
-    hobo_bootstrap_ui (2.1.1)
-      bootstrap-datepicker-rails
-      hobo_bootstrap (>= 2.0)
-
-GIT
-  remote: git://github.com/rykov/resque-delay.git
-  revision: f255371a0ec73f7379f36f7b4bcaa217170f6070
-  specs:
-    resque-delay (0.6.0)
-      resque (>= 1.25)
-      resque-scheduler (>= 4.0.0)
 
 GIT
   remote: https://github.com/Sage/sageone_api_signer
@@ -48,6 +16,21 @@ GIT
       activesupport
       addressable
       rack
+
+GIT
+  remote: https://github.com/ericallam/font_assets
+  revision: eeb6ef435ab064940fdf3cac6283c236c84259c4
+  specs:
+    font_assets (0.1.14)
+      rack
+
+GIT
+  remote: https://github.com/gabriprat/hobo_omniauth
+  revision: c6e44f521d40928d472d5534472244dc0d38e040
+  specs:
+    hobo_omniauth (0.0.1)
+      hobo
+      omniauth (~> 1.1)
 
 GIT
   remote: https://github.com/gabriprat/morrisjs-rails
@@ -67,6 +50,23 @@ GIT
       hobo_will_paginate-bootstrap
       sass-rails (>= 5.0.3)
       sprockets-rails (>= 2.1.4)
+
+GIT
+  remote: https://github.com/informatom/hobo_bootstrap_ui
+  revision: d562647bf5916b141690838055e3eb966e0e6459
+  branch: bootstrap3
+  specs:
+    hobo_bootstrap_ui (2.1.1)
+      bootstrap-datepicker-rails
+      hobo_bootstrap (>= 2.0)
+
+GIT
+  remote: https://github.com/rykov/resque-delay
+  revision: f255371a0ec73f7379f36f7b4bcaa217170f6070
+  specs:
+    resque-delay (0.6.0)
+      resque (>= 1.25)
+      resque-scheduler (>= 4.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -147,7 +147,7 @@ GEM
     bitmask_attributes (1.0.0)
       activerecord (>= 3.1)
     bootbox-rails (0.5.0)
-    bootstrap-datepicker-rails (1.8.0.1)
+    bootstrap-datepicker-rails (1.9.0.1)
       railties (>= 3.0)
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
