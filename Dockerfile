@@ -1,4 +1,6 @@
 FROM ruby:2.5.7
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
 RUN bundle config --global frozen 1
 
 WORKDIR /app
@@ -11,7 +13,6 @@ RUN apt-get install -y nodejs
 RUN bundle install
 RUN bundle exec passenger --version
 COPY . .
-RUN ./assets.sh
 EXPOSE 3000
 
 ENTRYPOINT ["./run.sh"]
