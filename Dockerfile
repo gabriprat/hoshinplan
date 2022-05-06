@@ -6,7 +6,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 
 RUN apt-get update
-RUN apt-get install nodejs
+RUN apt-get install -y nodejs
 
 RUN bundle install
 RUN bundle exec passenger --version
