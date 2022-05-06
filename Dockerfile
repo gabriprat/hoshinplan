@@ -5,7 +5,11 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 
+RUN apt-get update
+RUN apt-get upgrade -y ca-certificates
+RUN update-ca-certificates
 RUN bundle install
+RUN bundle exec passenger --version
 
 COPY . .
 EXPOSE 3000
