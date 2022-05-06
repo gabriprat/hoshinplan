@@ -53,6 +53,8 @@ http {
     client_body_timeout    1m;
     send_timeout           1m;
 
+    passenger_disable_security_update_check off;
+
     ### END your own configuration options ###
 
     default_type application/octet-stream;
