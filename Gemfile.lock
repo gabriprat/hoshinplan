@@ -294,7 +294,7 @@ GEM
     i18n_data (0.8.0)
     immigrant (0.3.6)
       activerecord (>= 3.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     jquery-cookie-rails (1.3.1.1)
       railties (>= 3.2.0, < 5.0)
     jquery-historyjs (0.3.0)
