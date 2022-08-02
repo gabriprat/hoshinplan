@@ -19,6 +19,10 @@ after_success:
   - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER
 addons:
   postgresql: "9.4"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - bundle install
+  - bundle exec rake db:test:prepare
 services:
   - docker
   - redis-server
