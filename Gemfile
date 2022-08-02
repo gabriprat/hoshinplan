@@ -108,7 +108,6 @@ group :test do
 end
 gem 'unscoped_associations'
 gem 'resque'
-gem 'resque-timeout'
 gem 'resque-retry'
 gem 'resque-delay', :git => 'https://github.com/rykov/resque-delay'
 gem 'paranoia'

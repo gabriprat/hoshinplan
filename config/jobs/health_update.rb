@@ -1,7 +1,3 @@
-require 'resque-timeout'
-
-Resque::Plugins::Timeout.timeout = 1200 # 20 minutes
-
 module Jobs
   class HealthUpdate
     @queue = :jobs
