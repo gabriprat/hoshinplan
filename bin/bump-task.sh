@@ -6,7 +6,7 @@ set -eu
 REGION=eu-west-1
 
 SERVICE_NAME=web
-TASK_DEFINITION_NAME=hoshinplan
+TASK_DEFINITION_NAME=$2
 CONTAINER_IMAGE=gabriprat/hoshinplan
 CI_COMMIT_SHA=$1
 

@@ -16,7 +16,9 @@ after_success:
   - export COMMIT=$TRAVIS_COMMIT
   - docker build -f Dockerfile -t $REPO:$COMMIT -t $REPO:$TAG -t $REPO:travis-$TRAVIS_BUILD_NUMBER .
   - docker push $REPO --all-tags
-  - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER
+  - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER hoshinplan
+  - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER hoshinplan-worker
+  - ./bin/bump-task.sh travis-$TRAVIS_BUILD_NUMBER hoshinplan-clock
 addons:
   postgresql: "9.4"
 before_script:
