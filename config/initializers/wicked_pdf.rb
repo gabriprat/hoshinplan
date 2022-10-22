@@ -8,6 +8,5 @@ WickedPdf.config = {
   orientation: 'Landscape',
   no_outline: true,
   minimum_font_size: 6,
-  exe_path: './vendor/bundle/bin/wkhtmltopdf',
-  javascript_delay: 10000,
+  javascript_delay: 1000,
 }
