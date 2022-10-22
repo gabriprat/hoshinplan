@@ -1,5 +1,22 @@
 
+ <def tag="show-fields" polymorphic>
+    <field-list fields="creator" />
+ </def>
+
+  <def tag="show-fields" for="Indicator">
+    <field-list fields="creator, goal, worst_value" />
+  </def>
+
  <def tag="read-only-ask-for-permission">
+    <section class="modal-header" if="&this.name"><h2 class="heading"><span><name/></span></h2></section>
+    <section class="modal-body" if="&this.name">
+        <div class="message-large">
+            <view:description class="in-place-edit" />
+            <div style="margin-top: 1em">
+                <show-fields />
+            </div>
+        </div>
+    </section>
     <ask-for-permission translation-prefix="read_only" merge />
  </def>
 
@@ -25,10 +42,10 @@
         obj ||= Hoshin.current_hoshin
     %>
      <section class="modal-header">
-             <h2 class="heading heading-icn warning">
+             <h3 class="heading heading-icn warning">
                      <small class="ic-lock icon text-danger"></small>
                      <span><t key="#{translation_prefix}.heading"/></span>
-            </h2>
+            </h3>
      </section>
      <section class="modal-body">
                     <div class="message-large">
