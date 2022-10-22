@@ -10,7 +10,7 @@ COPY Gemfile Gemfile.lock ./
 RUN apt-get update
 RUN apt-get install -y nodejs
 
-RUN bundle install
+RUN bundle install --deployment
 RUN bundle exec passenger --version
 COPY . .
 EXPOSE 3000
