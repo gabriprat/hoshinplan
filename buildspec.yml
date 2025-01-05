@@ -9,6 +9,7 @@ phases:
       - git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
       - ~/.rbenv/bin/rbenv install 2.5.7
       - ~/.rbenv/bin/rbenv global 2.5.7
+      - ~/.rbenv/bin/rbenv local 2.5.7
       - sudo apt-get -y --no-install-recommends install postgresql postgresql-contrib
       - sudo service postgresql restart
       - sudo apt-get -y --no-install-recommends install redis-server
