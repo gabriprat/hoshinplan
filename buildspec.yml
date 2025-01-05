@@ -1,6 +1,10 @@
 version: 0.1
 
 phases:
+  install:
+    commands:
+      - sudo apt-get update
+      - sudo apt-get -y install jq
   pre_build:
     commands:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
