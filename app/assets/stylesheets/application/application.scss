@@ -1006,6 +1006,9 @@ body .modal .form-horizontal {
   margin: inherit;
 }
 
+body .form-group.error label.control-label {
+  color: red;
+}
 body.hoshin form.inline-form input, body.hoshin .in-place-form input {
   border: 0;
   background: #fff;

@@ -171,9 +171,14 @@
             <btn-radio-group:active_subscription.billing_period selected-option="#{period_param || 'monthly'}" data-monthly-price="#{monthly_price}" data-annual-price="#{annual_price}"/>
         </do>
         <do param="billing-details">
-            <h3><t key="billing_details.billing_details"/></h3>
-            <field-list fields="company_name, contact_name, contact_email, address_line_1, address_line_2, city, state, zip, country, vat_number" param>
-                <vat-number-view: replace><input class="form-control" autocomplete="vat-number"/></vat-number-view:>
+            <h3><t key="billing_details.billing_details"/><
+            /h3>
+            <field-list
+                fields="company_name, contact_name, contact_email, address_line_1, address_line_2, city, state, zip, country, vat_number"
+                required="company_name, contact_name, contact_email, address_line_1, city, state, zip, country, vat_number"
+                param
+            >
+                <vat-number-view: replace><input class="form-control" autocomplete="vat-number" required="required"/></vat-number-view:>
             </field-list>
             <input type="hidden" name="total" id="calc-total"/>
             <input type="hidden" name="taxes" id="calc-taxes"/>

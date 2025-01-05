@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210908064035) do
+ActiveRecord::Schema.define(version: 20250105140411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,34 @@ ActiveRecord::Schema.define(version: 20210908064035) do
   add_index "authorizations", ["uid"], name: "index_authorizations_on_uid", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
+  create_table "bd", id: false, force: :cascade do |t|
+    t.integer  "id",                                  null: false
+    t.string   "company_name"
+    t.string   "address_line_1"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "vat_number"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "stripe_client_id"
+    t.string   "card_brand"
+    t.string   "card_last4"
+    t.integer  "card_exp_month"
+    t.integer  "card_exp_year"
+    t.string   "card_stripe_token"
+    t.integer  "creator_id"
+    t.integer  "company_id"
+    t.datetime "deleted_at"
+    t.boolean  "vies_valid",          default: false
+    t.string   "sage_one_contact_id"
+    t.string   "card_name"
+  end
+
   create_table "billing_details", force: :cascade do |t|
     t.string   "company_name"
     t.string   "address_line_1"
@@ -100,13 +128,16 @@ ActiveRecord::Schema.define(version: 20210908064035) do
     t.integer  "creator_id"
     t.integer  "company_id"
     t.datetime "deleted_at"
-    t.boolean  "vies_valid",            default: false
+    t.boolean  "vies_valid",                 default: false
     t.string   "sage_one_contact_id"
     t.string   "card_name"
     t.string   "send_invoice_cc"
     t.string   "stripe_payment_method"
+    t.string   "sage_active_third_party_id"
+    t.string   "chargebee_id"
   end
 
+  add_index "billing_details", ["chargebee_id"], name: "index_billing_details_on_chargebee_id", unique: true, using: :btree
   add_index "billing_details", ["company_id"], name: "index_billing_details_on_company_id", unique: true, using: :btree
   add_index "billing_details", ["creator_id"], name: "index_billing_details_on_creator_id", using: :btree
 
@@ -137,6 +168,7 @@ ActiveRecord::Schema.define(version: 20210908064035) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "chargebee_id"
+    t.string   "sage_active_id"
   end
 
   create_table "client_applications", force: :cascade do |t|
@@ -430,14 +462,19 @@ ActiveRecord::Schema.define(version: 20210908064035) do
   create_table "invoices", force: :cascade do |t|
     t.string   "sage_one_invoice_id"
     t.string   "description"
-    t.decimal  "total_amount",        precision: 8, scale: 2
+    t.decimal  "total_amount",                   precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subscription_id"
-    t.decimal  "net_amount",          precision: 8, scale: 2
-    t.decimal  "tax_tpc",             precision: 8, scale: 2
+    t.decimal  "net_amount",                     precision: 8, scale: 2
+    t.decimal  "tax_tpc",                        precision: 8, scale: 2
+    t.string   "sage_active_invoice_id"
+    t.integer  "billing_detail_id"
+    t.string   "sage_active_operational_number"
   end
 
+  add_index "invoices", ["billing_detail_id"], name: "index_invoices_on_billing_detail_id", using: :btree
+  add_index "invoices", ["sage_active_operational_number"], name: "index_invoices_on_sage_active_operational_number", unique: true, using: :btree
   add_index "invoices", ["subscription_id"], name: "index_invoices_on_subscription_id", using: :btree
 
   create_table "logs", force: :cascade do |t|
@@ -537,6 +574,28 @@ ActiveRecord::Schema.define(version: 20210908064035) do
   end
 
   add_index "paypal_buttons", ["product"], name: "index_paypal_buttons_on_product", unique: true, using: :btree
+
+  create_table "sage_active_countries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "iso_code_alpha2"
+    t.string   "iso_code_alpha3"
+    t.string   "iso_number"
+    t.string   "legislation_country_code"
+    t.string   "vies_code"
+    t.datetime "creationDate"
+    t.datetime "modificationDate"
+  end
+
+  add_index "sage_active_countries", ["iso_code_alpha2"], name: "index_sage_active_countries_on_iso_code_alpha2", unique: true, using: :btree
+
+  create_table "sage_actives", force: :cascade do |t|
+    t.string   "access_token"
+    t.datetime "expires_at"
+    t.string   "refresh_token"
+    t.string   "scopes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sage_ones", force: :cascade do |t|
     t.string   "access_token"

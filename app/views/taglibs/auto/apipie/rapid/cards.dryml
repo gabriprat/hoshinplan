@@ -8,7 +8,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -43,7 +43,7 @@
 <def tag="card" for="AuthProvider">
   <card class="auth-provider" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -62,7 +62,7 @@
 <def tag="card" for="BillingDetail">
   <card class="billing-detail" param="default" merge>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -70,8 +70,11 @@
 <def tag="card" for="BillingPlan">
   <card class="billing-plan" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
   </card>
 </def>
 
@@ -119,7 +122,7 @@
 <def tag="card" for="ClockworkEvent">
   <card class="clockwork-event" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -127,10 +130,10 @@
 <def tag="card" for="Company">
   <card class="company" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
       <ht key="hoshin.collection.count" count="&this.hoshins.size">
          <count:hoshins param/>
       </ht>
@@ -169,7 +172,7 @@
   <card class="generic-comment" param="default" merge>
     <body: param>
       <view:body param="description"/>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -180,7 +183,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -226,7 +229,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
       <ht key="area.collection.count" count="&this.areas.size">
          <count:areas param/>
       </ht>
@@ -260,7 +263,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -279,7 +282,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -287,7 +290,7 @@
 <def tag="card" for="IndicatorHistory">
   <card class="indicator-history" param="default" merge>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -314,7 +317,7 @@
 <def tag="card" for="InvitationCode">
   <card class="invitation-code" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -334,7 +337,7 @@
     </header:>
     <body: param>
       <view:body param="description"/>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -354,7 +357,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -389,7 +392,7 @@
 <def tag="card" for="OpenidProvider">
   <card class="openid-provider" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -400,7 +403,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
       <ht key="user.collection.count" count="&this.users.size">
          <count:users param/>
       </ht>
@@ -419,7 +422,7 @@
 <def tag="card" for="PaypalButton">
   <card class="paypal-button" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -451,7 +454,7 @@
 <def tag="card" for="SamlProvider">
   <card class="saml-provider" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -459,7 +462,7 @@
 <def tag="card" for="Subscription">
   <card class="subscription" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -467,7 +470,7 @@
 <def tag="card" for="SubscriptionPaypal">
   <card class="subscription-paypal" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -475,7 +478,7 @@
 <def tag="card" for="SubscriptionStripe">
   <card class="subscription-stripe" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -486,7 +489,7 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -498,7 +501,7 @@
     </header:>
     <body: param>
       <view:description param="description"/>
-      <a:creator param="creator-link"/>
+      <view:creator param="creator"/>
     </body:>
   </card>
 </def>
@@ -541,7 +544,7 @@
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>
@@ -557,7 +560,7 @@
 <def tag="card" for="Webhook">
   <card class="webhook" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>

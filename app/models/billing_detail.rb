@@ -23,6 +23,8 @@ class BillingDetail < ApplicationRecord
     country HoboFields::Types::Country, :required
     stripe_client_id :string
     sage_one_contact_id :string
+    sage_active_third_party_id :string
+    chargebee_id :string, :unique, :index => true
     card_name :string
     card_brand :string
     card_last4 :string
@@ -38,23 +40,25 @@ class BillingDetail < ApplicationRecord
 
   attr_accessible :company_name, :contact_name, :contact_email, :address_line_1, :address_line_2, :city, :state, :zip, :country,
     :vat_number, :stripe_client_id, :card_brand, :card_name, :card_last4, :card_exp_month, :card_exp_year, :card_stripe_token, :plan_name,
-    :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid, :sage_one_contact_id, :stripe_payment_method
+    :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid, :sage_one_contact_id, :stripe_payment_method, :chargebee_id
 
   set_search_columns :company_name, :contact_name, :contact_email, :vat_number
 
 
-  validates :company_id, :presence => true, :uniqueness => true
+  validates :company_id, :uniqueness => true
   validate :validate_vat_number
 
   belongs_to :creator, :class_name => "User", :creator => true
   belongs_to :company, inverse_of: :billing_details, primary_key: "id"
 
   has_many :subscriptions, inverse_of: :billing_detail
+  has_many :invoices, -> {order created_at: :desc}, :inverse_of => :subscription
+
 
   before_save do |record|
     if record.country_changed? || record.vat_number_changed?
       country = record.country.alpha2
-      vn = Valvat.new(country + record.vat_number)
+      vn = Valvat.new(country + record.vat_number.to_s)
       if record.eu?
         vv = vn.exist?(raise_error: true)
         record.vies_valid = vv

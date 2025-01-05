@@ -421,6 +421,22 @@
   </card>
 </def>
 
+<def tag="card" for="SageActive">
+  <card class="sage-active" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="SageActiveCountry">
+  <card class="sage-active-country" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="SageOne">
   <card class="sage-one" param="default" merge>
     <header: param>

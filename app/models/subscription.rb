@@ -260,6 +260,7 @@ class SubscriptionStripe < Subscription
       c.credit = 0
       c.save
       i = invoices.create
+      i.billing_detail_id = b.id
       i.total_amount = pay_now_amount
       i.description = billing_description
       i.tax_tpc = b.tax_tpc

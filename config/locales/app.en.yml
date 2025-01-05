@@ -222,7 +222,23 @@ en:
         billing_detail:
           attributes:
             country:
-              blank: "está vacío"
+              blank: "is empty"
+            vat_number:
+              blank: "is empty"
+            company_name:
+              blank: "is empty"
+            address_line_1:
+              blank: "is empty"
+            city:
+              blank: "is empty"
+            state:
+              blank: "is empty"
+            zip:
+              blank: "is empty"
+            contact_name:
+              blank: "is empty"
+            contact_email:
+              blank: "is empty"
         subscription_stripe:
           attributes:
             users:

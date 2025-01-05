@@ -6,15 +6,19 @@ class Invoice < ActiveRecord::Base
 
   fields do
     sage_one_invoice_id :string
+    sage_active_invoice_id :string
+    sage_active_operational_number :string, :unique, :index => true
     description :string, :required
     net_amount :decimal, :required, :precision => 8, :scale => 2
     tax_tpc :decimal, :required, :precision => 8, :scale => 2
     total_amount :decimal, :required, :precision => 8, :scale => 2
     timestamps
   end
-  attr_accessible :description, :net_amount, :tax_tpc, :total_amount
+  attr_accessible :description, :net_amount, :tax_tpc, :total_amount, :sage_active_invoice_id, :sage_one_invoice_id,
+                  :billing_detail_id, :subscription_id, :sage_active_operational_number
 
   belongs_to :subscription, :inverse_of => :invoices
+  belongs_to :billing_detail, :inverse_of => :invoices
 
   default_scope lambda {
     joins(:subscription)

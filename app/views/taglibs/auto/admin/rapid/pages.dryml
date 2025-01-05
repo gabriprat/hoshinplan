@@ -839,7 +839,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="subscription_paypal.actions.new">New Subscription</ht>
+        <ht key="subscription_paypal.actions.new">New Subscription paypal</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -855,20 +855,20 @@
 
 
 <def tag="new-page" for="SubscriptionPaypal">
-  <page merge title="#{ht 'subscription_paypal.new.title', :default=>[' New Subscription'] }">
+  <page merge title="#{ht 'subscription_paypal.new.title', :default=>[' New Subscription paypal'] }">
     <body: class="new-page subscription-paypal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_paypal.new.heading">
-          New Subscription
+          New Subscription paypal
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'subscription_paypal.actions.create', :default=>['Create Subscription']}"/>
+        <submit: label="#{ht 'subscription_paypal.actions.create', :default=>['Create Subscription paypal']}"/>
       </form>
     </content-body:>
   </page>
@@ -876,14 +876,14 @@
 
 
 <def tag="show-page" for="SubscriptionPaypal">
-  <page merge title="#{ht 'subscription_paypal.show.title', :default=>['Subscription'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'subscription_paypal.show.title', :default=>['Subscription paypal'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page subscription-paypal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_paypal.show.heading" name="#{name(:no_wrapper => true)}">
-          Subscription <name/>
+          Subscription paypal <name/>
         </ht>
       </h2>
 
@@ -891,7 +891,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="subscription_paypal.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Subscription
+          Edit Subscription paypal
         </ht>
       </a>
     </content-header:>
@@ -905,17 +905,17 @@
 
 
 <def tag="edit-page" for="SubscriptionPaypal">
-  <page merge title="#{ht 'subscription_paypal.edit.title', :default=>['Edit Subscription'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'subscription_paypal.edit.title', :default=>['Edit Subscription paypal'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page subscription-paypal" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_paypal.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Subscription
+          Edit Subscription paypal
         </ht>
       </h2>
-      <delete-button label="#{ht 'subscription_paypal.actions.delete', :default=>['Remove This Subscription']}" param/>
+      <delete-button label="#{ht 'subscription_paypal.actions.delete', :default=>['Remove This Subscription paypal']}" param/>
     </content-header:>
 
     <content-body: param>
@@ -951,7 +951,7 @@
 
     <content-body: param>
       <a action="new" to="&model" param="new-link">
-        <ht key="subscription_stripe.actions.new">New Subscription</ht>
+        <ht key="subscription_stripe.actions.new">New Subscription stripe</ht>
       </a>
 
       <page-nav param="top-page-nav"/>
@@ -967,20 +967,20 @@
 
 
 <def tag="new-page" for="SubscriptionStripe">
-  <page merge title="#{ht 'subscription_stripe.new.title', :default=>[' New Subscription'] }">
+  <page merge title="#{ht 'subscription_stripe.new.title', :default=>[' New Subscription stripe'] }">
     <body: class="new-page subscription-stripe" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_stripe.new.heading">
-          New Subscription
+          New Subscription stripe
         </ht>
       </h2>
     </content-header:>
 
     <content-body: param>
       <form param>
-        <submit: label="#{ht 'subscription_stripe.actions.create', :default=>['Create Subscription']}"/>
+        <submit: label="#{ht 'subscription_stripe.actions.create', :default=>['Create Subscription stripe']}"/>
       </form>
     </content-body:>
   </page>
@@ -988,14 +988,14 @@
 
 
 <def tag="show-page" for="SubscriptionStripe">
-  <page merge title="#{ht 'subscription_stripe.show.title', :default=>['Subscription'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'subscription_stripe.show.title', :default=>['Subscription stripe'], :name => name(:no_wrapper => true) }" without-aside >
 
     <body: class="show-page subscription-stripe" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_stripe.show.heading" name="#{name(:no_wrapper => true)}">
-          Subscription <name/>
+          Subscription stripe <name/>
         </ht>
       </h2>
 
@@ -1003,7 +1003,7 @@
 
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="subscription_stripe.actions.edit" name="#{name(:no_wrapper => true)}">
-          Edit Subscription
+          Edit Subscription stripe
         </ht>
       </a>
     </content-header:>
@@ -1017,17 +1017,17 @@
 
 
 <def tag="edit-page" for="SubscriptionStripe">
-  <page merge title="#{ht 'subscription_stripe.edit.title', :default=>['Edit Subscription'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'subscription_stripe.edit.title', :default=>['Edit Subscription stripe'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page subscription-stripe" param/>
 
     <content-header: param>
       <h2 param="heading">
         <ht key="subscription_stripe.edit.heading" name="#{name(:no_wrapper => true)}">
-          Edit Subscription
+          Edit Subscription stripe
         </ht>
       </h2>
-      <delete-button label="#{ht 'subscription_stripe.actions.delete', :default=>['Remove This Subscription']}" param/>
+      <delete-button label="#{ht 'subscription_stripe.actions.delete', :default=>['Remove This Subscription stripe']}" param/>
     </content-header:>
 
     <content-body: param>

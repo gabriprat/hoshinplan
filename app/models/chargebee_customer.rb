@@ -6,6 +6,7 @@ class ChargebeeCustomer < ApplicationRecord
   fields do
     chargebee_id :string
     sage_id  :string
+    sage_active_id :string
     timestamps
   end
   attr_accessible :id, :sage_id, :chargebee_id

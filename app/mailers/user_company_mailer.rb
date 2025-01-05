@@ -278,9 +278,9 @@ class UserCompanyMailer < ActionMailer::Base
     end
   end
 
-  def admin_sage_sync_error(subscription, text)
+  def admin_sage_sync_error(invoice, text)
     sendgrid_category "sage_sync_error"
-    mail(:subject => "Sage sync error for subscription #{subscription.id}!",
+    mail(:subject => "Sage sync error for invoice #{invoice.id}!",
          :to => User.administrator.pluck(:email_address),
          :from => "Hoshinplan Jobs <no-reply@hoshinplan.com>") do |format|
       format.html {

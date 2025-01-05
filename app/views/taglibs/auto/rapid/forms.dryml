@@ -229,7 +229,7 @@
 <def tag="form" for="Invoice">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="description, net_amount, tax_tpc, total_amount, subscription" param/>
+    <field-list fields="description, net_amount, tax_tpc, total_amount, billing_detail, subscription" param/>
     <div param="actions">
       <submit label="#{ht 'invoice.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -223,6 +223,22 @@ es:
           attributes:
             country:
               blank: "está vacío"
+            vat_number:
+              blank: "está vacío"
+            company_name:
+              blank: "está vacío"
+            address_line_1:
+              blank: "está vacío"
+            city:
+              blank: "está vacío"
+            state:
+              blank: "está vacío"
+            zip:
+              blank: "está vacío"
+            contact_name:
+              blank: "está vacío"
+            contact_email:
+              blank: "está vacío"
         subscription_stripe:
           attributes:
             users:

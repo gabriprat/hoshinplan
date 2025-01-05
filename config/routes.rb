@@ -75,6 +75,8 @@ Hoshinplan::Application.routes.draw do
   get 'healthupdate' => 'front#healthupdate', :as => 'healthupdate'
 
   get 'sageonesync' => 'front#sageonesync', :as => 'sageonesync'
+  
+  get 'sageactivesync' => 'front#sageactivesync', :as => 'sageactivesync'
 
   get 'sendtrial' => 'front#sendtrial', :as => 'sendtrial'
 
@@ -184,7 +186,7 @@ Hoshinplan::Application.routes.draw do
   PartnersDynamicRouter.load
 
   constraints HasBasicAuth do
-    post "/chargebee/webhook" => "sage_one#cb_webhook"
+    post "/chargebee/webhook" => "sage_active#cb_webhook"
   end
 
   constraints IsAdministrator do
@@ -203,6 +205,24 @@ Hoshinplan::Application.routes.draw do
     get "/sage_one/tax_rates" => "sage_one#tax_rates"
     get "/sage_one/renew_token" => "sage_one#renew_token"
     get "/sage_one/send_invoice/:id" => "sage_one#send_invoice"
+
+    get 'sage_active/auth', to: 'sage_active#auth'
+    get 'sage_active/callback', to: 'sage_active#callback'
+    post 'sage_active/create_invoice', to: 'sage_active#create_invoice'
+    get 'sage_active/sales_invoices', to: 'sage_active#sales_invoices'
+    get 'sage_active/sales_invoices/:id', to: 'sage_active#sales_invoice'
+    get 'sage_active/sales_invoices/by_operational_number/:operational_number', to: 'sage_active#sales_invoice_by_operational_number'
+    get 'sage_active/create_contact/for_billing_detail/:billing_detail_id', to: 'sage_active#create_contact_for_billing_detail'
+    get 'sage_active/contacts', to: 'sage_active#contacts'
+    get 'sage_active/contacts/:id', to: 'sage_active#contact'
+    get 'sage_active/contacts/by_document/:documentId', to: 'sage_active#contact_by_document', as: 'sage_active_contact_by_document'
+    get 'sage_active/create_invoices', to: 'sage_active#create_invoices'
+    get 'sage_active/ledger_accounts', to: 'sage_active#ledger_accounts'
+    get 'sage_active/tax_rates', to: 'sage_active#tax_rates'
+    get 'sage_active/renew_token', to: 'sage_active#renew_token'
+    get 'sage_active/send_invoice/:id', to: 'sage_active#send_invoice'
+    get 'sage_active/countries', to: 'sage_active#countries'
+    get 'sage_active/countries/populate', to: 'sage_active#populate_countries'
   end
   
   # The priority is based upon order of creation:
@@ -261,5 +281,7 @@ Hoshinplan::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
+  # Add more routes as needed
 
 end
