@@ -13,7 +13,7 @@ phases:
       - sudo apt-get -y --no-install-recommends install postgresql postgresql-contrib
       - sudo service postgresql restart
       - sudo apt-get -y --no-install-recommends install redis-server
-      - sudo ~/.rbenv/versions/2.5.7/bin/gem install bundler
+      - sudo ~/.rbenv/versions/2.5.7/bin/gem install bundler -v 1.17.3
       - sudo ~/.rbenv/versions/2.5.7/bin/gem which bundler
       - ~/.rbenv/versions/2.5.7/bin/gem env
       - ~/.rbenv/versions/2.5.7/bin/bundle install
