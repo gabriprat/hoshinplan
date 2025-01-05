@@ -9,9 +9,14 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t gabriprat/hoshinplan:latest .
+      - docker tag gabriprat/hoshinplan:latest gabriprat/hoshinplan:CodeBuild-$CODEBUILD_BUILD_NUMBER
       - docker tag gabriprat/hoshinplan:latest gabriprat/hoshinplan:latest
   post_build:
     commands:
+      - docker push gabriprat/hoshinplan:CodeBuild-$CODEBUILD_BUILD_NUMBER
       - docker push gabriprat/hoshinplan:latest
+      - ./bin/bump-task.sh CodeBuild-$CODEBUILD_BUILD_NUMBER hoshinplan web
+      - ./bin/bump-task.sh CodeBuild-$CODEBUILD_BUILD_NUMBER hoshinplan-worker workers
+      - ./bin/bump-task.sh CodeBuild-$CODEBUILD_BUILD_NUMBER hoshinplan-clock clock
       - echo Build completed on `date`
 
