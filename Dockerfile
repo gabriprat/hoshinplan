@@ -8,7 +8,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 
 RUN apt-get update
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs libpcre2-dev
 
 RUN bundle install --deployment
 RUN bundle exec passenger --version

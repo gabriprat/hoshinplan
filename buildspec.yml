@@ -1,26 +1,9 @@
 version: 0.1
 
 phases:
-  install:
-    commands:
-      - sudo apt-get update
-      - sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
-      - git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-      - git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-      - ~/.rbenv/bin/rbenv install 2.5.7
-      - ~/.rbenv/bin/rbenv global 2.5.7
-      - ~/.rbenv/bin/rbenv local 2.5.7
-      - sudo apt-get -y --no-install-recommends install postgresql postgresql-contrib
-      - sudo service postgresql restart
-      - sudo apt-get -y --no-install-recommends install redis-server
-      - sudo ~/.rbenv/versions/2.5.7/bin/gem install bundler -v 1.17.3
-      - sudo ~/.rbenv/versions/2.5.7/bin/gem which bundler
-      - ~/.rbenv/versions/2.5.7/bin/gem env
-      - ~/.rbenv/versions/2.5.7/bin/bundle install
   pre_build:
     commands:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - sudo -u postgres psql -c 'create database amazon_codebuild_test;'
   build:
     commands:
       - echo Build started on `date`
