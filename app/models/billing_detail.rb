@@ -45,7 +45,7 @@ class BillingDetail < ApplicationRecord
   set_search_columns :company_name, :contact_name, :contact_email, :vat_number
 
 
-  validates :company_id, :uniqueness => true
+  validates :company_id, :uniqueness => true, allow_nil: true
   validate :validate_vat_number
 
   belongs_to :creator, :class_name => "User", :creator => true
