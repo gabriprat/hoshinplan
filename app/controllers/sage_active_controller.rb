@@ -113,7 +113,6 @@ class SageActiveController < ApplicationController
       zip: billing_address[:zip],
       country: billing_address[:country],
       vat_number: customer[:vat_number],
-      vat_number_status: customer[:vat_number_status]
     )
     billing_detail.save!
 
