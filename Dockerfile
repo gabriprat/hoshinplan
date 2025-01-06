@@ -8,7 +8,8 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 
 RUN apt-get update
-RUN apt-get install -y nodejs libpcre2-dev libxcrypt-compat
+RUN apt-get install -y nodejs libpcre2-dev
+RUN dnf install nginx-plus-module-passenger
 
 RUN bundle install --deployment
 RUN bundle exec passenger --version
