@@ -89,7 +89,8 @@ class SageActive < ActiveRecord::Base
     end
 
     unless billing_detail.sage_active_third_party_id
-      customer = self.get_contact_by_document(billing_detail.vat_number)
+      documentId = billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : billing_detail.vat_number
+      customer = self.get_contact_by_document(documentId)
       self.create_contact(billing_detail) if customer.blank?
     end
 
