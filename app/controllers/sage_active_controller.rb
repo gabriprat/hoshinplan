@@ -127,6 +127,8 @@ class SageActiveController < ApplicationController
     else
       # Create new contact
       response = SageActive.create_contact(billing_detail)
+      billing_detail.sage_active_third_party_id = response['id']
+      billing_detail.save!
     end
     response
   end

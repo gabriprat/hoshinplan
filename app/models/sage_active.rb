@@ -275,7 +275,8 @@ class SageActive < ActiveRecord::Base
     GRAPHQL
 
     variables = { values: generate_contact_data(billing_detail) }
-    call_api(query, variables)
+    data = call_api(query, variables)
+    data['data']['createCustomer']
   end
 
   def self.update_contact(id, billing_detail)
