@@ -2334,7 +2334,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="net_amount, tax_tpc, total_amount, billing_detail, subscription" param/>
+      <field-list fields="sage_active_operational_number, net_amount, tax_tpc, total_amount, billing_detail, subscription" param/>
     </content-body:>
 
   </page>

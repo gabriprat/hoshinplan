@@ -32,7 +32,9 @@ class SageActive < ActiveRecord::Base
 
     begin
       response = RestClient.post(url, payload, headers)
-      JSON.parse(response.body)
+      ret = JSON.parse(response.body)
+      raise IOError, ret['errors'][0]['message'] if ret['errors']
+      ret
     rescue RestClient::ExceptionWithResponse => e
       raise IOError, "#{e}: #{e.response}", e.backtrace
     end
@@ -53,7 +55,7 @@ class SageActive < ActiveRecord::Base
   def renew_token!
     url = Rails.configuration.sageactive[:token_endpoint]
     payload = {
-      grant_type:   'refresh_token',
+      grant_type: 'refresh_token',
       client_id: Rails.configuration.sageactive[:client_id],
       client_secret: Rails.configuration.sageactive[:client_secret],
       refresh_token: self.refresh_token
@@ -159,7 +161,6 @@ class SageActive < ActiveRecord::Base
     nodes = data.dig('data', 'salesInvoiceOpenItems', 'edges')
     nodes.map { |node| node['node'] }
   end
-
 
   def self.close_invoice(invoice)
     query = <<-GRAPHQL
@@ -280,6 +281,7 @@ class SageActive < ActiveRecord::Base
   end
 
   def self.update_contact(id, billing_detail)
+    existingCustomer = get_contact(id)
     query = <<-GRAPHQL
       mutation($values: CustomerUpdateGLDtoInput!) {
         updateCustomer(input: $values) {
@@ -288,8 +290,9 @@ class SageActive < ActiveRecord::Base
       }
     GRAPHQL
 
-    variables = { values: generate_contact_data(billing_detail).merge(id: id) }
-    call_api(query, variables)
+    values = generate_contact_data(billing_detail)
+    apply_requested_actions(existingCustomer, values)
+    call_api(query, { values: values })
   end
 
   # Method to retrieve contacts
@@ -417,19 +420,23 @@ class SageActive < ActiveRecord::Base
         isDefaultDeliveryAddress
       }
       contacts {
+        id
         isDefault
         courtesy
         name
         surname
         emails {
+          id
           emailAddress
           usage
         }
         phones {
+          id
           number
           type
         }
         socialMedias {
+          id
           link
           name
         }
@@ -578,25 +585,25 @@ class SageActive < ActiveRecord::Base
       "vatNumber" => billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : billing_detail.vat_number,
       "socialName" => billing_detail.company_name,
       "addresses" => [{
-        "firstLine" => address_line_1,
-        "secondLine" => address_line_2,
-        "city" => billing_detail.city,
-        "province" => billing_detail.state,
-        "zipCode" => billing_detail.zip,
-        "countryIsoCodeAlpha2" => billing_detail.country.alpha2
-      }],
+                        "firstLine" => address_line_1,
+                        "secondLine" => address_line_2,
+                        "city" => billing_detail.city,
+                        "province" => billing_detail.state,
+                        "zipCode" => billing_detail.zip,
+                        "countryIsoCodeAlpha2" => billing_detail.country.alpha2
+                      }],
       "contacts" => [{
-        "isDefault" => true,
-        "name" => billing_detail.contact_name.split.first,
-        "surname" => billing_detail.contact_name.split.last,
-        "emails" => [{
-          "isDefault" => true,
-          "emailAddress" => billing_detail.contact_email,
-          "usage" => "EMPTY"
-        }]
-      }]
+                       "isDefault" => true,
+                       "name" => billing_detail.contact_name.split.first,
+                       "surname" => billing_detail.contact_name.split.last,
+                       "emails" => [{
+                                      "isDefault" => true,
+                                      "emailAddress" => billing_detail.contact_email,
+                                      "usage" => 'EMPTY'
+                                    }]
+                     }]
     }
-    
+
     contact_data
   end
 
@@ -630,6 +637,40 @@ class SageActive < ActiveRecord::Base
       viesCode
     }
   GRAPHQL
+
+  def self.apply_requested_actions(existing, updated)
+    if (existing.present? && updated.present?)
+      updated['requestedAction'] = 'MODIFY'
+      updated['id'] = existing['id']
+      updated.each do |key, value|
+        if value.is_a?(Array)
+          existing_items = existing[key] || []
+          updated_items = value
+
+          # Mark existing items for deletion if not present in updated
+          existing_items.each_with_index do |existing_item, index|
+            unless updated_items[index]
+              existing_item['requestedAction'] = 'DELETE'
+              updated_items << existing_item
+            end
+          end
+
+          # Mark updated items for creation or modification
+          updated_items.each_with_index do |updated_item, index|
+            if existing_item = existing_items[index]
+              updated_item['requestedAction'] = 'MODIFY'
+              # Recursively handle nested structures
+              apply_requested_actions(existing_item, updated_item)
+            else
+              updated_item['requestedAction'] = 'CREATE'
+            end
+          end
+        elsif value.is_a?(Hash)
+          apply_requested_actions(existing[key] || {}, value)
+        end
+      end
+    end
+  end
 end
 
 class SageActiveCountry < ActiveRecord::Base
