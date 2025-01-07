@@ -13,19 +13,20 @@ module Jobs
         invoices.each do |invoice|
           begin
             resp = SageActive.create_sales_invoice(invoice)
+            invoice.sage_active_invoice_id = resp['data']['createSalesInvoice']['id']
+            invoice.save!(validate: false)
+            resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
             if resp['status'] == 'Pending'
-              resp = SageActive.close_invoice(invoice)
+              SageActive.close_invoice(invoice)
               resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
             end
             if resp['status'] == 'Closed'
-              resp = SageActive.post_invoice(invoice)
+              SageActive.post_invoice(invoice)
               resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
             end
             if resp['status'] == 'Posted'
-              resp = SageActive.pay_sales_invoice(invoice)
+              SageActive.pay_sales_invoice(invoice)
             end
-            invoice.sage_active_invoice_id = resp['data']['createSalesInvoice']['id']
-            invoice.save!(validate: false)
             ret += Jobs::say " ==== Sending invoice #{invoice.id}\n"
             UserCompanyMailer.invoice(invoice.id).deliver_later
           rescue => e
