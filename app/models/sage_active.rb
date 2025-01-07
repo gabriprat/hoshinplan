@@ -93,7 +93,7 @@ class SageActive < ActiveRecord::Base
       if customer.blank?
         self.create_contact(billing_detail)
       else
-        billing_detail.sage_active_third_party_id = response['id']
+        billing_detail.sage_active_third_party_id = customer['id']
       end
     end
 
