@@ -89,9 +89,12 @@ class SageActive < ActiveRecord::Base
     end
 
     unless billing_detail.sage_active_third_party_id
-      documentId = billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : billing_detail.vat_number
-      customer = self.get_contact_by_document(documentId)
-      self.create_contact(billing_detail) if customer.blank?
+      customer = self.get_contact_by_document(billing_detail.vat_number)
+      if customer.blank?
+        self.create_contact(billing_detail)
+      else
+        billing_detail.sage_active_third_party_id = response['id']
+      end
     end
 
     query = <<-GRAPHQL
@@ -582,7 +585,7 @@ class SageActive < ActiveRecord::Base
 
     contact_data = {
       "code" => "HP#{billing_detail.id}",
-      "documentId" => billing_detail.vat_number || 'N/A',
+      "documentId" => billing_detail.vat_number || "N/A-#{billing_detail.id}",
       "vatNumber" => billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : billing_detail.vat_number,
       "socialName" => billing_detail.company_name,
       "addresses" => [{
