@@ -122,6 +122,8 @@ class SageActive < ActiveRecord::Base
 
     if invoice.sage_active_operational_number.present?
       invoice_data[:operationalNumber] = invoice.sage_active_operational_number
+    else
+      invoice_data[:operationalNumberPresetTextId] = "19cde8b4-8479-4eb6-a75b-4710b28af08b"
     end
 
     variables = { input: invoice_data }
