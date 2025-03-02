@@ -72,7 +72,7 @@ gem 'protected_attributes'
 #gem 'hobo_tokeninput', :git => 'git://github.com/Hobo/hobo_tokeninput.git'
 gem 'nested_has_many_through'
 gem 'actionmailer_inline_css'
-
+gem 'blankslate'
 gem 'bigdecimal', '~> 1.4'
 gem 'actionpack'
 gem 'delocalize'

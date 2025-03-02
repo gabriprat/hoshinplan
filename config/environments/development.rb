@@ -27,8 +27,7 @@ config.action_mailer.delivery_method = :smtp
 # Send mails through mailcatcher gem. Start smtpserver by typing:
 # $ mailcatcher
 # View mails at http://127.0.0.1:1080
-config.action_mailer.smtp_settings = { address: 'localhost',
-                                         port: 1025 }
+config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
 # Defaults to:
 # config.action_mailer.sendmail_settings = {
 #   :location => '/usr/sbin/sendmail',

@@ -34,6 +34,7 @@ class ApipieController < ApplicationController
     I18n.locale = @language
     @doc = Apipie.to_json(params[:version], nil, nil, @language)
     @doc = @doc[:docs] if @doc
+    @doc[:link_extension] = ''
     @resource = @doc[:resources][params[:resource]] if @doc && params[:resource].present?
     @method = Apipie.to_json(params[:version], params[:resource], params[:method], @language) if @doc && params[:method].present?
     @method = @method[:docs][:resources].first[:methods].first if @method
