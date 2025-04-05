@@ -30,7 +30,7 @@ module Jobs
             ret += Jobs::say " ==== Sending invoice #{invoice.id}\n"
             UserCompanyMailer.invoice(invoice.id).deliver_later
           rescue => e
-            text = "Error synchronizing invoice #{invoice.id}\n" + e.inspect + "\n" + e.backtrace.to_yaml + "\n"
+            text = "Error synchronizing invoice #{invoice.id}. Billing detail: #{invoice.billing_detail}.\n" + e.message + "\n" + e.backtrace.to_yaml + "\n"
             ret += Jobs::say text
             UserCompanyMailer.admin_sage_sync_error(invoice, text).deliver_later
           end
