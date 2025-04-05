@@ -11,6 +11,7 @@
     <nav-item with="&ClockworkEvent"><ht key="clockwork_event.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Company"><ht key="company.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&InvitationCode"><ht key="invitation_code.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Invoice"><ht key="invoice.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&OpenidProvider"><ht key="openid_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&PaypalButton"><ht key="paypal_button.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&SamlProvider"><ht key="saml_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -468,6 +469,119 @@
         </ht>
       </h2>
       <delete-button label="#{ht 'invitation_code.actions.delete', :default=>['Remove This Invitation code']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Invoice Pages ====== -->
+
+<def tag="index-page" for="Invoice">
+  <page merge title="#{ht 'invoice.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="invoice.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="invoice.actions.new">New Invoice</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Invoice">
+  <page merge title="#{ht 'invoice.new.title', :default=>[' New Invoice'] }">
+    <body: class="new-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.new.heading">
+          New Invoice
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'invoice.actions.create', :default=>['Create Invoice']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Invoice">
+  <page merge title="#{ht 'invoice.show.title', :default=>['Invoice'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.show.heading" name="#{name(:no_wrapper => true)}">
+          Invoice <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="invoice.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Invoice
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <view:description param="description" />
+      <field-list fields="sage_active_operational_number, net_amount, tax_tpc, total_amount, billing_detail, subscription" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Invoice">
+  <page merge title="#{ht 'invoice.edit.title', :default=>['Edit Invoice'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page invoice" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="invoice.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Invoice
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'invoice.actions.delete', :default=>['Remove This Invoice']}" param/>
     </content-header:>
 
     <content-body: param>

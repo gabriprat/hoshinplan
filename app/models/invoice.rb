@@ -14,7 +14,7 @@ class Invoice < ActiveRecord::Base
     total_amount :decimal, :required, :precision => 8, :scale => 2
     timestamps
   end
-  attr_accessible :description, :net_amount, :tax_tpc, :total_amount, :sage_active_invoice_id, :sage_one_invoice_id,
+  attr_accessible :id, :created_at, :description, :net_amount, :tax_tpc, :total_amount, :sage_active_invoice_id, :sage_one_invoice_id,
                   :billing_detail_id, :subscription_id, :sage_active_operational_number
 
   belongs_to :subscription, :inverse_of => :invoices

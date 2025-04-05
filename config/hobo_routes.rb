@@ -598,6 +598,10 @@ Hoshinplan::Application.routes.draw do
     # Resource routes for controller admin/clockwork_events
     resources :clockwork_events
 
+
+    # Resource routes for controller admin/invoices
+    resources :invoices
+
   end
 
   namespace :apipie do
