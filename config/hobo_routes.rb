@@ -602,6 +602,10 @@ Hoshinplan::Application.routes.draw do
     # Resource routes for controller admin/invoices
     resources :invoices
 
+
+    # Resource routes for controller admin/billing_details
+    resources :billing_details
+
   end
 
   namespace :apipie do

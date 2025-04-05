@@ -38,9 +38,10 @@ class BillingDetail < ApplicationRecord
 
   index [:company_id], :unique => true
 
-  attr_accessible :company_name, :contact_name, :contact_email, :address_line_1, :address_line_2, :city, :state, :zip, :country,
-    :vat_number, :stripe_client_id, :card_brand, :card_name, :card_last4, :card_exp_month, :card_exp_year, :card_stripe_token, :plan_name,
-    :price_per_user, :users, :billing_period, :active_subscription, :company_id, :creator_id, :vies_valid, :sage_one_contact_id, :stripe_payment_method, :chargebee_id
+  attr_accessible :id, :company_name, :contact_name, :contact_email, :address_line_1, :address_line_2, :city, :state,
+                  :zip, :country, :vat_number, :stripe_client_id, :card_brand, :card_name, :card_last4, :card_exp_month,
+                  :card_exp_year, :card_stripe_token, :company_id, :creator_id, :vies_valid, :sage_one_contact_id,
+                  :stripe_payment_method, :chargebee_id
 
   set_search_columns :company_name, :contact_name, :contact_email, :vat_number
 

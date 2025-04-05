@@ -61,6 +61,9 @@
 
 <def tag="card" for="BillingDetail">
   <card class="billing-detail" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
     <body: param>
       <a:creator param="creator-link"/>
     </body:>

@@ -6,7 +6,7 @@ class Admin::InvoicesController  < Admin::AdminSiteController
 
   def index
     if params[:search].present?
-      @invoices = Hobo.find_by_search(params[:search], [Invoice.unscoped])[User.sage_active_operational_number]
+      @invoices = Hobo.find_by_search(params[:search], [Invoice.unscoped])[Invoice.sage_active_operational_number]
       @invoices ||= Invoice.where('1=0')
     else
       @invoices = Invoice.unscoped.all

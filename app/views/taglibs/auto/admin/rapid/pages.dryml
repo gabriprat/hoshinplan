@@ -7,6 +7,7 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&AuthProvider"><ht key="auth_provider.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&BillingDetail"><ht key="billing_detail.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&BillingPlan"><ht key="billing_plan.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&ClockworkEvent"><ht key="clockwork_event.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Company"><ht key="company.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -22,6 +23,120 @@
     <nav-item with="&Webhook"><ht key="webhook.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== BillingDetail Pages ====== -->
+
+<def tag="index-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_detail.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page billing-detail" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="billing_detail.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="billing_detail.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+      <a action="new" to="&model" param="new-link">
+        <ht key="billing_detail.actions.new">New Billing details</ht>
+      </a>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_detail.new.title', :default=>[' New Billing details'] }">
+    <body: class="new-page billing-detail" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="billing_detail.new.heading">
+          New Billing details
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'billing_detail.actions.create', :default=>['Create Billing details']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_detail.show.title', :default=>['Billing details'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page billing-detail" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="billing_detail.show.heading" name="#{name(:no_wrapper => true)}">
+          Billing details <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="vies_valid" param/>
+
+      <a:creator param="creator-link"/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="billing_detail.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit Billing details
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="company_name, address_line_1, address_line_2, city, state, zip, contact_name, contact_email, send_invoice_cc, vat_number, country, card_name, card_brand, card_last4, card_exp_month, card_exp_year, card_stripe_token, stripe_payment_method, company" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BillingDetail">
+  <page merge title="#{ht 'billing_detail.edit.title', :default=>['Edit Billing details'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page billing-detail" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="billing_detail.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Billing details
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'billing_detail.actions.delete', :default=>['Remove This Billing details']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
 
 
 

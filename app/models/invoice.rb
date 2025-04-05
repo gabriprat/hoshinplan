@@ -15,7 +15,7 @@ class Invoice < ActiveRecord::Base
     timestamps
   end
   attr_accessible :id, :created_at, :description, :net_amount, :tax_tpc, :total_amount, :sage_active_invoice_id, :sage_one_invoice_id,
-                  :billing_detail_id, :subscription_id, :sage_active_operational_number
+                  :billing_detail, :billing_detail_id, :subscription_id, :sage_active_operational_number
 
   belongs_to :subscription, :inverse_of => :invoices
   belongs_to :billing_detail, :inverse_of => :invoices
