@@ -520,6 +520,14 @@ Hoshinplan::Application.routes.draw do
   namespace :admin do
 
 
+    # Resource routes for controller admin/invoices
+    resources :invoices
+
+
+    # Resource routes for controller admin/billing_details
+    resources :billing_details
+
+
     # Resource routes for controller admin/webhooks
     resources :webhooks do
       collection do
@@ -597,14 +605,6 @@ Hoshinplan::Application.routes.draw do
 
     # Resource routes for controller admin/clockwork_events
     resources :clockwork_events
-
-
-    # Resource routes for controller admin/invoices
-    resources :invoices
-
-
-    # Resource routes for controller admin/billing_details
-    resources :billing_details
 
   end
 

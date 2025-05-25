@@ -591,7 +591,7 @@ class SageActive < ActiveRecord::Base
     contact_data = {
       "code" => "HP#{billing_detail.id}",
       "documentId" => billing_detail.vat_number || "N/A-#{billing_detail.id}",
-      "vatNumber" => billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : billing_detail.vat_number,
+      "vatNumber" => billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : '',
       "socialName" => billing_detail.company_name,
       "addresses" => [{
                         "firstLine" => address_line_1,

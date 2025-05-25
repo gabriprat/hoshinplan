@@ -40,7 +40,7 @@ class Invoice < ActiveRecord::Base
       pdf.text "<b>Plazo</b> #{(self.created_at.to_date >> 1).strftime('%d/%m/%Y')}", size: 9, align: :right, :inline_format => true
       pdf.text "<b>Su NIF</b> #{billing_detail.country} #{billing_detail.vat_number}", size: 9, align: :right, :inline_format => true
       pdf.text "<b>Código del cliente</b> HP-#{billing_detail.id}", size: 9, align: :right, :inline_format => true
-      pdf.text "<b>Número de factura</b> #{self.sage_one_invoice_id}", size: 9, align: :right, :inline_format => true
+      pdf.text "<b>Número de factura</b> #{self.sage_one_invoice_id || self.sage_active_operational_number}", size: 9, align: :right, :inline_format => true
     end
 
     pdf.grid([0, 0], [1, 1]).bounding_box do

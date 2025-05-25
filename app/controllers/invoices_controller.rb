@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
   api :GET, '/invoices/:id', 'Get an invoice'
   def show
     self.this = find_instance
-    @filename = "invoice-#{self.this.sage_one_invoice_id}.pdf"
+    @filename = "invoice-#{self.this.sage_one_invoice_id || self.this.sage_active_operational_number}.pdf"
     hobo_show
   end
 

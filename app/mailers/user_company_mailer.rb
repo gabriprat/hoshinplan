@@ -226,11 +226,11 @@ class UserCompanyMailer < ActionMailer::Base
     end
     pdf = PrawnRails::Document.new
     invoice.render_pdf(pdf)
-    attachments["invoice-#{invoice.sage_one_invoice_id}.pdf"] = {
+    attachments["invoice-#{invoice.sage_one_invoice_id || invoice.sage_active_operational_number}.pdf"] = {
         mime_type: 'application/pdf',
         content: pdf.render
     }
-    mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id),
+    mail(:subject => I18n.translate("emails.invoice.subject", id: invoice.sage_one_invoice_id || invoice.sage_active_operational_number),
          :to => to, :cc => cc, :bcc => User.unscoped.administrator.*.email_address) do |format|
       format.html {
         render_email("invoice", {
