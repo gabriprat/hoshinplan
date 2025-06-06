@@ -168,12 +168,12 @@ class SageActiveController < ApplicationController
     response = SageActive.get_sales_invoice_by_operational_number(invoice_params[:id])
     if response
       invoice.sage_active_invoice_id = response['id']
-      invoice.sage_active_operational_number = response['id']
+      invoice.sage_active_operational_number = invoice_params[:id]
       invoice.save!
     else
       response = SageActive.create_sales_invoice(invoice)
       invoice.sage_active_invoice_id = response.dig('data', 'createSalesInvoice', 'id')
-      invoice.sage_active_operational_number = response.dig('data', 'createSalesInvoice', 'id')
+      invoice.sage_active_operational_number = invoice_params[:id]
       invoice.save!
       response = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
     end
