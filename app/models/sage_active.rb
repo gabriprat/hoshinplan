@@ -219,8 +219,8 @@ class SageActive < ActiveRecord::Base
 
     variables = { input: {
       entryDate: invoice.created_at.strftime('%Y-%m-%d'),
-      description: "Full settlement of Invoice #{invoice.sage_active_operational_number}",
-      documentNumber: invoice.sage_active_operational_number,
+      description: "Full settlement of Invoice #{invoice.id}",
+      documentNumber: invoice.id,
       paymentMethodId: '19cde8b4-69e8-4eb6-a75b-4710b28af08b',
       thirdPartyId: invoice.billing_detail.sage_active_third_party_id,
       salesOpenItemLinkagePaidAmounts: open_items.map { |item| {
