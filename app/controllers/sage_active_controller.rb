@@ -103,7 +103,7 @@ class SageActiveController < ApplicationController
     # Find or create the BillingDetail
     billing_detail = BillingDetail.find_or_initialize_by(chargebee_id: customer[:id])
     billing_detail.assign_attributes(
-      company_name: billing_address[:company],
+      company_name: customer[:company],
       contact_name: "#{billing_address[:first_name]} #{billing_address[:last_name]}",
       contact_email: customer[:email],
       address_line_1: billing_address[:line1],
