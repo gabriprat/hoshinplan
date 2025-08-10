@@ -122,7 +122,6 @@ GEM
       activerecord (>= 3.2.6)
     ancestry (3.0.2)
       activerecord (>= 3.2.0)
-    ansi (1.5.0)
     apipie-rails (0.6.0)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
@@ -179,9 +178,9 @@ GEM
     crass (1.0.6)
     css_parser (1.6.0)
       addressable
-    debase (0.2.4.1)
-      debase-ruby_core_source (>= 0.10.2)
-    debase-ruby_core_source (0.10.9)
+    debase (0.2.9)
+      debase-ruby_core_source (>= 3.4.1)
+    debase-ruby_core_source (3.4.1)
     delocalize (1.2.0)
       rails (>= 2)
     detect_timezone_rails (0.0.5)
@@ -209,12 +208,13 @@ GEM
       http_parser.rb (>= 0.6.0)
     em-socksify (0.3.2)
       eventmachine (>= 1.0.0.beta.4)
+    erubi (1.13.1)
     erubis (2.7.0)
     et-orbi (1.2.7)
       tzinfo
     eventmachine (1.0.9.1)
     eventmachine (1.0.9.1-java)
-    excon (0.72.0)
+    excon (0.99.0)
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -241,15 +241,17 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.12.2)
     ffi (1.12.2-java)
-    flipper (0.15.0)
-    flipper-redis (0.15.0)
-      flipper (~> 0.15.0)
-      redis (>= 2.2, < 4.1.0)
-    flipper-ui (0.15.0)
-      erubis (~> 2.7.0)
-      flipper (~> 0.15.0)
+    flipper (0.28.3)
+      concurrent-ruby (< 2)
+    flipper-redis (0.28.3)
+      flipper (~> 0.28.3)
+      redis (>= 3.0, < 6)
+    flipper-ui (0.28.3)
+      erubi (>= 1.0.0, < 2.0.0)
+      flipper (~> 0.28.3)
       rack (>= 1.4, < 3)
-      rack-protection (>= 1.5.3, < 2.1.0)
+      rack-protection (>= 1.5.3, <= 4.0.0)
+      sanitize (< 7)
     fugit (1.5.3)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -419,7 +421,7 @@ GEM
       multi_json (~> 1.0)
       xml-simple
     pdf-core (0.7.0)
-    pg (0.21.0)
+    pg (1.2.3)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -534,6 +536,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rexml (3.1.7.3)
     rinku (2.0.4)
     role_model (0.8.2)
     ruby-hmac (0.4.0)
@@ -542,6 +545,9 @@ GEM
       nokogiri (>= 1.5.10)
     rufus-scheduler (3.6.0)
       fugit (~> 1.1, >= 1.1.6)
+    sanitize (6.1.3)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -589,8 +595,6 @@ GEM
     tilt (2.0.11)
     timeout (0.4.0)
     ttfunk (1.5.1)
-    turn (0.9.6)
-      ansi
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
     uglifier (4.1.10)
@@ -626,7 +630,6 @@ PLATFORMS
 
 DEPENDENCIES
   actionmailer_inline_css
-  actionpack
   active_record_query_trace
   acts_as_list
   amoeba
@@ -637,7 +640,7 @@ DEPENDENCIES
   bitmask_attributes
   blankslate
   bootbox-rails
-  bootstrap-sass
+  bootstrap-sass (= 3.3.5.1)
   bootstrap_tokenfield_rails
   bower-rails (~> 0.11.0)
   clockwork
@@ -648,14 +651,14 @@ DEPENDENCIES
   detect_timezone_rails
   differ
   dotenv-rails
-  excon
+  excon (~> 0.99.0)
   faraday
   faye-authentication
   faye-rails
   faye-redis
-  flipper
-  flipper-redis
-  flipper-ui
+  flipper (~> 0.20)
+  flipper-redis (~> 0.20)
+  flipper-ui (~> 0.20)
   font_assets!
   gemoji-parser
   hobo (>= 2.2.6)
@@ -672,7 +675,7 @@ DEPENDENCIES
   immigrant
   jquery-cookie-rails
   jquery-historyjs
-  jquery-rails
+  jquery-rails (= 2.3.0)
   jquery-textcomplete-rails
   jquery-ui-themes
   json
@@ -694,11 +697,11 @@ DEPENDENCIES
   paranoia
   passenger
   paypal-sdk-rest
-  pg (~> 0)
+  pg (= 1.2.3)
   prawn-rails
   protected_attributes
   quiet_assets
-  rails (~> 4.2.0)
+  rails (= 4.2.11.3)
   rails-observers
   rails_12factor
   rails_handsontable
@@ -714,17 +717,17 @@ DEPENDENCIES
   resque-delay!
   resque-retry
   rest-client
+  rexml (= 3.1.7.3)
   rinku
   role_model
   ruby-hmac
   ruby-openid
   sageone_api_signer!
-  sass-rails
+  sass-rails (~> 5.0)
   secure_headers
   sendgrid4r
   sprockets-rails
   stripe
-  turn
   uglifier
   unscoped_associations
   valvat
@@ -733,7 +736,7 @@ DEPENDENCIES
   yui-compressor
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 2.7.4p191
 
 BUNDLED WITH
    1.17.3
