@@ -8,7 +8,10 @@ memory_adapter = Flipper::Adapters::Memory.new
 adapter = Flipper::Adapters::RedisCache.new(memory_adapter, redis, 4800)
 $flipper = Flipper.new(adapter)
 Rails.application.config.middleware.use Flipper::Middleware::SetupEnv, $flipper
-Rails.application.config.middleware.use Flipper::Middleware::Memoizer
+
+Rails.application.configure do
+  config.flipper.memoize = false
+end
 
 Flipper.register(:admins) do |actor|
   actor.respond_to?(:admin?) && actor.admin?
