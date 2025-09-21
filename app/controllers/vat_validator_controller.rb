@@ -18,7 +18,9 @@ class VatValidatorController < ApplicationController
       if !vat_number.valid?
         errors << t('errors.not_expected_format')
       else
-        valid = country == 'ES' || vat_number.exist?
+        # Accept format-valid VAT numbers for all EU countries
+        # VIES existence is checked separately for tax calculation
+        valid = true
       end
     else
       #Consider valids all VAT numbers that we don't know how to validate

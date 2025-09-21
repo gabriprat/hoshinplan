@@ -77,7 +77,9 @@ class BillingDetail < ApplicationRecord
   def validate_vat_number
     if eu? && !vat_number.empty?
       vn = Valvat.new(country + vat_number)
-      errors.add(:vat_number, I18n.t('errors.not_expected_format')) unless country == 'ES' ? vn.valid? : vn.exist?
+      # Only validate format, not VIES existence
+      # VIES validation is done separately for tax calculation purposes
+      errors.add(:vat_number, I18n.t('errors.not_expected_format')) unless vn.valid?
     end
   end
 
