@@ -104,6 +104,7 @@ class SageActive < ActiveRecord::Base
       mutation($input: SalesInvoiceCreateGLDtoInput!) {
         createSalesInvoice(input: $input) {
           id
+          operationalNumber
         }
       }
     GRAPHQL
@@ -208,6 +209,22 @@ class SageActive < ActiveRecord::Base
   def self.pay_sales_invoice(invoice)
     open_items = get_invoice_open_items(invoice)
 
+    # Get the operational number from the invoice or from the open items
+    operational_number = invoice.sage_active_operational_number
+    if operational_number.blank? && open_items.any?
+      operational_number = open_items.first.dig('salesInvoice', 'operationalNumber')
+      # Update the invoice with the operational number if we found it
+      if operational_number.present?
+        invoice.sage_active_operational_number = operational_number
+        invoice.save!(validate: false)
+      end
+    end
+
+    # Validate that we have an operational number
+    if operational_number.blank?
+      raise "Cannot process payment: operational number not found for invoice #{invoice.id}"
+    end
+
     query = <<-GRAPHQL
       mutation($input: SalesOpenItemSettlementGLDtoInput!) {
         salesOpenItemSettlement(input: $input) {
@@ -219,8 +236,8 @@ class SageActive < ActiveRecord::Base
 
     variables = { input: {
       entryDate: invoice.created_at.strftime('%Y-%m-%d'),
-      description: "Full settlement of Invoice #{invoice.sage_active_operational_number}",
-      documentNumber: invoice.sage_active_operational_number,
+      description: "Full settlement of Invoice #{operational_number}",
+      documentNumber: operational_number,
       paymentMethodId: '19cde8b4-69e8-4eb6-a75b-4710b28af08b',
       thirdPartyId: invoice.billing_detail.sage_active_third_party_id,
       salesOpenItemLinkagePaidAmounts: open_items.map { |item| {
