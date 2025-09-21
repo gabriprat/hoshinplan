@@ -102,6 +102,16 @@ class SageActiveController < ApplicationController
 
     # Find or create the BillingDetail
     billing_detail = BillingDetail.find_or_initialize_by(chargebee_id: customer[:id])
+    
+    # Strip country prefix from VAT number if present
+    # Chargebee might send VAT numbers with country prefix, but our validation expects them without
+    vat_number = customer[:vat_number]
+    if vat_number.present? && billing_address[:country].present?
+      country_code = billing_address[:country]
+      # Remove country prefix if VAT number starts with it
+      vat_number = vat_number.sub(/^#{country_code}/i, '') if vat_number.upcase.start_with?(country_code.upcase)
+    end
+    
     billing_detail.assign_attributes(
       company_name: customer[:company],
       contact_name: "#{billing_address[:first_name]} #{billing_address[:last_name]}",
@@ -112,7 +122,7 @@ class SageActiveController < ApplicationController
       state: billing_address[:state],
       zip: billing_address[:zip],
       country: billing_address[:country],
-      vat_number: customer[:vat_number],
+      vat_number: vat_number,
     )
     billing_detail.save!
 
