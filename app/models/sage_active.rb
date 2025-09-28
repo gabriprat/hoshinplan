@@ -92,11 +92,15 @@ class SageActive < ActiveRecord::Base
     end
 
     unless billing_detail.sage_active_third_party_id
-      customer = self.get_contact_by_document(billing_detail.vat_number)
+      # Only search by VAT number if it exists, otherwise create a new contact
+      customer = billing_detail.vat_number.present? ? self.get_contact_by_document(billing_detail.vat_number) : nil
       if customer.blank?
-        self.create_contact(billing_detail)
+        contact_response = self.create_contact(billing_detail)
+        billing_detail.sage_active_third_party_id = contact_response['id']
+        billing_detail.save!(validate: false)
       else
         billing_detail.sage_active_third_party_id = customer['id']
+        billing_detail.save!(validate: false)
       end
     end
 
@@ -607,8 +611,6 @@ class SageActive < ActiveRecord::Base
 
     contact_data = {
       "code" => "HP#{billing_detail.id}",
-      "documentId" => billing_detail.vat_number || "N/A-#{billing_detail.id}",
-      "vatNumber" => billing_detail.eu? ? "#{billing_detail.country.alpha2}#{billing_detail.vat_number}" : '',
       "socialName" => billing_detail.company_name,
       "addresses" => [{
                         "firstLine" => address_line_1,
@@ -629,6 +631,16 @@ class SageActive < ActiveRecord::Base
                                     }]
                      }]
     }
+
+    # Add documentId only if VAT number is present
+    if billing_detail.vat_number.present?
+      contact_data["documentId"] = billing_detail.vat_number
+    end
+
+    # Add vatNumber only for EU customers with VAT numbers
+    if billing_detail.eu? && billing_detail.vat_number.present?
+      contact_data["vatNumber"] = "#{billing_detail.country.alpha2}#{billing_detail.vat_number}"
+    end
 
     contact_data
   end
