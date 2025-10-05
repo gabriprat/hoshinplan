@@ -14,9 +14,13 @@ module Jobs
           begin
             resp = SageActive.create_sales_invoice(invoice)
             invoice.sage_active_invoice_id = resp['data']['createSalesInvoice']['id']
-            invoice.sage_active_operational_number = resp['data']['createSalesInvoice']['operationalNumber']
             invoice.save!(validate: false)
             resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
+            # Get the operational number from the invoice details
+            if resp['operationalNumber'].present?
+              invoice.sage_active_operational_number = resp['operationalNumber']
+              invoice.save!(validate: false)
+            end
             if resp['status'] == 'Pending'
               SageActive.close_invoice(invoice)
               resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)

@@ -108,7 +108,6 @@ class SageActive < ActiveRecord::Base
       mutation($input: SalesInvoiceCreateGLDtoInput!) {
         createSalesInvoice(input: $input) {
           id
-          operationalNumber
         }
       }
     GRAPHQL
