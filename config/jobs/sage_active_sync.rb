@@ -16,11 +16,6 @@ module Jobs
             invoice.sage_active_invoice_id = resp['data']['createSalesInvoice']['id']
             invoice.save!(validate: false)
             resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
-            # Get the operational number from the invoice details
-            if resp['operationalNumber'].present?
-              invoice.sage_active_operational_number = resp['operationalNumber']
-              invoice.save!(validate: false)
-            end
             if resp['status'] == 'Pending'
               SageActive.close_invoice(invoice)
               resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
@@ -31,6 +26,14 @@ module Jobs
             end
             if resp['status'] == 'Posted'
               SageActive.pay_sales_invoice(invoice)
+              resp = SageActive.get_sales_invoice(invoice.sage_active_invoice_id)
+            end
+            # Get the operational number from the invoice details
+            if resp['operationalNumber'].present?
+              invoice.sage_active_operational_number = resp['operationalNumber']
+              invoice.save!(validate: false)
+            else
+              ret += Jobs::say " ==== Error getting operational number for invoice #{invoice.id}\n"
             end
             ret += Jobs::say " ==== Sending invoice #{invoice.id}\n"
             UserCompanyMailer.invoice(invoice.id).deliver_later
